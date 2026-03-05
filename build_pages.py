@@ -58,7 +58,7 @@ def generate_homepage(towns):
 
 def generate_sitemap(towns):
 
-    base_url = "https://example.com"
+    base_url = "https://uk-ev-chargers.pages.dev"
 
     urls = []
 
