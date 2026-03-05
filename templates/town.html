@@ -1,26 +1,40 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8">
-    <title>EV Chargers in {{ town }}</title>
+<meta charset="UTF-8">
+<title>EV Chargers in {{ town }}</title>
+<link rel="stylesheet" href="/style.css">
 </head>
 
 <body>
 
+<header>
 <h1>EV Chargers in {{ town }}</h1>
+</header>
 
-<p>Total charging locations: {{ chargers|length }}</p>
+<div class="container">
 
-<ul>
+<p>{{ chargers|length }} charging locations found.</p>
+
 {% for charger in chargers %}
-    <li>
-        <strong>{{ charger.AddressInfo.Title }}</strong><br>
-        {{ charger.AddressInfo.AddressLine1 }}<br>
-        {{ charger.AddressInfo.Town }}<br>
-        {{ charger.AddressInfo.Postcode }}
-    </li>
+<div class="card">
+
+<h3>{{ charger.AddressInfo.Title }}</h3>
+
+<p>
+{{ charger.AddressInfo.AddressLine1 }}<br>
+{{ charger.AddressInfo.Town }}<br>
+{{ charger.AddressInfo.Postcode }}
+</p>
+
+</div>
 {% endfor %}
-</ul>
+
+</div>
+
+<footer>
+EV Charger Directory
+</footer>
 
 </body>
 </html>
