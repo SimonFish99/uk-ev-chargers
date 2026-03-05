@@ -1,7 +1,9 @@
 from pathlib import Path
+import os
 
 import requests
 from jinja2 import Environment, FileSystemLoader, select_autoescape
+from dotenv import load_dotenv
 
 OUTPUT_DIR = Path("output")
 TEMPLATE_DIR = Path("templates")
@@ -13,16 +15,45 @@ PARAMS = {
     "maxresults": 50,
 }
 
-HEADERS = {
-    # Helps some APIs/proxies behave nicely
-    "User-Agent": "uk-ev-site-builder/0.1 (+https://example.com)"
-}
+def build_headers() -> dict:
+    """
+    OpenChargeMap often requires an API key now.
+    We read it from .env as OCM_API_KEY.
+    """
+    headers = {
+        "User-Agent": "uk-ev-site-builder/0.1",
+        "Accept": "application/json",
+    }
+
+    api_key = os.getenv("OCM_API_KEY", "").strip()
+    if api_key:
+        # Common header name used by OCM
+        headers["X-API-Key"] = api_key
+
+    return headers
 
 
 def fetch_chargers():
     print("Fetching chargers from OpenChargeMap…")
-    r = requests.get(API_URL, params=PARAMS, headers=HEADERS, timeout=30)
+
+    headers = build_headers()
+    has_key = "X-API-Key" in headers
+    print(f"API key provided: {'YES' if has_key else 'NO'}")
+
+    r = requests.get(API_URL, params=PARAMS, headers=headers, timeout=30)
     print(f"HTTP status: {r.status_code}")
+
+    if r.status_code == 403:
+        # Friendly message for the exact problem you hit
+        raise RuntimeError(
+            "OpenChargeMap returned 403 Forbidden.\n\n"
+            "This usually means an API key is required.\n"
+            "Fix:\n"
+            "1) Get a free OpenChargeMap API key.\n"
+            "2) Put it in a .env file as: OCM_API_KEY=your_key\n"
+            "3) Re-run: python build.py\n"
+        )
+
     r.raise_for_status()
 
     data = r.json()
@@ -55,6 +86,9 @@ def build_page(chargers):
 
 
 def main():
+    # Load .env into environment variables
+    load_dotenv()
+
     try:
         chargers = fetch_chargers()
         build_page(chargers)
