@@ -1,40 +1,60 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>EV Chargers in {{ town }}</title>
-<link rel="stylesheet" href="/style.css">
+<title>{{ town }} EV Chargers</title>
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+
+<style>
+#map {
+  height: 400px;
+  margin-bottom: 30px;
+  border-radius: 8px;
+}
+</style>
+
 </head>
 
 <body>
 
-<header>
-<h1>EV Chargers in {{ town }}</h1>
-</header>
+<h1>{{ town }} EV Chargers</h1>
 
-<div class="container">
+<div id="map"></div>
 
-<p>{{ chargers|length }} charging locations found.</p>
+<ul>
+{% for charger in chargers %}
+<li>
+<strong>{{ charger.AddressInfo.Title }}</strong><br>
+{{ charger.AddressInfo.AddressLine1 }}
+</li>
+{% endfor %}
+</ul>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script>
+
+var map = L.map('map').setView([
+{{ chargers[0].AddressInfo.Latitude }},
+{{ chargers[0].AddressInfo.Longitude }}
+], 12);
+
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+attribution: '&copy; OpenStreetMap contributors'
+}).addTo(map);
 
 {% for charger in chargers %}
-<div class="card">
 
-<h3>{{ charger.AddressInfo.Title }}</h3>
+L.marker([
+{{ charger.AddressInfo.Latitude }},
+{{ charger.AddressInfo.Longitude }}
+]).addTo(map)
+.bindPopup("<b>{{ charger.AddressInfo.Title }}</b><br>{{ charger.AddressInfo.AddressLine1 }}");
 
-<p>
-{{ charger.AddressInfo.AddressLine1 }}<br>
-{{ charger.AddressInfo.Town }}<br>
-{{ charger.AddressInfo.Postcode }}
-</p>
-
-</div>
 {% endfor %}
 
-</div>
-
-<footer>
-EV Charger Directory
-</footer>
+</script>
 
 </body>
 </html>
