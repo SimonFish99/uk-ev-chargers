@@ -50,7 +50,13 @@ L.marker([
 {{ charger.AddressInfo.Latitude }},
 {{ charger.AddressInfo.Longitude }}
 ]).addTo(map)
-.bindPopup("<b>{{ charger.AddressInfo.Title }}</b><br>{{ charger.AddressInfo.AddressLine1 }}");
+.bindPopup(`
+<b>{{ charger.AddressInfo.Title }}</b><br>
+{{ charger.AddressInfo.AddressLine1 }}<br><br>
+<a href="https://www.google.com/maps/dir/?api=1&destination={{ charger.AddressInfo.Latitude }},{{ charger.AddressInfo.Longitude }}" target="_blank">
+Get directions
+</a>
+`);
 
 {% endfor %}
 
