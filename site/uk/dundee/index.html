@@ -1,412 +1,463 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>EV Chargers in Dundee</title>
-<link rel="stylesheet" href="/style.css">
+<title>Dundee EV Chargers</title>
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+
+<style>
+#map {
+  height: 400px;
+  margin-bottom: 30px;
+  border-radius: 8px;
+}
+</style>
+
 </head>
 
 <body>
 
-<header>
-<h1>EV Chargers in Dundee</h1>
-</header>
+<h1>Dundee EV Chargers</h1>
+
+<div id="map"></div>
+
+<ul>
+
+<li>
+<strong>Lidl-Lochee</strong><br>
+71 South Road
+</li>
+
+<li>
+<strong>Lidl-Stobswell</strong><br>
+28a Dura Street
+</li>
+
+<li>
+<strong>Lidl-Dundee</strong><br>
+New Craigie Road
+</li>
+
+<li>
+<strong>The Camper Down Elm Pub & Restaurant</strong><br>
+1a Fulton Road
+</li>
+
+<li>
+<strong>Tesco Superstore - Dundee Monifieth</strong><br>
+High Street
+</li>
+
+<li>
+<strong>Tesco Extra - Dundee South Road</strong><br>
+South Road
+</li>
+
+<li>
+<strong>Tesco Extra - Dundee Riverside</strong><br>
+Riverside Drive
+</li>
+
+<li>
+<strong>Jack Martin Way, Dundee</strong><br>
+Forfar Road
+</li>
+
+<li>
+<strong>Housing Office West, Dundee</strong><br>
+1B Sinclair Street
+</li>
+
+<li>
+<strong>Deanside Ltd, Belsize Road</strong><br>
+Belsize Road
+</li>
+
+<li>
+<strong>Hillcrest Housing Association</strong><br>
+3 Explorer Road
+</li>
+
+<li>
+<strong>Staybridge Lower Dens</strong><br>
+Staybridge Lower Dens
+</li>
+
+<li>
+<strong>Gellatly Street Car Park, Dundee</strong><br>
+Gellatly Street
+</li>
+
+<li>
+<strong>University of Dundee - Park Place Car Park</strong><br>
+35 Palais Court
+</li>
+
+<li>
+<strong>Green Market Multi-storey Car park</strong><br>
+Green Market Multi-Storey Car
+</li>
+
+<li>
+<strong>Dundee University, Botanic Gardens</strong><br>
+Riverside Drive
+</li>
+
+<li>
+<strong>Morrisons</strong><br>
+1 Afton Way
+</li>
+
+<li>
+<strong>JUTE JUICE CHARGER 4</strong><br>
+Journalism Corner 2A Charleston Drive
+</li>
+
+<li>
+<strong>Peter Vardy - 1</strong><br>
+3 Berryhill Road
+</li>
+
+<li>
+<strong>Whitfield Centre</strong><br>
+Lothian Crescent
+</li>
 
-<div class="container">
+<li>
+<strong>Michelin Scotland Innovation Park</strong><br>
+Baldovie Road
+</li>
 
-<p>32 charging locations found.</p>
+<li>
+<strong>Michelin Scotland Innovation Park</strong><br>
+Baldovie Road
+</li>
 
+<li>
+<strong>203020 Taxis</strong><br>
+3-2 Isla Street
+</li>
 
-<div class="card">
+<li>
+<strong>Tesco Extra-Dundee</strong><br>
+Kingsway
+</li>
 
-<h3>Lidl-Lochee</h3>
+<li>
+<strong>Alexander Street, Dundee</strong><br>
+Block 15-35 Annan Terrace
+</li>
 
-<p>
-71 South Road<br>
-Dundee<br>
-DD2 3EG
-</p>
+<li>
+<strong>Douglas Road Rapid Charger</strong><br>
+Douglas Road
+</li>
 
-</div>
+<li>
+<strong>Orleans Place, Dundee</strong><br>
+Orleans Place
+</li>
 
-<div class="card">
+<li>
+<strong>Camperdown Country Park</strong><br>
+Camperdown Country Park
+</li>
 
-<h3>Lidl-Stobswell</h3>
+<li>
+<strong>Dundee & Angus College, Kingsway Campus, Dundee</strong><br>
+Old Glamis Road
+</li>
 
-<p>
-28a Dura Street<br>
-Dundee<br>
-DD4 6RX
-</p>
+<li>
+<strong>East District Housing Office, Dundee</strong><br>
+189 Pitkerro Road
+</li>
 
-</div>
+<li>
+<strong>Winter K Simpsons, Dundee</strong><br>
+Unit 16 Dunsinane Avenue
+</li>
 
-<div class="card">
+<li>
+<strong>Carlunie Road</strong><br>
+Carlunie Road
+</li>
 
-<h3>Lidl-Dundee</h3>
+</ul>
 
-<p>
-New Craigie Road<br>
-Dundee<br>
-DD4 7FF
-</p>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
-</div>
+<script>
 
-<div class="card">
+var map = L.map('map').setView([
+56.4719455,
+-3.0125918
+], 12);
 
-<h3>The Camper Down Elm Pub & Restaurant</h3>
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+attribution: '&copy; OpenStreetMap contributors'
+}).addTo(map);
 
-<p>
-1a Fulton Road<br>
-Dundee<br>
-DD2 4SW
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+56.4719455,
+-3.0125918
+]).addTo(map)
+.bindPopup("<b>Lidl-Lochee</b><br>71 South Road");
 
-<h3>Tesco Superstore - Dundee Monifieth</h3>
 
-<p>
-High Street<br>
-Dundee<br>
-DD5 4TP
-</p>
 
-</div>
+L.marker([
+56.4706977,
+-2.9603149
+]).addTo(map)
+.bindPopup("<b>Lidl-Stobswell</b><br>28a Dura Street");
 
-<div class="card">
 
-<h3>Tesco Extra - Dundee South Road</h3>
 
-<p>
-South Road<br>
-Dundee<br>
-DD2 4SR
-</p>
+L.marker([
+56.476764,
+-2.9314872
+]).addTo(map)
+.bindPopup("<b>Lidl-Dundee</b><br>New Craigie Road");
 
-</div>
 
-<div class="card">
 
-<h3>Tesco Extra - Dundee Riverside</h3>
+L.marker([
+56.473318,
+-3.052509
+]).addTo(map)
+.bindPopup("<b>The Camper Down Elm Pub & Restaurant</b><br>1a Fulton Road");
 
-<p>
-Riverside Drive<br>
-Dundee<br>
-DD2 1UG
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+56.480796,
+-2.817473
+]).addTo(map)
+.bindPopup("<b>Tesco Superstore - Dundee Monifieth</b><br>High Street");
 
-<h3>Jack Martin Way, Dundee</h3>
 
-<p>
-Forfar Road<br>
-Dundee<br>
-DD4 9FF
-</p>
 
-</div>
+L.marker([
+56.470977,
+-3.042831
+]).addTo(map)
+.bindPopup("<b>Tesco Extra - Dundee South Road</b><br>South Road");
 
-<div class="card">
 
-<h3>Housing Office West, Dundee</h3>
 
-<p>
-1B Sinclair Street<br>
-Dundee<br>
-DD2 3DA
-</p>
+L.marker([
+56.454513,
+-2.976637
+]).addTo(map)
+.bindPopup("<b>Tesco Extra - Dundee Riverside</b><br>Riverside Drive");
 
-</div>
 
-<div class="card">
 
-<h3>Deanside Ltd, Belsize Road</h3>
+L.marker([
+56.494875,
+-2.946799
+]).addTo(map)
+.bindPopup("<b>Jack Martin Way, Dundee</b><br>Forfar Road");
 
-<p>
-Belsize Road<br>
-Dundee<br>
-DD5 1NF
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+56.473072,
+-3.011416
+]).addTo(map)
+.bindPopup("<b>Housing Office West, Dundee</b><br>1B Sinclair Street");
 
-<h3>Hillcrest Housing Association</h3>
 
-<p>
-3 Explorer Road<br>
-Dundee<br>
-DD2 1EG
-</p>
 
-</div>
+L.marker([
+56.470373,
+-2.910503
+]).addTo(map)
+.bindPopup("<b>Deanside Ltd, Belsize Road</b><br>Belsize Road");
 
-<div class="card">
 
-<h3>Staybridge Lower Dens</h3>
 
-<p>
-Staybridge Lower Dens<br>
-Dundee<br>
-DD4 6BU
-</p>
+L.marker([
+56.469725,
+-3.05736
+]).addTo(map)
+.bindPopup("<b>Hillcrest Housing Association</b><br>3 Explorer Road");
 
-</div>
 
-<div class="card">
 
-<h3>Gellatly Street Car Park, Dundee</h3>
+L.marker([
+56.465466,
+-2.962815
+]).addTo(map)
+.bindPopup("<b>Staybridge Lower Dens</b><br>Staybridge Lower Dens");
 
-<p>
-Gellatly Street<br>
-Dundee<br>
-DD1 3EN
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+56.462,
+-2.9665
+]).addTo(map)
+.bindPopup("<b>Gellatly Street Car Park, Dundee</b><br>Gellatly Street");
 
-<h3>University of Dundee - Park Place Car Park</h3>
 
-<p>
-35 Palais Court<br>
-Dundee<br>
-DD1 1NP
-</p>
 
-</div>
+L.marker([
+56.458868,
+-2.976572
+]).addTo(map)
+.bindPopup("<b>University of Dundee - Park Place Car Park</b><br>35 Palais Court");
 
-<div class="card">
 
-<h3>Green Market Multi-storey Car park</h3>
 
-<p>
-Green Market Multi-Storey Car<br>
-Dundee<br>
-DD1 4QB
-</p>
+L.marker([
+56.45734,
+-2.97325
+]).addTo(map)
+.bindPopup("<b>Green Market Multi-storey Car park</b><br>Green Market Multi-Storey Car");
 
-</div>
 
-<div class="card">
 
-<h3>Dundee University, Botanic Gardens</h3>
+L.marker([
+56.456491,
+-3.025192
+]).addTo(map)
+.bindPopup("<b>Dundee University, Botanic Gardens</b><br>Riverside Drive");
 
-<p>
-Riverside Drive<br>
-Dundee<br>
-DD2 1QH
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+56.484551,
+-2.947102
+]).addTo(map)
+.bindPopup("<b>Morrisons</b><br>1 Afton Way");
 
-<h3>Morrisons</h3>
 
-<p>
-1 Afton Way<br>
-Dundee<br>
-DD4 8BR
-</p>
 
-</div>
+L.marker([
+56.468137,
+-3.014515
+]).addTo(map)
+.bindPopup("<b>JUTE JUICE CHARGER 4</b><br>Journalism Corner 2A Charleston Drive");
 
-<div class="card">
 
-<h3>JUTE JUICE CHARGER 4</h3>
 
-<p>
-Journalism Corner 2A Charleston Drive<br>
-Dundee<br>
-DD2 2BF
-</p>
+L.marker([
+56.489181,
+-3.108945
+]).addTo(map)
+.bindPopup("<b>Peter Vardy - 1</b><br>3 Berryhill Road");
 
-</div>
 
-<div class="card">
 
-<h3>Peter Vardy - 1</h3>
+L.marker([
+56.488907,
+-2.928023
+]).addTo(map)
+.bindPopup("<b>Whitfield Centre</b><br>Lothian Crescent");
 
-<p>
-3 Berryhill Road<br>
-Dundee<br>
-DD2 3WT
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+56.485766,
+-2.892422
+]).addTo(map)
+.bindPopup("<b>Michelin Scotland Innovation Park</b><br>Baldovie Road");
 
-<h3>Whitfield Centre</h3>
 
-<p>
-Lothian Crescent<br>
-Dundee<br>
-DD4 0HU
-</p>
 
-</div>
+L.marker([
+56.485766,
+-2.892422
+]).addTo(map)
+.bindPopup("<b>Michelin Scotland Innovation Park</b><br>Baldovie Road");
 
-<div class="card">
 
-<h3>Michelin Scotland Innovation Park</h3>
 
-<p>
-Baldovie Road<br>
-Dundee<br>
-DD4 8UQ
-</p>
+L.marker([
+56.472421,
+-2.971498
+]).addTo(map)
+.bindPopup("<b>203020 Taxis</b><br>3-2 Isla Street");
 
-</div>
 
-<div class="card">
 
-<h3>Michelin Scotland Innovation Park</h3>
+L.marker([
+56.48278,
+-2.993523
+]).addTo(map)
+.bindPopup("<b>Tesco Extra-Dundee</b><br>Kingsway");
 
-<p>
-Baldovie Road<br>
-Dundee<br>
-DD4 8UQ
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+56.469223,
+-2.968885
+]).addTo(map)
+.bindPopup("<b>Alexander Street, Dundee</b><br>Block 15-35 Annan Terrace");
 
-<h3>203020 Taxis</h3>
 
-<p>
-3-2 Isla Street<br>
-Dundee<br>
-DD3 7HT
-</p>
 
-</div>
+L.marker([
+56.47904,
+-2.92207
+]).addTo(map)
+.bindPopup("<b>Douglas Road Rapid Charger</b><br>Douglas Road");
 
-<div class="card">
 
-<h3>Tesco Extra-Dundee</h3>
 
-<p>
-Kingsway<br>
-Dundee<br>
-DD3 8QB
-</p>
+L.marker([
+56.4672,
+-3.0399
+]).addTo(map)
+.bindPopup("<b>Orleans Place, Dundee</b><br>Orleans Place");
 
-</div>
 
-<div class="card">
 
-<h3>Alexander Street, Dundee</h3>
+L.marker([
+56.481363,
+-3.040196
+]).addTo(map)
+.bindPopup("<b>Camperdown Country Park</b><br>Camperdown Country Park");
 
-<p>
-Block 15-35 Annan Terrace<br>
-Dundee<br>
-DD1 2AE
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+56.484259,
+-2.975453
+]).addTo(map)
+.bindPopup("<b>Dundee & Angus College, Kingsway Campus, Dundee</b><br>Old Glamis Road");
 
-<h3>Douglas Road Rapid Charger</h3>
 
-<p>
-Douglas Road<br>
-Dundee<br>
-DD4 0HY
-</p>
 
-</div>
+L.marker([
+56.482168,
+-2.935639
+]).addTo(map)
+.bindPopup("<b>East District Housing Office, Dundee</b><br>189 Pitkerro Road");
 
-<div class="card">
 
-<h3>Orleans Place, Dundee</h3>
 
-<p>
-Orleans Place<br>
-Dundee<br>
-DD2 4BH
-</p>
+L.marker([
+56.47989,
+-3.01609
+]).addTo(map)
+.bindPopup("<b>Winter K Simpsons, Dundee</b><br>Unit 16 Dunsinane Avenue");
 
-</div>
 
-<div class="card">
 
-<h3>Camperdown Country Park</h3>
+L.marker([
+56.479704,
+-3.013459
+]).addTo(map)
+.bindPopup("<b>Carlunie Road</b><br>Carlunie Road");
 
-<p>
-Camperdown Country Park<br>
-Dundee<br>
-DD2 4TF
-</p>
 
-</div>
 
-<div class="card">
-
-<h3>Dundee & Angus College, Kingsway Campus, Dundee</h3>
-
-<p>
-Old Glamis Road<br>
-Dundee<br>
-DD3 8LE
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>East District Housing Office, Dundee</h3>
-
-<p>
-189 Pitkerro Road<br>
-Dundee<br>
-DD4 8ES
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Winter K Simpsons, Dundee</h3>
-
-<p>
-Unit 16 Dunsinane Avenue<br>
-Dundee<br>
-DD2 3QT
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Carlunie Road</h3>
-
-<p>
-Carlunie Road<br>
-Dundee<br>
-DD2 3QN
-</p>
-
-</div>
-
-
-</div>
-
-<footer>
-EV Charger Directory
-</footer>
+</script>
 
 </body>
 </html>

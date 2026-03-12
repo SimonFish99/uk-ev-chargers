@@ -1,88 +1,112 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>EV Chargers in Selby</title>
-<link rel="stylesheet" href="/style.css">
+<title>Selby EV Chargers</title>
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+
+<style>
+#map {
+  height: 400px;
+  margin-bottom: 30px;
+  border-radius: 8px;
+}
+</style>
+
 </head>
 
 <body>
 
-<header>
-<h1>EV Chargers in Selby</h1>
-</header>
+<h1>Selby EV Chargers</h1>
 
-<div class="container">
+<div id="map"></div>
 
-<p>5 charging locations found.</p>
+<ul>
 
+<li>
+<strong>JET Abbeyside Filling Station</strong><br>
+1 Bawtry Road Abbeyside
+</li>
 
-<div class="card">
+<li>
+<strong>The Wishing Well</strong><br>
+Oakney Wood Drive
+</li>
 
-<h3>JET Abbeyside Filling Station</h3>
+<li>
+<strong>Selby 6881-2</strong><br>
+York Street
+</li>
 
-<p>
-1 Bawtry Road Abbeyside<br>
-Selby<br>
-YO8 8NA
-</p>
+<li>
+<strong>Lidl Selby</strong><br>
+Bawtry Road
+</li>
 
-</div>
+<li>
+<strong>Morrisons Selby</strong><br>
+Market Cross
+</li>
 
-<div class="card">
+</ul>
 
-<h3>The Wishing Well</h3>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
-<p>
-Oakney Wood Drive<br>
-Selby<br>
-YO8 8LZ 
-</p>
+<script>
 
-</div>
+var map = L.map('map').setView([
+53.774371872504986,
+-1.0644195540277224
+], 12);
 
-<div class="card">
-
-<h3>Selby 6881-2</h3>
-
-<p>
-York Street<br>
-Selby<br>
-YO8 4BE
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Lidl Selby</h3>
-
-<p>
-Bawtry Road<br>
-Selby<br>
-YO8 8SA
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Morrisons Selby</h3>
-
-<p>
-Market Cross<br>
-Selby<br>
-YO8 4JS
-</p>
-
-</div>
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+attribution: '&copy; OpenStreetMap contributors'
+}).addTo(map);
 
 
-</div>
 
-<footer>
-EV Charger Directory
-</footer>
+L.marker([
+53.774371872504986,
+-1.0644195540277224
+]).addTo(map)
+.bindPopup("<b>JET Abbeyside Filling Station</b><br>1 Bawtry Road Abbeyside");
+
+
+
+L.marker([
+53.76591339201153,
+-1.0666723228454202
+]).addTo(map)
+.bindPopup("<b>The Wishing Well</b><br>Oakney Wood Drive");
+
+
+
+L.marker([
+53.783124,
+-1.072741
+]).addTo(map)
+.bindPopup("<b>Selby 6881-2</b><br>York Street");
+
+
+
+L.marker([
+53.76760064102618,
+-1.0633089795753676
+]).addTo(map)
+.bindPopup("<b>Lidl Selby</b><br>Bawtry Road");
+
+
+
+L.marker([
+53.782244197201635,
+-1.0685002358046631
+]).addTo(map)
+.bindPopup("<b>Morrisons Selby</b><br>Market Cross");
+
+
+
+</script>
 
 </body>
 </html>

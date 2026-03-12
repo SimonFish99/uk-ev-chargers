@@ -1,580 +1,645 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>EV Chargers in Bradford</title>
-<link rel="stylesheet" href="/style.css">
+<title>Bradford EV Chargers</title>
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+
+<style>
+#map {
+  height: 400px;
+  margin-bottom: 30px;
+  border-radius: 8px;
+}
+</style>
+
 </head>
 
 <body>
 
-<header>
-<h1>EV Chargers in Bradford</h1>
-</header>
+<h1>Bradford EV Chargers</h1>
+
+<div id="map"></div>
+
+<ul>
+
+<li>
+<strong>Heaton Crematorium, Bradford 6</strong><br>
+Highgate
+</li>
+
+<li>
+<strong>Bowling Swimming Pool, East Bowling 1</strong><br>
+East Bowling,
+</li>
+
+<li>
+<strong>Best Western Bradford Guide Post</strong><br>
+Common Road
+</li>
+
+<li>
+<strong>Keighley Leisure Centre</strong><br>
+Victoria Park, Keighley,
+</li>
+
+<li>
+<strong>SHELL RECHARGE ROOLEY LANE</strong><br>
+Rooley Lane
+</li>
+
+<li>
+<strong>Wesley Place Car Park 3</strong><br>
+Keightley
+</li>
+
+<li>
+<strong>Saville Street, Shipley</strong><br>
+Shipley
+</li>
+
+<li>
+<strong>Genie</strong><br>
+Cemetery Road
+</li>
+
+<li>
+<strong>Tesco Extra - Bradford</strong><br>
+Great Horton Road
+</li>
+
+<li>
+<strong>Asda Bradford</strong><br>
+Rooley Lane
+</li>
+
+<li>
+<strong>Sedbergh Leisure Centre</strong><br>
+Low Moor
+</li>
+
+<li>
+<strong>Bolton Rd Car Park 1</strong><br>
+Addingham
+</li>
+
+<li>
+<strong>Jenny Lane 1</strong><br>
+Balidon
+</li>
+
+<li>
+<strong>St Pauls Car Park 1</strong><br>
+Shipley
+</li>
+
+<li>
+<strong>Herbert Street, Cottingley 1</strong><br>
+Cottingley
+</li>
+
+<li>
+<strong>Cliffewood Avenue 1</strong><br>
+Shipley
+</li>
+
+<li>
+<strong>Eccleshill Recreation Ground 3</strong><br>
+Mount Avenue
+</li>
+
+<li>
+<strong>Bute St Car Park 2</strong><br>
+Bolton
+</li>
+
+<li>
+<strong>Killinghall Car Park 1</strong><br>
+Eccleshill
+</li>
+
+<li>
+<strong>Manningham Library 2</strong><br>
+Manningham
+</li>
+
+<li>
+<strong>Tesco Superstore-Queensbury</strong><br>
+Brighouse Road
+</li>
+
+<li>
+<strong>McDonald's Thornbury</strong><br>
+1003 Leeds Road
+</li>
+
+<li>
+<strong>Oakworth Crematorium</strong><br>
+Oakworth, Keighley
+</li>
+
+<li>
+<strong>Lidl-Bradford-Manchester Road</strong><br>
+Manchester Road
+</li>
+
+<li>
+<strong>Tesco Superstore-Bradford Peel Centre</strong><br>
+Peel Centre
+</li>
+
+<li>
+<strong>Tesco Superstore - Ilkley </strong><br>
+19 Springs Lane
+</li>
+
+<li>
+<strong>Asda Wyke</strong><br>
+Town Gate, Wyke
+</li>
+
+<li>
+<strong>Tesco Superstore-Bradford Buttershaw</strong><br>
+Halifax Road
+</li>
+
+<li>
+<strong>Wibsey Fairground</strong><br>
+Tennyson Road
+</li>
+
+<li>
+<strong>Vicar Lane Car Park</strong><br>
+Vicar Lane
+</li>
+
+<li>
+<strong>Victor Street Car Park</strong><br>
+Oak Lane
+</li>
+
+<li>
+<strong>Victor Street Car Park</strong><br>
+Victor Terrace
+</li>
+
+<li>
+<strong>Booths Instavolt Ilkley</strong><br>
+Leeds Road
+</li>
+
+<li>
+<strong>Victoria Park, Keighley,</strong><br>
+Victoria Park, Keighley,
+</li>
+
+<li>
+<strong>Orange Street Car Park</strong><br>
+Orange Street
+</li>
+
+<li>
+<strong>Starbucks Gain Lane</strong><br>
+Gain Lane
+</li>
 
-<div class="container">
+<li>
+<strong>Manningham Sports Centre</strong><br>
+Carlisle Road
+</li>
+
+<li>
+<strong>Morrisons Bradford Thornbury</strong><br>
+Rushton Avenue
+</li>
 
-<p>46 charging locations found.</p>
+<li>
+<strong>The Oastler Shopping Centre and Market</strong><br>
+Rawson Road
+</li>
 
+<li>
+<strong>Toby Carvery Bradford</strong><br>
+244-246 Rooley Lane
+</li>
 
-<div class="card">
+<li>
+<strong>Quora Retail Park</strong><br>
+Bradford Road
+</li>
 
-<h3>Heaton Crematorium, Bradford 6</h3>
+<li>
+<strong>Burnett Street Car Park</strong><br>
+Burnett Street
+</li>
 
-<p>
-Highgate<br>
-Bradford<br>
-BD9 4BE
-</p>
+<li>
+<strong>The Green Car Park</strong><br>
+The Green
+</li>
 
-</div>
+<li>
+<strong>KFC</strong><br>
+Halifax Road
+</li>
 
-<div class="card">
+<li>
+<strong>Sedbergh Leisure Centre</strong><br>
+Cleckheaton Road
+</li>
 
-<h3>Bowling Swimming Pool, East Bowling 1</h3>
+<li>
+<strong>Wellington Street Car Park</strong><br>
+Wellington Street
+</li>
 
-<p>
-East Bowling,<br>
-Bradford<br>
-BD4 7RH
-</p>
+</ul>
 
-</div>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
-<div class="card">
+<script>
 
-<h3>Best Western Bradford Guide Post</h3>
+var map = L.map('map').setView([
+53.822809,
+-1.802243
+], 12);
 
-<p>
-Common Road<br>
-Bradford<br>
-BD12 0ST
-</p>
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+attribution: '&copy; OpenStreetMap contributors'
+}).addTo(map);
 
-</div>
 
-<div class="card">
 
-<h3>Keighley Leisure Centre</h3>
+L.marker([
+53.822809,
+-1.802243
+]).addTo(map)
+.bindPopup("<b>Heaton Crematorium, Bradford 6</b><br>Highgate");
 
-<p>
-Victoria Park, Keighley,<br>
-Bradford<br>
-BD21 3JN
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+53.778682,
+-1.73672
+]).addTo(map)
+.bindPopup("<b>Bowling Swimming Pool, East Bowling 1</b><br>East Bowling,");
 
-<h3>SHELL RECHARGE ROOLEY LANE</h3>
 
-<p>
-Rooley Lane<br>
-Bradford<br>
-BD5 8JR
-</p>
 
-</div>
+L.marker([
+53.75564882,
+-1.763727857
+]).addTo(map)
+.bindPopup("<b>Best Western Bradford Guide Post</b><br>Common Road");
 
-<div class="card">
 
-<h3>Wesley Place Car Park 3</h3>
 
-<p>
-Keightley<br>
-Bradford<br>
-BD20 0PH
-</p>
+L.marker([
+53.873425,
+-1.901013
+]).addTo(map)
+.bindPopup("<b>Keighley Leisure Centre</b><br>Victoria Park, Keighley,");
 
-</div>
 
-<div class="card">
 
-<h3>Saville Street, Shipley</h3>
+L.marker([
+53.768619,
+-1.75287
+]).addTo(map)
+.bindPopup("<b>SHELL RECHARGE ROOLEY LANE</b><br>Rooley Lane");
 
-<p>
-Shipley<br>
-Bradford<br>
-BD18 3SX
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+53.914395,
+-1.937813
+]).addTo(map)
+.bindPopup("<b>Wesley Place Car Park 3</b><br>Keightley");
 
-<h3>Genie</h3>
 
-<p>
-Cemetery Road<br>
-Bradford<br>
-BD7 2QX
-</p>
 
-</div>
+L.marker([
+53.834332,
+-1.779449
+]).addTo(map)
+.bindPopup("<b>Saville Street, Shipley</b><br>Shipley");
 
-<div class="card">
 
-<h3>Tesco Extra - Bradford</h3>
 
-<p>
-Great Horton Road<br>
-Bradford<br>
-BD7 4EY
-</p>
+L.marker([
+53.793815,
+-1.789762
+]).addTo(map)
+.bindPopup("<b>Genie</b><br>Cemetery Road");
 
-</div>
 
-<div class="card">
 
-<h3>Asda Bradford</h3>
+L.marker([
+53.781216,
+-1.787817
+]).addTo(map)
+.bindPopup("<b>Tesco Extra - Bradford</b><br>Great Horton Road");
 
-<p>
-Rooley Lane<br>
-Bradford<br>
-BD4 7SR
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+53.771671,
+-1.733218
+]).addTo(map)
+.bindPopup("<b>Asda Bradford</b><br>Rooley Lane");
 
-<h3>Sedbergh Leisure Centre</h3>
 
-<p>
-Low Moor<br>
-Bradford<br>
-BD12 0HQ
-</p>
 
-</div>
+L.marker([
+53.760481,
+-1.759713
+]).addTo(map)
+.bindPopup("<b>Sedbergh Leisure Centre</b><br>Low Moor");
 
-<div class="card">
 
-<h3>Bolton Rd Car Park 1</h3>
 
-<p>
-Addingham<br>
-Bradford<br>
-LS29 0NR
-</p>
+L.marker([
+53.944214,
+-1.882045
+]).addTo(map)
+.bindPopup("<b>Bolton Rd Car Park 1</b><br>Addingham");
 
-</div>
 
-<div class="card">
 
-<h3>Jenny Lane 1</h3>
+L.marker([
+53.855448,
+-1.762459
+]).addTo(map)
+.bindPopup("<b>Jenny Lane 1</b><br>Balidon");
 
-<p>
-Balidon<br>
-Bradford<br>
-BD17 6RS
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+53.832797,
+-1.783162
+]).addTo(map)
+.bindPopup("<b>St Pauls Car Park 1</b><br>Shipley");
 
-<h3>St Pauls Car Park 1</h3>
 
-<p>
-Shipley<br>
-Bradford<br>
-BD18 3EP
-</p>
 
-</div>
+L.marker([
+53.828816,
+-1.82181
+]).addTo(map)
+.bindPopup("<b>Herbert Street, Cottingley 1</b><br>Cottingley");
 
-<div class="card">
 
-<h3>Herbert Street, Cottingley 1</h3>
 
-<p>
-Cottingley<br>
-Bradford<br>
-BD16 1SF
-</p>
+L.marker([
+53.825949,
+-1.780922
+]).addTo(map)
+.bindPopup("<b>Cliffewood Avenue 1</b><br>Shipley");
 
-</div>
 
-<div class="card">
 
-<h3>Cliffewood Avenue 1</h3>
+L.marker([
+53.821224,
+-1.727175
+]).addTo(map)
+.bindPopup("<b>Eccleshill Recreation Ground 3</b><br>Mount Avenue");
 
-<p>
-Shipley<br>
-Bradford<br>
-BD18 3DB
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+53.819503,
+-1.761992
+]).addTo(map)
+.bindPopup("<b>Bute St Car Park 2</b><br>Bolton");
 
-<h3>Eccleshill Recreation Ground 3</h3>
 
-<p>
-Mount Avenue<br>
-Bradford<br>
-BD2 2HY
-</p>
 
-</div>
+L.marker([
+53.808271,
+-1.729463
+]).addTo(map)
+.bindPopup("<b>Killinghall Car Park 1</b><br>Eccleshill");
 
-<div class="card">
 
-<h3>Bute St Car Park 2</h3>
 
-<p>
-Bolton<br>
-Bradford<br>
-BD2 1DH
-</p>
+L.marker([
+53.805902,
+-1.772043
+]).addTo(map)
+.bindPopup("<b>Manningham Library 2</b><br>Manningham");
 
-</div>
 
-<div class="card">
 
-<h3>Killinghall Car Park 1</h3>
+L.marker([
+53.7683623,
+-1.84202273
+]).addTo(map)
+.bindPopup("<b>Tesco Superstore-Queensbury</b><br>Brighouse Road");
 
-<p>
-Eccleshill<br>
-Bradford<br>
-BD2 4SJ
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+53.8002605,
+-1.7093363
+]).addTo(map)
+.bindPopup("<b>McDonald's Thornbury</b><br>1003 Leeds Road");
 
-<h3>Manningham Library 2</h3>
 
-<p>
-Manningham<br>
-Bradford<br>
-BD8 7NS
-</p>
 
-</div>
+L.marker([
+53.850256,
+-1.964474
+]).addTo(map)
+.bindPopup("<b>Oakworth Crematorium</b><br>Oakworth, Keighley");
 
-<div class="card">
 
-<h3>Tesco Superstore-Queensbury</h3>
 
-<p>
-Brighouse Road<br>
-Bradford<br>
-BD13 1QD
-</p>
+L.marker([
+53.782057,
+-1.759251
+]).addTo(map)
+.bindPopup("<b>Lidl-Bradford-Manchester Road</b><br>Manchester Road");
 
-</div>
 
-<div class="card">
 
-<h3>McDonald's Thornbury</h3>
+L.marker([
+53.804144,
+-1.753911
+]).addTo(map)
+.bindPopup("<b>Tesco Superstore-Bradford Peel Centre</b><br>Peel Centre");
 
-<p>
-1003 Leeds Road<br>
-Bradford<br>
-BD3 7NH
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+53.924313189284,
+-1.81760983411857
+]).addTo(map)
+.bindPopup("<b>Tesco Superstore - Ilkley </b><br>19 Springs Lane");
 
-<h3>Oakworth Crematorium</h3>
 
-<p>
-Oakworth, Keighley<br>
-Bradford<br>
-BD22 0RJ
-</p>
 
-</div>
+L.marker([
+53.738239,
+-1.76863
+]).addTo(map)
+.bindPopup("<b>Asda Wyke</b><br>Town Gate, Wyke");
 
-<div class="card">
 
-<h3>Lidl-Bradford-Manchester Road</h3>
 
-<p>
-Manchester Road<br>
-Bradford<br>
-BD5 7QA
-</p>
+L.marker([
+53.758742,
+-1.794512
+]).addTo(map)
+.bindPopup("<b>Tesco Superstore-Bradford Buttershaw</b><br>Halifax Road");
 
-</div>
 
-<div class="card">
 
-<h3>Tesco Superstore-Bradford Peel Centre</h3>
+L.marker([
+53.76668661467215,
+-1.7778675805075181
+]).addTo(map)
+.bindPopup("<b>Wibsey Fairground</b><br>Tennyson Road");
 
-<p>
-Peel Centre<br>
-Bradford<br>
-BD1 4RB
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+53.79132604047746,
+-1.7483990899461332
+]).addTo(map)
+.bindPopup("<b>Vicar Lane Car Park</b><br>Vicar Lane");
 
-<h3>Tesco Superstore - Ilkley </h3>
 
-<p>
-19 Springs Lane<br>
-Bradford<br>
-LS29 8UA
-</p>
 
-</div>
+L.marker([
+53.808816301141235,
+-1.776283475878813
+]).addTo(map)
+.bindPopup("<b>Victor Street Car Park</b><br>Oak Lane");
 
-<div class="card">
 
-<h3>Asda Wyke</h3>
 
-<p>
-Town Gate, Wyke<br>
-Bradford<br>
-BD12 9JF
-</p>
+L.marker([
+53.80862556995987,
+-1.776521327441401
+]).addTo(map)
+.bindPopup("<b>Victor Street Car Park</b><br>Victor Terrace");
 
-</div>
 
-<div class="card">
 
-<h3>Tesco Superstore-Bradford Buttershaw</h3>
+L.marker([
+53.927554,
+-1.818015
+]).addTo(map)
+.bindPopup("<b>Booths Instavolt Ilkley</b><br>Leeds Road");
 
-<p>
-Halifax Road<br>
-Bradford<br>
-BD6 2DW
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+53.87423464481145,
+-1.9009915423337134
+]).addTo(map)
+.bindPopup("<b>Victoria Park, Keighley,</b><br>Victoria Park, Keighley,");
 
-<h3>Wibsey Fairground</h3>
 
-<p>
-Tennyson Road<br>
-Bradford<br>
-BD6 1TG
-</p>
 
-</div>
+L.marker([
+53.79246,
+-1.723757
+]).addTo(map)
+.bindPopup("<b>Orange Street Car Park</b><br>Orange Street");
 
-<div class="card">
 
-<h3>Vicar Lane Car Park</h3>
 
-<p>
-Vicar Lane<br>
-Bradford<br>
-BD1 1TU
-</p>
+L.marker([
+53.8025287546999,
+-1.70241695540949
+]).addTo(map)
+.bindPopup("<b>Starbucks Gain Lane</b><br>Gain Lane");
 
-</div>
 
-<div class="card">
 
-<h3>Victor Street Car Park</h3>
+L.marker([
+53.804088,
+-1.774611
+]).addTo(map)
+.bindPopup("<b>Manningham Sports Centre</b><br>Carlisle Road");
 
-<p>
-Oak Lane<br>
-Bradford<br>
-BD9 4RD
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+53.801846,
+-1.712276
+]).addTo(map)
+.bindPopup("<b>Morrisons Bradford Thornbury</b><br>Rushton Avenue");
 
-<h3>Victor Street Car Park</h3>
 
-<p>
-Victor Terrace<br>
-Bradford<br>
-BD9 4QR
-</p>
 
-</div>
+L.marker([
+53.79784,
+-1.75752
+]).addTo(map)
+.bindPopup("<b>The Oastler Shopping Centre and Market</b><br>Rawson Road");
 
-<div class="card">
 
-<h3>Booths Instavolt Ilkley</h3>
 
-<p>
-Leeds Road<br>
-Bradford<br>
-LS29 8EE
-</p>
+L.marker([
+53.769028,
+-1.73779
+]).addTo(map)
+.bindPopup("<b>Toby Carvery Bradford</b><br>244-246 Rooley Lane");
 
-</div>
 
-<div class="card">
 
-<h3>Victoria Park, Keighley,</h3>
+L.marker([
+53.7836866066673,
+-1.79724583449024
+]).addTo(map)
+.bindPopup("<b>Quora Retail Park</b><br>Bradford Road");
 
-<p>
-Victoria Park, Keighley,<br>
-Bradford<br>
-BD21 3JN
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+53.79544465659018,
+-1.744441021467992
+]).addTo(map)
+.bindPopup("<b>Burnett Street Car Park</b><br>Burnett Street");
 
-<h3>Orange Street Car Park</h3>
 
-<p>
-Orange Street<br>
-Bradford<br>
-BD3 8EY
-</p>
 
-</div>
+L.marker([
+53.83510610905546,
+-1.7298996180154518
+]).addTo(map)
+.bindPopup("<b>The Green Car Park</b><br>The Green");
 
-<div class="card">
 
-<h3>Starbucks Gain Lane</h3>
 
-<p>
-Gain Lane<br>
-Bradford<br>
-BD3 7DW
-</p>
+L.marker([
+53.7642110757677,
+-1.76274648239109
+]).addTo(map)
+.bindPopup("<b>KFC</b><br>Halifax Road");
 
-</div>
 
-<div class="card">
 
-<h3>Manningham Sports Centre</h3>
+L.marker([
+53.75987440055275,
+-1.7614335542655226
+]).addTo(map)
+.bindPopup("<b>Sedbergh Leisure Centre</b><br>Cleckheaton Road");
 
-<p>
-Carlisle Road<br>
-Bradford<br>
-BD8 8BA
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+53.84807407794307,
+-1.8367932855298932
+]).addTo(map)
+.bindPopup("<b>Wellington Street Car Park</b><br>Wellington Street");
 
-<h3>Morrisons Bradford Thornbury</h3>
 
-<p>
-Rushton Avenue<br>
-Bradford<br>
-BD3 7HZ
-</p>
 
-</div>
-
-<div class="card">
-
-<h3>The Oastler Shopping Centre and Market</h3>
-
-<p>
-Rawson Road<br>
-Bradford<br>
-BD1 3RA 
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Toby Carvery Bradford</h3>
-
-<p>
-244-246 Rooley Lane<br>
-Bradford<br>
-BD5 8LB
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Quora Retail Park</h3>
-
-<p>
-Bradford Road<br>
-Bradford<br>
-BD14 6DA
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Burnett Street Car Park</h3>
-
-<p>
-Burnett Street<br>
-Bradford<br>
-BD1 4AU
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>The Green Car Park</h3>
-
-<p>
-The Green<br>
-Bradford<br>
-BD10 9PT
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>KFC</h3>
-
-<p>
-Halifax Road<br>
-Bradford<br>
-BD6 1JL
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Sedbergh Leisure Centre</h3>
-
-<p>
-Cleckheaton Road<br>
-Bradford<br>
-BD6 1FE
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Wellington Street Car Park</h3>
-
-<p>
-Wellington Street<br>
-Bradford<br>
-BD16 2NB
-</p>
-
-</div>
-
-
-</div>
-
-<footer>
-EV Charger Directory
-</footer>
+</script>
 
 </body>
 </html>

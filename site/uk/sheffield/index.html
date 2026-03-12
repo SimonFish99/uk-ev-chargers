@@ -1,484 +1,541 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>EV Chargers in Sheffield</title>
-<link rel="stylesheet" href="/style.css">
+<title>Sheffield EV Chargers</title>
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+
+<style>
+#map {
+  height: 400px;
+  margin-bottom: 30px;
+  border-radius: 8px;
+}
+</style>
+
 </head>
 
 <body>
 
-<header>
-<h1>EV Chargers in Sheffield</h1>
-</header>
+<h1>Sheffield EV Chargers</h1>
+
+<div id="map"></div>
+
+<ul>
+
+<li>
+<strong>MERRYCHEF STATION 01</strong><br>
+Welbuilt 6 Nether Lane
+</li>
+
+<li>
+<strong>Consultants Car Park</strong><br>
+Glossop Road
+</li>
+
+<li>
+<strong>Meadowhall Retail Park Supercharger</strong><br>
+Meadowhall Retail Park
+</li>
+
+<li>
+<strong>RAW GREENE KING ACORN 2</strong><br>
+Acorn 516 Burncross Road
+</li>
+
+<li>
+<strong>Riverside Car Park, Sheffield 2</strong><br>
+5 Millsands
+</li>
+
+<li>
+<strong>zest-line-club-band</strong><br>
+Livesey Street
+</li>
+
+<li>
+<strong>Park & Ride - Nunnery Square 1</strong><br>
+Sheffield Parkway
+</li>
+
+<li>
+<strong>Eight-Foot Way Pub & Restaurant</strong><br>
+2 Chaucer RD
+</li>
+
+<li>
+<strong>Morrisons Sheffield Ecclesfield</strong><br>
+299 The Common, Ecclesfield
+</li>
+
+<li>
+<strong>Asda</strong><br>
+Chaucer Road
+</li>
+
+<li>
+<strong>Middlewood Park & Ride 6</strong><br>
+Middlewood Road
+</li>
+
+<li>
+<strong>Malin Bridge Park & Ride 1</strong><br>
+42 Loxley New Road
+</li>
+
+<li>
+<strong>Harratts Nissan Sheffield</strong><br>
+Attercliffe Road, Sheffield, South Yorkshire
+</li>
+
+<li>
+<strong>Shipton Road Car Park, Sheffield 1</strong><br>
+Upperthorpe Road
+</li>
+
+<li>
+<strong>Ebenezer Street Car Park, Sheffield 2</strong><br>
+Ebenezer Street
+</li>
+
+<li>
+<strong>Trinity Street Car Park, Sheffield 2</strong><br>
+Trinity Street
+</li>
+
+<li>
+<strong>Windrush Way Car Park, Sheffield 5</strong><br>
+Windrush Way
+</li>
+
+<li>
+<strong>Fitzwilliam Street Car Park, Sheffield 8</strong><br>
+Fitzwilliam Street, Sheffield City Centre
+</li>
+
+<li>
+<strong>Fitzwilliam Street Car Park, Sheffield 4</strong><br>
+Fitzwilliam Street, Sheffield City Centre
+</li>
+
+<li>
+<strong>Spooner Road Car Park, Sheffield 4</strong><br>
+45 Spooner Road
+</li>
+
+<li>
+<strong>Broomspring Lane Car Park, Sheffield 1</strong><br>
+90 Broomspring Lane, Broomhall
+</li>
+
+<li>
+<strong>Lancing Road Car Park, Sheffield 2</strong><br>
+114 Lancing Road, Highfield
+</li>
+
+<li>
+<strong>Tesco Superstore - Sheffield Dinnington</strong><br>
+Undergate Road
+</li>
+
+<li>
+<strong>Stewart Road Car Park, Sheffield 4</strong><br>
+Stewart Road, Sharrow
+</li>
+
+<li>
+<strong>Albert Road Car Park, Sheffield 1</strong><br>
+659-661 London Rd
+</li>
 
-<div class="container">
+<li>
+<strong>Halfway Park & Ride 1</strong><br>
+Eckington Way
+</li>
 
-<p>38 charging locations found.</p>
+<li>
+<strong>Riverside Car Park, Sheffield 3</strong><br>
+5 Millsands
+</li>
 
+<li>
+<strong>Riverside Car Park, Sheffield 4</strong><br>
+5 Millsands
+</li>
 
-<div class="card">
+<li>
+<strong>Lidl-Malin Bridge</strong><br>
+20 Stannington Road
+</li>
 
-<h3>MERRYCHEF STATION 01</h3>
+<li>
+<strong>Tesco Superstore-Sheffield Abbeydale</strong><br>
+Abbeydale Drive
+</li>
 
-<p>
-Welbuilt 6 Nether Lane<br>
-Sheffield<br>
-S35 9XT
-</p>
+<li>
+<strong>Shrewsbury Road Car Park</strong><br>
+Penistone
+</li>
 
-</div>
+<li>
+<strong>Aldi Supermarket, Swallownest</strong><br>
+81 81 Park Hill
+</li>
 
-<div class="card">
+<li>
+<strong>M&S Food Eco Store</strong><br>
+250 - 266 Ecclesall Road
+</li>
 
-<h3>Consultants Car Park</h3>
+<li>
+<strong>Fox Valley Shopping Centre</strong><br>
+Fox Valley Way
+</li>
 
-<p>
-Glossop Road<br>
-Sheffield<br>
-S10 2JF
-</p>
+<li>
+<strong>Costa Coffee</strong><br>
+Princess Street
+</li>
 
-</div>
+<li>
+<strong>Aston Library </strong><br>
+3 Workshop Road
+</li>
 
-<div class="card">
+<li>
+<strong>Water Sports</strong><br>
+Water Sports
+</li>
 
-<h3>Meadowhall Retail Park Supercharger</h3>
+<li>
+<strong>Queens Road Parking/Charging</strong><br>
+Queens Road
+</li>
 
-<p>
-Meadowhall Retail Park<br>
-Sheffield<br>
-S9 2YZ
-</p>
+</ul>
 
-</div>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
-<div class="card">
+<script>
 
-<h3>RAW GREENE KING ACORN 2</h3>
+var map = L.map('map').setView([
+53.447633,
+-1.459572
+], 12);
 
-<p>
-Acorn 516 Burncross Road<br>
-Sheffield<br>
-S35 1SL
-</p>
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+attribution: '&copy; OpenStreetMap contributors'
+}).addTo(map);
 
-</div>
 
-<div class="card">
 
-<h3>Riverside Car Park, Sheffield 2</h3>
+L.marker([
+53.447633,
+-1.459572
+]).addTo(map)
+.bindPopup("<b>MERRYCHEF STATION 01</b><br>Welbuilt 6 Nether Lane");
 
-<p>
-5 Millsands<br>
-Sheffield<br>
-S3 8HN
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+53.37864362,
+-1.49163314
+]).addTo(map)
+.bindPopup("<b>Consultants Car Park</b><br>Glossop Road");
 
-<h3>zest-line-club-band</h3>
 
-<p>
-Livesey Street<br>
-Sheffield<br>
-S6 2BL
-</p>
 
-</div>
+L.marker([
+53.40546625250491,
+-1.414082712931986
+]).addTo(map)
+.bindPopup("<b>Meadowhall Retail Park Supercharger</b><br>Meadowhall Retail Park");
 
-<div class="card">
 
-<h3>Park & Ride - Nunnery Square 1</h3>
 
-<p>
-Sheffield Parkway<br>
-Sheffield<br>
-S2 5DH
-</p>
+L.marker([
+53.461644,
+-1.491865
+]).addTo(map)
+.bindPopup("<b>RAW GREENE KING ACORN 2</b><br>Acorn 516 Burncross Road");
 
-</div>
 
-<div class="card">
 
-<h3>Eight-Foot Way Pub & Restaurant</h3>
+L.marker([
+53.388191,
+-1.467784
+]).addTo(map)
+.bindPopup("<b>Riverside Car Park, Sheffield 2</b><br>5 Millsands");
 
-<p>
-2 Chaucer RD<br>
-Sheffield<br>
-S5 9QY
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+53.404844,
+-1.492928
+]).addTo(map)
+.bindPopup("<b>zest-line-club-band</b><br>Livesey Street");
 
-<h3>Morrisons Sheffield Ecclesfield</h3>
 
-<p>
-299 The Common, Ecclesfield<br>
-Sheffield<br>
-S35 9WJ
-</p>
 
-</div>
+L.marker([
+53.385607,
+-1.443524
+]).addTo(map)
+.bindPopup("<b>Park & Ride - Nunnery Square 1</b><br>Sheffield Parkway");
 
-<div class="card">
 
-<h3>Asda</h3>
 
-<p>
-Chaucer Road<br>
-Sheffield<br>
-S5 8NH
-</p>
+L.marker([
+53.427591,
+-1.4912406
+]).addTo(map)
+.bindPopup("<b>Eight-Foot Way Pub & Restaurant</b><br>2 Chaucer RD");
 
-</div>
 
-<div class="card">
 
-<h3>Middlewood Park & Ride 6</h3>
+L.marker([
+53.443724,
+-1.459267
+]).addTo(map)
+.bindPopup("<b>Morrisons Sheffield Ecclesfield</b><br>299 The Common, Ecclesfield");
 
-<p>
-Middlewood Road<br>
-Sheffield<br>
-S6 1TQ
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+53.427559,
+-1.486815
+]).addTo(map)
+.bindPopup("<b>Asda</b><br>Chaucer Road");
 
-<h3>Malin Bridge Park & Ride 1</h3>
 
-<p>
-42 Loxley New Road<br>
-Sheffield<br>
-S6 4NG
-</p>
 
-</div>
+L.marker([
+53.415688,
+-1.509242
+]).addTo(map)
+.bindPopup("<b>Middlewood Park & Ride 6</b><br>Middlewood Road");
 
-<div class="card">
 
-<h3>Harratts Nissan Sheffield</h3>
 
-<p>
-Attercliffe Road, Sheffield, South Yorkshire<br>
-Sheffield<br>
-S4 7WW
-</p>
+L.marker([
+53.400371,
+-1.508333
+]).addTo(map)
+.bindPopup("<b>Malin Bridge Park & Ride 1</b><br>42 Loxley New Road");
 
-</div>
 
-<div class="card">
 
-<h3>Shipton Road Car Park, Sheffield 1</h3>
+L.marker([
+53.390856,
+-1.44991
+]).addTo(map)
+.bindPopup("<b>Harratts Nissan Sheffield</b><br>Attercliffe Road, Sheffield, South Yorkshire");
 
-<p>
-Upperthorpe Road<br>
-Sheffield<br>
-S6 3EB
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+53.389416,
+-1.486104
+]).addTo(map)
+.bindPopup("<b>Shipton Road Car Park, Sheffield 1</b><br>Upperthorpe Road");
 
-<h3>Ebenezer Street Car Park, Sheffield 2</h3>
 
-<p>
-Ebenezer Street<br>
-Sheffield<br>
-S3 8UR
-</p>
 
-</div>
+L.marker([
+53.387939,
+-1.475336
+]).addTo(map)
+.bindPopup("<b>Ebenezer Street Car Park, Sheffield 2</b><br>Ebenezer Street");
 
-<div class="card">
 
-<h3>Trinity Street Car Park, Sheffield 2</h3>
 
-<p>
-Trinity Street<br>
-Sheffield<br>
-S3 7AL
-</p>
+L.marker([
+53.387145,
+-1.474057
+]).addTo(map)
+.bindPopup("<b>Trinity Street Car Park, Sheffield 2</b><br>Trinity Street");
 
-</div>
 
-<div class="card">
 
-<h3>Windrush Way Car Park, Sheffield 5</h3>
+L.marker([
+53.386432,
+-1.461501
+]).addTo(map)
+.bindPopup("<b>Windrush Way Car Park, Sheffield 5</b><br>Windrush Way");
 
-<p>
-Windrush Way<br>
-Sheffield<br>
-S3 8JU
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+53.379551,
+-1.479467
+]).addTo(map)
+.bindPopup("<b>Fitzwilliam Street Car Park, Sheffield 8</b><br>Fitzwilliam Street, Sheffield City Centre");
 
-<h3>Fitzwilliam Street Car Park, Sheffield 8</h3>
 
-<p>
-Fitzwilliam Street, Sheffield City Centre<br>
-Sheffield<br>
-S3 7SG
-</p>
 
-</div>
+L.marker([
+53.379401,
+-1.479645
+]).addTo(map)
+.bindPopup("<b>Fitzwilliam Street Car Park, Sheffield 4</b><br>Fitzwilliam Street, Sheffield City Centre");
 
-<div class="card">
 
-<h3>Fitzwilliam Street Car Park, Sheffield 4</h3>
 
-<p>
-Fitzwilliam Street, Sheffield City Centre<br>
-Sheffield<br>
-S3 7SG
-</p>
+L.marker([
+53.378259,
+-1.502119
+]).addTo(map)
+.bindPopup("<b>Spooner Road Car Park, Sheffield 4</b><br>45 Spooner Road");
 
-</div>
 
-<div class="card">
 
-<h3>Spooner Road Car Park, Sheffield 4</h3>
+L.marker([
+53.378163,
+-1.484386
+]).addTo(map)
+.bindPopup("<b>Broomspring Lane Car Park, Sheffield 1</b><br>90 Broomspring Lane, Broomhall");
 
-<p>
-45 Spooner Road<br>
-Sheffield<br>
-S10 5BL
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+53.370721,
+-1.468034
+]).addTo(map)
+.bindPopup("<b>Lancing Road Car Park, Sheffield 2</b><br>114 Lancing Road, Highfield");
 
-<h3>Broomspring Lane Car Park, Sheffield 1</h3>
 
-<p>
-90 Broomspring Lane, Broomhall<br>
-Sheffield<br>
-S10 2FB
-</p>
 
-</div>
+L.marker([
+53.370453,
+-1.211895
+]).addTo(map)
+.bindPopup("<b>Tesco Superstore - Sheffield Dinnington</b><br>Undergate Road");
 
-<div class="card">
 
-<h3>Lancing Road Car Park, Sheffield 2</h3>
 
-<p>
-114 Lancing Road, Highfield<br>
-Sheffield<br>
-S2 4EU
-</p>
+L.marker([
+53.367547,
+-1.497893
+]).addTo(map)
+.bindPopup("<b>Stewart Road Car Park, Sheffield 4</b><br>Stewart Road, Sharrow");
 
-</div>
 
-<div class="card">
 
-<h3>Tesco Superstore - Sheffield Dinnington</h3>
+L.marker([
+53.35897,
+-1.474235
+]).addTo(map)
+.bindPopup("<b>Albert Road Car Park, Sheffield 1</b><br>659-661 London Rd");
 
-<p>
-Undergate Road<br>
-Sheffield<br>
-S25 2PF
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+53.328089,
+-1.344302
+]).addTo(map)
+.bindPopup("<b>Halfway Park & Ride 1</b><br>Eckington Way");
 
-<h3>Stewart Road Car Park, Sheffield 4</h3>
 
-<p>
-Stewart Road, Sharrow<br>
-Sheffield<br>
-S11 8XT
-</p>
 
-</div>
+L.marker([
+53.38777,
+-1.467487
+]).addTo(map)
+.bindPopup("<b>Riverside Car Park, Sheffield 3</b><br>5 Millsands");
 
-<div class="card">
 
-<h3>Albert Road Car Park, Sheffield 1</h3>
 
-<p>
-659-661 London Rd<br>
-Sheffield<br>
-S2 4HT
-</p>
+L.marker([
+53.386809,
+-1.467861
+]).addTo(map)
+.bindPopup("<b>Riverside Car Park, Sheffield 4</b><br>5 Millsands");
 
-</div>
 
-<div class="card">
 
-<h3>Halfway Park & Ride 1</h3>
+L.marker([
+53.3999553845194,
+-1.51392505951219
+]).addTo(map)
+.bindPopup("<b>Lidl-Malin Bridge</b><br>20 Stannington Road");
 
-<p>
-Eckington Way<br>
-Sheffield<br>
-S20 3GS
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+53.347228,
+-1.492858
+]).addTo(map)
+.bindPopup("<b>Tesco Superstore-Sheffield Abbeydale</b><br>Abbeydale Drive");
 
-<h3>Riverside Car Park, Sheffield 3</h3>
 
-<p>
-5 Millsands<br>
-Sheffield<br>
-S3 8HN
-</p>
 
-</div>
+L.marker([
+53.525627,
+-1.62738
+]).addTo(map)
+.bindPopup("<b>Shrewsbury Road Car Park</b><br>Penistone");
 
-<div class="card">
 
-<h3>Riverside Car Park, Sheffield 4</h3>
 
-<p>
-5 Millsands<br>
-Sheffield<br>
-S3 8HN
-</p>
+L.marker([
+53.362020585112276,
+-1.3282597152579
+]).addTo(map)
+.bindPopup("<b>Aldi Supermarket, Swallownest</b><br>81 81 Park Hill");
 
-</div>
 
-<div class="card">
 
-<h3>Lidl-Malin Bridge</h3>
+L.marker([
+53.372544,
+-1.486449
+]).addTo(map)
+.bindPopup("<b>M&S Food Eco Store</b><br>250 - 266 Ecclesall Road");
 
-<p>
-20 Stannington Road<br>
-Sheffield<br>
-S6 5FL
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+53.4829792316872,
+-1.58795599059522
+]).addTo(map)
+.bindPopup("<b>Fox Valley Shopping Centre</b><br>Fox Valley Way");
 
-<h3>Tesco Superstore-Sheffield Abbeydale</h3>
 
-<p>
-Abbeydale Drive<br>
-Sheffield<br>
-S7 2QB
-</p>
 
-</div>
+L.marker([
+53.3957735130336,
+-1.4428335086053
+]).addTo(map)
+.bindPopup("<b>Costa Coffee</b><br>Princess Street");
 
-<div class="card">
 
-<h3>Shrewsbury Road Car Park</h3>
 
-<p>
-Penistone<br>
-Sheffield<br>
-S36 6DY
-</p>
+L.marker([
+53.362894,
+-1.316377
+]).addTo(map)
+.bindPopup("<b>Aston Library </b><br>3 Workshop Road");
 
-</div>
 
-<div class="card">
 
-<h3>Aldi Supermarket, Swallownest</h3>
+L.marker([
+53.338907,
+-1.321058
+]).addTo(map)
+.bindPopup("<b>Water Sports</b><br>Water Sports");
 
-<p>
-81 81 Park Hill<br>
-Sheffield<br>
-S26 4UN
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+53.369358,
+-1.465098
+]).addTo(map)
+.bindPopup("<b>Queens Road Parking/Charging</b><br>Queens Road");
 
-<h3>M&S Food Eco Store</h3>
 
-<p>
-250 - 266 Ecclesall Road<br>
-Sheffield<br>
-S11 8JD
-</p>
 
-</div>
-
-<div class="card">
-
-<h3>Fox Valley Shopping Centre</h3>
-
-<p>
-Fox Valley Way<br>
-Sheffield<br>
-S36 2AE
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Costa Coffee</h3>
-
-<p>
-Princess Street<br>
-Sheffield<br>
-S9 3YE
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Aston Library </h3>
-
-<p>
-3 Workshop Road<br>
-Sheffield<br>
-S26 4WD
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Water Sports</h3>
-
-<p>
-Water Sports<br>
-Sheffield<br>
-S26 5RN
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Queens Road Parking/Charging</h3>
-
-<p>
-Queens Road<br>
-Sheffield<br>
-S2 4EP
-</p>
-
-</div>
-
-
-</div>
-
-<footer>
-EV Charger Directory
-</footer>
+</script>
 
 </body>
 </html>

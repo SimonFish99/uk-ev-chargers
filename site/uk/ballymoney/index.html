@@ -1,88 +1,112 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>EV Chargers in Ballymoney</title>
-<link rel="stylesheet" href="/style.css">
+<title>Ballymoney EV Chargers</title>
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+
+<style>
+#map {
+  height: 400px;
+  margin-bottom: 30px;
+  border-radius: 8px;
+}
+</style>
+
 </head>
 
 <body>
 
-<header>
-<h1>EV Chargers in Ballymoney</h1>
-</header>
+<h1>Ballymoney EV Chargers</h1>
 
-<div class="container">
+<div id="map"></div>
 
-<p>5 charging locations found.</p>
+<ul>
 
+<li>
+<strong>Solo</strong><br>
+Frosses Road
+</li>
 
-<div class="card">
+<li>
+<strong>Lidl</strong><br>
+Meetinghouse Street
+</li>
 
-<h3>Solo</h3>
+<li>
+<strong>HRL Route</strong><br>
+8 Ballybogey Road
+</li>
 
-<p>
-Frosses Road<br>
-Ballymoney<br>
-BT44 9LT
-</p>
+<li>
+<strong>DRD Car Park Townhead Street North</strong><br>
+20 Townhead Street
+</li>
 
-</div>
+<li>
+<strong>Basil Knipe Electrics</strong><br>
+41 Ballymena Road
+</li>
 
-<div class="card">
+</ul>
 
-<h3>Lidl</h3>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
-<p>
-Meetinghouse Street<br>
-Ballymoney<br>
-BT53 6JR
-</p>
+<script>
 
-</div>
+var map = L.map('map').setView([
+54.9975153057313,
+-6.352853632610731
+], 12);
 
-<div class="card">
-
-<h3>HRL Route</h3>
-
-<p>
-8 Ballybogey Road<br>
-Ballymoney<br>
-BT53 6QD
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>DRD Car Park Townhead Street North</h3>
-
-<p>
-20 Townhead Street<br>
-Ballymoney<br>
-BT53 6BE
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Basil Knipe Electrics</h3>
-
-<p>
-41 Ballymena Road<br>
-Ballymoney<br>
-BT53 7EX
-</p>
-
-</div>
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+attribution: '&copy; OpenStreetMap contributors'
+}).addTo(map);
 
 
-</div>
 
-<footer>
-EV Charger Directory
-</footer>
+L.marker([
+54.9975153057313,
+-6.352853632610731
+]).addTo(map)
+.bindPopup("<b>Solo</b><br>Frosses Road");
+
+
+
+L.marker([
+55.068651413856315,
+-6.5141194648608405
+]).addTo(map)
+.bindPopup("<b>Lidl</b><br>Meetinghouse Street");
+
+
+
+L.marker([
+55.08023667376938,
+-6.525080847838979
+]).addTo(map)
+.bindPopup("<b>HRL Route</b><br>8 Ballybogey Road");
+
+
+
+L.marker([
+55.071775,
+-6.519416
+]).addTo(map)
+.bindPopup("<b>DRD Car Park Townhead Street North</b><br>20 Townhead Street");
+
+
+
+L.marker([
+55.06808519174635,
+-6.494050112335458
+]).addTo(map)
+.bindPopup("<b>Basil Knipe Electrics</b><br>41 Ballymena Road");
+
+
+
+</script>
 
 </body>
 </html>

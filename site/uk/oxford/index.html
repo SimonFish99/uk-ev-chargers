@@ -1,520 +1,580 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>EV Chargers in Oxford</title>
-<link rel="stylesheet" href="/style.css">
+<title>Oxford EV Chargers</title>
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+
+<style>
+#map {
+  height: 400px;
+  margin-bottom: 30px;
+  border-radius: 8px;
+}
+</style>
+
 </head>
 
 <body>
 
-<header>
-<h1>EV Chargers in Oxford</h1>
-</header>
+<h1>Oxford EV Chargers</h1>
+
+<div id="map"></div>
+
+<ul>
+
+<li>
+<strong>Lidl-Oxford</strong><br>
+Watlington Road
+</li>
+
+<li>
+<strong>Oxford Redbridge Park & Ride </strong><br>
+Abingdon Road
+</li>
+
+<li>
+<strong>The Innovation Building (Multi-storey car park), University of Oxford</strong><br>
+Old Road
+</li>
+
+<li>
+<strong>Keble Road, Oxford 2</strong><br>
+Keble Road, Oxford 2
+</li>
+
+<li>
+<strong>Crowne Plaza Heythrop Park Resort</strong><br>
+Chipping Norton
+</li>
+
+<li>
+<strong>Pear Tree Park & Ride</strong><br>
+Magdalen Street
+</li>
+
+<li>
+<strong>Summertown Car Park</strong><br>
+Diamond Place
+</li>
+
+<li>
+<strong>Farndon Road</strong><br>
+Farndon Road
+</li>
+
+<li>
+<strong>Farndon Road 18</strong><br>
+Farndon Road 18
+</li>
+
+<li>
+<strong>Winchester Rd 6</strong><br>
+Winchester Rd 6
+</li>
+
+<li>
+<strong>Shell Recharge/Ubitricity</strong><br>
+null
+</li>
+
+<li>
+<strong>Winchester Rd 5</strong><br>
+Winchester Rd 5
+</li>
+
+<li>
+<strong>Tackley Place</strong><br>
+Tackley Place
+</li>
+
+<li>
+<strong>Thornhill Park & Ride</strong><br>
+Headington
+</li>
+
+<li>
+<strong>Rewley Road 2</strong><br>
+Rewley Road
+</li>
+
+<li>
+<strong>Shell Recharge/Ubitricity</strong><br>
+null
+</li>
+
+<li>
+<strong>Old Greyfriars</strong><br>
+Old Greyfriars Street
+</li>
+
+<li>
+<strong>Hertford street</strong><br>
+Hertford street
+</li>
+
+<li>
+<strong>Between Town Road</strong><br>
+Between Town Road
+</li>
+
+<li>
+<strong>Oxford Science Park - The Bellhouse Building</strong><br>
+Sanders Road
+</li>
+
+<li>
+<strong>CP QA UK CPHM-C686</strong><br>
+10 Queen St test
+</li>
+
+<li>
+<strong>DCCA STATION 1</strong><br>
+Dean Court Community Centre Pinnocks Way
+</li>
+
+<li>
+<strong>Keble Road</strong><br>
+Keble Road
+</li>
+
+<li>
+<strong>Blackbird Leys Leisure Centre</strong><br>
+Blackbird Leys Leisure Centre
+</li>
+
+<li>
+<strong>Tesco Superstore-Oxford</strong><br>
+7 Retail Park
+</li>
+
+<li>
+<strong>Fastned Redbridge Park and Ride</strong><br>
+Redbridge Park and Ride
+</li>
+
+<li>
+<strong>OCCE001</strong><br>
+Frenchay Road
+</li>
+
+<li>
+<strong>OCCE002</strong><br>
+Juxon Street
+</li>
+
+<li>
+<strong>OCCAPT011</strong><br>
+Stockmore Street
+</li>
+
+<li>
+<strong>OCCZ001</strong><br>
+Bedford Street
+</li>
 
-<div class="container">
+<li>
+<strong>OCCAPT007</strong><br>
+Lake Street
+</li>
 
-<p>41 charging locations found.</p>
+<li>
+<strong>OCCE004</strong><br>
+Vicarage Close
+</li>
 
+<li>
+<strong> Leckford Road</strong><br>
+ Leckford Road
+</li>
 
-<div class="card">
+<li>
+<strong>Leckford Road</strong><br>
+Leckford Road
+</li>
 
-<h3>Lidl-Oxford</h3>
+<li>
+<strong>Hawksmoor road 75</strong><br>
+Hawksmoor road 75
+</li>
 
-<p>
-Watlington Road<br>
-Oxford<br>
-OX4 6NF
-</p>
+<li>
+<strong>Hamilton Rd 45</strong><br>
+Hamilton Rd 45
+</li>
 
-</div>
+<li>
+<strong>Farndon Road 12</strong><br>
+Farndon Road 12
+</li>
 
-<div class="card">
+<li>
+<strong>Bevington Rd 10</strong><br>
+Bevington Rd 10
+</li>
 
-<h3>Oxford Redbridge Park & Ride </h3>
+<li>
+<strong>All saints road</strong><br>
+All saints road
+</li>
 
-<p>
-Abingdon Road<br>
-Oxford<br>
-OX1 4XG
-</p>
+<li>
+<strong>OX4 2ED</strong><br>
+Temple Road 23
+</li>
 
-</div>
+<li>
+<strong>Ladenham 7A</strong><br>
+Bollard in car park near Asset No. 8
+</li>
 
-<div class="card">
+</ul>
 
-<h3>The Innovation Building (Multi-storey car park), University of Oxford</h3>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
-<p>
-Old Road<br>
-Oxford<br>
-OX3 7DQ
-</p>
+<script>
 
-</div>
+var map = L.map('map').setView([
+51.727161,
+-1.195861
+], 12);
 
-<div class="card">
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+attribution: '&copy; OpenStreetMap contributors'
+}).addTo(map);
 
-<h3>Keble Road, Oxford 2</h3>
 
-<p>
-Keble Road, Oxford 2<br>
-Oxford<br>
-OX1 3PD
-</p>
 
-</div>
+L.marker([
+51.727161,
+-1.195861
+]).addTo(map)
+.bindPopup("<b>Lidl-Oxford</b><br>Watlington Road");
 
-<div class="card">
 
-<h3>Crowne Plaza Heythrop Park Resort</h3>
 
-<p>
-Chipping Norton<br>
-Oxford<br>
-OX7 5UF
-</p>
+L.marker([
+51.7293959583171,
+-1.249414073683738
+]).addTo(map)
+.bindPopup("<b>Oxford Redbridge Park & Ride </b><br>Abingdon Road");
 
-</div>
 
-<div class="card">
 
-<h3>Pear Tree Park & Ride</h3>
+L.marker([
+51.75211,
+-1.213497
+]).addTo(map)
+.bindPopup("<b>The Innovation Building (Multi-storey car park), University of Oxford</b><br>Old Road");
 
-<p>
-Magdalen Street<br>
-Oxford<br>
-OX2 8JD
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+51.759553,
+-1.258579
+]).addTo(map)
+.bindPopup("<b>Keble Road, Oxford 2</b><br>Keble Road, Oxford 2");
 
-<h3>Summertown Car Park</h3>
 
-<p>
-Diamond Place<br>
-Oxford<br>
-OX2 7BY
-</p>
 
-</div>
+L.marker([
+51.934238,
+-1.47444
+]).addTo(map)
+.bindPopup("<b>Crowne Plaza Heythrop Park Resort</b><br>Chipping Norton");
 
-<div class="card">
 
-<h3>Farndon Road</h3>
 
-<p>
-Farndon Road<br>
-Oxford<br>
-OX2 6RT
-</p>
+L.marker([
+51.794102,
+-1.28416
+]).addTo(map)
+.bindPopup("<b>Pear Tree Park & Ride</b><br>Magdalen Street");
 
-</div>
 
-<div class="card">
 
-<h3>Farndon Road 18</h3>
+L.marker([
+51.776478,
+-1.26318
+]).addTo(map)
+.bindPopup("<b>Summertown Car Park</b><br>Diamond Place");
 
-<p>
-Farndon Road 18<br>
-Oxford<br>
-OX2 6RR
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+51.765946,
+-1.265958
+]).addTo(map)
+.bindPopup("<b>Farndon Road</b><br>Farndon Road");
 
-<h3>Winchester Rd 6</h3>
 
-<p>
-Winchester Rd 6<br>
-Oxford<br>
-OX2 6LU
-</p>
 
-</div>
+L.marker([
+51.765811,
+-1.267469
+]).addTo(map)
+.bindPopup("<b>Farndon Road 18</b><br>Farndon Road 18");
 
-<div class="card">
 
-<h3>Shell Recharge/Ubitricity</h3>
 
-<p>
-null<br>
-Oxford<br>
-OX2 6HZ
-</p>
+L.marker([
+51.764957,
+-1.263119
+]).addTo(map)
+.bindPopup("<b>Winchester Rd 6</b><br>Winchester Rd 6");
 
-</div>
 
-<div class="card">
 
-<h3>Winchester Rd 5</h3>
+L.marker([
+51.764813,
+-1.267037
+]).addTo(map)
+.bindPopup("<b>Shell Recharge/Ubitricity</b><br>null");
 
-<p>
-Winchester Rd 5<br>
-Oxford<br>
-OX2 6LU
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+51.764797,
+-1.26287
+]).addTo(map)
+.bindPopup("<b>Winchester Rd 5</b><br>Winchester Rd 5");
 
-<h3>Tackley Place</h3>
 
-<p>
-Tackley Place<br>
-Oxford<br>
-OX2 6RR
-</p>
 
-</div>
+L.marker([
+51.764299,
+-1.268654
+]).addTo(map)
+.bindPopup("<b>Tackley Place</b><br>Tackley Place");
 
-<div class="card">
 
-<h3>Thornhill Park & Ride</h3>
 
-<p>
-Headington<br>
-Oxford<br>
-OX3 8DP
-</p>
+L.marker([
+51.763599,
+-1.18099
+]).addTo(map)
+.bindPopup("<b>Thornhill Park & Ride</b><br>Headington");
 
-</div>
 
-<div class="card">
 
-<h3>Rewley Road 2</h3>
+L.marker([
+51.753904,
+-1.267673
+]).addTo(map)
+.bindPopup("<b>Rewley Road 2</b><br>Rewley Road");
 
-<p>
-Rewley Road<br>
-Oxford<br>
-OX1 2RA
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+51.752201,
+-1.277686
+]).addTo(map)
+.bindPopup("<b>Shell Recharge/Ubitricity</b><br>null");
 
-<h3>Shell Recharge/Ubitricity</h3>
 
-<p>
-null<br>
-Oxford<br>
-OX2 0DD
-</p>
 
-</div>
+L.marker([
+51.749338,
+-1.260836
+]).addTo(map)
+.bindPopup("<b>Old Greyfriars</b><br>Old Greyfriars Street");
 
-<div class="card">
 
-<h3>Old Greyfriars</h3>
 
-<p>
-Old Greyfriars Street<br>
-Oxford<br>
-OX1 1PE
-</p>
+L.marker([
+51.743142,
+-1.23283
+]).addTo(map)
+.bindPopup("<b>Hertford street</b><br>Hertford street");
 
-</div>
 
-<div class="card">
 
-<h3>Hertford street</h3>
+L.marker([
+51.733218,
+-1.214255
+]).addTo(map)
+.bindPopup("<b>Between Town Road</b><br>Between Town Road");
 
-<p>
-Hertford street<br>
-Oxford<br>
-OX4 3AL
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+51.717362,
+-1.217063
+]).addTo(map)
+.bindPopup("<b>Oxford Science Park - The Bellhouse Building</b><br>Sanders Road");
 
-<h3>Between Town Road</h3>
 
-<p>
-Between Town Road<br>
-Oxford<br>
-OX4 3ET
-</p>
 
-</div>
+L.marker([
+51.752098,
+-1.25767
+]).addTo(map)
+.bindPopup("<b>CP QA UK CPHM-C686</b><br>10 Queen St test");
 
-<div class="card">
 
-<h3>Oxford Science Park - The Bellhouse Building</h3>
 
-<p>
-Sanders Road<br>
-Oxford<br>
-OX4 4GD
-</p>
+L.marker([
+51.748394,
+-1.312056
+]).addTo(map)
+.bindPopup("<b>DCCA STATION 1</b><br>Dean Court Community Centre Pinnocks Way");
 
-</div>
 
-<div class="card">
 
-<h3>CP QA UK CPHM-C686</h3>
+L.marker([
+51.759384,
+-1.25931
+]).addTo(map)
+.bindPopup("<b>Keble Road</b><br>Keble Road");
 
-<p>
-10 Queen St test<br>
-Oxford<br>
-OX1 4AA
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+51.719225,
+-1.199113
+]).addTo(map)
+.bindPopup("<b>Blackbird Leys Leisure Centre</b><br>Blackbird Leys Leisure Centre");
 
-<h3>DCCA STATION 1</h3>
 
-<p>
-Dean Court Community Centre Pinnocks Way<br>
-Oxford<br>
-OX2 9DG
-</p>
 
-</div>
+L.marker([
+51.72723546,
+-1.20226698
+]).addTo(map)
+.bindPopup("<b>Tesco Superstore-Oxford</b><br>7 Retail Park");
 
-<div class="card">
 
-<h3>Keble Road</h3>
 
-<p>
-Keble Road<br>
-Oxford<br>
-OX1 3NP
-</p>
+L.marker([
+51.72946422485845,
+-1.2488627820926013
+]).addTo(map)
+.bindPopup("<b>Fastned Redbridge Park and Ride</b><br>Redbridge Park and Ride");
 
-</div>
 
-<div class="card">
 
-<h3>Blackbird Leys Leisure Centre</h3>
+L.marker([
+51.770357,
+-1.269657
+]).addTo(map)
+.bindPopup("<b>OCCE001</b><br>Frenchay Road");
 
-<p>
-Blackbird Leys Leisure Centre<br>
-Oxford<br>
-OX4 6JL
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+51.759887,
+-1.270068
+]).addTo(map)
+.bindPopup("<b>OCCE002</b><br>Juxon Street");
 
-<h3>Tesco Superstore-Oxford</h3>
 
-<p>
-7 Retail Park<br>
-Oxford<br>
-OX4 6XJ
-</p>
 
-</div>
+L.marker([
+51.747504,
+-1.241394
+]).addTo(map)
+.bindPopup("<b>OCCAPT011</b><br>Stockmore Street");
 
-<div class="card">
 
-<h3>Fastned Redbridge Park and Ride</h3>
 
-<p>
-Redbridge Park and Ride<br>
-Oxford<br>
-OX1 4XG
-</p>
+L.marker([
+51.74041010465896,
+-1.2382754916249041
+]).addTo(map)
+.bindPopup("<b>OCCZ001</b><br>Bedford Street");
 
-</div>
 
-<div class="card">
 
-<h3>OCCE001</h3>
+L.marker([
+51.739894,
+-1.255084
+]).addTo(map)
+.bindPopup("<b>OCCAPT007</b><br>Lake Street");
 
-<p>
-Frenchay Road<br>
-Oxford<br>
-OX2 6TG
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+51.720118,
+-1.221169
+]).addTo(map)
+.bindPopup("<b>OCCE004</b><br>Vicarage Close");
 
-<h3>OCCE002</h3>
 
-<p>
-Juxon Street<br>
-Oxford<br>
-OX2 6DR
-</p>
 
-</div>
+L.marker([
+51.764089,
+-1.264636
+]).addTo(map)
+.bindPopup("<b> Leckford Road</b><br> Leckford Road");
 
-<div class="card">
 
-<h3>OCCAPT011</h3>
 
-<p>
-Stockmore Street<br>
-Oxford<br>
-OX4 1JT
-</p>
+L.marker([
+51.764089,
+-1.264636
+]).addTo(map)
+.bindPopup("<b>Leckford Road</b><br>Leckford Road");
 
-</div>
 
-<div class="card">
 
-<h3>OCCZ001</h3>
+L.marker([
+51.788046,
+-1.269436
+]).addTo(map)
+.bindPopup("<b>Hawksmoor road 75</b><br>Hawksmoor road 75");
 
-<p>
-Bedford Street<br>
-Oxford<br>
-OX4 1SU
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+51.781475,
+-1.263562
+]).addTo(map)
+.bindPopup("<b>Hamilton Rd 45</b><br>Hamilton Rd 45");
 
-<h3>OCCAPT007</h3>
 
-<p>
-Lake Street<br>
-Oxford<br>
-OX1 4RR
-</p>
 
-</div>
+L.marker([
+51.765511,
+-1.268507
+]).addTo(map)
+.bindPopup("<b>Farndon Road 12</b><br>Farndon Road 12");
 
-<div class="card">
 
-<h3>OCCE004</h3>
 
-<p>
-Vicarage Close<br>
-Oxford<br>
-OX4 4PL
-</p>
+L.marker([
+51.762732,
+-1.2617
+]).addTo(map)
+.bindPopup("<b>Bevington Rd 10</b><br>Bevington Rd 10");
 
-</div>
 
-<div class="card">
 
-<h3> Leckford Road</h3>
+L.marker([
+51.756084,
+-1.215081
+]).addTo(map)
+.bindPopup("<b>All saints road</b><br>All saints road");
 
-<p>
- Leckford Road<br>
-Oxford<br>
-OX2 6HY
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+51.738103,
+-1.214844
+]).addTo(map)
+.bindPopup("<b>OX4 2ED</b><br>Temple Road 23");
 
-<h3>Leckford Road</h3>
 
-<p>
-Leckford Road<br>
-Oxford<br>
-OX2 6HY
-</p>
 
-</div>
+L.marker([
+51.72492,
+-1.201949
+]).addTo(map)
+.bindPopup("<b>Ladenham 7A</b><br>Bollard in car park near Asset No. 8");
 
-<div class="card">
 
-<h3>Hawksmoor road 75</h3>
 
-<p>
-Hawksmoor road 75<br>
-Oxford<br>
-OX2 7UG
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Hamilton Rd 45</h3>
-
-<p>
-Hamilton Rd 45<br>
-Oxford<br>
-OX2 7PY
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Farndon Road 12</h3>
-
-<p>
-Farndon Road 12<br>
-Oxford<br>
-OX2 6RR
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Bevington Rd 10</h3>
-
-<p>
-Bevington Rd 10<br>
-Oxford<br>
-OX2 6NB
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>All saints road</h3>
-
-<p>
-All saints road<br>
-Oxford<br>
-OX3 7AU
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>OX4 2ED</h3>
-
-<p>
-Temple Road 23<br>
-Oxford<br>
-OX4 2ED
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Ladenham 7A</h3>
-
-<p>
-Bollard in car park near Asset No. 8<br>
-Oxford<br>
-OX4 6AZ
-</p>
-
-</div>
-
-
-</div>
-
-<footer>
-EV Charger Directory
-</footer>
+</script>
 
 </body>
 </html>

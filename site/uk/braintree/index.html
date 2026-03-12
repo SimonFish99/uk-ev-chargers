@@ -1,88 +1,112 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>EV Chargers in Braintree</title>
-<link rel="stylesheet" href="/style.css">
+<title>Braintree EV Chargers</title>
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+
+<style>
+#map {
+  height: 400px;
+  margin-bottom: 30px;
+  border-radius: 8px;
+}
+</style>
+
 </head>
 
 <body>
 
-<header>
-<h1>EV Chargers in Braintree</h1>
-</header>
+<h1>Braintree EV Chargers</h1>
 
-<div class="container">
+<div id="map"></div>
 
-<p>5 charging locations found.</p>
+<ul>
 
+<li>
+<strong>Tesco Superstore - Braintree Great Notley</strong><br>
+1 The Square
+</li>
 
-<div class="card">
+<li>
+<strong>Tesco Superstore-Braintree Town Centre</strong><br>
+Market Place
+</li>
 
-<h3>Tesco Superstore - Braintree Great Notley</h3>
+<li>
+<strong>Braintree Supercharger</strong><br>
+Blackley Lane
+</li>
 
-<p>
-1 The Square<br>
-Braintree<br>
-CM77 7WW
-</p>
+<li>
+<strong>Gridserve Electric Forecourt - Braintree</strong><br>
+Edison Way 
+</li>
 
-</div>
+<li>
+<strong>George Yard Car Park</strong><br>
+Pierrefitte Way
+</li>
 
-<div class="card">
+</ul>
 
-<h3>Tesco Superstore-Braintree Town Centre</h3>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
-<p>
-Market Place<br>
-Braintree<br>
-CM7 3HQ
-</p>
+<script>
 
-</div>
+var map = L.map('map').setView([
+51.857605,
+0.521807
+], 12);
 
-<div class="card">
-
-<h3>Braintree Supercharger</h3>
-
-<p>
-Blackley Lane<br>
-Braintree<br>
-CM77 7QW
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Gridserve Electric Forecourt - Braintree</h3>
-
-<p>
-Edison Way <br>
-Braintree<br>
-CM77 7AP
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>George Yard Car Park</h3>
-
-<p>
-Pierrefitte Way<br>
-Braintree<br>
-CM7 1RB
-</p>
-
-</div>
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+attribution: '&copy; OpenStreetMap contributors'
+}).addTo(map);
 
 
-</div>
 
-<footer>
-EV Charger Directory
-</footer>
+L.marker([
+51.857605,
+0.521807
+]).addTo(map)
+.bindPopup("<b>Tesco Superstore - Braintree Great Notley</b><br>1 The Square");
+
+
+
+L.marker([
+51.877405,
+0.552103
+]).addTo(map)
+.bindPopup("<b>Tesco Superstore-Braintree Town Centre</b><br>Market Place");
+
+
+
+L.marker([
+51.852568,
+0.522422
+]).addTo(map)
+.bindPopup("<b>Braintree Supercharger</b><br>Blackley Lane");
+
+
+
+L.marker([
+51.8524064,
+0.52128118
+]).addTo(map)
+.bindPopup("<b>Gridserve Electric Forecourt - Braintree</b><br>Edison Way ");
+
+
+
+L.marker([
+51.878417,
+0.548924
+]).addTo(map)
+.bindPopup("<b>George Yard Car Park</b><br>Pierrefitte Way");
+
+
+
+</script>
 
 </body>
 </html>

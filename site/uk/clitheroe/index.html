@@ -1,88 +1,112 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>EV Chargers in Clitheroe</title>
-<link rel="stylesheet" href="/style.css">
+<title>Clitheroe EV Chargers</title>
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+
+<style>
+#map {
+  height: 400px;
+  margin-bottom: 30px;
+  border-radius: 8px;
+}
+</style>
+
 </head>
 
 <body>
 
-<header>
-<h1>EV Chargers in Clitheroe</h1>
-</header>
+<h1>Clitheroe EV Chargers</h1>
 
-<div class="container">
+<div id="map"></div>
 
-<p>5 charging locations found.</p>
+<ul>
 
+<li>
+<strong>Ribble Valley 6831-2</strong><br>
+Chester Avenue Car Park
+</li>
 
-<div class="card">
+<li>
+<strong>George Street</strong><br>
+Whalley
+</li>
 
-<h3>Ribble Valley 6831-2</h3>
+<li>
+<strong>Railway View Car Park</strong><br>
+View Avenue
+</li>
 
-<p>
-Chester Avenue Car Park<br>
-Clitheroe<br>
-BB7 0AZ
-</p>
+<li>
+<strong>Chester Avenue Car Park</strong><br>
+Chester Avenue
+</li>
 
-</div>
+<li>
+<strong>Tesco Superstore Clitheroe</strong><br>
+Duck St
+</li>
 
-<div class="card">
+</ul>
 
-<h3>George Street</h3>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
-<p>
-Whalley<br>
-Clitheroe<br>
-BB7 9SW
-</p>
+<script>
 
-</div>
+var map = L.map('map').setView([
+53.875468,
+-2.394259
+], 12);
 
-<div class="card">
-
-<h3>Railway View Car Park</h3>
-
-<p>
-View Avenue<br>
-Clitheroe<br>
-BB7 2RA
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Chester Avenue Car Park</h3>
-
-<p>
-Chester Avenue<br>
-Clitheroe<br>
-BB7 2WT
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Tesco Superstore Clitheroe</h3>
-
-<p>
-Duck St<br>
-Clitheroe<br>
-BB7 1LP
-</p>
-
-</div>
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+attribution: '&copy; OpenStreetMap contributors'
+}).addTo(map);
 
 
-</div>
 
-<footer>
-EV Charger Directory
-</footer>
+L.marker([
+53.875468,
+-2.394259
+]).addTo(map)
+.bindPopup("<b>Ribble Valley 6831-2</b><br>Chester Avenue Car Park");
+
+
+
+L.marker([
+53.821857,
+-2.407003
+]).addTo(map)
+.bindPopup("<b>George Street</b><br>Whalley");
+
+
+
+L.marker([
+53.87353195252669,
+-2.3920529276845173
+]).addTo(map)
+.bindPopup("<b>Railway View Car Park</b><br>View Avenue");
+
+
+
+L.marker([
+53.87478729089284,
+-2.394649614183095
+]).addTo(map)
+.bindPopup("<b>Chester Avenue Car Park</b><br>Chester Avenue");
+
+
+
+L.marker([
+53.8727409515003,
+-2.3881372943149
+]).addTo(map)
+.bindPopup("<b>Tesco Superstore Clitheroe</b><br>Duck St");
+
+
+
+</script>
 
 </body>
 </html>

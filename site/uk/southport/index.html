@@ -1,88 +1,112 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>EV Chargers in Southport</title>
-<link rel="stylesheet" href="/style.css">
+<title>Southport EV Chargers</title>
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+
+<style>
+#map {
+  height: 400px;
+  margin-bottom: 30px;
+  border-radius: 8px;
+}
+</style>
+
 </head>
 
 <body>
 
-<header>
-<h1>EV Chargers in Southport</h1>
-</header>
+<h1>Southport EV Chargers</h1>
 
-<div class="container">
+<div id="map"></div>
 
-<p>5 charging locations found.</p>
+<ul>
 
+<li>
+<strong>Custodian Capital Limited-Kew Retail Park</strong><br>
+Southport Road
+</li>
 
-<div class="card">
+<li>
+<strong>Co-op food</strong><br>
+1 Hoole Lane
+</li>
 
-<h3>Custodian Capital Limited-Kew Retail Park</h3>
+<li>
+<strong>Southport & Formby District General Hospital</strong><br>
+Town Lane Kew
+</li>
 
-<p>
-Southport Road<br>
-Southport<br>
-PR8 5LA
-</p>
+<li>
+<strong>Instavolt - McDonald's Kew</strong><br>
+Southport Road
+</li>
 
-</div>
+<li>
+<strong>Morrisons Southport</strong><br>
+Wm Morrison Supermarkets PLC
+</li>
 
-<div class="card">
+</ul>
 
-<h3>Co-op food</h3>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
-<p>
-1 Hoole Lane<br>
-Southport<br>
-PR9 8BD
-</p>
+<script>
 
-</div>
+var map = L.map('map').setView([
+53.63213852,
+-2.96697803
+], 12);
 
-<div class="card">
-
-<h3>Southport & Formby District General Hospital</h3>
-
-<p>
-Town Lane Kew<br>
-Southport<br>
-PR8 6PN
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Instavolt - McDonald's Kew</h3>
-
-<p>
-Southport Road<br>
-Southport<br>
-None
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Morrisons Southport</h3>
-
-<p>
-Wm Morrison Supermarkets PLC<br>
-Southport<br>
-PR8 1RH
-</p>
-
-</div>
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+attribution: '&copy; OpenStreetMap contributors'
+}).addTo(map);
 
 
-</div>
 
-<footer>
-EV Charger Directory
-</footer>
+L.marker([
+53.63213852,
+-2.96697803
+]).addTo(map)
+.bindPopup("<b>Custodian Capital Limited-Kew Retail Park</b><br>Southport Road");
+
+
+
+L.marker([
+53.6808958319078,
+-2.92419291181409
+]).addTo(map)
+.bindPopup("<b>Co-op food</b><br>1 Hoole Lane");
+
+
+
+L.marker([
+53.632858,
+-2.98123
+]).addTo(map)
+.bindPopup("<b>Southport & Formby District General Hospital</b><br>Town Lane Kew");
+
+
+
+L.marker([
+53.6326695883666,
+-2.96969177610003
+]).addTo(map)
+.bindPopup("<b>Instavolt - McDonald's Kew</b><br>Southport Road");
+
+
+
+L.marker([
+53.645868,
+-3.013417
+]).addTo(map)
+.bindPopup("<b>Morrisons Southport</b><br>Wm Morrison Supermarkets PLC");
+
+
+
+</script>
 
 </body>
 </html>

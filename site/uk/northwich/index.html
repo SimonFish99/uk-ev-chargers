@@ -1,88 +1,112 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>EV Chargers in Northwich</title>
-<link rel="stylesheet" href="/style.css">
+<title>Northwich EV Chargers</title>
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+
+<style>
+#map {
+  height: 400px;
+  margin-bottom: 30px;
+  border-radius: 8px;
+}
+</style>
+
 </head>
 
 <body>
 
-<header>
-<h1>EV Chargers in Northwich</h1>
-</header>
+<h1>Northwich EV Chargers</h1>
 
-<div class="container">
+<div id="map"></div>
 
-<p>5 charging locations found.</p>
+<ul>
 
+<li>
+<strong>Weaver's Whistle Pub & Restaurant</strong><br>
+471 Manchester Road
+</li>
 
-<div class="card">
+<li>
+<strong>EVC Nunsmere Hall Hotel</strong><br>
+Nunsmere Hall Hotel
+</li>
 
-<h3>Weaver's Whistle Pub & Restaurant</h3>
+<li>
+<strong>SureStore - Self Storage Northwich</strong><br>
+Unit 1 & 2
+</li>
 
-<p>
-471 Manchester Road<br>
-Northwich<br>
-CW9 7QD
-</p>
+<li>
+<strong>Park Street Car Park</strong><br>
+Park Street
+</li>
 
-</div>
+<li>
+<strong>Tesco Superstore-Northwich</strong><br>
+Manchester Road
+</li>
 
-<div class="card">
+</ul>
 
-<h3>EVC Nunsmere Hall Hotel</h3>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
-<p>
-Nunsmere Hall Hotel<br>
-Northwich<br>
-CW8 2ES
-</p>
+<script>
 
-</div>
+var map = L.map('map').setView([
+53.271761,
+-2.455043
+], 12);
 
-<div class="card">
-
-<h3>SureStore - Self Storage Northwich</h3>
-
-<p>
-Unit 1 & 2<br>
-Northwich<br>
-CW9 5JF
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Park Street Car Park</h3>
-
-<p>
-Park Street<br>
-Northwich<br>
-CW8 1HQ
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Tesco Superstore-Northwich</h3>
-
-<p>
-Manchester Road<br>
-Northwich<br>
-CW9 5LY
-</p>
-
-</div>
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+attribution: '&copy; OpenStreetMap contributors'
+}).addTo(map);
 
 
-</div>
 
-<footer>
-EV Charger Directory
-</footer>
+L.marker([
+53.271761,
+-2.455043
+]).addTo(map)
+.bindPopup("<b>Weaver's Whistle Pub & Restaurant</b><br>471 Manchester Road");
+
+
+
+L.marker([
+53.21452327,
+-2.614139796
+]).addTo(map)
+.bindPopup("<b>EVC Nunsmere Hall Hotel</b><br>Nunsmere Hall Hotel");
+
+
+
+L.marker([
+53.261075,
+-2.505586
+]).addTo(map)
+.bindPopup("<b>SureStore - Self Storage Northwich</b><br>Unit 1 & 2");
+
+
+
+L.marker([
+53.255859,
+-2.52349
+]).addTo(map)
+.bindPopup("<b>Park Street Car Park</b><br>Park Street");
+
+
+
+L.marker([
+53.262553,
+-2.495281
+]).addTo(map)
+.bindPopup("<b>Tesco Superstore-Northwich</b><br>Manchester Road");
+
+
+
+</script>
 
 </body>
 </html>

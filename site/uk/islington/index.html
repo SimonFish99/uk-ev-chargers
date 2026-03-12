@@ -1,664 +1,736 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>EV Chargers in Islington</title>
-<link rel="stylesheet" href="/style.css">
+<title>Islington EV Chargers</title>
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+
+<style>
+#map {
+  height: 400px;
+  margin-bottom: 30px;
+  border-radius: 8px;
+}
+</style>
+
 </head>
 
 <body>
 
-<header>
-<h1>EV Chargers in Islington</h1>
-</header>
+<h1>Islington EV Chargers</h1>
+
+<div id="map"></div>
+
+<ul>
+
+<li>
+<strong>Beversbrook Road</strong><br>
+82 Beversbrook Road
+</li>
+
+<li>
+<strong>Ronalds Road</strong><br>
+71 Ronalds Road
+</li>
+
+<li>
+<strong>Essex Road</strong><br>
+317 Essex Road
+</li>
+
+<li>
+<strong>Stonefield Street</strong><br>
+4 Stonefield Street
+</li>
+
+<li>
+<strong>Quick Street</strong><br>
+8 Quick Street
+</li>
+
+<li>
+<strong>Mulkern Road</strong><br>
+59 Mulkern Road
+</li>
+
+<li>
+<strong>Despard Road Site 2</strong><br>
+37 Despard Road
+</li>
+
+<li>
+<strong>Moray Road</strong><br>
+87 Moray Road
+</li>
+
+<li>
+<strong>Bavaria Road</strong><br>
+48 Bavaria Road
+</li>
+
+<li>
+<strong>Elthorne Road Site 2</strong><br>
+1A Elthorne Road
+</li>
+
+<li>
+<strong>Kingsdown Road</strong><br>
+73 Kingsdown Road
+</li>
+
+<li>
+<strong>Biggerstaff Street</strong><br>
+Biggerstaff Street
+</li>
+
+<li>
+<strong>Fortnam Road</strong><br>
+14 Fortnam Road
+</li>
+
+<li>
+<strong>St Johns Grove</strong><br>
+30 St Johns Grove
+</li>
+
+<li>
+<strong>Junction Road</strong><br>
+135 Junction Road
+</li>
+
+<li>
+<strong>Tavistock Terrace</strong><br>
+Tavistock Terrace
+</li>
+
+<li>
+<strong>Wedmore Street</strong><br>
+51 Wedmore Street
+</li>
+
+<li>
+<strong>Salterton Road</strong><br>
+23 Salterton Road
+</li>
+
+<li>
+<strong>Ardilaun Road</strong><br>
+27 Ardilaun Road
+</li>
+
+<li>
+<strong>Archibald Road</strong><br>
+29 Archibald Road
+</li>
+
+<li>
+<strong>Carleton Road</strong><br>
+45 Carleton Road
+</li>
+
+<li>
+<strong>Petherton Road</strong><br>
+71 Petherton Road
+</li>
+
+<li>
+<strong>Bryantwood Road</strong><br>
+1 Bryantwood Road
+</li>
+
+<li>
+<strong>Highbury New Park</strong><br>
+76 Highbury New Park
+</li>
+
+<li>
+<strong>Middleton Grove</strong><br>
+Middleton Grove
+</li>
+
+<li>
+<strong>Boleyn Road</strong><br>
+Boleyn Road junction with Shellgrove Road
+</li>
+
+<li>
+<strong>Hartham Road</strong><br>
+1 Hartham Road
+</li>
+
+<li>
+<strong>Gallia Road</strong><br>
+1 Gallia Road
+</li>
+
+<li>
+<strong>Lough Road</strong><br>
+Lough Road junction with MacKenzie Road
+</li>
+
+<li>
+<strong>Grosvenor Avenue</strong><br>
+151 Grosvenor Avenue
+</li>
+
+<li>
+<strong>Highbury Crescent</strong><br>
+Opposite 1 Highbury Crescent
+</li>
+
+<li>
+<strong>Roman Way</strong><br>
+40 Roman Way
+</li>
+
+<li>
+<strong>Grange Grove</strong><br>
+6 Grange Grove
+</li>
+
+<li>
+<strong>Southgate Road</strong><br>
+155 Southgate Road
+</li>
+
+<li>
+<strong>Thornhill Road</strong><br>
+80 Thornhill Road
+</li>
+
+<li>
+<strong>Gifford Street</strong><br>
+66 Gifford Street
+</li>
+
+<li>
+<strong>Ecclesbourne Road</strong><br>
+19 Ecclesbourne Road
+</li>
+
+<li>
+<strong>Boxworth Grove</strong><br>
+Boxworth Grove
+</li>
+
+<li>
+<strong>Sherborne Street</strong><br>
+Sherborne Street
+</li>
+
+<li>
+<strong>Twyford Street</strong><br>
+44 Twyford Street
+</li>
+
+<li>
+<strong>Cloudesley Road</strong><br>
+84 Cloudesley Road
+</li>
+
+<li>
+<strong>Wynford Road</strong><br>
+55 Wynford Road
+</li>
+
+<li>
+<strong>Duncan Street</strong><br>
+11 Duncan Street
+</li>
+
+<li>
+<strong>Noel Road</strong><br>
+Opposite 54 Noel Road
+</li>
+
+<li>
+<strong>Collier Street</strong><br>
+26 Collier Street
+</li>
+
+<li>
+<strong>City Garden Row</strong><br>
+77 City Garden Row
+</li>
 
-<div class="container">
+<li>
+<strong>Attneave Street</strong><br>
+6 Attneave Street
+</li>
 
-<p>53 charging locations found.</p>
+<li>
+<strong>Dufferin Street</strong><br>
+1 Dufferin Street
+</li>
 
+<li>
+<strong>SHELL RECHARGE UPPER STREET</strong><br>
+276 Upper Street
+</li>
 
-<div class="card">
+<li>
+<strong>Shell Recharge Upper Street</strong><br>
+276 Upper Street
+</li>
 
-<h3>Beversbrook Road</h3>
+<li>
+<strong>37 – 39 Southgate Road</strong><br>
+37 – 39 Southgate Road, near junction with Canal Walk, Islington
+</li>
 
-<p>
-82 Beversbrook Road<br>
-Islington<br>
-N19 4QH
-</p>
+<li>
+<strong>Highbury Park, outside Saint John’s Court</strong><br>
+Highbury Park, outside Saint John’s Court, Islington
+</li>
 
-</div>
+<li>
+<strong>Golden Lane (Outside Peabody Buildings), Islington</strong><br>
+Golden Lane (Outside Peabody Buildings), Islington
+</li>
 
-<div class="card">
+</ul>
 
-<h3>Ronalds Road</h3>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
-<p>
-71 Ronalds Road<br>
-Islington<br>
-N5 1XB
-</p>
+<script>
 
-</div>
+var map = L.map('map').setView([
+51.558796,
+-0.127489
+], 12);
 
-<div class="card">
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+attribution: '&copy; OpenStreetMap contributors'
+}).addTo(map);
 
-<h3>Essex Road</h3>
 
-<p>
-317 Essex Road<br>
-Islington<br>
-N1 2BD
-</p>
 
-</div>
+L.marker([
+51.558796,
+-0.127489
+]).addTo(map)
+.bindPopup("<b>Beversbrook Road</b><br>82 Beversbrook Road");
 
-<div class="card">
 
-<h3>Stonefield Street</h3>
 
-<p>
-4 Stonefield Street<br>
-Islington<br>
-N1 0HW
-</p>
+L.marker([
+51.55071,
+-0.104325
+]).addTo(map)
+.bindPopup("<b>Ronalds Road</b><br>71 Ronalds Road");
 
-</div>
 
-<div class="card">
 
-<h3>Quick Street</h3>
+L.marker([
+51.54351,
+-0.090866
+]).addTo(map)
+.bindPopup("<b>Essex Road</b><br>317 Essex Road");
 
-<p>
-8 Quick Street<br>
-Islington<br>
-N1 8HL
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+51.538654,
+-0.108143
+]).addTo(map)
+.bindPopup("<b>Stonefield Street</b><br>4 Stonefield Street");
 
-<h3>Mulkern Road</h3>
 
-<p>
-59 Mulkern Road<br>
-Islington<br>
-N19 3HH
-</p>
 
-</div>
+L.marker([
+51.532074,
+-0.102028
+]).addTo(map)
+.bindPopup("<b>Quick Street</b><br>8 Quick Street");
 
-<div class="card">
 
-<h3>Despard Road Site 2</h3>
 
-<p>
-37 Despard Road<br>
-Islington<br>
-N19 5NP
-</p>
+L.marker([
+51.56924,
+-0.128302
+]).addTo(map)
+.bindPopup("<b>Mulkern Road</b><br>59 Mulkern Road");
 
-</div>
 
-<div class="card">
 
-<h3>Moray Road</h3>
+L.marker([
+51.56835,
+-0.136967
+]).addTo(map)
+.bindPopup("<b>Despard Road Site 2</b><br>37 Despard Road");
 
-<p>
-87 Moray Road<br>
-Islington<br>
-N4 3LB
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+51.566734,
+-0.111248
+]).addTo(map)
+.bindPopup("<b>Moray Road</b><br>87 Moray Road");
 
-<h3>Bavaria Road</h3>
 
-<p>
-48 Bavaria Road<br>
-Islington<br>
-N19 4EZ
-</p>
 
-</div>
+L.marker([
+51.565678,
+-0.121537
+]).addTo(map)
+.bindPopup("<b>Bavaria Road</b><br>48 Bavaria Road");
 
-<div class="card">
 
-<h3>Elthorne Road Site 2</h3>
 
-<p>
-1A Elthorne Road<br>
-Islington<br>
-N19 4AF
-</p>
+L.marker([
+51.56514,
+-0.132279
+]).addTo(map)
+.bindPopup("<b>Elthorne Road Site 2</b><br>1A Elthorne Road");
 
-</div>
 
-<div class="card">
 
-<h3>Kingsdown Road</h3>
+L.marker([
+51.5644,
+-0.122022
+]).addTo(map)
+.bindPopup("<b>Kingsdown Road</b><br>73 Kingsdown Road");
 
-<p>
-73 Kingsdown Road<br>
-Islington<br>
-N19 4LW
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+51.563858,
+-0.110574
+]).addTo(map)
+.bindPopup("<b>Biggerstaff Street</b><br>Biggerstaff Street");
 
-<h3>Biggerstaff Street</h3>
 
-<p>
-Biggerstaff Street<br>
-Islington<br>
-N4 3NH
-</p>
 
-</div>
+L.marker([
+51.563156,
+-0.126229
+]).addTo(map)
+.bindPopup("<b>Fortnam Road</b><br>14 Fortnam Road");
 
-<div class="card">
 
-<h3>Fortnam Road</h3>
 
-<p>
-14 Fortnam Road<br>
-Islington<br>
-N19 3NR
-</p>
+L.marker([
+51.562843,
+-0.135374
+]).addTo(map)
+.bindPopup("<b>St Johns Grove</b><br>30 St Johns Grove");
 
-</div>
 
-<div class="card">
 
-<h3>St Johns Grove</h3>
+L.marker([
+51.561646,
+-0.136591
+]).addTo(map)
+.bindPopup("<b>Junction Road</b><br>135 Junction Road");
 
-<p>
-30 St Johns Grove<br>
-Islington<br>
-N19 5RP
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+51.56139,
+-0.124959
+]).addTo(map)
+.bindPopup("<b>Tavistock Terrace</b><br>Tavistock Terrace");
 
-<h3>Junction Road</h3>
 
-<p>
-135 Junction Road<br>
-Islington<br>
-N19 5PX
-</p>
 
-</div>
+L.marker([
+51.560608,
+-0.127891
+]).addTo(map)
+.bindPopup("<b>Wedmore Street</b><br>51 Wedmore Street");
 
-<div class="card">
 
-<h3>Tavistock Terrace</h3>
 
-<p>
-Tavistock Terrace<br>
-Islington<br>
-N19 4BZ
-</p>
+L.marker([
+51.55976,
+-0.118159
+]).addTo(map)
+.bindPopup("<b>Salterton Road</b><br>23 Salterton Road");
 
-</div>
 
-<div class="card">
 
-<h3>Wedmore Street</h3>
+L.marker([
+51.55658,
+-0.096031
+]).addTo(map)
+.bindPopup("<b>Ardilaun Road</b><br>27 Ardilaun Road");
 
-<p>
-51 Wedmore Street<br>
-Islington<br>
-N19 4RT
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+51.55561,
+-0.131804
+]).addTo(map)
+.bindPopup("<b>Archibald Road</b><br>29 Archibald Road");
 
-<h3>Salterton Road</h3>
 
-<p>
-23 Salterton Road<br>
-Islington<br>
-N7 6BB
-</p>
 
-</div>
+L.marker([
+51.55422,
+-0.128168
+]).addTo(map)
+.bindPopup("<b>Carleton Road</b><br>45 Carleton Road");
 
-<div class="card">
 
-<h3>Ardilaun Road</h3>
 
-<p>
-27 Ardilaun Road<br>
-Islington<br>
-N5 2QR
-</p>
+L.marker([
+51.553364,
+-0.090526
+]).addTo(map)
+.bindPopup("<b>Petherton Road</b><br>71 Petherton Road");
 
-</div>
 
-<div class="card">
 
-<h3>Archibald Road</h3>
+L.marker([
+51.552334,
+-0.105917
+]).addTo(map)
+.bindPopup("<b>Bryantwood Road</b><br>1 Bryantwood Road");
 
-<p>
-29 Archibald Road<br>
-Islington<br>
-N7 0AN
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+51.55157,
+-0.091639
+]).addTo(map)
+.bindPopup("<b>Highbury New Park</b><br>76 Highbury New Park");
 
-<h3>Carleton Road</h3>
 
-<p>
-45 Carleton Road<br>
-Islington<br>
-N7 0EU
-</p>
 
-</div>
+L.marker([
+51.5511,
+-0.125527
+]).addTo(map)
+.bindPopup("<b>Middleton Grove</b><br>Middleton Grove");
 
-<div class="card">
 
-<h3>Petherton Road</h3>
 
-<p>
-71 Petherton Road<br>
-Islington<br>
-N5 2QU
-</p>
+L.marker([
+51.55081,
+-0.078632
+]).addTo(map)
+.bindPopup("<b>Boleyn Road</b><br>Boleyn Road junction with Shellgrove Road");
 
-</div>
 
-<div class="card">
 
-<h3>Bryantwood Road</h3>
+L.marker([
+51.550694,
+-0.119687
+]).addTo(map)
+.bindPopup("<b>Hartham Road</b><br>1 Hartham Road");
 
-<p>
-1 Bryantwood Road<br>
-Islington<br>
-N7 7BG
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+51.549515,
+-0.099442
+]).addTo(map)
+.bindPopup("<b>Gallia Road</b><br>1 Gallia Road");
 
-<h3>Highbury New Park</h3>
 
-<p>
-76 Highbury New Park<br>
-Islington<br>
-N5 2DJ
-</p>
 
-</div>
+L.marker([
+51.548687,
+-0.11403
+]).addTo(map)
+.bindPopup("<b>Lough Road</b><br>Lough Road junction with MacKenzie Road");
 
-<div class="card">
 
-<h3>Middleton Grove</h3>
 
-<p>
-Middleton Grove<br>
-Islington<br>
-N7 0LH
-</p>
+L.marker([
+51.548683,
+-0.09587
+]).addTo(map)
+.bindPopup("<b>Grosvenor Avenue</b><br>151 Grosvenor Avenue");
 
-</div>
 
-<div class="card">
 
-<h3>Boleyn Road</h3>
+L.marker([
+51.546707,
+-0.103367
+]).addTo(map)
+.bindPopup("<b>Highbury Crescent</b><br>Opposite 1 Highbury Crescent");
 
-<p>
-Boleyn Road junction with Shellgrove Road<br>
-Islington<br>
-N16 8LP
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+51.545624,
+-0.114805
+]).addTo(map)
+.bindPopup("<b>Roman Way</b><br>40 Roman Way");
 
-<h3>Hartham Road</h3>
 
-<p>
-1 Hartham Road<br>
-Islington<br>
-N7 9JQ
-</p>
 
-</div>
+L.marker([
+51.545273,
+-0.096893
+]).addTo(map)
+.bindPopup("<b>Grange Grove</b><br>6 Grange Grove");
 
-<div class="card">
 
-<h3>Gallia Road</h3>
 
-<p>
-1 Gallia Road<br>
-Islington<br>
-N5 1LA
-</p>
+L.marker([
+51.54388,
+-0.084188
+]).addTo(map)
+.bindPopup("<b>Southgate Road</b><br>155 Southgate Road");
 
-</div>
 
-<div class="card">
 
-<h3>Lough Road</h3>
+L.marker([
+51.542088,
+-0.110106
+]).addTo(map)
+.bindPopup("<b>Thornhill Road</b><br>80 Thornhill Road");
 
-<p>
-Lough Road junction with MacKenzie Road<br>
-Islington<br>
-N7 8QX
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+51.541092,
+-0.120429
+]).addTo(map)
+.bindPopup("<b>Gifford Street</b><br>66 Gifford Street");
 
-<h3>Grosvenor Avenue</h3>
 
-<p>
-151 Grosvenor Avenue<br>
-Islington<br>
-N5 2NH
-</p>
 
-</div>
+L.marker([
+51.540627,
+-0.093179
+]).addTo(map)
+.bindPopup("<b>Ecclesbourne Road</b><br>19 Ecclesbourne Road");
 
-<div class="card">
 
-<h3>Highbury Crescent</h3>
 
-<p>
-Opposite 1 Highbury Crescent<br>
-Islington<br>
-N5 1RN
-</p>
+L.marker([
+51.538578,
+-0.112789
+]).addTo(map)
+.bindPopup("<b>Boxworth Grove</b><br>Boxworth Grove");
 
-</div>
 
-<div class="card">
 
-<h3>Roman Way</h3>
+L.marker([
+51.538322,
+-0.089079
+]).addTo(map)
+.bindPopup("<b>Sherborne Street</b><br>Sherborne Street");
 
-<p>
-40 Roman Way<br>
-Islington<br>
-N7 8XE
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+51.538,
+-0.118769
+]).addTo(map)
+.bindPopup("<b>Twyford Street</b><br>44 Twyford Street");
 
-<h3>Grange Grove</h3>
 
-<p>
-6 Grange Grove<br>
-Islington<br>
-N1 2NP
-</p>
 
-</div>
+L.marker([
+51.536606,
+-0.109655
+]).addTo(map)
+.bindPopup("<b>Cloudesley Road</b><br>84 Cloudesley Road");
 
-<div class="card">
 
-<h3>Southgate Road</h3>
 
-<p>
-155 Southgate Road<br>
-Islington<br>
-N1 3LE
-</p>
+L.marker([
+51.534225,
+-0.115637
+]).addTo(map)
+.bindPopup("<b>Wynford Road</b><br>55 Wynford Road");
 
-</div>
 
-<div class="card">
 
-<h3>Thornhill Road</h3>
+L.marker([
+51.533363,
+-0.103431
+]).addTo(map)
+.bindPopup("<b>Duncan Street</b><br>11 Duncan Street");
 
-<p>
-80 Thornhill Road<br>
-Islington<br>
-N1 1JU
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+51.533215,
+-0.100193
+]).addTo(map)
+.bindPopup("<b>Noel Road</b><br>Opposite 54 Noel Road");
 
-<h3>Gifford Street</h3>
 
-<p>
-66 Gifford Street<br>
-Islington<br>
-N1 0DF
-</p>
 
-</div>
+L.marker([
+51.532406,
+-0.115856
+]).addTo(map)
+.bindPopup("<b>Collier Street</b><br>26 Collier Street");
 
-<div class="card">
 
-<h3>Ecclesbourne Road</h3>
 
-<p>
-19 Ecclesbourne Road<br>
-Islington<br>
-N1 3RP
-</p>
+L.marker([
+51.531128,
+-0.098607
+]).addTo(map)
+.bindPopup("<b>City Garden Row</b><br>77 City Garden Row");
 
-</div>
 
-<div class="card">
 
-<h3>Boxworth Grove</h3>
+L.marker([
+51.526478,
+-0.111214
+]).addTo(map)
+.bindPopup("<b>Attneave Street</b><br>6 Attneave Street");
 
-<p>
-Boxworth Grove<br>
-Islington<br>
-N1 0NL
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+51.522648,
+-0.092503
+]).addTo(map)
+.bindPopup("<b>Dufferin Street</b><br>1 Dufferin Street");
 
-<h3>Sherborne Street</h3>
 
-<p>
-Sherborne Street<br>
-Islington<br>
-N1 3FJ
-</p>
 
-</div>
+L.marker([
+51.539912,
+-0.102337
+]).addTo(map)
+.bindPopup("<b>SHELL RECHARGE UPPER STREET</b><br>276 Upper Street");
 
-<div class="card">
 
-<h3>Twyford Street</h3>
 
-<p>
-44 Twyford Street<br>
-Islington<br>
-N1 0BZ
-</p>
+L.marker([
+51.54062107083914,
+-0.10256820245967901
+]).addTo(map)
+.bindPopup("<b>Shell Recharge Upper Street</b><br>276 Upper Street");
 
-</div>
 
-<div class="card">
 
-<h3>Cloudesley Road</h3>
+L.marker([
+51.538747,
+-0.086021
+]).addTo(map)
+.bindPopup("<b>37 – 39 Southgate Road</b><br>37 – 39 Southgate Road, near junction with Canal Walk, Islington");
 
-<p>
-84 Cloudesley Road<br>
-Islington<br>
-N1 0EB
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+51.557306,
+-0.098179
+]).addTo(map)
+.bindPopup("<b>Highbury Park, outside Saint John’s Court</b><br>Highbury Park, outside Saint John’s Court, Islington");
 
-<h3>Wynford Road</h3>
 
-<p>
-55 Wynford Road<br>
-Islington<br>
-N1 9SP
-</p>
 
-</div>
+L.marker([
+51.522781,
+-0.094463
+]).addTo(map)
+.bindPopup("<b>Golden Lane (Outside Peabody Buildings), Islington</b><br>Golden Lane (Outside Peabody Buildings), Islington");
 
-<div class="card">
 
-<h3>Duncan Street</h3>
 
-<p>
-11 Duncan Street<br>
-Islington<br>
-N1 8FR
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Noel Road</h3>
-
-<p>
-Opposite 54 Noel Road<br>
-Islington<br>
-N1 8HQ
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Collier Street</h3>
-
-<p>
-26 Collier Street<br>
-Islington<br>
-N1 9JU
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>City Garden Row</h3>
-
-<p>
-77 City Garden Row<br>
-Islington<br>
-N1 8EZ
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Attneave Street</h3>
-
-<p>
-6 Attneave Street<br>
-Islington<br>
-WC1X 0DT
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Dufferin Street</h3>
-
-<p>
-1 Dufferin Street<br>
-Islington<br>
-EC1Y 8NA
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>SHELL RECHARGE UPPER STREET</h3>
-
-<p>
-276 Upper Street<br>
-Islington<br>
-N1 2TZ
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Shell Recharge Upper Street</h3>
-
-<p>
-276 Upper Street<br>
-Islington<br>
-N1 2TZ
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>37 – 39 Southgate Road</h3>
-
-<p>
-37 – 39 Southgate Road, near junction with Canal Walk, Islington<br>
-Islington<br>
-N1 3JP
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Highbury Park, outside Saint John’s Court</h3>
-
-<p>
-Highbury Park, outside Saint John’s Court, Islington<br>
-Islington<br>
-N5 2XE
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Golden Lane (Outside Peabody Buildings), Islington</h3>
-
-<p>
-Golden Lane (Outside Peabody Buildings), Islington<br>
-Islington<br>
-EC1Y 0RU
-</p>
-
-</div>
-
-
-</div>
-
-<footer>
-EV Charger Directory
-</footer>
+</script>
 
 </body>
 </html>

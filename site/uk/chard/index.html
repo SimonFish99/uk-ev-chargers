@@ -1,88 +1,112 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>EV Chargers in Chard</title>
-<link rel="stylesheet" href="/style.css">
+<title>Chard EV Chargers</title>
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+
+<style>
+#map {
+  height: 400px;
+  margin-bottom: 30px;
+  border-radius: 8px;
+}
+</style>
+
 </head>
 
 <body>
 
-<header>
-<h1>EV Chargers in Chard</h1>
-</header>
+<h1>Chard EV Chargers</h1>
 
-<div class="container">
+<div id="map"></div>
 
-<p>5 charging locations found.</p>
+<ul>
 
+<li>
+<strong>Marketfield 1</strong><br>
+Marketfield Car Park
+</li>
 
-<div class="card">
+<li>
+<strong>EVC The Lordleaze Hotel</strong><br>
+Henderson Drive
+</li>
 
-<h3>Marketfield 1</h3>
+<li>
+<strong>Tesco Superstore-Chard</strong><br>
+Tapstone Road
+</li>
 
-<p>
-Marketfield Car Park<br>
-Chard<br>
-TA20 1QD
-</p>
+<li>
+<strong>Warner Leisure Hotel</strong><br>
+Cricket St. Thomas Hotel
+</li>
 
-</div>
+<li>
+<strong>Lidl</strong><br>
+Tapstone Road
+</li>
 
-<div class="card">
+</ul>
 
-<h3>EVC The Lordleaze Hotel</h3>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
-<p>
-Henderson Drive<br>
-Chard<br>
-TA20 2HW
-</p>
+<script>
 
-</div>
+var map = L.map('map').setView([
+50.87253,
+-2.96192
+], 12);
 
-<div class="card">
-
-<h3>Tesco Superstore-Chard</h3>
-
-<p>
-Tapstone Road<br>
-Chard<br>
-TA20 2LW
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Warner Leisure Hotel</h3>
-
-<p>
-Cricket St. Thomas Hotel<br>
-Chard<br>
-TA20 4DD
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Lidl</h3>
-
-<p>
-Tapstone Road<br>
-Chard<br>
-TA20 2LW
-</p>
-
-</div>
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+attribution: '&copy; OpenStreetMap contributors'
+}).addTo(map);
 
 
-</div>
 
-<footer>
-EV Charger Directory
-</footer>
+L.marker([
+50.87253,
+-2.96192
+]).addTo(map)
+.bindPopup("<b>Marketfield 1</b><br>Marketfield Car Park");
+
+
+
+L.marker([
+50.868598850595575,
+-2.9488625458461764
+]).addTo(map)
+.bindPopup("<b>EVC The Lordleaze Hotel</b><br>Henderson Drive");
+
+
+
+L.marker([
+50.873873,
+-2.95357
+]).addTo(map)
+.bindPopup("<b>Tesco Superstore-Chard</b><br>Tapstone Road");
+
+
+
+L.marker([
+50.87413794827157,
+-2.8927476416163245
+]).addTo(map)
+.bindPopup("<b>Warner Leisure Hotel</b><br>Cricket St. Thomas Hotel");
+
+
+
+L.marker([
+50.8739748298222,
+-2.95620076421494
+]).addTo(map)
+.bindPopup("<b>Lidl</b><br>Tapstone Road");
+
+
+
+</script>
 
 </body>
 </html>

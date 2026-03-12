@@ -1,88 +1,112 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>EV Chargers in Larne</title>
-<link rel="stylesheet" href="/style.css">
+<title>Larne EV Chargers</title>
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+
+<style>
+#map {
+  height: 400px;
+  margin-bottom: 30px;
+  border-radius: 8px;
+}
+</style>
+
 </head>
 
 <body>
 
-<header>
-<h1>EV Chargers in Larne</h1>
-</header>
+<h1>Larne EV Chargers</h1>
 
-<div class="container">
+<div id="map"></div>
 
-<p>5 charging locations found.</p>
+<ul>
 
+<li>
+<strong>Circular Road West Car Park</strong><br>
+Circular Rd
+</li>
 
-<div class="card">
+<li>
+<strong>Curran Court Hotel</strong><br>
+6 Redlands Road
+</li>
 
-<h3>Circular Road West Car Park</h3>
+<li>
+<strong>Linn Road Service Station</strong><br>
+16 Linn Road
+</li>
 
-<p>
-Circular Rd<br>
-Larne<br>
+<li>
+<strong>HRL Kilwaughter</strong><br>
+44 Belfast Road
+</li>
 
-</p>
+<li>
+<strong>Narrow Gauge</strong><br>
+Circular Road
+</li>
 
-</div>
+</ul>
 
-<div class="card">
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
-<h3>Curran Court Hotel</h3>
+<script>
 
-<p>
-6 Redlands Road<br>
-Larne<br>
-BT40 1AX
-</p>
+var map = L.map('map').setView([
+54.849495098269415,
+-5.81761193636666
+], 12);
 
-</div>
-
-<div class="card">
-
-<h3>Linn Road Service Station</h3>
-
-<p>
-16 Linn Road<br>
-Larne<br>
-BT40 2BT
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>HRL Kilwaughter</h3>
-
-<p>
-44 Belfast Road<br>
-Larne<br>
-BT40 2PH
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Narrow Gauge</h3>
-
-<p>
-Circular Road<br>
-Larne<br>
-BT40 1XB
-</p>
-
-</div>
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+attribution: '&copy; OpenStreetMap contributors'
+}).addTo(map);
 
 
-</div>
 
-<footer>
-EV Charger Directory
-</footer>
+L.marker([
+54.849495098269415,
+-5.81761193636666
+]).addTo(map)
+.bindPopup("<b>Circular Road West Car Park</b><br>Circular Rd");
+
+
+
+L.marker([
+54.84572274826334,
+-5.808342725044753
+]).addTo(map)
+.bindPopup("<b>Curran Court Hotel</b><br>6 Redlands Road");
+
+
+
+L.marker([
+54.850706103127436,
+-5.840601686824584
+]).addTo(map)
+.bindPopup("<b>Linn Road Service Station</b><br>16 Linn Road");
+
+
+
+L.marker([
+54.83476557361965,
+-5.867127775523414
+]).addTo(map)
+.bindPopup("<b>HRL Kilwaughter</b><br>44 Belfast Road");
+
+
+
+L.marker([
+54.85035,
+-5.82056
+]).addTo(map)
+.bindPopup("<b>Narrow Gauge</b><br>Circular Road");
+
+
+
+</script>
 
 </body>
 </html>

@@ -1,1000 +1,1100 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>EV Chargers in Portsmouth</title>
-<link rel="stylesheet" href="/style.css">
+<title>Portsmouth EV Chargers</title>
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+
+<style>
+#map {
+  height: 400px;
+  margin-bottom: 30px;
+  border-radius: 8px;
+}
+</style>
+
 </head>
 
 <body>
 
-<header>
-<h1>EV Chargers in Portsmouth</h1>
-</header>
+<h1>Portsmouth EV Chargers</h1>
+
+<div id="map"></div>
+
+<ul>
+
+<li>
+<strong>Tesco Extra - Portsmouth</strong><br>
+Clement Attlee Way
+</li>
+
+<li>
+<strong>PO2 9HX</strong><br>
+Hartley Rd 66
+</li>
+
+<li>
+<strong>Oriel Rd 66</strong><br>
+Oriel Rd 66
+</li>
+
+<li>
+<strong>43 Shadwell Road</strong><br>
+43 Shadwell Road
+</li>
+
+<li>
+<strong>117 Shadwell road</strong><br>
+117 Shadwell road
+</li>
+
+<li>
+<strong>63 Wadham road</strong><br>
+63 Wadham road
+</li>
+
+<li>
+<strong>Crofton Rd along side 98 Kirby Rd</strong><br>
+Crofton Rd along side 98 Kirby Rd
+</li>
+
+<li>
+<strong>PO2 0JP</strong><br>
+Kensington Rd 75
+</li>
+
+<li>
+<strong>207 Stubbington Avenue</strong><br>
+207 Stubbington Avenue
+</li>
+
+<li>
+<strong>305 Chichester road</strong><br>
+305 Chichester road
+</li>
+
+<li>
+<strong>26 Langford road</strong><br>
+26 Langford road
+</li>
+
+<li>
+<strong>DRAX00140</strong><br>
+Fratton Way
+</li>
+
+<li>
+<strong>37 Crofton Road</strong><br>
+37 Crofton Road
+</li>
+
+<li>
+<strong>DRAX00142</strong><br>
+Winston Churchill Avenue
+</li>
+
+<li>
+<strong>75 Percy Road</strong><br>
+75 Percy Road
+</li>
+
+<li>
+<strong>43 Cleveland road</strong><br>
+43 Cleveland road
+</li>
+
+<li>
+<strong>88 Liss Road</strong><br>
+88 Liss Road
+</li>
+
+<li>
+<strong>89 Empshott Road</strong><br>
+89 Empshott Road
+</li>
+
+<li>
+<strong>9 Havelock Road</strong><br>
+9 Havelock Road
+</li>
+
+<li>
+<strong>Eastfield Rd 92</strong><br>
+Eastfield Rd 92
+</li>
+
+<li>
+<strong>Bush St west opp 20 Great Southsea St</strong><br>
+Bush St west opp 20 Great Southsea St
+</li>
+
+<li>
+<strong>31 Canterbury road</strong><br>
+31 Canterbury road
+</li>
+
+<li>
+<strong>178 Reginald road</strong><br>
+178 Reginald road
+</li>
+
+<li>
+<strong>126 Methuen Road</strong><br>
+126 Methuen Road
+</li>
+
+<li>
+<strong>55</strong><br>
+55
+</li>
+
+<li>
+<strong>PO4 9QL</strong><br>
+Taswell Rd 11
+</li>
+
+<li>
+<strong>24 Lennox road South</strong><br>
+24 Lennox road South
+</li>
+
+<li>
+<strong>PO5 2NG</strong><br>
+2 St Catherine St lc 1
+</li>
+
+<li>
+<strong>Florence Rd 5</strong><br>
+Florence Rd 5
+</li>
+
+<li>
+<strong>PO5 2HX</strong><br>
+Clarence Parade 62
+</li>
+
+<li>
+<strong>15 Beach road</strong><br>
+15 Beach road
+</li>
+
+<li>
+<strong>35 Nutbourne road</strong><br>
+35 Nutbourne road
+</li>
+
+<li>
+<strong>96 Randolph road</strong><br>
+96 Randolph road
+</li>
+
+<li>
+<strong>160 Kensington road</strong><br>
+160 Kensington road
+</li>
+
+<li>
+<strong>7 St Chad's Avenue</strong><br>
+7 St Chad's Avenue
+</li>
+
+<li>
+<strong>Stubbington Avenue car park</strong><br>
+Stubbington Avenue car park
+</li>
+
+<li>
+<strong>14 Mayhall Road</strong><br>
+14 Mayhall Road
+</li>
+
+<li>
+<strong>17/18 Croft Road</strong><br>
+17/18 Croft Road
+</li>
+
+<li>
+<strong>120 Wymering Road</strong><br>
+120 Wymering Road
+</li>
+
+<li>
+<strong>Wallace Road</strong><br>
+Wallace Road
+</li>
+
+<li>
+<strong>21 Chestnut Avenue</strong><br>
+21 Chestnut Avenue
+</li>
+
+<li>
+<strong>19 Burney Road</strong><br>
+19 Burney Road
+</li>
+
+<li>
+<strong>52 Hudson Road</strong><br>
+52 Hudson Road
+</li>
+
+<li>
+<strong>72 Dunbar road</strong><br>
+72 Dunbar road
+</li>
+
+<li>
+<strong>39 Essex Road</strong><br>
+39 Essex Road
+</li>
+
+<li>
+<strong>82 Jubilee road</strong><br>
+82 Jubilee road
+</li>
+
+<li>
+<strong>48 glasgow road</strong><br>
+48 glasgow road
+</li>
+
+<li>
+<strong>white hart road outside Mountjoy Court</strong><br>
+white hart road outside Mountjoy Court
+</li>
+
+<li>
+<strong>King James Terrace Broad Street</strong><br>
+King James Terrace Broad Street
+</li>
+
+<li>
+<strong>45 Reginald Road</strong><br>
+45 Reginald Road
+</li>
+
+<li>
+<strong>23 Harold Road</strong><br>
+23 Harold Road
+</li>
+
+<li>
+<strong>49 St Augustine Road</strong><br>
+49 St Augustine Road
+</li>
+
+<li>
+<strong>10/12 Exmouth Road</strong><br>
+10/12 Exmouth Road
+</li>
+
+<li>
+<strong>Opposite No.23 Highland Street</strong><br>
+Opposite No.23 Highland Street
+</li>
+
+<li>
+<strong>24 Lindley Avenue</strong><br>
+24 Lindley Avenue
+</li>
+
+<li>
+<strong>Opposite No.2 Waverley Grove</strong><br>
+Opposite No.2 Waverley Grove
+</li>
+
+<li>
+<strong>McDonald's Cosham</strong><br>
+Portsmouth Road
+</li>
+
+<li>
+<strong>5 Leominster Road</strong><br>
+5 Leominster Road
+</li>
+
+<li>
+<strong>Meyrick road outside 186a Twyford avenue</strong><br>
+Meyrick road outside 186a Twyford avenue
+</li>
+
+<li>
+<strong>15 Neville road</strong><br>
+Opp 15 Neville road
+</li>
+
+<li>
+<strong>151 Hayling avenue</strong><br>
+151 Hayling avenue
+</li>
+
+<li>
+<strong>19 Lichfield road</strong><br>
+19-21 Lichfield road
+</li>
+
+<li>
+<strong>49 Sheffield road</strong><br>
+49 Sheffield road
+</li>
+
+<li>
+<strong>3 Shelford Road</strong><br>
+3 Shelford Road
+</li>
+
+<li>
+<strong>11 Cleveland Road</strong><br>
+11 Cleveland Road
+</li>
+
+<li>
+<strong>39 Haslemere road</strong><br>
+39 Haslemere road
+</li>
+
+<li>
+<strong>105 Jessie road</strong><br>
+105 Jessie road
+</li>
+
+<li>
+<strong>Kings road 45-61 Norfolk street</strong><br>
+Kings road 45-61 Norfolk street
+</li>
+
+<li>
+<strong>Grove road south</strong><br>
+Grove road south Holmbush court adj 39 Queens crescent
+</li>
+
+<li>
+<strong>21 Gains road</strong><br>
+21 Gains road
+</li>
+
+<li>
+<strong>23 Festing Grove</strong><br>
+23 Festing Grove
+</li>
+
+<li>
+<strong>Opp Park house Clarence parade</strong><br>
+Opp Park house Clarence parade
+</li>
+
+<li>
+<strong>36 Whitwell Road</strong><br>
+36 Whitwell Road
+</li>
+
+<li>
+<strong>Wharf Road</strong><br>
+Wharf Road
+</li>
+
+<li>
+<strong>Tesco Extra-Fratton</strong><br>
+Fratton Way
+</li>
+
+<li>
+<strong>Gunwharf Quays</strong><br>
+Gunwharf Quays
+</li>
+
+<li>
+<strong>Best Western Royal Beach Hotel </strong><br>
+St Helens Parade
+</li>
+
+<li>
+<strong>Historic Dockyard Car Park</strong><br>
+Admiralty Road
+</li>
+
+<li>
+<strong>Taswell Road</strong><br>
+Taswell Road
+</li>
+
+<li>
+<strong>Taswell Road</strong><br>
+Taswell Road
+</li>
+
+<li>
+<strong>Henderson Road</strong><br>
+Henderson Road
+</li>
+
+</ul>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script>
+
+var map = L.map('map').setView([
+50.845449,
+-1.09538
+], 12);
+
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+attribution: '&copy; OpenStreetMap contributors'
+}).addTo(map);
+
+
+
+L.marker([
+50.845449,
+-1.09538
+]).addTo(map)
+.bindPopup("<b>Tesco Extra - Portsmouth</b><br>Clement Attlee Way");
 
-<div class="container">
 
-<p>81 charging locations found.</p>
 
+L.marker([
+50.823694,
+-1.078443
+]).addTo(map)
+.bindPopup("<b>PO2 9HX</b><br>Hartley Rd 66");
 
-<div class="card">
 
-<h3>Tesco Extra - Portsmouth</h3>
 
-<p>
-Clement Attlee Way<br>
-Portsmouth<br>
-PO6 4SR
-</p>
+L.marker([
+50.821798,
+-1.078589
+]).addTo(map)
+.bindPopup("<b>Oriel Rd 66</b><br>Oriel Rd 66");
 
-</div>
 
-<div class="card">
 
-<h3>PO2 9HX</h3>
+L.marker([
+50.822476,
+-1.077226
+]).addTo(map)
+.bindPopup("<b>43 Shadwell Road</b><br>43 Shadwell Road");
 
-<p>
-Hartley Rd 66<br>
-Portsmouth<br>
-PO2 9HX
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+50.822201,
+-1.080117
+]).addTo(map)
+.bindPopup("<b>117 Shadwell road</b><br>117 Shadwell road");
 
-<h3>Oriel Rd 66</h3>
 
-<p>
-Oriel Rd 66<br>
-Portsmouth<br>
-PO2 9EQ
-</p>
 
-</div>
+L.marker([
+50.82088,
+-1.080111
+]).addTo(map)
+.bindPopup("<b>63 Wadham road</b><br>63 Wadham road");
 
-<div class="card">
 
-<h3>43 Shadwell Road</h3>
 
-<p>
-43 Shadwell Road<br>
-Portsmouth<br>
-PO2 9EH
-</p>
+L.marker([
+50.818761,
+-1.07168
+]).addTo(map)
+.bindPopup("<b>Crofton Rd along side 98 Kirby Rd</b><br>Crofton Rd along side 98 Kirby Rd");
 
-</div>
 
-<div class="card">
 
-<h3>117 Shadwell road</h3>
+L.marker([
+50.818018,
+-1.067438
+]).addTo(map)
+.bindPopup("<b>PO2 0JP</b><br>Kensington Rd 75");
 
-<p>
-117 Shadwell road<br>
-Portsmouth<br>
-PO2 9EP
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+50.817101,
+-1.06685
+]).addTo(map)
+.bindPopup("<b>207 Stubbington Avenue</b><br>207 Stubbington Avenue");
 
-<h3>63 Wadham road</h3>
 
-<p>
-63 Wadham road<br>
-Portsmouth<br>
-PO2 9ED
-</p>
 
-</div>
+L.marker([
+50.814011,
+-1.065737
+]).addTo(map)
+.bindPopup("<b>305 Chichester road</b><br>305 Chichester road");
 
-<div class="card">
 
-<h3>Crofton Rd along side 98 Kirby Rd</h3>
 
-<p>
-Crofton Rd along side 98 Kirby Rd<br>
-Portsmouth<br>
-PO2 0PW
-</p>
+L.marker([
+50.807971,
+-1.070898
+]).addTo(map)
+.bindPopup("<b>26 Langford road</b><br>26 Langford road");
 
-</div>
 
-<div class="card">
 
-<h3>PO2 0JP</h3>
+L.marker([
+50.79682,
+-1.06706
+]).addTo(map)
+.bindPopup("<b>DRAX00140</b><br>Fratton Way");
 
-<p>
-Kensington Rd 75<br>
-Portsmouth<br>
-PO2 0JP
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+50.796212,
+-1.05453
+]).addTo(map)
+.bindPopup("<b>37 Crofton Road</b><br>37 Crofton Road");
 
-<h3>207 Stubbington Avenue</h3>
 
-<p>
-207 Stubbington Avenue<br>
-Portsmouth<br>
-PO2 0JW
-</p>
 
-</div>
+L.marker([
+50.79546,
+-1.09163
+]).addTo(map)
+.bindPopup("<b>DRAX00142</b><br>Winston Churchill Avenue");
 
-<div class="card">
 
-<h3>305 Chichester road</h3>
 
-<p>
-305 Chichester road<br>
-Portsmouth<br>
-PO2 0AW
-</p>
+L.marker([
+50.793338,
+-1.073554
+]).addTo(map)
+.bindPopup("<b>75 Percy Road</b><br>75 Percy Road");
 
-</div>
 
-<div class="card">
 
-<h3>26 Langford road</h3>
+L.marker([
+50.793136,
+-1.078086
+]).addTo(map)
+.bindPopup("<b>43 Cleveland road</b><br>43 Cleveland road");
 
-<p>
-26 Langford road<br>
-Portsmouth<br>
-PO1 5RJ
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+50.79254,
+-1.063931
+]).addTo(map)
+.bindPopup("<b>88 Liss Road</b><br>88 Liss Road");
 
-<h3>DRAX00140</h3>
 
-<p>
-Fratton Way<br>
-Portsmouth<br>
-PO4 8SL
-</p>
 
-</div>
+L.marker([
+50.792075,
+-1.064074
+]).addTo(map)
+.bindPopup("<b>89 Empshott Road</b><br>89 Empshott Road");
 
-<div class="card">
 
-<h3>37 Crofton Road</h3>
 
-<p>
-37 Crofton Road<br>
-Portsmouth<br>
-PO2 0NS
-</p>
+L.marker([
+50.791739,
+-1.079993
+]).addTo(map)
+.bindPopup("<b>9 Havelock Road</b><br>9 Havelock Road");
 
-</div>
 
-<div class="card">
 
-<h3>DRAX00142</h3>
+L.marker([
+50.790583,
+-1.063523
+]).addTo(map)
+.bindPopup("<b>Eastfield Rd 92</b><br>Eastfield Rd 92");
 
-<p>
-Winston Churchill Avenue<br>
-Portsmouth<br>
-PO1 2LX
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+50.790482,
+-1.09315
+]).addTo(map)
+.bindPopup("<b>Bush St west opp 20 Great Southsea St</b><br>Bush St west opp 20 Great Southsea St");
 
-<h3>75 Percy Road</h3>
 
-<p>
-75 Percy Road<br>
-Portsmouth<br>
-PO4 0BH
-</p>
 
-</div>
+L.marker([
+50.789201,
+-1.06719
+]).addTo(map)
+.bindPopup("<b>31 Canterbury road</b><br>31 Canterbury road");
 
-<div class="card">
 
-<h3>43 Cleveland road</h3>
 
-<p>
-43 Cleveland road<br>
-Portsmouth<br>
-PO5 1SG
-</p>
+L.marker([
+50.788666,
+-1.062119
+]).addTo(map)
+.bindPopup("<b>178 Reginald road</b><br>178 Reginald road");
 
-</div>
 
-<div class="card">
 
-<h3>88 Liss Road</h3>
+L.marker([
+50.788006,
+-1.060911
+]).addTo(map)
+.bindPopup("<b>126 Methuen Road</b><br>126 Methuen Road");
 
-<p>
-88 Liss Road<br>
-Portsmouth<br>
-PO4 8AS
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+50.783942,
+-1.079388
+]).addTo(map)
+.bindPopup("<b>55</b><br>55");
 
-<h3>89 Empshott Road</h3>
 
-<p>
-89 Empshott Road<br>
-Portsmouth<br>
-PO4 8BY
-</p>
 
-</div>
+L.marker([
+50.783332,
+-1.081057
+]).addTo(map)
+.bindPopup("<b>PO4 9QL</b><br>Taswell Rd 11");
 
-<div class="card">
 
-<h3>9 Havelock Road</h3>
 
-<p>
-9 Havelock Road<br>
-Portsmouth<br>
-PO5 1RU
-</p>
+L.marker([
+50.782496,
+-1.085033
+]).addTo(map)
+.bindPopup("<b>24 Lennox road South</b><br>24 Lennox road South");
 
-</div>
 
-<div class="card">
 
-<h3>Eastfield Rd 92</h3>
+L.marker([
+50.781528,
+-1.082464
+]).addTo(map)
+.bindPopup("<b>PO5 2NG</b><br>2 St Catherine St lc 1");
 
-<p>
-Eastfield Rd 92<br>
-Portsmouth<br>
-PO4 9EN
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+50.781316,
+-1.082682
+]).addTo(map)
+.bindPopup("<b>Florence Rd 5</b><br>Florence Rd 5");
 
-<h3>Bush St west opp 20 Great Southsea St</h3>
 
-<p>
-Bush St west opp 20 Great Southsea St<br>
-Portsmouth<br>
-PO5 3BY
-</p>
 
-</div>
+L.marker([
+50.780679,
+-1.084534
+]).addTo(map)
+.bindPopup("<b>PO5 2HX</b><br>Clarence Parade 62");
 
-<div class="card">
 
-<h3>31 Canterbury road</h3>
 
-<p>
-31 Canterbury road<br>
-Portsmouth<br>
-PO4 9AZ
-</p>
+L.marker([
+50.78053,
+-1.081602
+]).addTo(map)
+.bindPopup("<b>15 Beach road</b><br>15 Beach road");
 
-</div>
 
-<div class="card">
 
-<h3>178 Reginald road</h3>
+L.marker([
+50.844331,
+-1.038243
+]).addTo(map)
+.bindPopup("<b>35 Nutbourne road</b><br>35 Nutbourne road");
 
-<p>
-178 Reginald road<br>
-Portsmouth<br>
-PO4 9DS
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+50.823182,
+-1.072378
+]).addTo(map)
+.bindPopup("<b>96 Randolph road</b><br>96 Randolph road");
 
-<h3>126 Methuen Road</h3>
 
-<p>
-126 Methuen Road<br>
-Portsmouth<br>
-PO4 9HJ
-</p>
 
-</div>
+L.marker([
+50.822403,
+-1.067547
+]).addTo(map)
+.bindPopup("<b>160 Kensington road</b><br>160 Kensington road");
 
-<div class="card">
 
-<h3>55</h3>
 
-<p>
-55<br>
-Portsmouth<br>
-PO4 8PX
-</p>
+L.marker([
+50.821982,
+-1.073879
+]).addTo(map)
+.bindPopup("<b>7 St Chad's Avenue</b><br>7 St Chad's Avenue");
 
-</div>
 
-<div class="card">
 
-<h3>PO4 9QL</h3>
+L.marker([
+50.81655,
+-1.07837
+]).addTo(map)
+.bindPopup("<b>Stubbington Avenue car park</b><br>Stubbington Avenue car park");
 
-<p>
-Taswell Rd 11<br>
-Portsmouth<br>
-PO4 9QL
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+50.815835,
+-1.063595
+]).addTo(map)
+.bindPopup("<b>14 Mayhall Road</b><br>14 Mayhall Road");
 
-<h3>24 Lennox road South</h3>
 
-<p>
-24 Lennox road South<br>
-Portsmouth<br>
-PO5 2HT
-</p>
 
-</div>
+L.marker([
+50.81463,
+-1.081997
+]).addTo(map)
+.bindPopup("<b>17/18 Croft Road</b><br>17/18 Croft Road");
 
-<div class="card">
 
-<h3>PO5 2NG</h3>
 
-<p>
-2 St Catherine St lc 1<br>
-Portsmouth<br>
-PO5 2NG
-</p>
+L.marker([
+50.812675,
+-1.072285
+]).addTo(map)
+.bindPopup("<b>120 Wymering Road</b><br>120 Wymering Road");
 
-</div>
 
-<div class="card">
 
-<h3>Florence Rd 5</h3>
+L.marker([
+50.812224,
+-1.068231
+]).addTo(map)
+.bindPopup("<b>Wallace Road</b><br>Wallace Road");
 
-<p>
-Florence Rd 5<br>
-Portsmouth<br>
-PO5 2ND
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+50.794056,
+-1.069016
+]).addTo(map)
+.bindPopup("<b>21 Chestnut Avenue</b><br>21 Chestnut Avenue");
 
-<h3>PO5 2HX</h3>
 
-<p>
-Clarence Parade 62<br>
-Portsmouth<br>
-PO5 2HX
-</p>
 
-</div>
+L.marker([
+50.792567,
+-1.049485
+]).addTo(map)
+.bindPopup("<b>19 Burney Road</b><br>19 Burney Road");
 
-<div class="card">
 
-<h3>15 Beach road</h3>
 
-<p>
-15 Beach road<br>
-Portsmouth<br>
-PO5 2JH
-</p>
+L.marker([
+50.792147,
+-1.084536
+]).addTo(map)
+.bindPopup("<b>52 Hudson Road</b><br>52 Hudson Road");
 
-</div>
 
-<div class="card">
 
-<h3>35 Nutbourne road</h3>
+L.marker([
+50.79177,
+-1.052065
+]).addTo(map)
+.bindPopup("<b>72 Dunbar road</b><br>72 Dunbar road");
 
-<p>
-35 Nutbourne road<br>
-Portsmouth<br>
-PO6 1NP
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+50.791636,
+-1.056978
+]).addTo(map)
+.bindPopup("<b>39 Essex Road</b><br>39 Essex Road");
 
-<h3>96 Randolph road</h3>
 
-<p>
-96 Randolph road<br>
-Portsmouth<br>
-PO2 0ST
-</p>
 
-</div>
+L.marker([
+50.791056,
+-1.069985
+]).addTo(map)
+.bindPopup("<b>82 Jubilee road</b><br>82 Jubilee road");
 
-<div class="card">
 
-<h3>160 Kensington road</h3>
 
-<p>
-160 Kensington road<br>
-Portsmouth<br>
-PO2 0QU
-</p>
+L.marker([
+50.790791,
+-1.053109
+]).addTo(map)
+.bindPopup("<b>48 glasgow road</b><br>48 glasgow road");
 
-</div>
 
-<div class="card">
 
-<h3>7 St Chad's Avenue</h3>
+L.marker([
+50.790359,
+-1.105727
+]).addTo(map)
+.bindPopup("<b>white hart road outside Mountjoy Court</b><br>white hart road outside Mountjoy Court");
 
-<p>
-7 St Chad's Avenue<br>
-Portsmouth<br>
-PO2 0SA
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+50.789951,
+-1.106919
+]).addTo(map)
+.bindPopup("<b>King James Terrace Broad Street</b><br>King James Terrace Broad Street");
 
-<h3>Stubbington Avenue car park</h3>
 
-<p>
-Stubbington Avenue car park<br>
-Portsmouth<br>
-PO2 0HS
-</p>
 
-</div>
+L.marker([
+50.78799,
+-1.057566
+]).addTo(map)
+.bindPopup("<b>45 Reginald Road</b><br>45 Reginald Road");
 
-<div class="card">
 
-<h3>14 Mayhall Road</h3>
 
-<p>
-14 Mayhall Road<br>
-Portsmouth<br>
-PO3 5AU
-</p>
+L.marker([
+50.787454,
+-1.075544
+]).addTo(map)
+.bindPopup("<b>23 Harold Road</b><br>23 Harold Road");
 
-</div>
 
-<div class="card">
 
-<h3>17/18 Croft Road</h3>
+L.marker([
+50.787441,
+-1.06947
+]).addTo(map)
+.bindPopup("<b>49 St Augustine Road</b><br>49 St Augustine Road");
 
-<p>
-17/18 Croft Road<br>
-Portsmouth<br>
-PO2 8AX
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+50.787159,
+-1.081446
+]).addTo(map)
+.bindPopup("<b>10/12 Exmouth Road</b><br>10/12 Exmouth Road");
 
-<h3>120 Wymering Road</h3>
 
-<p>
-120 Wymering Road<br>
-Portsmouth<br>
-PO2 7HY
-</p>
 
-</div>
+L.marker([
+50.785987,
+-1.060758
+]).addTo(map)
+.bindPopup("<b>Opposite No.23 Highland Street</b><br>Opposite No.23 Highland Street");
 
-<div class="card">
 
-<h3>Wallace Road</h3>
 
-<p>
-Wallace Road<br>
-Portsmouth<br>
-PO2 7JJ
-</p>
+L.marker([
+50.784631,
+-1.062141
+]).addTo(map)
+.bindPopup("<b>24 Lindley Avenue</b><br>24 Lindley Avenue");
 
-</div>
 
-<div class="card">
 
-<h3>21 Chestnut Avenue</h3>
+L.marker([
+50.783489,
+-1.077608
+]).addTo(map)
+.bindPopup("<b>Opposite No.2 Waverley Grove</b><br>Opposite No.2 Waverley Grove");
 
-<p>
-21 Chestnut Avenue<br>
-Portsmouth<br>
-PO4 8AB
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+50.8389041776044,
+-1.06956541476251
+]).addTo(map)
+.bindPopup("<b>McDonald's Cosham</b><br>Portsmouth Road");
 
-<h3>19 Burney Road</h3>
 
-<p>
-19 Burney Road<br>
-Portsmouth<br>
-PO4 8HG
-</p>
 
-</div>
+L.marker([
+50.852442,
+-1.087381
+]).addTo(map)
+.bindPopup("<b>5 Leominster Road</b><br>5 Leominster Road");
 
-<div class="card">
 
-<h3>52 Hudson Road</h3>
 
-<p>
-52 Hudson Road<br>
-Portsmouth<br>
-PO5 1HD
-</p>
+L.marker([
+50.817787,
+-1.084432
+]).addTo(map)
+.bindPopup("<b>Meyrick road outside 186a Twyford avenue</b><br>Meyrick road outside 186a Twyford avenue");
 
-</div>
 
-<div class="card">
 
-<h3>72 Dunbar road</h3>
+L.marker([
+50.80752,
+-1.05801
+]).addTo(map)
+.bindPopup("<b>15 Neville road</b><br>Opp 15 Neville road");
 
-<p>
-72 Dunbar road<br>
-Portsmouth<br>
-PO4 8EY
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+50.806247,
+-1.051564
+]).addTo(map)
+.bindPopup("<b>151 Hayling avenue</b><br>151 Hayling avenue");
 
-<h3>39 Essex Road</h3>
 
-<p>
-39 Essex Road<br>
-Portsmouth<br>
-PO4 8DG
-</p>
 
-</div>
+L.marker([
+50.805593,
+-1.061259
+]).addTo(map)
+.bindPopup("<b>19 Lichfield road</b><br>19-21 Lichfield road");
 
-<div class="card">
 
-<h3>82 Jubilee road</h3>
 
-<p>
-82 Jubilee road<br>
-Portsmouth<br>
-PO4 0JE
-</p>
+L.marker([
+50.800236,
+-1.074868
+]).addTo(map)
+.bindPopup("<b>49 Sheffield road</b><br>49 Sheffield road");
 
-</div>
 
-<div class="card">
 
-<h3>48 glasgow road</h3>
+L.marker([
+50.794202,
+-1.0532
+]).addTo(map)
+.bindPopup("<b>3 Shelford Road</b><br>3 Shelford Road");
 
-<p>
-48 glasgow road<br>
-Portsmouth<br>
-PO4 8HR
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+50.79315,
+-1.077145
+]).addTo(map)
+.bindPopup("<b>11 Cleveland Road</b><br>11 Cleveland Road");
 
-<h3>white hart road outside Mountjoy Court</h3>
 
-<p>
-white hart road outside Mountjoy Court<br>
-Portsmouth<br>
-PO1 2TX
-</p>
 
-</div>
+L.marker([
+50.793091,
+-1.065314
+]).addTo(map)
+.bindPopup("<b>39 Haslemere road</b><br>39 Haslemere road");
 
-<div class="card">
 
-<h3>King James Terrace Broad Street</h3>
 
-<p>
-King James Terrace Broad Street<br>
-Portsmouth<br>
-PO1 2LL
-</p>
+L.marker([
+50.792555,
+-1.072296
+]).addTo(map)
+.bindPopup("<b>105 Jessie road</b><br>105 Jessie road");
 
-</div>
 
-<div class="card">
 
-<h3>45 Reginald Road</h3>
+L.marker([
+50.790768,
+-1.091822
+]).addTo(map)
+.bindPopup("<b>Kings road 45-61 Norfolk street</b><br>Kings road 45-61 Norfolk street");
 
-<p>
-45 Reginald Road<br>
-Portsmouth<br>
-PO4 9HW
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+50.787763,
+-1.087334
+]).addTo(map)
+.bindPopup("<b>Grove road south</b><br>Grove road south Holmbush court adj 39 Queens crescent");
 
-<h3>23 Harold Road</h3>
 
-<p>
-23 Harold Road<br>
-Portsmouth<br>
-PO4 0LR
-</p>
 
-</div>
+L.marker([
+50.785294,
+-1.075958
+]).addTo(map)
+.bindPopup("<b>21 Gains road</b><br>21 Gains road");
 
-<div class="card">
 
-<h3>49 St Augustine Road</h3>
 
-<p>
-49 St Augustine Road<br>
-Portsmouth<br>
-PO4 9AA
-</p>
+L.marker([
+50.78439,
+-1.067607
+]).addTo(map)
+.bindPopup("<b>23 Festing Grove</b><br>23 Festing Grove");
 
-</div>
 
-<div class="card">
 
-<h3>10/12 Exmouth Road</h3>
+L.marker([
+50.783681,
+-1.092044
+]).addTo(map)
+.bindPopup("<b>Opp Park house Clarence parade</b><br>Opp Park house Clarence parade");
 
-<p>
-10/12 Exmouth Road<br>
-Portsmouth<br>
-PO5 2QL
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+50.781383,
+-1.076257
+]).addTo(map)
+.bindPopup("<b>36 Whitwell Road</b><br>36 Whitwell Road");
 
-<h3>Opposite No.23 Highland Street</h3>
 
-<p>
-Opposite No.23 Highland Street<br>
-Portsmouth<br>
-PO4 9NL
-</p>
 
-</div>
+L.marker([
+50.8121227746316,
+-1.08690453616623
+]).addTo(map)
+.bindPopup("<b>Wharf Road</b><br>Wharf Road");
 
-<div class="card">
 
-<h3>24 Lindley Avenue</h3>
 
-<p>
-24 Lindley Avenue<br>
-Portsmouth<br>
-PO4 9NU
-</p>
+L.marker([
+50.796757,
+-1.065333
+]).addTo(map)
+.bindPopup("<b>Tesco Extra-Fratton</b><br>Fratton Way");
 
-</div>
 
-<div class="card">
 
-<h3>Opposite No.2 Waverley Grove</h3>
+L.marker([
+50.795949,
+-1.10474
+]).addTo(map)
+.bindPopup("<b>Gunwharf Quays</b><br>Gunwharf Quays");
 
-<p>
-Opposite No.2 Waverley Grove<br>
-Portsmouth<br>
-PO4 0PZ
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+50.78035,
+-1.07386
+]).addTo(map)
+.bindPopup("<b>Best Western Royal Beach Hotel </b><br>St Helens Parade");
 
-<h3>McDonald's Cosham</h3>
 
-<p>
-Portsmouth Road<br>
-Portsmouth<br>
-PO6 2SW
-</p>
 
-</div>
+L.marker([
+50.80016273211908,
+-1.1041308881086707
+]).addTo(map)
+.bindPopup("<b>Historic Dockyard Car Park</b><br>Admiralty Road");
 
-<div class="card">
 
-<h3>5 Leominster Road</h3>
 
-<p>
-5 Leominster Road<br>
-Portsmouth<br>
-PO6 4BX
-</p>
+L.marker([
+50.783239,
+-1.08181
+]).addTo(map)
+.bindPopup("<b>Taswell Road</b><br>Taswell Road");
 
-</div>
 
-<div class="card">
 
-<h3>Meyrick road outside 186a Twyford avenue</h3>
+L.marker([
+50.783239,
+-1.08181
+]).addTo(map)
+.bindPopup("<b>Taswell Road</b><br>Taswell Road");
 
-<p>
-Meyrick road outside 186a Twyford avenue<br>
-Portsmouth<br>
-PO2 8JE
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+50.787324,
+-1.053443
+]).addTo(map)
+.bindPopup("<b>Henderson Road</b><br>Henderson Road");
 
-<h3>15 Neville road</h3>
 
-<p>
-Opp 15 Neville road<br>
-Portsmouth<br>
-PO3 6HX
-</p>
 
-</div>
-
-<div class="card">
-
-<h3>151 Hayling avenue</h3>
-
-<p>
-151 Hayling avenue<br>
-Portsmouth<br>
-PO3 6DY
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>19 Lichfield road</h3>
-
-<p>
-19-21 Lichfield road<br>
-Portsmouth<br>
-PO3 6DD
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>49 Sheffield road</h3>
-
-<p>
-49 Sheffield road<br>
-Portsmouth<br>
-PO1 5DP
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>3 Shelford Road</h3>
-
-<p>
-3 Shelford Road<br>
-Portsmouth<br>
-PO4 8NT
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>11 Cleveland Road</h3>
-
-<p>
-11 Cleveland Road<br>
-Portsmouth<br>
-PO5 1SF
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>39 Haslemere road</h3>
-
-<p>
-39 Haslemere road<br>
-Portsmouth<br>
-PO4 8BD
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>105 Jessie road</h3>
-
-<p>
-105 Jessie road<br>
-Portsmouth<br>
-PO4 0EL
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Kings road 45-61 Norfolk street</h3>
-
-<p>
-Kings road 45-61 Norfolk street<br>
-Portsmouth<br>
-PO5 4DR
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Grove road south</h3>
-
-<p>
-Grove road south Holmbush court adj 39 Queens crescent<br>
-Portsmouth<br>
-PO5 3RA
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>21 Gains road</h3>
-
-<p>
-21 Gains road<br>
-Portsmouth<br>
-PO4 0PJ
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>23 Festing Grove</h3>
-
-<p>
-23 Festing Grove<br>
-Portsmouth<br>
-PO4 9QD
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Opp Park house Clarence parade</h3>
-
-<p>
-Opp Park house Clarence parade<br>
-Portsmouth<br>
-PO5 3RJ
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>36 Whitwell Road</h3>
-
-<p>
-36 Whitwell Road<br>
-Portsmouth<br>
-PO4 0QR
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Wharf Road</h3>
-
-<p>
-Wharf Road<br>
-Portsmouth<br>
-PO2 8SB
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Tesco Extra-Fratton</h3>
-
-<p>
-Fratton Way<br>
-Portsmouth<br>
-PO4 8FD
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Gunwharf Quays</h3>
-
-<p>
-Gunwharf Quays<br>
-Portsmouth<br>
-PO1 3TZ
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Best Western Royal Beach Hotel </h3>
-
-<p>
-St Helens Parade<br>
-Portsmouth<br>
-PO4 0RN
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Historic Dockyard Car Park</h3>
-
-<p>
-Admiralty Road<br>
-Portsmouth<br>
-PO1 3GW
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Taswell Road</h3>
-
-<p>
-Taswell Road<br>
-Portsmouth<br>
-PO5 2RG
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Taswell Road</h3>
-
-<p>
-Taswell Road<br>
-Portsmouth<br>
-PO5 2RG
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Henderson Road</h3>
-
-<p>
-Henderson Road<br>
-Portsmouth<br>
-PO4 9XX
-</p>
-
-</div>
-
-
-</div>
-
-<footer>
-EV Charger Directory
-</footer>
+</script>
 
 </body>
 </html>

@@ -1,88 +1,112 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>EV Chargers in Greenock</title>
-<link rel="stylesheet" href="/style.css">
+<title>Greenock EV Chargers</title>
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+
+<style>
+#map {
+  height: 400px;
+  margin-bottom: 30px;
+  border-radius: 8px;
+}
+</style>
+
 </head>
 
 <body>
 
-<header>
-<h1>EV Chargers in Greenock</h1>
-</header>
+<h1>Greenock EV Chargers</h1>
 
-<div class="container">
+<div id="map"></div>
 
-<p>5 charging locations found.</p>
+<ul>
 
+<li>
+<strong>EVC Kip Marina</strong><br>
+The Yacht
+</li>
 
-<div class="card">
+<li>
+<strong>Cathcart Street, Greenock</strong><br>
+75-81 Cathcart Street
+</li>
 
-<h3>EVC Kip Marina</h3>
+<li>
+<strong>James Watt Dock Marina</strong><br>
+60-64 East Hamilton Street
+</li>
 
-<p>
-The Yacht<br>
-Greenock<br>
-PA16 0AW
-</p>
+<li>
+<strong>Tesco Extra-Greenock</strong><br>
+Dalrymple Street
+</li>
 
-</div>
+<li>
+<strong>Battery Park, Greenock</strong><br>
+Battery Park
+</li>
 
-<div class="card">
+</ul>
 
-<h3>Cathcart Street, Greenock</h3>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
-<p>
-75-81 Cathcart Street<br>
-Greenock<br>
-PA15 1DE
-</p>
+<script>
 
-</div>
+var map = L.map('map').setView([
+55.911119162511596,
+-4.873019099067884
+], 12);
 
-<div class="card">
-
-<h3>James Watt Dock Marina</h3>
-
-<p>
-60-64 East Hamilton Street<br>
-Greenock<br>
-PA15 2UT
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Tesco Extra-Greenock</h3>
-
-<p>
-Dalrymple Street<br>
-Greenock<br>
-PA15 1LE
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Battery Park, Greenock</h3>
-
-<p>
-Battery Park<br>
-Greenock<br>
-PA16 7QG
-</p>
-
-</div>
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+attribution: '&copy; OpenStreetMap contributors'
+}).addTo(map);
 
 
-</div>
 
-<footer>
-EV Charger Directory
-</footer>
+L.marker([
+55.911119162511596,
+-4.873019099067884
+]).addTo(map)
+.bindPopup("<b>EVC Kip Marina</b><br>The Yacht");
+
+
+
+L.marker([
+55.946571,
+-4.753378
+]).addTo(map)
+.bindPopup("<b>Cathcart Street, Greenock</b><br>75-81 Cathcart Street");
+
+
+
+L.marker([
+55.942178,
+-4.725005
+]).addTo(map)
+.bindPopup("<b>James Watt Dock Marina</b><br>60-64 East Hamilton Street");
+
+
+
+L.marker([
+55.95019,
+-4.758336
+]).addTo(map)
+.bindPopup("<b>Tesco Extra-Greenock</b><br>Dalrymple Street");
+
+
+
+L.marker([
+55.960352,
+-4.79682
+]).addTo(map)
+.bindPopup("<b>Battery Park, Greenock</b><br>Battery Park");
+
+
+
+</script>
 
 </body>
 </html>

@@ -1,952 +1,1048 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>EV Chargers in Cardiff</title>
-<link rel="stylesheet" href="/style.css">
+<title>Cardiff EV Chargers</title>
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+
+<style>
+#map {
+  height: 400px;
+  margin-bottom: 30px;
+  border-radius: 8px;
+}
+</style>
+
 </head>
 
 <body>
 
-<header>
-<h1>EV Chargers in Cardiff</h1>
-</header>
+<h1>Cardiff EV Chargers</h1>
+
+<div id="map"></div>
+
+<ul>
+
+<li>
+<strong>Fairfield, Abergavenny</strong><br>
+Fairfield Car Park
+</li>
+
+<li>
+<strong>Main Road, Abergavenny</strong><br>
+Main Road Car Park
+</li>
+
+<li>
+<strong>Market Square, Blaenau Gwent</strong><br>
+Market Square, Brynmawr
+</li>
+
+<li>
+<strong>Victoria Street, Merthyr</strong><br>
+Victoria Street Car Park, Merthyr
+</li>
+
+<li>
+<strong>Pontmoralis, Merthyr</strong><br>
+Pontmoralis Car Park, Merthyr
+</li>
+
+<li>
+<strong>St Tydfils</strong><br>
+St Tydfils Car Park
+</li>
+
+<li>
+<strong>Merthyr Tydfil Leisure Centre</strong><br>
+Merthyr Tydfil Leisure Centre Car Park
+</li>
+
+<li>
+<strong>Aberdare Railway Station Carpark</strong><br>
+Aberdare Railway Station
+</li>
+
+<li>
+<strong>Crown Buildings, Rhondda Cynon Taf</strong><br>
+Crown Buildings, Rhondda Cynon Taf
+</li>
+
+<li>
+<strong>Maes Parcio'r Ynys</strong><br>
+Maes Parcio'r Ynys Car Park
+</li>
+
+<li>
+<strong>Rock Grounds, Aberdare</strong><br>
+Rock Grounds Car Park
+</li>
+
+<li>
+<strong>George Street, Torfaen</strong><br>
+George Street, Torfaen
+</li>
+
+<li>
+<strong>Lewis Street, Aberdare</strong><br>
+Lewis Street Car Park
+</li>
+
+<li>
+<strong>Old Cardiff Road, Mountain Ash</strong><br>
+Old Cardiff Road Carpark
+</li>
+
+<li>
+<strong>Henry Street, Mountain Ash</strong><br>
+Henry Street Car Park
+</li>
+
+<li>
+<strong>Trelewis, Bontnewydd Terrace</strong><br>
+Trelewis Car Park, Bontnewydd Terrace
+</li>
+
+<li>
+<strong>Perrott Street, Merthyr</strong><br>
+Perrott Street Car Park, Merthyr
+</li>
+
+<li>
+<strong>The Strand, Ferndale</strong><br>
+The Strand Car Park
+</li>
+
+<li>
+<strong>Lime Street, Ferndale</strong><br>
+Lime Street Car Park
+</li>
+
+<li>
+<strong>Dyfodwg Street</strong><br>
+Dyfodwg Street Car Park
+</li>
+
+<li>
+<strong>Rhondda Fach Leisure Centre</strong><br>
+Rhondda Fach Leisure Centre
+</li>
+
+<li>
+<strong>Abercynon Railway Station Carpark</strong><br>
+Abercynon Railway Station Carpark
+</li>
+
+<li>
+<strong>Trealaw Road, Tonypandy</strong><br>
+Trealaw Road Car Park
+</li>
+
+<li>
+<strong>Gladstone Street, Crosskeys</strong><br>
+Gladstone Street
+</li>
+
+<li>
+<strong>Porth Park and Ride 2</strong><br>
+Porth Park and Ride
+</li>
+
+<li>
+<strong>Porth Plaza</strong><br>
+Porth Plaza Car Park
+</li>
+
+<li>
+<strong>Barry Sidings Park, Pontypridd</strong><br>
+Barry Sidings Park, Pontypridd, Rhondda Cynon
+</li>
+
+<li>
+<strong>Sardis Road, Pontypridd</strong><br>
+Sardis Road Car Park
+</li>
+
+<li>
+<strong>Llantwit Fardre Leisure Centre, Pontypridd</strong><br>
+Llantwit Fardre Leisure Centre
+</li>
+
+<li>
+<strong>High Street, Heol-y-Cyw</strong><br>
+High Street Bridgend
+</li>
+
+<li>
+<strong>Heol y Sarn, Llantrisant</strong><br>
+Heol y Sarn Car Park
+</li>
+
+<li>
+<strong>Llantrisant Leisure Centre</strong><br>
+Llantrisant Leisure Centre
+</li>
+
+<li>
+<strong>Llanharan Railway Station Park and Ride</strong><br>
+Llanharan Railway Station Park and Ride
+</li>
+
+<li>
+<strong>Tesco Superstore - St Mellons</strong><br>
+Crickhowell Road
+</li>
+
+<li>
+<strong>Heol Yr Osaf (Lease), Rhondda Cynon Taf</strong><br>
+Heol Yr Osaf, Syphon Street
+</li>
+
+<li>
+<strong>Penlline Road, Cardiff</strong><br>
+Penlline Road Car Park
+</li>
+
+<li>
+<strong>Brackla Street, Bridgend</strong><br>
+Brackla Street, Bridgend
+</li>
+
+<li>
+<strong>College Road, Cardiff</strong><br>
+College Road
+</li>
+
+<li>
+<strong>Tewkesbury Place</strong><br>
+Tewkesbury Place
+</li>
+
+<li>
+<strong>North Road</strong><br>
+North Road Car Park
+</li>
+
+<li>
+<strong>Castle Mews, Cardiff</strong><br>
+Castle Mews Car Park
+</li>
+
+<li>
+<strong>Star Hub</strong><br>
+Star Hub Car Park
+</li>
+
+<li>
+<strong>Sophia Gardens</strong><br>
+Sophia Gardens
+</li>
+
+<li>
+<strong>Harvey Street</strong><br>
+Harvey Street Car Park
+</li>
+
+<li>
+<strong>Court Road Multi Storey, Barry</strong><br>
+Court Road Multi Storey Car Park, Vale Of Gla
+</li>
+
+<li>
+<strong>EVC Holiday Inn Express Cardiff</strong><br>
+Longueil Close
+</li>
+
+<li>
+<strong>University of Wales Hospital</strong><br>
+Heath Road
+</li>
+
+<li>
+<strong>Park Place</strong><br>
+Park Place
+</li>
+
+<li>
+<strong>Bute Crescent</strong><br>
+Bute Crescent
+</li>
+
+<li>
+<strong>Britannia Quay</strong><br>
+Britannia Quay
+</li>
+
+<li>
+<strong>King Edward Vii Avenue</strong><br>
+King Edward Vii Avenue
+</li>
+
+<li>
+<strong>Windsor Place</strong><br>
+Windsor Place
+</li>
+
+<li>
+<strong>Howard Place</strong><br>
+Howard Place
+</li>
+
+<li>
+<strong>InstaVolt Valegate Retail Park</strong><br>
+Valegate Retail Park
+</li>
+
+<li>
+<strong>Welcome Break Cardiff Gate Services</strong><br>
+M4 Motorway
+</li>
+
+<li>
+<strong>Spire Cardiff Hospital</strong><br>
+Croescadarn Road
+</li>
+
+<li>
+<strong>St Davids Shopping Centre Car Park</strong><br>
+St Davids Shopping Centre Car Park
+</li>
+
+<li>
+<strong>St Davids Shopping Centre Car Park</strong><br>
+St Davids Shopping Centre Car Park
+</li>
+
+<li>
+<strong>DRAX00238</strong><br>
+Tyndall Street
+</li>
+
+<li>
+<strong>Bettws Lane Car Park, Newport</strong><br>
+Bettws Lane Car Park
+</li>
+
+<li>
+<strong>DRAX00165</strong><br>
+Schooner Way
+</li>
+
+<li>
+<strong>DRAX00227</strong><br>
+Malthouse Avenue
+</li>
+
+<li>
+<strong>St David's Dewi Sant Shopping Centre</strong><br>
+St David's Dewi Sant Shopping Centre
+</li>
+
+<li>
+<strong>Tesla Cardiff</strong><br>
+Croescadarn Road
+</li>
+
+<li>
+<strong>Ty Glas Road</strong><br>
+Ty Glas Road
+</li>
+
+<li>
+<strong>Llandaff High Street Car Park</strong><br>
+Llandaff High Street Car Park
+</li>
+
+<li>
+<strong>Pontcanna Street</strong><br>
+Pontcanna Street
+</li>
+
+<li>
+<strong>Mardy Street</strong><br>
+Mardy Street
+</li>
+
+<li>
+<strong>Redlaver Street</strong><br>
+redlaver Street
+</li>
+
+<li>
+<strong>Cardiff & Vale University Health Board</strong><br>
+Woodlands House
+</li>
+
+<li>
+<strong>Kyveilog Street</strong><br>
+Kyveilog Street
+</li>
+
+<li>
+<strong>CF11 8NN</strong><br>
+
+</li>
+
+<li>
+<strong>NCP Dumfries Place</strong><br>
+NCP Dumfries Place
+</li>
+
+<li>
+<strong>NCP Dumfries Place</strong><br>
+NCP Dumfries Place
+</li>
+
+<li>
+<strong>Holiday Inn Express Cardiff Airport Port Road</strong><br>
+Rhoose
+</li>
+
+<li>
+<strong>Tesco Extra-Culverhouse Cross</strong><br>
+Culverhouse Cross
+</li>
+
+<li>
+<strong>Maindy Road</strong><br>
+Maindy Road
+</li>
+
+</ul>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script>
 
-<div class="container">
+var map = L.map('map').setView([
+51.82588,
+-3.017314
+], 12);
+
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+attribution: '&copy; OpenStreetMap contributors'
+}).addTo(map);
 
-<p>77 charging locations found.</p>
 
 
-<div class="card">
+L.marker([
+51.82588,
+-3.017314
+]).addTo(map)
+.bindPopup("<b>Fairfield, Abergavenny</b><br>Fairfield Car Park");
 
-<h3>Fairfield, Abergavenny</h3>
 
-<p>
-Fairfield Car Park<br>
-Cardiff<br>
-NP7 5SG
-</p>
 
-</div>
+L.marker([
+51.825272,
+-3.091616
+]).addTo(map)
+.bindPopup("<b>Main Road, Abergavenny</b><br>Main Road Car Park");
 
-<div class="card">
 
-<h3>Main Road, Abergavenny</h3>
 
-<p>
-Main Road Car Park<br>
-Cardiff<br>
-NP7 0AJ
-</p>
+L.marker([
+51.798846,
+-3.173701
+]).addTo(map)
+.bindPopup("<b>Market Square, Blaenau Gwent</b><br>Market Square, Brynmawr");
 
-</div>
 
-<div class="card">
 
-<h3>Market Square, Blaenau Gwent</h3>
+L.marker([
+51.764171,
+-3.356155
+]).addTo(map)
+.bindPopup("<b>Victoria Street, Merthyr</b><br>Victoria Street Car Park, Merthyr");
 
-<p>
-Market Square, Brynmawr<br>
-Cardiff<br>
-NP23 4AJ
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+51.749877,
+-3.376564
+]).addTo(map)
+.bindPopup("<b>Pontmoralis, Merthyr</b><br>Pontmoralis Car Park, Merthyr");
 
-<h3>Victoria Street, Merthyr</h3>
 
-<p>
-Victoria Street Car Park, Merthyr<br>
-Cardiff<br>
-CF48 3RN
-</p>
 
-</div>
+L.marker([
+51.745857,
+-3.38216
+]).addTo(map)
+.bindPopup("<b>St Tydfils</b><br>St Tydfils Car Park");
 
-<div class="card">
 
-<h3>Pontmoralis, Merthyr</h3>
 
-<p>
-Pontmoralis Car Park, Merthyr<br>
-Cardiff<br>
-CF47 8UN
-</p>
+L.marker([
+51.73965,
+-3.377956
+]).addTo(map)
+.bindPopup("<b>Merthyr Tydfil Leisure Centre</b><br>Merthyr Tydfil Leisure Centre Car Park");
 
-</div>
 
-<div class="card">
 
-<h3>St Tydfils</h3>
+L.marker([
+51.714895,
+-3.442027
+]).addTo(map)
+.bindPopup("<b>Aberdare Railway Station Carpark</b><br>Aberdare Railway Station");
 
-<p>
-St Tydfils Car Park<br>
-Cardiff<br>
-CF48 1AR
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+51.713275,
+-3.449523
+]).addTo(map)
+.bindPopup("<b>Crown Buildings, Rhondda Cynon Taf</b><br>Crown Buildings, Rhondda Cynon Taf");
 
-<h3>Merthyr Tydfil Leisure Centre</h3>
 
-<p>
-Merthyr Tydfil Leisure Centre Car Park<br>
-Cardiff<br>
-CF48 1UT
-</p>
 
-</div>
+L.marker([
+51.713106,
+-3.439186
+]).addTo(map)
+.bindPopup("<b>Maes Parcio'r Ynys</b><br>Maes Parcio'r Ynys Car Park");
 
-<div class="card">
 
-<h3>Aberdare Railway Station Carpark</h3>
 
-<p>
-Aberdare Railway Station<br>
-Cardiff<br>
-CF44 8YY
-</p>
+L.marker([
+51.712477,
+-3.44689
+]).addTo(map)
+.bindPopup("<b>Rock Grounds, Aberdare</b><br>Rock Grounds Car Park");
 
-</div>
 
-<div class="card">
 
-<h3>Crown Buildings, Rhondda Cynon Taf</h3>
+L.marker([
+51.704742,
+-3.0437
+]).addTo(map)
+.bindPopup("<b>George Street, Torfaen</b><br>George Street, Torfaen");
 
-<p>
-Crown Buildings, Rhondda Cynon Taf<br>
-Cardiff<br>
-CF44 7HU
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+51.703198,
+-3.430434
+]).addTo(map)
+.bindPopup("<b>Lewis Street, Aberdare</b><br>Lewis Street Car Park");
 
-<h3>Maes Parcio'r Ynys</h3>
 
-<p>
-Maes Parcio'r Ynys Car Park<br>
-Cardiff<br>
-CF44 7RP
-</p>
 
-</div>
+L.marker([
+51.683282,
+-3.377731
+]).addTo(map)
+.bindPopup("<b>Old Cardiff Road, Mountain Ash</b><br>Old Cardiff Road Carpark");
 
-<div class="card">
 
-<h3>Rock Grounds, Aberdare</h3>
 
-<p>
-Rock Grounds Car Park<br>
-Cardiff<br>
-CF44 7DN
-</p>
+L.marker([
+51.681224,
+-3.376815
+]).addTo(map)
+.bindPopup("<b>Henry Street, Mountain Ash</b><br>Henry Street Car Park");
 
-</div>
 
-<div class="card">
 
-<h3>George Street, Torfaen</h3>
+L.marker([
+51.668066,
+-3.297971
+]).addTo(map)
+.bindPopup("<b>Trelewis, Bontnewydd Terrace</b><br>Trelewis Car Park, Bontnewydd Terrace");
 
-<p>
-George Street, Torfaen<br>
-Cardiff<br>
-NP4 6BZ
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+51.663863,
+-3.303872
+]).addTo(map)
+.bindPopup("<b>Perrott Street, Merthyr</b><br>Perrott Street Car Park, Merthyr");
 
-<h3>Lewis Street, Aberdare</h3>
 
-<p>
-Lewis Street Car Park<br>
-Cardiff<br>
-CF44 6PY
-</p>
 
-</div>
+L.marker([
+51.662882,
+-3.449912
+]).addTo(map)
+.bindPopup("<b>The Strand, Ferndale</b><br>The Strand Car Park");
 
-<div class="card">
 
-<h3>Old Cardiff Road, Mountain Ash</h3>
 
-<p>
-Old Cardiff Road Carpark<br>
-Cardiff<br>
-CF45 4EY
-</p>
+L.marker([
+51.662068,
+-3.450195
+]).addTo(map)
+.bindPopup("<b>Lime Street, Ferndale</b><br>Lime Street Car Park");
 
-</div>
 
-<div class="card">
 
-<h3>Henry Street, Mountain Ash</h3>
+L.marker([
+51.658268,
+-3.50717
+]).addTo(map)
+.bindPopup("<b>Dyfodwg Street</b><br>Dyfodwg Street Car Park");
 
-<p>
-Henry Street Car Park<br>
-Cardiff<br>
-CF45 3HD
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+51.652005,
+-3.430088
+]).addTo(map)
+.bindPopup("<b>Rhondda Fach Leisure Centre</b><br>Rhondda Fach Leisure Centre");
 
-<h3>Trelewis, Bontnewydd Terrace</h3>
 
-<p>
-Trelewis Car Park, Bontnewydd Terrace<br>
-Cardiff<br>
-CF46 6AB
-</p>
 
-</div>
+L.marker([
+51.643195,
+-3.328588
+]).addTo(map)
+.bindPopup("<b>Abercynon Railway Station Carpark</b><br>Abercynon Railway Station Carpark");
 
-<div class="card">
 
-<h3>Perrott Street, Merthyr</h3>
 
-<p>
-Perrott Street Car Park, Merthyr<br>
-Cardiff<br>
-CF46 5ET
-</p>
+L.marker([
+51.627777,
+-3.452202
+]).addTo(map)
+.bindPopup("<b>Trealaw Road, Tonypandy</b><br>Trealaw Road Car Park");
 
-</div>
 
-<div class="card">
 
-<h3>The Strand, Ferndale</h3>
+L.marker([
+51.620183,
+-3.127808
+]).addTo(map)
+.bindPopup("<b>Gladstone Street, Crosskeys</b><br>Gladstone Street");
 
-<p>
-The Strand Car Park<br>
-Cardiff<br>
-CF43 4LY
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+51.614156,
+-3.409767
+]).addTo(map)
+.bindPopup("<b>Porth Park and Ride 2</b><br>Porth Park and Ride");
 
-<h3>Lime Street, Ferndale</h3>
 
-<p>
-Lime Street Car Park<br>
-Cardiff<br>
-CF43 4HW
-</p>
 
-</div>
+L.marker([
+51.610085,
+-3.404086
+]).addTo(map)
+.bindPopup("<b>Porth Plaza</b><br>Porth Plaza Car Park");
 
-<div class="card">
 
-<h3>Dyfodwg Street</h3>
 
-<p>
-Dyfodwg Street Car Park<br>
-Cardiff<br>
-CF42 6UD
-</p>
+L.marker([
+51.608694,
+-3.368706
+]).addTo(map)
+.bindPopup("<b>Barry Sidings Park, Pontypridd</b><br>Barry Sidings Park, Pontypridd, Rhondda Cynon");
 
-</div>
 
-<div class="card">
 
-<h3>Rhondda Fach Leisure Centre</h3>
+L.marker([
+51.599517,
+-3.345004
+]).addTo(map)
+.bindPopup("<b>Sardis Road, Pontypridd</b><br>Sardis Road Car Park");
 
-<p>
-Rhondda Fach Leisure Centre<br>
-Cardiff<br>
-CF43 3HR
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+51.567693,
+-3.3184
+]).addTo(map)
+.bindPopup("<b>Llantwit Fardre Leisure Centre, Pontypridd</b><br>Llantwit Fardre Leisure Centre");
 
-<h3>Abercynon Railway Station Carpark</h3>
 
-<p>
-Abercynon Railway Station Carpark<br>
-Cardiff<br>
-CF45 4SE
-</p>
 
-</div>
+L.marker([
+51.549167,
+-3.520556
+]).addTo(map)
+.bindPopup("<b>High Street, Heol-y-Cyw</b><br>High Street Bridgend");
 
-<div class="card">
 
-<h3>Trealaw Road, Tonypandy</h3>
 
-<p>
-Trealaw Road Car Park<br>
-Cardiff<br>
-CF40 2LG
-</p>
+L.marker([
+51.543779,
+-3.374162
+]).addTo(map)
+.bindPopup("<b>Heol y Sarn, Llantrisant</b><br>Heol y Sarn Car Park");
 
-</div>
 
-<div class="card">
 
-<h3>Gladstone Street, Crosskeys</h3>
+L.marker([
+51.538982,
+-3.375303
+]).addTo(map)
+.bindPopup("<b>Llantrisant Leisure Centre</b><br>Llantrisant Leisure Centre");
 
-<p>
-Gladstone Street<br>
-Cardiff<br>
-NP11 7PA
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+51.537814,
+-3.441346
+]).addTo(map)
+.bindPopup("<b>Llanharan Railway Station Park and Ride</b><br>Llanharan Railway Station Park and Ride");
 
-<h3>Porth Park and Ride 2</h3>
 
-<p>
-Porth Park and Ride<br>
-Cardiff<br>
-CF39 9SE
-</p>
 
-</div>
+L.marker([
+51.524775,
+-3.103756
+]).addTo(map)
+.bindPopup("<b>Tesco Superstore - St Mellons</b><br>Crickhowell Road");
 
-<div class="card">
 
-<h3>Porth Plaza</h3>
 
-<p>
-Porth Plaza Car Park<br>
-Cardiff<br>
-CF39 9PN
-</p>
+L.marker([
+51.522581,
+-3.393564
+]).addTo(map)
+.bindPopup("<b>Heol Yr Osaf (Lease), Rhondda Cynon Taf</b><br>Heol Yr Osaf, Syphon Street");
 
-</div>
 
-<div class="card">
 
-<h3>Barry Sidings Park, Pontypridd</h3>
+L.marker([
+51.51442909600459,
+-3.2206491864869804
+]).addTo(map)
+.bindPopup("<b>Penlline Road, Cardiff</b><br>Penlline Road Car Park");
 
-<p>
-Barry Sidings Park, Pontypridd, Rhondda Cynon<br>
-Cardiff<br>
-CF37 2PE
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+51.504945,
+-3.576209
+]).addTo(map)
+.bindPopup("<b>Brackla Street, Bridgend</b><br>Brackla Street, Bridgend");
 
-<h3>Sardis Road, Pontypridd</h3>
 
-<p>
-Sardis Road Car Park<br>
-Cardiff<br>
-CF37 1JR
-</p>
 
-</div>
+L.marker([
+51.502182,
+-3.220884
+]).addTo(map)
+.bindPopup("<b>College Road, Cardiff</b><br>College Road");
 
-<div class="card">
 
-<h3>Llantwit Fardre Leisure Centre, Pontypridd</h3>
 
-<p>
-Llantwit Fardre Leisure Centre<br>
-Cardiff<br>
-CF38 1DN
-</p>
+L.marker([
+51.50026,
+-3.178055
+]).addTo(map)
+.bindPopup("<b>Tewkesbury Place</b><br>Tewkesbury Place");
 
-</div>
 
-<div class="card">
 
-<h3>High Street, Heol-y-Cyw</h3>
+L.marker([
+51.490523,
+-3.188036
+]).addTo(map)
+.bindPopup("<b>North Road</b><br>North Road Car Park");
 
-<p>
-High Street Bridgend<br>
-Cardiff<br>
-CF35 6HY
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+51.48512,
+-3.182573
+]).addTo(map)
+.bindPopup("<b>Castle Mews, Cardiff</b><br>Castle Mews Car Park");
 
-<h3>Heol y Sarn, Llantrisant</h3>
 
-<p>
-Heol y Sarn Car Park<br>
-Cardiff<br>
-CF72 8QQ
-</p>
 
-</div>
+L.marker([
+51.484894,
+-3.143337
+]).addTo(map)
+.bindPopup("<b>Star Hub</b><br>Star Hub Car Park");
 
-<div class="card">
 
-<h3>Llantrisant Leisure Centre</h3>
 
-<p>
-Llantrisant Leisure Centre<br>
-Cardiff<br>
-CF72 8DL
-</p>
+L.marker([
+51.483564,
+-3.189366
+]).addTo(map)
+.bindPopup("<b>Sophia Gardens</b><br>Sophia Gardens");
 
-</div>
 
-<div class="card">
 
-<h3>Llanharan Railway Station Park and Ride</h3>
+L.marker([
+51.48224,
+-3.205278
+]).addTo(map)
+.bindPopup("<b>Harvey Street</b><br>Harvey Street Car Park");
 
-<p>
-Llanharan Railway Station Park and Ride<br>
-Cardiff<br>
-CF72 9QA
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+51.407148,
+-3.263081
+]).addTo(map)
+.bindPopup("<b>Court Road Multi Storey, Barry</b><br>Court Road Multi Storey Car Park, Vale Of Gla");
 
-<h3>Tesco Superstore - St Mellons</h3>
 
-<p>
-Crickhowell Road<br>
-Cardiff<br>
-CF3 0EF
-</p>
 
-</div>
+L.marker([
+51.472444409730244,
+-3.164669448584325
+]).addTo(map)
+.bindPopup("<b>EVC Holiday Inn Express Cardiff</b><br>Longueil Close");
 
-<div class="card">
 
-<h3>Heol Yr Osaf (Lease), Rhondda Cynon Taf</h3>
 
-<p>
-Heol Yr Osaf, Syphon Street<br>
-Cardiff<br>
-CF72 9DN
-</p>
+L.marker([
+51.50591,
+-3.18741
+]).addTo(map)
+.bindPopup("<b>University of Wales Hospital</b><br>Heath Road");
 
-</div>
 
-<div class="card">
 
-<h3>Penlline Road, Cardiff</h3>
+L.marker([
+51.485936,
+-3.176613
+]).addTo(map)
+.bindPopup("<b>Park Place</b><br>Park Place");
 
-<p>
-Penlline Road Car Park<br>
-Cardiff<br>
-CF14 2AA
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+51.464247,
+-3.1649849
+]).addTo(map)
+.bindPopup("<b>Bute Crescent</b><br>Bute Crescent");
 
-<h3>Brackla Street, Bridgend</h3>
 
-<p>
-Brackla Street, Bridgend<br>
-Cardiff<br>
-CF31 1BX
-</p>
 
-</div>
+L.marker([
+51.464363,
+-3.160242
+]).addTo(map)
+.bindPopup("<b>Britannia Quay</b><br>Britannia Quay");
 
-<div class="card">
 
-<h3>College Road, Cardiff</h3>
 
-<p>
-College Road<br>
-Cardiff<br>
-CF14 2HJ
-</p>
+L.marker([
+51.488436,
+-3.183733
+]).addTo(map)
+.bindPopup("<b>King Edward Vii Avenue</b><br>King Edward Vii Avenue");
 
-</div>
 
-<div class="card">
 
-<h3>Tewkesbury Place</h3>
+L.marker([
+51.483881,
+-3.173242
+]).addTo(map)
+.bindPopup("<b>Windsor Place</b><br>Windsor Place");
 
-<p>
-Tewkesbury Place<br>
-Cardiff<br>
-CF24 4QF
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+51.48399914,
+-3.166332585
+]).addTo(map)
+.bindPopup("<b>Howard Place</b><br>Howard Place");
 
-<h3>North Road</h3>
 
-<p>
-North Road Car Park<br>
-Cardiff<br>
-CF10 3DY
-</p>
 
-</div>
+L.marker([
+51.464141,
+-3.2746159
+]).addTo(map)
+.bindPopup("<b>InstaVolt Valegate Retail Park</b><br>Valegate Retail Park");
 
-<div class="card">
 
-<h3>Castle Mews, Cardiff</h3>
 
-<p>
-Castle Mews Car Park<br>
-Cardiff<br>
-CF10 3EW
-</p>
+L.marker([
+51.539266,
+-3.129829
+]).addTo(map)
+.bindPopup("<b>Welcome Break Cardiff Gate Services</b><br>M4 Motorway");
 
-</div>
 
-<div class="card">
 
-<h3>Star Hub</h3>
+L.marker([
+51.53077459231975,
+-3.1412470889080675
+]).addTo(map)
+.bindPopup("<b>Spire Cardiff Hospital</b><br>Croescadarn Road");
 
-<p>
-Star Hub Car Park<br>
-Cardiff<br>
-CF24 2SJ
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+51.479366,
+-3.173753
+]).addTo(map)
+.bindPopup("<b>St Davids Shopping Centre Car Park</b><br>St Davids Shopping Centre Car Park");
 
-<h3>Sophia Gardens</h3>
 
-<p>
-Sophia Gardens<br>
-Cardiff<br>
-CF11 9HW
-</p>
 
-</div>
+L.marker([
+51.47934,
+-3.173709
+]).addTo(map)
+.bindPopup("<b>St Davids Shopping Centre Car Park</b><br>St Davids Shopping Centre Car Park");
 
-<div class="card">
 
-<h3>Harvey Street</h3>
 
-<p>
-Harvey Street Car Park<br>
-Cardiff<br>
-CF5 1QW
-</p>
+L.marker([
+51.47672,
+-3.16755
+]).addTo(map)
+.bindPopup("<b>DRAX00238</b><br>Tyndall Street");
 
-</div>
 
-<div class="card">
 
-<h3>Court Road Multi Storey, Barry</h3>
+L.marker([
+51.461555,
+-3.168205
+]).addTo(map)
+.bindPopup("<b>Bettws Lane Car Park, Newport</b><br>Bettws Lane Car Park");
 
-<p>
-Court Road Multi Storey Car Park, Vale Of Gla<br>
-Cardiff<br>
-CF63 4AF
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+51.47301,
+-3.16607
+]).addTo(map)
+.bindPopup("<b>DRAX00165</b><br>Schooner Way");
 
-<h3>EVC Holiday Inn Express Cardiff</h3>
 
-<p>
-Longueil Close<br>
-Cardiff<br>
-CF10 4EE
-</p>
 
-</div>
+L.marker([
+51.4113,
+-3.24684
+]).addTo(map)
+.bindPopup("<b>DRAX00227</b><br>Malthouse Avenue");
 
-<div class="card">
 
-<h3>University of Wales Hospital</h3>
 
-<p>
-Heath Road<br>
-Cardiff<br>
-CF14 4XW
-</p>
+L.marker([
+51.478574,
+-3.174714
+]).addTo(map)
+.bindPopup("<b>St David's Dewi Sant Shopping Centre</b><br>St David's Dewi Sant Shopping Centre");
 
-</div>
 
-<div class="card">
 
-<h3>Park Place</h3>
+L.marker([
+51.53149670395635,
+-3.139770854898643
+]).addTo(map)
+.bindPopup("<b>Tesla Cardiff</b><br>Croescadarn Road");
 
-<p>
-Park Place<br>
-Cardiff<br>
-CF10 3RL
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+51.52515,
+-3.202318
+]).addTo(map)
+.bindPopup("<b>Ty Glas Road</b><br>Ty Glas Road");
 
-<h3>Bute Crescent</h3>
 
-<p>
-Bute Crescent<br>
-Cardiff<br>
-CF10 5AN
-</p>
 
-</div>
+L.marker([
+51.494256,
+-3.218335
+]).addTo(map)
+.bindPopup("<b>Llandaff High Street Car Park</b><br>Llandaff High Street Car Park");
 
-<div class="card">
 
-<h3>Britannia Quay</h3>
 
-<p>
-Britannia Quay<br>
-Cardiff<br>
-CF10 4PB
-</p>
+L.marker([
+51.486898,
+-3.199894
+]).addTo(map)
+.bindPopup("<b>Pontcanna Street</b><br>Pontcanna Street");
 
-</div>
 
-<div class="card">
 
-<h3>King Edward Vii Avenue</h3>
+L.marker([
+51.474088,
+-3.185956
+]).addTo(map)
+.bindPopup("<b>Mardy Street</b><br>Mardy Street");
 
-<p>
-King Edward Vii Avenue<br>
-Cardiff<br>
-CF10 3NB
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+51.469115,
+-3.184647
+]).addTo(map)
+.bindPopup("<b>Redlaver Street</b><br>redlaver Street");
 
-<h3>Windsor Place</h3>
 
-<p>
-Windsor Place<br>
-Cardiff<br>
-CF10 3BZ
-</p>
 
-</div>
+L.marker([
+51.520046,
+-3.194338
+]).addTo(map)
+.bindPopup("<b>Cardiff & Vale University Health Board</b><br>Woodlands House");
 
-<div class="card">
 
-<h3>Howard Place</h3>
 
-<p>
-Howard Place<br>
-Cardiff<br>
-CF24 0DE
-</p>
+L.marker([
+51.487668,
+-3.197033
+]).addTo(map)
+.bindPopup("<b>Kyveilog Street</b><br>Kyveilog Street");
 
-</div>
 
-<div class="card">
 
-<h3>InstaVolt Valegate Retail Park</h3>
+L.marker([
+51.466923,
+3.191637
+]).addTo(map)
+.bindPopup("<b>CF11 8NN</b><br>");
 
-<p>
-Valegate Retail Park<br>
-Cardiff<br>
-CF5 6EH
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+51.484554,
+-3.172682
+]).addTo(map)
+.bindPopup("<b>NCP Dumfries Place</b><br>NCP Dumfries Place");
 
-<h3>Welcome Break Cardiff Gate Services</h3>
 
-<p>
-M4 Motorway<br>
-Cardiff<br>
-CF23 8RA
-</p>
 
-</div>
+L.marker([
+51.484352,
+-3.172482
+]).addTo(map)
+.bindPopup("<b>NCP Dumfries Place</b><br>NCP Dumfries Place");
 
-<div class="card">
 
-<h3>Spire Cardiff Hospital</h3>
 
-<p>
-Croescadarn Road<br>
-Cardiff<br>
-CF23 8XL
-</p>
+L.marker([
+51.397797,
+-3.332942
+]).addTo(map)
+.bindPopup("<b>Holiday Inn Express Cardiff Airport Port Road</b><br>Rhoose");
 
-</div>
 
-<div class="card">
 
-<h3>St Davids Shopping Centre Car Park</h3>
+L.marker([
+51.466577,
+-3.274567
+]).addTo(map)
+.bindPopup("<b>Tesco Extra-Culverhouse Cross</b><br>Culverhouse Cross");
 
-<p>
-St Davids Shopping Centre Car Park<br>
-Cardiff<br>
-CF10 2EQ
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+51.49265,
+-3.18381
+]).addTo(map)
+.bindPopup("<b>Maindy Road</b><br>Maindy Road");
 
-<h3>St Davids Shopping Centre Car Park</h3>
 
-<p>
-St Davids Shopping Centre Car Park<br>
-Cardiff<br>
-CF10 2EQ
-</p>
 
-</div>
-
-<div class="card">
-
-<h3>DRAX00238</h3>
-
-<p>
-Tyndall Street<br>
-Cardiff<br>
-CF10 4BE
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Bettws Lane Car Park, Newport</h3>
-
-<p>
-Bettws Lane Car Park<br>
-Cardiff<br>
-CF10 5SG
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>DRAX00165</h3>
-
-<p>
-Schooner Way<br>
-Cardiff<br>
-CF10 4RT
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>DRAX00227</h3>
-
-<p>
-Malthouse Avenue<br>
-Cardiff<br>
-CF23 8RA
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>St David's Dewi Sant Shopping Centre</h3>
-
-<p>
-St David's Dewi Sant Shopping Centre<br>
-Cardiff<br>
-CF10 2EQ
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Tesla Cardiff</h3>
-
-<p>
-Croescadarn Road<br>
-Cardiff<br>
-CF23 8HE
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Ty Glas Road</h3>
-
-<p>
-Ty Glas Road<br>
-Cardiff<br>
-CF14 5EB
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Llandaff High Street Car Park</h3>
-
-<p>
-Llandaff High Street Car Park<br>
-Cardiff<br>
-CF5 2DX
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Pontcanna Street</h3>
-
-<p>
-Pontcanna Street<br>
-Cardiff<br>
-CF119HQ
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Mardy Street</h3>
-
-<p>
-Mardy Street<br>
-Cardiff<br>
-CF11 6RD
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Redlaver Street</h3>
-
-<p>
-redlaver Street<br>
-Cardiff<br>
-CF117YL
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Cardiff & Vale University Health Board</h3>
-
-<p>
-Woodlands House<br>
-Cardiff<br>
-CF14 4HH
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Kyveilog Street</h3>
-
-<p>
-Kyveilog Street<br>
-Cardiff<br>
-CF11 9JA
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>CF11 8NN</h3>
-
-<p>
-<br>
-Cardiff<br>
-CF11 8NN
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>NCP Dumfries Place</h3>
-
-<p>
-NCP Dumfries Place<br>
-Cardiff<br>
-CF10 3FN
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>NCP Dumfries Place</h3>
-
-<p>
-NCP Dumfries Place<br>
-Cardiff<br>
-CF10 3FN
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Holiday Inn Express Cardiff Airport Port Road</h3>
-
-<p>
-Rhoose<br>
-Cardiff<br>
-CF62 3BT
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Tesco Extra-Culverhouse Cross</h3>
-
-<p>
-Culverhouse Cross<br>
-Cardiff<br>
-CF5 6XQ
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Maindy Road</h3>
-
-<p>
-Maindy Road<br>
-Cardiff<br>
-CF24 4HQ
-</p>
-
-</div>
-
-
-</div>
-
-<footer>
-EV Charger Directory
-</footer>
+</script>
 
 </body>
 </html>

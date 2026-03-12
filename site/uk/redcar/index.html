@@ -1,196 +1,229 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>EV Chargers in Redcar</title>
-<link rel="stylesheet" href="/style.css">
+<title>Redcar EV Chargers</title>
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+
+<style>
+#map {
+  height: 400px;
+  margin-bottom: 30px;
+  border-radius: 8px;
+}
+</style>
+
 </head>
 
 <body>
 
-<header>
-<h1>EV Chargers in Redcar</h1>
-</header>
+<h1>Redcar EV Chargers</h1>
 
-<div class="container">
+<div id="map"></div>
 
-<p>14 charging locations found.</p>
+<ul>
 
+<li>
+<strong>Graffenburg Street Car Park, Redcar 1</strong><br>
+7 Graffenburg Street
+</li>
 
-<div class="card">
+<li>
+<strong>EVC Wilton Centre</strong><br>
+Wilton
+</li>
 
-<h3>Graffenburg Street Car Park, Redcar 1</h3>
+<li>
+<strong>Fishermans Square Car Park, Redcar 6</strong><br>
+Lord Street
+</li>
 
-<p>
-7 Graffenburg Street<br>
-Redcar<br>
-TS10 3DB
-</p>
+<li>
+<strong>Redcar Central Rail Station Car Park 2</strong><br>
+West Dyke Road
+</li>
 
-</div>
+<li>
+<strong>J. Murphy and Sons-Redcar</strong><br>
+Acacia Court
+</li>
 
-<div class="card">
+<li>
+<strong>McDonald's Redcar Retail Park</strong><br>
+Redcar Retail Park
+</li>
 
-<h3>EVC Wilton Centre</h3>
+<li>
+<strong>Tesco Superstore-Redcar</strong><br>
+West Dyke Road
+</li>
 
-<p>
-Wilton<br>
-Redcar<br>
-TS10 4RF
-</p>
+<li>
+<strong>Morrisons Redcar</strong><br>
+Lord Street
+</li>
 
-</div>
+<li>
+<strong>Drive Vauxhall</strong><br>
+Trunk Road
+</li>
 
-<div class="card">
+<li>
+<strong>Geocore Site Investigations</strong><br>
+Tralee Close
+</li>
 
-<h3>Fishermans Square Car Park, Redcar 6</h3>
+<li>
+<strong>The Innovation Centre</strong><br>
+Vienna Court
+</li>
 
-<p>
-Lord Street<br>
-Redcar<br>
-TS10 3BJ
-</p>
+<li>
+<strong>Coatham Surgery</strong><br>
+Coatham Health Village
+</li>
 
-</div>
+<li>
+<strong>Beyond Housing</strong><br>
+14 Ennis Square
+</li>
 
-<div class="card">
+<li>
+<strong>Kirkleatham Walled Garden</strong><br>
+Plantation Road
+</li>
 
-<h3>Redcar Central Rail Station Car Park 2</h3>
+</ul>
 
-<p>
-West Dyke Road<br>
-Redcar<br>
-TS10 1EJ
-</p>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
-</div>
+<script>
 
-<div class="card">
+var map = L.map('map').setView([
+54.617907,
+-1.060863
+], 12);
 
-<h3>J. Murphy and Sons-Redcar</h3>
-
-<p>
-Acacia Court<br>
-Redcar<br>
-TS10 2TY
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>McDonald's Redcar Retail Park</h3>
-
-<p>
-Redcar Retail Park<br>
-Redcar<br>
-TS10 2AT
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Tesco Superstore-Redcar</h3>
-
-<p>
-West Dyke Road<br>
-Redcar<br>
-TS10 2AA
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Morrisons Redcar</h3>
-
-<p>
-Lord Street<br>
-Redcar<br>
-TS10 3ER
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Drive Vauxhall</h3>
-
-<p>
-Trunk Road<br>
-Redcar<br>
-TS10 5BW
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Geocore Site Investigations</h3>
-
-<p>
-Tralee Close<br>
-Redcar<br>
-TS10 5SG
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>The Innovation Centre</h3>
-
-<p>
-Vienna Court<br>
-Redcar<br>
- TS10 5SH
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Coatham Surgery</h3>
-
-<p>
-Coatham Health Village<br>
-Redcar<br>
-TS10 1SR
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Beyond Housing</h3>
-
-<p>
-14 Ennis Square<br>
-Redcar<br>
-TS10 5JR
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Kirkleatham Walled Garden</h3>
-
-<p>
-Plantation Road<br>
-Redcar<br>
-TS10 4QT
-</p>
-
-</div>
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+attribution: '&copy; OpenStreetMap contributors'
+}).addTo(map);
 
 
-</div>
 
-<footer>
-EV Charger Directory
-</footer>
+L.marker([
+54.617907,
+-1.060863
+]).addTo(map)
+.bindPopup("<b>Graffenburg Street Car Park, Redcar 1</b><br>7 Graffenburg Street");
+
+
+
+L.marker([
+54.57611288096236,
+-1.099406020486193
+]).addTo(map)
+.bindPopup("<b>EVC Wilton Centre</b><br>Wilton");
+
+
+
+L.marker([
+54.61609,
+-1.056821
+]).addTo(map)
+.bindPopup("<b>Fishermans Square Car Park, Redcar 6</b><br>Lord Street");
+
+
+
+L.marker([
+54.615598,
+-1.068503
+]).addTo(map)
+.bindPopup("<b>Redcar Central Rail Station Car Park 2</b><br>West Dyke Road");
+
+
+
+L.marker([
+54.593118,
+-1.051787
+]).addTo(map)
+.bindPopup("<b>J. Murphy and Sons-Redcar</b><br>Acacia Court");
+
+
+
+L.marker([
+54.6144741,
+-1.0661131
+]).addTo(map)
+.bindPopup("<b>McDonald's Redcar Retail Park</b><br>Redcar Retail Park");
+
+
+
+L.marker([
+54.613524,
+-1.066035
+]).addTo(map)
+.bindPopup("<b>Tesco Superstore-Redcar</b><br>West Dyke Road");
+
+
+
+L.marker([
+54.617108457239226,
+-1.0669979850952132
+]).addTo(map)
+.bindPopup("<b>Morrisons Redcar</b><br>Lord Street");
+
+
+
+L.marker([
+54.61304384157674,
+-1.0861671068339547
+]).addTo(map)
+.bindPopup("<b>Drive Vauxhall</b><br>Trunk Road");
+
+
+
+L.marker([
+54.59227300803525,
+-1.0881980071761745
+]).addTo(map)
+.bindPopup("<b>Geocore Site Investigations</b><br>Tralee Close");
+
+
+
+L.marker([
+54.59392150874953,
+-1.08818854695528
+]).addTo(map)
+.bindPopup("<b>The Innovation Centre</b><br>Vienna Court");
+
+
+
+L.marker([
+54.61724184113868,
+-1.0718268616482192
+]).addTo(map)
+.bindPopup("<b>Coatham Surgery</b><br>Coatham Health Village");
+
+
+
+L.marker([
+54.60850318420691,
+-1.09819421843099
+]).addTo(map)
+.bindPopup("<b>Beyond Housing</b><br>14 Ennis Square");
+
+
+
+L.marker([
+54.58689963333106,
+-1.0809733321173098
+]).addTo(map)
+.bindPopup("<b>Kirkleatham Walled Garden</b><br>Plantation Road");
+
+
+
+</script>
 
 </body>
 </html>

@@ -1,88 +1,112 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>EV Chargers in St Andrews</title>
-<link rel="stylesheet" href="/style.css">
+<title>St Andrews EV Chargers</title>
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+
+<style>
+#map {
+  height: 400px;
+  margin-bottom: 30px;
+  border-radius: 8px;
+}
+</style>
+
 </head>
 
 <body>
 
-<header>
-<h1>EV Chargers in St Andrews</h1>
-</header>
+<h1>St Andrews EV Chargers</h1>
 
-<div class="container">
+<div id="map"></div>
 
-<p>5 charging locations found.</p>
+<ul>
 
+<li>
+<strong>Argyle Street Car Park, St Andrews</strong><br>
+Pines Street
+</li>
 
-<div class="card">
+<li>
+<strong>University of St Andrews - Agnes Blackadder H</strong><br>
+1 New Hall
+</li>
 
-<h3>Argyle Street Car Park, St Andrews</h3>
+<li>
+<strong>Saint Marys Place</strong><br>
+Saint Marys Place
+</li>
 
-<p>
-Pines Street<br>
-St Andrews<br>
-KY16 9TF
-</p>
+<li>
+<strong>University of St Andrews, David Russell Building</strong><br>
+60 Buchanan Gardens
+</li>
 
-</div>
+<li>
+<strong>University of St Andrews, Bute Building Annex</strong><br>
+Queens Terrace
+</li>
 
-<div class="card">
+</ul>
 
-<h3>University of St Andrews - Agnes Blackadder H</h3>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
-<p>
-1 New Hall<br>
-St Andrews<br>
-KY16 9XW
-</p>
+<script>
 
-</div>
+var map = L.map('map').setView([
+56.341428,
+-2.807173
+], 12);
 
-<div class="card">
-
-<h3>Saint Marys Place</h3>
-
-<p>
-Saint Marys Place<br>
-St Andrews<br>
-KY16 9UY
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>University of St Andrews, David Russell Building</h3>
-
-<p>
-60 Buchanan Gardens<br>
-St Andrews<br>
-KY16 9LY
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>University of St Andrews, Bute Building Annex</h3>
-
-<p>
-Queens Terrace<br>
-St Andrews<br>
-KY16 9TS
-</p>
-
-</div>
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+attribution: '&copy; OpenStreetMap contributors'
+}).addTo(map);
 
 
-</div>
 
-<footer>
-EV Charger Directory
-</footer>
+L.marker([
+56.341428,
+-2.807173
+]).addTo(map)
+.bindPopup("<b>Argyle Street Car Park, St Andrews</b><br>Pines Street");
+
+
+
+L.marker([
+56.340449,
+-2.814042
+]).addTo(map)
+.bindPopup("<b>University of St Andrews - Agnes Blackadder H</b><br>1 New Hall");
+
+
+
+L.marker([
+56.340048,
+-2.799733
+]).addTo(map)
+.bindPopup("<b>Saint Marys Place</b><br>Saint Marys Place");
+
+
+
+L.marker([
+56.336164,
+-2.82207
+]).addTo(map)
+.bindPopup("<b>University of St Andrews, David Russell Building</b><br>60 Buchanan Gardens");
+
+
+
+L.marker([
+56.338011,
+-2.793738
+]).addTo(map)
+.bindPopup("<b>University of St Andrews, Bute Building Annex</b><br>Queens Terrace");
+
+
+
+</script>
 
 </body>
 </html>

@@ -1,700 +1,775 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>EV Chargers in Swindon</title>
-<link rel="stylesheet" href="/style.css">
+<title>Swindon EV Chargers</title>
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+
+<style>
+#map {
+  height: 400px;
+  margin-bottom: 30px;
+  border-radius: 8px;
+}
+</style>
+
 </head>
 
 <body>
 
-<header>
-<h1>EV Chargers in Swindon</h1>
-</header>
+<h1>Swindon EV Chargers</h1>
+
+<div id="map"></div>
+
+<ul>
+
+<li>
+<strong>Morrisons Swindon Haydon Wick</strong><br>
+Thames Avenue
+</li>
+
+<li>
+<strong>MFG Penhill Service Station</strong><br>
+568-574 Cricklade Road
+</li>
+
+<li>
+<strong>Sainsbury's Bridgemead</strong><br>
+Paddington Drive
+</li>
+
+<li>
+<strong>Instavolt Lydiard Fields</strong><br>
+Lydiard Fields
+</li>
+
+<li>
+<strong>Regus Basepoint Business Centre Swindon</strong><br>
+Westlea
+</li>
+
+<li>
+<strong>Aldi Swindon RDC Maintenance 1</strong><br>
+10 Highworth Road
+</li>
+
+<li>
+<strong>Bridgemead Retail Park</strong><br>
+Ashworth Road
+</li>
+
+<li>
+<strong>The Merlin</strong><br>
+Drove Road
+</li>
+
+<li>
+<strong>Royal Wootton Rugby Club</strong><br>
+Malmesbury Road
+</li>
+
+<li>
+<strong>Waitrose</strong><br>
+Mill Lane
+</li>
+
+<li>
+<strong>Goytre Village Car Park</strong><br>
+Goytre Village Car Park
+</li>
+
+<li>
+<strong>Swindon Town Football Club</strong><br>
+County Road
+</li>
+
+<li>
+<strong>Premier Inn Swindon Temple Street</strong><br>
+Aspen House, Morley Street
+</li>
+
+<li>
+<strong>The White Hart</strong><br>
+Wanborough Road
+</li>
+
+<li>
+<strong>McDonalds Swindon Cockleberry Roundabout</strong><br>
+Great Western Way
+</li>
+
+<li>
+<strong>Fastned Swindon</strong><br>
+Barnfield Close
+</li>
+
+<li>
+<strong>Home Bargains Swindon 2</strong><br>
+Great Western Way
+</li>
+
+<li>
+<strong>Three Trees Farm Shop and Cafe</strong><br>
+The Ridgeway
+</li>
+
+<li>
+<strong>Pure Offices Kembrey Park</strong><br>
+Pine Court
+</li>
+
+<li>
+<strong>Blunsdon Community Shop and Cafe</strong><br>
+Sam's Lane
+</li>
+
+<li>
+<strong>Nationwide</strong><br>
+Windmill Hill Business Park
+</li>
+
+<li>
+<strong>College Farm Pub & Restaurant</strong><br>
+Majors Road
+</li>
+
+<li>
+<strong>Milton Rd 28</strong><br>
+Milton Rd
+</li>
+
+<li>
+<strong>Cold Harbour - Blunsdon</strong><br>
+Ermin Street
+</li>
+
+<li>
+<strong>Dobbies Garden Centre Swindon</strong><br>
+Hyde Road
+</li>
+
+<li>
+<strong>Fish Brothers Nissan</strong><br>
+Paddinton Drive, Swindon, Wiltshire
+</li>
+
+<li>
+<strong>Mill Lane</strong><br>
+Chaddington Strand
+</li>
+
+<li>
+<strong>Mill Lane</strong><br>
+Mill Lane
+</li>
+
+<li>
+<strong>Alexandra House Hotel</strong><br>
+None
+</li>
+
+<li>
+<strong>Your Coop Food</strong><br>
+11 Diamond Crescent
+</li>
+
+<li>
+<strong>The Tawny Owl</strong><br>
+Taw Hill
+</li>
+
+<li>
+<strong>Firefly Avenue</strong><br>
+Firefly Avenue
+</li>
+
+<li>
+<strong>ALDI</strong><br>
+Latham Road
+</li>
+
+<li>
+<strong>Broad St 91</strong><br>
+Broad St
+</li>
+
+<li>
+<strong>Westmorland Rd</strong><br>
+Westmorland Road
+</li>
+
+<li>
+<strong>Ford St</strong><br>
+Ford St
+</li>
+
+<li>
+<strong>Dixon St</strong><br>
+Dixon St
+</li>
+
+<li>
+<strong>William Street</strong><br>
+William Street
+</li>
+
+<li>
+<strong>Maidstone Rd</strong><br>
+Maidstone Rd
+</li>
+
+<li>
+<strong>Ashford Rd - St Saviour's</strong><br>
+Ashford Rd
+</li>
+
+<li>
+<strong>Ashford Rd – Clifton St Jctn</strong><br>
+Ashford Rd
+</li>
+
+<li>
+<strong>Porsche Centre Swindon</strong><br>
+Frankland Road
+</li>
+
+<li>
+<strong>Pagoda Park</strong><br>
+Pagoda Park
+</li>
+
+<li>
+<strong>National Self-Build and Renovation Centre</strong><br>
+Lydiard Fields
+</li>
+
+<li>
+<strong>Clive Parade Car Park</strong><br>
+Clive Parade
+</li>
+
+<li>
+<strong>IDS SWINDON</strong><br>
+Unit 9 Euro Way
+</li>
+
+<li>
+<strong>Three Trees Farm Shop and Cafe</strong><br>
+The Ridgeway
+</li>
+
+<li>
+<strong>Badbury Park Primary School Staff Car Park</strong><br>
+Dayhouse Lane
+</li>
+
+<li>
+<strong>National Trust Headquarters (Heelis)</strong><br>
+Kemble Drive
+</li>
+
+<li>
+<strong>Nationwide House</strong><br>
+Pipers Way
+</li>
+
+<li>
+<strong>BP filling station Coate</strong><br>
+Marlborough Road
+</li>
 
-<div class="container">
+<li>
+<strong>Harvester Swindon</strong><br>
+Thamesdown Drive
+</li>
 
-<p>56 charging locations found.</p>
+<li>
+<strong>5 Seacole Crescent</strong><br>
+5 Seacole Crescent
+</li>
 
+<li>
+<strong>Colbourne Street</strong><br>
+Colbourne Street
+</li>
 
-<div class="card">
+<li>
+<strong>Intel Corporation (UK) Ltd</strong><br>
+Pipers Way
+</li>
 
-<h3>Morrisons Swindon Haydon Wick</h3>
+<li>
+<strong>Arval</strong><br>
+Hook Street
+</li>
 
-<p>
-Thames Avenue<br>
-Swindon<br>
-SN25 1QQ
-</p>
+</ul>
 
-</div>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
-<div class="card">
+<script>
 
-<h3>MFG Penhill Service Station</h3>
+var map = L.map('map').setView([
+51.59250883983739,
+-1.8100183676199606
+], 12);
 
-<p>
-568-574 Cricklade Road<br>
-Swindon<br>
-SN2 7AS
-</p>
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+attribution: '&copy; OpenStreetMap contributors'
+}).addTo(map);
 
-</div>
 
-<div class="card">
 
-<h3>Sainsbury's Bridgemead</h3>
+L.marker([
+51.59250883983739,
+-1.8100183676199606
+]).addTo(map)
+.bindPopup("<b>Morrisons Swindon Haydon Wick</b><br>Thames Avenue");
 
-<p>
-Paddington Drive<br>
-Swindon<br>
-SN5 7YW
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+51.592055596983386,
+-1.773754796766724
+]).addTo(map)
+.bindPopup("<b>MFG Penhill Service Station</b><br>568-574 Cricklade Road");
 
-<h3>Instavolt Lydiard Fields</h3>
 
-<p>
-Lydiard Fields<br>
-Swindon<br>
-SN5 8UB
-</p>
 
-</div>
+L.marker([
+51.55843271177574,
+-1.8118852036870123
+]).addTo(map)
+.bindPopup("<b>Sainsbury's Bridgemead</b><br>Paddington Drive");
 
-<div class="card">
 
-<h3>Regus Basepoint Business Centre Swindon</h3>
 
-<p>
-Westlea<br>
-Swindon<br>
-SN5 7EX
-</p>
+L.marker([
+51.549707961420914,
+-1.8544672269971985
+]).addTo(map)
+.bindPopup("<b>Instavolt Lydiard Fields</b><br>Lydiard Fields");
 
-</div>
 
-<div class="card">
 
-<h3>Aldi Swindon RDC Maintenance 1</h3>
+L.marker([
+51.5699487,
+-1.8253584
+]).addTo(map)
+.bindPopup("<b>Regus Basepoint Business Centre Swindon</b><br>Westlea");
 
-<p>
-10 Highworth Road<br>
-Swindon<br>
-SN3 4TF
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+51.595385411552115,
+-1.7422622932832041
+]).addTo(map)
+.bindPopup("<b>Aldi Swindon RDC Maintenance 1</b><br>10 Highworth Road");
 
-<h3>Bridgemead Retail Park</h3>
 
-<p>
-Ashworth Road<br>
-Swindon<br>
-SN5 7YF
-</p>
 
-</div>
+L.marker([
+51.55759885246135,
+-1.8133551442259659
+]).addTo(map)
+.bindPopup("<b>Bridgemead Retail Park</b><br>Ashworth Road");
 
-<div class="card">
 
-<h3>The Merlin</h3>
 
-<p>
-Drove Road<br>
-Swindon<br>
-SN1 3AF
-</p>
+L.marker([
+51.559713824304225,
+-1.7721680723045665
+]).addTo(map)
+.bindPopup("<b>The Merlin</b><br>Drove Road");
 
-</div>
 
-<div class="card">
 
-<h3>Royal Wootton Rugby Club</h3>
+L.marker([
+51.55562082,
+-1.901343338
+]).addTo(map)
+.bindPopup("<b>Royal Wootton Rugby Club</b><br>Malmesbury Road");
 
-<p>
-Malmesbury Road<br>
-Swindon<br>
-SN4 8DS
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+51.544819,
+-1.806895
+]).addTo(map)
+.bindPopup("<b>Waitrose</b><br>Mill Lane");
 
-<h3>Waitrose</h3>
 
-<p>
-Mill Lane<br>
-Swindon<br>
-SN1 7BX
-</p>
 
-</div>
+L.marker([
+51.543525,
+-1.809256
+]).addTo(map)
+.bindPopup("<b>Goytre Village Car Park</b><br>Goytre Village Car Park");
 
-<div class="card">
 
-<h3>Goytre Village Car Park</h3>
 
-<p>
-Goytre Village Car Park<br>
-Swindon<br>
-SN1 7DE
-</p>
+L.marker([
+51.564774462550645,
+-1.772317078806708
+]).addTo(map)
+.bindPopup("<b>Swindon Town Football Club</b><br>County Road");
 
-</div>
 
-<div class="card">
 
-<h3>Swindon Town Football Club</h3>
+L.marker([
+51.55934326946843,
+-1.7831466183342854
+]).addTo(map)
+.bindPopup("<b>Premier Inn Swindon Temple Street</b><br>Aspen House, Morley Street");
 
-<p>
-County Road<br>
-Swindon<br>
-SN1 2ED
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+51.57568076250723,
+-1.73466176380947
+]).addTo(map)
+.bindPopup("<b>The White Hart</b><br>Wanborough Road");
 
-<h3>Premier Inn Swindon Temple Street</h3>
 
-<p>
-Aspen House, Morley Street<br>
-Swindon<br>
-SN1 1SQ
-</p>
 
-</div>
+L.marker([
+51.56890053156263,
+-1.779091614988971
+]).addTo(map)
+.bindPopup("<b>McDonalds Swindon Cockleberry Roundabout</b><br>Great Western Way");
 
-<div class="card">
 
-<h3>The White Hart</h3>
 
-<p>
-Wanborough Road<br>
-Swindon<br>
-SN3 4JD
-</p>
+L.marker([
+51.56793586165628,
+-1.8054985164892514
+]).addTo(map)
+.bindPopup("<b>Fastned Swindon</b><br>Barnfield Close");
 
-</div>
 
-<div class="card">
 
-<h3>McDonalds Swindon Cockleberry Roundabout</h3>
+L.marker([
+51.56839287322222,
+-1.7812203773625015
+]).addTo(map)
+.bindPopup("<b>Home Bargains Swindon 2</b><br>Great Western Way");
 
-<p>
-Great Western Way<br>
-Swindon<br>
-SN2 1US
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+51.512538268614094,
+-1.7228126224794096
+]).addTo(map)
+.bindPopup("<b>Three Trees Farm Shop and Cafe</b><br>The Ridgeway");
 
-<h3>Fastned Swindon</h3>
 
-<p>
-Barnfield Close<br>
-Swindon<br>
-SN2 2FZ
-</p>
 
-</div>
+L.marker([
+51.57888,
+-1.76647
+]).addTo(map)
+.bindPopup("<b>Pure Offices Kembrey Park</b><br>Pine Court");
 
-<div class="card">
 
-<h3>Home Bargains Swindon 2</h3>
 
-<p>
-Great Western Way<br>
-Swindon<br>
-SN2 1US
-</p>
+L.marker([
+51.613924978816186,
+-1.7787106976693394
+]).addTo(map)
+.bindPopup("<b>Blunsdon Community Shop and Cafe</b><br>Sam's Lane");
 
-</div>
 
-<div class="card">
 
-<h3>Three Trees Farm Shop and Cafe</h3>
+L.marker([
+51.550079,
+-1.845039
+]).addTo(map)
+.bindPopup("<b>Nationwide</b><br>Windmill Hill Business Park");
 
-<p>
-The Ridgeway<br>
-Swindon<br>
-SN4 0HT
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+51.614311,
+-1.636941
+]).addTo(map)
+.bindPopup("<b>College Farm Pub & Restaurant</b><br>Majors Road");
 
-<h3>Pure Offices Kembrey Park</h3>
 
-<p>
-Pine Court<br>
-Swindon<br>
-SN2 8BW
-</p>
 
-</div>
+L.marker([
+51.559876,
+-1.789411
+]).addTo(map)
+.bindPopup("<b>Milton Rd 28</b><br>Milton Rd");
 
-<div class="card">
 
-<h3>Blunsdon Community Shop and Cafe</h3>
 
-<p>
-Sam's Lane<br>
-Swindon<br>
-SN26 7DA
-</p>
+L.marker([
+51.609245,
+-1.78678
+]).addTo(map)
+.bindPopup("<b>Cold Harbour - Blunsdon</b><br>Ermin Street");
 
-</div>
 
-<div class="card">
 
-<h3>Nationwide</h3>
+L.marker([
+51.59658,
+-1.768294
+]).addTo(map)
+.bindPopup("<b>Dobbies Garden Centre Swindon</b><br>Hyde Road");
 
-<p>
-Windmill Hill Business Park<br>
-Swindon<br>
-SN5 6PB
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+51.560898,
+-1.813377
+]).addTo(map)
+.bindPopup("<b>Fish Brothers Nissan</b><br>Paddinton Drive, Swindon, Wiltshire");
 
-<h3>College Farm Pub & Restaurant</h3>
 
-<p>
-Majors Road<br>
-Swindon<br>
-SN6 8TQ
-</p>
 
-</div>
+L.marker([
+51.54613911212411,
+-1.805194014071617
+]).addTo(map)
+.bindPopup("<b>Mill Lane</b><br>Chaddington Strand");
 
-<div class="card">
 
-<h3>Milton Rd 28</h3>
 
-<p>
-Milton Rd<br>
-Swindon<br>
-SN1 5JA
-</p>
+L.marker([
+51.543345734936196,
+-1.8077461361648375
+]).addTo(map)
+.bindPopup("<b>Mill Lane</b><br>Mill Lane");
 
-</div>
 
-<div class="card">
 
-<h3>Cold Harbour - Blunsdon</h3>
+L.marker([
+51.51226268841904,
+-1.7723676670876785
+]).addTo(map)
+.bindPopup("<b>Alexandra House Hotel</b><br>None");
 
-<p>
-Ermin Street<br>
-Swindon<br>
-SN26 8DJ
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+51.609819,
+-1.7995333
+]).addTo(map)
+.bindPopup("<b>Your Coop Food</b><br>11 Diamond Crescent");
 
-<h3>Dobbies Garden Centre Swindon</h3>
 
-<p>
-Hyde Road<br>
-Swindon<br>
-SN2 7SE
-</p>
 
-</div>
+L.marker([
+51.58929898712307,
+-1.8266034463474625
+]).addTo(map)
+.bindPopup("<b>The Tawny Owl</b><br>Taw Hill");
 
-<div class="card">
 
-<h3>Fish Brothers Nissan</h3>
 
-<p>
-Paddinton Drive, Swindon, Wiltshire<br>
-Swindon<br>
-SN5 7SB
-</p>
+L.marker([
+51.56320524245868,
+-1.7955638396672384
+]).addTo(map)
+.bindPopup("<b>Firefly Avenue</b><br>Firefly Avenue");
 
-</div>
 
-<div class="card">
 
-<h3>Mill Lane</h3>
+L.marker([
+51.601961592017744,
+-1.7832577017354652
+]).addTo(map)
+.bindPopup("<b>ALDI</b><br>Latham Road");
 
-<p>
-Chaddington Strand<br>
-Swindon<br>
-SN1 7NU
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+51.564669,
+-1.776078
+]).addTo(map)
+.bindPopup("<b>Broad St 91</b><br>Broad St");
 
-<h3>Mill Lane</h3>
 
-<p>
-Mill Lane<br>
-Swindon<br>
-SN1 7DE
-</p>
 
-</div>
+L.marker([
+51.559257,
+-1.773965
+]).addTo(map)
+.bindPopup("<b>Westmorland Rd</b><br>Westmorland Road");
 
-<div class="card">
 
-<h3>Alexandra House Hotel</h3>
 
-<p>
-None<br>
-Swindon<br>
-SN4 0QJ
-</p>
+L.marker([
+51.557897,
+-1.798487
+]).addTo(map)
+.bindPopup("<b>Ford St</b><br>Ford St");
 
-</div>
 
-<div class="card">
 
-<h3>Your Coop Food</h3>
+L.marker([
+51.557113,
+-1.783015
+]).addTo(map)
+.bindPopup("<b>Dixon St</b><br>Dixon St");
 
-<p>
-11 Diamond Crescent<br>
-Swindon<br>
-SN25 2SJ
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+51.555389,
+-1.795378
+]).addTo(map)
+.bindPopup("<b>William Street</b><br>William Street");
 
-<h3>The Tawny Owl</h3>
 
-<p>
-Taw Hill<br>
-Swindon<br>
-SN25 1WR
-</p>
 
-</div>
+L.marker([
+51.554809,
+-1.785724
+]).addTo(map)
+.bindPopup("<b>Maidstone Rd</b><br>Maidstone Rd");
 
-<div class="card">
 
-<h3>Firefly Avenue</h3>
 
-<p>
-Firefly Avenue<br>
-Swindon<br>
-SN2 2EY
-</p>
+L.marker([
+51.553818,
+-1.787872
+]).addTo(map)
+.bindPopup("<b>Ashford Rd - St Saviour's</b><br>Ashford Rd");
 
-</div>
 
-<div class="card">
 
-<h3>ALDI</h3>
+L.marker([
+51.553713,
+-1.788844
+]).addTo(map)
+.bindPopup("<b>Ashford Rd – Clifton St Jctn</b><br>Ashford Rd");
 
-<p>
-Latham Road<br>
-Swindon<br>
-SN25 4DL
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+51.5453237913041,
+-1.8451761269734561
+]).addTo(map)
+.bindPopup("<b>Porsche Centre Swindon</b><br>Frankland Road");
 
-<h3>Broad St 91</h3>
 
-<p>
-Broad St<br>
-Swindon<br>
-SN1 2DU
-</p>
 
-</div>
+L.marker([
+51.56470052051728,
+-1.8207203696583747
+]).addTo(map)
+.bindPopup("<b>Pagoda Park</b><br>Pagoda Park");
 
-<div class="card">
 
-<h3>Westmorland Rd</h3>
 
-<p>
-Westmorland Road<br>
-Swindon<br>
-SN1 2LZ
-</p>
+L.marker([
+51.54838112904022,
+-1.8539981479262906
+]).addTo(map)
+.bindPopup("<b>National Self-Build and Renovation Centre</b><br>Lydiard Fields");
 
-</div>
 
-<div class="card">
 
-<h3>Ford St</h3>
+L.marker([
+51.5841500790814,
+-1.77563833276918
+]).addTo(map)
+.bindPopup("<b>Clive Parade Car Park</b><br>Clive Parade");
 
-<p>
-Ford St<br>
-Swindon<br>
-SN1 5EP
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+51.545437,
+-1.847229
+]).addTo(map)
+.bindPopup("<b>IDS SWINDON</b><br>Unit 9 Euro Way");
 
-<h3>Dixon St</h3>
 
-<p>
-Dixon St<br>
-Swindon<br>
-SN1 3PL
-</p>
 
-</div>
+L.marker([
+51.51262203142622,
+-1.7234558826873467
+]).addTo(map)
+.bindPopup("<b>Three Trees Farm Shop and Cafe</b><br>The Ridgeway");
 
-<div class="card">
 
-<h3>William Street</h3>
 
-<p>
-William Street<br>
-Swindon<br>
-SN1 5LE
-</p>
+L.marker([
+51.53796305704839,
+-1.7347411290564878
+]).addTo(map)
+.bindPopup("<b>Badbury Park Primary School Staff Car Park</b><br>Dayhouse Lane");
 
-</div>
 
-<div class="card">
 
-<h3>Maidstone Rd</h3>
+L.marker([
+51.56420951802539,
+-1.7972215728939318
+]).addTo(map)
+.bindPopup("<b>National Trust Headquarters (Heelis)</b><br>Kemble Drive");
 
-<p>
-Maidstone Rd<br>
-Swindon<br>
-SN1 3NX
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+51.5405129372248,
+-1.77495812022335
+]).addTo(map)
+.bindPopup("<b>Nationwide House</b><br>Pipers Way");
 
-<h3>Ashford Rd - St Saviour's</h3>
 
-<p>
-Ashford Rd<br>
-Swindon<br>
-SN1 3NR
-</p>
 
-</div>
+L.marker([
+51.5451833687772,
+-1.74236885541245
+]).addTo(map)
+.bindPopup("<b>BP filling station Coate</b><br>Marlborough Road");
 
-<div class="card">
 
-<h3>Ashford Rd – Clifton St Jctn</h3>
 
-<p>
-Ashford Rd<br>
-Swindon<br>
-SN1 3NS
-</p>
+L.marker([
+51.603268,
+-1.782284
+]).addTo(map)
+.bindPopup("<b>Harvester Swindon</b><br>Thamesdown Drive");
 
-</div>
 
-<div class="card">
 
-<h3>Porsche Centre Swindon</h3>
+L.marker([
+51.54934870983445,
+-1.7963967830626189
+]).addTo(map)
+.bindPopup("<b>5 Seacole Crescent</b><br>5 Seacole Crescent");
 
-<p>
-Frankland Road<br>
-Swindon<br>
-SN5 8YG
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+51.5679404659984,
+-1.77318426027443
+]).addTo(map)
+.bindPopup("<b>Colbourne Street</b><br>Colbourne Street");
 
-<h3>Pagoda Park</h3>
 
-<p>
-Pagoda Park<br>
-Swindon<br>
-SN5 7UT
-</p>
 
-</div>
+L.marker([
+51.54385067143522,
+-1.7712585834377705
+]).addTo(map)
+.bindPopup("<b>Intel Corporation (UK) Ltd</b><br>Pipers Way");
 
-<div class="card">
 
-<h3>National Self-Build and Renovation Centre</h3>
 
-<p>
-Lydiard Fields<br>
-Swindon<br>
-SN5 8UB
-</p>
+L.marker([
+51.550437081444244,
+-1.8500659981775698
+]).addTo(map)
+.bindPopup("<b>Arval</b><br>Hook Street");
 
-</div>
 
-<div class="card">
 
-<h3>Clive Parade Car Park</h3>
-
-<p>
-Clive Parade<br>
-Swindon<br>
-SN2 1AJ
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>IDS SWINDON</h3>
-
-<p>
-Unit 9 Euro Way<br>
-Swindon<br>
-SN5 8YW
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Three Trees Farm Shop and Cafe</h3>
-
-<p>
-The Ridgeway<br>
-Swindon<br>
-SN4 0HT
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Badbury Park Primary School Staff Car Park</h3>
-
-<p>
-Dayhouse Lane<br>
-Swindon<br>
-SN3 6ER
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>National Trust Headquarters (Heelis)</h3>
-
-<p>
-Kemble Drive<br>
-Swindon<br>
-SN2 2NA
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Nationwide House</h3>
-
-<p>
-Pipers Way<br>
-Swindon<br>
-SN3 1FG
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>BP filling station Coate</h3>
-
-<p>
-Marlborough Road<br>
-Swindon<br>
-SN3 6AA
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Harvester Swindon</h3>
-
-<p>
-Thamesdown Drive<br>
-Swindon<br>
-SN25 4DL
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>5 Seacole Crescent</h3>
-
-<p>
-5 Seacole Crescent<br>
-Swindon<br>
-SN1 4GN
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Colbourne Street</h3>
-
-<p>
-Colbourne Street<br>
-Swindon<br>
-SN1 2EQ
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Intel Corporation (UK) Ltd</h3>
-
-<p>
-Pipers Way<br>
-Swindon<br>
-SN3 1RJ
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Arval</h3>
-
-<p>
-Hook Street<br>
-Swindon<br>
-SN5 6BS
-</p>
-
-</div>
-
-
-</div>
-
-<footer>
-EV Charger Directory
-</footer>
+</script>
 
 </body>
 </html>

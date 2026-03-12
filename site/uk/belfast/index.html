@@ -1,652 +1,723 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>EV Chargers in Belfast</title>
-<link rel="stylesheet" href="/style.css">
+<title>Belfast EV Chargers</title>
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+
+<style>
+#map {
+  height: 400px;
+  margin-bottom: 30px;
+  border-radius: 8px;
+}
+</style>
+
 </head>
 
 <body>
 
-<header>
-<h1>EV Chargers in Belfast</h1>
-</header>
+<h1>Belfast EV Chargers</h1>
+
+<div id="map"></div>
+
+<ul>
+
+<li>
+<strong>Holiday Inn Express</strong><br>
+106 University Street
+</li>
+
+<li>
+<strong>Q-Park Victoria Square</strong><br>
+Level 2
+</li>
+
+<li>
+<strong>Belfast Harbour Gatehouse</strong><br>
+Corporation St
+</li>
+
+<li>
+<strong>Kennedy Centre (Rear)</strong><br>
+564 - 568 Falls Rd
+</li>
+
+<li>
+<strong>Maven</strong><br>
+364 Lisburn Rd
+</li>
+
+<li>
+<strong>Aquinas Diocesan Grammar School</strong><br>
+518 Ravenhill Rd
+</li>
+
+<li>
+<strong>Hagan Homes</strong><br>
+149 Upper Newtownards Road
+</li>
+
+<li>
+<strong>City East Business Centre</strong><br>
+68 - 72 Newtownards Road
+</li>
+
+<li>
+<strong>Lidl</strong><br>
+Stewartstown Road
+</li>
+
+<li>
+<strong>Translink</strong><br>
+Duncrue St
+</li>
+
+<li>
+<strong>Translink</strong><br>
+Mountpottinger Link
+</li>
+
+<li>
+<strong>Porsche</strong><br>
+90 Sydenham Rd
+</li>
+
+<li>
+<strong>Coastways Storage & Removals</strong><br>
+132 Duncrue St
+</li>
+
+<li>
+<strong>EJ Harper & Co</strong><br>
+34 Montgomery Rd
+</li>
+
+<li>
+<strong>Lloyds Banking Group</strong><br>
+Cromac Place
+</li>
+
+<li>
+<strong>Lidl</strong><br>
+Andersonstown Road
+</li>
+
+<li>
+<strong>Lidl</strong><br>
+Boucher Road
+</li>
+
+<li>
+<strong>Grove Wellbeing Centre</strong><br>
+York Road
+</li>
+
+<li>
+<strong>NCP Belfast City Quays</strong><br>
+Donegall Quay
+</li>
+
+<li>
+<strong>Titanic Visitors Centre</strong><br>
+1 Olympic Way
+</li>
+
+<li>
+<strong>Titanic Quarter Carpark B</strong><br>
+12 Queens Road
+</li>
+
+<li>
+<strong>Public Record Office of Northern Ireland</strong><br>
+Titanic Boulevard
+</li>
+
+<li>
+<strong>Cordia Apartments</strong><br>
+355, 367 Lisburn Rd
+</li>
+
+<li>
+<strong>Ionity Belfast</strong><br>
+Kennedy Centre
+</li>
+
+<li>
+<strong>Whiterock Leisure Centre</strong><br>
+Whiterock Close
+</li>
+
+<li>
+<strong>Avoniel Leisure Centre</strong><br>
+Avoniel Road
+</li>
+
+<li>
+<strong>Patrick Sarsfields GAC Belfast</strong><br>
+25A Stewartstown Ave
+</li>
+
+<li>
+<strong>IKEA Belfast</strong><br>
+Airport Road West
+</li>
+
+<li>
+<strong>Value Car Parks Weavers Cross</strong><br>
+19-31 Grosvenor Rd
+</li>
+
+<li>
+<strong>Lisnasharragh Leisure Centre</strong><br>
+27-35 Montgomery Road
+</li>
+
+<li>
+<strong>Catalyst (Front)</strong><br>
+The Concourse
+</li>
+
+<li>
+<strong>Catalyst (Front)</strong><br>
+Innovation Centre
+</li>
+
+<li>
+<strong>Ormeau Car Park</strong><br>
+Ormeau Road
+</li>
+
+<li>
+<strong>Crown Plaza Hotel</strong><br>
+117 Milltown Road
+</li>
+
+<li>
+<strong>Fibrus</strong><br>
+104 - 108 Dargan Crescent
+</li>
+
+<li>
+<strong>Tesla Supercharger Belfast</strong><br>
+15 Boucher Road
+</li>
+
+<li>
+<strong>Lidl Hollywood Exchange</strong><br>
+Hollywood Exchange
+</li>
+
+<li>
+<strong>Lidl Hillview, Belfast</strong><br>
+Hillview
+</li>
+
+<li>
+<strong>Park Centre</strong><br>
+Donegall Road
+</li>
+
+<li>
+<strong>Maxol Edenderry</strong><br>
+298 Crumlin Road
+</li>
+
+<li>
+<strong>Lidl</strong><br>
+Montgomery Rd
+</li>
+
+<li>
+<strong>HRL Shandon Park</strong><br>
+211 Knock Road
+</li>
+
+<li>
+<strong>Ulster Independent Clinic</strong><br>
+245 Stranmillis Road
+</li>
+
+<li>
+<strong>Tesco Superstore-Castlereagh Road</strong><br>
+160-220 Castlereagh Road
+</li>
+
+<li>
+<strong>Lidl Shore Road</strong><br>
+Shore Road
+</li>
 
-<div class="container">
+<li>
+<strong>Twin Spires Complex</strong><br>
+155 Northumberland Street
+</li>
 
-<p>52 charging locations found.</p>
+<li>
+<strong>Grand Central Hotel</strong><br>
+9-15 Bedford St
+</li>
 
+<li>
+<strong>The Stormont Hotel</strong><br>
+Upper Newtownards
+</li>
 
-<div class="card">
+<li>
+<strong>Belfast City Hospital Multi Storey Car Park</strong><br>
+Belfast City Hospital,
+</li>
 
-<h3>Holiday Inn Express</h3>
+<li>
+<strong>Montgomery Road</strong><br>
+27-35 Montgomery Road
+</li>
 
-<p>
-106 University Street<br>
-Belfast<br>
-BT7 1HP
-</p>
+<li>
+<strong>Musgrave Park Hospital</strong><br>
+Musgrave Park Hospital
+</li>
 
-</div>
+<li>
+<strong>Blacks Road - Park & Ride</strong><br>
+Blacks Road - Park & Ride
+</li>
 
-<div class="card">
+</ul>
 
-<h3>Q-Park Victoria Square</h3>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
-<p>
-Level 2<br>
-Belfast<br>
-BT1 4LG
-</p>
+<script>
 
-</div>
+var map = L.map('map').setView([
+54.58683597868861,
+-5.926869327870463
+], 12);
 
-<div class="card">
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+attribution: '&copy; OpenStreetMap contributors'
+}).addTo(map);
 
-<h3>Belfast Harbour Gatehouse</h3>
 
-<p>
-Corporation St<br>
-Belfast<br>
-BT1 3AJ
-</p>
 
-</div>
+L.marker([
+54.58683597868861,
+-5.926869327870463
+]).addTo(map)
+.bindPopup("<b>Holiday Inn Express</b><br>106 University Street");
 
-<div class="card">
 
-<h3>Kennedy Centre (Rear)</h3>
 
-<p>
-564 - 568 Falls Rd<br>
-Belfast<br>
-BT11 9AE
-</p>
+L.marker([
+54.59781838901711,
+-5.9247848069618385
+]).addTo(map)
+.bindPopup("<b>Q-Park Victoria Square</b><br>Level 2");
 
-</div>
 
-<div class="card">
 
-<h3>Maven</h3>
+L.marker([
+54.60587197968522,
+-5.921836948395139
+]).addTo(map)
+.bindPopup("<b>Belfast Harbour Gatehouse</b><br>Corporation St");
 
-<p>
-364 Lisburn Rd<br>
-Belfast<br>
-BT9 6LA
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+54.582130927429404,
+-5.978269372892328
+]).addTo(map)
+.bindPopup("<b>Kennedy Centre (Rear)</b><br>564 - 568 Falls Rd");
 
-<h3>Aquinas Diocesan Grammar School</h3>
 
-<p>
-518 Ravenhill Rd<br>
-Belfast<br>
-BT6 0BY
-</p>
 
-</div>
+L.marker([
+54.5731282351679,
+-5.958685269006196
+]).addTo(map)
+.bindPopup("<b>Maven</b><br>364 Lisburn Rd");
 
-<div class="card">
 
-<h3>Hagan Homes</h3>
 
-<p>
-149 Upper Newtownards Road<br>
-Belfast<br>
-BT4 3ET
-</p>
+L.marker([
+54.57655888754823,
+-5.907399562193774
+]).addTo(map)
+.bindPopup("<b>Aquinas Diocesan Grammar School</b><br>518 Ravenhill Rd");
 
-</div>
 
-<div class="card">
 
-<h3>City East Business Centre</h3>
+L.marker([
+54.59597268906438,
+-5.877610089232121
+]).addTo(map)
+.bindPopup("<b>Hagan Homes</b><br>149 Upper Newtownards Road");
 
-<p>
-68 - 72 Newtownards Road<br>
-Belfast<br>
-BT4 1GW
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+54.60030701379449,
+-5.908954860252749
+]).addTo(map)
+.bindPopup("<b>City East Business Centre</b><br>68 - 72 Newtownards Road");
 
-<h3>Lidl</h3>
 
-<p>
-Stewartstown Road<br>
-Belfast<br>
-BT11 9JQ
-</p>
 
-</div>
+L.marker([
+54.568316314021985,
+-6.008840773806838
+]).addTo(map)
+.bindPopup("<b>Lidl</b><br>Stewartstown Road");
 
-<div class="card">
 
-<h3>Translink</h3>
 
-<p>
-Duncrue St<br>
-Belfast<br>
-BT3 9AR
-</p>
+L.marker([
+54.61775849347384,
+-5.916718598216534
+]).addTo(map)
+.bindPopup("<b>Translink</b><br>Duncrue St");
 
-</div>
 
-<div class="card">
 
-<h3>Translink</h3>
+L.marker([
+54.59755058291415,
+-5.910319280454331
+]).addTo(map)
+.bindPopup("<b>Translink</b><br>Mountpottinger Link");
 
-<p>
-Mountpottinger Link<br>
-Belfast<br>
-BT5 4BH
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+54.6036580967251,
+-5.901660286614742
+]).addTo(map)
+.bindPopup("<b>Porsche</b><br>90 Sydenham Rd");
 
-<h3>Porsche</h3>
 
-<p>
-90 Sydenham Rd<br>
-Belfast<br>
-BT3 9DJ
-</p>
 
-</div>
+L.marker([
+54.6216797381515,
+-5.918406052354868
+]).addTo(map)
+.bindPopup("<b>Coastways Storage & Removals</b><br>132 Duncrue St");
 
-<div class="card">
 
-<h3>Coastways Storage & Removals</h3>
 
-<p>
-132 Duncrue St<br>
-Belfast<br>
-BT15 3PG
-</p>
+L.marker([
+54.57916577204068,
+-5.891458824304209
+]).addTo(map)
+.bindPopup("<b>EJ Harper & Co</b><br>34 Montgomery Rd");
 
-</div>
 
-<div class="card">
 
-<h3>EJ Harper & Co</h3>
+L.marker([
+54.5915543638793,
+-5.92074940106855
+]).addTo(map)
+.bindPopup("<b>Lloyds Banking Group</b><br>Cromac Place");
 
-<p>
-34 Montgomery Rd<br>
-Belfast<br>
-BT6 9HL
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+54.57908481093622,
+-5.979554429275595
+]).addTo(map)
+.bindPopup("<b>Lidl</b><br>Andersonstown Road");
 
-<h3>Lloyds Banking Group</h3>
 
-<p>
-Cromac Place<br>
-Belfast<br>
-BT7 2JB
-</p>
 
-</div>
+L.marker([
+54.584264165100905,
+-5.959307193742603
+]).addTo(map)
+.bindPopup("<b>Lidl</b><br>Boucher Road");
 
-<div class="card">
 
-<h3>Lidl</h3>
 
-<p>
-Andersonstown Road<br>
-Belfast<br>
-BT11 9AF
-</p>
+L.marker([
+54.621903551329495,
+-5.923884929254882
+]).addTo(map)
+.bindPopup("<b>Grove Wellbeing Centre</b><br>York Road");
 
-</div>
 
-<div class="card">
 
-<h3>Lidl</h3>
+L.marker([
+54.60398421999412,
+-5.92192310509779
+]).addTo(map)
+.bindPopup("<b>NCP Belfast City Quays</b><br>Donegall Quay");
 
-<p>
-Boucher Road<br>
-Belfast<br>
-BT12 6JA
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+54.60841974123156,
+-5.909708620940933
+]).addTo(map)
+.bindPopup("<b>Titanic Visitors Centre</b><br>1 Olympic Way");
 
-<h3>Grove Wellbeing Centre</h3>
 
-<p>
-York Road<br>
-Belfast<br>
-BT15 3HB
-</p>
 
-</div>
+L.marker([
+54.60835944858832,
+-5.9067947823361635
+]).addTo(map)
+.bindPopup("<b>Titanic Quarter Carpark B</b><br>12 Queens Road");
 
-<div class="card">
 
-<h3>NCP Belfast City Quays</h3>
 
-<p>
-Donegall Quay<br>
-Belfast<br>
-BT1 3AL
-</p>
+L.marker([
+54.604066886025265,
+-5.910100410717945
+]).addTo(map)
+.bindPopup("<b>Public Record Office of Northern Ireland</b><br>Titanic Boulevard");
 
-</div>
 
-<div class="card">
 
-<h3>Titanic Visitors Centre</h3>
+L.marker([
+54.58044190417212,
+-5.949735867959902
+]).addTo(map)
+.bindPopup("<b>Cordia Apartments</b><br>355, 367 Lisburn Rd");
 
-<p>
-1 Olympic Way<br>
-Belfast<br>
-BT3 9EP
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+54.580512802135644,
+-5.979838237998365
+]).addTo(map)
+.bindPopup("<b>Ionity Belfast</b><br>Kennedy Centre");
 
-<h3>Titanic Quarter Carpark B</h3>
 
-<p>
-12 Queens Road<br>
-Belfast<br>
-BT3 9DT
-</p>
 
-</div>
+L.marker([
+54.590877563269146,
+-5.985115461845453
+]).addTo(map)
+.bindPopup("<b>Whiterock Leisure Centre</b><br>Whiterock Close");
 
-<div class="card">
 
-<h3>Public Record Office of Northern Ireland</h3>
 
-<p>
-Titanic Boulevard<br>
-Belfast<br>
-BT3 9HQ
-</p>
+L.marker([
+54.59464514971165,
+-5.896093001252439
+]).addTo(map)
+.bindPopup("<b>Avoniel Leisure Centre</b><br>Avoniel Road");
 
-</div>
 
-<div class="card">
 
-<h3>Cordia Apartments</h3>
+L.marker([
+54.5728532432052,
+-6.00815883633922
+]).addTo(map)
+.bindPopup("<b>Patrick Sarsfields GAC Belfast</b><br>25A Stewartstown Ave");
 
-<p>
-355, 367 Lisburn Rd<br>
-Belfast<br>
-BT9 7EP
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+54.62046,
+-5.863654
+]).addTo(map)
+.bindPopup("<b>IKEA Belfast</b><br>Airport Road West");
 
-<h3>Ionity Belfast</h3>
 
-<p>
-Kennedy Centre<br>
-Belfast<br>
-None
-</p>
 
-</div>
+L.marker([
+54.595833,
+-5.937272
+]).addTo(map)
+.bindPopup("<b>Value Car Parks Weavers Cross</b><br>19-31 Grosvenor Rd");
 
-<div class="card">
 
-<h3>Whiterock Leisure Centre</h3>
 
-<p>
-Whiterock Close<br>
-Belfast<br>
-BT12 7FW
-</p>
+L.marker([
+54.577258,
+-5.882369
+]).addTo(map)
+.bindPopup("<b>Lisnasharragh Leisure Centre</b><br>27-35 Montgomery Road");
 
-</div>
 
-<div class="card">
 
-<h3>Avoniel Leisure Centre</h3>
+L.marker([
+54.61513637147459,
+-5.89892167461403
+]).addTo(map)
+.bindPopup("<b>Catalyst (Front)</b><br>The Concourse");
 
-<p>
-Avoniel Road<br>
-Belfast<br>
-BT5 4SW
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+54.6130606793281,
+-5.901966030342209
+]).addTo(map)
+.bindPopup("<b>Catalyst (Front)</b><br>Innovation Centre");
 
-<h3>Patrick Sarsfields GAC Belfast</h3>
 
-<p>
-25A Stewartstown Ave<br>
-Belfast<br>
-BT11 9GE
-</p>
 
-</div>
+L.marker([
+54.590904,
+-5.926493
+]).addTo(map)
+.bindPopup("<b>Ormeau Car Park</b><br>Ormeau Road");
 
-<div class="card">
 
-<h3>IKEA Belfast</h3>
 
-<p>
-Airport Road West<br>
-Belfast<br>
-BT3 9EJ
-</p>
+L.marker([
+54.55085811721446,
+-5.947997314391614
+]).addTo(map)
+.bindPopup("<b>Crown Plaza Hotel</b><br>117 Milltown Road");
 
-</div>
 
-<div class="card">
 
-<h3>Value Car Parks Weavers Cross</h3>
+L.marker([
+54.62974979695787,
+-5.908305137857269
+]).addTo(map)
+.bindPopup("<b>Fibrus</b><br>104 - 108 Dargan Crescent");
 
-<p>
-19-31 Grosvenor Rd<br>
-Belfast<br>
-BT2 7BQ
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+54.58341412055637,
+-5.960459339587487
+]).addTo(map)
+.bindPopup("<b>Tesla Supercharger Belfast</b><br>15 Boucher Road");
 
-<h3>Lisnasharragh Leisure Centre</h3>
 
-<p>
-27-35 Montgomery Road<br>
-Belfast<br>
-BT6 9HS
-</p>
 
-</div>
+L.marker([
+54.6223745160932,
+-5.8617556740236125
+]).addTo(map)
+.bindPopup("<b>Lidl Hollywood Exchange</b><br>Hollywood Exchange");
 
-<div class="card">
 
-<h3>Catalyst (Front)</h3>
 
-<p>
-The Concourse<br>
-Belfast<br>
-BT3 9DT
-</p>
+L.marker([
+54.61185639886631,
+-5.955474564955665
+]).addTo(map)
+.bindPopup("<b>Lidl Hillview, Belfast</b><br>Hillview");
 
-</div>
 
-<div class="card">
 
-<h3>Catalyst (Front)</h3>
+L.marker([
+54.58865542359729,
+-5.9622359252388435
+]).addTo(map)
+.bindPopup("<b>Park Centre</b><br>Donegall Road");
 
-<p>
-Innovation Centre<br>
-Belfast<br>
-BT3 9DT
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+54.61113615041856,
+-5.956293608115857
+]).addTo(map)
+.bindPopup("<b>Maxol Edenderry</b><br>298 Crumlin Road");
 
-<h3>Ormeau Car Park</h3>
 
-<p>
-Ormeau Road<br>
-Belfast<br>
-BT7 1DX
-</p>
 
-</div>
+L.marker([
+54.57952193481066,
+-5.877712377179222
+]).addTo(map)
+.bindPopup("<b>Lidl</b><br>Montgomery Rd");
 
-<div class="card">
 
-<h3>Crown Plaza Hotel</h3>
 
-<p>
-117 Milltown Road<br>
-Belfast<br>
-BT8 7XP
-</p>
+L.marker([
+54.5819116093646,
+-5.86600632203834
+]).addTo(map)
+.bindPopup("<b>HRL Shandon Park</b><br>211 Knock Road");
 
-</div>
 
-<div class="card">
 
-<h3>Fibrus</h3>
+L.marker([
+54.570703,
+-5.945917
+]).addTo(map)
+.bindPopup("<b>Ulster Independent Clinic</b><br>245 Stranmillis Road");
 
-<p>
-104 - 108 Dargan Crescent<br>
-Belfast<br>
-BT3 9JP
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+54.58815078,
+-5.89395577
+]).addTo(map)
+.bindPopup("<b>Tesco Superstore-Castlereagh Road</b><br>160-220 Castlereagh Road");
 
-<h3>Tesla Supercharger Belfast</h3>
 
-<p>
-15 Boucher Road<br>
-Belfast<br>
-BT12 6NT
-</p>
 
-</div>
+L.marker([
+54.626669824542404,
+-5.923842823967959
+]).addTo(map)
+.bindPopup("<b>Lidl Shore Road</b><br>Shore Road");
 
-<div class="card">
 
-<h3>Lidl Hollywood Exchange</h3>
 
-<p>
-Hollywood Exchange<br>
-Belfast<br>
-BT3 9EJ
-</p>
+L.marker([
+54.59970384875399,
+-5.946686602353452
+]).addTo(map)
+.bindPopup("<b>Twin Spires Complex</b><br>155 Northumberland Street");
 
-</div>
 
-<div class="card">
 
-<h3>Lidl Hillview, Belfast</h3>
+L.marker([
+54.595005,
+-5.931841
+]).addTo(map)
+.bindPopup("<b>Grand Central Hotel</b><br>9-15 Bedford St");
 
-<p>
-Hillview<br>
-Belfast<br>
-BT14 7EE
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+54.593905,
+-5.839092
+]).addTo(map)
+.bindPopup("<b>The Stormont Hotel</b><br>Upper Newtownards");
 
-<h3>Park Centre</h3>
 
-<p>
-Donegall Road<br>
-Belfast<br>
-BT12 6HN
-</p>
 
-</div>
+L.marker([
+54.587703,
+-5.943756
+]).addTo(map)
+.bindPopup("<b>Belfast City Hospital Multi Storey Car Park</b><br>Belfast City Hospital,");
 
-<div class="card">
 
-<h3>Maxol Edenderry</h3>
 
-<p>
-298 Crumlin Road<br>
-Belfast<br>
-BT14 7EE
-</p>
+L.marker([
+54.57771141713525,
+-5.882713830855437
+]).addTo(map)
+.bindPopup("<b>Montgomery Road</b><br>27-35 Montgomery Road");
 
-</div>
 
-<div class="card">
 
-<h3>Lidl</h3>
+L.marker([
+54.566999,
+-5.97582
+]).addTo(map)
+.bindPopup("<b>Musgrave Park Hospital</b><br>Musgrave Park Hospital");
 
-<p>
-Montgomery Rd<br>
-Belfast<br>
-BT5 6BQ
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+54.555115,
+-5.998244
+]).addTo(map)
+.bindPopup("<b>Blacks Road - Park & Ride</b><br>Blacks Road - Park & Ride");
 
-<h3>HRL Shandon Park</h3>
 
-<p>
-211 Knock Road<br>
-Belfast<br>
-BT5 6QE
-</p>
 
-</div>
-
-<div class="card">
-
-<h3>Ulster Independent Clinic</h3>
-
-<p>
-245 Stranmillis Road<br>
-Belfast<br>
-BT9 5JH
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Tesco Superstore-Castlereagh Road</h3>
-
-<p>
-160-220 Castlereagh Road<br>
-Belfast<br>
-BT5 5FT
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Lidl Shore Road</h3>
-
-<p>
-Shore Road<br>
-Belfast<br>
-BT15 3QA
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Twin Spires Complex</h3>
-
-<p>
-155 Northumberland Street<br>
-Belfast<br>
-BT13 2JF
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Grand Central Hotel</h3>
-
-<p>
-9-15 Bedford St<br>
-Belfast<br>
-BT2 7FF
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>The Stormont Hotel</h3>
-
-<p>
-Upper Newtownards<br>
-Belfast<br>
-BT5 7AX
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Belfast City Hospital Multi Storey Car Park</h3>
-
-<p>
-Belfast City Hospital,<br>
-Belfast<br>
-BT9 7AB
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Montgomery Road</h3>
-
-<p>
-27-35 Montgomery Road<br>
-Belfast<br>
-BT6 9HS
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Musgrave Park Hospital</h3>
-
-<p>
-Musgrave Park Hospital<br>
-Belfast<br>
-BT9 7JB
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Blacks Road - Park & Ride</h3>
-
-<p>
-Blacks Road - Park & Ride<br>
-Belfast<br>
-BT10 0NF
-</p>
-
-</div>
-
-
-</div>
-
-<footer>
-EV Charger Directory
-</footer>
+</script>
 
 </body>
 </html>

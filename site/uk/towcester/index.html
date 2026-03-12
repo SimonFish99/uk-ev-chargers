@@ -1,88 +1,112 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>EV Chargers in Towcester</title>
-<link rel="stylesheet" href="/style.css">
+<title>Towcester EV Chargers</title>
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+
+<style>
+#map {
+  height: 400px;
+  margin-bottom: 30px;
+  border-radius: 8px;
+}
+</style>
+
 </head>
 
 <body>
 
-<header>
-<h1>EV Chargers in Towcester</h1>
-</header>
+<h1>Towcester EV Chargers</h1>
 
-<div class="container">
+<div id="map"></div>
 
-<p>5 charging locations found.</p>
+<ul>
 
+<li>
+<strong>Silverstone Innovation Centre</strong><br>
+Silverstone Circuit
+</li>
 
-<div class="card">
+<li>
+<strong>Richmond Road Car Park, Towcester</strong><br>
+Richmond Road
+</li>
 
-<h3>Silverstone Innovation Centre</h3>
+<li>
+<strong>Playing Fields</strong><br>
+Playing Fields
+</li>
 
-<p>
-Silverstone Circuit<br>
-Towcester<br>
-NN12 8GX
-</p>
+<li>
+<strong>Tesco Superstore-Towcester</strong><br>
+Old Tiffield Road
+</li>
 
-</div>
+<li>
+<strong>Silverstone Circuit Innovation Centre</strong><br>
+Silverstone Circuit Innovation Centre
+</li>
 
-<div class="card">
+</ul>
 
-<h3>Richmond Road Car Park, Towcester</h3>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
-<p>
-Richmond Road<br>
-Towcester<br>
-NN12 6EX
-</p>
+<script>
 
-</div>
+var map = L.map('map').setView([
+52.076199,
+-1.02488
+], 12);
 
-<div class="card">
-
-<h3>Playing Fields</h3>
-
-<p>
-Playing Fields<br>
-Towcester<br>
-NN12 8RN
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Tesco Superstore-Towcester</h3>
-
-<p>
-Old Tiffield Road<br>
-Towcester<br>
-NN12 6PF
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Silverstone Circuit Innovation Centre</h3>
-
-<p>
-Silverstone Circuit Innovation Centre<br>
-Towcester<br>
-NN12 8GX
-</p>
-
-</div>
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+attribution: '&copy; OpenStreetMap contributors'
+}).addTo(map);
 
 
-</div>
 
-<footer>
-EV Charger Directory
-</footer>
+L.marker([
+52.076199,
+-1.02488
+]).addTo(map)
+.bindPopup("<b>Silverstone Innovation Centre</b><br>Silverstone Circuit");
+
+
+
+L.marker([
+52.130817,
+-0.988263
+]).addTo(map)
+.bindPopup("<b>Richmond Road Car Park, Towcester</b><br>Richmond Road");
+
+
+
+L.marker([
+52.145676,
+-1.086166
+]).addTo(map)
+.bindPopup("<b>Playing Fields</b><br>Playing Fields");
+
+
+
+L.marker([
+52.138551,
+-0.99403
+]).addTo(map)
+.bindPopup("<b>Tesco Superstore-Towcester</b><br>Old Tiffield Road");
+
+
+
+L.marker([
+52.0765,
+-1.02382
+]).addTo(map)
+.bindPopup("<b>Silverstone Circuit Innovation Centre</b><br>Silverstone Circuit Innovation Centre");
+
+
+
+</script>
 
 </body>
 </html>

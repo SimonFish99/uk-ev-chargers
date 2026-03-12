@@ -1,88 +1,112 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>EV Chargers in Chipping Norton</title>
-<link rel="stylesheet" href="/style.css">
+<title>Chipping Norton EV Chargers</title>
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+
+<style>
+#map {
+  height: 400px;
+  margin-bottom: 30px;
+  border-radius: 8px;
+}
+</style>
+
 </head>
 
 <body>
 
-<header>
-<h1>EV Chargers in Chipping Norton</h1>
-</header>
+<h1>Chipping Norton EV Chargers</h1>
 
-<div class="container">
+<div id="map"></div>
 
-<p>5 charging locations found.</p>
+<ul>
 
+<li>
+<strong>ALDI Chipping Norton</strong><br>
+Banbury Road
+</li>
 
-<div class="card">
+<li>
+<strong>SHELL RECHARGE LITTLE WAITROSE HOLYWELL</strong><br>
+Chapel Cross Roads
+</li>
 
-<h3>ALDI Chipping Norton</h3>
+<li>
+<strong>Willow Gardens</strong><br>
+Russell Way
+</li>
 
-<p>
-Banbury Road<br>
-Chipping Norton<br>
-OX7 5SY
-</p>
+<li>
+<strong>New Street Carpark</strong><br>
+New Street
+</li>
 
-</div>
+<li>
+<strong>Owen Mumford Ltd</strong><br>
+Primsdown Industrial Estate
+</li>
 
-<div class="card">
+</ul>
 
-<h3>SHELL RECHARGE LITTLE WAITROSE HOLYWELL</h3>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
-<p>
-Chapel Cross Roads<br>
-Chipping Norton<br>
-OX7 5SX
-</p>
+<script>
 
-</div>
+var map = L.map('map').setView([
+51.945835366185435,
+-1.5379239015763915
+], 12);
 
-<div class="card">
-
-<h3>Willow Gardens</h3>
-
-<p>
-Russell Way<br>
-Chipping Norton<br>
-OX7 5FX
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>New Street Carpark</h3>
-
-<p>
-New Street<br>
-Chipping Norton<br>
-None
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Owen Mumford Ltd</h3>
-
-<p>
-Primsdown Industrial Estate<br>
-Chipping Norton<br>
-OX7 5XP
-</p>
-
-</div>
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+attribution: '&copy; OpenStreetMap contributors'
+}).addTo(map);
 
 
-</div>
 
-<footer>
-EV Charger Directory
-</footer>
+L.marker([
+51.945835366185435,
+-1.5379239015763915
+]).addTo(map)
+.bindPopup("<b>ALDI Chipping Norton</b><br>Banbury Road");
+
+
+
+L.marker([
+51.95121,
+-1.525395
+]).addTo(map)
+.bindPopup("<b>SHELL RECHARGE LITTLE WAITROSE HOLYWELL</b><br>Chapel Cross Roads");
+
+
+
+L.marker([
+51.944583,
+-1.535028
+]).addTo(map)
+.bindPopup("<b>Willow Gardens</b><br>Russell Way");
+
+
+
+L.marker([
+51.940587588458584,
+-1.547606191109253
+]).addTo(map)
+.bindPopup("<b>New Street Carpark</b><br>New Street");
+
+
+
+L.marker([
+51.941444,
+-1.558101
+]).addTo(map)
+.bindPopup("<b>Owen Mumford Ltd</b><br>Primsdown Industrial Estate");
+
+
+
+</script>
 
 </body>
 </html>

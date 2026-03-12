@@ -1,532 +1,593 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>EV Chargers in Nottingham</title>
-<link rel="stylesheet" href="/style.css">
+<title>Nottingham EV Chargers</title>
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+
+<style>
+#map {
+  height: 400px;
+  margin-bottom: 30px;
+  border-radius: 8px;
+}
+</style>
+
 </head>
 
 <body>
 
-<header>
-<h1>EV Chargers in Nottingham</h1>
-</header>
+<h1>Nottingham EV Chargers</h1>
+
+<div id="map"></div>
+
+<ul>
+
+<li>
+<strong>Kimberley Shopping Centre</strong><br>
+Greens Lane
+</li>
+
+<li>
+<strong>Phoenix Park Spar</strong><br>
+205 Nottingham Road
+</li>
+
+<li>
+<strong>Lidl-Sandiacre</strong><br>
+Station Road
+</li>
+
+<li>
+<strong>Sherwood Pines Camping</strong><br>
+Kings Clipstone
+</li>
+
+<li>
+<strong>Restricted access to Peugeot customers</strong><br>
+Mansfield Road
+</li>
+
+<li>
+<strong>Clifton Leisure Centre</strong><br>
+Clifton
+</li>
+
+<li>
+<strong>IKEA Nottingham</strong><br>
+Giltbrook
+</li>
+
+<li>
+<strong>Sandicliffe Nissan</strong><br>
+Portland Road, Hucknall, Nottingham
+</li>
+
+<li>
+<strong>Asda</strong><br>
+111-117 Front Street
+</li>
+
+<li>
+<strong>Tesco Extra - Bulwell</strong><br>
+Jennison Street
+</li>
+
+<li>
+<strong>Jubilee House Charging Point</strong><br>
+Jubilee House, Nottingham Road, Arnold, Nottingham
+</li>
+
+<li>
+<strong>Haywood Road Car Park</strong><br>
+Haywood Road Car Park
+</li>
+
+<li>
+<strong>Morrisons Nottingham Netherfield</strong><br>
+Netherfield
+</li>
+
+<li>
+<strong>Crowne Plaza Nottingham</strong><br>
+Wollaton Street
+</li>
+
+<li>
+<strong>80278</strong><br>
+Aberdeen Street Car Park, Abderdeen Street
+</li>
+
+<li>
+<strong>80528</strong><br>
+Nottingham Arena Car Park, Brook Street
+</li>
+
+<li>
+<strong>Queens Drive Park & Ride</strong><br>
+Queens Drive Park & Ride
+</li>
+
+<li>
+<strong>Public car park</strong><br>
+Stapleford
+</li>
+
+<li>
+<strong>Toton Lane Tram park & ride</strong><br>
+Stapleford
+</li>
+
+<li>
+<strong>Tesco Extra - Nottingham Toton</strong><br>
+Swiney Way
+</li>
+
+<li>
+<strong>Restricted access to visitors and staff</strong><br>
+Mere Way
+</li>
+
+<li>
+<strong>CLEARMARK STATION 1</strong><br>
+1 Willow Dr
+</li>
+
+<li>
+<strong>Gamston Community Hall</strong><br>
+Ambleside
+</li>
+
+<li>
+<strong>Victoria Retail Park</strong><br>
+Colwick Loop Road
+</li>
+
+<li>
+<strong>Boots Car Park H</strong><br>
+Second Aveune
+</li>
+
+<li>
+<strong>Boots Staff Car Park B</strong><br>
+D90 Boots head office 
+</li>
+
+<li>
+<strong>Boots Visitor Car Park</strong><br>
+D90 Building 
+</li>
+
+<li>
+<strong>SHELL RECHARGE LITTLE WAITROSE SAXONDALE</strong><br>
+Saxondale Cross Roads
+</li>
+
+<li>
+<strong>Nottingham-Loughborough Road Supercharger</strong><br>
+5-27 Loughborough Road
+</li>
+
+<li>
+<strong>N Sherwood St Parking/Charging</strong><br>
+227 N Sherwood St
+</li>
+
+<li>
+<strong>Colwick Hall Hotel</strong><br>
+Racecourse Road
+</li>
 
-<div class="container">
+<li>
+<strong>Tesco Extra</strong><br>
+Jennison St
+</li>
 
-<p>42 charging locations found.</p>
+<li>
+<strong>Kings Mill Reservoir</strong><br>
+Kings Mill Reservoir
+</li>
 
+<li>
+<strong>Wilkinson Park & Ride</strong><br>
+Wilkinson Park & Ride
+</li>
 
-<div class="card">
+<li>
+<strong>Hanley Street Parking/Charging</strong><br>
+Hanley Street
+</li>
 
-<h3>Kimberley Shopping Centre</h3>
+<li>
+<strong>Willow Tree Willow Tree</strong><br>
+Rufford Way
+</li>
 
-<p>
-Greens Lane<br>
-Nottingham<br>
-NG16 2PB
-</p>
+<li>
+<strong>80737</strong><br>
+West Bridgford
+</li>
 
-</div>
+<li>
+<strong>Summit Centre</strong><br>
+Pavilion Road
+</li>
 
-<div class="card">
+<li>
+<strong>Little Tennis Street</strong><br>
+Little Tennis Street
+</li>
 
-<h3>Phoenix Park Spar</h3>
+<li>
+<strong>Tesco Extra-Nottingham Top Valley</strong><br>
+Top Valley Drive
+</li>
 
-<p>
-205 Nottingham Road<br>
-Nottingham<br>
-NG16 1AE
-</p>
+<li>
+<strong>Nottingham Tennis Centre, Nottingham</strong><br>
+University Boulevard
+</li>
 
-</div>
+<li>
+<strong>Poppy & Pint</strong><br>
+West Bridgford
+</li>
 
-<div class="card">
+</ul>
 
-<h3>Lidl-Sandiacre</h3>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
-<p>
-Station Road<br>
-Nottingham<br>
-NG10 5BE
-</p>
+<script>
 
-</div>
+var map = L.map('map').setView([
+52.996566,
+-1.255739
+], 12);
 
-<div class="card">
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+attribution: '&copy; OpenStreetMap contributors'
+}).addTo(map);
 
-<h3>Sherwood Pines Camping</h3>
 
-<p>
-Kings Clipstone<br>
-Nottingham<br>
-NG21 9JH
-</p>
 
-</div>
+L.marker([
+52.996566,
+-1.255739
+]).addTo(map)
+.bindPopup("<b>Kimberley Shopping Centre</b><br>Greens Lane");
 
-<div class="card">
 
-<h3>Restricted access to Peugeot customers</h3>
 
-<p>
-Mansfield Road<br>
-Nottingham<br>
-NG5 2DA
-</p>
+L.marker([
+52.988049,
+-1.212124
+]).addTo(map)
+.bindPopup("<b>Phoenix Park Spar</b><br>205 Nottingham Road");
 
-</div>
 
-<div class="card">
 
-<h3>Clifton Leisure Centre</h3>
+L.marker([
+52.92234433,
+-1.2860187
+]).addTo(map)
+.bindPopup("<b>Lidl-Sandiacre</b><br>Station Road");
 
-<p>
-Clifton<br>
-Nottingham<br>
-NG11 8AB
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+53.1647863685385,
+-1.09287972877456
+]).addTo(map)
+.bindPopup("<b>Sherwood Pines Camping</b><br>Kings Clipstone");
 
-<h3>IKEA Nottingham</h3>
 
-<p>
-Giltbrook<br>
-Nottingham<br>
-NG16 2RP
-</p>
 
-</div>
+L.marker([
+52.97379,
+-1.15182
+]).addTo(map)
+.bindPopup("<b>Restricted access to Peugeot customers</b><br>Mansfield Road");
 
-<div class="card">
 
-<h3>Sandicliffe Nissan</h3>
 
-<p>
-Portland Road, Hucknall, Nottingham<br>
-Nottingham<br>
-NG15 7SA
-</p>
+L.marker([
+52.904301,
+-1.1765
+]).addTo(map)
+.bindPopup("<b>Clifton Leisure Centre</b><br>Clifton");
 
-</div>
 
-<div class="card">
 
-<h3>Asda</h3>
+L.marker([
+53.002648,
+-1.283283
+]).addTo(map)
+.bindPopup("<b>IKEA Nottingham</b><br>Giltbrook");
 
-<p>
-111-117 Front Street<br>
-Nottingham<br>
-NG5 7ED
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+53.033425,
+-1.196582
+]).addTo(map)
+.bindPopup("<b>Sandicliffe Nissan</b><br>Portland Road, Hucknall, Nottingham");
 
-<h3>Tesco Extra - Bulwell</h3>
 
-<p>
-Jennison Street<br>
-Nottingham<br>
-NG6 8EQ
-</p>
 
-</div>
+L.marker([
+53.004627,
+-1.128609
+]).addTo(map)
+.bindPopup("<b>Asda</b><br>111-117 Front Street");
 
-<div class="card">
 
-<h3>Jubilee House Charging Point</h3>
 
-<p>
-Jubilee House, Nottingham Road, Arnold, Nottingham<br>
-Nottingham<br>
-NG5 6LU
-</p>
+L.marker([
+53.002819,
+-1.193654
+]).addTo(map)
+.bindPopup("<b>Tesco Extra - Bulwell</b><br>Jennison Street");
 
-</div>
 
-<div class="card">
 
-<h3>Haywood Road Car Park</h3>
+L.marker([
+52.99562,
+-1.134042
+]).addTo(map)
+.bindPopup("<b>Jubilee House Charging Point</b><br>Jubilee House, Nottingham Road, Arnold, Nottingham");
 
-<p>
-Haywood Road Car Park<br>
-Nottingham<br>
-NG3 6AE
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+52.984985,
+-1.11975
+]).addTo(map)
+.bindPopup("<b>Haywood Road Car Park</b><br>Haywood Road Car Park");
 
-<h3>Morrisons Nottingham Netherfield</h3>
 
-<p>
-Netherfield<br>
-Nottingham<br>
-NG4 2PA
-</p>
 
-</div>
+L.marker([
+52.95998,
+-1.068282
+]).addTo(map)
+.bindPopup("<b>Morrisons Nottingham Netherfield</b><br>Netherfield");
 
-<div class="card">
 
-<h3>Crowne Plaza Nottingham</h3>
 
-<p>
-Wollaton Street<br>
-Nottingham<br>
-NG1 5RH
-</p>
+L.marker([
+52.955254,
+-1.153782
+]).addTo(map)
+.bindPopup("<b>Crowne Plaza Nottingham</b><br>Wollaton Street");
 
-</div>
 
-<div class="card">
 
-<h3>80278</h3>
+L.marker([
+52.95505,
+-1.136594
+]).addTo(map)
+.bindPopup("<b>80278</b><br>Aberdeen Street Car Park, Abderdeen Street");
 
-<p>
-Aberdeen Street Car Park, Abderdeen Street<br>
-Nottingham<br>
-NG3 1JF
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+52.9546,
+-1.14018
+]).addTo(map)
+.bindPopup("<b>80528</b><br>Nottingham Arena Car Park, Brook Street");
 
-<h3>80528</h3>
 
-<p>
-Nottingham Arena Car Park, Brook Street<br>
-Nottingham<br>
-NG1 1EA
-</p>
 
-</div>
+L.marker([
+52.92915,
+-1.163977
+]).addTo(map)
+.bindPopup("<b>Queens Drive Park & Ride</b><br>Queens Drive Park & Ride");
 
-<div class="card">
 
-<h3>Queens Drive Park & Ride</h3>
 
-<p>
-Queens Drive Park & Ride<br>
-Nottingham<br>
-NG2 1AP
-</p>
+L.marker([
+52.92889,
+-1.273719
+]).addTo(map)
+.bindPopup("<b>Public car park</b><br>Stapleford");
 
-</div>
 
-<div class="card">
 
-<h3>Public car park</h3>
+L.marker([
+52.917522,
+-1.263898
+]).addTo(map)
+.bindPopup("<b>Toton Lane Tram park & ride</b><br>Stapleford");
 
-<p>
-Stapleford<br>
-Nottingham<br>
-NG9 7HD
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+52.909062,
+-1.255978
+]).addTo(map)
+.bindPopup("<b>Tesco Extra - Nottingham Toton</b><br>Swiney Way");
 
-<h3>Toton Lane Tram park & ride</h3>
 
-<p>
-Stapleford<br>
-Nottingham<br>
-NG9 7JB
-</p>
 
-</div>
+L.marker([
+52.88241,
+-1.14333
+]).addTo(map)
+.bindPopup("<b>Restricted access to visitors and staff</b><br>Mere Way");
 
-<div class="card">
 
-<h3>Tesco Extra - Nottingham Toton</h3>
 
-<p>
-Swiney Way<br>
-Nottingham<br>
-NG9 6QX
-</p>
+L.marker([
+53.070758,
+-1.25904
+]).addTo(map)
+.bindPopup("<b>CLEARMARK STATION 1</b><br>1 Willow Dr");
 
-</div>
 
-<div class="card">
 
-<h3>Restricted access to visitors and staff</h3>
+L.marker([
+52.9239767221617,
+-1.09968767028977
+]).addTo(map)
+.bindPopup("<b>Gamston Community Hall</b><br>Ambleside");
 
-<p>
-Mere Way<br>
-Nottingham<br>
-NG11 6JZ
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+52.962581,
+-1.067255
+]).addTo(map)
+.bindPopup("<b>Victoria Retail Park</b><br>Colwick Loop Road");
 
-<h3>CLEARMARK STATION 1</h3>
 
-<p>
-1 Willow Dr<br>
-Nottingham<br>
-NG15 0DP
-</p>
 
-</div>
+L.marker([
+52.92582659343222,
+-1.1906245554380348
+]).addTo(map)
+.bindPopup("<b>Boots Car Park H</b><br>Second Aveune");
 
-<div class="card">
 
-<h3>Gamston Community Hall</h3>
 
-<p>
-Ambleside<br>
-Nottingham<br>
-NG2 6PS
-</p>
+L.marker([
+52.928969668739484,
+-1.1826773459904416
+]).addTo(map)
+.bindPopup("<b>Boots Staff Car Park B</b><br>D90 Boots head office ");
 
-</div>
 
-<div class="card">
 
-<h3>Victoria Retail Park</h3>
+L.marker([
+52.92809684829706,
+-1.182883300946969
+]).addTo(map)
+.bindPopup("<b>Boots Visitor Car Park</b><br>D90 Building ");
 
-<p>
-Colwick Loop Road<br>
-Nottingham<br>
-NG4 2PE
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+52.951722,
+-0.985316
+]).addTo(map)
+.bindPopup("<b>SHELL RECHARGE LITTLE WAITROSE SAXONDALE</b><br>Saxondale Cross Roads");
 
-<h3>Boots Car Park H</h3>
 
-<p>
-Second Aveune<br>
-Nottingham<br>
-NG90 6BH
-</p>
 
-</div>
+L.marker([
+52.93576388286502,
+-1.1348387513326088
+]).addTo(map)
+.bindPopup("<b>Nottingham-Loughborough Road Supercharger</b><br>5-27 Loughborough Road");
 
-<div class="card">
 
-<h3>Boots Staff Car Park B</h3>
 
-<p>
-D90 Boots head office <br>
-Nottingham<br>
-NG90 1BS
-</p>
+L.marker([
+52.96344005827089,
+-1.152569025841899
+]).addTo(map)
+.bindPopup("<b>N Sherwood St Parking/Charging</b><br>227 N Sherwood St");
 
-</div>
 
-<div class="card">
 
-<h3>Boots Visitor Car Park</h3>
+L.marker([
+52.9452929,
+-1.1057889
+]).addTo(map)
+.bindPopup("<b>Colwick Hall Hotel</b><br>Racecourse Road");
 
-<p>
-D90 Building <br>
-Nottingham<br>
-NG90 1BS
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+53.0033530339138,
+-1.19418920802582
+]).addTo(map)
+.bindPopup("<b>Tesco Extra</b><br>Jennison St");
 
-<h3>SHELL RECHARGE LITTLE WAITROSE SAXONDALE</h3>
 
-<p>
-Saxondale Cross Roads<br>
-Nottingham<br>
-NG13 8AY
-</p>
 
-</div>
+L.marker([
+53.128769111880985,
+-1.2284991138327541
+]).addTo(map)
+.bindPopup("<b>Kings Mill Reservoir</b><br>Kings Mill Reservoir");
 
-<div class="card">
 
-<h3>Nottingham-Loughborough Road Supercharger</h3>
 
-<p>
-5-27 Loughborough Road<br>
-Nottingham<br>
-NG2 7LJ
-</p>
+L.marker([
+52.972984,
+-1.178559
+]).addTo(map)
+.bindPopup("<b>Wilkinson Park & Ride</b><br>Wilkinson Park & Ride");
 
-</div>
 
-<div class="card">
 
-<h3>N Sherwood St Parking/Charging</h3>
+L.marker([
+52.95549961095185,
+-1.1545759338694097
+]).addTo(map)
+.bindPopup("<b>Hanley Street Parking/Charging</b><br>Hanley Street");
 
-<p>
-227 N Sherwood St<br>
-Nottingham<br>
-NG1 4EQ
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+52.924755,
+-1.110812
+]).addTo(map)
+.bindPopup("<b>Willow Tree Willow Tree</b><br>Rufford Way");
 
-<h3>Colwick Hall Hotel</h3>
 
-<p>
-Racecourse Road<br>
-Nottingham<br>
-NG2 4BH
-</p>
 
-</div>
+L.marker([
+52.93628,
+-1.135
+]).addTo(map)
+.bindPopup("<b>80737</b><br>West Bridgford");
 
-<div class="card">
 
-<h3>Tesco Extra</h3>
 
-<p>
-Jennison St<br>
-Nottingham<br>
-NG6 8EQ
-</p>
+L.marker([
+53.10466,
+-1.242602
+]).addTo(map)
+.bindPopup("<b>Summit Centre</b><br>Pavilion Road");
 
-</div>
 
-<div class="card">
 
-<h3>Kings Mill Reservoir</h3>
+L.marker([
+52.945833,
+-1.122285
+]).addTo(map)
+.bindPopup("<b>Little Tennis Street</b><br>Little Tennis Street");
 
-<p>
-Kings Mill Reservoir<br>
-Nottingham<br>
-NG17 4PA
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+53.002735,
+-1.178437
+]).addTo(map)
+.bindPopup("<b>Tesco Extra-Nottingham Top Valley</b><br>Top Valley Drive");
 
-<h3>Wilkinson Park & Ride</h3>
 
-<p>
-Wilkinson Park & Ride<br>
-Nottingham<br>
-NG7 7NW
-</p>
 
-</div>
+L.marker([
+52.93557,
+-1.18923
+]).addTo(map)
+.bindPopup("<b>Nottingham Tennis Centre, Nottingham</b><br>University Boulevard");
 
-<div class="card">
 
-<h3>Hanley Street Parking/Charging</h3>
 
-<p>
-Hanley Street<br>
-Nottingham<br>
-NG1 5GD
-</p>
+L.marker([
+52.934885,
+-1.118139
+]).addTo(map)
+.bindPopup("<b>Poppy & Pint</b><br>West Bridgford");
 
-</div>
 
-<div class="card">
 
-<h3>Willow Tree Willow Tree</h3>
-
-<p>
-Rufford Way<br>
-Nottingham<br>
-NG2 6LS
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>80737</h3>
-
-<p>
-West Bridgford<br>
-Nottingham<br>
-NG2 7QP
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Summit Centre</h3>
-
-<p>
-Pavilion Road<br>
-Nottingham<br>
-NG17 7LL
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Little Tennis Street</h3>
-
-<p>
-Little Tennis Street<br>
-Nottingham<br>
-NG2 4EL
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Tesco Extra-Nottingham Top Valley</h3>
-
-<p>
-Top Valley Drive<br>
-Nottingham<br>
-NG5 9DD
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Nottingham Tennis Centre, Nottingham</h3>
-
-<p>
-University Boulevard<br>
-Nottingham<br>
-NG7 2QH
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Poppy & Pint</h3>
-
-<p>
-West Bridgford<br>
-Nottingham<br>
-NG2 5DX
-</p>
-
-</div>
-
-
-</div>
-
-<footer>
-EV Charger Directory
-</footer>
+</script>
 
 </body>
 </html>

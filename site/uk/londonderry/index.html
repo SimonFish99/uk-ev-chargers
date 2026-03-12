@@ -1,88 +1,112 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>EV Chargers in Londonderry</title>
-<link rel="stylesheet" href="/style.css">
+<title>Londonderry EV Chargers</title>
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+
+<style>
+#map {
+  height: 400px;
+  margin-bottom: 30px;
+  border-radius: 8px;
+}
+</style>
+
 </head>
 
 <body>
 
-<header>
-<h1>EV Chargers in Londonderry</h1>
-</header>
+<h1>Londonderry EV Chargers</h1>
 
-<div class="container">
+<div id="map"></div>
 
-<p>5 charging locations found.</p>
+<ul>
 
+<li>
+<strong>Ulster University Magee Campus</strong><br>
+Northland Rd
+</li>
 
-<div class="card">
+<li>
+<strong>HRL Rossdowney</strong><br>
+1 Rossdowney Park
+</li>
 
-<h3>Ulster University Magee Campus</h3>
+<li>
+<strong>Templemore Leisure Centre Car Park</strong><br>
+Templemore Leisure Centre
+</li>
 
-<p>
-Northland Rd<br>
-Londonderry<br>
-BT48 7JL
-</p>
+<li>
+<strong>The Diamond</strong><br>
+The Diamond
+</li>
 
-</div>
+<li>
+<strong>Ness Country Park</strong><br>
+50 Oughtagh Road
+</li>
 
-<div class="card">
+</ul>
 
-<h3>HRL Rossdowney</h3>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
-<p>
-1 Rossdowney Park<br>
-Londonderry<br>
-BT47 5NR
-</p>
+<script>
 
-</div>
+var map = L.map('map').setView([
+55.00561267210057,
+-7.324701032553548
+], 12);
 
-<div class="card">
-
-<h3>Templemore Leisure Centre Car Park</h3>
-
-<p>
-Templemore Leisure Centre<br>
-Londonderry<br>
-BT48 7QL
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>The Diamond</h3>
-
-<p>
-The Diamond<br>
-Londonderry<br>
-BT48 6HN
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Ness Country Park</h3>
-
-<p>
-50 Oughtagh Road<br>
-Londonderry<br>
-BT47 3TR
-</p>
-
-</div>
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+attribution: '&copy; OpenStreetMap contributors'
+}).addTo(map);
 
 
-</div>
 
-<footer>
-EV Charger Directory
-</footer>
+L.marker([
+55.00561267210057,
+-7.324701032553548
+]).addTo(map)
+.bindPopup("<b>Ulster University Magee Campus</b><br>Northland Rd");
+
+
+
+L.marker([
+54.9939201427296,
+-7.30266989783439
+]).addTo(map)
+.bindPopup("<b>HRL Rossdowney</b><br>1 Rossdowney Park");
+
+
+
+L.marker([
+55.024553,
+-7.338951
+]).addTo(map)
+.bindPopup("<b>Templemore Leisure Centre Car Park</b><br>Templemore Leisure Centre");
+
+
+
+L.marker([
+54.99548,
+-7.32185
+]).addTo(map)
+.bindPopup("<b>The Diamond</b><br>The Diamond");
+
+
+
+L.marker([
+54.941279786337645,
+-7.190186703209434
+]).addTo(map)
+.bindPopup("<b>Ness Country Park</b><br>50 Oughtagh Road");
+
+
+
+</script>
 
 </body>
 </html>

@@ -1,88 +1,112 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>EV Chargers in Limavady</title>
-<link rel="stylesheet" href="/style.css">
+<title>Limavady EV Chargers</title>
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+
+<style>
+#map {
+  height: 400px;
+  margin-bottom: 30px;
+  border-radius: 8px;
+}
+</style>
+
 </head>
 
 <body>
 
-<header>
-<h1>EV Chargers in Limavady</h1>
-</header>
+<h1>Limavady EV Chargers</h1>
 
-<div class="container">
+<div id="map"></div>
 
-<p>5 charging locations found.</p>
+<ul>
 
+<li>
+<strong>George Canning Spar Bellarena</strong><br>
+436 Seacoast Rd
+</li>
 
-<div class="card">
+<li>
+<strong>Lidl</strong><br>
+ 4 Connell Street
+</li>
 
-<h3>George Canning Spar Bellarena</h3>
+<li>
+<strong>Benone Tourist Complex</strong><br>
+53 Benone Ave
+</li>
 
-<p>
-436 Seacoast Rd<br>
-Limavady<br>
-BT49 0LD
-</p>
+<li>
+<strong>Tesco Superstore-Limavady</strong><br>
+Main Street
+</li>
 
-</div>
+<li>
+<strong>Roe Valley Country Park</strong><br>
+41 Dogleap Road
+</li>
 
-<div class="card">
+</ul>
 
-<h3>Lidl</h3>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
-<p>
- 4 Connell Street<br>
-Limavady<br>
-BT49 0EA
-</p>
+<script>
 
-</div>
+var map = L.map('map').setView([
+55.14073670739418,
+-6.944193817977748
+], 12);
 
-<div class="card">
-
-<h3>Benone Tourist Complex</h3>
-
-<p>
-53 Benone Ave<br>
-Limavady<br>
-BT49 0LQ
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Tesco Superstore-Limavady</h3>
-
-<p>
-Main Street<br>
-Limavady<br>
-BT49 0ET
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Roe Valley Country Park</h3>
-
-<p>
-41 Dogleap Road<br>
-Limavady<br>
-BT49 9NN
-</p>
-
-</div>
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+attribution: '&copy; OpenStreetMap contributors'
+}).addTo(map);
 
 
-</div>
 
-<footer>
-EV Charger Directory
-</footer>
+L.marker([
+55.14073670739418,
+-6.944193817977748
+]).addTo(map)
+.bindPopup("<b>George Canning Spar Bellarena</b><br>436 Seacoast Rd");
+
+
+
+L.marker([
+55.05198290371186,
+-6.9492822369352325
+]).addTo(map)
+.bindPopup("<b>Lidl</b><br> 4 Connell Street");
+
+
+
+L.marker([
+55.163873356746194,
+-6.871422767314044
+]).addTo(map)
+.bindPopup("<b>Benone Tourist Complex</b><br>53 Benone Ave");
+
+
+
+L.marker([
+55.05273446,
+-6.94852001
+]).addTo(map)
+.bindPopup("<b>Tesco Superstore-Limavady</b><br>Main Street");
+
+
+
+L.marker([
+55.024026298001075,
+-6.939815373033127
+]).addTo(map)
+.bindPopup("<b>Roe Valley Country Park</b><br>41 Dogleap Road");
+
+
+
+</script>
 
 </body>
 </html>

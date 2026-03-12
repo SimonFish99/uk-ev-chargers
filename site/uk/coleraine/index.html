@@ -1,88 +1,112 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>EV Chargers in Coleraine</title>
-<link rel="stylesheet" href="/style.css">
+<title>Coleraine EV Chargers</title>
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+
+<style>
+#map {
+  height: 400px;
+  margin-bottom: 30px;
+  border-radius: 8px;
+}
+</style>
+
 </head>
 
 <body>
 
-<header>
-<h1>EV Chargers in Coleraine</h1>
-</header>
+<h1>Coleraine EV Chargers</h1>
 
-<div class="container">
+<div id="map"></div>
 
-<p>5 charging locations found.</p>
+<ul>
 
+<li>
+<strong>Lidl</strong><br>
+Unit 17
+</li>
 
-<div class="card">
+<li>
+<strong>Ulster University (Coleraine)</strong><br>
+Portstewart Road
+</li>
 
-<h3>Lidl</h3>
+<li>
+<strong>Roadside Garages</strong><br>
+Somerset Road
+</li>
 
-<p>
-Unit 17<br>
-Coleraine<br>
-BT51 3NA
-</p>
+<li>
+<strong>Lodge Hotel</strong><br>
+Lodge Park
+</li>
 
-</div>
+<li>
+<strong>HRL Millburn Road</strong><br>
+Milburn Road
+</li>
 
-<div class="card">
+</ul>
 
-<h3>Ulster University (Coleraine)</h3>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
-<p>
-Portstewart Road<br>
-Coleraine<br>
-BT52 1SB
-</p>
+<script>
 
-</div>
+var map = L.map('map').setView([
+55.12119724212917,
+-6.676560743258307
+], 12);
 
-<div class="card">
-
-<h3>Roadside Garages</h3>
-
-<p>
-Somerset Road<br>
-Coleraine<br>
-BT51 3LL
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Lodge Hotel</h3>
-
-<p>
-Lodge Park<br>
-Coleraine<br>
-BT52 1NF
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>HRL Millburn Road</h3>
-
-<p>
-Milburn Road<br>
-Coleraine<br>
-BT52 1QY
-</p>
-
-</div>
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+attribution: '&copy; OpenStreetMap contributors'
+}).addTo(map);
 
 
-</div>
 
-<footer>
-EV Charger Directory
-</footer>
+L.marker([
+55.12119724212917,
+-6.676560743258307
+]).addTo(map)
+.bindPopup("<b>Lidl</b><br>Unit 17");
+
+
+
+L.marker([
+55.15103446041746,
+-6.677225350702372
+]).addTo(map)
+.bindPopup("<b>Ulster University (Coleraine)</b><br>Portstewart Road");
+
+
+
+L.marker([
+55.11664440969784,
+-6.677802032438279
+]).addTo(map)
+.bindPopup("<b>Roadside Garages</b><br>Somerset Road");
+
+
+
+L.marker([
+55.12564739289121,
+-6.654807175013104
+]).addTo(map)
+.bindPopup("<b>Lodge Hotel</b><br>Lodge Park");
+
+
+
+L.marker([
+55.139189935918836,
+-6.665561210594717
+]).addTo(map)
+.bindPopup("<b>HRL Millburn Road</b><br>Milburn Road");
+
+
+
+</script>
 
 </body>
 </html>

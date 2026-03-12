@@ -1,196 +1,229 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>EV Chargers in Poole</title>
-<link rel="stylesheet" href="/style.css">
+<title>Poole EV Chargers</title>
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+
+<style>
+#map {
+  height: 400px;
+  margin-bottom: 30px;
+  border-radius: 8px;
+}
+</style>
+
 </head>
 
 <body>
 
-<header>
-<h1>EV Chargers in Poole</h1>
-</header>
+<h1>Poole EV Chargers</h1>
 
-<div class="container">
+<div id="map"></div>
 
-<p>14 charging locations found.</p>
+<ul>
 
+<li>
+<strong>Station Approach</strong><br>
+Station Approach
+</li>
 
-<div class="card">
+<li>
+<strong>Tesco Extra - Waterloo Road</strong><br>
+Waterloo Road
+</li>
 
-<h3>Station Approach</h3>
+<li>
+<strong>Municipal Road</strong><br>
+Municipal Road
+</li>
 
-<p>
-Station Approach<br>
-Poole<br>
-BH18 8AX
-</p>
+<li>
+<strong>Serpentine Lane & Serpentine Lane Disabled</strong><br>
+Serpentine Lane
+</li>
 
-</div>
+<li>
+<strong>West Hill</strong><br>
+Pinecliff Road
+</li>
 
-<div class="card">
+<li>
+<strong>Sandbanks 2</strong><br>
+Banks Road
+</li>
 
-<h3>Tesco Extra - Waterloo Road</h3>
+<li>
+<strong>Old Orchard</strong><br>
+Old Orchard
+</li>
 
-<p>
-Waterloo Road<br>
-Poole<br>
-BH17 7EJ
-</p>
+<li>
+<strong>Bournemouth University</strong><br>
+Fern Barrow
+</li>
 
-</div>
+<li>
+<strong>BCPC Jubilee Road Car Park</strong><br>
+Jubilee Road
+</li>
 
-<div class="card">
+<li>
+<strong>McDonald's Poole</strong><br>
+180 Alder Road
+</li>
 
-<h3>Municipal Road</h3>
+<li>
+<strong>MFG Creekmoor</strong><br>
+Safety Drive
+</li>
 
-<p>
-Municipal Road<br>
-Poole<br>
-BH15 2FP
-</p>
+<li>
+<strong>Poole Retail Park</strong><br>
+Redlands
+</li>
 
-</div>
+<li>
+<strong>Tesco Superstore-Poole Branksome</strong><br>
+Poole Road
+</li>
 
-<div class="card">
+<li>
+<strong>Holiday Inn Express Poole,</strong><br>
+Walking Field Lane
+</li>
 
-<h3>Serpentine Lane & Serpentine Lane Disabled</h3>
+</ul>
 
-<p>
-Serpentine Lane<br>
-Poole<br>
-BH15 2BQ
-</p>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
-</div>
+<script>
 
-<div class="card">
+var map = L.map('map').setView([
+50.762856,
+-1.995645
+], 12);
 
-<h3>West Hill</h3>
-
-<p>
-Pinecliff Road<br>
-Poole<br>
-BH13 6LP
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Sandbanks 2</h3>
-
-<p>
-Banks Road<br>
-Poole<br>
-BH13 8QJ
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Old Orchard</h3>
-
-<p>
-Old Orchard<br>
-Poole<br>
-BH15 1SD
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Bournemouth University</h3>
-
-<p>
-Fern Barrow<br>
-Poole<br>
-BH12 5HH
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>BCPC Jubilee Road Car Park</h3>
-
-<p>
-Jubilee Road<br>
-Poole<br>
-BH12 2PU
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>McDonald's Poole</h3>
-
-<p>
-180 Alder Road<br>
-Poole<br>
-BH12 4AX
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>MFG Creekmoor</h3>
-
-<p>
-Safety Drive<br>
-Poole<br>
-BH17 7FR
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Poole Retail Park</h3>
-
-<p>
-Redlands<br>
-Poole<br>
-BH12 1DN
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Tesco Superstore-Poole Branksome</h3>
-
-<p>
-Poole Road<br>
-Poole<br>
-BH12 1AU
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Holiday Inn Express Poole,</h3>
-
-<p>
-Walking Field Lane<br>
-Poole<br>
-BH15 1RZ
-</p>
-
-</div>
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+attribution: '&copy; OpenStreetMap contributors'
+}).addTo(map);
 
 
-</div>
 
-<footer>
-EV Charger Directory
-</footer>
+L.marker([
+50.762856,
+-1.995645
+]).addTo(map)
+.bindPopup("<b>Station Approach</b><br>Station Approach");
+
+
+
+L.marker([
+50.7401,
+-1.988875
+]).addTo(map)
+.bindPopup("<b>Tesco Extra - Waterloo Road</b><br>Waterloo Road");
+
+
+
+L.marker([
+50.722363,
+-1.96198
+]).addTo(map)
+.bindPopup("<b>Municipal Road</b><br>Municipal Road");
+
+
+
+L.marker([
+50.719081,
+-1.98206
+]).addTo(map)
+.bindPopup("<b>Serpentine Lane & Serpentine Lane Disabled</b><br>Serpentine Lane");
+
+
+
+L.marker([
+50.706826,
+-1.909386
+]).addTo(map)
+.bindPopup("<b>West Hill</b><br>Pinecliff Road");
+
+
+
+L.marker([
+50.688644,
+-1.939355
+]).addTo(map)
+.bindPopup("<b>Sandbanks 2</b><br>Banks Road");
+
+
+
+L.marker([
+50.71315,
+-1.98531
+]).addTo(map)
+.bindPopup("<b>Old Orchard</b><br>Old Orchard");
+
+
+
+L.marker([
+50.74272773359465,
+-1.897947456601969
+]).addTo(map)
+.bindPopup("<b>Bournemouth University</b><br>Fern Barrow");
+
+
+
+L.marker([
+50.729843,
+-1.936863
+]).addTo(map)
+.bindPopup("<b>BCPC Jubilee Road Car Park</b><br>Jubilee Road");
+
+
+
+L.marker([
+50.7384126,
+-1.9162732
+]).addTo(map)
+.bindPopup("<b>McDonald's Poole</b><br>180 Alder Road");
+
+
+
+L.marker([
+50.73630698239131,
+-1.9953161280851361
+]).addTo(map)
+.bindPopup("<b>MFG Creekmoor</b><br>Safety Drive");
+
+
+
+L.marker([
+50.7293409716377,
+-1.92125402521603
+]).addTo(map)
+.bindPopup("<b>Poole Retail Park</b><br>Redlands");
+
+
+
+L.marker([
+50.725021,
+-1.91432
+]).addTo(map)
+.bindPopup("<b>Tesco Superstore-Poole Branksome</b><br>Poole Road");
+
+
+
+L.marker([
+50.7161908,
+-1.9754434
+]).addTo(map)
+.bindPopup("<b>Holiday Inn Express Poole,</b><br>Walking Field Lane");
+
+
+
+</script>
 
 </body>
 </html>

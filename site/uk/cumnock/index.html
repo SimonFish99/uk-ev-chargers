@@ -1,88 +1,112 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>EV Chargers in Cumnock</title>
-<link rel="stylesheet" href="/style.css">
+<title>Cumnock EV Chargers</title>
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+
+<style>
+#map {
+  height: 400px;
+  margin-bottom: 30px;
+  border-radius: 8px;
+}
+</style>
+
 </head>
 
 <body>
 
-<header>
-<h1>EV Chargers in Cumnock</h1>
-</header>
+<h1>Cumnock EV Chargers</h1>
 
-<div class="container">
+<div id="map"></div>
 
-<p>5 charging locations found.</p>
+<ul>
 
+<li>
+<strong>Beechwood Ave, Auchinleck</strong><br>
+13 Beechwood Avenue
+</li>
 
-<div class="card">
+<li>
+<strong>New Cumnock - Castle Car Park</strong><br>
+4A Castle
+</li>
 
-<h3>Beechwood Ave, Auchinleck</h3>
+<li>
+<strong>CUMNOCK KERR&SMITH 2</strong><br>
+Riverside Garage Ayr Road
+</li>
 
-<p>
-13 Beechwood Avenue<br>
-Cumnock<br>
-KA18 2AR
-</p>
+<li>
+<strong>Netherthird Community Centre</strong><br>
+65 Ryderston Drive
+</li>
 
-</div>
+<li>
+<strong>Townhead Street Car Park, Cumnock</strong><br>
+Townhead Street Car Park
+</li>
 
-<div class="card">
+</ul>
 
-<h3>New Cumnock - Castle Car Park</h3>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
-<p>
-4A Castle<br>
-Cumnock<br>
-KA18 4AA
-</p>
+<script>
 
-</div>
+var map = L.map('map').setView([
+55.469174,
+-4.291583
+], 12);
 
-<div class="card">
-
-<h3>CUMNOCK KERR&SMITH 2</h3>
-
-<p>
-Riverside Garage Ayr Road<br>
-Cumnock<br>
-KA18 1JF
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Netherthird Community Centre</h3>
-
-<p>
-65 Ryderston Drive<br>
-Cumnock<br>
-KA18 3AR
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Townhead Street Car Park, Cumnock</h3>
-
-<p>
-Townhead Street Car Park<br>
-Cumnock<br>
-KA18 1LY
-</p>
-
-</div>
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+attribution: '&copy; OpenStreetMap contributors'
+}).addTo(map);
 
 
-</div>
 
-<footer>
-EV Charger Directory
-</footer>
+L.marker([
+55.469174,
+-4.291583
+]).addTo(map)
+.bindPopup("<b>Beechwood Ave, Auchinleck</b><br>13 Beechwood Avenue");
+
+
+
+L.marker([
+55.398199,
+-4.183853
+]).addTo(map)
+.bindPopup("<b>New Cumnock - Castle Car Park</b><br>4A Castle");
+
+
+
+L.marker([
+55.449883,
+-4.269636
+]).addTo(map)
+.bindPopup("<b>CUMNOCK KERR&SMITH 2</b><br>Riverside Garage Ayr Road");
+
+
+
+L.marker([
+55.442205,
+-4.249896
+]).addTo(map)
+.bindPopup("<b>Netherthird Community Centre</b><br>65 Ryderston Drive");
+
+
+
+L.marker([
+55.453976,
+-4.262283
+]).addTo(map)
+.bindPopup("<b>Townhead Street Car Park, Cumnock</b><br>Townhead Street Car Park");
+
+
+
+</script>
 
 </body>
 </html>

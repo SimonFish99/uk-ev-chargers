@@ -1,544 +1,606 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>EV Chargers in Haringey</title>
-<link rel="stylesheet" href="/style.css">
+<title>Haringey EV Chargers</title>
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+
+<style>
+#map {
+  height: 400px;
+  margin-bottom: 30px;
+  border-radius: 8px;
+}
+</style>
+
 </head>
 
 <body>
 
-<header>
-<h1>EV Chargers in Haringey</h1>
-</header>
+<h1>Haringey EV Chargers</h1>
+
+<div id="map"></div>
+
+<ul>
+
+<li>
+<strong>Cranbrook Park</strong><br>
+64 Cranbrook Park
+</li>
+
+<li>
+<strong>Waltheof Avenue</strong><br>
+Waltheof Avenue jn Lordship Lane
+</li>
+
+<li>
+<strong>Glendish Road</strong><br>
+72 Glendish Road
+</li>
+
+<li>
+<strong>Gathorne Road</strong><br>
+1 Gathorne Road
+</li>
+
+<li>
+<strong>Mark Road</strong><br>
+75 Mark Road
+</li>
+
+<li>
+<strong>Rectory Gardens</strong><br>
+69 Rectory Gardens
+</li>
+
+<li>
+<strong>Linzee Road</strong><br>
+1 Linzee Road
+</li>
+
+<li>
+<strong>Glasslyn Road</strong><br>
+1 Glasslyn Road
+</li>
+
+<li>
+<strong>Weston Park</strong><br>
+106 Weston Park
+</li>
+
+<li>
+<strong>Crouch Hall Road</strong><br>
+2 Crouch Hall Road
+</li>
+
+<li>
+<strong>Craven Park Road</strong><br>
+246 Craven Park Road
+</li>
+
+<li>
+<strong>Eastbourne Road</strong><br>
+Eastbourne Road
+</li>
+
+<li>
+<strong>Maidstone Road</strong><br>
+11 Maidstone Road
+</li>
+
+<li>
+<strong>Gordon Road</strong><br>
+8 Gordon Road
+</li>
+
+<li>
+<strong>Grasmere Road</strong><br>
+Grasmere Road
+</li>
+
+<li>
+<strong>High Road</strong><br>
+838 High Road
+</li>
+
+<li>
+<strong>Cross Road</strong><br>
+106 Cross Road
+</li>
+
+<li>
+<strong>Winkfield Road</strong><br>
+78 Winkfield Road
+</li>
+
+<li>
+<strong>Selbourne Road</strong><br>
+2 Selbourne Road
+</li>
+
+<li>
+<strong>Alexandra Park Road</strong><br>
+154 Alexandra Park Road
+</li>
+
+<li>
+<strong>Curzon Road</strong><br>
+Curzon Road
+</li>
+
+<li>
+<strong>Willan Road</strong><br>
+38 Willan Road
+</li>
+
+<li>
+<strong>Queens Avenue</strong><br>
+2 Queens Avenue
+</li>
+
+<li>
+<strong>Midhurst Avenue</strong><br>
+1 Midhurst Avenue
+</li>
+
+<li>
+<strong>Alton Road</strong><br>
+2 Alton Road
+</li>
+
+<li>
+<strong>Temple Road</strong><br>
+6 Temple Road
+</li>
+
+<li>
+<strong>Tottenham Lane</strong><br>
+50 Tottenham Lane
+</li>
+
+<li>
+<strong>Cunningham Road</strong><br>
+1 Cunningham Road
+</li>
+
+<li>
+<strong>Fairfax Road</strong><br>
+Fairfax Road
+</li>
+
+<li>
+<strong>Onslow Gardens</strong><br>
+3 Onslow Gardens
+</li>
+
+<li>
+<strong>Allison Road</strong><br>
+Allison Road
+</li>
+
+<li>
+<strong>Middle Lane</strong><br>
+43 Middle Lane
+</li>
+
+<li>
+<strong>Bryanstone Road</strong><br>
+2 Bryanstone Road
+</li>
 
-<div class="container">
+<li>
+<strong>Church Road</strong><br>
+2 Church Road
+</li>
 
-<p>43 charging locations found.</p>
+<li>
+<strong>Berkeley Road</strong><br>
+Berkeley Road
+</li>
 
+<li>
+<strong>Albany Road</strong><br>
+54 Albany Road
+</li>
 
-<div class="card">
+<li>
+<strong>The Park</strong><br>
+2 The Park
+</li>
 
-<h3>Cranbrook Park</h3>
+<li>
+<strong>Southwood Lawn Road</strong><br>
+32 Southwood Lawn Road
+</li>
 
-<p>
-64 Cranbrook Park<br>
-Haringey<br>
-N22 5NA
-</p>
+<li>
+<strong>Milton Road</strong><br>
+2 Milton Road
+</li>
 
-</div>
+<li>
+<strong>Cholmeley Park</strong><br>
+50 Cholmeley Park
+</li>
 
-<div class="card">
+<li>
+<strong>Upper Tollington Park</strong><br>
+85 Upper Tollington Park
+</li>
 
-<h3>Waltheof Avenue</h3>
+<li>
+<strong>Parkland Road</strong><br>
+Parkland Road car park
+</li>
 
-<p>
-Waltheof Avenue jn Lordship Lane<br>
-Haringey<br>
-N17 7PL
-</p>
+<li>
+<strong>Shepherds Hill, Highgate</strong><br>
+1 Shepherds Hill, Highgate
+</li>
 
-</div>
+</ul>
 
-<div class="card">
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
-<h3>Glendish Road</h3>
+<script>
 
-<p>
-72 Glendish Road<br>
-Haringey<br>
-N17 9XT
-</p>
+var map = L.map('map').setView([
+51.598804,
+-0.107521
+], 12);
 
-</div>
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+attribution: '&copy; OpenStreetMap contributors'
+}).addTo(map);
 
-<div class="card">
 
-<h3>Gathorne Road</h3>
 
-<p>
-1 Gathorne Road<br>
-Haringey<br>
-N22 5ND
-</p>
+L.marker([
+51.598804,
+-0.107521
+]).addTo(map)
+.bindPopup("<b>Cranbrook Park</b><br>64 Cranbrook Park");
 
-</div>
 
-<div class="card">
 
-<h3>Mark Road</h3>
+L.marker([
+51.598263,
+-0.087357
+]).addTo(map)
+.bindPopup("<b>Waltheof Avenue</b><br>Waltheof Avenue jn Lordship Lane");
 
-<p>
-75 Mark Road<br>
-Haringey<br>
-N22 6PX
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+51.598213,
+-0.056936
+]).addTo(map)
+.bindPopup("<b>Glendish Road</b><br>72 Glendish Road");
 
-<h3>Rectory Gardens</h3>
 
-<p>
-69 Rectory Gardens<br>
-Haringey<br>
-N8 7PJ
-</p>
 
-</div>
+L.marker([
+51.597885,
+-0.108931
+]).addTo(map)
+.bindPopup("<b>Gathorne Road</b><br>1 Gathorne Road");
 
-<div class="card">
 
-<h3>Linzee Road</h3>
 
-<p>
-1 Linzee Road<br>
-Haringey<br>
-N8 7RG
-</p>
+L.marker([
+51.59596,
+-0.094919
+]).addTo(map)
+.bindPopup("<b>Mark Road</b><br>75 Mark Road");
 
-</div>
 
-<div class="card">
 
-<h3>Glasslyn Road</h3>
+L.marker([
+51.58861,
+-0.122857
+]).addTo(map)
+.bindPopup("<b>Rectory Gardens</b><br>69 Rectory Gardens");
 
-<p>
-1 Glasslyn Road<br>
-Haringey<br>
-N8 8RJ
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+51.58717,
+-0.124807
+]).addTo(map)
+.bindPopup("<b>Linzee Road</b><br>1 Linzee Road");
 
-<h3>Weston Park</h3>
 
-<p>
-106 Weston Park<br>
-Haringey<br>
-N8 9PN
-</p>
 
-</div>
+L.marker([
+51.581936,
+-0.128732
+]).addTo(map)
+.bindPopup("<b>Glasslyn Road</b><br>1 Glasslyn Road");
 
-<div class="card">
 
-<h3>Crouch Hall Road</h3>
 
-<p>
-2 Crouch Hall Road<br>
-Haringey<br>
-N8 8HT
-</p>
+L.marker([
+51.580734,
+-0.114868
+]).addTo(map)
+.bindPopup("<b>Weston Park</b><br>106 Weston Park");
 
-</div>
 
-<div class="card">
 
-<h3>Craven Park Road</h3>
+L.marker([
+51.578224,
+-0.130111
+]).addTo(map)
+.bindPopup("<b>Crouch Hall Road</b><br>2 Crouch Hall Road");
 
-<p>
-246 Craven Park Road<br>
-Haringey<br>
-N15 6BL
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+51.57698,
+-0.065058
+]).addTo(map)
+.bindPopup("<b>Craven Park Road</b><br>246 Craven Park Road");
 
-<h3>Eastbourne Road</h3>
 
-<p>
-Eastbourne Road<br>
-Haringey<br>
-N15 6NT
-</p>
 
-</div>
+L.marker([
+51.57631,
+-0.077787
+]).addTo(map)
+.bindPopup("<b>Eastbourne Road</b><br>Eastbourne Road");
 
-<div class="card">
 
-<h3>Maidstone Road</h3>
 
-<p>
-11 Maidstone Road<br>
-Haringey<br>
-N11 2TR
-</p>
+L.marker([
+51.608006,
+-0.123776
+]).addTo(map)
+.bindPopup("<b>Maidstone Road</b><br>11 Maidstone Road");
 
-</div>
 
-<div class="card">
 
-<h3>Gordon Road</h3>
+L.marker([
+51.60764,
+-0.126318
+]).addTo(map)
+.bindPopup("<b>Gordon Road</b><br>8 Gordon Road");
 
-<p>
-8 Gordon Road<br>
-Haringey<br>
-N11 2PD
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+51.607323,
+-0.065661
+]).addTo(map)
+.bindPopup("<b>Grasmere Road</b><br>Grasmere Road");
 
-<h3>Grasmere Road</h3>
 
-<p>
-Grasmere Road<br>
-Haringey<br>
-N17 0EX
-</p>
 
-</div>
+L.marker([
+51.607002,
+-0.067971
+]).addTo(map)
+.bindPopup("<b>High Road</b><br>838 High Road");
 
-<div class="card">
 
-<h3>High Road</h3>
 
-<p>
-838 High Road<br>
-Haringey<br>
-N17 0EY
-</p>
+L.marker([
+51.6059,
+-0.105291
+]).addTo(map)
+.bindPopup("<b>Cross Road</b><br>106 Cross Road");
 
-</div>
 
-<div class="card">
 
-<h3>Cross Road</h3>
+L.marker([
+51.601376,
+-0.105147
+]).addTo(map)
+.bindPopup("<b>Winkfield Road</b><br>78 Winkfield Road");
 
-<p>
-106 Cross Road<br>
-Haringey<br>
-N22 5HS
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+51.599895,
+-0.114335
+]).addTo(map)
+.bindPopup("<b>Selbourne Road</b><br>2 Selbourne Road");
 
-<h3>Winkfield Road</h3>
 
-<p>
-78 Winkfield Road<br>
-Haringey<br>
-N22 5RR
-</p>
 
-</div>
+L.marker([
+51.599167,
+-0.135778
+]).addTo(map)
+.bindPopup("<b>Alexandra Park Road</b><br>154 Alexandra Park Road");
 
-<div class="card">
 
-<h3>Selbourne Road</h3>
 
-<p>
-2 Selbourne Road<br>
-Haringey<br>
-N22 7TL
-</p>
+L.marker([
+51.596912,
+-0.141502
+]).addTo(map)
+.bindPopup("<b>Curzon Road</b><br>Curzon Road");
 
-</div>
 
-<div class="card">
 
-<h3>Alexandra Park Road</h3>
+L.marker([
+51.593952,
+-0.079483
+]).addTo(map)
+.bindPopup("<b>Willan Road</b><br>38 Willan Road");
 
-<p>
-154 Alexandra Park Road<br>
-Haringey<br>
-N22 7UJ
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+51.59147,
+-0.143456
+]).addTo(map)
+.bindPopup("<b>Queens Avenue</b><br>2 Queens Avenue");
 
-<h3>Curzon Road</h3>
 
-<p>
-Curzon Road<br>
-Haringey<br>
-N10 2LH
-</p>
 
-</div>
+L.marker([
+51.59087,
+-0.15298
+]).addTo(map)
+.bindPopup("<b>Midhurst Avenue</b><br>1 Midhurst Avenue");
 
-<div class="card">
 
-<h3>Willan Road</h3>
 
-<p>
-38 Willan Road<br>
-Haringey<br>
-N17 6ND
-</p>
+L.marker([
+51.58911,
+-0.084653
+]).addTo(map)
+.bindPopup("<b>Alton Road</b><br>2 Alton Road");
 
-</div>
 
-<div class="card">
 
-<h3>Queens Avenue</h3>
+L.marker([
+51.586697,
+-0.116787
+]).addTo(map)
+.bindPopup("<b>Temple Road</b><br>6 Temple Road");
 
-<p>
-2 Queens Avenue<br>
-Haringey<br>
-N10 3NR
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+51.58575,
+-0.112741
+]).addTo(map)
+.bindPopup("<b>Tottenham Lane</b><br>50 Tottenham Lane");
 
-<h3>Midhurst Avenue</h3>
 
-<p>
-1 Midhurst Avenue<br>
-Haringey<br>
-N10 3EP
-</p>
 
-</div>
+L.marker([
+51.584927,
+-0.065905
+]).addTo(map)
+.bindPopup("<b>Cunningham Road</b><br>1 Cunningham Road");
 
-<div class="card">
 
-<h3>Alton Road</h3>
 
-<p>
-2 Alton Road<br>
-Haringey<br>
-N17 6JZ
-</p>
+L.marker([
+51.584843,
+-0.1066
+]).addTo(map)
+.bindPopup("<b>Fairfax Road</b><br>Fairfax Road");
 
-</div>
 
-<div class="card">
 
-<h3>Temple Road</h3>
+L.marker([
+51.58405,
+-0.146463
+]).addTo(map)
+.bindPopup("<b>Onslow Gardens</b><br>3 Onslow Gardens");
 
-<p>
-6 Temple Road<br>
-Haringey<br>
-N8 7BY
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+51.58337,
+-0.100599
+]).addTo(map)
+.bindPopup("<b>Allison Road</b><br>Allison Road");
 
-<h3>Tottenham Lane</h3>
 
-<p>
-50 Tottenham Lane<br>
-Haringey<br>
-N8 9DJ
-</p>
 
-</div>
+L.marker([
+51.581844,
+-0.123699
+]).addTo(map)
+.bindPopup("<b>Middle Lane</b><br>43 Middle Lane");
 
-<div class="card">
 
-<h3>Cunningham Road</h3>
 
-<p>
-1 Cunningham Road<br>
-Haringey<br>
-N15 4DS
-</p>
+L.marker([
+51.580666,
+-0.126273
+]).addTo(map)
+.bindPopup("<b>Bryanstone Road</b><br>2 Bryanstone Road");
 
-</div>
 
-<div class="card">
 
-<h3>Fairfax Road</h3>
+L.marker([
+51.578533,
+-0.151402
+]).addTo(map)
+.bindPopup("<b>Church Road</b><br>2 Church Road");
 
-<p>
-Fairfax Road<br>
-Haringey<br>
-N8 0NG
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+51.578514,
+-0.125813
+]).addTo(map)
+.bindPopup("<b>Berkeley Road</b><br>Berkeley Road");
 
-<h3>Onslow Gardens</h3>
 
-<p>
-3 Onslow Gardens<br>
-Haringey<br>
-N10 3JU
-</p>
 
-</div>
+L.marker([
+51.5766,
+-0.111099
+]).addTo(map)
+.bindPopup("<b>Albany Road</b><br>54 Albany Road");
 
-<div class="card">
 
-<h3>Allison Road</h3>
 
-<p>
-Allison Road<br>
-Haringey<br>
-N8 0AS
-</p>
+L.marker([
+51.57657,
+-0.149346
+]).addTo(map)
+.bindPopup("<b>The Park</b><br>2 The Park");
 
-</div>
 
-<div class="card">
 
-<h3>Middle Lane</h3>
+L.marker([
+51.574966,
+-0.146961
+]).addTo(map)
+.bindPopup("<b>Southwood Lawn Road</b><br>32 Southwood Lawn Road");
 
-<p>
-43 Middle Lane<br>
-Haringey<br>
-N8 8PG
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+51.572998,
+-0.136468
+]).addTo(map)
+.bindPopup("<b>Milton Road</b><br>2 Milton Road");
 
-<h3>Bryanstone Road</h3>
 
-<p>
-2 Bryanstone Road<br>
-Haringey<br>
-N8 8TN
-</p>
 
-</div>
+L.marker([
+51.571075,
+-0.143147
+]).addTo(map)
+.bindPopup("<b>Cholmeley Park</b><br>50 Cholmeley Park");
 
-<div class="card">
 
-<h3>Church Road</h3>
 
-<p>
-2 Church Road<br>
-Haringey<br>
-N6 4QH
-</p>
+L.marker([
+51.570866,
+-0.107903
+]).addTo(map)
+.bindPopup("<b>Upper Tollington Park</b><br>85 Upper Tollington Park");
 
-</div>
 
-<div class="card">
 
-<h3>Berkeley Road</h3>
+L.marker([
+51.595,
+-0.111
+]).addTo(map)
+.bindPopup("<b>Parkland Road</b><br>Parkland Road car park");
 
-<p>
-Berkeley Road<br>
-Haringey<br>
-N8 8RY
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+51.576762,
+-0.144592
+]).addTo(map)
+.bindPopup("<b>Shepherds Hill, Highgate</b><br>1 Shepherds Hill, Highgate");
 
-<h3>Albany Road</h3>
 
-<p>
-54 Albany Road<br>
-Haringey<br>
-N4 4RL
-</p>
 
-</div>
-
-<div class="card">
-
-<h3>The Park</h3>
-
-<p>
-2 The Park<br>
-Haringey<br>
-N6 4JJ
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Southwood Lawn Road</h3>
-
-<p>
-32 Southwood Lawn Road<br>
-Haringey<br>
-N6 5SD
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Milton Road</h3>
-
-<p>
-2 Milton Road<br>
-Haringey<br>
-N6 5QD
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Cholmeley Park</h3>
-
-<p>
-50 Cholmeley Park<br>
-Haringey<br>
-N6 5EH
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Upper Tollington Park</h3>
-
-<p>
-85 Upper Tollington Park<br>
-Haringey<br>
-N4 4LS
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Parkland Road</h3>
-
-<p>
-Parkland Road car park<br>
-Haringey<br>
-N22 6TB
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Shepherds Hill, Highgate</h3>
-
-<p>
-1 Shepherds Hill, Highgate<br>
-Haringey<br>
-N6 5QJ
-</p>
-
-</div>
-
-
-</div>
-
-<footer>
-EV Charger Directory
-</footer>
+</script>
 
 </body>
 </html>

@@ -1,544 +1,606 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>EV Chargers in Brent</title>
-<link rel="stylesheet" href="/style.css">
+<title>Brent EV Chargers</title>
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+
+<style>
+#map {
+  height: 400px;
+  margin-bottom: 30px;
+  border-radius: 8px;
+}
+</style>
+
 </head>
 
 <body>
 
-<header>
-<h1>EV Chargers in Brent</h1>
-</header>
+<h1>Brent EV Chargers</h1>
+
+<div id="map"></div>
+
+<ul>
+
+<li>
+<strong>Leybourne Road</strong><br>
+2 Leybourne Road
+</li>
+
+<li>
+<strong>Derwent Avenue</strong><br>
+Derwent Avenue
+</li>
+
+<li>
+<strong>Church Lane</strong><br>
+383 Church Lane
+</li>
+
+<li>
+<strong>Randall Avenue</strong><br>
+76 Randall Avenue
+</li>
+
+<li>
+<strong>St Michaels Road</strong><br>
+15 St Michaels Road
+</li>
+
+<li>
+<strong>Dog Lane</strong><br>
+1 Dog Lane
+</li>
+
+<li>
+<strong>Station Grove</strong><br>
+65 Station Grove
+</li>
+
+<li>
+<strong>Teignmouth Road</strong><br>
+1 Teignmouth Road
+</li>
+
+<li>
+<strong>Dartmouth Road</strong><br>
+3 Dartmouth Road
+</li>
+
+<li>
+<strong>21 Gowan Road</strong><br>
+21 Gowan Road
+</li>
+
+<li>
+<strong>Harlesden Road</strong><br>
+107 Harlesden Road
+</li>
+
+<li>
+<strong>60 Chambers Lane</strong><br>
+60 Chambers Lane
+</li>
+
+<li>
+<strong>Chevening Road</strong><br>
+211 Chevening Road
+</li>
+
+<li>
+<strong>Brooksville Avenue</strong><br>
+31 Brooksville Avenue
+</li>
+
+<li>
+<strong>Connaught Road</strong><br>
+3 Connaught Road
+</li>
+
+<li>
+<strong>Harvist Road</strong><br>
+24 Harvist Road
+</li>
+
+<li>
+<strong>Palermo Road</strong><br>
+124 Palermo Road
+</li>
+
+<li>
+<strong>Bolton Gardens</strong><br>
+25 Bolton Gardens
+</li>
+
+<li>
+<strong>Twyford Abbey Road</strong><br>
+23 Twyford Abbey Road
+</li>
+
+<li>
+<strong>Wakeman Road</strong><br>
+149 Wakeman Road
+</li>
+
+<li>
+<strong>Oxgate Lane</strong><br>
+Oxgate Lane corner of Edgware Road
+</li>
+
+<li>
+<strong>Vincent Gardens</strong><br>
+Opposite 127 Vincent Gardens
+</li>
+
+<li>
+<strong>Verney Street</strong><br>
+1 Verney Street
+</li>
+
+<li>
+<strong>Forty Avenue</strong><br>
+4 Forty Avenue
+</li>
+
+<li>
+<strong>Franklyn Road</strong><br>
+Franklyn Road junction with Cobbold Road
+</li>
+
+<li>
+<strong>Suffolk Road</strong><br>
+Opposite 1 Suffolk Road
+</li>
+
+<li>
+<strong>Casselden Road</strong><br>
+2 Casselden Road
+</li>
+
+<li>
+<strong>Emerald Road</strong><br>
+12 Emerald Road
+</li>
+
+<li>
+<strong>Waxlow Road</strong><br>
+10 Waxlow Road
+</li>
+
+<li>
+<strong>Barretts Green Road</strong><br>
+1 Barretts Green Road
+</li>
+
+<li>
+<strong>Central Park</strong><br>
+43 Central Way
+</li>
+
+<li>
+<strong>Tennyson Road</strong><br>
+Tennyson Road
+</li>
+
+<li>
+<strong>Mulgrave Road</strong><br>
+Mulgrave Road
+</li>
 
-<div class="container">
+<li>
+<strong>Pound Lane</strong><br>
+Pound Lane
+</li>
 
-<p>43 charging locations found.</p>
+<li>
+<strong>Bryan Avenue</strong><br>
+Bryan Avenue
+</li>
 
+<li>
+<strong>Cavendish Road (Brent)</strong><br>
+Cavendish Road (Brent)
+</li>
 
-<div class="card">
+<li>
+<strong>Tunley road</strong><br>
+Tunley road
+</li>
 
-<h3>Leybourne Road</h3>
+<li>
+<strong>Crownhill Road</strong><br>
+Crownhill Road
+</li>
 
-<p>
-2 Leybourne Road<br>
-Brent<br>
-NW9 9QE
-</p>
+<li>
+<strong>Algernon Road (Brent)</strong><br>
+Algernon Road (Brent)
+</li>
 
-</div>
+<li>
+<strong>Tiverton Road (Brent)</strong><br>
+Tiverton Road (Brent)
+</li>
 
-<div class="card">
+<li>
+<strong>Victoria Road (Brent)</strong><br>
+Victoria Road (Brent)
+</li>
 
-<h3>Derwent Avenue</h3>
+<li>
+<strong>Cambridge Gardens</strong><br>
+Cambridge Gardens
+</li>
 
-<p>
-Derwent Avenue<br>
-Brent<br>
-NW9 0DJ
-</p>
+<li>
+<strong>Malvern Road</strong><br>
+Malvern Road
+</li>
 
-</div>
+</ul>
 
-<div class="card">
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
-<h3>Church Lane</h3>
+<script>
 
-<p>
-383 Church Lane<br>
-Brent<br>
-NW9 8JB
-</p>
+var map = L.map('map').setView([
+51.585815,
+-0.281871
+], 12);
 
-</div>
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+attribution: '&copy; OpenStreetMap contributors'
+}).addTo(map);
 
-<div class="card">
 
-<h3>Randall Avenue</h3>
 
-<p>
-76 Randall Avenue<br>
-Brent<br>
-NW2 7SS
-</p>
+L.marker([
+51.585815,
+-0.281871
+]).addTo(map)
+.bindPopup("<b>Leybourne Road</b><br>2 Leybourne Road");
 
-</div>
 
-<div class="card">
 
-<h3>St Michaels Road</h3>
+L.marker([
+51.583553,
+-0.252497
+]).addTo(map)
+.bindPopup("<b>Derwent Avenue</b><br>Derwent Avenue");
 
-<p>
-15 St Michaels Road<br>
-Brent<br>
-NW2 6XE
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+51.57942,
+-0.2627
+]).addTo(map)
+.bindPopup("<b>Church Lane</b><br>383 Church Lane");
 
-<h3>Dog Lane</h3>
 
-<p>
-1 Dog Lane<br>
-Brent<br>
-NW10 1PF
-</p>
 
-</div>
+L.marker([
+51.56262,
+-0.245609
+]).addTo(map)
+.bindPopup("<b>Randall Avenue</b><br>76 Randall Avenue");
 
-<div class="card">
 
-<h3>Station Grove</h3>
 
-<p>
-65 Station Grove<br>
-Brent<br>
-HA0 4EF
-</p>
+L.marker([
+51.558064,
+-0.226151
+]).addTo(map)
+.bindPopup("<b>St Michaels Road</b><br>15 St Michaels Road");
 
-</div>
 
-<div class="card">
 
-<h3>Teignmouth Road</h3>
+L.marker([
+51.556732,
+-0.250063
+]).addTo(map)
+.bindPopup("<b>Dog Lane</b><br>1 Dog Lane");
 
-<p>
-1 Teignmouth Road<br>
-Brent<br>
-NW2 4HR
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+51.550053,
+-0.294959
+]).addTo(map)
+.bindPopup("<b>Station Grove</b><br>65 Station Grove");
 
-<h3>Dartmouth Road</h3>
 
-<p>
-3 Dartmouth Road<br>
-Brent<br>
-NW2 4ET
-</p>
 
-</div>
+L.marker([
+51.549423,
+-0.210419
+]).addTo(map)
+.bindPopup("<b>Teignmouth Road</b><br>1 Teignmouth Road");
 
-<div class="card">
 
-<h3>21 Gowan Road</h3>
 
-<p>
-21 Gowan Road<br>
-Brent<br>
-NW10 2SH
-</p>
+L.marker([
+51.547817,
+-0.207598
+]).addTo(map)
+.bindPopup("<b>Dartmouth Road</b><br>3 Dartmouth Road");
 
-</div>
 
-<div class="card">
 
-<h3>Harlesden Road</h3>
+L.marker([
+51.546569,
+-0.232713
+]).addTo(map)
+.bindPopup("<b>21 Gowan Road</b><br>21 Gowan Road");
 
-<p>
-107 Harlesden Road<br>
-Brent<br>
-NW10 2BT
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+51.54569,
+-0.232084
+]).addTo(map)
+.bindPopup("<b>Harlesden Road</b><br>107 Harlesden Road");
 
-<h3>60 Chambers Lane</h3>
 
-<p>
-60 Chambers Lane<br>
-Brent<br>
-NW10 2RL
-</p>
 
-</div>
+L.marker([
+51.542711,
+-0.226353
+]).addTo(map)
+.bindPopup("<b>60 Chambers Lane</b><br>60 Chambers Lane");
 
-<div class="card">
 
-<h3>Chevening Road</h3>
 
-<p>
-211 Chevening Road<br>
-Brent<br>
-NW6 6DT
-</p>
+L.marker([
+51.54005,
+-0.209518
+]).addTo(map)
+.bindPopup("<b>Chevening Road</b><br>211 Chevening Road");
 
-</div>
 
-<div class="card">
 
-<h3>Brooksville Avenue</h3>
+L.marker([
+51.537598,
+-0.209672
+]).addTo(map)
+.bindPopup("<b>Brooksville Avenue</b><br>31 Brooksville Avenue");
 
-<p>
-31 Brooksville Avenue<br>
-Brent<br>
-NW6 6TH
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+51.536217,
+-0.251167
+]).addTo(map)
+.bindPopup("<b>Connaught Road</b><br>3 Connaught Road");
 
-<h3>Connaught Road</h3>
 
-<p>
-3 Connaught Road<br>
-Brent<br>
-NW10 9AH
-</p>
 
-</div>
+L.marker([
+51.533447,
+-0.211652
+]).addTo(map)
+.bindPopup("<b>Harvist Road</b><br>24 Harvist Road");
 
-<div class="card">
 
-<h3>Harvist Road</h3>
 
-<p>
-24 Harvist Road<br>
-Brent<br>
-NW6 6SH
-</p>
+L.marker([
+51.533443,
+-0.234591
+]).addTo(map)
+.bindPopup("<b>Palermo Road</b><br>124 Palermo Road");
 
-</div>
 
-<div class="card">
 
-<h3>Palermo Road</h3>
+L.marker([
+51.533234,
+-0.218855
+]).addTo(map)
+.bindPopup("<b>Bolton Gardens</b><br>25 Bolton Gardens");
 
-<p>
-124 Palermo Road<br>
-Brent<br>
-NW10 5YN
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+51.532974,
+-0.285505
+]).addTo(map)
+.bindPopup("<b>Twyford Abbey Road</b><br>23 Twyford Abbey Road");
 
-<h3>Bolton Gardens</h3>
 
-<p>
-25 Bolton Gardens<br>
-Brent<br>
-NW10 5RB
-</p>
 
-</div>
+L.marker([
+51.530014,
+-0.223032
+]).addTo(map)
+.bindPopup("<b>Wakeman Road</b><br>149 Wakeman Road");
 
-<div class="card">
 
-<h3>Twyford Abbey Road</h3>
 
-<p>
-23 Twyford Abbey Road<br>
-Brent<br>
-NW10 7FJ
-</p>
+L.marker([
+51.568287,
+-0.229822
+]).addTo(map)
+.bindPopup("<b>Oxgate Lane</b><br>Oxgate Lane corner of Edgware Road");
 
-</div>
 
-<div class="card">
 
-<h3>Wakeman Road</h3>
+L.marker([
+51.563335,
+-0.244442
+]).addTo(map)
+.bindPopup("<b>Vincent Gardens</b><br>Opposite 127 Vincent Gardens");
 
-<p>
-149 Wakeman Road<br>
-Brent<br>
-NW10 5DF
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+51.56247,
+-0.258615
+]).addTo(map)
+.bindPopup("<b>Verney Street</b><br>1 Verney Street");
 
-<h3>Oxgate Lane</h3>
 
-<p>
-Oxgate Lane corner of Edgware Road<br>
-Brent<br>
-NW2 7JN
-</p>
 
-</div>
+L.marker([
+51.562428,
+-0.290544
+]).addTo(map)
+.bindPopup("<b>Forty Avenue</b><br>4 Forty Avenue");
 
-<div class="card">
 
-<h3>Vincent Gardens</h3>
 
-<p>
-Opposite 127 Vincent Gardens<br>
-Brent<br>
-NW2 7RH
-</p>
+L.marker([
+51.547768,
+-0.245359
+]).addTo(map)
+.bindPopup("<b>Franklyn Road</b><br>Franklyn Road junction with Cobbold Road");
 
-</div>
 
-<div class="card">
 
-<h3>Verney Street</h3>
+L.marker([
+51.544605,
+-0.252273
+]).addTo(map)
+.bindPopup("<b>Suffolk Road</b><br>Opposite 1 Suffolk Road");
 
-<p>
-1 Verney Street<br>
-Brent<br>
-NW10 0AY
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+51.542717,
+-0.258201
+]).addTo(map)
+.bindPopup("<b>Casselden Road</b><br>2 Casselden Road");
 
-<h3>Forty Avenue</h3>
 
-<p>
-4 Forty Avenue<br>
-Brent<br>
-HA9 8JL
-</p>
 
-</div>
+L.marker([
+51.539265,
+-0.259601
+]).addTo(map)
+.bindPopup("<b>Emerald Road</b><br>12 Emerald Road");
 
-<div class="card">
 
-<h3>Franklyn Road</h3>
 
-<p>
-Franklyn Road junction with Cobbold Road<br>
-Brent<br>
-NW10 9TE
-</p>
+L.marker([
+51.535076,
+-0.26139
+]).addTo(map)
+.bindPopup("<b>Waxlow Road</b><br>10 Waxlow Road");
 
-</div>
 
-<div class="card">
 
-<h3>Suffolk Road</h3>
+L.marker([
+51.533657,
+-0.263434
+]).addTo(map)
+.bindPopup("<b>Barretts Green Road</b><br>1 Barretts Green Road");
 
-<p>
-Opposite 1 Suffolk Road<br>
-Brent<br>
-NW10 9QF
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+51.532578,
+-0.267585
+]).addTo(map)
+.bindPopup("<b>Central Park</b><br>43 Central Way");
 
-<h3>Casselden Road</h3>
 
-<p>
-2 Casselden Road<br>
-Brent<br>
-NW10 8QR
-</p>
 
-</div>
+L.marker([
+51.540533,
+-0.203486
+]).addTo(map)
+.bindPopup("<b>Tennyson Road</b><br>Tennyson Road");
 
-<div class="card">
 
-<h3>Emerald Road</h3>
 
-<p>
-12 Emerald Road<br>
-Brent<br>
-NW10 8DF
-</p>
+L.marker([
+51.555957,
+-0.24164
+]).addTo(map)
+.bindPopup("<b>Mulgrave Road</b><br>Mulgrave Road");
 
-</div>
 
-<div class="card">
 
-<h3>Waxlow Road</h3>
+L.marker([
+51.545354,
+-0.237376
+]).addTo(map)
+.bindPopup("<b>Pound Lane</b><br>Pound Lane");
 
-<p>
-10 Waxlow Road<br>
-Brent<br>
-NW10 7NY
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+51.544837,
+-0.23105
+]).addTo(map)
+.bindPopup("<b>Bryan Avenue</b><br>Bryan Avenue");
 
-<h3>Barretts Green Road</h3>
 
-<p>
-1 Barretts Green Road<br>
-Brent<br>
-NW10 7AE
-</p>
 
-</div>
+L.marker([
+51.544638,
+-0.204954
+]).addTo(map)
+.bindPopup("<b>Cavendish Road (Brent)</b><br>Cavendish Road (Brent)");
 
-<div class="card">
 
-<h3>Central Park</h3>
 
-<p>
-43 Central Way<br>
-Brent<br>
-NW10 7FP
-</p>
+L.marker([
+51.541014,
+-0.25381
+]).addTo(map)
+.bindPopup("<b>Tunley road</b><br>Tunley road");
 
-</div>
 
-<div class="card">
 
-<h3>Tennyson Road</h3>
+L.marker([
+51.539231,
+-0.244635
+]).addTo(map)
+.bindPopup("<b>Crownhill Road</b><br>Crownhill Road");
 
-<p>
-Tennyson Road<br>
-Brent<br>
-NW6 7RT
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+51.538334,
+-0.197877
+]).addTo(map)
+.bindPopup("<b>Algernon Road (Brent)</b><br>Algernon Road (Brent)");
 
-<h3>Mulgrave Road</h3>
 
-<p>
-Mulgrave Road<br>
-Brent<br>
-NW10 1BT
-</p>
 
-</div>
+L.marker([
+51.537766,
+-0.216039
+]).addTo(map)
+.bindPopup("<b>Tiverton Road (Brent)</b><br>Tiverton Road (Brent)");
 
-<div class="card">
 
-<h3>Pound Lane</h3>
 
-<p>
-Pound Lane<br>
-Brent<br>
-NW10 2HH
-</p>
+L.marker([
+51.536551,
+-0.201841
+]).addTo(map)
+.bindPopup("<b>Victoria Road (Brent)</b><br>Victoria Road (Brent)");
 
-</div>
 
-<div class="card">
 
-<h3>Bryan Avenue</h3>
+L.marker([
+51.533797,
+-0.193514
+]).addTo(map)
+.bindPopup("<b>Cambridge Gardens</b><br>Cambridge Gardens");
 
-<p>
-Bryan Avenue<br>
-Brent<br>
-NW10 2AS
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+51.530825,
+-0.197871
+]).addTo(map)
+.bindPopup("<b>Malvern Road</b><br>Malvern Road");
 
-<h3>Cavendish Road (Brent)</h3>
 
-<p>
-Cavendish Road (Brent)<br>
-Brent<br>
-NW6 7XW
-</p>
 
-</div>
-
-<div class="card">
-
-<h3>Tunley road</h3>
-
-<p>
-Tunley road<br>
-Brent<br>
-NW10 9JS
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Crownhill Road</h3>
-
-<p>
-Crownhill Road<br>
-Brent<br>
-NW10 4HE
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Algernon Road (Brent)</h3>
-
-<p>
-Algernon Road (Brent)<br>
-Brent<br>
-NW6 6TU
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Tiverton Road (Brent)</h3>
-
-<p>
-Tiverton Road (Brent)<br>
-Brent<br>
-NW10 3HJ
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Victoria Road (Brent)</h3>
-
-<p>
-Victoria Road (Brent)<br>
-Brent<br>
-NW6 6BD
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Cambridge Gardens</h3>
-
-<p>
-Cambridge Gardens<br>
-Brent<br>
-NW6 5AE
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Malvern Road</h3>
-
-<p>
-Malvern Road<br>
-Brent<br>
-NW6 5PU
-</p>
-
-</div>
-
-
-</div>
-
-<footer>
-EV Charger Directory
-</footer>
+</script>
 
 </body>
 </html>

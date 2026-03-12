@@ -1,88 +1,112 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>EV Chargers in Long Eaton</title>
-<link rel="stylesheet" href="/style.css">
+<title>Long Eaton EV Chargers</title>
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+
+<style>
+#map {
+  height: 400px;
+  margin-bottom: 30px;
+  border-radius: 8px;
+}
+</style>
+
 </head>
 
 <body>
 
-<header>
-<h1>EV Chargers in Long Eaton</h1>
-</header>
+<h1>Long Eaton EV Chargers</h1>
 
-<div class="container">
+<div id="map"></div>
 
-<p>5 charging locations found.</p>
+<ul>
 
+<li>
+<strong>Tappers Harker Pub & Restaurant</strong><br>
+Main Street
+</li>
 
-<div class="card">
+<li>
+<strong>Tesco Extra Nottingham Long Eaton</strong><br>
+Waverley St
+</li>
 
-<h3>Tappers Harker Pub & Restaurant</h3>
+<li>
+<strong>KFC Long Eaton</strong><br>
+Cross Street Retail Park
+</li>
 
-<p>
-Main Street<br>
-Long Eaton<br>
-NG10 1GR
-</p>
+<li>
+<strong>Long Eaton Train Station Car-Park</strong><br>
+Tamworth Road
+</li>
 
-</div>
+<li>
+<strong>Gibb Street Car Park</strong><br>
+Gibb Street Car Park
+</li>
 
-<div class="card">
+</ul>
 
-<h3>Tesco Extra Nottingham Long Eaton</h3>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
-<p>
-Waverley St<br>
-Long Eaton<br>
-NG10 1HG
-</p>
+<script>
 
-</div>
+var map = L.map('map').setView([
+52.893391,
+-1.263841
+], 12);
 
-<div class="card">
-
-<h3>KFC Long Eaton</h3>
-
-<p>
-Cross Street Retail Park<br>
-Long Eaton<br>
-NG10 1HD
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Long Eaton Train Station Car-Park</h3>
-
-<p>
-Tamworth Road<br>
-Long Eaton<br>
-NG10 3GL
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Gibb Street Car Park</h3>
-
-<p>
-Gibb Street Car Park<br>
-Long Eaton<br>
-NG10 1EE
-</p>
-
-</div>
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+attribution: '&copy; OpenStreetMap contributors'
+}).addTo(map);
 
 
-</div>
 
-<footer>
-EV Charger Directory
-</footer>
+L.marker([
+52.893391,
+-1.263841
+]).addTo(map)
+.bindPopup("<b>Tappers Harker Pub & Restaurant</b><br>Main Street");
+
+
+
+L.marker([
+52.8989898786016,
+-1.26857167602145
+]).addTo(map)
+.bindPopup("<b>Tesco Extra Nottingham Long Eaton</b><br>Waverley St");
+
+
+
+L.marker([
+52.8979249207975,
+-1.26901520844228
+]).addTo(map)
+.bindPopup("<b>KFC Long Eaton</b><br>Cross Street Retail Park");
+
+
+
+L.marker([
+52.8853,
+-1.2865
+]).addTo(map)
+.bindPopup("<b>Long Eaton Train Station Car-Park</b><br>Tamworth Road");
+
+
+
+L.marker([
+52.8958,
+-1.2692
+]).addTo(map)
+.bindPopup("<b>Gibb Street Car Park</b><br>Gibb Street Car Park");
+
+
+
+</script>
 
 </body>
 </html>

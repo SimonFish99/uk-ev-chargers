@@ -1,1132 +1,1243 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>EV Chargers in Camden Town</title>
-<link rel="stylesheet" href="/style.css">
+<title>Camden Town EV Chargers</title>
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+
+<style>
+#map {
+  height: 400px;
+  margin-bottom: 30px;
+  border-radius: 8px;
+}
+</style>
+
 </head>
 
 <body>
 
-<header>
-<h1>EV Chargers in Camden Town</h1>
-</header>
+<h1>Camden Town EV Chargers</h1>
+
+<div id="map"></div>
+
+<ul>
+
+<li>
+<strong>Crediton Hill</strong><br>
+7 Crediton Hill
+</li>
+
+<li>
+<strong>Chester Road</strong><br>
+25 Chester Road
+</li>
+
+<li>
+<strong>Croftdown Road</strong><br>
+170 Croftdown Road
+</li>
+
+<li>
+<strong>Vale of Health</strong><br>
+12 Vale of Health
+</li>
+
+<li>
+<strong>Rosecroft Avenue</strong><br>
+17 Rosecroft Avenue
+</li>
+
+<li>
+<strong>York Rise Site 2</strong><br>
+50 York Rise
+</li>
+
+<li>
+<strong>Templewood Gardens</strong><br>
+1 Templewood Gardens
+</li>
+
+<li>
+<strong>Well Road</strong><br>
+4 Well Road
+</li>
+
+<li>
+<strong>New End</strong><br>
+10 New End
+</li>
+
+<li>
+<strong>Ferncroft Avenue</strong><br>
+32 Ferncroft Avenue
+</li>
+
+<li>
+<strong>Ardwick Road</strong><br>
+19 Ardwick Road
+</li>
+
+<li>
+<strong>Lissenden Gardens</strong><br>
+17 Lissenden Gardens
+</li>
+
+<li>
+<strong>Oakhill Avenue</strong><br>
+11A Oakhill Avenue
+</li>
+
+<li>
+<strong>Gayton Road</strong><br>
+61 Gayton Road
+</li>
+
+<li>
+<strong>Savernake Road</strong><br>
+Opposite 58 Savernake Road
+</li>
+
+<li>
+<strong>Ebbsfleet Road</strong><br>
+Ebbsfleet Road
+</li>
+
+<li>
+<strong>Constantine Road</strong><br>
+49 Constantine Road
+</li>
+
+<li>
+<strong>Somali Road</strong><br>
+34 Somali Road
+</li>
+
+<li>
+<strong>Prince Arthur Road</strong><br>
+12 Prince Arthur Road
+</li>
+
+<li>
+<strong>Ajax Road</strong><br>
+3 Ajax Road
+</li>
+
+<li>
+<strong>Mackeson Road</strong><br>
+2 Mackeson Road
+</li>
+
+<li>
+<strong>Ellerdale Road</strong><br>
+16 Ellerdale Road
+</li>
+
+<li>
+<strong>Thurlow Road</strong><br>
+6 Thurlow Road
+</li>
+
+<li>
+<strong>Elaine Grove</strong><br>
+9 Elaine Grove
+</li>
+
+<li>
+<strong>Hampstead Hill Gardens</strong><br>
+33 Hampstead Hill Gardens
+</li>
+
+<li>
+<strong>Grafton Road</strong><br>
+Grafton Road
+</li>
+
+<li>
+<strong>Gondar Gardens</strong><br>
+8 Gondar Gardens
+</li>
+
+<li>
+<strong>Belsize Lane</strong><br>
+2 Belsize Lane
+</li>
+
+<li>
+<strong>Leverton Street</strong><br>
+36 Leverton Street
+</li>
+
+<li>
+<strong>Alvanley Gardens</strong><br>
+17 Alvanley Gardens
+</li>
+
+<li>
+<strong>Parkhill Road</strong><br>
+60 Parkhill Road
+</li>
+
+<li>
+<strong>Solent Road</strong><br>
+39 Solent Road
+</li>
+
+<li>
+<strong>Frognal</strong><br>
+15 Frognal
+</li>
+
+<li>
+<strong>Fawley Road</strong><br>
+3 Fawley Road
+</li>
+
+<li>
+<strong>Brecknock Road</strong><br>
+33 Brecknock Road
+</li>
+
+<li>
+<strong>St Cutherberts Road</strong><br>
+56 St Cutherbert's Road
+</li>
+
+<li>
+<strong>Dennington Park Road</strong><br>
+23 Dennington Park Road
+</li>
+
+<li>
+<strong>Lithos Road</strong><br>
+13 Lithos Road
+</li>
+
+<li>
+<strong>Glenilla Road</strong><br>
+1 Glenilla Road
+</li>
+
+<li>
+<strong>Upper Park Road</strong><br>
+4 Upper Park Road
+</li>
+
+<li>
+<strong>Sumatra Road</strong><br>
+167 Sumatra Road
+</li>
+
+<li>
+<strong>Belsize Park Gardens</strong><br>
+1 Belsize Park Gardens
+</li>
+
+<li>
+<strong>Malden Road</strong><br>
+25 Malden Road
+</li>
+
+<li>
+<strong>Iverson Road</strong><br>
+171 Iverson Road
+</li>
+
+<li>
+<strong>Ariel Road</strong><br>
+29 Ariel Road
+</li>
+
+<li>
+<strong>Belsize Grove</strong><br>
+1 Belsize Grove
+</li>
+
+<li>
+<strong>Blackburn Road</strong><br>
+Blackburn Road
+</li>
+
+<li>
+<strong>Loveridge Road</strong><br>
+55 Loveridge Road
+</li>
+
+<li>
+<strong>Lawford Road</strong><br>
+1 Lawford Road
+</li>
+
+<li>
+<strong>Gladys Road</strong><br>
+30 Gladys Road
+</li>
+
+<li>
+<strong>Eton Avenue Site 2</strong><br>
+4 Eton Avenue
+</li>
+
+<li>
+<strong>Hilltop Road</strong><br>
+6 Hilltop Road
+</li>
+
+<li>
+<strong>Eton College Road</strong><br>
+5 Eton College Road
+</li>
+
+<li>
+<strong>Netherwood Street</strong><br>
+1 Netherwood Street
+</li>
+
+<li>
+<strong>Hadley Street</strong><br>
+36 Hadley Street
+</li>
+
+<li>
+<strong>Compayne Gardens Site 2</strong><br>
+80 Compayne Gardens
+</li>
+
+<li>
+<strong>Lowfield Road</strong><br>
+47 Lowfield Road
+</li>
+
+<li>
+<strong>Hemstal Road</strong><br>
+49 Hemstal Road
+</li>
+
+<li>
+<strong>Harben Road</strong><br>
+25 Harben Road
+</li>
+
+<li>
+<strong>Eton Road</strong><br>
+15 Eton Road
+</li>
+
+<li>
+<strong>St Pauls Crescent</strong><br>
+32A St Paul's Crescent
+</li>
+
+<li>
+<strong>Fellows Road</strong><br>
+79 Fellows Road
+</li>
+
+<li>
+<strong>Murray Street</strong><br>
+54 Murray Street
+</li>
+
+<li>
+<strong>Messina Avenue</strong><br>
+111 Messina Avenue
+</li>
+
+<li>
+<strong>Woodchurch Road</strong><br>
+1 Woodchurch Road
+</li>
+
+<li>
+<strong>Broadfield Lane</strong><br>
+Broadfield Lane
+</li>
+
+<li>
+<strong>Aberdare Gardens</strong><br>
+11 Aberdare Gardens
+</li>
+
+<li>
+<strong>Elsworthy Road</strong><br>
+2 Elsworthy Road
+</li>
+
+<li>
+<strong>Acol Road</strong><br>
+21 Acol Road
+</li>
+
+<li>
+<strong>Mazenod Avenue</strong><br>
+40 Mazenod Avenue
+</li>
+
+<li>
+<strong>Fitzroy Road</strong><br>
+1 Fitzroy Road
+</li>
+
+<li>
+<strong>Alexandra Road</strong><br>
+2-10 Alexandra Road
+</li>
+
+<li>
+<strong>Edis Street</strong><br>
+14 Edis Street
+</li>
+
+<li>
+<strong>Mutrix Road</strong><br>
+48 Mutrix Road
+</li>
+
+<li>
+<strong>Jamestown Road</strong><br>
+35 Jamestown Road
+</li>
+
+<li>
+<strong>Belsize Road</strong><br>
+208 Belsize Road
+</li>
+
+<li>
+<strong>Gloucester Avenue</strong><br>
+28 Gloucester Avenue
+</li>
+
+<li>
+<strong>Mortimer Place</strong><br>
+Mortimer Place
+</li>
+
+<li>
+<strong>College Place</strong><br>
+College Place
+</li>
+
+<li>
+<strong>Plender Street</strong><br>
+73 Plender Street
+</li>
+
+<li>
+<strong>Arlington Road</strong><br>
+49 Arlington Road
+</li>
+
+<li>
+<strong>Mornington Terrace</strong><br>
+14 Mornington Terrace
+</li>
+
+<li>
+<strong>Mackworth Street</strong><br>
+Mackworth Street
+</li>
+
+<li>
+<strong>Varndell Street</strong><br>
+4 Varndell Street
+</li>
+
+<li>
+<strong>Cartwright Gardens</strong><br>
+1 Cartwright Gardens
+</li>
+
+<li>
+<strong>Cubbitt Street</strong><br>
+7 Cubbitt Street
+</li>
+
+<li>
+<strong>Heathcote Street</strong><br>
+7B Heathcote Street
+</li>
+
+<li>
+<strong>Gordon Street</strong><br>
+Gordon Street
+</li>
+
+<li>
+<strong>Whitfield Street</strong><br>
+80 Whitfield Street
+</li>
+
+<li>
+<strong>Fitzroy Street Site 2</strong><br>
+12 Fitzroy Street
+</li>
+
+<li>
+<strong>Portpool Lane</strong><br>
+Portpool Lane
+</li>
+
+<li>
+<strong>Stephens Street</strong><br>
+Stephens Street
+</li>
+
+</ul>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script>
+
+var map = L.map('map').setView([
+51.54985,
+-0.18894
+], 12);
+
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+attribution: '&copy; OpenStreetMap contributors'
+}).addTo(map);
+
+
+
+L.marker([
+51.54985,
+-0.18894
+]).addTo(map)
+.bindPopup("<b>Crediton Hill</b><br>7 Crediton Hill");
+
+
+
+L.marker([
+51.563183,
+-0.141564
+]).addTo(map)
+.bindPopup("<b>Chester Road</b><br>25 Chester Road");
+
+
+
+L.marker([
+51.563,
+-0.144197
+]).addTo(map)
+.bindPopup("<b>Croftdown Road</b><br>170 Croftdown Road");
 
-<div class="container">
+
+
+L.marker([
+51.56248,
+-0.176493
+]).addTo(map)
+.bindPopup("<b>Vale of Health</b><br>12 Vale of Health");
 
-<p>92 charging locations found.</p>
 
 
-<div class="card">
+L.marker([
+51.56086,
+-0.191417
+]).addTo(map)
+.bindPopup("<b>Rosecroft Avenue</b><br>17 Rosecroft Avenue");
 
-<h3>Crediton Hill</h3>
 
-<p>
-7 Crediton Hill<br>
-Camden Town<br>
-NW6 1HT
-</p>
 
-</div>
+L.marker([
+51.56041,
+-0.145356
+]).addTo(map)
+.bindPopup("<b>York Rise Site 2</b><br>50 York Rise");
 
-<div class="card">
 
-<h3>Chester Road</h3>
 
-<p>
-25 Chester Road<br>
-Camden Town<br>
-N19 5DE
-</p>
+L.marker([
+51.559265,
+-0.187225
+]).addTo(map)
+.bindPopup("<b>Templewood Gardens</b><br>1 Templewood Gardens");
 
-</div>
 
-<div class="card">
 
-<h3>Croftdown Road</h3>
+L.marker([
+51.55909,
+-0.175229
+]).addTo(map)
+.bindPopup("<b>Well Road</b><br>4 Well Road");
 
-<p>
-170 Croftdown Road<br>
-Camden Town<br>
-NW5 1HB
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+51.55868,
+-0.176875
+]).addTo(map)
+.bindPopup("<b>New End</b><br>10 New End");
 
-<h3>Vale of Health</h3>
 
-<p>
-12 Vale of Health<br>
-Camden Town<br>
-NW3 1BB
-</p>
 
-</div>
+L.marker([
+51.558147,
+-0.190602
+]).addTo(map)
+.bindPopup("<b>Ferncroft Avenue</b><br>32 Ferncroft Avenue");
 
-<div class="card">
 
-<h3>Rosecroft Avenue</h3>
 
-<p>
-17 Rosecroft Avenue<br>
-Camden Town<br>
-NW3 7QA
-</p>
+L.marker([
+51.558037,
+-0.19743
+]).addTo(map)
+.bindPopup("<b>Ardwick Road</b><br>19 Ardwick Road");
 
-</div>
 
-<div class="card">
 
-<h3>York Rise Site 2</h3>
+L.marker([
+51.557217,
+-0.149294
+]).addTo(map)
+.bindPopup("<b>Lissenden Gardens</b><br>17 Lissenden Gardens");
 
-<p>
-50 York Rise<br>
-Camden Town<br>
-NW5 1SB
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+51.556103,
+-0.188057
+]).addTo(map)
+.bindPopup("<b>Oakhill Avenue</b><br>11A Oakhill Avenue");
 
-<h3>Templewood Gardens</h3>
 
-<p>
-1 Templewood Gardens<br>
-Camden Town<br>
-NW3 7XB
-</p>
 
-</div>
+L.marker([
+51.55591,
+-0.175933
+]).addTo(map)
+.bindPopup("<b>Gayton Road</b><br>61 Gayton Road");
 
-<div class="card">
 
-<h3>Well Road</h3>
 
-<p>
-4 Well Road<br>
-Camden Town<br>
-NW3 1LJ
-</p>
+L.marker([
+51.555775,
+-0.155801
+]).addTo(map)
+.bindPopup("<b>Savernake Road</b><br>Opposite 58 Savernake Road");
 
-</div>
 
-<div class="card">
 
-<h3>New End</h3>
+L.marker([
+51.55502,
+-0.211123
+]).addTo(map)
+.bindPopup("<b>Ebbsfleet Road</b><br>Ebbsfleet Road");
 
-<p>
-10 New End<br>
-Camden Town<br>
-NW3 1JD
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+51.554916,
+-0.162673
+]).addTo(map)
+.bindPopup("<b>Constantine Road</b><br>49 Constantine Road");
 
-<h3>Ferncroft Avenue</h3>
 
-<p>
-32 Ferncroft Avenue<br>
-Camden Town<br>
-NW3 7PE
-</p>
 
-</div>
+L.marker([
+51.554726,
+-0.205451
+]).addTo(map)
+.bindPopup("<b>Somali Road</b><br>34 Somali Road");
 
-<div class="card">
 
-<h3>Ardwick Road</h3>
 
-<p>
-19 Ardwick Road<br>
-Camden Town<br>
-NW2 2BX
-</p>
+L.marker([
+51.55464,
+-0.176532
+]).addTo(map)
+.bindPopup("<b>Prince Arthur Road</b><br>12 Prince Arthur Road");
 
-</div>
 
-<div class="card">
 
-<h3>Lissenden Gardens</h3>
+L.marker([
+51.55458,
+-0.198316
+]).addTo(map)
+.bindPopup("<b>Ajax Road</b><br>3 Ajax Road");
 
-<p>
-17 Lissenden Gardens<br>
-Camden Town<br>
-NW5 1PP
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+51.554333,
+-0.160244
+]).addTo(map)
+.bindPopup("<b>Mackeson Road</b><br>2 Mackeson Road");
 
-<h3>Oakhill Avenue</h3>
 
-<p>
-11A Oakhill Avenue<br>
-Camden Town<br>
-NW3 7RE
-</p>
 
-</div>
+L.marker([
+51.553905,
+-0.178971
+]).addTo(map)
+.bindPopup("<b>Ellerdale Road</b><br>16 Ellerdale Road");
 
-<div class="card">
 
-<h3>Gayton Road</h3>
 
-<p>
-61 Gayton Road<br>
-Camden Town<br>
-NW3 1QW
-</p>
+L.marker([
+51.553783,
+-0.172816
+]).addTo(map)
+.bindPopup("<b>Thurlow Road</b><br>6 Thurlow Road");
 
-</div>
 
-<div class="card">
 
-<h3>Savernake Road</h3>
+L.marker([
+51.553726,
+-0.154341
+]).addTo(map)
+.bindPopup("<b>Elaine Grove</b><br>9 Elaine Grove");
 
-<p>
-Opposite 58 Savernake Road<br>
-Camden Town<br>
-NW3 2JU
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+51.55372,
+-0.168289
+]).addTo(map)
+.bindPopup("<b>Hampstead Hill Gardens</b><br>33 Hampstead Hill Gardens");
 
-<h3>Ebbsfleet Road</h3>
 
-<p>
-Ebbsfleet Road<br>
-Camden Town<br>
-NW2 3NB
-</p>
 
-</div>
+L.marker([
+51.553677,
+-0.151298
+]).addTo(map)
+.bindPopup("<b>Grafton Road</b><br>Grafton Road");
 
-<div class="card">
 
-<h3>Constantine Road</h3>
 
-<p>
-49 Constantine Road<br>
-Camden Town<br>
-NW3 2LP
-</p>
+L.marker([
+51.552734,
+-0.202154
+]).addTo(map)
+.bindPopup("<b>Gondar Gardens</b><br>8 Gondar Gardens");
 
-</div>
 
-<div class="card">
 
-<h3>Somali Road</h3>
+L.marker([
+51.552483,
+-0.168397
+]).addTo(map)
+.bindPopup("<b>Belsize Lane</b><br>2 Belsize Lane");
 
-<p>
-34 Somali Road<br>
-Camden Town<br>
-NW2 3RN
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+51.552216,
+-0.139616
+]).addTo(map)
+.bindPopup("<b>Leverton Street</b><br>36 Leverton Street");
 
-<h3>Prince Arthur Road</h3>
 
-<p>
-12 Prince Arthur Road<br>
-Camden Town<br>
-NW3 6AU
-</p>
 
-</div>
+L.marker([
+51.551662,
+-0.187441
+]).addTo(map)
+.bindPopup("<b>Alvanley Gardens</b><br>17 Alvanley Gardens");
 
-<div class="card">
 
-<h3>Ajax Road</h3>
 
-<p>
-3 Ajax Road<br>
-Camden Town<br>
-NW6 1EF
-</p>
+L.marker([
+51.550903,
+-0.158969
+]).addTo(map)
+.bindPopup("<b>Parkhill Road</b><br>60 Parkhill Road");
 
-</div>
 
-<div class="card">
 
-<h3>Mackeson Road</h3>
+L.marker([
+51.550663,
+-0.196697
+]).addTo(map)
+.bindPopup("<b>Solent Road</b><br>39 Solent Road");
 
-<p>
-2 Mackeson Road<br>
-Camden Town<br>
-NW3 2LT
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+51.55048,
+-0.180319
+]).addTo(map)
+.bindPopup("<b>Frognal</b><br>15 Frognal");
 
-<h3>Ellerdale Road</h3>
 
-<p>
-16 Ellerdale Road<br>
-Camden Town<br>
-NW3 6BB
-</p>
 
-</div>
+L.marker([
+51.550163,
+-0.190558
+]).addTo(map)
+.bindPopup("<b>Fawley Road</b><br>3 Fawley Road");
 
-<div class="card">
 
-<h3>Thurlow Road</h3>
 
-<p>
-6 Thurlow Road<br>
-Camden Town<br>
-NW3 5PJ
-</p>
+L.marker([
+51.550037,
+-0.13046
+]).addTo(map)
+.bindPopup("<b>Brecknock Road</b><br>33 Brecknock Road");
 
-</div>
 
-<div class="card">
 
-<h3>Elaine Grove</h3>
+L.marker([
+51.549725,
+-0.203441
+]).addTo(map)
+.bindPopup("<b>St Cutherberts Road</b><br>56 St Cutherbert's Road");
 
-<p>
-9 Elaine Grove<br>
-Camden Town<br>
-NW5 4QG
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+51.549625,
+-0.194084
+]).addTo(map)
+.bindPopup("<b>Dennington Park Road</b><br>23 Dennington Park Road");
 
-<h3>Hampstead Hill Gardens</h3>
 
-<p>
-33 Hampstead Hill Gardens<br>
-Camden Town<br>
-NW3 2PJ
-</p>
 
-</div>
+L.marker([
+51.549618,
+-0.183094
+]).addTo(map)
+.bindPopup("<b>Lithos Road</b><br>13 Lithos Road");
 
-<div class="card">
 
-<h3>Grafton Road</h3>
 
-<p>
-Grafton Road<br>
-Camden Town<br>
-NW5 4AN
-</p>
+L.marker([
+51.549423,
+-0.16901
+]).addTo(map)
+.bindPopup("<b>Glenilla Road</b><br>1 Glenilla Road");
 
-</div>
 
-<div class="card">
 
-<h3>Gondar Gardens</h3>
+L.marker([
+51.54938,
+-0.161584
+]).addTo(map)
+.bindPopup("<b>Upper Park Road</b><br>4 Upper Park Road");
 
-<p>
-8 Gondar Gardens<br>
-Camden Town<br>
-NW6 1HA
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+51.548946,
+-0.193895
+]).addTo(map)
+.bindPopup("<b>Sumatra Road</b><br>167 Sumatra Road");
 
-<h3>Belsize Lane</h3>
 
-<p>
-2 Belsize Lane<br>
-Camden Town<br>
-NW3 5AA
-</p>
 
-</div>
+L.marker([
+51.548492,
+-0.170432
+]).addTo(map)
+.bindPopup("<b>Belsize Park Gardens</b><br>1 Belsize Park Gardens");
 
-<div class="card">
 
-<h3>Leverton Street</h3>
 
-<p>
-36 Leverton Street<br>
-Camden Town<br>
-NW5 2PG
-</p>
+L.marker([
+51.54801,
+-0.152264
+]).addTo(map)
+.bindPopup("<b>Malden Road</b><br>25 Malden Road");
 
-</div>
 
-<div class="card">
 
-<h3>Alvanley Gardens</h3>
+L.marker([
+51.547993,
+-0.192649
+]).addTo(map)
+.bindPopup("<b>Iverson Road</b><br>171 Iverson Road");
 
-<p>
-17 Alvanley Gardens<br>
-Camden Town<br>
-NW6 1JD
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+51.54785,
+-0.198149
+]).addTo(map)
+.bindPopup("<b>Ariel Road</b><br>29 Ariel Road");
 
-<h3>Parkhill Road</h3>
 
-<p>
-60 Parkhill Road<br>
-Camden Town<br>
-NW3 2YT
-</p>
 
-</div>
+L.marker([
+51.547413,
+-0.165211
+]).addTo(map)
+.bindPopup("<b>Belsize Grove</b><br>1 Belsize Grove");
 
-<div class="card">
 
-<h3>Solent Road</h3>
 
-<p>
-39 Solent Road<br>
-Camden Town<br>
-NW6 1TU
-</p>
+L.marker([
+51.547096,
+-0.190636
+]).addTo(map)
+.bindPopup("<b>Blackburn Road</b><br>Blackburn Road");
 
-</div>
 
-<div class="card">
 
-<h3>Frognal</h3>
+L.marker([
+51.546993,
+-0.200808
+]).addTo(map)
+.bindPopup("<b>Loveridge Road</b><br>55 Loveridge Road");
 
-<p>
-15 Frognal<br>
-Camden Town<br>
-NW3 6AP
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+51.54666,
+-0.139828
+]).addTo(map)
+.bindPopup("<b>Lawford Road</b><br>1 Lawford Road");
 
-<h3>Fawley Road</h3>
 
-<p>
-3 Fawley Road<br>
-Camden Town<br>
-NW6 1SL
-</p>
 
-</div>
+L.marker([
+51.545555,
+-0.193755
+]).addTo(map)
+.bindPopup("<b>Gladys Road</b><br>30 Gladys Road");
 
-<div class="card">
 
-<h3>Brecknock Road</h3>
 
-<p>
-33 Brecknock Road<br>
-Camden Town<br>
-N7 0BT
-</p>
+L.marker([
+51.545467,
+-0.163732
+]).addTo(map)
+.bindPopup("<b>Eton Avenue Site 2</b><br>4 Eton Avenue");
 
-</div>
 
-<div class="card">
 
-<h3>St Cutherberts Road</h3>
+L.marker([
+51.54539,
+-0.193098
+]).addTo(map)
+.bindPopup("<b>Hilltop Road</b><br>6 Hilltop Road");
 
-<p>
-56 St Cutherbert's Road<br>
-Camden Town<br>
-NW2 3QH
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+51.545162,
+-0.156475
+]).addTo(map)
+.bindPopup("<b>Eton College Road</b><br>5 Eton College Road");
 
-<h3>Dennington Park Road</h3>
 
-<p>
-23 Dennington Park Road<br>
-Camden Town<br>
-NW6 1BB
-</p>
 
-</div>
+L.marker([
+51.545143,
+-0.200521
+]).addTo(map)
+.bindPopup("<b>Netherwood Street</b><br>1 Netherwood Street");
 
-<div class="card">
 
-<h3>Lithos Road</h3>
 
-<p>
-13 Lithos Road<br>
-Camden Town<br>
-NW3 6DX
-</p>
+L.marker([
+51.545113,
+-0.145848
+]).addTo(map)
+.bindPopup("<b>Hadley Street</b><br>36 Hadley Street");
 
-</div>
 
-<div class="card">
 
-<h3>Glenilla Road</h3>
+L.marker([
+51.5451,
+-0.189432
+]).addTo(map)
+.bindPopup("<b>Compayne Gardens Site 2</b><br>80 Compayne Gardens");
 
-<p>
-1 Glenilla Road<br>
-Camden Town<br>
-NW3 4AJ
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+51.54493,
+-0.196289
+]).addTo(map)
+.bindPopup("<b>Lowfield Road</b><br>47 Lowfield Road");
 
-<h3>Upper Park Road</h3>
 
-<p>
-4 Upper Park Road<br>
-Camden Town<br>
-NW3 2UP
-</p>
 
-</div>
+L.marker([
+51.544533,
+-0.195728
+]).addTo(map)
+.bindPopup("<b>Hemstal Road</b><br>49 Hemstal Road");
 
-<div class="card">
 
-<h3>Sumatra Road</h3>
 
-<p>
-167 Sumatra Road<br>
-Camden Town<br>
-NW6 1PE
-</p>
+L.marker([
+51.544346,
+-0.177881
+]).addTo(map)
+.bindPopup("<b>Harben Road</b><br>25 Harben Road");
 
-</div>
 
-<div class="card">
 
-<h3>Belsize Park Gardens</h3>
+L.marker([
+51.544262,
+-0.15928
+]).addTo(map)
+.bindPopup("<b>Eton Road</b><br>15 Eton Road");
 
-<p>
-1 Belsize Park Gardens<br>
-Camden Town<br>
-NW3 4LB
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+51.54425,
+-0.128418
+]).addTo(map)
+.bindPopup("<b>St Pauls Crescent</b><br>32A St Paul's Crescent");
 
-<h3>Malden Road</h3>
 
-<p>
-25 Malden Road<br>
-Camden Town<br>
-NW5 4DA
-</p>
 
-</div>
+L.marker([
+51.54405,
+-0.166731
+]).addTo(map)
+.bindPopup("<b>Fellows Road</b><br>79 Fellows Road");
 
-<div class="card">
 
-<h3>Iverson Road</h3>
 
-<p>
-171 Iverson Road<br>
-Camden Town<br>
-NW6 2RB
-</p>
+L.marker([
+51.543884,
+-0.132947
+]).addTo(map)
+.bindPopup("<b>Murray Street</b><br>54 Murray Street");
 
-</div>
 
-<div class="card">
 
-<h3>Ariel Road</h3>
+L.marker([
+51.543102,
+-0.193347
+]).addTo(map)
+.bindPopup("<b>Messina Avenue</b><br>111 Messina Avenue");
 
-<p>
-29 Ariel Road<br>
-Camden Town<br>
-NW6 2EA
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+51.543083,
+-0.189714
+]).addTo(map)
+.bindPopup("<b>Woodchurch Road</b><br>1 Woodchurch Road");
 
-<h3>Belsize Grove</h3>
 
-<p>
-1 Belsize Grove<br>
-Camden Town<br>
-NW3 4UN
-</p>
 
-</div>
+L.marker([
+51.54226,
+-0.125948
+]).addTo(map)
+.bindPopup("<b>Broadfield Lane</b><br>Broadfield Lane");
 
-<div class="card">
 
-<h3>Blackburn Road</h3>
 
-<p>
-Blackburn Road<br>
-Camden Town<br>
-NW6 1RZ
-</p>
+L.marker([
+51.542156,
+-0.187473
+]).addTo(map)
+.bindPopup("<b>Aberdare Gardens</b><br>11 Aberdare Gardens");
 
-</div>
 
-<div class="card">
 
-<h3>Loveridge Road</h3>
+L.marker([
+51.542004,
+-0.162573
+]).addTo(map)
+.bindPopup("<b>Elsworthy Road</b><br>2 Elsworthy Road");
 
-<p>
-55 Loveridge Road<br>
-Camden Town<br>
-NW6 2DU
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+51.541897,
+-0.192155
+]).addTo(map)
+.bindPopup("<b>Acol Road</b><br>21 Acol Road");
 
-<h3>Lawford Road</h3>
 
-<p>
-1 Lawford Road<br>
-Camden Town<br>
-NW5 2LH
-</p>
 
-</div>
+L.marker([
+51.541588,
+-0.194244
+]).addTo(map)
+.bindPopup("<b>Mazenod Avenue</b><br>40 Mazenod Avenue");
 
-<div class="card">
 
-<h3>Gladys Road</h3>
 
-<p>
-30 Gladys Road<br>
-Camden Town<br>
-NW6 2PX
-</p>
+L.marker([
+51.540943,
+-0.153531
+]).addTo(map)
+.bindPopup("<b>Fitzroy Road</b><br>1 Fitzroy Road");
 
-</div>
 
-<div class="card">
 
-<h3>Eton Avenue Site 2</h3>
+L.marker([
+51.540867,
+-0.177285
+]).addTo(map)
+.bindPopup("<b>Alexandra Road</b><br>2-10 Alexandra Road");
 
-<p>
-4 Eton Avenue<br>
-Camden Town<br>
-NW3 3EJ
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+51.540348,
+-0.151666
+]).addTo(map)
+.bindPopup("<b>Edis Street</b><br>14 Edis Street");
 
-<h3>Hilltop Road</h3>
 
-<p>
-6 Hilltop Road<br>
-Camden Town<br>
-NW6 2PY
-</p>
 
-</div>
+L.marker([
+51.54029,
+-0.193444
+]).addTo(map)
+.bindPopup("<b>Mutrix Road</b><br>48 Mutrix Road");
 
-<div class="card">
 
-<h3>Eton College Road</h3>
 
-<p>
-5 Eton College Road<br>
-Camden Town<br>
-NW3 4SX
-</p>
+L.marker([
+51.54013,
+-0.145921
+]).addTo(map)
+.bindPopup("<b>Jamestown Road</b><br>35 Jamestown Road");
 
-</div>
 
-<div class="card">
 
-<h3>Netherwood Street</h3>
+L.marker([
+51.53949,
+-0.188299
+]).addTo(map)
+.bindPopup("<b>Belsize Road</b><br>208 Belsize Road");
 
-<p>
-1 Netherwood Street<br>
-Camden Town<br>
-NW6 2QU
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+51.538254,
+-0.148867
+]).addTo(map)
+.bindPopup("<b>Gloucester Avenue</b><br>28 Gloucester Avenue");
 
-<h3>Hadley Street</h3>
 
-<p>
-36 Hadley Street<br>
-Camden Town<br>
-NW1 8TA
-</p>
 
-</div>
+L.marker([
+51.537376,
+-0.189464
+]).addTo(map)
+.bindPopup("<b>Mortimer Place</b><br>Mortimer Place");
 
-<div class="card">
 
-<h3>Compayne Gardens Site 2</h3>
 
-<p>
-80 Compayne Gardens<br>
-Camden Town<br>
-NW6 3RS
-</p>
+L.marker([
+51.537033,
+-0.135347
+]).addTo(map)
+.bindPopup("<b>College Place</b><br>College Place");
 
-</div>
 
-<div class="card">
 
-<h3>Lowfield Road</h3>
+L.marker([
+51.536423,
+-0.138155
+]).addTo(map)
+.bindPopup("<b>Plender Street</b><br>73 Plender Street");
 
-<p>
-47 Lowfield Road<br>
-Camden Town<br>
-NW6 2PP
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+51.53567,
+-0.141286
+]).addTo(map)
+.bindPopup("<b>Arlington Road</b><br>49 Arlington Road");
 
-<h3>Hemstal Road</h3>
 
-<p>
-49 Hemstal Road<br>
-Camden Town<br>
-NW6 2AD
-</p>
 
-</div>
+L.marker([
+51.534378,
+-0.142593
+]).addTo(map)
+.bindPopup("<b>Mornington Terrace</b><br>14 Mornington Terrace");
 
-<div class="card">
 
-<h3>Harben Road</h3>
 
-<p>
-25 Harben Road<br>
-Camden Town<br>
-NW6 4RH
-</p>
+L.marker([
+51.530468,
+-0.140503
+]).addTo(map)
+.bindPopup("<b>Mackworth Street</b><br>Mackworth Street");
 
-</div>
 
-<div class="card">
 
-<h3>Eton Road</h3>
+L.marker([
+51.529373,
+-0.140519
+]).addTo(map)
+.bindPopup("<b>Varndell Street</b><br>4 Varndell Street");
 
-<p>
-15 Eton Road<br>
-Camden Town<br>
-NW3 4SS
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+51.527348,
+-0.126877
+]).addTo(map)
+.bindPopup("<b>Cartwright Gardens</b><br>1 Cartwright Gardens");
 
-<h3>St Pauls Crescent</h3>
 
-<p>
-32A St Paul's Crescent<br>
-Camden Town<br>
-NW1 9XN
-</p>
 
-</div>
+L.marker([
+51.52684,
+-0.115451
+]).addTo(map)
+.bindPopup("<b>Cubbitt Street</b><br>7 Cubbitt Street");
 
-<div class="card">
 
-<h3>Fellows Road</h3>
 
-<p>
-79 Fellows Road<br>
-Camden Town<br>
-NW3 3JY
-</p>
+L.marker([
+51.526318,
+-0.119235
+]).addTo(map)
+.bindPopup("<b>Heathcote Street</b><br>7B Heathcote Street");
 
-</div>
 
-<div class="card">
 
-<h3>Murray Street</h3>
+L.marker([
+51.525513,
+-0.132949
+]).addTo(map)
+.bindPopup("<b>Gordon Street</b><br>Gordon Street");
 
-<p>
-54 Murray Street<br>
-Camden Town<br>
-NW1 9XE
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+51.52236,
+-0.137215
+]).addTo(map)
+.bindPopup("<b>Whitfield Street</b><br>80 Whitfield Street");
 
-<h3>Messina Avenue</h3>
 
-<p>
-111 Messina Avenue<br>
-Camden Town<br>
-NW6 4LG
-</p>
 
-</div>
+L.marker([
+51.521873,
+-0.138201
+]).addTo(map)
+.bindPopup("<b>Fitzroy Street Site 2</b><br>12 Fitzroy Street");
 
-<div class="card">
 
-<h3>Woodchurch Road</h3>
 
-<p>
-1 Woodchurch Road<br>
-Camden Town<br>
-NW6 3PL
-</p>
+L.marker([
+51.5208,
+-0.112255
+]).addTo(map)
+.bindPopup("<b>Portpool Lane</b><br>Portpool Lane");
 
-</div>
 
-<div class="card">
 
-<h3>Broadfield Lane</h3>
+L.marker([
+51.517475,
+-0.133047
+]).addTo(map)
+.bindPopup("<b>Stephens Street</b><br>Stephens Street");
 
-<p>
-Broadfield Lane<br>
-Camden Town<br>
-NW1 9YJ
-</p>
 
-</div>
 
-<div class="card">
-
-<h3>Aberdare Gardens</h3>
-
-<p>
-11 Aberdare Gardens<br>
-Camden Town<br>
-NW6 3AJ
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Elsworthy Road</h3>
-
-<p>
-2 Elsworthy Road<br>
-Camden Town<br>
-NW3 3DS
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Acol Road</h3>
-
-<p>
-21 Acol Road<br>
-Camden Town<br>
-NW6 3AE
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Mazenod Avenue</h3>
-
-<p>
-40 Mazenod Avenue<br>
-Camden Town<br>
-NW6 4LR
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Fitzroy Road</h3>
-
-<p>
-1 Fitzroy Road<br>
-Camden Town<br>
-NW1 8TU
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Alexandra Road</h3>
-
-<p>
-2-10 Alexandra Road<br>
-Camden Town<br>
-NW8 0DR
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Edis Street</h3>
-
-<p>
-14 Edis Street<br>
-Camden Town<br>
-NW1 8LG
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Mutrix Road</h3>
-
-<p>
-48 Mutrix Road<br>
-Camden Town<br>
-NW6 4BF
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Jamestown Road</h3>
-
-<p>
-35 Jamestown Road<br>
-Camden Town<br>
-NW1 7DB
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Belsize Road</h3>
-
-<p>
-208 Belsize Road<br>
-Camden Town<br>
-NW6 4DT
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Gloucester Avenue</h3>
-
-<p>
-28 Gloucester Avenue<br>
-Camden Town<br>
-NW1 7BQ
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Mortimer Place</h3>
-
-<p>
-Mortimer Place<br>
-Camden Town<br>
-NW6 5PD
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>College Place</h3>
-
-<p>
-College Place<br>
-Camden Town<br>
-NW1 0DD
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Plender Street</h3>
-
-<p>
-73 Plender Street<br>
-Camden Town<br>
-NW1 0HA
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Arlington Road</h3>
-
-<p>
-49 Arlington Road<br>
-Camden Town<br>
-NW1 7ES
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Mornington Terrace</h3>
-
-<p>
-14 Mornington Terrace<br>
-Camden Town<br>
-NW1 7RR
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Mackworth Street</h3>
-
-<p>
-Mackworth Street<br>
-Camden Town<br>
-NW1 3RB
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Varndell Street</h3>
-
-<p>
-4 Varndell Street<br>
-Camden Town<br>
-NW1 3RG
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Cartwright Gardens</h3>
-
-<p>
-1 Cartwright Gardens<br>
-Camden Town<br>
-WC1H 9EN
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Cubbitt Street</h3>
-
-<p>
-7 Cubbitt Street<br>
-Camden Town<br>
-WC1X 0LN
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Heathcote Street</h3>
-
-<p>
-7B Heathcote Street<br>
-Camden Town<br>
-WC1N 2AL
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Gordon Street</h3>
-
-<p>
-Gordon Street<br>
-Camden Town<br>
-WC1H 0AY
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Whitfield Street</h3>
-
-<p>
-80 Whitfield Street<br>
-Camden Town<br>
-W1T 4EZ
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Fitzroy Street Site 2</h3>
-
-<p>
-12 Fitzroy Street<br>
-Camden Town<br>
-W1T 4BL
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Portpool Lane</h3>
-
-<p>
-Portpool Lane<br>
-Camden Town<br>
-EC1N 7UU
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Stephens Street</h3>
-
-<p>
-Stephens Street<br>
-Camden Town<br>
-W1T 1AL
-</p>
-
-</div>
-
-
-</div>
-
-<footer>
-EV Charger Directory
-</footer>
+</script>
 
 </body>
 </html>

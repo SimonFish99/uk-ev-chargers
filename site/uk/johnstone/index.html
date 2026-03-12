@@ -1,88 +1,112 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>EV Chargers in Johnstone</title>
-<link rel="stylesheet" href="/style.css">
+<title>Johnstone EV Chargers</title>
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+
+<style>
+#map {
+  height: 400px;
+  margin-bottom: 30px;
+  border-radius: 8px;
+}
+</style>
+
 </head>
 
 <body>
 
-<header>
-<h1>EV Chargers in Johnstone</h1>
-</header>
+<h1>Johnstone EV Chargers</h1>
 
-<div class="container">
+<div id="map"></div>
 
-<p>5 charging locations found.</p>
+<ul>
 
+<li>
+<strong>Johnstone Town Hall</strong><br>
+Craigdonald Place
+</li>
 
-<div class="card">
+<li>
+<strong>McKillop Centre, Lochwinnoch</strong><br>
+58 Main Street
+</li>
 
-<h3>Johnstone Town Hall</h3>
+<li>
+<strong>Clyde Muirshiel Regional Park (3)</strong><br>
+Calder Glen Road
+</li>
 
-<p>
-Craigdonald Place<br>
-Johnstone<br>
-PA5 8EG
-</p>
+<li>
+<strong>Patons Mill, Johnstone</strong><br>
+Patons Mill
+</li>
 
-</div>
+<li>
+<strong>Auchenncloich Road</strong><br>
+Auchenncloich Road
+</li>
 
-<div class="card">
+</ul>
 
-<h3>McKillop Centre, Lochwinnoch</h3>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
-<p>
-58 Main Street<br>
-Johnstone<br>
-PA12 4AJ
-</p>
+<script>
 
-</div>
+var map = L.map('map').setView([
+55.83524,
+-4.513222
+], 12);
 
-<div class="card">
-
-<h3>Clyde Muirshiel Regional Park (3)</h3>
-
-<p>
-Calder Glen Road<br>
-Johnstone<br>
-PA12 4LB
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Patons Mill, Johnstone</h3>
-
-<p>
-Patons Mill<br>
-Johnstone<br>
-PA5 8SN
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Auchenncloich Road</h3>
-
-<p>
-Auchenncloich Road<br>
-Johnstone<br>
-PA12 2PZ
-</p>
-
-</div>
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+attribution: '&copy; OpenStreetMap contributors'
+}).addTo(map);
 
 
-</div>
 
-<footer>
-EV Charger Directory
-</footer>
+L.marker([
+55.83524,
+-4.513222
+]).addTo(map)
+.bindPopup("<b>Johnstone Town Hall</b><br>Craigdonald Place");
+
+
+
+L.marker([
+55.793799,
+-4.631981
+]).addTo(map)
+.bindPopup("<b>McKillop Centre, Lochwinnoch</b><br>58 Main Street");
+
+
+
+L.marker([
+55.832354,
+-4.697751
+]).addTo(map)
+.bindPopup("<b>Clyde Muirshiel Regional Park (3)</b><br>Calder Glen Road");
+
+
+
+L.marker([
+55.83735,
+-4.51802
+]).addTo(map)
+.bindPopup("<b>Patons Mill, Johnstone</b><br>Patons Mill");
+
+
+
+L.marker([
+55.841582,
+-4.626057
+]).addTo(map)
+.bindPopup("<b>Auchenncloich Road</b><br>Auchenncloich Road");
+
+
+
+</script>
 
 </body>
 </html>

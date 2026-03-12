@@ -1,88 +1,112 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>EV Chargers in Street</title>
-<link rel="stylesheet" href="/style.css">
+<title>Street EV Chargers</title>
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+
+<style>
+#map {
+  height: 400px;
+  margin-bottom: 30px;
+  border-radius: 8px;
+}
+</style>
+
 </head>
 
 <body>
 
-<header>
-<h1>EV Chargers in Street</h1>
-</header>
+<h1>Street EV Chargers</h1>
 
-<div class="container">
+<div id="map"></div>
 
-<p>5 charging locations found.</p>
+<ul>
 
+<li>
+<strong>Clarks International</strong><br>
+40 High St
+</li>
 
-<div class="card">
+<li>
+<strong>McDonald's Street</strong><br>
+Gravenchon Way
+</li>
 
-<h3>Clarks International</h3>
+<li>
+<strong>High Street</strong><br>
+High Street
+</li>
 
-<p>
-40 High St<br>
-Street<br>
-BA16 0EQ
-</p>
+<li>
+<strong>Southside Car Park, Street 1</strong><br>
+Southside Car Park, Street 1
+</li>
 
-</div>
+<li>
+<strong>Outlet Shopping Village</strong><br>
+Outlet Shopping Village
+</li>
 
-<div class="card">
+</ul>
 
-<h3>McDonald's Street</h3>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
-<p>
-Gravenchon Way<br>
-Street<br>
-BA16 0HW
-</p>
+<script>
 
-</div>
+var map = L.map('map').setView([
+51.12851884,
+-2.73801329
+], 12);
 
-<div class="card">
-
-<h3>High Street</h3>
-
-<p>
-High Street<br>
-Street<br>
-BA16 0EF
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Southside Car Park, Street 1</h3>
-
-<p>
-Southside Car Park, Street 1<br>
-Street<br>
-BA16 0HY
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Outlet Shopping Village</h3>
-
-<p>
-Outlet Shopping Village<br>
-Street<br>
-BA16 0BB
-</p>
-
-</div>
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+attribution: '&copy; OpenStreetMap contributors'
+}).addTo(map);
 
 
-</div>
 
-<footer>
-EV Charger Directory
-</footer>
+L.marker([
+51.12851884,
+-2.73801329
+]).addTo(map)
+.bindPopup("<b>Clarks International</b><br>40 High St");
+
+
+
+L.marker([
+51.1256173534157,
+-2.75451838852678
+]).addTo(map)
+.bindPopup("<b>McDonald's Street</b><br>Gravenchon Way");
+
+
+
+L.marker([
+51.12952907813812,
+-2.7359690154322607
+]).addTo(map)
+.bindPopup("<b>High Street</b><br>High Street");
+
+
+
+L.marker([
+51.12546,
+-2.740649
+]).addTo(map)
+.bindPopup("<b>Southside Car Park, Street 1</b><br>Southside Car Park, Street 1");
+
+
+
+L.marker([
+51.130008,
+-2.740425
+]).addTo(map)
+.bindPopup("<b>Outlet Shopping Village</b><br>Outlet Shopping Village");
+
+
+
+</script>
 
 </body>
 </html>

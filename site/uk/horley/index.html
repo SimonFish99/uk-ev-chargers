@@ -1,88 +1,112 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>EV Chargers in Horley</title>
-<link rel="stylesheet" href="/style.css">
+<title>Horley EV Chargers</title>
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+
+<style>
+#map {
+  height: 400px;
+  margin-bottom: 30px;
+  border-radius: 8px;
+}
+</style>
+
 </head>
 
 <body>
 
-<header>
-<h1>EV Chargers in Horley</h1>
-</header>
+<h1>Horley EV Chargers</h1>
 
-<div class="container">
+<div id="map"></div>
 
-<p>5 charging locations found.</p>
+<ul>
 
+<li>
+<strong>Gatwick North Terminal</strong><br>
+Longbridge Gate
+</li>
 
-<div class="card">
+<li>
+<strong>EVC Stanhill Court Hotel</strong><br>
+Stanhill Court Hotel
+</li>
 
-<h3>Gatwick North Terminal</h3>
+<li>
+<strong>Purple Parking - Gatwick Airport</strong><br>
+Q Park
+</li>
 
-<p>
-Longbridge Gate<br>
-Horley<br>
-RH6 0PJ
-</p>
+<li>
+<strong>Gridserve Electric Forecourt Gatwick</strong><br>
+Marriott Courtyard Hotel
+</li>
 
-</div>
+<li>
+<strong>Victoria Rd Car Park, Horley</strong><br>
+129-131 Victoria Road
+</li>
 
-<div class="card">
+</ul>
 
-<h3>EVC Stanhill Court Hotel</h3>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
-<p>
-Stanhill Court Hotel<br>
-Horley<br>
-RH6 0EP
-</p>
+<script>
 
-</div>
+var map = L.map('map').setView([
+51.160769,
+-0.175357
+], 12);
 
-<div class="card">
-
-<h3>Purple Parking - Gatwick Airport</h3>
-
-<p>
-Q Park<br>
-Horley<br>
-RH11 0QB
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Gridserve Electric Forecourt Gatwick</h3>
-
-<p>
-Marriott Courtyard Hotel<br>
-Horley<br>
-RH6 0NT
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Victoria Rd Car Park, Horley</h3>
-
-<p>
-129-131 Victoria Road<br>
-Horley<br>
-RH6 7AS
-</p>
-
-</div>
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+attribution: '&copy; OpenStreetMap contributors'
+}).addTo(map);
 
 
-</div>
 
-<footer>
-EV Charger Directory
-</footer>
+L.marker([
+51.160769,
+-0.175357
+]).addTo(map)
+.bindPopup("<b>Gatwick North Terminal</b><br>Longbridge Gate");
+
+
+
+L.marker([
+51.16673507712332,
+-0.24118690191258824
+]).addTo(map)
+.bindPopup("<b>EVC Stanhill Court Hotel</b><br>Stanhill Court Hotel");
+
+
+
+L.marker([
+51.1428042402538,
+-0.210269953509842
+]).addTo(map)
+.bindPopup("<b>Purple Parking - Gatwick Airport</b><br>Q Park");
+
+
+
+L.marker([
+51.1563134164011,
+-0.153538589496065
+]).addTo(map)
+.bindPopup("<b>Gridserve Electric Forecourt Gatwick</b><br>Marriott Courtyard Hotel");
+
+
+
+L.marker([
+51.171391,
+-0.165346
+]).addTo(map)
+.bindPopup("<b>Victoria Rd Car Park, Horley</b><br>129-131 Victoria Road");
+
+
+
+</script>
 
 </body>
 </html>

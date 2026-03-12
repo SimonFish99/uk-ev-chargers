@@ -1,184 +1,216 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>EV Chargers in Stoke-on-Trent</title>
-<link rel="stylesheet" href="/style.css">
+<title>Stoke-on-Trent EV Chargers</title>
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+
+<style>
+#map {
+  height: 400px;
+  margin-bottom: 30px;
+  border-radius: 8px;
+}
+</style>
+
 </head>
 
 <body>
 
-<header>
-<h1>EV Chargers in Stoke-on-Trent</h1>
-</header>
+<h1>Stoke-on-Trent EV Chargers</h1>
 
-<div class="container">
+<div id="map"></div>
 
-<p>13 charging locations found.</p>
+<ul>
 
+<li>
+<strong>Sov - Type 2 - Charger 2</strong><br>
+Brown Lees Ind Est,
+</li>
 
-<div class="card">
+<li>
+<strong>Longton Rugby Club</strong><br>
+Eastern Rise
+</li>
 
-<h3>Sov - Type 2 - Charger 2</h3>
+<li>
+<strong>Trentham</strong><br>
+Stone Road
+</li>
 
-<p>
-Brown Lees Ind Est,<br>
-Stoke-on-Trent<br>
-ST8 7DN
-</p>
+<li>
+<strong>RAW GREENE KING CHATTERLY 2</strong><br>
+Carsington Drive
+</li>
 
-</div>
+<li>
+<strong>RAW GREENE KING WEATHERVANE 1</strong><br>
+Weathervane Lysander Rd
+</li>
 
-<div class="card">
+<li>
+<strong>intu Potteries Shopping Centre Car Park 2</strong><br>
+Quadrant Road
+</li>
 
-<h3>Longton Rugby Club</h3>
+<li>
+<strong>Nissan Holdcroft Stoke-On-Trent</strong><br>
+929 Leek Road
+</li>
 
-<p>
-Eastern Rise<br>
-Stoke-on-Trent<br>
-ST4 8WG
-</p>
+<li>
+<strong>Restricted access to Toyota customers</strong><br>
+Stanley Matthews Way
+</li>
 
-</div>
+<li>
+<strong>Port Vale Football Club</strong><br>
+Hamil Road
+</li>
 
-<div class="card">
+<li>
+<strong>The Windmill</strong><br>
+Mill House
+</li>
 
-<h3>Trentham</h3>
+<li>
+<strong>Tesco</strong><br>
+Tesco
+</li>
 
-<p>
-Stone Road<br>
-Stoke-on-Trent<br>
-ST4 8JG
-</p>
+<li>
+<strong>Morrisons Stoke</strong><br>
+ Festival Park
+</li>
 
-</div>
+<li>
+<strong>This is a PAYG site. Please use Polar Instant App or RFID card</strong><br>
+Commerce House
+</li>
 
-<div class="card">
+</ul>
 
-<h3>RAW GREENE KING CHATTERLY 2</h3>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
-<p>
-Carsington Drive<br>
-Stoke-on-Trent<br>
-ST6 5GA
-</p>
+<script>
 
-</div>
+var map = L.map('map').setView([
+53.09878,
+-2.181571
+], 12);
 
-<div class="card">
-
-<h3>RAW GREENE KING WEATHERVANE 1</h3>
-
-<p>
-Weathervane Lysander Rd<br>
-Stoke-on-Trent<br>
-ST3 7WA
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>intu Potteries Shopping Centre Car Park 2</h3>
-
-<p>
-Quadrant Road<br>
-Stoke-on-Trent<br>
-ST1 1PS
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Nissan Holdcroft Stoke-On-Trent</h3>
-
-<p>
-929 Leek Road<br>
-Stoke-on-Trent<br>
-ST1 6AL
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Restricted access to Toyota customers</h3>
-
-<p>
-Stanley Matthews Way<br>
-Stoke-on-Trent<br>
-ST4 4DD
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Port Vale Football Club</h3>
-
-<p>
-Hamil Road<br>
-Stoke-on-Trent<br>
-ST6 1AW
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>The Windmill</h3>
-
-<p>
-Mill House<br>
-Stoke-on-Trent<br>
-ST3 7LL
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Tesco</h3>
-
-<p>
-Tesco<br>
-Stoke-on-Trent<br>
-ST1 1QF
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Morrisons Stoke</h3>
-
-<p>
- Festival Park<br>
-Stoke-on-Trent<br>
-ST1 5NY
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>This is a PAYG site. Please use Polar Instant App or RFID card</h3>
-
-<p>
-Commerce House<br>
-Stoke-on-Trent<br>
-ST1 5BE
-</p>
-
-</div>
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+attribution: '&copy; OpenStreetMap contributors'
+}).addTo(map);
 
 
-</div>
 
-<footer>
-EV Charger Directory
-</footer>
+L.marker([
+53.09878,
+-2.181571
+]).addTo(map)
+.bindPopup("<b>Sov - Type 2 - Charger 2</b><br>Brown Lees Ind Est,");
+
+
+
+L.marker([
+52.9793652123602,
+-2.1694858469362064
+]).addTo(map)
+.bindPopup("<b>Longton Rugby Club</b><br>Eastern Rise");
+
+
+
+L.marker([
+52.96302,
+-2.196439
+]).addTo(map)
+.bindPopup("<b>Trentham</b><br>Stone Road");
+
+
+
+L.marker([
+53.069533,
+-2.205343
+]).addTo(map)
+.bindPopup("<b>RAW GREENE KING CHATTERLY 2</b><br>Carsington Drive");
+
+
+
+L.marker([
+52.971201,
+-2.087267
+]).addTo(map)
+.bindPopup("<b>RAW GREENE KING WEATHERVANE 1</b><br>Weathervane Lysander Rd");
+
+
+
+L.marker([
+53.027982,
+-2.175819
+]).addTo(map)
+.bindPopup("<b>intu Potteries Shopping Centre Car Park 2</b><br>Quadrant Road");
+
+
+
+L.marker([
+53.024924,
+-2.154908
+]).addTo(map)
+.bindPopup("<b>Nissan Holdcroft Stoke-On-Trent</b><br>929 Leek Road");
+
+
+
+L.marker([
+52.987582,
+-2.173256
+]).addTo(map)
+.bindPopup("<b>Restricted access to Toyota customers</b><br>Stanley Matthews Way");
+
+
+
+L.marker([
+53.048576,
+-2.192185
+]).addTo(map)
+.bindPopup("<b>Port Vale Football Club</b><br>Hamil Road");
+
+
+
+L.marker([
+52.9578681473584,
+-2.10623915946735
+]).addTo(map)
+.bindPopup("<b>The Windmill</b><br>Mill House");
+
+
+
+L.marker([
+53.0235537373196,
+-2.18147742199835
+]).addTo(map)
+.bindPopup("<b>Tesco</b><br>Tesco");
+
+
+
+L.marker([
+53.030422,
+-2.193681
+]).addTo(map)
+.bindPopup("<b>Morrisons Stoke</b><br> Festival Park");
+
+
+
+L.marker([
+53.025799,
+-2.19447
+]).addTo(map)
+.bindPopup("<b>This is a PAYG site. Please use Polar Instant App or RFID card</b><br>Commerce House");
+
+
+
+</script>
 
 </body>
 </html>

@@ -1,88 +1,112 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>EV Chargers in Irvine</title>
-<link rel="stylesheet" href="/style.css">
+<title>Irvine EV Chargers</title>
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+
+<style>
+#map {
+  height: 400px;
+  margin-bottom: 30px;
+  border-radius: 8px;
+}
+</style>
+
 </head>
 
 <body>
 
-<header>
-<h1>EV Chargers in Irvine</h1>
-</header>
+<h1>Irvine EV Chargers</h1>
 
-<div class="container">
+<div id="map"></div>
 
-<p>5 charging locations found.</p>
+<ul>
 
+<li>
+<strong>Beach Drive Car Park 1</strong><br>
+Beach Drive Car Park 2
+</li>
 
-<div class="card">
+<li>
+<strong>Irvine Central Car Park</strong><br>
+17 George Court
+</li>
 
-<h3>Beach Drive Car Park 1</h3>
+<li>
+<strong>Tesco Extra-Irvine Riverway</strong><br>
+15-16 Riverway
+</li>
 
-<p>
-Beach Drive Car Park 2<br>
-Irvine<br>
-KA12 8FA
-</p>
+<li>
+<strong>Caledonia Car Park, Irvine</strong><br>
+East Road Retail Park
+</li>
 
-</div>
+<li>
+<strong>The Circuit, Quarry Road, Irvine</strong><br>
+22 Quarry Road
+</li>
 
-<div class="card">
+</ul>
 
-<h3>Irvine Central Car Park</h3>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
-<p>
-17 George Court<br>
-Irvine<br>
-KA12 0PJ
-</p>
+<script>
 
-</div>
+var map = L.map('map').setView([
+55.607247,
+-4.685067
+], 12);
 
-<div class="card">
-
-<h3>Tesco Extra-Irvine Riverway</h3>
-
-<p>
-15-16 Riverway<br>
-Irvine<br>
-KA12 8AY
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Caledonia Car Park, Irvine</h3>
-
-<p>
-East Road Retail Park<br>
-Irvine<br>
-KA12 0AA
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>The Circuit, Quarry Road, Irvine</h3>
-
-<p>
-22 Quarry Road<br>
-Irvine<br>
-KA12 0TH
-</p>
-
-</div>
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+attribution: '&copy; OpenStreetMap contributors'
+}).addTo(map);
 
 
-</div>
 
-<footer>
-EV Charger Directory
-</footer>
+L.marker([
+55.607247,
+-4.685067
+]).addTo(map)
+.bindPopup("<b>Beach Drive Car Park 1</b><br>Beach Drive Car Park 2");
+
+
+
+L.marker([
+55.617198,
+-4.666602
+]).addTo(map)
+.bindPopup("<b>Irvine Central Car Park</b><br>17 George Court");
+
+
+
+L.marker([
+55.606859,
+-4.6709
+]).addTo(map)
+.bindPopup("<b>Tesco Extra-Irvine Riverway</b><br>15-16 Riverway");
+
+
+
+L.marker([
+55.61674,
+-4.66498
+]).addTo(map)
+.bindPopup("<b>Caledonia Car Park, Irvine</b><br>East Road Retail Park");
+
+
+
+L.marker([
+55.61901,
+-4.66453
+]).addTo(map)
+.bindPopup("<b>The Circuit, Quarry Road, Irvine</b><br>22 Quarry Road");
+
+
+
+</script>
 
 </body>
 </html>

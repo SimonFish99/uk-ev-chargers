@@ -1,544 +1,606 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>EV Chargers in Croydon</title>
-<link rel="stylesheet" href="/style.css">
+<title>Croydon EV Chargers</title>
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+
+<style>
+#map {
+  height: 400px;
+  margin-bottom: 30px;
+  border-radius: 8px;
+}
+</style>
+
 </head>
 
 <body>
 
-<header>
-<h1>EV Chargers in Croydon</h1>
-</header>
+<h1>Croydon EV Chargers</h1>
+
+<div id="map"></div>
+
+<ul>
+
+<li>
+<strong>Wandle Road Car Park</strong><br>
+Wandle Road
+</li>
+
+<li>
+<strong>Pampisford Road</strong><br>
+30 Pampisford Road
+</li>
+
+<li>
+<strong>302 Godstone Rd, Kenley</strong><br>
+302 Godstone Rd Kenley, Kenley
+</li>
+
+<li>
+<strong>RAW Chargeyard Croydon</strong><br>
+Waddon Marsh Way
+</li>
+
+<li>
+<strong>Saviours Road</strong><br>
+Saviours Road
+</li>
+
+<li>
+<strong>Stonecroft Way</strong><br>
+Stonecroft Way
+</li>
+
+<li>
+<strong>Arundel Road</strong><br>
+Arundel Road
+</li>
+
+<li>
+<strong>Stretton Road</strong><br>
+Stretton Road
+</li>
+
+<li>
+<strong>Jesmond Road</strong><br>
+Jesmond Road
+</li>
+
+<li>
+<strong>Leslie Park Road</strong><br>
+Leslie Park Road
+</li>
+
+<li>
+<strong>Tavistock Road</strong><br>
+Tavistock Road
+</li>
+
+<li>
+<strong>St. Aubyns Road</strong><br>
+St. Aubyns Road
+</li>
+
+<li>
+<strong>Opp Horsley Drive</strong><br>
+Opp Horsley Drive
+</li>
+
+<li>
+<strong>Opposite 19 Chepstow Rise</strong><br>
+Opposite 19 Chepstow Rise
+</li>
+
+<li>
+<strong>73 Parsons Mead</strong><br>
+73 Parsons Mead
+</li>
+
+<li>
+<strong>56 Edward Road</strong><br>
+56 Edward Road
+</li>
+
+<li>
+<strong>20 Theobald Road</strong><br>
+20 Theobald Road
+</li>
+
+<li>
+<strong>108 Cecil Road</strong><br>
+108 Cecil Road
+</li>
+
+<li>
+<strong>93 Clyde Road</strong><br>
+93 Clyde Road
+</li>
+
+<li>
+<strong>18-21 St Bernard's Close</strong><br>
+18 - 21 St Bernard's Close
+</li>
+
+<li>
+<strong>34 Elgin Road</strong><br>
+34 Elgin Road
+</li>
+
+<li>
+<strong>101 Waddon Park Avenue</strong><br>
+101 Waddon Park Avenue
+</li>
+
+<li>
+<strong>134 Amberley Grove</strong><br>
+134 Amberley Grove
+</li>
+
+<li>
+<strong>2 Longhurst Road</strong><br>
+2 Longhurst Road
+</li>
+
+<li>
+<strong>4 St Leonard's Road</strong><br>
+4 St Leonard's Road
+</li>
+
+<li>
+<strong>44 Capri Road</strong><br>
+44 Capri Road
+</li>
+
+<li>
+<strong>Opposite 113 Towpath Way</strong><br>
+Opposite 113 Towpath Way
+</li>
+
+<li>
+<strong>Mitcham Road</strong><br>
+Mitcham Road
+</li>
+
+<li>
+<strong>Derby Road</strong><br>
+Derby Road
+</li>
+
+<li>
+<strong>Beckford Road</strong><br>
+Beckford Road
+</li>
+
+<li>
+<strong>ELmgrove Road</strong><br>
+Elmgrove Road
+</li>
+
+<li>
+<strong>Sundridge Road</strong><br>
+Sundridge Road
+</li>
+
+<li>
+<strong>Outram Road</strong><br>
+Outram Road
+</li>
 
-<div class="container">
+<li>
+<strong>Kemble Road</strong><br>
+Kemble Road
+</li>
 
-<p>43 charging locations found.</p>
+<li>
+<strong>Bramble Close</strong><br>
+Bramble Close
+</li>
 
+<li>
+<strong>Frimley Close</strong><br>
+Frimley Close
+</li>
 
-<div class="card">
+<li>
+<strong>Trojan Way</strong><br>
+Trojan Way
+</li>
 
-<h3>Wandle Road Car Park</h3>
+<li>
+<strong>Frant Road</strong><br>
+Frant Road
+</li>
 
-<p>
-Wandle Road<br>
-Croydon<br>
-CR0 1DE
-</p>
+<li>
+<strong>Stanhope Road (Croydon)</strong><br>
+Stanhope Road (Croydon)
+</li>
 
-</div>
+<li>
+<strong>South End</strong><br>
+South End
+</li>
 
-<div class="card">
+<li>
+<strong>Hepworth Road</strong><br>
+1 Hepworth Road (off Streatham High Rd)
+</li>
 
-<h3>Pampisford Road</h3>
+<li>
+<strong>London Road Croydon</strong><br>
+London Road Croydon
+</li>
 
-<p>
-30 Pampisford Road<br>
-Croydon<br>
-CR8 2UU
-</p>
+<li>
+<strong>Russell Hill Road</strong><br>
+Russell Hill Road
+</li>
 
-</div>
+</ul>
 
-<div class="card">
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
-<h3>302 Godstone Rd, Kenley</h3>
+<script>
 
-<p>
-302 Godstone Rd Kenley, Kenley<br>
-Croydon<br>
-CR8 5BG
-</p>
+var map = L.map('map').setView([
+51.370183,
+-0.102412
+], 12);
 
-</div>
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+attribution: '&copy; OpenStreetMap contributors'
+}).addTo(map);
 
-<div class="card">
 
-<h3>RAW Chargeyard Croydon</h3>
 
-<p>
-Waddon Marsh Way<br>
-Croydon<br>
-CR0 4YA
-</p>
+L.marker([
+51.370183,
+-0.102412
+]).addTo(map)
+.bindPopup("<b>Wandle Road Car Park</b><br>Wandle Road");
 
-</div>
 
-<div class="card">
 
-<h3>Saviours Road</h3>
+L.marker([
+51.340496,
+-0.116041
+]).addTo(map)
+.bindPopup("<b>Pampisford Road</b><br>30 Pampisford Road");
 
-<p>
-Saviours Road<br>
-Croydon<br>
-CR0 2XF
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+51.320621,
+-0.089501
+]).addTo(map)
+.bindPopup("<b>302 Godstone Rd, Kenley</b><br>302 Godstone Rd Kenley, Kenley");
 
-<h3>Stonecroft Way</h3>
 
-<p>
-Stonecroft Way<br>
-Croydon<br>
-CR0 3DH
-</p>
 
-</div>
+L.marker([
+51.37808093703654,
+-0.12321028763159347
+]).addTo(map)
+.bindPopup("<b>RAW Chargeyard Croydon</b><br>Waddon Marsh Way");
 
-<div class="card">
 
-<h3>Arundel Road</h3>
 
-<p>
-Arundel Road<br>
-Croydon<br>
-CR0 2EP
-</p>
+L.marker([
+51.388089,
+-0.105069
+]).addTo(map)
+.bindPopup("<b>Saviours Road</b><br>Saviours Road");
 
-</div>
 
-<div class="card">
 
-<h3>Stretton Road</h3>
+L.marker([
+51.387601,
+-0.128244
+]).addTo(map)
+.bindPopup("<b>Stonecroft Way</b><br>Stonecroft Way");
 
-<p>
-Stretton Road<br>
-Croydon<br>
-CR0 6ES
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+51.387389,
+-0.095418
+]).addTo(map)
+.bindPopup("<b>Arundel Road</b><br>Arundel Road");
 
-<h3>Jesmond Road</h3>
 
-<p>
-Jesmond Road<br>
-Croydon<br>
-CR0 6JR
-</p>
 
-</div>
+L.marker([
+51.384326,
+-0.085646
+]).addTo(map)
+.bindPopup("<b>Stretton Road</b><br>Stretton Road");
 
-<div class="card">
 
-<h3>Leslie Park Road</h3>
 
-<p>
-Leslie Park Road<br>
-Croydon<br>
-CR0 6UW
-</p>
+L.marker([
+51.384215,
+-0.07816
+]).addTo(map)
+.bindPopup("<b>Jesmond Road</b><br>Jesmond Road");
 
-</div>
 
-<div class="card">
 
-<h3>Tavistock Road</h3>
+L.marker([
+51.37933,
+-0.085511
+]).addTo(map)
+.bindPopup("<b>Leslie Park Road</b><br>Leslie Park Road");
 
-<p>
-Tavistock Road<br>
-Croydon<br>
-CR0 2AS
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+51.381056,
+-0.0968271
+]).addTo(map)
+.bindPopup("<b>Tavistock Road</b><br>Tavistock Road");
 
-<h3>St. Aubyns Road</h3>
 
-<p>
-St. Aubyns Road<br>
-Croydon<br>
-SE19 3AA
-</p>
 
-</div>
+L.marker([
+51.419539,
+-0.079842
+]).addTo(map)
+.bindPopup("<b>St. Aubyns Road</b><br>St. Aubyns Road");
 
-<div class="card">
 
-<h3>Opp Horsley Drive</h3>
 
-<p>
-Opp Horsley Drive<br>
-Croydon<br>
-CR0 0QW
-</p>
+L.marker([
+51.349787,
+-0.016352
+]).addTo(map)
+.bindPopup("<b>Opp Horsley Drive</b><br>Opp Horsley Drive");
 
-</div>
 
-<div class="card">
 
-<h3>Opposite 19 Chepstow Rise</h3>
+L.marker([
+51.3717236,
+-0.0834714
+]).addTo(map)
+.bindPopup("<b>Opposite 19 Chepstow Rise</b><br>Opposite 19 Chepstow Rise");
 
-<p>
-Opposite 19 Chepstow Rise<br>
-Croydon<br>
-CR0 5LX
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+51.3797071,
+-0.1066795
+]).addTo(map)
+.bindPopup("<b>73 Parsons Mead</b><br>73 Parsons Mead");
 
-<h3>73 Parsons Mead</h3>
 
-<p>
-73 Parsons Mead<br>
-Croydon<br>
-CR0 3SL
-</p>
 
-</div>
+L.marker([
+51.3854078,
+-0.0832175
+]).addTo(map)
+.bindPopup("<b>56 Edward Road</b><br>56 Edward Road");
 
-<div class="card">
 
-<h3>56 Edward Road</h3>
 
-<p>
-56 Edward Road<br>
-Croydon<br>
-CR0 6DY
-</p>
+L.marker([
+51.376287,
+-0.1091297
+]).addTo(map)
+.bindPopup("<b>20 Theobald Road</b><br>20 Theobald Road");
 
-</div>
 
-<div class="card">
 
-<h3>20 Theobald Road</h3>
+L.marker([
+51.3875371,
+-0.1248094
+]).addTo(map)
+.bindPopup("<b>108 Cecil Road</b><br>108 Cecil Road");
 
-<p>
-20 Theobald Road<br>
-Croydon<br>
-CR0 3RN
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+51.3786022,
+-0.0807
+]).addTo(map)
+.bindPopup("<b>93 Clyde Road</b><br>93 Clyde Road");
 
-<h3>108 Cecil Road</h3>
 
-<p>
-108 Cecil Road<br>
-Croydon<br>
-CR0 3BR
-</p>
 
-</div>
+L.marker([
+51.3690261,
+-0.0867722
+]).addTo(map)
+.bindPopup("<b>18-21 St Bernard's Close</b><br>18 - 21 St Bernard's Close");
 
-<div class="card">
 
-<h3>93 Clyde Road</h3>
 
-<p>
-93 Clyde Road<br>
-Croydon<br>
-CR0 6SZ
-</p>
+L.marker([
+51.3774109,
+-0.0793377
+]).addTo(map)
+.bindPopup("<b>34 Elgin Road</b><br>34 Elgin Road");
 
-</div>
 
-<div class="card">
 
-<h3>18-21 St Bernard's Close</h3>
+L.marker([
+51.3682972,
+-0.1173294
+]).addTo(map)
+.bindPopup("<b>101 Waddon Park Avenue</b><br>101 Waddon Park Avenue");
 
-<p>
-18 - 21 St Bernard's Close<br>
-Croydon<br>
-CR0 5UL
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+51.3828284,
+-0.0799525
+]).addTo(map)
+.bindPopup("<b>134 Amberley Grove</b><br>134 Amberley Grove");
 
-<h3>34 Elgin Road</h3>
 
-<p>
-34 Elgin Road<br>
-Croydon<br>
-CR0 6XD
-</p>
 
-</div>
+L.marker([
+51.3868958,
+-0.0634361
+]).addTo(map)
+.bindPopup("<b>2 Longhurst Road</b><br>2 Longhurst Road");
 
-<div class="card">
 
-<h3>101 Waddon Park Avenue</h3>
 
-<p>
-101 Waddon Park Avenue<br>
-Croydon<br>
-CR0 4LU
-</p>
+L.marker([
+51.3701557,
+-0.1112217
+]).addTo(map)
+.bindPopup("<b>4 St Leonard's Road</b><br>4 St Leonard's Road");
 
-</div>
 
-<div class="card">
 
-<h3>134 Amberley Grove</h3>
+L.marker([
+51.3821795,
+-0.0757844
+]).addTo(map)
+.bindPopup("<b>44 Capri Road</b><br>44 Capri Road");
 
-<p>
-134 Amberley Grove<br>
-Croydon<br>
-CR0 6NE
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+51.3921135,
+-0.0770105
+]).addTo(map)
+.bindPopup("<b>Opposite 113 Towpath Way</b><br>Opposite 113 Towpath Way");
 
-<h3>2 Longhurst Road</h3>
 
-<p>
-2 Longhurst Road<br>
-Croydon<br>
-CR0 7AW
-</p>
 
-</div>
+L.marker([
+51.388847,
+-0.12914
+]).addTo(map)
+.bindPopup("<b>Mitcham Road</b><br>Mitcham Road");
 
-<div class="card">
 
-<h3>4 St Leonard's Road</h3>
 
-<p>
-4 St Leonard's Road<br>
-Croydon<br>
-CR0 4BN
-</p>
+L.marker([
+51.377851,
+-0.10708
+]).addTo(map)
+.bindPopup("<b>Derby Road</b><br>Derby Road");
 
-</div>
 
-<div class="card">
 
-<h3>44 Capri Road</h3>
+L.marker([
+51.388869,
+-0.0768
+]).addTo(map)
+.bindPopup("<b>Beckford Road</b><br>Beckford Road");
 
-<p>
-44 Capri Road<br>
-Croydon<br>
-CR0 6LG
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+51.38225,
+-0.063906
+]).addTo(map)
+.bindPopup("<b>ELmgrove Road</b><br>Elmgrove Road");
 
-<h3>Opposite 113 Towpath Way</h3>
 
-<p>
-Opposite 113 Towpath Way<br>
-Croydon<br>
-CR0 6DX
-</p>
 
-</div>
+L.marker([
+51.382083,
+-0.076998
+]).addTo(map)
+.bindPopup("<b>Sundridge Road</b><br>Sundridge Road");
 
-<div class="card">
 
-<h3>Mitcham Road</h3>
 
-<p>
-Mitcham Road<br>
-Croydon<br>
-CR0 3AA
-</p>
+L.marker([
+51.37532,
+-0.076419
+]).addTo(map)
+.bindPopup("<b>Outram Road</b><br>Outram Road");
 
-</div>
 
-<div class="card">
 
-<h3>Derby Road</h3>
+L.marker([
+51.371894,
+-0.11241
+]).addTo(map)
+.bindPopup("<b>Kemble Road</b><br>Kemble Road");
 
-<p>
-Derby Road<br>
-Croydon<br>
-CR0 3SD
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+51.365416,
+-0.027056
+]).addTo(map)
+.bindPopup("<b>Bramble Close</b><br>Bramble Close");
 
-<h3>Beckford Road</h3>
 
-<p>
-Beckford Road<br>
-Croydon<br>
-CR0 6HZ
-</p>
 
-</div>
+L.marker([
+51.350631,
+-0.015104
+]).addTo(map)
+.bindPopup("<b>Frimley Close</b><br>Frimley Close");
 
-<div class="card">
 
-<h3>ELmgrove Road</h3>
 
-<p>
-Elmgrove Road<br>
-Croydon<br>
-CR0 7EP
-</p>
+L.marker([
+51.374101,
+-0.119019
+]).addTo(map)
+.bindPopup("<b>Trojan Way</b><br>Trojan Way");
 
-</div>
 
-<div class="card">
 
-<h3>Sundridge Road</h3>
+L.marker([
+51.394708,
+-0.110724
+]).addTo(map)
+.bindPopup("<b>Frant Road</b><br>Frant Road");
 
-<p>
-Sundridge Road<br>
-Croydon<br>
-CR0 6LZ
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+51.369109,
+-0.08925
+]).addTo(map)
+.bindPopup("<b>Stanhope Road (Croydon)</b><br>Stanhope Road (Croydon)");
 
-<h3>Outram Road</h3>
 
-<p>
-Outram Road<br>
-Croydon<br>
-CR0 6SP
-</p>
 
-</div>
+L.marker([
+51.366336,
+-0.099005
+]).addTo(map)
+.bindPopup("<b>South End</b><br>South End");
 
-<div class="card">
 
-<h3>Kemble Road</h3>
 
-<p>
-Kemble Road<br>
-Croydon<br>
-CR0 4JQ
-</p>
+L.marker([
+51.415925,
+-0.1253
+]).addTo(map)
+.bindPopup("<b>Hepworth Road</b><br>1 Hepworth Road (off Streatham High Rd)");
 
-</div>
 
-<div class="card">
 
-<h3>Bramble Close</h3>
+L.marker([
+51.398074,
+-0.116437
+]).addTo(map)
+.bindPopup("<b>London Road Croydon</b><br>London Road Croydon");
 
-<p>
-Bramble Close<br>
-Croydon<br>
-CR0 8JL
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+51.339416,
+-0.117572
+]).addTo(map)
+.bindPopup("<b>Russell Hill Road</b><br>Russell Hill Road");
 
-<h3>Frimley Close</h3>
 
-<p>
-Frimley Close<br>
-Croydon<br>
-CR0 0QZ
-</p>
 
-</div>
-
-<div class="card">
-
-<h3>Trojan Way</h3>
-
-<p>
-Trojan Way<br>
-Croydon<br>
-CR0 4XL
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Frant Road</h3>
-
-<p>
-Frant Road<br>
-Croydon<br>
-CR7 7JR
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Stanhope Road (Croydon)</h3>
-
-<p>
-Stanhope Road (Croydon)<br>
-Croydon<br>
-CR0 5NS
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>South End</h3>
-
-<p>
-South End<br>
-Croydon<br>
-CR0 1BF
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Hepworth Road</h3>
-
-<p>
-1 Hepworth Road (off Streatham High Rd)<br>
-Croydon<br>
-SW16 5DH
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>London Road Croydon</h3>
-
-<p>
-London Road Croydon<br>
-Croydon<br>
-CR7 6JL
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Russell Hill Road</h3>
-
-<p>
-Russell Hill Road<br>
-Croydon<br>
-CR8 2LE
-</p>
-
-</div>
-
-
-</div>
-
-<footer>
-EV Charger Directory
-</footer>
+</script>
 
 </body>
 </html>

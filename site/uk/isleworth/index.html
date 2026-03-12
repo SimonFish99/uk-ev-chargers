@@ -1,88 +1,112 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>EV Chargers in Isleworth</title>
-<link rel="stylesheet" href="/style.css">
+<title>Isleworth EV Chargers</title>
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+
+<style>
+#map {
+  height: 400px;
+  margin-bottom: 30px;
+  border-radius: 8px;
+}
+</style>
+
 </head>
 
 <body>
 
-<header>
-<h1>EV Chargers in Isleworth</h1>
-</header>
+<h1>Isleworth EV Chargers</h1>
 
-<div class="container">
+<div id="map"></div>
 
-<p>5 charging locations found.</p>
+<ul>
 
+<li>
+<strong>Osterley Crescent</strong><br>
+Osterley Crescent
+</li>
 
-<div class="card">
+<li>
+<strong>Harvard Road</strong><br>
+Harvard Road
+</li>
 
-<h3>Osterley Crescent</h3>
+<li>
+<strong>Star Road</strong><br>
+Star Road
+</li>
 
-<p>
-Osterley Crescent<br>
-Isleworth<br>
-TW7 5LF
-</p>
+<li>
+<strong>Tesco Extra-Osterley</strong><br>
+Grant Way
+</li>
 
-</div>
+<li>
+<strong>Tesco Extra-Twickenham</strong><br>
+Mogden Lane
+</li>
 
-<div class="card">
+</ul>
 
-<h3>Harvard Road</h3>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
-<p>
-Harvard Road<br>
-Isleworth<br>
-TW7 4PA
-</p>
+<script>
 
-</div>
+var map = L.map('map').setView([
+51.47934,
+-0.337766
+], 12);
 
-<div class="card">
-
-<h3>Star Road</h3>
-
-<p>
-Star Road<br>
-Isleworth<br>
-TW7 4HB
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Tesco Extra-Osterley</h3>
-
-<p>
-Grant Way<br>
-Isleworth<br>
-TW7 5NZ
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Tesco Extra-Twickenham</h3>
-
-<p>
-Mogden Lane<br>
-Isleworth<br>
-TW7 7JY
-</p>
-
-</div>
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+attribution: '&copy; OpenStreetMap contributors'
+}).addTo(map);
 
 
-</div>
 
-<footer>
-EV Charger Directory
-</footer>
+L.marker([
+51.47934,
+-0.337766
+]).addTo(map)
+.bindPopup("<b>Osterley Crescent</b><br>Osterley Crescent");
+
+
+
+L.marker([
+51.47716,
+-0.3415
+]).addTo(map)
+.bindPopup("<b>Harvard Road</b><br>Harvard Road");
+
+
+
+L.marker([
+51.472644,
+-0.348327
+]).addTo(map)
+.bindPopup("<b>Star Road</b><br>Star Road");
+
+
+
+L.marker([
+51.48527713,
+-0.32983009
+]).addTo(map)
+.bindPopup("<b>Tesco Extra-Osterley</b><br>Grant Way");
+
+
+
+L.marker([
+51.458524,
+-0.338132
+]).addTo(map)
+.bindPopup("<b>Tesco Extra-Twickenham</b><br>Mogden Lane");
+
+
+
+</script>
 
 </body>
 </html>

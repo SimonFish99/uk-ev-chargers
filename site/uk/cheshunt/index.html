@@ -1,88 +1,112 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>EV Chargers in Cheshunt</title>
-<link rel="stylesheet" href="/style.css">
+<title>Cheshunt EV Chargers</title>
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+
+<style>
+#map {
+  height: 400px;
+  margin-bottom: 30px;
+  border-radius: 8px;
+}
+</style>
+
 </head>
 
 <body>
 
-<header>
-<h1>EV Chargers in Cheshunt</h1>
-</header>
+<h1>Cheshunt EV Chargers</h1>
 
-<div class="container">
+<div id="map"></div>
 
-<p>5 charging locations found.</p>
+<ul>
 
+<li>
+<strong>Tesco Extra-Cheshunt</strong><br>
+Brookfield Centre
+</li>
 
-<div class="card">
+<li>
+<strong>Broxbourne Council Offices 1</strong><br>
+Broxbourne Council Offices
+</li>
 
-<h3>Tesco Extra-Cheshunt</h3>
+<li>
+<strong>Newham Parade 3</strong><br>
+Newham Parade
+</li>
 
-<p>
-Brookfield Centre<br>
-Cheshunt<br>
-EN8 0TA
-</p>
+<li>
+<strong>Windmill Lane Car Park 1</strong><br>
+Windmill Lane Car Park
+</li>
 
-</div>
+<li>
+<strong>Birch 1</strong><br>
+The Birch Hotel
+</li>
 
-<div class="card">
+</ul>
 
-<h3>Broxbourne Council Offices 1</h3>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
-<p>
-Broxbourne Council Offices<br>
-Cheshunt<br>
-EN8 9XQ
-</p>
+<script>
 
-</div>
+var map = L.map('map').setView([
+51.7185612,
+-0.0364673
+], 12);
 
-<div class="card">
-
-<h3>Newham Parade 3</h3>
-
-<p>
-Newham Parade<br>
-Cheshunt<br>
-EN8 9NU
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Windmill Lane Car Park 1</h3>
-
-<p>
-Windmill Lane Car Park<br>
-Cheshunt<br>
-EN8 9AA
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Birch 1</h3>
-
-<p>
-The Birch Hotel<br>
-Cheshunt<br>
-EN7 5HS
-</p>
-
-</div>
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+attribution: '&copy; OpenStreetMap contributors'
+}).addTo(map);
 
 
-</div>
 
-<footer>
-EV Charger Directory
-</footer>
+L.marker([
+51.7185612,
+-0.0364673
+]).addTo(map)
+.bindPopup("<b>Tesco Extra-Cheshunt</b><br>Brookfield Centre");
+
+
+
+L.marker([
+51.703137,
+-0.048217
+]).addTo(map)
+.bindPopup("<b>Broxbourne Council Offices 1</b><br>Broxbourne Council Offices");
+
+
+
+L.marker([
+51.703108,
+-0.036584
+]).addTo(map)
+.bindPopup("<b>Newham Parade 3</b><br>Newham Parade");
+
+
+
+L.marker([
+51.702553,
+-0.033143
+]).addTo(map)
+.bindPopup("<b>Windmill Lane Car Park 1</b><br>Windmill Lane Car Park");
+
+
+
+L.marker([
+51.68899,
+-0.058124
+]).addTo(map)
+.bindPopup("<b>Birch 1</b><br>The Birch Hotel");
+
+
+
+</script>
 
 </body>
 </html>

@@ -1,88 +1,112 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>EV Chargers in Rochester</title>
-<link rel="stylesheet" href="/style.css">
+<title>Rochester EV Chargers</title>
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+
+<style>
+#map {
+  height: 400px;
+  margin-bottom: 30px;
+  border-radius: 8px;
+}
+</style>
+
 </head>
 
 <body>
 
-<header>
-<h1>EV Chargers in Rochester</h1>
-</header>
+<h1>Rochester EV Chargers</h1>
 
-<div class="container">
+<div id="map"></div>
 
-<p>5 charging locations found.</p>
+<ul>
 
+<li>
+<strong>Tap Zap Go - Medway City Estate</strong><br>
+Whitewall Centre, Whitewall Road
+</li>
 
-<div class="card">
+<li>
+<strong>Morrisons Strood</strong><br>
+Wm Morrisons PLC
+</li>
 
-<h3>Tap Zap Go - Medway City Estate</h3>
+<li>
+<strong>McDonald's Terance Butler Avenue</strong><br>
+Terance Butler Avenue
+</li>
 
-<p>
-Whitewall Centre, Whitewall Road<br>
-Rochester<br>
-ME2 4DZ
-</p>
+<li>
+<strong>Commercial Road 1</strong><br>
+Commercial Rd
+</li>
 
-</div>
+<li>
+<strong>Cory's Road 1</strong><br>
+Cory's Road
+</li>
 
-<div class="card">
+</ul>
 
-<h3>Morrisons Strood</h3>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
-<p>
-Wm Morrisons PLC<br>
-Rochester<br>
-ME2 2AQ
-</p>
+<script>
 
-</div>
+var map = L.map('map').setView([
+51.39872166283743,
+0.5104633474360298
+], 12);
 
-<div class="card">
-
-<h3>McDonald's Terance Butler Avenue</h3>
-
-<p>
-Terance Butler Avenue<br>
-Rochester<br>
-ME2 4DW
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Commercial Road 1</h3>
-
-<p>
-Commercial Rd<br>
-Rochester<br>
-ME2 2AD
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Cory's Road 1</h3>
-
-<p>
-Cory's Road<br>
-Rochester<br>
-ME1 1PZ
-</p>
-
-</div>
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+attribution: '&copy; OpenStreetMap contributors'
+}).addTo(map);
 
 
-</div>
 
-<footer>
-EV Charger Directory
-</footer>
+L.marker([
+51.39872166283743,
+0.5104633474360298
+]).addTo(map)
+.bindPopup("<b>Tap Zap Go - Medway City Estate</b><br>Whitewall Centre, Whitewall Road");
+
+
+
+L.marker([
+51.39211,
+0.491478
+]).addTo(map)
+.bindPopup("<b>Morrisons Strood</b><br>Wm Morrisons PLC");
+
+
+
+L.marker([
+51.4003529,
+0.5152004
+]).addTo(map)
+.bindPopup("<b>McDonald's Terance Butler Avenue</b><br>Terance Butler Avenue");
+
+
+
+L.marker([
+51.395,
+0.494028
+]).addTo(map)
+.bindPopup("<b>Commercial Road 1</b><br>Commercial Rd");
+
+
+
+L.marker([
+51.390601,
+0.506367
+]).addTo(map)
+.bindPopup("<b>Cory's Road 1</b><br>Cory's Road");
+
+
+
+</script>
 
 </body>
 </html>

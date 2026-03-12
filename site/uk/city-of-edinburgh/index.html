@@ -1,88 +1,112 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>EV Chargers in City of Edinburgh</title>
-<link rel="stylesheet" href="/style.css">
+<title>City of Edinburgh EV Chargers</title>
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+
+<style>
+#map {
+  height: 400px;
+  margin-bottom: 30px;
+  border-radius: 8px;
+}
+</style>
+
 </head>
 
 <body>
 
-<header>
-<h1>EV Chargers in City of Edinburgh</h1>
-</header>
+<h1>City of Edinburgh EV Chargers</h1>
 
-<div class="container">
+<div id="map"></div>
 
-<p>5 charging locations found.</p>
+<ul>
 
+<li>
+<strong>MFG BP Slateford</strong><br>
+187 Slateford Road
+</li>
 
-<div class="card">
+<li>
+<strong>North Platt Crescent</strong><br>
+North Platt Crescent
+</li>
 
-<h3>MFG BP Slateford</h3>
+<li>
+<strong>Edinburgh Newbridge Supercharger</strong><br>
+Cliftonhall Road
+</li>
 
-<p>
-187 Slateford Road<br>
-City of Edinburgh<br>
-EH14 1PU
-</p>
+<li>
+<strong>RBS Headquarters, Edinburgh</strong><br>
+RBS Headquarters
+</li>
 
-</div>
+<li>
+<strong>South Edinburgh Local Office, Captain's Road, Edinburgh</strong><br>
+40 Captain's Road
+</li>
 
-<div class="card">
+</ul>
 
-<h3>North Platt Crescent</h3>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
-<p>
-North Platt Crescent<br>
-City of Edinburgh<br>
+<script>
 
-</p>
+var map = L.map('map').setView([
+55.9285798715851,
+-3.24061395864453
+], 12);
 
-</div>
-
-<div class="card">
-
-<h3>Edinburgh Newbridge Supercharger</h3>
-
-<p>
-Cliftonhall Road<br>
-City of Edinburgh<br>
-EH28 8PW
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>RBS Headquarters, Edinburgh</h3>
-
-<p>
-RBS Headquarters<br>
-City of Edinburgh<br>
-EH12 9SB
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>South Edinburgh Local Office, Captain's Road, Edinburgh</h3>
-
-<p>
-40 Captain's Road<br>
-City of Edinburgh<br>
-EH17 8QF
-</p>
-
-</div>
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+attribution: '&copy; OpenStreetMap contributors'
+}).addTo(map);
 
 
-</div>
 
-<footer>
-EV Charger Directory
-</footer>
+L.marker([
+55.9285798715851,
+-3.24061395864453
+]).addTo(map)
+.bindPopup("<b>MFG BP Slateford</b><br>187 Slateford Road");
+
+
+
+L.marker([
+55.92479722483387,
+-3.372657973822811
+]).addTo(map)
+.bindPopup("<b>North Platt Crescent</b><br>North Platt Crescent");
+
+
+
+L.marker([
+55.934067,
+-3.40779
+]).addTo(map)
+.bindPopup("<b>Edinburgh Newbridge Supercharger</b><br>Cliftonhall Road");
+
+
+
+L.marker([
+55.9361891,
+-3.340359
+]).addTo(map)
+.bindPopup("<b>RBS Headquarters, Edinburgh</b><br>RBS Headquarters");
+
+
+
+L.marker([
+55.902919954016284,
+-3.1536246627044875
+]).addTo(map)
+.bindPopup("<b>South Edinburgh Local Office, Captain's Road, Edinburgh</b><br>40 Captain's Road");
+
+
+
+</script>
 
 </body>
 </html>

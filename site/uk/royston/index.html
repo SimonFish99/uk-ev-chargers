@@ -1,88 +1,112 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>EV Chargers in Royston</title>
-<link rel="stylesheet" href="/style.css">
+<title>Royston EV Chargers</title>
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+
+<style>
+#map {
+  height: 400px;
+  margin-bottom: 30px;
+  border-radius: 8px;
+}
+</style>
+
 </head>
 
 <body>
 
-<header>
-<h1>EV Chargers in Royston</h1>
-</header>
+<h1>Royston EV Chargers</h1>
 
-<div class="container">
+<div id="map"></div>
 
-<p>5 charging locations found.</p>
+<ul>
 
+<li>
+<strong>Aldi-Barnsley</strong><br>
+High Street
+</li>
 
-<div class="card">
+<li>
+<strong>SM Recreation Ground 1478</strong><br>
+Steeple Morden
+</li>
 
-<h3>Aldi-Barnsley</h3>
+<li>
+<strong>Royston Civic Centre</strong><br>
+King James Way
+</li>
 
-<p>
-High Street<br>
-Royston<br>
-S71 4RF
-</p>
+<li>
+<strong>McDonald's Royston</strong><br>
+A505 Baldock Road
+</li>
 
-</div>
+<li>
+<strong>Tesco Extra - Royston</strong><br>
+Old North Road
+</li>
 
-<div class="card">
+</ul>
 
-<h3>SM Recreation Ground 1478</h3>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
-<p>
-Steeple Morden<br>
-Royston<br>
-SG8 0NQ
-</p>
+<script>
 
-</div>
+var map = L.map('map').setView([
+53.597971,
+-1.458546
+], 12);
 
-<div class="card">
-
-<h3>Royston Civic Centre</h3>
-
-<p>
-King James Way<br>
-Royston<br>
-SG8 7XB
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>McDonald's Royston</h3>
-
-<p>
-A505 Baldock Road<br>
-Royston<br>
-SG8 9NT
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Tesco Extra - Royston</h3>
-
-<p>
-Old North Road<br>
-Royston<br>
-SG8 5UA
-</p>
-
-</div>
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+attribution: '&copy; OpenStreetMap contributors'
+}).addTo(map);
 
 
-</div>
 
-<footer>
-EV Charger Directory
-</footer>
+L.marker([
+53.597971,
+-1.458546
+]).addTo(map)
+.bindPopup("<b>Aldi-Barnsley</b><br>High Street");
+
+
+
+L.marker([
+52.067688,
+-0.127127
+]).addTo(map)
+.bindPopup("<b>SM Recreation Ground 1478</b><br>Steeple Morden");
+
+
+
+L.marker([
+52.048,
+-0.019
+]).addTo(map)
+.bindPopup("<b>Royston Civic Centre</b><br>King James Way");
+
+
+
+L.marker([
+52.0454769,
+-0.0545891
+]).addTo(map)
+.bindPopup("<b>McDonald's Royston</b><br>A505 Baldock Road");
+
+
+
+L.marker([
+52.05935,
+-0.031862
+]).addTo(map)
+.bindPopup("<b>Tesco Extra - Royston</b><br>Old North Road");
+
+
+
+</script>
 
 </body>
 </html>

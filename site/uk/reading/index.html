@@ -1,448 +1,502 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>EV Chargers in Reading</title>
-<link rel="stylesheet" href="/style.css">
+<title>Reading EV Chargers</title>
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+
+<style>
+#map {
+  height: 400px;
+  margin-bottom: 30px;
+  border-radius: 8px;
+}
+</style>
+
 </head>
 
 <body>
 
-<header>
-<h1>EV Chargers in Reading</h1>
-</header>
+<h1>Reading EV Chargers</h1>
+
+<div id="map"></div>
+
+<ul>
+
+<li>
+<strong>Rivermead Leisure Centre</strong><br>
+Richfield Avenue
+</li>
+
+<li>
+<strong>Mereoak Park and Ride</strong><br>
+Mereoak Land
+</li>
+
+<li>
+<strong>The Sportsman</strong><br>
+201 Shinfield Road
+</li>
+
+<li>
+<strong>EVC BizSpace Theale Merlin House</strong><br>
+Merlin House
+</li>
+
+<li>
+<strong>Fox & Hounds</strong><br>
+Fox & Hounds
+</li>
+
+<li>
+<strong>Reading FC Stadium</strong><br>
+Biscuit Way
+</li>
+
+<li>
+<strong>Civic Offices Bridge Street</strong><br>
+Arnold
+</li>
+
+<li>
+<strong>Reading Katesgrove Supercharger</strong><br>
+160 Basingstoke Road
+</li>
+
+<li>
+<strong>Reading Civic Centre, outside Car Park</strong><br>
+Simmonds Street
+</li>
+
+<li>
+<strong>Q-Park Chatham Place, Reading 1</strong><br>
+Chatham Street
+</li>
+
+<li>
+<strong>Q-Park Chatham Place, Reading 4</strong><br>
+Chatham Street
+</li>
+
+<li>
+<strong>Q-Park Chatham Place, Reading 8</strong><br>
+Chatham Street
+</li>
+
+<li>
+<strong>Q-Park Chatham Place, Reading 7</strong><br>
+Chatham Street
+</li>
+
+<li>
+<strong>Moto Reading Eastbound Services</strong><br>
+Moto Reading Eastbound Services
+</li>
+
+<li>
+<strong>IKEA Reading</strong><br>
+Pincents Lane
+</li>
+
+<li>
+<strong>Moto Reading Westbound Services</strong><br>
+Moto Reading Westbound Services
+</li>
+
+<li>
+<strong>Tesco Extra - Reading</strong><br>
+Napier Road
+</li>
+
+<li>
+<strong>Estates and Facilities</strong><br>
+Whiteknights
+</li>
+
+<li>
+<strong>Estates and Facilities</strong><br>
+Whiteknights
+</li>
+
+<li>
+<strong>DRAX_00105</strong><br>
+Friar Street
+</li>
+
+<li>
+<strong>SHELL RECHARGE FAIRFIELD</strong><br>
+585 Basingstoke Road
+</li>
+
+<li>
+<strong>MFG</strong><br>
+Shell, Shinfield Rd
+</li>
 
-<div class="container">
+<li>
+<strong>WOK EV CHARGERS WOKEFIELD 2</strong><br>
+de vere wokefield estate Goodboys lane
+</li>
 
-<p>35 charging locations found.</p>
+<li>
+<strong>Crosfield School</strong><br>
+Shinfield Road
+</li>
 
+<li>
+<strong>Reading Railway Station Car Park</strong><br>
+Vastern Road
+</li>
 
-<div class="card">
+<li>
+<strong>Lidl-Basingstoke Road</strong><br>
+577 Basingstoke Road
+</li>
 
-<h3>Rivermead Leisure Centre</h3>
+<li>
+<strong>Turnhams Farm House</strong><br>
+Pincents Lane
+</li>
 
-<p>
-Richfield Avenue<br>
-Reading<br>
-RG1 8BY
-</p>
+<li>
+<strong>Chester Street Car Park</strong><br>
+19 Chester Street
+</li>
 
-</div>
+<li>
+<strong>Thames Promenade Car Park</strong><br>
+Thames Promenade Car Park
+</li>
 
-<div class="card">
+<li>
+<strong>Kensington Road Car Park</strong><br>
+Kensington Road Car Park
+</li>
 
-<h3>Mereoak Park and Ride</h3>
+<li>
+<strong>Aborfield C2</strong><br>
+Nine Mile Ride Extension
+</li>
 
-<p>
-Mereoak Land<br>
-Reading<br>
-RG7 1JY
-</p>
+<li>
+<strong>Tesco Extra - Reading</strong><br>
+ Napier Road
+</li>
 
-</div>
+<li>
+<strong>Area</strong><br>
+1 Station Hill
+</li>
 
-<div class="card">
+<li>
+<strong>The World Upside Down</strong><br>
+387 Basingstoke Road
+</li>
 
-<h3>The Sportsman</h3>
+<li>
+<strong>Tesco Extra-Reading West</strong><br>
+Portman Road
+</li>
 
-<p>
-201 Shinfield Road<br>
-Reading<br>
-RG6 5TS
-</p>
+</ul>
 
-</div>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
-<div class="card">
+<script>
 
-<h3>EVC BizSpace Theale Merlin House</h3>
+var map = L.map('map').setView([
+51.465317372485146,
+-0.9839511023766931
+], 12);
 
-<p>
-Merlin House<br>
-Reading<br>
-RG7 4AB
-</p>
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+attribution: '&copy; OpenStreetMap contributors'
+}).addTo(map);
 
-</div>
 
-<div class="card">
 
-<h3>Fox & Hounds</h3>
+L.marker([
+51.465317372485146,
+-0.9839511023766931
+]).addTo(map)
+.bindPopup("<b>Rivermead Leisure Centre</b><br>Richfield Avenue");
 
-<p>
-Fox & Hounds<br>
-Reading<br>
-RG7 4BE
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+51.405361,
+-0.98102
+]).addTo(map)
+.bindPopup("<b>Mereoak Park and Ride</b><br>Mereoak Land");
 
-<h3>Reading FC Stadium</h3>
 
-<p>
-Biscuit Way<br>
-Reading<br>
-RG2 0FL
-</p>
 
-</div>
+L.marker([
+51.4289981867029,
+-0.9455596753273312
+]).addTo(map)
+.bindPopup("<b>The Sportsman</b><br>201 Shinfield Road");
 
-<div class="card">
 
-<h3>Civic Offices Bridge Street</h3>
 
-<p>
-Arnold<br>
-Reading<br>
-RG1 2LU
-</p>
+L.marker([
+51.43433535,
+-1.07369779
+]).addTo(map)
+.bindPopup("<b>EVC BizSpace Theale Merlin House</b><br>Merlin House");
 
-</div>
 
-<div class="card">
 
-<h3>Reading Katesgrove Supercharger</h3>
+L.marker([
+51.424236,
+-1.067394
+]).addTo(map)
+.bindPopup("<b>Fox & Hounds</b><br>Fox & Hounds");
 
-<p>
-160 Basingstoke Road<br>
-Reading<br>
-RG2 0HJ
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+51.421455,
+-0.983437
+]).addTo(map)
+.bindPopup("<b>Reading FC Stadium</b><br>Biscuit Way");
 
-<h3>Reading Civic Centre, outside Car Park</h3>
 
-<p>
-Simmonds Street<br>
-Reading<br>
-RG1 6QF
-</p>
 
-</div>
+L.marker([
+51.451876,
+-0.972436
+]).addTo(map)
+.bindPopup("<b>Civic Offices Bridge Street</b><br>Arnold");
 
-<div class="card">
 
-<h3>Q-Park Chatham Place, Reading 1</h3>
 
-<p>
-Chatham Street<br>
-Reading<br>
-RG1 7JF
-</p>
+L.marker([
+51.43868904819041,
+-0.9685906596296263
+]).addTo(map)
+.bindPopup("<b>Reading Katesgrove Supercharger</b><br>160 Basingstoke Road");
 
-</div>
 
-<div class="card">
 
-<h3>Q-Park Chatham Place, Reading 4</h3>
+L.marker([
+51.4532079,
+-0.97441
+]).addTo(map)
+.bindPopup("<b>Reading Civic Centre, outside Car Park</b><br>Simmonds Street");
 
-<p>
-Chatham Street<br>
-Reading<br>
-RG1 7JF
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+51.456131,
+-0.980571
+]).addTo(map)
+.bindPopup("<b>Q-Park Chatham Place, Reading 1</b><br>Chatham Street");
 
-<h3>Q-Park Chatham Place, Reading 8</h3>
 
-<p>
-Chatham Street<br>
-Reading<br>
-RG1 7JF
-</p>
 
-</div>
+L.marker([
+51.456046,
+-0.980552
+]).addTo(map)
+.bindPopup("<b>Q-Park Chatham Place, Reading 4</b><br>Chatham Street");
 
-<div class="card">
 
-<h3>Q-Park Chatham Place, Reading 7</h3>
 
-<p>
-Chatham Street<br>
-Reading<br>
-RG1 7JF
-</p>
+L.marker([
+51.455928,
+-0.980515
+]).addTo(map)
+.bindPopup("<b>Q-Park Chatham Place, Reading 8</b><br>Chatham Street");
 
-</div>
 
-<div class="card">
 
-<h3>Moto Reading Eastbound Services</h3>
+L.marker([
+51.455882,
+-0.980518
+]).addTo(map)
+.bindPopup("<b>Q-Park Chatham Place, Reading 7</b><br>Chatham Street");
 
-<p>
-Moto Reading Eastbound Services<br>
-Reading<br>
-RG30 3UQ
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+51.425836,
+-1.03482
+]).addTo(map)
+.bindPopup("<b>Moto Reading Eastbound Services</b><br>Moto Reading Eastbound Services");
 
-<h3>IKEA Reading</h3>
 
-<p>
-Pincents Lane<br>
-Reading<br>
-RG31 7SG
-</p>
 
-</div>
+L.marker([
+51.441585,
+-1.065328
+]).addTo(map)
+.bindPopup("<b>IKEA Reading</b><br>Pincents Lane");
 
-<div class="card">
 
-<h3>Moto Reading Westbound Services</h3>
 
-<p>
-Moto Reading Westbound Services<br>
-Reading<br>
-RG30 3UQ
-</p>
+L.marker([
+51.423283,
+-1.036994
+]).addTo(map)
+.bindPopup("<b>Moto Reading Westbound Services</b><br>Moto Reading Westbound Services");
 
-</div>
 
-<div class="card">
 
-<h3>Tesco Extra - Reading</h3>
+L.marker([
+51.4596,
+-0.954765
+]).addTo(map)
+.bindPopup("<b>Tesco Extra - Reading</b><br>Napier Road");
 
-<p>
-Napier Road<br>
-Reading<br>
-RG1 8DF
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+51.457626,
+-0.945636
+]).addTo(map)
+.bindPopup("<b>Estates and Facilities</b><br>Whiteknights");
 
-<h3>Estates and Facilities</h3>
 
-<p>
-Whiteknights<br>
-Reading<br>
-RG6 6BW
-</p>
 
-</div>
+L.marker([
+51.457314,
+-0.945714
+]).addTo(map)
+.bindPopup("<b>Estates and Facilities</b><br>Whiteknights");
 
-<div class="card">
 
-<h3>Estates and Facilities</h3>
 
-<p>
-Whiteknights<br>
-Reading<br>
-RG6 6BW
-</p>
+L.marker([
+51.45674,
+-0.97352
+]).addTo(map)
+.bindPopup("<b>DRAX_00105</b><br>Friar Street");
 
-</div>
 
-<div class="card">
 
-<h3>DRAX_00105</h3>
+L.marker([
+51.417182,
+-0.971093
+]).addTo(map)
+.bindPopup("<b>SHELL RECHARGE FAIRFIELD</b><br>585 Basingstoke Road");
 
-<p>
-Friar Street<br>
-Reading<br>
-RG1 1DP
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+51.42787,
+-0.945597
+]).addTo(map)
+.bindPopup("<b>MFG</b><br>Shell, Shinfield Rd");
 
-<h3>SHELL RECHARGE FAIRFIELD</h3>
 
-<p>
-585 Basingstoke Road<br>
-Reading<br>
-RG2 0TA
-</p>
 
-</div>
+L.marker([
+51.385194,
+-1.030479
+]).addTo(map)
+.bindPopup("<b>WOK EV CHARGERS WOKEFIELD 2</b><br>de vere wokefield estate Goodboys lane");
 
-<div class="card">
 
-<h3>MFG</h3>
 
-<p>
-Shell, Shinfield Rd<br>
-Reading<br>
-RG2 8HA
-</p>
+L.marker([
+51.4207115,
+-0.9511469
+]).addTo(map)
+.bindPopup("<b>Crosfield School</b><br>Shinfield Road");
 
-</div>
 
-<div class="card">
 
-<h3>WOK EV CHARGERS WOKEFIELD 2</h3>
+L.marker([
+51.45995564458485,
+-0.9706435926951826
+]).addTo(map)
+.bindPopup("<b>Reading Railway Station Car Park</b><br>Vastern Road");
 
-<p>
-de vere wokefield estate Goodboys lane<br>
-Reading<br>
-RG7 3AE
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+51.4214153,
+-0.96857354
+]).addTo(map)
+.bindPopup("<b>Lidl-Basingstoke Road</b><br>577 Basingstoke Road");
 
-<h3>Crosfield School</h3>
 
-<p>
-Shinfield Road<br>
-Reading<br>
-RG2 9BL
-</p>
 
-</div>
+L.marker([
+51.449779517352596,
+-1.0595079332208286
+]).addTo(map)
+.bindPopup("<b>Turnhams Farm House</b><br>Pincents Lane");
 
-<div class="card">
 
-<h3>Reading Railway Station Car Park</h3>
 
-<p>
-Vastern Road<br>
-Reading<br>
-RG1 8BT
-</p>
+L.marker([
+51.46856,
+-0.97299
+]).addTo(map)
+.bindPopup("<b>Chester Street Car Park</b><br>19 Chester Street");
 
-</div>
 
-<div class="card">
 
-<h3>Lidl-Basingstoke Road</h3>
+L.marker([
+51.46596,
+-0.97946
+]).addTo(map)
+.bindPopup("<b>Thames Promenade Car Park</b><br>Thames Promenade Car Park");
 
-<p>
-577 Basingstoke Road<br>
-Reading<br>
-RG2 0SJ
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+51.45412,
+-0.99915
+]).addTo(map)
+.bindPopup("<b>Kensington Road Car Park</b><br>Kensington Road Car Park");
 
-<h3>Turnhams Farm House</h3>
 
-<p>
-Pincents Lane<br>
-Reading<br>
-RG314TT
-</p>
 
-</div>
+L.marker([
+51.37941,
+-0.903434
+]).addTo(map)
+.bindPopup("<b>Aborfield C2</b><br>Nine Mile Ride Extension");
 
-<div class="card">
 
-<h3>Chester Street Car Park</h3>
 
-<p>
-19 Chester Street<br>
-Reading<br>
-RG4 8JH
-</p>
+L.marker([
+51.4599463165781,
+-0.955714871435475
+]).addTo(map)
+.bindPopup("<b>Tesco Extra - Reading</b><br> Napier Road");
 
-</div>
 
-<div class="card">
 
-<h3>Thames Promenade Car Park</h3>
+L.marker([
+51.459167,
+-0.975912
+]).addTo(map)
+.bindPopup("<b>Area</b><br>1 Station Hill");
 
-<p>
-Thames Promenade Car Park<br>
-Reading<br>
-RG1 8BD
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+51.4298220342637,
+-0.968881985533699
+]).addTo(map)
+.bindPopup("<b>The World Upside Down</b><br>387 Basingstoke Road");
 
-<h3>Kensington Road Car Park</h3>
 
-<p>
-Kensington Road Car Park<br>
-Reading<br>
-RG30 2SZ
-</p>
 
-</div>
+L.marker([
+51.459066,
+-0.998738
+]).addTo(map)
+.bindPopup("<b>Tesco Extra-Reading West</b><br>Portman Road");
 
-<div class="card">
 
-<h3>Aborfield C2</h3>
 
-<p>
-Nine Mile Ride Extension<br>
-Reading<br>
-RG2 9GB
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Tesco Extra - Reading</h3>
-
-<p>
- Napier Road<br>
-Reading<br>
-RG1 8DF 
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Area</h3>
-
-<p>
-1 Station Hill<br>
-Reading<br>
-RG1 1NB
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>The World Upside Down</h3>
-
-<p>
-387 Basingstoke Road<br>
-Reading<br>
-RG2 0JE
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Tesco Extra-Reading West</h3>
-
-<p>
-Portman Road<br>
-Reading<br>
-RG30 1AW
-</p>
-
-</div>
-
-
-</div>
-
-<footer>
-EV Charger Directory
-</footer>
+</script>
 
 </body>
 </html>

@@ -1,196 +1,229 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>EV Chargers in Blackburn</title>
-<link rel="stylesheet" href="/style.css">
+<title>Blackburn EV Chargers</title>
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+
+<style>
+#map {
+  height: 400px;
+  margin-bottom: 30px;
+  border-radius: 8px;
+}
+</style>
+
 </head>
 
 <body>
 
-<header>
-<h1>EV Chargers in Blackburn</h1>
-</header>
+<h1>Blackburn EV Chargers</h1>
 
-<div class="container">
+<div id="map"></div>
 
-<p>14 charging locations found.</p>
+<ul>
 
+<li>
+<strong>Lidl-Whalley Banks</strong><br>
+Whalley Banks
+</li>
 
-<div class="card">
+<li>
+<strong>Tesco Superstore - Blackburn</strong><br>
+Hill Street
+</li>
 
-<h3>Lidl-Whalley Banks</h3>
+<li>
+<strong>EG GROUP WATERSIDE HQ 4</strong><br>
+EG Group Waterside Head Office
+</li>
 
-<p>
-Whalley Banks<br>
-Blackburn<br>
-BB2 1NU
-</p>
+<li>
+<strong>CARPARK FB BLACKBURN 1</strong><br>
+Unit 5 Greenbank Business Park Dyneley Road
+</li>
 
-</div>
+<li>
+<strong>EG GROUP HILTON 3</strong><br>
+2 Frontier Avenue
+</li>
 
-<div class="card">
+<li>
+<strong>EG GROUP FRONTIER PARK</strong><br>
+Frontier Avenue
+</li>
 
-<h3>Tesco Superstore - Blackburn</h3>
+<li>
+<strong>EG GROUP STANLEY HOUSE 1</strong><br>
+Stanley House, Further lane
+</li>
 
-<p>
-Hill Street<br>
-Blackburn<br>
-BB1 3HF
-</p>
+<li>
+<strong>Blackburn Technology Management Centre</strong><br>
+Blackburn Technology Managemen
+</li>
 
-</div>
+<li>
+<strong>EG GROUP MY LAHORE 2</strong><br>
+98 Whitebirk Road
+</li>
 
-<div class="card">
+<li>
+<strong>Eanam Wharf Business Centre</strong><br>
+Eanam Old Road
+</li>
 
-<h3>EG GROUP WATERSIDE HQ 4</h3>
+<li>
+<strong>Feilden Street Multi-Storey Car Park</strong><br>
+Feilden Street Multi-Storey Ca
+</li>
 
-<p>
-EG Group Waterside Head Office<br>
-Blackburn<br>
-BB1 2FA
-</p>
+<li>
+<strong>Perry's Nissan Blackburn</strong><br>
+Whalley New Road
+</li>
 
-</div>
+<li>
+<strong>1 Appleby Street</strong><br>
+1 Appleby Street
+</li>
 
-<div class="card">
+<li>
+<strong>The Peel Centre</strong><br>
+Whitebirk Drive
+</li>
 
-<h3>CARPARK FB BLACKBURN 1</h3>
+</ul>
 
-<p>
-Unit 5 Greenbank Business Park Dyneley Road<br>
-Blackburn<br>
-BB1 3AB
-</p>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
-</div>
+<script>
 
-<div class="card">
+var map = L.map('map').setView([
+53.744295,
+-2.492958
+], 12);
 
-<h3>EG GROUP HILTON 3</h3>
-
-<p>
-2 Frontier Avenue<br>
-Blackburn<br>
-BB1 3AL
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>EG GROUP FRONTIER PARK</h3>
-
-<p>
-Frontier Avenue<br>
-Blackburn<br>
-BB1 3AL
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>EG GROUP STANLEY HOUSE 1</h3>
-
-<p>
-Stanley House, Further lane<br>
-Blackburn<br>
-BB2 7NP
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Blackburn Technology Management Centre</h3>
-
-<p>
-Blackburn Technology Managemen<br>
-Blackburn<br>
-BB1 5QB
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>EG GROUP MY LAHORE 2</h3>
-
-<p>
-98 Whitebirk Road<br>
-Blackburn<br>
-BB1 3HR
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Eanam Wharf Business Centre</h3>
-
-<p>
-Eanam Old Road<br>
-Blackburn<br>
-BB1 5BL
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Feilden Street Multi-Storey Car Park</h3>
-
-<p>
-Feilden Street Multi-Storey Ca<br>
-Blackburn<br>
-BB2 1LQ
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Perry's Nissan Blackburn</h3>
-
-<p>
-Whalley New Road<br>
-Blackburn<br>
-BB1 6JT
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>1 Appleby Street</h3>
-
-<p>
-1 Appleby Street<br>
-Blackburn<br>
-BB1 3BL
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>The Peel Centre</h3>
-
-<p>
-Whitebirk Drive<br>
-Blackburn<br>
-BB1 3HT
-</p>
-
-</div>
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+attribution: '&copy; OpenStreetMap contributors'
+}).addTo(map);
 
 
-</div>
 
-<footer>
-EV Charger Directory
-</footer>
+L.marker([
+53.744295,
+-2.492958
+]).addTo(map)
+.bindPopup("<b>Lidl-Whalley Banks</b><br>Whalley Banks");
+
+
+
+L.marker([
+53.750738,
+-2.459421
+]).addTo(map)
+.bindPopup("<b>Tesco Superstore - Blackburn</b><br>Hill Street");
+
+
+
+L.marker([
+53.731772,
+-2.45692
+]).addTo(map)
+.bindPopup("<b>EG GROUP WATERSIDE HQ 4</b><br>EG Group Waterside Head Office");
+
+
+
+L.marker([
+53.757108,
+-2.452515
+]).addTo(map)
+.bindPopup("<b>CARPARK FB BLACKBURN 1</b><br>Unit 5 Greenbank Business Park Dyneley Road");
+
+
+
+L.marker([
+53.75387,
+-2.442069
+]).addTo(map)
+.bindPopup("<b>EG GROUP HILTON 3</b><br>2 Frontier Avenue");
+
+
+
+L.marker([
+53.753435,
+-2.440533
+]).addTo(map)
+.bindPopup("<b>EG GROUP FRONTIER PARK</b><br>Frontier Avenue");
+
+
+
+L.marker([
+53.763861,
+-2.53984
+]).addTo(map)
+.bindPopup("<b>EG GROUP STANLEY HOUSE 1</b><br>Stanley House, Further lane");
+
+
+
+L.marker([
+53.761124,
+-2.452728
+]).addTo(map)
+.bindPopup("<b>Blackburn Technology Management Centre</b><br>Blackburn Technology Managemen");
+
+
+
+L.marker([
+53.753989,
+-2.446263
+]).addTo(map)
+.bindPopup("<b>EG GROUP MY LAHORE 2</b><br>98 Whitebirk Road");
+
+
+
+L.marker([
+53.748823,
+-2.474993
+]).addTo(map)
+.bindPopup("<b>Eanam Wharf Business Centre</b><br>Eanam Old Road");
+
+
+
+L.marker([
+53.747812,
+-2.48731
+]).addTo(map)
+.bindPopup("<b>Feilden Street Multi-Storey Car Park</b><br>Feilden Street Multi-Storey Ca");
+
+
+
+L.marker([
+53.754427,
+-2.475939
+]).addTo(map)
+.bindPopup("<b>Perry's Nissan Blackburn</b><br>Whalley New Road");
+
+
+
+L.marker([
+53.75175616310938,
+-2.4672746746392704
+]).addTo(map)
+.bindPopup("<b>1 Appleby Street</b><br>1 Appleby Street");
+
+
+
+L.marker([
+53.758155114061225,
+-2.4461998650763235
+]).addTo(map)
+.bindPopup("<b>The Peel Centre</b><br>Whitebirk Drive");
+
+
+
+</script>
 
 </body>
 </html>

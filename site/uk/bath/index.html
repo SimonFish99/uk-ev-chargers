@@ -1,196 +1,229 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>EV Chargers in Bath</title>
-<link rel="stylesheet" href="/style.css">
+<title>Bath EV Chargers</title>
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+
+<style>
+#map {
+  height: 400px;
+  margin-bottom: 30px;
+  border-radius: 8px;
+}
+</style>
+
 </head>
 
 <body>
 
-<header>
-<h1>EV Chargers in Bath</h1>
-</header>
+<h1>Bath EV Chargers</h1>
 
-<div class="container">
+<div id="map"></div>
 
-<p>14 charging locations found.</p>
+<ul>
 
+<li>
+<strong>Charlotte Street Car Park</strong><br>
+Crescent Gardens
+</li>
 
-<div class="card">
+<li>
+<strong>Charlotte Street Car Park Hub</strong><br>
+Charlotte Street
+</li>
 
-<h3>Charlotte Street Car Park</h3>
+<li>
+<strong>Bath Spa University - Academic Building</strong><br>
+Newton Park
+</li>
 
-<p>
-Crescent Gardens<br>
-Bath<br>
-BA1 2NA
-</p>
+<li>
+<strong>EVC Bath Spa Hotel</strong><br>
+Sydney Road
+</li>
 
-</div>
+<li>
+<strong>Park and ride</strong><br>
+Lansdown Park & Ride
+</li>
 
-<div class="card">
+<li>
+<strong>Academic Building</strong><br>
+Newton Park, Newton St Loe
+</li>
 
-<h3>Charlotte Street Car Park Hub</h3>
+<li>
+<strong>SouthGate Bath Level -1, -2 & -3</strong><br>
+12 Southgate Street
+</li>
 
-<p>
-Charlotte Street<br>
-Bath<br>
-BA1 2NA
-</p>
+<li>
+<strong>Revive_BANES</strong><br>
+St Saviours Road
+</li>
 
-</div>
+<li>
+<strong>SUTTON HOTELS FRANCIS HOTEL</strong><br>
+Francis Hotel, 6-12 Queen Square
+</li>
 
-<div class="card">
+<li>
+<strong>Revive_BANES</strong><br>
+Kingsmead Street
+</li>
 
-<h3>Bath Spa University - Academic Building</h3>
+<li>
+<strong>Revive_BANES</strong><br>
+Claverton Street
+</li>
 
-<p>
-Newton Park<br>
-Bath<br>
-BA2 9BN
-</p>
+<li>
+<strong>Bath Spa University-Locksbrook Campus</strong><br>
+Locksbrook Road
+</li>
 
-</div>
+<li>
+<strong>The Pig Restaurants-Bath</strong><br>
+Hunstrete House
+</li>
 
-<div class="card">
+<li>
+<strong>Morrisons Bath</strong><br>
+London Road
+</li>
 
-<h3>EVC Bath Spa Hotel</h3>
+</ul>
 
-<p>
-Sydney Road<br>
-Bath<br>
-BA2 6NS
-</p>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
-</div>
+<script>
 
-<div class="card">
+var map = L.map('map').setView([
+51.384944,
+-2.369139
+], 12);
 
-<h3>Park and ride</h3>
-
-<p>
-Lansdown Park & Ride<br>
-Bath<br>
-BA1 9BJ
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Academic Building</h3>
-
-<p>
-Newton Park, Newton St Loe<br>
-Bath<br>
-BA2 9BN
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>SouthGate Bath Level -1, -2 & -3</h3>
-
-<p>
-12 Southgate Street<br>
-Bath<br>
-BA1 1AQ
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Revive_BANES</h3>
-
-<p>
-St Saviours Road<br>
-Bath<br>
-BA1 6RA
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>SUTTON HOTELS FRANCIS HOTEL</h3>
-
-<p>
-Francis Hotel, 6-12 Queen Square<br>
-Bath<br>
-BA1 2HH
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Revive_BANES</h3>
-
-<p>
-Kingsmead Street<br>
-Bath<br>
-BA1 2AA
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Revive_BANES</h3>
-
-<p>
-Claverton Street<br>
-Bath<br>
-BA2 4JP
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Bath Spa University-Locksbrook Campus</h3>
-
-<p>
-Locksbrook Road<br>
-Bath<br>
-BA1 3EL
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>The Pig Restaurants-Bath</h3>
-
-<p>
-Hunstrete House<br>
-Bath<br>
-BS39 4NS
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Morrisons Bath</h3>
-
-<p>
-London Road<br>
-Bath<br>
-BA1 6AE
-</p>
-
-</div>
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+attribution: '&copy; OpenStreetMap contributors'
+}).addTo(map);
 
 
-</div>
 
-<footer>
-EV Charger Directory
-</footer>
+L.marker([
+51.384944,
+-2.369139
+]).addTo(map)
+.bindPopup("<b>Charlotte Street Car Park</b><br>Crescent Gardens");
+
+
+
+L.marker([
+51.383902028019776,
+-2.3671986674253276
+]).addTo(map)
+.bindPopup("<b>Charlotte Street Car Park Hub</b><br>Charlotte Street");
+
+
+
+L.marker([
+51.376916,
+-2.436456
+]).addTo(map)
+.bindPopup("<b>Bath Spa University - Academic Building</b><br>Newton Park");
+
+
+
+L.marker([
+51.38579047267572,
+-2.344342914351647
+]).addTo(map)
+.bindPopup("<b>EVC Bath Spa Hotel</b><br>Sydney Road");
+
+
+
+L.marker([
+51.41017406947179,
+-2.3879927705445994
+]).addTo(map)
+.bindPopup("<b>Park and ride</b><br>Lansdown Park & Ride");
+
+
+
+L.marker([
+51.378743,
+-2.437402
+]).addTo(map)
+.bindPopup("<b>Academic Building</b><br>Newton Park, Newton St Loe");
+
+
+
+L.marker([
+51.378208,
+-2.359423
+]).addTo(map)
+.bindPopup("<b>SouthGate Bath Level -1, -2 & -3</b><br>12 Southgate Street");
+
+
+
+L.marker([
+51.397781,
+-2.345216
+]).addTo(map)
+.bindPopup("<b>Revive_BANES</b><br>St Saviours Road");
+
+
+
+L.marker([
+51.38285,
+-2.362906
+]).addTo(map)
+.bindPopup("<b>SUTTON HOTELS FRANCIS HOTEL</b><br>Francis Hotel, 6-12 Queen Square");
+
+
+
+L.marker([
+51.381321,
+-2.364211
+]).addTo(map)
+.bindPopup("<b>Revive_BANES</b><br>Kingsmead Street");
+
+
+
+L.marker([
+51.376881,
+-2.353858
+]).addTo(map)
+.bindPopup("<b>Revive_BANES</b><br>Claverton Street");
+
+
+
+L.marker([
+51.382675,
+-2.3883
+]).addTo(map)
+.bindPopup("<b>Bath Spa University-Locksbrook Campus</b><br>Locksbrook Road");
+
+
+
+L.marker([
+51.355306,
+-2.507611
+]).addTo(map)
+.bindPopup("<b>The Pig Restaurants-Bath</b><br>Hunstrete House");
+
+
+
+L.marker([
+51.391876,
+-2.35154
+]).addTo(map)
+.bindPopup("<b>Morrisons Bath</b><br>London Road");
+
+
+
+</script>
 
 </body>
 </html>

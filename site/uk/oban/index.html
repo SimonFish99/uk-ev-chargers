@@ -1,88 +1,112 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>EV Chargers in Oban</title>
-<link rel="stylesheet" href="/style.css">
+<title>Oban EV Chargers</title>
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+
+<style>
+#map {
+  height: 400px;
+  margin-bottom: 30px;
+  border-radius: 8px;
+}
+</style>
+
 </head>
 
 <body>
 
-<header>
-<h1>EV Chargers in Oban</h1>
-</header>
+<h1>Oban EV Chargers</h1>
 
-<div class="container">
+<div id="map"></div>
 
-<p>5 charging locations found.</p>
+<ul>
 
+<li>
+<strong>Tesco Superstore-Oban</strong><br>
+Lochside
+</li>
 
-<div class="card">
+<li>
+<strong>Oban Railway Station, Oban</strong><br>
+Railway Pier
+</li>
 
-<h3>Tesco Superstore-Oban</h3>
+<li>
+<strong>Glenshellech House, Oban</strong><br>
+7e Glengallan Road
+</li>
 
-<p>
-Lochside<br>
-Oban<br>
-PA34 4HP
-</p>
+<li>
+<strong>Loch Melfort Hotel, Oban</strong><br>
+Arduaine
+</li>
 
-</div>
+<li>
+<strong>Oban Bay Hotel and Spa, Oban</strong><br>
+Corran Esplanade
+</li>
 
-<div class="card">
+</ul>
 
-<h3>Oban Railway Station, Oban</h3>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
-<p>
-Railway Pier<br>
-Oban<br>
-PA34 4LW
-</p>
+<script>
 
-</div>
+var map = L.map('map').setView([
+56.409965,
+-5.471911
+], 12);
 
-<div class="card">
-
-<h3>Glenshellech House, Oban</h3>
-
-<p>
-7e Glengallan Road<br>
-Oban<br>
-PA34 4HG
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Loch Melfort Hotel, Oban</h3>
-
-<p>
-Arduaine<br>
-Oban<br>
-PA34 4XG
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Oban Bay Hotel and Spa, Oban</h3>
-
-<p>
-Corran Esplanade<br>
-Oban<br>
-PA34 5AE
-</p>
-
-</div>
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+attribution: '&copy; OpenStreetMap contributors'
+}).addTo(map);
 
 
-</div>
 
-<footer>
-EV Charger Directory
-</footer>
+L.marker([
+56.409965,
+-5.471911
+]).addTo(map)
+.bindPopup("<b>Tesco Superstore-Oban</b><br>Lochside");
+
+
+
+L.marker([
+56.412409,
+-5.474351
+]).addTo(map)
+.bindPopup("<b>Oban Railway Station, Oban</b><br>Railway Pier");
+
+
+
+L.marker([
+56.39654,
+-5.48842
+]).addTo(map)
+.bindPopup("<b>Glenshellech House, Oban</b><br>7e Glengallan Road");
+
+
+
+L.marker([
+56.235196,
+-5.554031
+]).addTo(map)
+.bindPopup("<b>Loch Melfort Hotel, Oban</b><br>Arduaine");
+
+
+
+L.marker([
+56.41979,
+-5.47977
+]).addTo(map)
+.bindPopup("<b>Oban Bay Hotel and Spa, Oban</b><br>Corran Esplanade");
+
+
+
+</script>
 
 </body>
 </html>

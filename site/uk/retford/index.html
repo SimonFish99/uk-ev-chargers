@@ -1,88 +1,112 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>EV Chargers in Retford</title>
-<link rel="stylesheet" href="/style.css">
+<title>Retford EV Chargers</title>
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+
+<style>
+#map {
+  height: 400px;
+  margin-bottom: 30px;
+  border-radius: 8px;
+}
+</style>
+
 </head>
 
 <body>
 
-<header>
-<h1>EV Chargers in Retford</h1>
-</header>
+<h1>Retford EV Chargers</h1>
 
-<div class="container">
+<div id="map"></div>
 
-<p>5 charging locations found.</p>
+<ul>
 
+<li>
+<strong>Morrisons</strong><br>
+Idle Valley Road
+</li>
 
-<div class="card">
+<li>
+<strong>EG GROUP RETFORD</strong><br>
+King Edward Services. EURO GARAGES
+</li>
 
-<h3>Morrisons</h3>
+<li>
+<strong>Starbucks Markham Moor</strong><br>
+A1 Southbound
+</li>
 
-<p>
-Idle Valley Road<br>
-Retford<br>
-DN22 7XD
-</p>
+<li>
+<strong>Markham Moor Inn</strong><br>
+Great North Road
+</li>
 
-</div>
+<li>
+<strong>Randall Business Centre</strong><br>
+Randall Park Way
+</li>
 
-<div class="card">
+</ul>
 
-<h3>EG GROUP RETFORD</h3>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
-<p>
-King Edward Services. EURO GARAGES<br>
-Retford<br>
-DN22 6AZ
-</p>
+<script>
 
-</div>
+var map = L.map('map').setView([
+53.326561,
+-0.942165
+], 12);
 
-<div class="card">
-
-<h3>Starbucks Markham Moor</h3>
-
-<p>
-A1 Southbound<br>
-Retford<br>
-DN22 0QU
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Markham Moor Inn</h3>
-
-<p>
-Great North Road<br>
-Retford<br>
-DN22 0QU
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Randall Business Centre</h3>
-
-<p>
-Randall Park Way<br>
-Retford<br>
-DN22 7WF
-</p>
-
-</div>
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+attribution: '&copy; OpenStreetMap contributors'
+}).addTo(map);
 
 
-</div>
 
-<footer>
-EV Charger Directory
-</footer>
+L.marker([
+53.326561,
+-0.942165
+]).addTo(map)
+.bindPopup("<b>Morrisons</b><br>Idle Valley Road");
+
+
+
+L.marker([
+53.317483,
+-0.938523
+]).addTo(map)
+.bindPopup("<b>EG GROUP RETFORD</b><br>King Edward Services. EURO GARAGES");
+
+
+
+L.marker([
+53.2570124746955,
+-0.927866690861833
+]).addTo(map)
+.bindPopup("<b>Starbucks Markham Moor</b><br>A1 Southbound");
+
+
+
+L.marker([
+53.2577789579793,
+-0.925787328900583
+]).addTo(map)
+.bindPopup("<b>Markham Moor Inn</b><br>Great North Road");
+
+
+
+L.marker([
+53.3358,
+-0.959832
+]).addTo(map)
+.bindPopup("<b>Randall Business Centre</b><br>Randall Park Way");
+
+
+
+</script>
 
 </body>
 </html>

@@ -1,88 +1,112 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>EV Chargers in Seaham</title>
-<link rel="stylesheet" href="/style.css">
+<title>Seaham EV Chargers</title>
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+
+<style>
+#map {
+  height: 400px;
+  margin-bottom: 30px;
+  border-radius: 8px;
+}
+</style>
+
 </head>
 
 <body>
 
-<header>
-<h1>EV Chargers in Seaham</h1>
-</header>
+<h1>Seaham EV Chargers</h1>
 
-<div class="container">
+<div id="map"></div>
 
-<p>5 charging locations found.</p>
+<ul>
 
+<li>
+<strong>DCC South Railway Street</strong><br>
+South Railway street
+</li>
 
-<div class="card">
+<li>
+<strong>DCC Green Street Car Park</strong><br>
+Green Street Car Park
+</li>
 
-<h3>DCC South Railway Street</h3>
+<li>
+<strong>Green Street Car Park</strong><br>
+Interchange
+</li>
 
-<p>
-South Railway street<br>
-Seaham<br>
-SR7 7ES
-</p>
+<li>
+<strong>Dalton Park Outlet</strong><br>
+Murton
+</li>
 
-</div>
+<li>
+<strong>Terrace Green Car Park</strong><br>
+Terrace Green 
+</li>
 
-<div class="card">
+</ul>
 
-<h3>DCC Green Street Car Park</h3>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
-<p>
-Green Street Car Park<br>
-Seaham<br>
-SR7 7HA
-</p>
+<script>
 
-</div>
+var map = L.map('map').setView([
+54.83796,
+-1.333919
+], 12);
 
-<div class="card">
-
-<h3>Green Street Car Park</h3>
-
-<p>
-Interchange<br>
-Seaham<br>
-SR7 7HD
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Dalton Park Outlet</h3>
-
-<p>
-Murton<br>
-Seaham<br>
-SR7 9HU
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Terrace Green Car Park</h3>
-
-<p>
-Terrace Green <br>
-Seaham<br>
-SR7 7EU
-</p>
-
-</div>
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+attribution: '&copy; OpenStreetMap contributors'
+}).addTo(map);
 
 
-</div>
 
-<footer>
-EV Charger Directory
-</footer>
+L.marker([
+54.83796,
+-1.333919
+]).addTo(map)
+.bindPopup("<b>DCC South Railway Street</b><br>South Railway street");
+
+
+
+L.marker([
+54.837566,
+-1.332179
+]).addTo(map)
+.bindPopup("<b>DCC Green Street Car Park</b><br>Green Street Car Park");
+
+
+
+L.marker([
+54.836919221599516,
+-1.3324210307181374
+]).addTo(map)
+.bindPopup("<b>Green Street Car Park</b><br>Interchange");
+
+
+
+L.marker([
+54.815107,
+-1.375189
+]).addTo(map)
+.bindPopup("<b>Dalton Park Outlet</b><br>Murton");
+
+
+
+L.marker([
+54.840193,
+-1.332386
+]).addTo(map)
+.bindPopup("<b>Terrace Green Car Park</b><br>Terrace Green ");
+
+
+
+</script>
 
 </body>
 </html>

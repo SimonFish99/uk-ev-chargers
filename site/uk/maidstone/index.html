@@ -1,196 +1,229 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>EV Chargers in Maidstone</title>
-<link rel="stylesheet" href="/style.css">
+<title>Maidstone EV Chargers</title>
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+
+<style>
+#map {
+  height: 400px;
+  margin-bottom: 30px;
+  border-radius: 8px;
+}
+</style>
+
 </head>
 
 <body>
 
-<header>
-<h1>EV Chargers in Maidstone</h1>
-</header>
+<h1>Maidstone EV Chargers</h1>
 
-<div class="container">
+<div id="map"></div>
 
-<p>14 charging locations found.</p>
+<ul>
 
+<li>
+<strong>Wickes Maidstone</strong><br>
+St Peters Street
+</li>
 
-<div class="card">
+<li>
+<strong>Pudding Lane</strong><br>
+Pudding Lane
+</li>
 
-<h3>Wickes Maidstone</h3>
+<li>
+<strong>Chiltern Hundreds</strong><br>
+Penenden Heath Road
+</li>
 
-<p>
-St Peters Street<br>
-Maidstone<br>
-ME16 0SN
-</p>
+<li>
+<strong>The Cock Inn</strong><br>
+The Cock Inn
+</li>
 
-</div>
+<li>
+<strong>King Street Car Park</strong><br>
+King Street
+</li>
 
-<div class="card">
+<li>
+<strong>Invicta House</strong><br>
+County Road
+</li>
 
-<h3>Pudding Lane</h3>
+<li>
+<strong>The Fields At Aylesford</strong><br>
+St Laurence Avenue
+</li>
 
-<p>
-Pudding Lane<br>
-Maidstone<br>
-ME14 1LN
-</p>
+<li>
+<strong>Roadchef Maidstone Services</strong><br>
+M20 Motorway, Jct 8, Hollingbourne
+</li>
 
-</div>
+<li>
+<strong>Mercedes-Benz of Maidstone</strong><br>
+Bircholt Road
+</li>
 
-<div class="card">
+<li>
+<strong>Brunswick Street Car Park</strong><br>
+George Street
+</li>
 
-<h3>Chiltern Hundreds</h3>
+<li>
+<strong>InstaVolt/McDonald's Hart Street</strong><br>
+2-8 Hart Street
+</li>
 
-<p>
-Penenden Heath Road<br>
-Maidstone<br>
-ME14 2DG
-</p>
+<li>
+<strong>M&S Maidstone</strong><br>
+Eclipse Park
+</li>
 
-</div>
+<li>
+<strong>Miller & Carter White Rabbit</strong><br>
+Sandling Road
+</li>
 
-<div class="card">
+<li>
+<strong>Wm Morrison Supermarkets PLC St. Saviours Road</strong><br>
+Wm Morrison Supermarkets PLC St. Saviours Road
+</li>
 
-<h3>The Cock Inn</h3>
+</ul>
 
-<p>
-The Cock Inn<br>
-Maidstone<br>
-ME174JD
-</p>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
-</div>
+<script>
 
-<div class="card">
+var map = L.map('map').setView([
+51.27390528,
+0.51563406
+], 12);
 
-<h3>King Street Car Park</h3>
-
-<p>
-King Street<br>
-Maidstone<br>
-ME14 1DB
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Invicta House</h3>
-
-<p>
-County Road<br>
-Maidstone<br>
-ME14 1XX
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>The Fields At Aylesford</h3>
-
-<p>
-St Laurence Avenue<br>
-Maidstone<br>
-ME16 0ZP
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Roadchef Maidstone Services</h3>
-
-<p>
-M20 Motorway, Jct 8, Hollingbourne<br>
-Maidstone<br>
-ME17 1SS
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Mercedes-Benz of Maidstone</h3>
-
-<p>
-Bircholt Road<br>
-Maidstone<br>
-ME15 9YN
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Brunswick Street Car Park</h3>
-
-<p>
-George Street<br>
-Maidstone<br>
-ME15 6NP
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>InstaVolt/McDonald's Hart Street</h3>
-
-<p>
-2-8 Hart Street<br>
-Maidstone<br>
-ME16 8RA
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>M&S Maidstone</h3>
-
-<p>
-Eclipse Park<br>
-Maidstone<br>
-ME14 3EN
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Miller & Carter White Rabbit</h3>
-
-<p>
-Sandling Road<br>
-Maidstone<br>
-ME14 2RJ
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Wm Morrison Supermarkets PLC St. Saviours Road</h3>
-
-<p>
-Wm Morrison Supermarkets PLC St. Saviours Road<br>
-Maidstone<br>
-ME15 9NN
-</p>
-
-</div>
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+attribution: '&copy; OpenStreetMap contributors'
+}).addTo(map);
 
 
-</div>
 
-<footer>
-EV Charger Directory
-</footer>
+L.marker([
+51.27390528,
+0.51563406
+]).addTo(map)
+.bindPopup("<b>Wickes Maidstone</b><br>St Peters Street");
+
+
+
+L.marker([
+51.27383741170001,
+0.5206227064647675
+]).addTo(map)
+.bindPopup("<b>Pudding Lane</b><br>Pudding Lane");
+
+
+
+L.marker([
+51.2857985714808,
+0.5430197490062483
+]).addTo(map)
+.bindPopup("<b>Chiltern Hundreds</b><br>Penenden Heath Road");
+
+
+
+L.marker([
+51.229147,
+0.542806
+]).addTo(map)
+.bindPopup("<b>The Cock Inn</b><br>The Cock Inn");
+
+
+
+L.marker([
+51.273859,
+0.526436
+]).addTo(map)
+.bindPopup("<b>King Street Car Park</b><br>King Street");
+
+
+
+L.marker([
+51.27906,
+0.52102
+]).addTo(map)
+.bindPopup("<b>Invicta House</b><br>County Road");
+
+
+
+L.marker([
+51.290635,
+0.48867772
+]).addTo(map)
+.bindPopup("<b>The Fields At Aylesford</b><br>St Laurence Avenue");
+
+
+
+L.marker([
+51.266807,
+0.614396
+]).addTo(map)
+.bindPopup("<b>Roadchef Maidstone Services</b><br>M20 Motorway, Jct 8, Hollingbourne");
+
+
+
+L.marker([
+51.239922,
+0.56417
+]).addTo(map)
+.bindPopup("<b>Mercedes-Benz of Maidstone</b><br>Bircholt Road");
+
+
+
+L.marker([
+51.268601,
+0.525373
+]).addTo(map)
+.bindPopup("<b>Brunswick Street Car Park</b><br>George Street");
+
+
+
+L.marker([
+51.2710098,
+0.5166113
+]).addTo(map)
+.bindPopup("<b>InstaVolt/McDonald's Hart Street</b><br>2-8 Hart Street");
+
+
+
+L.marker([
+51.2865642540376,
+0.548709143273072
+]).addTo(map)
+.bindPopup("<b>M&S Maidstone</b><br>Eclipse Park");
+
+
+
+L.marker([
+51.280739,
+0.51924
+]).addTo(map)
+.bindPopup("<b>Miller & Carter White Rabbit</b><br>Sandling Road");
+
+
+
+L.marker([
+51.246651,
+0.546458
+]).addTo(map)
+.bindPopup("<b>Wm Morrison Supermarkets PLC St. Saviours Road</b><br>Wm Morrison Supermarkets PLC St. Saviours Road");
+
+
+
+</script>
 
 </body>
 </html>

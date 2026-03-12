@@ -1,1144 +1,1256 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>EV Chargers in Bristol</title>
-<link rel="stylesheet" href="/style.css">
+<title>Bristol EV Chargers</title>
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+
+<style>
+#map {
+  height: 400px;
+  margin-bottom: 30px;
+  border-radius: 8px;
+}
+</style>
+
 </head>
 
 <body>
 
-<header>
-<h1>EV Chargers in Bristol</h1>
-</header>
+<h1>Bristol EV Chargers</h1>
+
+<div id="map"></div>
+
+<ul>
+
+<li>
+<strong>Aztec Hotel & Spa</strong><br>
+110 Aztec West
+</li>
+
+<li>
+<strong>Brunswick Square Car Club Only</strong><br>
+Brunswick Square
+</li>
+
+<li>
+<strong>BizSpace Bristol </strong><br>
+Equinox South
+</li>
+
+<li>
+<strong>GL184</strong><br>
+51 Northumbria Dr, Henleaze
+</li>
+
+<li>
+<strong>Ultra Rapid EV Charging - Sainsbury's Castle Court</strong><br>
+Arnos Vale
+</li>
+
+<li>
+<strong>Tesco Superstore - Nailsea</strong><br>
+Stock Way North
+</li>
+
+<li>
+<strong>Tesco Superstore - Keynsham</strong><br>
+Bristol Road
+</li>
+
+<li>
+<strong>Tesco Superstore - Midsomer Norton</strong><br>
+Old Mills
+</li>
+
+<li>
+<strong>Legal & General Investment Management</strong><br>
+Aspects Leisure Park
+</li>
+
+<li>
+<strong>Thornbury Leisure Centre</strong><br>
+Thornbury Road, Thornbury
+</li>
+
+<li>
+<strong>SHELL RECHARGE CRIBBS CAUSEWAY</strong><br>
+Cribbs Causeway
+</li>
+
+<li>
+<strong>Shell Recharge Newfoundland Circus</strong><br>
+95 Newfoundland Road
+</li>
+
+<li>
+<strong>Bridge Road, Leigh Woods</strong><br>
+Leigh Woods
+</li>
+
+<li>
+<strong>zest-park-race-year</strong><br>
+Chandus Court
+</li>
+
+<li>
+<strong>Huntsman Taverners Pub and Restaurant</strong><br>
+Westerleigh RD
+</li>
+
+<li>
+<strong>Instavolt Flourish at Glenavon Farm</strong><br>
+Bath Road
+</li>
+
+<li>
+<strong>MFG Blackhorse</strong><br>
+Westerleigh Road
+</li>
+
+<li>
+<strong>MFG Stapleton</strong><br>
+Park Road
+</li>
+
+<li>
+<strong>IKEA Bristol</strong><br>
+Eastgate Road Eastgate Shopping Centre
+</li>
+
+<li>
+<strong>Moto Severn View Services</strong><br>
+M48, Motorway, Jct 1, Aust
+</li>
+
+<li>
+<strong>Yate Shopping Centre</strong><br>
+43 North Walk, Yate
+</li>
+
+<li>
+<strong>Motability Bristol</strong><br>
+Bristol Park House, 610 Bristol Business Park, Coldharbour Lane, Bristol
+</li>
+
+<li>
+<strong>Private business car park</strong><br>
+Dirac Crescent
+</li>
+
+<li>
+<strong>Car Park</strong><br>
+Emersons Green
+</li>
+
+<li>
+<strong>Page Road Short Stay Car Park</strong><br>
+Short Stay Car Park
+</li>
+
+<li>
+<strong>SHELL RECHARGE BUDGENS BROADMEAD</strong><br>
+95 Newfoundland Road
+</li>
+
+<li>
+<strong>Trenchard Street</strong><br>
+West End
+</li>
+
+<li>
+<strong>Trenchard Street</strong><br>
+West End
+</li>
+
+<li>
+<strong>West End Car Park</strong><br>
+West End Car Park
+</li>
+
+<li>
+<strong>Trenchard Street Car Park 3</strong><br>
+Lodge Street
+</li>
+
+<li>
+<strong>Trenchard Street Car Park 2</strong><br>
+Lodge Street
+</li>
+
+<li>
+<strong>West End Car Park</strong><br>
+Berkeley Place
+</li>
+
+<li>
+<strong>Trenchard Car Park</strong><br>
+Trenchard Car Park
+</li>
+
+<li>
+<strong>Aurora</strong><br>
+Finzels Reach
+</li>
+
+<li>
+<strong>DRAX_00112</strong><br>
+Victoria Street
+</li>
+
+<li>
+<strong>NCP Queen Charlotte Street</strong><br>
+NCP Queen Charlotte Street
+</li>
+
+<li>
+<strong>Car Park</strong><br>
+College Street
+</li>
+
+<li>
+<strong>College Street Car Park</strong><br>
+College Street Car Park
+</li>
+
+<li>
+<strong>Car Park</strong><br>
+Harborside
+</li>
+
+<li>
+<strong>The Grove</strong><br>
+Harbourside
+</li>
+
+<li>
+<strong>Longwell Green Leisure Centre</strong><br>
+Leisure Road
+</li>
+
+<li>
+<strong>Long Ashton Park and Ride</strong><br>
+A370
+</li>
+
+<li>
+<strong>Long Ashton Park and Ride</strong><br>
+A370
+</li>
+
+<li>
+<strong>InstaVolt Costa Coffee</strong><br>
+Fieldfare
+</li>
+
+<li>
+<strong>DoubleTree Hilton</strong><br>
+Frost Hill, Congresbury
+</li>
+
+<li>
+<strong>Lye Cross Farm</strong><br>
+Lye Cross Farm
+</li>
+
+<li>
+<strong>College Street Car Park</strong><br>
+Saint Georges Road
+</li>
+
+<li>
+<strong>Revive_SGC</strong><br>
+St James Street
+</li>
+
+<li>
+<strong>Revive_BCC</strong><br>
+Portland Street
+</li>
+
+<li>
+<strong>Revive_NSC</strong><br>
+High St
+</li>
+
+<li>
+<strong>Revive_BCC_02</strong><br>
+Whitchurch Ln
+</li>
+
+<li>
+<strong>Cribbs Causeway Car Park J</strong><br>
+Pegasus Road
+</li>
+
+<li>
+<strong>Winter Stream Farm Pub</strong><br>
+Winterbourne Road
+</li>
+
+<li>
+<strong>Riverside Inn Saltford</strong><br>
+The Shallows
+</li>
+
+<li>
+<strong>EVC Mendip Spring Golf Club</strong><br>
+Mendip Spring Golf Club
+</li>
+
+<li>
+<strong>Counterslip</strong><br>
+Counterslip
+</li>
+
+<li>
+<strong>Tesco Extra-Bristol Brislington</strong><br>
+Callington Road
+</li>
+
+<li>
+<strong>Premier Inn Cribbs Causeway</strong><br>
+Catbrain Lane
+</li>
+
+<li>
+<strong>McDonald's Cribbs Causeway</strong><br>
+Lysander Road
+</li>
+
+<li>
+<strong>The Parade Car Park</strong><br>
+Patchway
+</li>
+
+<li>
+<strong>Portishead Marina Rapid Charging Hub</strong><br>
+Portishead
+</li>
+
+<li>
+<strong>Haynes Lane Car Park</strong><br>
+Haynes Lane
+</li>
+
+<li>
+<strong>Cecil Road Car Park</strong><br>
+Kingswood
+</li>
+
+<li>
+<strong>Chalks Road Car Park</strong><br>
+Chalks Road
+</li>
+
+<li>
+<strong>Easton Leisure Centre</strong><br>
+Thrissell Street
+</li>
+
+<li>
+<strong>Laburnum Road Car Park</strong><br>
+Hanham
+</li>
+
+<li>
+<strong>Mollies Bristol</strong><br>
+Cribbs Causeway
+</li>
+
+<li>
+<strong>Horfield Leisure Centre</strong><br>
+Dorian Road
+</li>
+
+<li>
+<strong>Bradley Stoke Leisure Centre</strong><br>
+Fiddlers Wood Lane
+</li>
+
+<li>
+<strong>Millennium Square underground car park</strong><br>
+10 Canons Way
+</li>
+
+<li>
+<strong>The Sandringham</strong><br>
+Quaker's Road
+</li>
+
+<li>
+<strong>Southmead HospitalTrust Headquarters</strong><br>
+Southmead HospitalTrust Headquarters
+</li>
+
+<li>
+<strong>Brunel Building MSCP</strong><br>
+Southmead Hospital
+</li>
+
+<li>
+<strong>Brunel Building MSCP</strong><br>
+Southmead Hospital
+</li>
+
+<li>
+<strong>Morrisons Bristol Fishponds</strong><br>
+690-718 Fishponds Road Fishponds
+</li>
+
+<li>
+<strong>The Priory</strong><br>
+Station Road
+</li>
+
+<li>
+<strong>Bristol Zoo Gardens (west)</strong><br>
+Bristol Zoo Gardens (west)
+</li>
+
+<li>
+<strong>City Hall</strong><br>
+College Green
+</li>
+
+<li>
+<strong>College Street</strong><br>
+College Street
+</li>
+
+<li>
+<strong>Bristol City Council Building Car Park</strong><br>
+Smeaton Road
+</li>
+
+<li>
+<strong>Create Centre</strong><br>
+Smeaton Road
+</li>
+
+<li>
+<strong>Create Centre</strong><br>
+Smeaton Road
+</li>
+
+<li>
+<strong>St Monica Trust</strong><br>
+Keynsham
+</li>
+
+<li>
+<strong>Bristol-Lysander Road Supercharger</strong><br>
+Lysander Road
+</li>
+
+<li>
+<strong>Portway</strong><br>
+Portway
+</li>
+
+<li>
+<strong>A4 Portway Park and Ride</strong><br>
+Portway
+</li>
+
+<li>
+<strong>Car Park</strong><br>
+Redland Hill
+</li>
+
+<li>
+<strong>Trenchard Street Multi-Storey Car Park</strong><br>
+Trenchard Street
+</li>
+
+<li>
+<strong>Templegate Car Park</strong><br>
+Templegate House Templegate
+</li>
+
+<li>
+<strong>Temple Gate Car Park 1</strong><br>
+Temple Gate
+</li>
+
+<li>
+<strong>Long Ashton Park and Ride</strong><br>
+Long Ashton Park & Ride
+</li>
+
+<li>
+<strong>Brislington Park and Ride</strong><br>
+Bath Road Brislington
+</li>
+
+<li>
+<strong>West End Car Park</strong><br>
+Berkeley Place
+</li>
+
+</ul>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script>
+
+var map = L.map('map').setView([
+51.54292656646189,
+-2.5687507274676022
+], 12);
+
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+attribution: '&copy; OpenStreetMap contributors'
+}).addTo(map);
+
+
+
+L.marker([
+51.54292656646189,
+-2.5687507274676022
+]).addTo(map)
+.bindPopup("<b>Aztec Hotel & Spa</b><br>110 Aztec West");
+
+
+
+L.marker([
+51.460376500426435,
+-2.587607718405451
+]).addTo(map)
+.bindPopup("<b>Brunswick Square Car Club Only</b><br>Brunswick Square");
+
+
+
+L.marker([
+51.54755028,
+-2.557863531
+]).addTo(map)
+.bindPopup("<b>BizSpace Bristol </b><br>Equinox South");
+
+
+
+L.marker([
+51.480312,
+-2.61253
+]).addTo(map)
+.bindPopup("<b>GL184</b><br>51 Northumbria Dr, Henleaze");
 
-<div class="container">
 
-<p>93 charging locations found.</p>
 
+L.marker([
+51.443274,
+-2.560203
+]).addTo(map)
+.bindPopup("<b>Ultra Rapid EV Charging - Sainsbury's Castle Court</b><br>Arnos Vale");
 
-<div class="card">
 
-<h3>Aztec Hotel & Spa</h3>
 
-<p>
-110 Aztec West<br>
-Bristol<br>
-BS32 4TS
-</p>
+L.marker([
+51.434863,
+-2.752432
+]).addTo(map)
+.bindPopup("<b>Tesco Superstore - Nailsea</b><br>Stock Way North");
 
-</div>
 
-<div class="card">
 
-<h3>Brunswick Square Car Club Only</h3>
+L.marker([
+51.416674,
+-2.501015
+]).addTo(map)
+.bindPopup("<b>Tesco Superstore - Keynsham</b><br>Bristol Road");
 
-<p>
-Brunswick Square<br>
-Bristol<br>
-BS1 3LQ
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+51.292525,
+-2.498202
+]).addTo(map)
+.bindPopup("<b>Tesco Superstore - Midsomer Norton</b><br>Old Mills");
 
-<h3>BizSpace Bristol </h3>
 
-<p>
-Equinox South<br>
-Bristol<br>
-BS32 4QL
-</p>
 
-</div>
+L.marker([
+51.44877,
+-2.4992
+]).addTo(map)
+.bindPopup("<b>Legal & General Investment Management</b><br>Aspects Leisure Park");
 
-<div class="card">
 
-<h3>GL184</h3>
 
-<p>
-51 Northumbria Dr, Henleaze<br>
-Bristol<br>
-BS9 4HN
-</p>
+L.marker([
+51.601089,
+-2.52706
+]).addTo(map)
+.bindPopup("<b>Thornbury Leisure Centre</b><br>Thornbury Road, Thornbury");
 
-</div>
 
-<div class="card">
 
-<h3>Ultra Rapid EV Charging - Sainsbury's Castle Court</h3>
+L.marker([
+51.522339,
+-2.618872
+]).addTo(map)
+.bindPopup("<b>SHELL RECHARGE CRIBBS CAUSEWAY</b><br>Cribbs Causeway");
 
-<p>
-Arnos Vale<br>
-Bristol<br>
-BS4 3BD
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+51.461107,
+-2.581821
+]).addTo(map)
+.bindPopup("<b>Shell Recharge Newfoundland Circus</b><br>95 Newfoundland Road");
 
-<h3>Tesco Superstore - Nailsea</h3>
 
-<p>
-Stock Way North<br>
-Bristol<br>
-BS48 1AQ
-</p>
 
-</div>
+L.marker([
+51.45293,
+-2.63174
+]).addTo(map)
+.bindPopup("<b>Bridge Road, Leigh Woods</b><br>Leigh Woods");
 
-<div class="card">
 
-<h3>Tesco Superstore - Keynsham</h3>
 
-<p>
-Bristol Road<br>
-Bristol<br>
-BS31 2BA
-</p>
+L.marker([
+51.448143,
+-2.572578
+]).addTo(map)
+.bindPopup("<b>zest-park-race-year</b><br>Chandus Court");
 
-</div>
 
-<div class="card">
 
-<h3>Tesco Superstore - Midsomer Norton</h3>
+L.marker([
+51.494078,
+-2.488658
+]).addTo(map)
+.bindPopup("<b>Huntsman Taverners Pub and Restaurant</b><br>Westerleigh RD");
 
-<p>
-Old Mills<br>
-Bristol<br>
-BS39 7SW
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+51.4068091,
+-2.4686405
+]).addTo(map)
+.bindPopup("<b>Instavolt Flourish at Glenavon Farm</b><br>Bath Road");
 
-<h3>Legal & General Investment Management</h3>
 
-<p>
-Aspects Leisure Park<br>
-Bristol<br>
-BS15 9LA
-</p>
 
-</div>
+L.marker([
+51.49681,
+-2.4826
+]).addTo(map)
+.bindPopup("<b>MFG Blackhorse</b><br>Westerleigh Road");
 
-<div class="card">
 
-<h3>Thornbury Leisure Centre</h3>
 
-<p>
-Thornbury Road, Thornbury<br>
-Bristol<br>
-BS1 9NE
-</p>
+L.marker([
+51.4848309715113,
+-2.55040074039165
+]).addTo(map)
+.bindPopup("<b>MFG Stapleton</b><br>Park Road");
 
-</div>
 
-<div class="card">
 
-<h3>SHELL RECHARGE CRIBBS CAUSEWAY</h3>
+L.marker([
+51.473057,
+-2.564405
+]).addTo(map)
+.bindPopup("<b>IKEA Bristol</b><br>Eastgate Road Eastgate Shopping Centre");
 
-<p>
-Cribbs Causeway<br>
-Bristol<br>
-BS10 7TG
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+51.603802,
+-2.619964
+]).addTo(map)
+.bindPopup("<b>Moto Severn View Services</b><br>M48, Motorway, Jct 1, Aust");
 
-<h3>Shell Recharge Newfoundland Circus</h3>
 
-<p>
-95 Newfoundland Road<br>
-Bristol<br>
-BS2 9LU
-</p>
 
-</div>
+L.marker([
+51.541444,
+-2.416278
+]).addTo(map)
+.bindPopup("<b>Yate Shopping Centre</b><br>43 North Walk, Yate");
 
-<div class="card">
 
-<h3>Bridge Road, Leigh Woods</h3>
 
-<p>
-Leigh Woods<br>
-Bristol<br>
-BS83PA
-</p>
+L.marker([
+51.501557,
+-2.543303
+]).addTo(map)
+.bindPopup("<b>Motability Bristol</b><br>Bristol Park House, 610 Bristol Business Park, Coldharbour Lane, Bristol");
 
-</div>
 
-<div class="card">
 
-<h3>zest-park-race-year</h3>
+L.marker([
+51.500902,
+-2.478183
+]).addTo(map)
+.bindPopup("<b>Private business car park</b><br>Dirac Crescent");
 
-<p>
-Chandus Court<br>
-Bristol<br>
-BS2 0UH
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+51.500883,
+-2.478359
+]).addTo(map)
+.bindPopup("<b>Car Park</b><br>Emersons Green");
 
-<h3>Huntsman Taverners Pub and Restaurant</h3>
 
-<p>
-Westerleigh RD<br>
-Bristol<br>
-BS16 6UB
-</p>
 
-</div>
+L.marker([
+51.480552,
+-2.509319
+]).addTo(map)
+.bindPopup("<b>Page Road Short Stay Car Park</b><br>Short Stay Car Park");
 
-<div class="card">
 
-<h3>Instavolt Flourish at Glenavon Farm</h3>
 
-<p>
-Bath Road<br>
-Bristol<br>
-BS31 1TL
-</p>
+L.marker([
+51.461423,
+-2.581415
+]).addTo(map)
+.bindPopup("<b>SHELL RECHARGE BUDGENS BROADMEAD</b><br>95 Newfoundland Road");
 
-</div>
 
-<div class="card">
 
-<h3>MFG Blackhorse</h3>
+L.marker([
+51.455669,
+-2.59984
+]).addTo(map)
+.bindPopup("<b>Trenchard Street</b><br>West End");
 
-<p>
-Westerleigh Road<br>
-Bristol<br>
-BS16 7AN
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+51.45557,
+-2.59984
+]).addTo(map)
+.bindPopup("<b>Trenchard Street</b><br>West End");
 
-<h3>MFG Stapleton</h3>
 
-<p>
-Park Road<br>
-Bristol<br>
-BS16 1DT
-</p>
 
-</div>
+L.marker([
+51.455473,
+-2.609504
+]).addTo(map)
+.bindPopup("<b>West End Car Park</b><br>West End Car Park");
 
-<div class="card">
 
-<h3>IKEA Bristol</h3>
 
-<p>
-Eastgate Road Eastgate Shopping Centre<br>
-Bristol<br>
-BS5 6XX
-</p>
+L.marker([
+51.454951,
+-2.598929
+]).addTo(map)
+.bindPopup("<b>Trenchard Street Car Park 3</b><br>Lodge Street");
 
-</div>
 
-<div class="card">
 
-<h3>Moto Severn View Services</h3>
+L.marker([
+51.454938,
+-2.598994
+]).addTo(map)
+.bindPopup("<b>Trenchard Street Car Park 2</b><br>Lodge Street");
 
-<p>
-M48, Motorway, Jct 1, Aust<br>
-Bristol<br>
-BS35 4BH
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+51.454872,
+-2.60906
+]).addTo(map)
+.bindPopup("<b>West End Car Park</b><br>Berkeley Place");
 
-<h3>Yate Shopping Centre</h3>
 
-<p>
-43 North Walk, Yate<br>
-Bristol<br>
-BS37 4AP
-</p>
 
-</div>
+L.marker([
+51.454736,
+-2.59893
+]).addTo(map)
+.bindPopup("<b>Trenchard Car Park</b><br>Trenchard Car Park");
 
-<div class="card">
 
-<h3>Motability Bristol</h3>
 
-<p>
-Bristol Park House, 610 Bristol Business Park, Coldharbour Lane, Bristol<br>
-Bristol<br>
-BS16 1EJ
-</p>
+L.marker([
+51.453754,
+-2.587966
+]).addTo(map)
+.bindPopup("<b>Aurora</b><br>Finzels Reach");
 
-</div>
 
-<div class="card">
 
-<h3>Private business car park</h3>
+L.marker([
+51.45315,
+-2.58997
+]).addTo(map)
+.bindPopup("<b>DRAX_00112</b><br>Victoria Street");
 
-<p>
-Dirac Crescent<br>
-Bristol<br>
-BS16 7FR
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+51.4529,
+-2.59322
+]).addTo(map)
+.bindPopup("<b>NCP Queen Charlotte Street</b><br>NCP Queen Charlotte Street");
 
-<h3>Car Park</h3>
 
-<p>
-Emersons Green<br>
-Bristol<br>
-BS16 7FR
-</p>
 
-</div>
+L.marker([
+51.452485,
+-2.602735
+]).addTo(map)
+.bindPopup("<b>Car Park</b><br>College Street");
 
-<div class="card">
 
-<h3>Page Road Short Stay Car Park</h3>
 
-<p>
-Short Stay Car Park<br>
-Bristol<br>
-BS16 4NE
-</p>
+L.marker([
+51.451674,
+-2.604403
+]).addTo(map)
+.bindPopup("<b>College Street Car Park</b><br>College Street Car Park");
 
-</div>
 
-<div class="card">
 
-<h3>SHELL RECHARGE BUDGENS BROADMEAD</h3>
+L.marker([
+51.449378,
+-2.595999
+]).addTo(map)
+.bindPopup("<b>Car Park</b><br>Harborside");
 
-<p>
-95 Newfoundland Road<br>
-Bristol<br>
-BS2 9LU
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+51.448799,
+-2.59505
+]).addTo(map)
+.bindPopup("<b>The Grove</b><br>Harbourside");
 
-<h3>Trenchard Street</h3>
 
-<p>
-West End<br>
-Bristol<br>
-BS1 5AN
-</p>
 
-</div>
+L.marker([
+51.448399,
+-2.50016
+]).addTo(map)
+.bindPopup("<b>Longwell Green Leisure Centre</b><br>Leisure Road");
 
-<div class="card">
 
-<h3>Trenchard Street</h3>
 
-<p>
-West End<br>
-Bristol<br>
-BS1 5AN
-</p>
+L.marker([
+51.435791,
+-2.63597
+]).addTo(map)
+.bindPopup("<b>Long Ashton Park and Ride</b><br>A370");
 
-</div>
 
-<div class="card">
 
-<h3>West End Car Park</h3>
+L.marker([
+51.435692,
+-2.63597
+]).addTo(map)
+.bindPopup("<b>Long Ashton Park and Ride</b><br>A370");
 
-<p>
-West End Car Park<br>
-Bristol<br>
-BS8 1EH
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+51.5058307,
+-2.4885443
+]).addTo(map)
+.bindPopup("<b>InstaVolt Costa Coffee</b><br>Fieldfare");
 
-<h3>Trenchard Street Car Park 3</h3>
 
-<p>
-Lodge Street<br>
-Bristol<br>
-BS1 5AN
-</p>
 
-</div>
+L.marker([
+51.3818352,
+-2.8062283
+]).addTo(map)
+.bindPopup("<b>DoubleTree Hilton</b><br>Frost Hill, Congresbury");
 
-<div class="card">
 
-<h3>Trenchard Street Car Park 2</h3>
 
-<p>
-Lodge Street<br>
-Bristol<br>
-BS1 5AN
-</p>
+L.marker([
+51.3573158,
+-2.7341611
+]).addTo(map)
+.bindPopup("<b>Lye Cross Farm</b><br>Lye Cross Farm");
 
-</div>
 
-<div class="card">
 
-<h3>West End Car Park</h3>
+L.marker([
+51.45203599449857,
+-2.6032697512882805
+]).addTo(map)
+.bindPopup("<b>College Street Car Park</b><br>Saint Georges Road");
 
-<p>
-Berkeley Place<br>
-Bristol<br>
-BS8 1JX
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+51.483509,
+-2.485488
+]).addTo(map)
+.bindPopup("<b>Revive_SGC</b><br>St James Street");
 
-<h3>Trenchard Car Park</h3>
 
-<p>
-Trenchard Car Park<br>
-Bristol<br>
-BS1 5AN
-</p>
 
-</div>
+L.marker([
+51.462379,
+-2.598996
+]).addTo(map)
+.bindPopup("<b>Revive_BCC</b><br>Portland Street");
 
-<div class="card">
 
-<h3>Aurora</h3>
 
-<p>
-Finzels Reach<br>
-Bristol<br>
-BS1 6BX
-</p>
+L.marker([
+51.462349,
+-2.50101
+]).addTo(map)
+.bindPopup("<b>Revive_NSC</b><br>High St");
 
-</div>
 
-<div class="card">
 
-<h3>DRAX_00112</h3>
+L.marker([
+51.409672,
+-2.581583
+]).addTo(map)
+.bindPopup("<b>Revive_BCC_02</b><br>Whitchurch Ln");
 
-<p>
-Victoria Street<br>
-Bristol<br>
-BS1 6HY
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+51.52585933652648,
+-2.5942216997941614
+]).addTo(map)
+.bindPopup("<b>Cribbs Causeway Car Park J</b><br>Pegasus Road");
 
-<h3>NCP Queen Charlotte Street</h3>
 
-<p>
-NCP Queen Charlotte Street<br>
-Bristol<br>
-BS1 4ES
-</p>
 
-</div>
+L.marker([
+51.52187462119511,
+-2.527945756471013
+]).addTo(map)
+.bindPopup("<b>Winter Stream Farm Pub</b><br>Winterbourne Road");
 
-<div class="card">
 
-<h3>Car Park</h3>
 
-<p>
-College Street<br>
-Bristol<br>
-BS1 5UY
-</p>
+L.marker([
+51.400078,
+-2.449404
+]).addTo(map)
+.bindPopup("<b>Riverside Inn Saltford</b><br>The Shallows");
 
-</div>
 
-<div class="card">
 
-<h3>College Street Car Park</h3>
+L.marker([
+51.35092232822018,
+-2.808501069876009
+]).addTo(map)
+.bindPopup("<b>EVC Mendip Spring Golf Club</b><br>Mendip Spring Golf Club");
 
-<p>
-College Street Car Park<br>
-Bristol<br>
-BS1 5UU
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+51.45310876044138,
+-2.588564933685575
+]).addTo(map)
+.bindPopup("<b>Counterslip</b><br>Counterslip");
 
-<h3>Car Park</h3>
 
-<p>
-Harborside<br>
-Bristol<br>
-BS1 4RB
-</p>
 
-</div>
+L.marker([
+51.43184,
+-2.554912
+]).addTo(map)
+.bindPopup("<b>Tesco Extra-Bristol Brislington</b><br>Callington Road");
 
-<div class="card">
 
-<h3>The Grove</h3>
 
-<p>
-Harbourside<br>
-Bristol<br>
-BS1 4RB
-</p>
+L.marker([
+51.523281,
+-2.615222
+]).addTo(map)
+.bindPopup("<b>Premier Inn Cribbs Causeway</b><br>Catbrain Lane");
 
-</div>
 
-<div class="card">
 
-<h3>Longwell Green Leisure Centre</h3>
+L.marker([
+51.5253511419983,
+-2.60645044741739
+]).addTo(map)
+.bindPopup("<b>McDonald's Cribbs Causeway</b><br>Lysander Road");
 
-<p>
-Leisure Road<br>
-Bristol<br>
-BS15 9LA
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+51.538861,
+-2.584056
+]).addTo(map)
+.bindPopup("<b>The Parade Car Park</b><br>Patchway");
 
-<h3>Long Ashton Park and Ride</h3>
 
-<p>
-A370<br>
-Bristol<br>
-BS3 2HB
-</p>
 
-</div>
+L.marker([
+51.486672,
+-2.76478
+]).addTo(map)
+.bindPopup("<b>Portishead Marina Rapid Charging Hub</b><br>Portishead");
 
-<div class="card">
 
-<h3>Long Ashton Park and Ride</h3>
 
-<p>
-A370<br>
-Bristol<br>
-BS3 2HB
-</p>
+L.marker([
+51.481917,
+-2.510278
+]).addTo(map)
+.bindPopup("<b>Haynes Lane Car Park</b><br>Haynes Lane");
 
-</div>
 
-<div class="card">
 
-<h3>InstaVolt Costa Coffee</h3>
+L.marker([
+51.461333,
+-2.506667
+]).addTo(map)
+.bindPopup("<b>Cecil Road Car Park</b><br>Kingswood");
 
-<p>
-Fieldfare<br>
-Bristol<br>
-BS16 7FN
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+51.46025,
+-2.551503
+]).addTo(map)
+.bindPopup("<b>Chalks Road Car Park</b><br>Chalks Road");
 
-<h3>DoubleTree Hilton</h3>
 
-<p>
-Frost Hill, Congresbury<br>
-Bristol<br>
-BS49 5AD
-</p>
 
-</div>
+L.marker([
+51.460058,
+-2.574235
+]).addTo(map)
+.bindPopup("<b>Easton Leisure Centre</b><br>Thrissell Street");
 
-<div class="card">
 
-<h3>Lye Cross Farm</h3>
 
-<p>
-Lye Cross Farm<br>
-Bristol<br>
-BS40 5RH
-</p>
+L.marker([
+51.449444,
+-2.518417
+]).addTo(map)
+.bindPopup("<b>Laburnum Road Car Park</b><br>Hanham");
 
-</div>
 
-<div class="card">
 
-<h3>College Street Car Park</h3>
+L.marker([
+51.52511,
+-2.615667
+]).addTo(map)
+.bindPopup("<b>Mollies Bristol</b><br>Cribbs Causeway");
 
-<p>
-Saint Georges Road<br>
-Bristol<br>
-BS1 5UU
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+51.4938011169434,
+-2.58472204208374
+]).addTo(map)
+.bindPopup("<b>Horfield Leisure Centre</b><br>Dorian Road");
 
-<h3>Revive_SGC</h3>
 
-<p>
-St James Street<br>
-Bristol<br>
-BS16 9HE
-</p>
 
-</div>
+L.marker([
+51.535657,
+-2.545928
+]).addTo(map)
+.bindPopup("<b>Bradley Stoke Leisure Centre</b><br>Fiddlers Wood Lane");
 
-<div class="card">
 
-<h3>Revive_BCC</h3>
 
-<p>
-Portland Street<br>
-Bristol<br>
-BS2 8HL
-</p>
+L.marker([
+51.449286,
+-2.600439
+]).addTo(map)
+.bindPopup("<b>Millennium Square underground car park</b><br>10 Canons Way");
 
-</div>
 
-<div class="card">
 
-<h3>Revive_NSC</h3>
+L.marker([
+51.499195,
+-2.503604
+]).addTo(map)
+.bindPopup("<b>The Sandringham</b><br>Quaker's Road");
 
-<p>
-High St<br>
-Bristol<br>
-BS15 9TR
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+51.496792,
+-2.593026
+]).addTo(map)
+.bindPopup("<b>Southmead HospitalTrust Headquarters</b><br>Southmead HospitalTrust Headquarters");
 
-<h3>Revive_BCC_02</h3>
 
-<p>
-Whitchurch Ln<br>
-Bristol<br>
-BS14 0BH
-</p>
 
-</div>
+L.marker([
+51.496483,
+-2.593058
+]).addTo(map)
+.bindPopup("<b>Brunel Building MSCP</b><br>Southmead Hospital");
 
-<div class="card">
 
-<h3>Cribbs Causeway Car Park J</h3>
 
-<p>
-Pegasus Road<br>
-Bristol<br>
-BS34 5DG 
-</p>
+L.marker([
+51.496426,
+-2.593182
+]).addTo(map)
+.bindPopup("<b>Brunel Building MSCP</b><br>Southmead Hospital");
 
-</div>
 
-<div class="card">
 
-<h3>Winter Stream Farm Pub</h3>
+L.marker([
+51.477985,
+-2.532846
+]).addTo(map)
+.bindPopup("<b>Morrisons Bristol Fishponds</b><br>690-718 Fishponds Road Fishponds");
 
-<p>
-Winterbourne Road<br>
-Bristol<br>
-BS16 1GW
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+51.474899,
+-2.724
+]).addTo(map)
+.bindPopup("<b>The Priory</b><br>Station Road");
 
-<h3>Riverside Inn Saltford</h3>
 
-<p>
-The Shallows<br>
-Bristol<br>
-BS31 3EZ
-</p>
 
-</div>
+L.marker([
+51.462803,
+-2.623801
+]).addTo(map)
+.bindPopup("<b>Bristol Zoo Gardens (west)</b><br>Bristol Zoo Gardens (west)");
 
-<div class="card">
 
-<h3>EVC Mendip Spring Golf Club</h3>
 
-<p>
-Mendip Spring Golf Club<br>
-Bristol<br>
-BS49 5JT
-</p>
+L.marker([
+51.452831,
+-2.60201
+]).addTo(map)
+.bindPopup("<b>City Hall</b><br>College Green");
 
-</div>
 
-<div class="card">
 
-<h3>Counterslip</h3>
+L.marker([
+51.451996,
+-2.602646
+]).addTo(map)
+.bindPopup("<b>College Street</b><br>College Street");
 
-<p>
-Counterslip<br>
-Bristol<br>
-BS1 6BX
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+51.447315,
+-2.62305
+]).addTo(map)
+.bindPopup("<b>Bristol City Council Building Car Park</b><br>Smeaton Road");
 
-<h3>Tesco Extra-Bristol Brislington</h3>
 
-<p>
-Callington Road<br>
-Bristol<br>
-BS4 5AY
-</p>
 
-</div>
+L.marker([
+51.447262,
+-2.62225
+]).addTo(map)
+.bindPopup("<b>Create Centre</b><br>Smeaton Road");
 
-<div class="card">
 
-<h3>Premier Inn Cribbs Causeway</h3>
 
-<p>
-Catbrain Lane<br>
-Bristol<br>
-BS10 7TQ
-</p>
+L.marker([
+51.447063,
+-2.622256
+]).addTo(map)
+.bindPopup("<b>Create Centre</b><br>Smeaton Road");
 
-</div>
 
-<div class="card">
 
-<h3>McDonald's Cribbs Causeway</h3>
+L.marker([
+51.423004,
+-2.492674
+]).addTo(map)
+.bindPopup("<b>St Monica Trust</b><br>Keynsham");
 
-<p>
-Lysander Road<br>
-Bristol<br>
-BS10 7UA
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+51.522884,
+-2.609229
+]).addTo(map)
+.bindPopup("<b>Bristol-Lysander Road Supercharger</b><br>Lysander Road");
 
-<h3>The Parade Car Park</h3>
 
-<p>
-Patchway<br>
-Bristol<br>
-BS34 5JP
-</p>
 
-</div>
+L.marker([
+51.491501,
+-2.689291
+]).addTo(map)
+.bindPopup("<b>Portway</b><br>Portway");
 
-<div class="card">
 
-<h3>Portishead Marina Rapid Charging Hub</h3>
 
-<p>
-Portishead<br>
-Bristol<br>
-BS20 7DB
-</p>
+L.marker([
+51.490342,
+-2.688797
+]).addTo(map)
+.bindPopup("<b>A4 Portway Park and Ride</b><br>Portway");
 
-</div>
 
-<div class="card">
 
-<h3>Haynes Lane Car Park</h3>
+L.marker([
+51.47134,
+-2.615144
+]).addTo(map)
+.bindPopup("<b>Car Park</b><br>Redland Hill");
 
-<p>
-Haynes Lane<br>
-Bristol<br>
-BS16 5JE
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+51.45497408065427,
+-2.5998864501924857
+]).addTo(map)
+.bindPopup("<b>Trenchard Street Multi-Storey Car Park</b><br>Trenchard Street");
 
-<h3>Cecil Road Car Park</h3>
 
-<p>
-Kingswood<br>
-Bristol<br>
-BS15 8NA
-</p>
 
-</div>
+L.marker([
+51.448218,
+-2.584469
+]).addTo(map)
+.bindPopup("<b>Templegate Car Park</b><br>Templegate House Templegate");
 
-<div class="card">
 
-<h3>Chalks Road Car Park</h3>
 
-<p>
-Chalks Road<br>
-Bristol<br>
-BS5 9EN
-</p>
+L.marker([
+51.448168,
+-2.583835
+]).addTo(map)
+.bindPopup("<b>Temple Gate Car Park 1</b><br>Temple Gate");
 
-</div>
 
-<div class="card">
 
-<h3>Easton Leisure Centre</h3>
+L.marker([
+51.436784,
+-2.6341
+]).addTo(map)
+.bindPopup("<b>Long Ashton Park and Ride</b><br>Long Ashton Park & Ride");
 
-<p>
-Thrissell Street<br>
-Bristol<br>
-BS5 0SW
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+51.427926,
+-2.537032
+]).addTo(map)
+.bindPopup("<b>Brislington Park and Ride</b><br>Bath Road Brislington");
 
-<h3>Laburnum Road Car Park</h3>
 
-<p>
-Hanham<br>
-Bristol<br>
-BS15 3EJ
-</p>
 
-</div>
+L.marker([
+51.45598149902531,
+-2.609257691814264
+]).addTo(map)
+.bindPopup("<b>West End Car Park</b><br>Berkeley Place");
 
-<div class="card">
 
-<h3>Mollies Bristol</h3>
 
-<p>
-Cribbs Causeway<br>
-Bristol<br>
-BS10 7TL
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Horfield Leisure Centre</h3>
-
-<p>
-Dorian Road<br>
-Bristol<br>
-BS7 0XW
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Bradley Stoke Leisure Centre</h3>
-
-<p>
-Fiddlers Wood Lane<br>
-Bristol<br>
-BS32 9BS
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Millennium Square underground car park</h3>
-
-<p>
-10 Canons Way<br>
-Bristol<br>
-BS1 5LL
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>The Sandringham</h3>
-
-<p>
-Quaker's Road<br>
-Bristol<br>
-BS16 6NH
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Southmead HospitalTrust Headquarters</h3>
-
-<p>
-Southmead HospitalTrust Headquarters<br>
-Bristol<br>
-BS10 5NB
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Brunel Building MSCP</h3>
-
-<p>
-Southmead Hospital<br>
-Bristol<br>
-BS10 5NB
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Brunel Building MSCP</h3>
-
-<p>
-Southmead Hospital<br>
-Bristol<br>
-BS10 5NB
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Morrisons Bristol Fishponds</h3>
-
-<p>
-690-718 Fishponds Road Fishponds<br>
-Bristol<br>
-BS16 3US
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>The Priory</h3>
-
-<p>
-Station Road<br>
-Bristol<br>
-BS20 7TN
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Bristol Zoo Gardens (west)</h3>
-
-<p>
-Bristol Zoo Gardens (west)<br>
-Bristol<br>
-BS8 3HA
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>City Hall</h3>
-
-<p>
-College Green<br>
-Bristol<br>
-BS1 5TR
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>College Street</h3>
-
-<p>
-College Street<br>
-Bristol<br>
-BS1 5UU
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Bristol City Council Building Car Park</h3>
-
-<p>
-Smeaton Road<br>
-Bristol<br>
-BS1 6XN
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Create Centre</h3>
-
-<p>
-Smeaton Road<br>
-Bristol<br>
-BS1 6XN
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Create Centre</h3>
-
-<p>
-Smeaton Road<br>
-Bristol<br>
-BS1 6XN
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>St Monica Trust</h3>
-
-<p>
-Keynsham<br>
-Bristol<br>
-BS31 2AU
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Bristol-Lysander Road Supercharger</h3>
-
-<p>
-Lysander Road<br>
-Bristol<br>
-BS10 7DD 
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Portway</h3>
-
-<p>
-Portway<br>
-Bristol<br>
-BS11 9QE
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>A4 Portway Park and Ride</h3>
-
-<p>
-Portway<br>
-Bristol<br>
-BS11 9QE
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Car Park</h3>
-
-<p>
-Redland Hill<br>
-Bristol<br>
-BS6 6UT
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Trenchard Street Multi-Storey Car Park</h3>
-
-<p>
-Trenchard Street<br>
-Bristol<br>
-BS1 5AN
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Templegate Car Park</h3>
-
-<p>
-Templegate House Templegate<br>
-Bristol<br>
-BS1 6PX
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Temple Gate Car Park 1</h3>
-
-<p>
-Temple Gate<br>
-Bristol<br>
-BS1 6PL
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Long Ashton Park and Ride</h3>
-
-<p>
-Long Ashton Park & Ride<br>
-Bristol<br>
-BS3 2HB
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Brislington Park and Ride</h3>
-
-<p>
-Bath Road Brislington<br>
-Bristol<br>
-BS4 5RU
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>West End Car Park</h3>
-
-<p>
-Berkeley Place<br>
-Bristol<br>
-BS8 1EH
-</p>
-
-</div>
-
-
-</div>
-
-<footer>
-EV Charger Directory
-</footer>
+</script>
 
 </body>
 </html>

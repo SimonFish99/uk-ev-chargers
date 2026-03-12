@@ -1,196 +1,229 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>EV Chargers in Skelmersdale</title>
-<link rel="stylesheet" href="/style.css">
+<title>Skelmersdale EV Chargers</title>
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+
+<style>
+#map {
+  height: 400px;
+  margin-bottom: 30px;
+  border-radius: 8px;
+}
+</style>
+
 </head>
 
 <body>
 
-<header>
-<h1>EV Chargers in Skelmersdale</h1>
-</header>
+<h1>Skelmersdale EV Chargers</h1>
 
-<div class="container">
+<div id="map"></div>
 
-<p>14 charging locations found.</p>
+<ul>
 
+<li>
+<strong>EG GROUP NEWTOWN 1</strong><br>
+BP Railway Road
+</li>
 
-<div class="card">
+<li>
+<strong>Irwell</strong><br>
+Irwell
+</li>
 
-<h3>EG GROUP NEWTOWN 1</h3>
+<li>
+<strong>Temple Martin and Thornton Off School Lane</strong><br>
+Temple Martin & Thornton Off School lane
+</li>
 
-<p>
-BP Railway Road<br>
-Skelmersdale<br>
-WN8 8TL
-</p>
+<li>
+<strong>Field Street, Skelmersdale</strong><br>
+Rear of 1-37 Field Street Off School Lane
+</li>
 
-</div>
+<li>
+<strong>Whitestock</strong><br>
+Pennylands
+</li>
 
-<div class="card">
+<li>
+<strong>Tanhouse Community Centre</strong><br>
+Enerdale
+</li>
 
-<h3>Irwell</h3>
+<li>
+<strong>Banksbarn, Digmoor</strong><br>
+Digmoor
+</li>
 
-<p>
-Irwell<br>
-Skelmersdale<br>
-WN8 6JZ
-</p>
+<li>
+<strong>Cherrycroft</strong><br>
+Holland Moor
+</li>
 
-</div>
+<li>
+<strong>Alderley Little Digmoor</strong><br>
+Alderley, Little Digmoor
+</li>
 
-<div class="card">
+<li>
+<strong>Inskip</strong><br>
+Inskip
+</li>
 
-<h3>Temple Martin and Thornton Off School Lane</h3>
+<li>
+<strong>Firbeck Birch Green</strong><br>
+Firbeck Birch Green
+</li>
 
-<p>
-Temple Martin & Thornton Off School lane<br>
-Skelmersdale<br>
-WN8 8QP
-</p>
+<li>
+<strong>Egerton</strong><br>
+Egerton
+</li>
 
-</div>
+<li>
+<strong>Abbeywood Little Digmoor</strong><br>
+Abbeywood Little Digmoor
+</li>
 
-<div class="card">
+<li>
+<strong>Sandy Lane Parking/Charging</strong><br>
+95 Sundy Lane
+</li>
 
-<h3>Field Street, Skelmersdale</h3>
+</ul>
 
-<p>
-Rear of 1-37 Field Street Off School Lane<br>
-Skelmersdale<br>
-WN8 8HZ
-</p>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
-</div>
+<script>
 
-<div class="card">
+var map = L.map('map').setView([
+53.55066,
+-2.809403
+], 12);
 
-<h3>Whitestock</h3>
-
-<p>
-Pennylands<br>
-Skelmersdale<br>
-WN8 8AG
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Tanhouse Community Centre</h3>
-
-<p>
-Enerdale<br>
-Skelmersdale<br>
-WN8 6AN
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Banksbarn, Digmoor</h3>
-
-<p>
-Digmoor<br>
-Skelmersdale<br>
-WN8 9EP
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Cherrycroft</h3>
-
-<p>
-Holland Moor<br>
-Skelmersdale<br>
-WN8 9EF
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Alderley Little Digmoor</h3>
-
-<p>
-Alderley, Little Digmoor<br>
-Skelmersdale<br>
-WN8 9NA
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Inskip</h3>
-
-<p>
-Inskip<br>
-Skelmersdale<br>
-WN8 6JT
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Firbeck Birch Green</h3>
-
-<p>
-Firbeck Birch Green<br>
-Skelmersdale<br>
-WN8 6PW
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Egerton</h3>
-
-<p>
-Egerton<br>
-Skelmersdale<br>
-WN8 6AE
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Abbeywood Little Digmoor</h3>
-
-<p>
-Abbeywood Little Digmoor<br>
-Skelmersdale<br>
-WN8 9LR
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Sandy Lane Parking/Charging</h3>
-
-<p>
-95 Sundy Lane<br>
-Skelmersdale<br>
-WN8 8LB
-</p>
-
-</div>
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+attribution: '&copy; OpenStreetMap contributors'
+}).addTo(map);
 
 
-</div>
 
-<footer>
-EV Charger Directory
-</footer>
+L.marker([
+53.55066,
+-2.809403
+]).addTo(map)
+.bindPopup("<b>EG GROUP NEWTOWN 1</b><br>BP Railway Road");
+
+
+
+L.marker([
+53.558371,
+-2.782419
+]).addTo(map)
+.bindPopup("<b>Irwell</b><br>Irwell");
+
+
+
+L.marker([
+53.553844,
+-2.792961
+]).addTo(map)
+.bindPopup("<b>Temple Martin and Thornton Off School Lane</b><br>Temple Martin & Thornton Off School lane");
+
+
+
+L.marker([
+53.55296,
+-2.805659
+]).addTo(map)
+.bindPopup("<b>Field Street, Skelmersdale</b><br>Rear of 1-37 Field Street Off School Lane");
+
+
+
+L.marker([
+53.547248,
+-2.796312
+]).addTo(map)
+.bindPopup("<b>Whitestock</b><br>Pennylands");
+
+
+
+L.marker([
+53.547038,
+-2.759572
+]).addTo(map)
+.bindPopup("<b>Tanhouse Community Centre</b><br>Enerdale");
+
+
+
+L.marker([
+53.5417,
+-2.765507
+]).addTo(map)
+.bindPopup("<b>Banksbarn, Digmoor</b><br>Digmoor");
+
+
+
+L.marker([
+53.540036,
+-2.753925
+]).addTo(map)
+.bindPopup("<b>Cherrycroft</b><br>Holland Moor");
+
+
+
+L.marker([
+53.538018,
+-2.768519
+]).addTo(map)
+.bindPopup("<b>Alderley Little Digmoor</b><br>Alderley, Little Digmoor");
+
+
+
+L.marker([
+53.55654,
+-2.780405
+]).addTo(map)
+.bindPopup("<b>Inskip</b><br>Inskip");
+
+
+
+L.marker([
+53.552172,
+-2.772889
+]).addTo(map)
+.bindPopup("<b>Firbeck Birch Green</b><br>Firbeck Birch Green");
+
+
+
+L.marker([
+53.546155,
+-2.758249
+]).addTo(map)
+.bindPopup("<b>Egerton</b><br>Egerton");
+
+
+
+L.marker([
+53.538485,
+-2.76814
+]).addTo(map)
+.bindPopup("<b>Abbeywood Little Digmoor</b><br>Abbeywood Little Digmoor");
+
+
+
+L.marker([
+53.550182,
+-2.806867
+]).addTo(map)
+.bindPopup("<b>Sandy Lane Parking/Charging</b><br>95 Sundy Lane");
+
+
+
+</script>
 
 </body>
 </html>

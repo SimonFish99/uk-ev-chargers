@@ -1,88 +1,112 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>EV Chargers in High Peak</title>
-<link rel="stylesheet" href="/style.css">
+<title>High Peak EV Chargers</title>
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+
+<style>
+#map {
+  height: 400px;
+  margin-bottom: 30px;
+  border-radius: 8px;
+}
+</style>
+
 </head>
 
 <body>
 
-<header>
-<h1>EV Chargers in High Peak</h1>
-</header>
+<h1>High Peak EV Chargers</h1>
 
-<div class="container">
+<div id="map"></div>
 
-<p>5 charging locations found.</p>
+<ul>
 
+<li>
+<strong>Furnessvale Marina</strong><br>
+Furness Vale
+</li>
 
-<div class="card">
+<li>
+<strong>Tesco Superstore-High Peak Whaley Bridge</strong><br>
+Bridgemont
+</li>
 
-<h3>Furnessvale Marina</h3>
+<li>
+<strong>Sylvan Car Park </strong><br>
+Sylvan Park
+</li>
 
-<p>
-Furness Vale<br>
-High Peak<br>
-SK23 7QA
-</p>
+<li>
+<strong>Morrisons Chapel En Le Frith</strong><br>
+Market Street
+</li>
 
-</div>
+<li>
+<strong>Cracken' View Studio, The Old Hall Inn</strong><br>
+Whitehough
+</li>
 
-<div class="card">
+</ul>
 
-<h3>Tesco Superstore-High Peak Whaley Bridge</h3>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
-<p>
-Bridgemont<br>
-High Peak<br>
-SK23 7PB
-</p>
+<script>
 
-</div>
+var map = L.map('map').setView([
+53.349835,
+-1.989944
+], 12);
 
-<div class="card">
-
-<h3>Sylvan Car Park </h3>
-
-<p>
-Sylvan Park<br>
-High Peak<br>
-SK17 6BY
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Morrisons Chapel En Le Frith</h3>
-
-<p>
-Market Street<br>
-High Peak<br>
-SK23 0HZ
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Cracken' View Studio, The Old Hall Inn</h3>
-
-<p>
-Whitehough<br>
-High Peak<br>
-SK23 6EJ
-</p>
-
-</div>
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+attribution: '&copy; OpenStreetMap contributors'
+}).addTo(map);
 
 
-</div>
 
-<footer>
-EV Charger Directory
-</footer>
+L.marker([
+53.349835,
+-1.989944
+]).addTo(map)
+.bindPopup("<b>Furnessvale Marina</b><br>Furness Vale");
+
+
+
+L.marker([
+53.33632,
+-1.982152
+]).addTo(map)
+.bindPopup("<b>Tesco Superstore-High Peak Whaley Bridge</b><br>Bridgemont");
+
+
+
+L.marker([
+53.2591299030581,
+-1.90792881808306
+]).addTo(map)
+.bindPopup("<b>Sylvan Car Park </b><br>Sylvan Park");
+
+
+
+L.marker([
+53.325186,
+-1.911742
+]).addTo(map)
+.bindPopup("<b>Morrisons Chapel En Le Frith</b><br>Market Street");
+
+
+
+L.marker([
+53.33553730691074,
+-1.9439410875454541
+]).addTo(map)
+.bindPopup("<b>Cracken' View Studio, The Old Hall Inn</b><br>Whitehough");
+
+
+
+</script>
 
 </body>
 </html>

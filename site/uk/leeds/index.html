@@ -1,1144 +1,1256 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>EV Chargers in Leeds</title>
-<link rel="stylesheet" href="/style.css">
+<title>Leeds EV Chargers</title>
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+
+<style>
+#map {
+  height: 400px;
+  margin-bottom: 30px;
+  border-radius: 8px;
+}
+</style>
+
 </head>
 
 <body>
 
-<header>
-<h1>EV Chargers in Leeds</h1>
-</header>
+<h1>Leeds EV Chargers</h1>
+
+<div id="map"></div>
+
+<ul>
+
+<li>
+<strong>Lidl-Gipton</strong><br>
+144 Amberton Road
+</li>
+
+<li>
+<strong>White Rose Shopping Centre</strong><br>
+Dewsbury Road
+</li>
+
+<li>
+<strong>The Motorist</strong><br>
+Sherburn in Elmet
+</li>
+
+<li>
+<strong>Crisp Central Square</strong><br>
+29 Wellington Street
+</li>
+
+<li>
+<strong>The Cluster of Nuts, Wetherby</strong><br>
+Wetherby
+</li>
+
+<li>
+<strong>Aireborough Leisure Centre</strong><br>
+The Green, Guiseley
+</li>
+
+<li>
+<strong>Church Lane Car Park 1</strong><br>
+Horseforth
+</li>
+
+<li>
+<strong>Castle Grove</strong><br>
+Headingley
+</li>
+
+<li>
+<strong>Evans Halshaw Leeds</strong><br>
+Roseville Road, Leeds
+</li>
+
+<li>
+<strong>Evans Halshaw Leeds</strong><br>
+Henbury Street
+</li>
+
+<li>
+<strong>Aldi</strong><br>
+Regent Street
+</li>
+
+<li>
+<strong>Kirkstall Road Car Park</strong><br>
+Kirkstall Road
+</li>
+
+<li>
+<strong>Thorpe Park Leeds</strong><br>
+Thorpe Park
+</li>
+
+<li>
+<strong>RAWOWNED Q-PARK WELL 1</strong><br>
+Q-Park Leeds Wellington Street
+</li>
+
+<li>
+<strong>Trinity Shopping Centre - Leeds</strong><br>
+Albion Street
+</li>
+
+<li>
+<strong>Armley Leisure Centre</strong><br>
+Carr Crofts
+</li>
+
+<li>
+<strong>Barley Hill Road, Garforth</strong><br>
+Garforth
+</li>
+
+<li>
+<strong>Asda Head Office</strong><br>
+Great Wilson Street
+</li>
+
+<li>
+<strong>Leeds Dock 01</strong><br>
+CitiPark, Leeds Dock
+</li>
+
+<li>
+<strong>New Asda MCE Facility New Lane</strong><br>
+Off Victoria Road
+</li>
+
+<li>
+<strong>Asda Wortley</strong><br>
+Wortley
+</li>
+
+<li>
+<strong>Stourton Park and Ride Fast 5</strong><br>
+Belle Island
+</li>
+
+<li>
+<strong>Stourton Park and Ride Rapid 4</strong><br>
+Belle island
+</li>
+
+<li>
+<strong>Asda Middleton</strong><br>
+Holme Well Road
+</li>
+
+<li>
+<strong>EG GROUP LEON</strong><br>
+1A Wakefield Rd
+</li>
+
+<li>
+<strong>Asda</strong><br>
+Middleton
+</li>
+
+<li>
+<strong>Marsh Street, Rothwell</strong><br>
+Rothwell
+</li>
+
+<li>
+<strong>Marsh Street Car Park, Rothwell</strong><br>
+Marsh Street Car Park
+</li>
+
+<li>
+<strong>Butcher Lane Car Park 2</strong><br>
+Butcher Lane Car Park
+</li>
+
+<li>
+<strong>Toby Carvery Leeds</strong><br>
+Oulton
+</li>
+
+<li>
+<strong>Rothwell Leisure Centre</strong><br>
+Wakefield Road, Oulton
+</li>
+
+<li>
+<strong>Asda Morley</strong><br>
+Morley
+</li>
+
+<li>
+<strong>LeedsBeckett</strong><br>
+Woodhouse Lane
+</li>
+
+<li>
+<strong>SIKA LEEDS02</strong><br>
+41 Knowsthorpe Way
+</li>
+
+<li>
+<strong>GROUND CONTROL GILDERSOME 1</strong><br>
+9a Bradford Rd
+</li>
+
+<li>
+<strong>RAWOWNED THORPE LODGE</strong><br>
+50 Long Thorpe Ln
+</li>
+
+<li>
+<strong>Genie</strong><br>
+Holtdale Approach
+</li>
+
+<li>
+<strong>Beech Hill Car Park 3</strong><br>
+Beech Hill Car Park
+</li>
+
+<li>
+<strong>Asda Kirkstall</strong><br>
+385 Kirkstall Road
+</li>
+
+<li>
+<strong>LCC Car Club</strong><br>
+LCC Car Club, West Yorkshire
+</li>
+
+<li>
+<strong>Queens Park, Pudsey 3</strong><br>
+Queens Park, Pudsey
+</li>
+
+<li>
+<strong>IONITY Leeds Skelton Lakes</strong><br>
+M1 J45 Skelton Lake
+</li>
+
+<li>
+<strong>High Street Car Park 1</strong><br>
+High Street Car Park
+</li>
+
+<li>
+<strong>Trinity Academy Leeds</strong><br>
+Torre Road
+</li>
+
+<li>
+<strong>Central Square-PWC</strong><br>
+29 Wellington Street
+</li>
+
+<li>
+<strong>Trinity Leeds Car Park</strong><br>
+Swinegate
+</li>
+
+<li>
+<strong>Hampton By Hilton</strong><br>
+1 Gower Street
+</li>
+
+<li>
+<strong>Crown Point Shopping Cente Car Park</strong><br>
+Crown Point Retail Park
+</li>
+
+<li>
+<strong>Thorpe Park Hotel & Spa</strong><br>
+1150 Century Way
+</li>
+
+<li>
+<strong>McDonald's</strong><br>
+38 Butt Lane
+</li>
+
+<li>
+<strong>Tesco Extra-Leeds Seacroft</strong><br>
+5 Seacroft Avenue
+</li>
+
+<li>
+<strong>Tesco Superstore-Leeds</strong><br>
+361 Roundhay Road
+</li>
+
+<li>
+<strong>Tesco Superstore - Garforth</strong><br>
+Aberford Road
+</li>
+
+<li>
+<strong>Stourton Park and Ride</strong><br>
+Unit 1 Stourton Park and Ride
+</li>
+
+<li>
+<strong>Marsh Street Car Park</strong><br>
+Garforth
+</li>
+
+<li>
+<strong>Whitehall Road East</strong><br>
+Whitehall Road East
+</li>
+
+<li>
+<strong>Elland Road</strong><br>
+Elland Road
+</li>
+
+<li>
+<strong>Asda Harehills Lane</strong><br>
+Lupton Avenue
+</li>
+
+<li>
+<strong>Asda Wortley</strong><br>
+9 Lansdowne St
+</li>
+
+<li>
+<strong>Morrison's Morley</strong><br>
+Morley
+</li>
+
+<li>
+<strong>Wharfedale Hospital</strong><br>
+Newall Carr Road
+</li>
+
+<li>
+<strong>Charles Street Car Park </strong><br>
+Charles Street
+</li>
+
+<li>
+<strong>  Charles Street Car Park</strong><br>
+Charles Street
+</li>
+
+<li>
+<strong>Abaseen Superstore</strong><br>
+171 Harehills Lane
+</li>
+
+<li>
+<strong>Roundhay Park Clocktower carpark</strong><br>
+1 Gledhow Lane
+</li>
+
+<li>
+<strong>Burley Road Car Park</strong><br>
+Burley Road
+</li>
+
+<li>
+<strong>Aldi Menston</strong><br>
+Bradford Rd 
+</li>
+
+<li>
+<strong>Armley Leisure Centre</strong><br>
+Carr Crofts
+</li>
+
+<li>
+<strong>Morrisons Leeds Harehills</strong><br>
+Harehills Lane
+</li>
+
+<li>
+<strong>BP Service Station</strong><br>
+53 Pontefract Road
+</li>
+
+<li>
+<strong>Stourton BP Service Station</strong><br>
+Pontefract Road
+</li>
+
+<li>
+<strong>Leeds-Whitehouse Street Supercharger</strong><br>
+7 Whitehouse Street
+</li>
+
+<li>
+<strong>Fink Hill Car Park</strong><br>
+Fink Hill
+</li>
+
+<li>
+<strong>Scott Hall Leisure Centre</strong><br>
+Scott Hall Sports Centre
+</li>
+
+<li>
+<strong>First On Scene Training</strong><br>
+82 Headingley Lane
+</li>
+
+<li>
+<strong>University of Leeds</strong><br>
+Woodhouse Lane
+</li>
+
+<li>
+<strong>University of Leeds</strong><br>
+Devonshire Hall
+</li>
+
+<li>
+<strong>University of Leeds</strong><br>
+Cavendish Road
+</li>
+
+<li>
+<strong>University of Leeds</strong><br>
+The Edge
+</li>
+
+<li>
+<strong>Ingram street car park</strong><br>
+Ingram street car park
+</li>
+
+<li>
+<strong>White Rose Shopping Centre</strong><br>
+Dewsbury Road
+</li>
+
+<li>
+<strong>Toby Carvery</strong><br>
+2 Aberford Road
+</li>
+
+<li>
+<strong>New Street Car Park</strong><br>
+New Street
+</li>
+
+<li>
+<strong>Ionity Leeds - Skelton Lakes Services</strong><br>
+M1 Jct 45
+</li>
+
+<li>
+<strong>Annie Street Car Park, Morley</strong><br>
+Annie Street
+</li>
+
+<li>
+<strong>Rothwell Marsh Street Car Park</strong><br>
+Marsh Street
+</li>
+
+<li>
+<strong>Yeadon One Stop Centre</strong><br>
+High Street
+</li>
+
+<li>
+<strong>High Street Car Park</strong><br>
+5 Bridge Rd
+</li>
+
+<li>
+<strong>The Cluster of Nuts Car Park</strong><br>
+42 Hall field Lane
+</li>
+
+<li>
+<strong>Miller & Carter Garforth</strong><br>
+Selby Road
+</li>
+
+<li>
+<strong>The Grammar School at Leeds</strong><br>
+Harrogate Road
+</li>
+
+<li>
+<strong>New Rover Cricket Club</strong><br>
+Smithy Mills Ln
+</li>
+
+<li>
+<strong>Whitehall Road Car Park</strong><br>
+Wellington Place
+</li>
+
+</ul>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script>
+
+var map = L.map('map').setView([
+53.813721,
+-1.494185
+], 12);
+
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+attribution: '&copy; OpenStreetMap contributors'
+}).addTo(map);
+
+
+
+L.marker([
+53.813721,
+-1.494185
+]).addTo(map)
+.bindPopup("<b>Lidl-Gipton</b><br>144 Amberton Road");
+
+
+
+L.marker([
+53.7578612,
+-1.5756041
+]).addTo(map)
+.bindPopup("<b>White Rose Shopping Centre</b><br>Dewsbury Road");
+
+
+
+L.marker([
+53.790744,
+-1.207307
+]).addTo(map)
+.bindPopup("<b>The Motorist</b><br>Sherburn in Elmet");
+
+
+
+L.marker([
+53.79589,
+-1.55264
+]).addTo(map)
+.bindPopup("<b>Crisp Central Square</b><br>29 Wellington Street");
 
-<div class="container">
 
-<p>93 charging locations found.</p>
 
+L.marker([
+53.92792,
+-1.38075
+]).addTo(map)
+.bindPopup("<b>The Cluster of Nuts, Wetherby</b><br>Wetherby");
 
-<div class="card">
 
-<h3>Lidl-Gipton</h3>
 
-<p>
-144 Amberton Road<br>
-Leeds<br>
-LS9 6SR
-</p>
+L.marker([
+53.873516,
+-1.706596
+]).addTo(map)
+.bindPopup("<b>Aireborough Leisure Centre</b><br>The Green, Guiseley");
 
-</div>
 
-<div class="card">
 
-<h3>White Rose Shopping Centre</h3>
+L.marker([
+53.840262,
+-1.641668
+]).addTo(map)
+.bindPopup("<b>Church Lane Car Park 1</b><br>Horseforth");
 
-<p>
-Dewsbury Road<br>
-Leeds<br>
-LS11 8LU
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+53.8284,
+-1.578
+]).addTo(map)
+.bindPopup("<b>Castle Grove</b><br>Headingley");
 
-<h3>The Motorist</h3>
 
-<p>
-Sherburn in Elmet<br>
-Leeds<br>
-LS25 6JE
-</p>
 
-</div>
+L.marker([
+53.8067,
+-1.531993
+]).addTo(map)
+.bindPopup("<b>Evans Halshaw Leeds</b><br>Roseville Road, Leeds");
 
-<div class="card">
 
-<h3>Crisp Central Square</h3>
 
-<p>
-29 Wellington Street<br>
-Leeds<br>
-LS1 4DL
-</p>
+L.marker([
+53.806336,
+-1.530755
+]).addTo(map)
+.bindPopup("<b>Evans Halshaw Leeds</b><br>Henbury Street");
 
-</div>
 
-<div class="card">
 
-<h3>The Cluster of Nuts, Wetherby</h3>
+L.marker([
+53.801506,
+-1.532965
+]).addTo(map)
+.bindPopup("<b>Aldi</b><br>Regent Street");
 
-<p>
-Wetherby<br>
-Leeds<br>
-LS22 6JL
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+53.801319,
+-1.568321
+]).addTo(map)
+.bindPopup("<b>Kirkstall Road Car Park</b><br>Kirkstall Road");
 
-<h3>Aireborough Leisure Centre</h3>
 
-<p>
-The Green, Guiseley<br>
-Leeds<br>
-LS20 9BT
-</p>
 
-</div>
+L.marker([
+53.800255,
+-1.42268
+]).addTo(map)
+.bindPopup("<b>Thorpe Park Leeds</b><br>Thorpe Park");
 
-<div class="card">
 
-<h3>Church Lane Car Park 1</h3>
 
-<p>
-Horseforth<br>
-Leeds<br>
-LS18 5LA
-</p>
+L.marker([
+53.797543,
+-1.555794
+]).addTo(map)
+.bindPopup("<b>RAWOWNED Q-PARK WELL 1</b><br>Q-Park Leeds Wellington Street");
 
-</div>
 
-<div class="card">
 
-<h3>Castle Grove</h3>
+L.marker([
+53.796513,
+-1.544555
+]).addTo(map)
+.bindPopup("<b>Trinity Shopping Centre - Leeds</b><br>Albion Street");
 
-<p>
-Headingley<br>
-Leeds<br>
-LS6 4BP
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+53.79593,
+-1.591714
+]).addTo(map)
+.bindPopup("<b>Armley Leisure Centre</b><br>Carr Crofts");
 
-<h3>Evans Halshaw Leeds</h3>
 
-<p>
-Roseville Road, Leeds<br>
-Leeds<br>
-LS8 5QP
-</p>
 
-</div>
+L.marker([
+53.79442,
+-1.38834
+]).addTo(map)
+.bindPopup("<b>Barley Hill Road, Garforth</b><br>Garforth");
 
-<div class="card">
 
-<h3>Evans Halshaw Leeds</h3>
 
-<p>
-Henbury Street<br>
-Leeds<br>
-LS8 5QP
-</p>
+L.marker([
+53.791939,
+-1.543716
+]).addTo(map)
+.bindPopup("<b>Asda Head Office</b><br>Great Wilson Street");
 
-</div>
 
-<div class="card">
 
-<h3>Aldi</h3>
+L.marker([
+53.791192,
+-1.531209
+]).addTo(map)
+.bindPopup("<b>Leeds Dock 01</b><br>CitiPark, Leeds Dock");
 
-<p>
-Regent Street<br>
-Leeds<br>
-LS2 7QA
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+53.790867,
+-1.544888
+]).addTo(map)
+.bindPopup("<b>New Asda MCE Facility New Lane</b><br>Off Victoria Road");
 
-<h3>Kirkstall Road Car Park</h3>
 
-<p>
-Kirkstall Road<br>
-Leeds<br>
-LS3 1JJ
-</p>
 
-</div>
+L.marker([
+53.789558,
+-1.584643
+]).addTo(map)
+.bindPopup("<b>Asda Wortley</b><br>Wortley");
 
-<div class="card">
 
-<h3>Thorpe Park Leeds</h3>
 
-<p>
-Thorpe Park<br>
-Leeds<br>
-LS15 8ZA
-</p>
+L.marker([
+53.767403,
+-1.518652
+]).addTo(map)
+.bindPopup("<b>Stourton Park and Ride Fast 5</b><br>Belle Island");
 
-</div>
 
-<div class="card">
 
-<h3>RAWOWNED Q-PARK WELL 1</h3>
+L.marker([
+53.766648,
+-1.518271
+]).addTo(map)
+.bindPopup("<b>Stourton Park and Ride Rapid 4</b><br>Belle island");
 
-<p>
-Q-Park Leeds Wellington Street<br>
-Leeds<br>
-LS1 4SE
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+53.748959,
+-1.53122
+]).addTo(map)
+.bindPopup("<b>Asda Middleton</b><br>Holme Well Road");
 
-<h3>Trinity Shopping Centre - Leeds</h3>
 
-<p>
-Albion Street<br>
-Leeds<br>
-LS1 5AT
-</p>
 
-</div>
+L.marker([
+53.748678,
+-1.631736
+]).addTo(map)
+.bindPopup("<b>EG GROUP LEON</b><br>1A Wakefield Rd");
 
-<div class="card">
 
-<h3>Armley Leisure Centre</h3>
 
-<p>
-Carr Crofts<br>
-Leeds<br>
-LS12 3HB
-</p>
+L.marker([
+53.748486,
+-1.530569
+]).addTo(map)
+.bindPopup("<b>Asda</b><br>Middleton");
 
-</div>
 
-<div class="card">
 
-<h3>Barley Hill Road, Garforth</h3>
+L.marker([
+53.747774,
+-1.477569
+]).addTo(map)
+.bindPopup("<b>Marsh Street, Rothwell</b><br>Rothwell");
 
-<p>
-Garforth<br>
-Leeds<br>
-LS25 1DS
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+53.74737,
+-1.4777
+]).addTo(map)
+.bindPopup("<b>Marsh Street Car Park, Rothwell</b><br>Marsh Street Car Park");
 
-<h3>Asda Head Office</h3>
 
-<p>
-Great Wilson Street<br>
-Leeds<br>
-LS11 5AD
-</p>
 
-</div>
+L.marker([
+53.74724,
+-1.479809
+]).addTo(map)
+.bindPopup("<b>Butcher Lane Car Park 2</b><br>Butcher Lane Car Park");
 
-<div class="card">
 
-<h3>Leeds Dock 01</h3>
 
-<p>
-CitiPark, Leeds Dock<br>
-Leeds<br>
-LS101LE
-</p>
+L.marker([
+53.745293,
+-1.451642
+]).addTo(map)
+.bindPopup("<b>Toby Carvery Leeds</b><br>Oulton");
 
-</div>
 
-<div class="card">
 
-<h3>New Asda MCE Facility New Lane</h3>
+L.marker([
+53.744358,
+-1.452687
+]).addTo(map)
+.bindPopup("<b>Rothwell Leisure Centre</b><br>Wakefield Road, Oulton");
 
-<p>
-Off Victoria Road<br>
-Leeds<br>
-LS11 5UG
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+53.735458,
+-1.609018
+]).addTo(map)
+.bindPopup("<b>Asda Morley</b><br>Morley");
 
-<h3>Asda Wortley</h3>
 
-<p>
-Wortley<br>
-Leeds<br>
-LS12 4BP
-</p>
 
-</div>
+L.marker([
+53.82695,
+-1.594462
+]).addTo(map)
+.bindPopup("<b>LeedsBeckett</b><br>Woodhouse Lane");
 
-<div class="card">
 
-<h3>Stourton Park and Ride Fast 5</h3>
 
-<p>
-Belle Island<br>
-Leeds<br>
-LS10 3DD
-</p>
+L.marker([
+53.781658,
+-1.501562
+]).addTo(map)
+.bindPopup("<b>SIKA LEEDS02</b><br>41 Knowsthorpe Way");
 
-</div>
 
-<div class="card">
 
-<h3>Stourton Park and Ride Rapid 4</h3>
+L.marker([
+53.75067,
+-1.636342
+]).addTo(map)
+.bindPopup("<b>GROUND CONTROL GILDERSOME 1</b><br>9a Bradford Rd");
 
-<p>
-Belle island<br>
-Leeds<br>
-LS10 3DD
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+53.73177,
+-1.500296
+]).addTo(map)
+.bindPopup("<b>RAWOWNED THORPE LODGE</b><br>50 Long Thorpe Ln");
 
-<h3>Asda Middleton</h3>
 
-<p>
-Holme Well Road<br>
-Leeds<br>
-LS10 4TQ
-</p>
 
-</div>
+L.marker([
+52.393478,
+-2.018098
+]).addTo(map)
+.bindPopup("<b>Genie</b><br>Holtdale Approach");
 
-<div class="card">
 
-<h3>EG GROUP LEON</h3>
 
-<p>
-1A Wakefield Rd<br>
-Leeds<br>
-LS27 7FP
-</p>
+L.marker([
+53.905489,
+-1.695724
+]).addTo(map)
+.bindPopup("<b>Beech Hill Car Park 3</b><br>Beech Hill Car Park");
 
-</div>
 
-<div class="card">
 
-<h3>Asda</h3>
+L.marker([
+53.807468,
+-1.586714
+]).addTo(map)
+.bindPopup("<b>Asda Kirkstall</b><br>385 Kirkstall Road");
 
-<p>
-Middleton<br>
-Leeds<br>
-LS10 4TQ
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+53.801064,
+-1.550714
+]).addTo(map)
+.bindPopup("<b>LCC Car Club</b><br>LCC Car Club, West Yorkshire");
 
-<h3>Marsh Street, Rothwell</h3>
 
-<p>
-Rothwell<br>
-Leeds<br>
-LS260AE
-</p>
 
-</div>
+L.marker([
+53.797712,
+-1.673651
+]).addTo(map)
+.bindPopup("<b>Queens Park, Pudsey 3</b><br>Queens Park, Pudsey");
 
-<div class="card">
 
-<h3>Marsh Street Car Park, Rothwell</h3>
 
-<p>
-Marsh Street Car Park<br>
-Leeds<br>
-LS260AE
-</p>
+L.marker([
+53.77046,
+-1.47691
+]).addTo(map)
+.bindPopup("<b>IONITY Leeds Skelton Lakes</b><br>M1 J45 Skelton Lake");
 
-</div>
 
-<div class="card">
 
-<h3>Butcher Lane Car Park 2</h3>
+L.marker([
+53.743019,
+-1.598276
+]).addTo(map)
+.bindPopup("<b>High Street Car Park 1</b><br>High Street Car Park");
 
-<p>
-Butcher Lane Car Park<br>
-Leeds<br>
-LS26 0DB
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+53.79988945,
+-1.51322253
+]).addTo(map)
+.bindPopup("<b>Trinity Academy Leeds</b><br>Torre Road");
 
-<h3>Toby Carvery Leeds</h3>
 
-<p>
-Oulton<br>
-Leeds<br>
-LS26 8EJ
-</p>
 
-</div>
+L.marker([
+53.79617675,
+-1.55204206
+]).addTo(map)
+.bindPopup("<b>Central Square-PWC</b><br>29 Wellington Street");
 
-<div class="card">
 
-<h3>Rothwell Leisure Centre</h3>
 
-<p>
-Wakefield Road, Oulton<br>
-Leeds<br>
-LS268EL
-</p>
+L.marker([
+53.795047,
+-1.544678
+]).addTo(map)
+.bindPopup("<b>Trinity Leeds Car Park</b><br>Swinegate");
 
-</div>
 
-<div class="card">
 
-<h3>Asda Morley</h3>
+L.marker([
+53.80058360288345,
+-1.535159637966558
+]).addTo(map)
+.bindPopup("<b>Hampton By Hilton</b><br>1 Gower Street");
 
-<p>
-Morley<br>
-Leeds<br>
-LS270BP
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+53.787009122232746,
+-1.5400654819852662
+]).addTo(map)
+.bindPopup("<b>Crown Point Shopping Cente Car Park</b><br>Crown Point Retail Park");
 
-<h3>LeedsBeckett</h3>
 
-<p>
-Woodhouse Lane<br>
-Leeds<br>
-LS6 3FH
-</p>
 
-</div>
+L.marker([
+53.79432644158376,
+-1.4273900388221819
+]).addTo(map)
+.bindPopup("<b>Thorpe Park Hotel & Spa</b><br>1150 Century Way");
 
-<div class="card">
 
-<h3>SIKA LEEDS02</h3>
 
-<p>
-41 Knowsthorpe Way<br>
-Leeds<br>
-LS9 0SW
-</p>
+L.marker([
+53.7955363,
+-1.6213047
+]).addTo(map)
+.bindPopup("<b>McDonald's</b><br>38 Butt Lane");
 
-</div>
 
-<div class="card">
 
-<h3>GROUND CONTROL GILDERSOME 1</h3>
+L.marker([
+53.82221,
+-1.460697
+]).addTo(map)
+.bindPopup("<b>Tesco Extra-Leeds Seacroft</b><br>5 Seacroft Avenue");
 
-<p>
-9a Bradford Rd<br>
-Leeds<br>
-LS27 7HW
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+53.823268,
+-1.510535
+]).addTo(map)
+.bindPopup("<b>Tesco Superstore-Leeds</b><br>361 Roundhay Road");
 
-<h3>RAWOWNED THORPE LODGE</h3>
 
-<p>
-50 Long Thorpe Ln<br>
-Leeds<br>
-WF3 3PU
-</p>
 
-</div>
+L.marker([
+53.7975627521871,
+-1.38219331364161
+]).addTo(map)
+.bindPopup("<b>Tesco Superstore - Garforth</b><br>Aberford Road");
 
-<div class="card">
 
-<h3>Genie</h3>
 
-<p>
-Holtdale Approach<br>
-Leeds<br>
-LS16 7RX
-</p>
+L.marker([
+53.7672954987961,
+-1.517630893316806
+]).addTo(map)
+.bindPopup("<b>Stourton Park and Ride</b><br>Unit 1 Stourton Park and Ride");
 
-</div>
 
-<div class="card">
 
-<h3>Beech Hill Car Park 3</h3>
+L.marker([
+53.795311,
+-1.388816
+]).addTo(map)
+.bindPopup("<b>Marsh Street Car Park</b><br>Garforth");
 
-<p>
-Beech Hill Car Park<br>
-Leeds<br>
-LS21 3AT
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+53.782167,
+-1.596262
+]).addTo(map)
+.bindPopup("<b>Whitehall Road East</b><br>Whitehall Road East");
 
-<h3>Asda Kirkstall</h3>
 
-<p>
-385 Kirkstall Road<br>
-Leeds<br>
-LS42EZ
-</p>
 
-</div>
+L.marker([
+53.776711,
+-1.576236
+]).addTo(map)
+.bindPopup("<b>Elland Road</b><br>Elland Road");
 
-<div class="card">
 
-<h3>LCC Car Club</h3>
 
-<p>
-LCC Car Club, West Yorkshire<br>
-Leeds<br>
-LS1 3DT
-</p>
+L.marker([
+53.80694962661198,
+-1.5056218447043648
+]).addTo(map)
+.bindPopup("<b>Asda Harehills Lane</b><br>Lupton Avenue");
 
-</div>
 
-<div class="card">
 
-<h3>Queens Park, Pudsey 3</h3>
+L.marker([
+53.7892851704527,
+-1.5855021515786802
+]).addTo(map)
+.bindPopup("<b>Asda Wortley</b><br>9 Lansdowne St");
 
-<p>
-Queens Park, Pudsey<br>
-Leeds<br>
-LS28 7FB
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+53.745559,
+-1.605554
+]).addTo(map)
+.bindPopup("<b>Morrison's Morley</b><br>Morley");
 
-<h3>IONITY Leeds Skelton Lakes</h3>
 
-<p>
-M1 J45 Skelton Lake<br>
-Leeds<br>
-LS15 0BF
-</p>
 
-</div>
+L.marker([
+53.915198558142094,
+-1.700898450498471
+]).addTo(map)
+.bindPopup("<b>Wharfedale Hospital</b><br>Newall Carr Road");
 
-<div class="card">
 
-<h3>High Street Car Park 1</h3>
 
-<p>
-High Street Car Park<br>
-Leeds<br>
-LS27 8AQ
-</p>
+L.marker([
+53.81349664061753,
+-1.6716181558244898
+]).addTo(map)
+.bindPopup("<b>Charles Street Car Park </b><br>Charles Street");
 
-</div>
 
-<div class="card">
 
-<h3>Trinity Academy Leeds</h3>
+L.marker([
+53.81350868911025,
+-1.6715703154815174
+]).addTo(map)
+.bindPopup("<b>  Charles Street Car Park</b><br>Charles Street");
 
-<p>
-Torre Road<br>
-Leeds<br>
-LS9 7QL
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+53.81643188059161,
+-1.5138245807473822
+]).addTo(map)
+.bindPopup("<b>Abaseen Superstore</b><br>171 Harehills Lane");
 
-<h3>Central Square-PWC</h3>
 
-<p>
-29 Wellington Street<br>
-Leeds<br>
-LS1 4DL
-</p>
 
-</div>
+L.marker([
+53.827351347985456,
+-1.5058015000004161
+]).addTo(map)
+.bindPopup("<b>Roundhay Park Clocktower carpark</b><br>1 Gledhow Lane");
 
-<div class="card">
 
-<h3>Trinity Leeds Car Park</h3>
 
-<p>
-Swinegate<br>
-Leeds<br>
-1.544678
-</p>
+L.marker([
+53.80222250852907,
+-1.5655479731497053
+]).addTo(map)
+.bindPopup("<b>Burley Road Car Park</b><br>Burley Road");
 
-</div>
 
-<div class="card">
 
-<h3>Hampton By Hilton</h3>
+L.marker([
+53.879212262088885,
+-1.725541836907496
+]).addTo(map)
+.bindPopup("<b>Aldi Menston</b><br>Bradford Rd ");
 
-<p>
-1 Gower Street<br>
-Leeds<br>
-LS2 7BP
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+53.794794149215704,
+-1.59231023468692
+]).addTo(map)
+.bindPopup("<b>Armley Leisure Centre</b><br>Carr Crofts");
 
-<h3>Crown Point Shopping Cente Car Park</h3>
 
-<p>
-Crown Point Retail Park<br>
-Leeds<br>
-LS10 1EW
-</p>
 
-</div>
+L.marker([
+53.8127821962463,
+-1.5108588
+]).addTo(map)
+.bindPopup("<b>Morrisons Leeds Harehills</b><br>Harehills Lane");
 
-<div class="card">
 
-<h3>Thorpe Park Hotel & Spa</h3>
 
-<p>
-1150 Century Way<br>
-Leeds<br>
-LS15 8ZB
-</p>
+L.marker([
+53.77473966572097,
+-1.5133025021401636
+]).addTo(map)
+.bindPopup("<b>BP Service Station</b><br>53 Pontefract Road");
 
-</div>
 
-<div class="card">
 
-<h3>McDonald's</h3>
+L.marker([
+53.7744464707961,
+-1.51320042570228
+]).addTo(map)
+.bindPopup("<b>Stourton BP Service Station</b><br>Pontefract Road");
 
-<p>
-38 Butt Lane<br>
-Leeds<br>
-LS13 4JE
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+53.784556,
+-1.532498
+]).addTo(map)
+.bindPopup("<b>Leeds-Whitehouse Street Supercharger</b><br>7 Whitehouse Street");
 
-<h3>Tesco Extra-Leeds Seacroft</h3>
 
-<p>
-5 Seacroft Avenue<br>
-Leeds<br>
-LS14 6JD
-</p>
 
-</div>
+L.marker([
+53.83629245732743,
+-1.6442329629979895
+]).addTo(map)
+.bindPopup("<b>Fink Hill Car Park</b><br>Fink Hill");
 
-<div class="card">
 
-<h3>Tesco Superstore-Leeds</h3>
 
-<p>
-361 Roundhay Road<br>
-Leeds<br>
-LS8 4BU
-</p>
+L.marker([
+53.825952,
+-1.546119
+]).addTo(map)
+.bindPopup("<b>Scott Hall Leisure Centre</b><br>Scott Hall Sports Centre");
 
-</div>
 
-<div class="card">
 
-<h3>Tesco Superstore - Garforth</h3>
+L.marker([
+53.819513078358796,
+-1.5748266012790282
+]).addTo(map)
+.bindPopup("<b>First On Scene Training</b><br>82 Headingley Lane");
 
-<p>
-Aberford Road<br>
-Leeds<br>
-LS25 2DX
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+53.80925,
+-1.554083
+]).addTo(map)
+.bindPopup("<b>University of Leeds</b><br>Woodhouse Lane");
 
-<h3>Stourton Park and Ride</h3>
 
-<p>
-Unit 1 Stourton Park and Ride<br>
-Leeds<br>
-LS10 1FF
-</p>
 
-</div>
+L.marker([
+53.80838,
+-1.55883
+]).addTo(map)
+.bindPopup("<b>University of Leeds</b><br>Devonshire Hall");
 
-<div class="card">
 
-<h3>Marsh Street Car Park</h3>
 
-<p>
-Garforth<br>
-Leeds<br>
-LS25 1AF
-</p>
+L.marker([
+53.806168,
+-1.55295
+]).addTo(map)
+.bindPopup("<b>University of Leeds</b><br>Cavendish Road");
 
-</div>
 
-<div class="card">
 
-<h3>Whitehall Road East</h3>
+L.marker([
+53.80365,
+-1.5529
+]).addTo(map)
+.bindPopup("<b>University of Leeds</b><br>The Edge");
 
-<p>
-Whitehall Road East<br>
-Leeds<br>
-LS12 4RJ
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+53.788719,
+-1.549335
+]).addTo(map)
+.bindPopup("<b>Ingram street car park</b><br>Ingram street car park");
 
-<h3>Elland Road</h3>
 
-<p>
-Elland Road<br>
-Leeds<br>
-LS11 8TU
-</p>
 
-</div>
+L.marker([
+53.753345,
+-1.571942
+]).addTo(map)
+.bindPopup("<b>White Rose Shopping Centre</b><br>Dewsbury Road");
 
-<div class="card">
 
-<h3>Asda Harehills Lane</h3>
 
-<p>
-Lupton Avenue<br>
-Leeds<br>
-LS9 6EY
-</p>
+L.marker([
+53.7458434307527,
+-1.45217171463366
+]).addTo(map)
+.bindPopup("<b>Toby Carvery</b><br>2 Aberford Road");
 
-</div>
 
-<div class="card">
 
-<h3>Asda Wortley</h3>
+L.marker([
+53.836497,
+-1.64161
+]).addTo(map)
+.bindPopup("<b>New Street Car Park</b><br>New Street");
 
-<p>
-9 Lansdowne St<br>
-Leeds<br>
-LS12 4BP
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+53.77436865059477,
+-1.4703148125219059
+]).addTo(map)
+.bindPopup("<b>Ionity Leeds - Skelton Lakes Services</b><br>M1 Jct 45");
 
-<h3>Morrison's Morley</h3>
 
-<p>
-Morley<br>
-Leeds<br>
-LS27 9JP
-</p>
 
-</div>
+L.marker([
+53.74767,
+-1.60268
+]).addTo(map)
+.bindPopup("<b>Annie Street Car Park, Morley</b><br>Annie Street");
 
-<div class="card">
 
-<h3>Wharfedale Hospital</h3>
 
-<p>
-Newall Carr Road<br>
-Leeds<br>
-LS21 2LY
-</p>
+L.marker([
+53.747750145425925,
+-1.4784682716858697
+]).addTo(map)
+.bindPopup("<b>Rothwell Marsh Street Car Park</b><br>Marsh Street");
 
-</div>
 
-<div class="card">
 
-<h3>Charles Street Car Park </h3>
+L.marker([
+53.86594104579598,
+-1.6843845906768138
+]).addTo(map)
+.bindPopup("<b>Yeadon One Stop Centre</b><br>High Street");
 
-<p>
-Charles Street<br>
-Leeds<br>
-LS28 5JW
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+53.90490989693566,
+-1.3461511408854676
+]).addTo(map)
+.bindPopup("<b>High Street Car Park</b><br>5 Bridge Rd");
 
-<h3>  Charles Street Car Park</h3>
 
-<p>
-Charles Street<br>
-Leeds<br>
-LS28 5JW
-</p>
 
-</div>
+L.marker([
+53.92789865953495,
+-1.3834341588525376
+]).addTo(map)
+.bindPopup("<b>The Cluster of Nuts Car Park</b><br>42 Hall field Lane");
 
-<div class="card">
 
-<h3>Abaseen Superstore</h3>
 
-<p>
-171 Harehills Lane<br>
-Leeds<br>
-LS8 3QE
-</p>
+L.marker([
+53.7868948730778,
+-1.40438605225222
+]).addTo(map)
+.bindPopup("<b>Miller & Carter Garforth</b><br>Selby Road");
 
-</div>
 
-<div class="card">
 
-<h3>Roundhay Park Clocktower carpark</h3>
+L.marker([
+53.864878,
+-1.518688
+]).addTo(map)
+.bindPopup("<b>The Grammar School at Leeds</b><br>Harrogate Road");
 
-<p>
-1 Gledhow Lane<br>
-Leeds<br>
-LS8 1SD
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+53.843413,
+-1.579911
+]).addTo(map)
+.bindPopup("<b>New Rover Cricket Club</b><br>Smithy Mills Ln");
 
-<h3>Burley Road Car Park</h3>
 
-<p>
-Burley Road<br>
-Leeds<br>
-LS3 1JP
-</p>
 
-</div>
+L.marker([
+53.793531,
+-1.556904
+]).addTo(map)
+.bindPopup("<b>Whitehall Road Car Park</b><br>Wellington Place");
 
-<div class="card">
 
-<h3>Aldi Menston</h3>
 
-<p>
-Bradford Rd <br>
-Leeds<br>
-LS20 8FA 
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Armley Leisure Centre</h3>
-
-<p>
-Carr Crofts<br>
-Leeds<br>
-LS12 3HB
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Morrisons Leeds Harehills</h3>
-
-<p>
-Harehills Lane<br>
-Leeds<br>
-LS8 3RG
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>BP Service Station</h3>
-
-<p>
-53 Pontefract Road<br>
-Leeds<br>
-LS26
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Stourton BP Service Station</h3>
-
-<p>
-Pontefract Road<br>
-Leeds<br>
-LS10 1SP
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Leeds-Whitehouse Street Supercharger</h3>
-
-<p>
-7 Whitehouse Street<br>
-Leeds<br>
-LS10 1AD
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Fink Hill Car Park</h3>
-
-<p>
-Fink Hill<br>
-Leeds<br>
-LS18
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Scott Hall Leisure Centre</h3>
-
-<p>
-Scott Hall Sports Centre<br>
-Leeds<br>
-LS7 3DT
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>First On Scene Training</h3>
-
-<p>
-82 Headingley Lane<br>
-Leeds<br>
-LS6 2DH
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>University of Leeds</h3>
-
-<p>
-Woodhouse Lane<br>
-Leeds<br>
-LS2 9JT
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>University of Leeds</h3>
-
-<p>
-Devonshire Hall<br>
-Leeds<br>
-LS2 9JT
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>University of Leeds</h3>
-
-<p>
-Cavendish Road<br>
-Leeds<br>
-LS2 9JT
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>University of Leeds</h3>
-
-<p>
-The Edge<br>
-Leeds<br>
-LS2 9JT
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Ingram street car park</h3>
-
-<p>
-Ingram street car park<br>
-Leeds<br>
-LS11 9AW
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>White Rose Shopping Centre</h3>
-
-<p>
-Dewsbury Road<br>
-Leeds<br>
-LS11 8LL
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Toby Carvery</h3>
-
-<p>
-2 Aberford Road<br>
-Leeds<br>
-LS26 8EJ
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>New Street Car Park</h3>
-
-<p>
-New Street<br>
-Leeds<br>
-LS18 4BH
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Ionity Leeds - Skelton Lakes Services</h3>
-
-<p>
-M1 Jct 45<br>
-Leeds<br>
-LS15 0AE
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Annie Street Car Park, Morley</h3>
-
-<p>
-Annie Street<br>
-Leeds<br>
-LS27 8HQ
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Rothwell Marsh Street Car Park</h3>
-
-<p>
-Marsh Street<br>
-Leeds<br>
-LS26 0AE
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Yeadon One Stop Centre</h3>
-
-<p>
-High Street<br>
-Leeds<br>
-LS19 7PP
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>High Street Car Park</h3>
-
-<p>
-5 Bridge Rd<br>
-Leeds<br>
-LS23 6HB
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>The Cluster of Nuts Car Park</h3>
-
-<p>
-42 Hall field Lane<br>
-Leeds<br>
-LS22 6JS
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Miller & Carter Garforth</h3>
-
-<p>
-Selby Road<br>
-Leeds<br>
-LS25 1NB
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>The Grammar School at Leeds</h3>
-
-<p>
-Harrogate Road<br>
-Leeds<br>
-LS17 8GS
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>New Rover Cricket Club</h3>
-
-<p>
-Smithy Mills Ln<br>
-Leeds<br>
-LS16 8HF
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Whitehall Road Car Park</h3>
-
-<p>
-Wellington Place<br>
-Leeds<br>
-LS1 4AW
-</p>
-
-</div>
-
-
-</div>
-
-<footer>
-EV Charger Directory
-</footer>
+</script>
 
 </body>
 </html>

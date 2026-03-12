@@ -1,917 +1,1011 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>EV Chargers in Manchester</title>
-<link rel="stylesheet" href="/style.css">
+<title>Manchester EV Chargers</title>
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+
+<style>
+#map {
+  height: 400px;
+  margin-bottom: 30px;
+  border-radius: 8px;
+}
+</style>
+
 </head>
 
 <body>
 
-<header>
-<h1>EV Chargers in Manchester</h1>
-</header>
+<h1>Manchester EV Chargers</h1>
+
+<div id="map"></div>
+
+<ul>
+
+<li>
+<strong>Lidl-Manchester</strong><br>
+319 Worsley Road
+</li>
+
+<li>
+<strong>Lidl-Mocha Parade</strong><br>
+6 Lower Broughton Road
+</li>
+
+<li>
+<strong>Tesco Extra - Middleton</strong><br>
+Barton Road
+</li>
+
+<li>
+<strong>Tesco Superstore - Blackley Manchester</strong><br>
+Victoria Avenue East
+</li>
+
+<li>
+<strong>Morrisons Swinton</strong><br>
+Swinton
+</li>
+
+<li>
+<strong>Tesco Extra - Failsworth</strong><br>
+Ashton Road West
+</li>
+
+<li>
+<strong>Tesco Superstore - Droylsden</strong><br>
+Manchester Road
+</li>
+
+<li>
+<strong>Victoria MSCP</strong><br>
+Victoria MSCP
+</li>
+
+<li>
+<strong>Trafford Centre Parking East</strong><br>
+Trafford Centre Parking East
+</li>
+
+<li>
+<strong>Tesco Extra - Manchester Gorton</strong><br>
+Hyde Road
+</li>
+
+<li>
+<strong>Tesco Extra - Irlam</strong><br>
+Fairhills Industrial Estate
+</li>
+
+<li>
+<strong>Tesco Superstore - East Didsbury</strong><br>
+Parrs Wood Lane
+</li>
+
+<li>
+<strong>Tesco Extra - Baguley</strong><br>
+Altrincham Road
+</li>
+
+<li>
+<strong>Radclyffe Arms Manchester</strong><br>
+390 Grimshaw Lane
+</li>
+
+<li>
+<strong>RAW AVIVA SPRING GRDNS 01</strong><br>
+40 Spring Gardens
+</li>
+
+<li>
+<strong>Q-Park Piazza, Manchester 4</strong><br>
+St James Street
+</li>
+
+<li>
+<strong>Ormand Quad</strong><br>
+Manchester Metropolitan University
+</li>
+
+<li>
+<strong>MFG Ardwick</strong><br>
+Chancellor Lane
+</li>
+
+<li>
+<strong>MFG Nimblenook</strong><br>
+300 Broadway
+</li>
+
+<li>
+<strong>MFG Chorlton</strong><br>
+Barlow Moor Road
+</li>
+
+<li>
+<strong>MFG Civic Centre</strong><br>
+Rowlands Way
+</li>
+
+<li>
+<strong>GMEV PAYG Charge Point</strong><br>
+Smith Street
+</li>
+
+<li>
+<strong>GMEV PAYG Charge Point</strong><br>
+Wickentree Lane
+</li>
+
+<li>
+<strong>Lidl - Tyldesley</strong><br>
+Units 2, Parr Bridge Retail Park
+</li>
+
+<li>
+<strong>GMEV PAYG Charge Point</strong><br>
+Monton Road
+</li>
+
+<li>
+<strong>GMEV PAYG Charge Point</strong><br>
+Blackfriars Road
+</li>
+
+<li>
+<strong>RAWOWNED SPORT CITY 1</strong><br>
+10 Archer St
+</li>
+
+<li>
+<strong>Stott Lane Car Park</strong><br>
+Salford Roayl Hospital
+</li>
+
+<li>
+<strong>GMEV PAYG Charge Point</strong><br>
+Quay Street
+</li>
+
+<li>
+<strong>Irwell Place Car Park</strong><br>
+University of Salford
+</li>
+
+<li>
+<strong>70 Port Street</strong><br>
+70 Port Street
+</li>
+
+<li>
+<strong>Manchester Tariff street 01</strong><br>
+CitiPark, Tariff street
+</li>
+
+<li>
+<strong>Laystall Street</strong><br>
+34 Laystall Street
+</li>
+
+<li>
+<strong>GMEV PAYG Charge Point</strong><br>
+Store Street
+</li>
+
+<li>
+<strong>RAWOWNED RAW CP6 DEMO</strong><br>
+Windmill Street
+</li>
+
+<li>
+<strong>GMEV PAYG Charge Point</strong><br>
+Windmill Street
+</li>
+
+<li>
+<strong>GMEV PAYG Charge Point</strong><br>
+Higher Chatham Street
+</li>
+
+<li>
+<strong>University of Manchester</strong><br>
+(car park D)
+</li>
+
+<li>
+<strong>GMEV PAYG Charge Point</strong><br>
+Moorside Road
+</li>
+
+<li>
+<strong>Platt Lane Sports Complex</strong><br>
+Yew Tree Road
+</li>
+
+<li>
+<strong>GMEV PAYG Charge Point</strong><br>
+Lacy Street
+</li>
+
+<li>
+<strong>Shell Didsbury</strong><br>
+761-765 Wilmslow Road
+</li>
+
+<li>
+<strong>Greenpark Road</strong><br>
+Northenden
+</li>
+
+<li>
+<strong>GMEV PAYG Charge Point</strong><br>
+Simonsway
+</li>
+
+<li>
+<strong>ATE CHARGER-01</strong><br>
+10 Shield Dr
+</li>
+
+<li>
+<strong>Morrisons Failsworth Poplar Street</strong><br>
+Failsworth
+</li>
+
+<li>
+<strong>ROYAL LONDON PARKING LVL -2</strong><br>
+1 New York St
+</li>
+
+<li>
+<strong>ROYAL LONDON 3 HARDMAN SQ</strong><br>
+3 Hardman Square Spinningfields Square
+</li>
+
+<li>
+<strong>Manchester Trafford Centre Supercharger</strong><br>
+Trafford Centre
+</li>
+
+<li>
+<strong>McDonald's Debdale Park</strong><br>
+ 21 Wall Way
+</li>
+
+<li>
+<strong>Brunswick Church</strong><br>
+39a Brunswick Street
+</li>
+
+<li>
+<strong>Manchester Piccadilly Car Park</strong><br>
+Broad Street
+</li>
+
+<li>
+<strong>McDonald's</strong><br>
+1235 Chester Road
+</li>
+
+<li>
+<strong>MFG EV Power Chester Road</strong><br>
+Chester Road
+</li>
+
+<li>
+<strong>Trafford Retail Park</strong><br>
+Urmston
+</li>
+
+<li>
+<strong>Tesco Superstore Cheetham Hill</strong><br>
+Thomas Street (Off Bury Old Road)
+</li>
+
+<li>
+<strong>RCP Parking</strong><br>
+Angel Street
+</li>
+
+<li>
+<strong>DoubleTree by Hilton</strong><br>
+One Piccadilly Place
+</li>
+
+<li>
+<strong>Angel Gardens</strong><br>
+1 Rochdale Road
+</li>
+
+<li>
+<strong>8001509</strong><br>
+MIOC , STYAL ROAD, Wythenshawe
+</li>
+
+<li>
+<strong>GMEV PAYG Charge Point</strong><br>
+8 Chester Street
+</li>
+
+<li>
+<strong>Trafford Centre Parking Garage East</strong><br>
+Trafford Centre Parking Garage
+</li>
+
+<li>
+<strong>Parking Charges Apply
+Subject to Annual review car parking Char..</strong><br>
+Greater Manchester West Mental
+</li>
+
+<li>
+<strong>GMEV PAYG Charge Point</strong><br>
+Delaunays Road
+</li>
+
+<li>
+<strong>GMEV PAYG Charge Point</strong><br>
+Crescent Road
+</li>
+
+<li>
+<strong>GMEV PAYG Charge Point</strong><br>
+Gibbon Street
+</li>
+
+<li>
+<strong>GMEV PAYG Charge Point</strong><br>
+Joe Mercer Way
+</li>
+
+<li>
+<strong>GMEV PAYG Charge Point</strong><br>
+Waterloo Street
+</li>
+
+<li>
+<strong>GMEV PAYG Charge Point</strong><br>
+Travis Street
+</li>
+
+<li>
+<strong>Chester Street</strong><br>
+Chester Street
+</li>
+
+<li>
+<strong>GMEV PAYG Charge Point</strong><br>
+Cambridge Street
+</li>
+
+<li>
+<strong>GMEV PAYG Charge Point</strong><br>
+Wenlock Way
+</li>
+
+<li>
+<strong>Stockport Road</strong><br>
+Stockport Road
+</li>
+
+<li>
+<strong>GMEV PAYG Charge Point</strong><br>
+Greenpark Road
+</li>
+
+</ul>
+
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script>
 
-<div class="container">
+var map = L.map('map').setView([
+53.4894443,
+-2.3696864
+], 12);
+
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+attribution: '&copy; OpenStreetMap contributors'
+}).addTo(map);
 
-<p>74 charging locations found.</p>
 
 
-<div class="card">
+L.marker([
+53.4894443,
+-2.3696864
+]).addTo(map)
+.bindPopup("<b>Lidl-Manchester</b><br>319 Worsley Road");
 
-<h3>Lidl-Manchester</h3>
 
-<p>
-319 Worsley Road<br>
-Manchester<br>
-M30 8BW
-</p>
 
-</div>
+L.marker([
+53.49145176,
+-2.26165439
+]).addTo(map)
+.bindPopup("<b>Lidl-Mocha Parade</b><br>6 Lower Broughton Road");
 
-<div class="card">
 
-<h3>Lidl-Mocha Parade</h3>
 
-<p>
-6 Lower Broughton Road<br>
-Manchester<br>
-M7 1AQ
-</p>
+L.marker([
+53.549216,
+-2.197326
+]).addTo(map)
+.bindPopup("<b>Tesco Extra - Middleton</b><br>Barton Road");
 
-</div>
 
-<div class="card">
 
-<h3>Tesco Extra - Middleton</h3>
+L.marker([
+53.532113,
+-2.20621
+]).addTo(map)
+.bindPopup("<b>Tesco Superstore - Blackley Manchester</b><br>Victoria Avenue East");
 
-<p>
-Barton Road<br>
-Manchester<br>
-M24 1UQ
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+53.513229,
+-2.336827
+]).addTo(map)
+.bindPopup("<b>Morrisons Swinton</b><br>Swinton");
 
-<h3>Tesco Superstore - Blackley Manchester</h3>
 
-<p>
-Victoria Avenue East<br>
-Manchester<br>
-M9 6HP
-</p>
 
-</div>
+L.marker([
+53.508885,
+-2.158075
+]).addTo(map)
+.bindPopup("<b>Tesco Extra - Failsworth</b><br>Ashton Road West");
 
-<div class="card">
 
-<h3>Morrisons Swinton</h3>
 
-<p>
-Swinton<br>
-Manchester<br>
-M27 4BT
-</p>
+L.marker([
+53.480411,
+-2.148428
+]).addTo(map)
+.bindPopup("<b>Tesco Superstore - Droylsden</b><br>Manchester Road");
 
-</div>
 
-<div class="card">
 
-<h3>Tesco Extra - Failsworth</h3>
+L.marker([
+53.475013,
+-2.290234
+]).addTo(map)
+.bindPopup("<b>Victoria MSCP</b><br>Victoria MSCP");
 
-<p>
-Ashton Road West<br>
-Manchester<br>
-M35 0EJ
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+53.465015,
+-2.344624
+]).addTo(map)
+.bindPopup("<b>Trafford Centre Parking East</b><br>Trafford Centre Parking East");
 
-<h3>Tesco Superstore - Droylsden</h3>
 
-<p>
-Manchester Road<br>
-Manchester<br>
-M43 6TQ
-</p>
 
-</div>
+L.marker([
+53.461875,
+-2.173153
+]).addTo(map)
+.bindPopup("<b>Tesco Extra - Manchester Gorton</b><br>Hyde Road");
 
-<div class="card">
 
-<h3>Victoria MSCP</h3>
 
-<p>
-Victoria MSCP<br>
-Manchester<br>
-M50 2GT
-</p>
+L.marker([
+53.43825,
+-2.42306
+]).addTo(map)
+.bindPopup("<b>Tesco Extra - Irlam</b><br>Fairhills Industrial Estate");
 
-</div>
 
-<div class="card">
 
-<h3>Trafford Centre Parking East</h3>
+L.marker([
+53.411654,
+-2.219369
+]).addTo(map)
+.bindPopup("<b>Tesco Superstore - East Didsbury</b><br>Parrs Wood Lane");
 
-<p>
-Trafford Centre Parking East<br>
-Manchester<br>
-M17 8BH
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+53.400464,
+-2.297544
+]).addTo(map)
+.bindPopup("<b>Tesco Extra - Baguley</b><br>Altrincham Road");
 
-<h3>Tesco Extra - Manchester Gorton</h3>
 
-<p>
-Hyde Road<br>
-Manchester<br>
-M18 8LD
-</p>
 
-</div>
+L.marker([
+53.540244,
+-2.171421
+]).addTo(map)
+.bindPopup("<b>Radclyffe Arms Manchester</b><br>390 Grimshaw Lane");
 
-<div class="card">
 
-<h3>Tesco Extra - Irlam</h3>
 
-<p>
-Fairhills Industrial Estate<br>
-Manchester<br>
-M44 6BL
-</p>
+L.marker([
+53.481199,
+-2.241843
+]).addTo(map)
+.bindPopup("<b>RAW AVIVA SPRING GRDNS 01</b><br>40 Spring Gardens");
 
-</div>
 
-<div class="card">
 
-<h3>Tesco Superstore - East Didsbury</h3>
+L.marker([
+53.477456,
+-2.241328
+]).addTo(map)
+.bindPopup("<b>Q-Park Piazza, Manchester 4</b><br>St James Street");
 
-<p>
-Parrs Wood Lane<br>
-Manchester<br>
-M20 5NP
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+53.469688,
+-2.23968
+]).addTo(map)
+.bindPopup("<b>Ormand Quad</b><br>Manchester Metropolitan University");
 
-<h3>Tesco Extra - Baguley</h3>
 
-<p>
-Altrincham Road<br>
-Manchester<br>
-M23 9TJ
-</p>
 
-</div>
+L.marker([
+53.4736088226682,
+-2.21605965611228
+]).addTo(map)
+.bindPopup("<b>MFG Ardwick</b><br>Chancellor Lane");
 
-<div class="card">
 
-<h3>Radclyffe Arms Manchester</h3>
 
-<p>
-390 Grimshaw Lane<br>
-Manchester<br>
-M24 1GQ
-</p>
+L.marker([
+53.5339676593721,
+-2.15308265414868
+]).addTo(map)
+.bindPopup("<b>MFG Nimblenook</b><br>300 Broadway");
 
-</div>
 
-<div class="card">
 
-<h3>RAW AVIVA SPRING GRDNS 01</h3>
+L.marker([
+53.4352211197506,
+-2.27367357336951
+]).addTo(map)
+.bindPopup("<b>MFG Chorlton</b><br>Barlow Moor Road");
 
-<p>
-40 Spring Gardens<br>
-Manchester<br>
-M2 1EN
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+53.378162909531,
+-2.26114109397172
+]).addTo(map)
+.bindPopup("<b>MFG Civic Centre</b><br>Rowlands Way");
 
-<h3>Q-Park Piazza, Manchester 4</h3>
 
-<p>
-St James Street<br>
-Manchester<br>
-M1 4LX
-</p>
 
-</div>
+L.marker([
+53.524652,
+-2.397656
+]).addTo(map)
+.bindPopup("<b>GMEV PAYG Charge Point</b><br>Smith Street");
 
-<div class="card">
 
-<h3>Ormand Quad</h3>
 
-<p>
-Manchester Metropolitan University<br>
-Manchester<br>
-M15 6BG
-</p>
+L.marker([
+53.517136,
+-2.150955
+]).addTo(map)
+.bindPopup("<b>GMEV PAYG Charge Point</b><br>Wickentree Lane");
 
-</div>
 
-<div class="card">
 
-<h3>MFG Ardwick</h3>
+L.marker([
+53.511233,
+-2.433434
+]).addTo(map)
+.bindPopup("<b>Lidl - Tyldesley</b><br>Units 2, Parr Bridge Retail Park");
 
-<p>
-Chancellor Lane<br>
-Manchester<br>
-M12 6JZ
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+53.49124,
+-2.351682
+]).addTo(map)
+.bindPopup("<b>GMEV PAYG Charge Point</b><br>Monton Road");
 
-<h3>MFG Nimblenook</h3>
 
-<p>
-300 Broadway<br>
-Manchester<br>
-OL9 9QP
-</p>
 
-</div>
+L.marker([
+53.487445,
+-2.252847
+]).addTo(map)
+.bindPopup("<b>GMEV PAYG Charge Point</b><br>Blackfriars Road");
 
-<div class="card">
 
-<h3>MFG Chorlton</h3>
 
-<p>
-Barlow Moor Road<br>
-Manchester<br>
-M21 8ER
-</p>
+L.marker([
+53.4865,
+-2.194377
+]).addTo(map)
+.bindPopup("<b>RAWOWNED SPORT CITY 1</b><br>10 Archer St");
 
-</div>
 
-<div class="card">
 
-<h3>MFG Civic Centre</h3>
+L.marker([
+53.485722,
+-2.320119
+]).addTo(map)
+.bindPopup("<b>Stott Lane Car Park</b><br>Salford Roayl Hospital");
 
-<p>
-Rowlands Way<br>
-Manchester<br>
-M22 5RG
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+53.483388,
+-2.252597
+]).addTo(map)
+.bindPopup("<b>GMEV PAYG Charge Point</b><br>Quay Street");
 
-<h3>GMEV PAYG Charge Point</h3>
 
-<p>
-Smith Street<br>
-Manchester<br>
-M28 3JW
-</p>
 
-</div>
+L.marker([
+53.483009,
+-2.271178
+]).addTo(map)
+.bindPopup("<b>Irwell Place Car Park</b><br>University of Salford");
 
-<div class="card">
 
-<h3>GMEV PAYG Charge Point</h3>
 
-<p>
-Wickentree Lane<br>
-Manchester<br>
-M35 9BA
-</p>
+L.marker([
+53.48225,
+-2.23112
+]).addTo(map)
+.bindPopup("<b>70 Port Street</b><br>70 Port Street");
 
-</div>
 
-<div class="card">
 
-<h3>Lidl - Tyldesley</h3>
+L.marker([
+53.481558,
+-2.230435
+]).addTo(map)
+.bindPopup("<b>Manchester Tariff street 01</b><br>CitiPark, Tariff street");
 
-<p>
-Units 2, Parr Bridge Retail Park<br>
-Manchester<br>
-M29 8RZ
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+53.480961,
+-2.228849
+]).addTo(map)
+.bindPopup("<b>Laystall Street</b><br>34 Laystall Street");
 
-<h3>GMEV PAYG Charge Point</h3>
 
-<p>
-Monton Road<br>
-Manchester<br>
-M30 9PY
-</p>
 
-</div>
+L.marker([
+53.479179,
+-2.228218
+]).addTo(map)
+.bindPopup("<b>GMEV PAYG Charge Point</b><br>Store Street");
 
-<div class="card">
 
-<h3>GMEV PAYG Charge Point</h3>
 
-<p>
-Blackfriars Road<br>
-Manchester<br>
-M3 7EE
-</p>
+L.marker([
+53.476812,
+-2.247388
+]).addTo(map)
+.bindPopup("<b>RAWOWNED RAW CP6 DEMO</b><br>Windmill Street");
 
-</div>
 
-<div class="card">
 
-<h3>RAWOWNED SPORT CITY 1</h3>
+L.marker([
+53.475385,
+-2.247578
+]).addTo(map)
+.bindPopup("<b>GMEV PAYG Charge Point</b><br>Windmill Street");
 
-<p>
-10 Archer St<br>
-Manchester<br>
-M11 4DY
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+53.467362,
+-2.236971
+]).addTo(map)
+.bindPopup("<b>GMEV PAYG Charge Point</b><br>Higher Chatham Street");
 
-<h3>Stott Lane Car Park</h3>
 
-<p>
-Salford Roayl Hospital<br>
-Manchester<br>
-M6 8HD
-</p>
 
-</div>
+L.marker([
+53.466286,
+-2.238032
+]).addTo(map)
+.bindPopup("<b>University of Manchester</b><br>(car park D)");
 
-<div class="card">
 
-<h3>GMEV PAYG Charge Point</h3>
 
-<p>
-Quay Street<br>
-Manchester<br>
-M3 5AQ
-</p>
+L.marker([
+53.452091,
+-2.370709
+]).addTo(map)
+.bindPopup("<b>GMEV PAYG Charge Point</b><br>Moorside Road");
 
-</div>
 
-<div class="card">
 
-<h3>Irwell Place Car Park</h3>
+L.marker([
+53.448051,
+-2.229073
+]).addTo(map)
+.bindPopup("<b>Platt Lane Sports Complex</b><br>Yew Tree Road");
 
-<p>
-University of Salford<br>
-Manchester<br>
-M5 4WT
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+53.445225,
+-2.307264
+]).addTo(map)
+.bindPopup("<b>GMEV PAYG Charge Point</b><br>Lacy Street");
 
-<h3>70 Port Street</h3>
 
-<p>
-70 Port Street<br>
-Manchester<br>
-M1 2EB
-</p>
 
-</div>
+L.marker([
+53.415569,
+-2.231669
+]).addTo(map)
+.bindPopup("<b>Shell Didsbury</b><br>761-765 Wilmslow Road");
 
-<div class="card">
 
-<h3>Manchester Tariff street 01</h3>
 
-<p>
-CitiPark, Tariff street<br>
-Manchester<br>
-M12FJ
-</p>
+L.marker([
+53.408157,
+-2.262008
+]).addTo(map)
+.bindPopup("<b>Greenpark Road</b><br>Northenden");
 
-</div>
 
-<div class="card">
 
-<h3>Laystall Street</h3>
+L.marker([
+53.380537,
+-2.26451
+]).addTo(map)
+.bindPopup("<b>GMEV PAYG Charge Point</b><br>Simonsway");
 
-<p>
-34 Laystall Street<br>
-Manchester<br>
-M1 2JZ
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+53.514091,
+-2.360755
+]).addTo(map)
+.bindPopup("<b>ATE CHARGER-01</b><br>10 Shield Dr");
 
-<h3>GMEV PAYG Charge Point</h3>
 
-<p>
-Store Street<br>
-Manchester<br>
-M1 2WA
-</p>
 
-</div>
+L.marker([
+53.50502,
+-2.169174
+]).addTo(map)
+.bindPopup("<b>Morrisons Failsworth Poplar Street</b><br>Failsworth");
 
-<div class="card">
 
-<h3>RAWOWNED RAW CP6 DEMO</h3>
 
-<p>
-Windmill Street<br>
-Manchester<br>
-M2 3GX
-</p>
+L.marker([
+53.480217,
+-2.239821
+]).addTo(map)
+.bindPopup("<b>ROYAL LONDON PARKING LVL -2</b><br>1 New York St");
 
-</div>
 
-<div class="card">
 
-<h3>GMEV PAYG Charge Point</h3>
+L.marker([
+53.479546,
+-2.253003
+]).addTo(map)
+.bindPopup("<b>ROYAL LONDON 3 HARDMAN SQ</b><br>3 Hardman Square Spinningfields Square");
 
-<p>
-Windmill Street<br>
-Manchester<br>
-M2 3GX
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+53.466336904263045,
+-2.3542561994581774
+]).addTo(map)
+.bindPopup("<b>Manchester Trafford Centre Supercharger</b><br>Trafford Centre");
 
-<h3>GMEV PAYG Charge Point</h3>
 
-<p>
-Higher Chatham Street<br>
-Manchester<br>
-M15 6PB
-</p>
 
-</div>
+L.marker([
+53.4593407,
+-2.1616192
+]).addTo(map)
+.bindPopup("<b>McDonald's Debdale Park</b><br> 21 Wall Way");
 
-<div class="card">
 
-<h3>University of Manchester</h3>
 
-<p>
-(car park D)<br>
-Manchester<br>
-M13 9PL
-</p>
+L.marker([
+53.46909,
+-2.22512
+]).addTo(map)
+.bindPopup("<b>Brunswick Church</b><br>39a Brunswick Street");
 
-</div>
 
-<div class="card">
 
-<h3>GMEV PAYG Charge Point</h3>
+L.marker([
+53.47801089275606,
+-2.2286802122691824
+]).addTo(map)
+.bindPopup("<b>Manchester Piccadilly Car Park</b><br>Broad Street");
 
-<p>
-Moorside Road<br>
-Manchester<br>
-M41 5SJ
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+53.4433286,
+-2.3094702
+]).addTo(map)
+.bindPopup("<b>McDonald's</b><br>1235 Chester Road");
 
-<h3>Platt Lane Sports Complex</h3>
 
-<p>
-Yew Tree Road<br>
-Manchester<br>
-M14 7UU
-</p>
 
-</div>
+L.marker([
+53.4493877494475,
+-2.30269728360531
+]).addTo(map)
+.bindPopup("<b>MFG EV Power Chester Road</b><br>Chester Road");
 
-<div class="card">
 
-<h3>GMEV PAYG Charge Point</h3>
 
-<p>
-Lacy Street<br>
-Manchester<br>
-M32 8LR
-</p>
+L.marker([
+53.4617,
+-2.359176
+]).addTo(map)
+.bindPopup("<b>Trafford Retail Park</b><br>Urmston");
 
-</div>
 
-<div class="card">
 
-<h3>Shell Didsbury</h3>
+L.marker([
+53.513854716364,
+-2.24407081800518
+]).addTo(map)
+.bindPopup("<b>Tesco Superstore Cheetham Hill</b><br>Thomas Street (Off Bury Old Road)");
 
-<p>
-761-765 Wilmslow Road<br>
-Manchester<br>
-M20 6RN
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+53.488083526696556,
+-2.236699025514781
+]).addTo(map)
+.bindPopup("<b>RCP Parking</b><br>Angel Street");
 
-<h3>Greenpark Road</h3>
 
-<p>
-Northenden<br>
-Manchester<br>
-M22 4DS
-</p>
 
-</div>
+L.marker([
+53.478772241621925,
+-2.2332333606930206
+]).addTo(map)
+.bindPopup("<b>DoubleTree by Hilton</b><br>One Piccadilly Place");
 
-<div class="card">
 
-<h3>GMEV PAYG Charge Point</h3>
 
-<p>
-Simonsway<br>
-Manchester<br>
-M22 5RX
-</p>
+L.marker([
+53.486858,
+-2.235988
+]).addTo(map)
+.bindPopup("<b>Angel Gardens</b><br>1 Rochdale Road");
 
-</div>
 
-<div class="card">
 
-<h3>ATE CHARGER-01</h3>
+L.marker([
+53.364215,
+-2.240965
+]).addTo(map)
+.bindPopup("<b>8001509</b><br>MIOC , STYAL ROAD, Wythenshawe");
 
-<p>
-10 Shield Dr<br>
-Manchester<br>
-M28 2QB
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+53.474251,
+-2.244031
+]).addTo(map)
+.bindPopup("<b>GMEV PAYG Charge Point</b><br>8 Chester Street");
 
-<h3>Morrisons Failsworth Poplar Street</h3>
 
-<p>
-Failsworth<br>
-Manchester<br>
-M35 0HY
-</p>
 
-</div>
+L.marker([
+53.46534,
+-2.34518
+]).addTo(map)
+.bindPopup("<b>Trafford Centre Parking Garage East</b><br>Trafford Centre Parking Garage");
 
-<div class="card">
 
-<h3>ROYAL LONDON PARKING LVL -2</h3>
 
-<p>
-1 New York St<br>
-Manchester<br>
-M1 4AD
-</p>
+L.marker([
+53.535628,
+-2.293772
+]).addTo(map)
+.bindPopup("<b>Parking Charges Apply
+Subject to Annual review car parking Char..</b><br>Greater Manchester West Mental");
 
-</div>
 
-<div class="card">
 
-<h3>ROYAL LONDON 3 HARDMAN SQ</h3>
+L.marker([
+53.520542,
+-2.243543
+]).addTo(map)
+.bindPopup("<b>GMEV PAYG Charge Point</b><br>Delaunays Road");
 
-<p>
-3 Hardman Square Spinningfields Square<br>
-Manchester<br>
-M3 3AQ
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+53.504557,
+-2.236365
+]).addTo(map)
+.bindPopup("<b>GMEV PAYG Charge Point</b><br>Crescent Road");
 
-<h3>Manchester Trafford Centre Supercharger</h3>
 
-<p>
-Trafford Centre<br>
-Manchester<br>
-M17 8AA
-</p>
 
-</div>
+L.marker([
+53.486391,
+-2.19684
+]).addTo(map)
+.bindPopup("<b>GMEV PAYG Charge Point</b><br>Gibbon Street");
 
-<div class="card">
 
-<h3>McDonald's Debdale Park</h3>
 
-<p>
- 21 Wall Way<br>
-Manchester<br>
-M18 7WY
-</p>
+L.marker([
+53.484593,
+-2.202694
+]).addTo(map)
+.bindPopup("<b>GMEV PAYG Charge Point</b><br>Joe Mercer Way");
 
-</div>
 
-<div class="card">
 
-<h3>Brunswick Church</h3>
+L.marker([
+53.476579,
+-2.239554
+]).addTo(map)
+.bindPopup("<b>GMEV PAYG Charge Point</b><br>Waterloo Street");
 
-<p>
-39a Brunswick Street<br>
-Manchester<br>
-M13 9SX
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+53.475928,
+-2.228712
+]).addTo(map)
+.bindPopup("<b>GMEV PAYG Charge Point</b><br>Travis Street");
 
-<h3>Manchester Piccadilly Car Park</h3>
 
-<p>
-Broad Street<br>
-Manchester<br>
-M1 2RP
-</p>
 
-</div>
+L.marker([
+53.471982756488984,
+-2.240938266744706
+]).addTo(map)
+.bindPopup("<b>Chester Street</b><br>Chester Street");
 
-<div class="card">
 
-<h3>McDonald's</h3>
 
-<p>
-1235 Chester Road<br>
-Manchester<br>
-M32 8ND
-</p>
+L.marker([
+53.469243,
+-2.240341
+]).addTo(map)
+.bindPopup("<b>GMEV PAYG Charge Point</b><br>Cambridge Street");
 
-</div>
 
-<div class="card">
 
-<h3>MFG EV Power Chester Road</h3>
+L.marker([
+53.468853,
+-2.198175
+]).addTo(map)
+.bindPopup("<b>GMEV PAYG Charge Point</b><br>Wenlock Way");
 
-<p>
-Chester Road<br>
-Manchester<br>
-M32 8LF
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+53.464504,
+-2.212614
+]).addTo(map)
+.bindPopup("<b>Stockport Road</b><br>Stockport Road");
 
-<h3>Trafford Retail Park</h3>
 
-<p>
-Urmston<br>
-Manchester<br>
-M41 7FN
-</p>
 
-</div>
+L.marker([
+53.406931,
+-2.26317
+]).addTo(map)
+.bindPopup("<b>GMEV PAYG Charge Point</b><br>Greenpark Road");
 
-<div class="card">
 
-<h3>Tesco Superstore Cheetham Hill</h3>
 
-<p>
-Thomas Street (Off Bury Old Road)<br>
-Manchester<br>
-M8 5DP
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>RCP Parking</h3>
-
-<p>
-Angel Street<br>
-Manchester<br>
-M4 1EH
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>DoubleTree by Hilton</h3>
-
-<p>
-One Piccadilly Place<br>
-Manchester<br>
-M1 3DG
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Angel Gardens</h3>
-
-<p>
-1 Rochdale Road<br>
-Manchester<br>
-M4 4GE
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>8001509</h3>
-
-<p>
-MIOC , STYAL ROAD, Wythenshawe<br>
-Manchester<br>
-M22 5WB
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>GMEV PAYG Charge Point</h3>
-
-<p>
-8 Chester Street<br>
-Manchester<br>
-M1 5GE
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Trafford Centre Parking Garage East</h3>
-
-<p>
-Trafford Centre Parking Garage<br>
-Manchester<br>
-M17 8AA
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Parking Charges Apply
-Subject to Annual review car parking Char..</h3>
-
-<p>
-Greater Manchester West Mental<br>
-Manchester<br>
-M25 3BL
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>GMEV PAYG Charge Point</h3>
-
-<p>
-Delaunays Road<br>
-Manchester<br>
-M8 4RE
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>GMEV PAYG Charge Point</h3>
-
-<p>
-Crescent Road<br>
-Manchester<br>
-M8 0WR
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>GMEV PAYG Charge Point</h3>
-
-<p>
-Gibbon Street<br>
-Manchester<br>
-M11 4DQ
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>GMEV PAYG Charge Point</h3>
-
-<p>
-Joe Mercer Way<br>
-Manchester<br>
-M11 3FF
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>GMEV PAYG Charge Point</h3>
-
-<p>
-Waterloo Street<br>
-Manchester<br>
-M1 6HX
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>GMEV PAYG Charge Point</h3>
-
-<p>
-Travis Street<br>
-Manchester<br>
-M1 2PZ
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Chester Street</h3>
-
-<p>
-Chester Street<br>
-Manchester<br>
-M1 5SX
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>GMEV PAYG Charge Point</h3>
-
-<p>
-Cambridge Street<br>
-Manchester<br>
-M15 6TT
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>GMEV PAYG Charge Point</h3>
-
-<p>
-Wenlock Way<br>
-Manchester<br>
-M12 5DH
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Stockport Road</h3>
-
-<p>
-Stockport Road<br>
-Manchester<br>
-M12 4DY
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>GMEV PAYG Charge Point</h3>
-
-<p>
-Greenpark Road<br>
-Manchester<br>
-M22 4DN
-</p>
-
-</div>
-
-
-</div>
-
-<footer>
-EV Charger Directory
-</footer>
+</script>
 
 </body>
 </html>

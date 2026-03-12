@@ -1,460 +1,515 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>EV Chargers in Milton Keynes</title>
-<link rel="stylesheet" href="/style.css">
+<title>Milton Keynes EV Chargers</title>
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+
+<style>
+#map {
+  height: 400px;
+  margin-bottom: 30px;
+  border-radius: 8px;
+}
+</style>
+
 </head>
 
 <body>
 
-<header>
-<h1>EV Chargers in Milton Keynes</h1>
-</header>
+<h1>Milton Keynes EV Chargers</h1>
+
+<div id="map"></div>
+
+<ul>
+
+<li>
+<strong>Blacksmiths Arms</strong><br>
+1 Downs Barn Boulevard
+</li>
+
+<li>
+<strong>Dobbies Milton Keynes</strong><br>
+Belvedere Lane
+</li>
+
+<li>
+<strong>The Plough Inn</strong><br>
+The Plough Inn
+</li>
+
+<li>
+<strong> KFC Milton Keynes East - Towergate</strong><br>
+Towergate Roundabout
+</li>
+
+<li>
+<strong>Stadium MK</strong><br>
+Stadium Way
+</li>
+
+<li>
+<strong>MFG Linford Wood</strong><br>
+Saxon Street
+</li>
+
+<li>
+<strong>MFG Childs Way</strong><br>
+Childs Way (H6)
+</li>
+
+<li>
+<strong>IKEA Milton Keynes</strong><br>
+Goslington
+</li>
+
+<li>
+<strong>Neath Hill Resource Centre</strong><br>
+Currier Drive
+</li>
+
+<li>
+<strong>MK21006</strong><br>
+Coachway Road
+</li>
+
+<li>
+<strong>DRAX00164</strong><br>
+Saxon Street
+</li>
+
+<li>
+<strong>PremierInn</strong><br>
+10 Brickhill Street
+</li>
+
+<li>
+<strong>TheCentreMK Multi Storey Car Park</strong><br>
+Midsummer boulevard
+</li>
+
+<li>
+<strong>MK10</strong><br>
+Silbury Boulevard 3
+</li>
+
+<li>
+<strong>MK95</strong><br>
+Threatre District Multi-story Car Park
+</li>
+
+<li>
+<strong>Disney Store (MK61)</strong><br>
+650 Silbury Boulevard - Disney Store
+</li>
+
+<li>
+<strong>Marlborough Gate Multi-story Car Park</strong><br>
+Marlborough Gate
+</li>
+
+<li>
+<strong>Midsummer Boulevard</strong><br>
+Midsummer Boulevard near corner with Secklow Gate (near Market Place)
+</li>
+
+<li>
+<strong>Travelodge Hotel</strong><br>
+Silbury Boulevard
+</li>
+
+<li>
+<strong>USS WITAN GATE1</strong><br>
+500-600 Witan Gate
+</li>
+
+<li>
+<strong>MK University Hospital</strong><br>
+Eaglesone
+</li>
+
+<li>
+<strong>BT Fleet</strong><br>
+Bleak Hall
+</li>
+
+<li>
+<strong>Grange Farm</strong><br>
+Dunthorne Way
+</li>
 
-<div class="container">
+<li>
+<strong>McDonald's Milton Keynes</strong><br>
+Portway
+</li>
 
-<p>36 charging locations found.</p>
+<li>
+<strong>Ashlands Lakes Carkpark</strong><br>
+Ashlands Lakes Carkpark
+</li>
 
+<li>
+<strong>Middlesex Drive 1, Bletchley</strong><br>
+Middlesex Drive, Bletchley
+</li>
 
-<div class="card">
+<li>
+<strong>EVC Horwood House Hotel</strong><br>
+Horwood House Hotel, Mursley Road
+</li>
 
-<h3>Blacksmiths Arms</h3>
+<li>
+<strong>Southern Way 1</strong><br>
+Wolverton
+</li>
 
-<p>
-1 Downs Barn Boulevard<br>
-Milton Keynes<br>
-MK14 7QG
-</p>
+<li>
+<strong>Snowdon Drive</strong><br>
+Snowdon Drive
+</li>
 
-</div>
+<li>
+<strong>LCP Egerton Gate</strong><br>
+LCP EGERTON GATE
+</li>
 
-<div class="card">
+<li>
+<strong>Cummins Inc</strong><br>
+Rooksley
+</li>
 
-<h3>Dobbies Milton Keynes</h3>
+<li>
+<strong>Buckland Drive</strong><br>
+Netherfield
+</li>
 
-<p>
-Belvedere Lane<br>
-Milton Keynes<br>
-MK17 9JH
-</p>
+<li>
+<strong>BP Chargemaster Head Office</strong><br>
+Breckland
+</li>
 
-</div>
+<li>
+<strong>The Nut And Squirrel</strong><br>
+1 Barnsdale Drive
+</li>
 
-<div class="card">
+<li>
+<strong>Warren Yard</strong><br>
+Wolverton and Greenleys
+</li>
 
-<h3>The Plough Inn</h3>
+<li>
+<strong>Stadium MK</strong><br>
+Stadium Way
+</li>
 
-<p>
-The Plough Inn<br>
-Milton Keynes<br>
-MK6 3AH
-</p>
+</ul>
 
-</div>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
-<div class="card">
+<script>
 
-<h3> KFC Milton Keynes East - Towergate</h3>
+var map = L.map('map').setView([
+52.051887,
+-0.752333
+], 12);
 
-<p>
-Towergate Roundabout<br>
-Milton Keynes<br>
-MK17 8US
-</p>
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+attribution: '&copy; OpenStreetMap contributors'
+}).addTo(map);
 
-</div>
 
-<div class="card">
 
-<h3>Stadium MK</h3>
+L.marker([
+52.051887,
+-0.752333
+]).addTo(map)
+.bindPopup("<b>Blacksmiths Arms</b><br>1 Downs Barn Boulevard");
 
-<p>
-Stadium Way<br>
-Milton Keynes<br>
-MK1 1ST
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+51.996469,
+-0.709562
+]).addTo(map)
+.bindPopup("<b>Dobbies Milton Keynes</b><br>Belvedere Lane");
 
-<h3>MFG Linford Wood</h3>
 
-<p>
-Saxon Street<br>
-Milton Keynes<br>
-MK14 6PB
-</p>
 
-</div>
+L.marker([
+52.01649,
+-0.717807
+]).addTo(map)
+.bindPopup("<b>The Plough Inn</b><br>The Plough Inn");
 
-<div class="card">
 
-<h3>MFG Childs Way</h3>
 
-<p>
-Childs Way (H6)<br>
-Milton Keynes<br>
-MK9 3DA
-</p>
+L.marker([
+52.03029609,
+-0.679639641
+]).addTo(map)
+.bindPopup("<b> KFC Milton Keynes East - Towergate</b><br>Towergate Roundabout");
 
-</div>
 
-<div class="card">
 
-<h3>IKEA Milton Keynes</h3>
+L.marker([
+52.007699,
+-0.734299
+]).addTo(map)
+.bindPopup("<b>Stadium MK</b><br>Stadium Way");
 
-<p>
-Goslington<br>
-Milton Keynes<br>
-MK1 1QB
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+52.054050625882475,
+-0.7686805765425169
+]).addTo(map)
+.bindPopup("<b>MFG Linford Wood</b><br>Saxon Street");
 
-<h3>Neath Hill Resource Centre</h3>
 
-<p>
-Currier Drive<br>
-Milton Keynes<br>
-MK14 6HB
-</p>
 
-</div>
+L.marker([
+52.0391877335159,
+-0.748315006423347
+]).addTo(map)
+.bindPopup("<b>MFG Childs Way</b><br>Childs Way (H6)");
 
-<div class="card">
 
-<h3>MK21006</h3>
 
-<p>
-Coachway Road<br>
-Milton Keynes<br>
-MK10 9RU
-</p>
+L.marker([
+52.005565,
+-0.72965
+]).addTo(map)
+.bindPopup("<b>IKEA Milton Keynes</b><br>Goslington");
 
-</div>
 
-<div class="card">
 
-<h3>DRAX00164</h3>
+L.marker([
+52.060795,
+-0.750515
+]).addTo(map)
+.bindPopup("<b>Neath Hill Resource Centre</b><br>Currier Drive");
 
-<p>
-Saxon Street<br>
-Milton Keynes<br>
-MK13 7RA
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+52.0558,
+-0.69977
+]).addTo(map)
+.bindPopup("<b>MK21006</b><br>Coachway Road");
 
-<h3>PremierInn</h3>
 
-<p>
-10 Brickhill Street<br>
-Milton Keynes<br>
-MK15 0DS
-</p>
 
-</div>
+L.marker([
+52.05272,
+-0.77169
+]).addTo(map)
+.bindPopup("<b>DRAX00164</b><br>Saxon Street");
 
-<div class="card">
 
-<h3>TheCentreMK Multi Storey Car Park</h3>
 
-<p>
-Midsummer boulevard<br>
-Milton Keynes<br>
-MK9 3XL
-</p>
+L.marker([
+52.052502,
+-0.726588
+]).addTo(map)
+.bindPopup("<b>PremierInn</b><br>10 Brickhill Street");
 
-</div>
 
-<div class="card">
 
-<h3>MK10</h3>
+L.marker([
+52.045483,
+-0.75042
+]).addTo(map)
+.bindPopup("<b>TheCentreMK Multi Storey Car Park</b><br>Midsummer boulevard");
 
-<p>
-Silbury Boulevard 3<br>
-Milton Keynes<br>
-MK9 3AQ
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+52.04493,
+-0.754298
+]).addTo(map)
+.bindPopup("<b>MK10</b><br>Silbury Boulevard 3");
 
-<h3>MK95</h3>
 
-<p>
-Threatre District Multi-story Car Park<br>
-Milton Keynes<br>
-MK9 3NZ
-</p>
 
-</div>
+L.marker([
+52.04391,
+-0.74765
+]).addTo(map)
+.bindPopup("<b>MK95</b><br>Threatre District Multi-story Car Park");
 
-<div class="card">
 
-<h3>Disney Store (MK61)</h3>
 
-<p>
-650 Silbury Boulevard - Disney Store<br>
-Milton Keynes<br>
-MK9 3AE
-</p>
+L.marker([
+52.043737,
+-0.757032
+]).addTo(map)
+.bindPopup("<b>Disney Store (MK61)</b><br>650 Silbury Boulevard - Disney Store");
 
-</div>
 
-<div class="card">
 
-<h3>Marlborough Gate Multi-story Car Park</h3>
+L.marker([
+52.043396,
+-0.748399
+]).addTo(map)
+.bindPopup("<b>Marlborough Gate Multi-story Car Park</b><br>Marlborough Gate");
 
-<p>
-Marlborough Gate<br>
-Milton Keynes<br>
-MK9 3NZ
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+52.043301,
+-0.75238
+]).addTo(map)
+.bindPopup("<b>Midsummer Boulevard</b><br>Midsummer Boulevard near corner with Secklow Gate (near Market Place)");
 
-<h3>Midsummer Boulevard</h3>
 
-<p>
-Midsummer Boulevard near corner with Secklow Gate (near Market Place)<br>
-Milton Keynes<br>
-MK9 3NE
-</p>
 
-</div>
+L.marker([
+52.03825,
+-0.771841
+]).addTo(map)
+.bindPopup("<b>Travelodge Hotel</b><br>Silbury Boulevard");
 
-<div class="card">
 
-<h3>Travelodge Hotel</h3>
 
-<p>
-Silbury Boulevard<br>
-Milton Keynes<br>
-MK9 1AL
-</p>
+L.marker([
+52.037148,
+-0.765263
+]).addTo(map)
+.bindPopup("<b>USS WITAN GATE1</b><br>500-600 Witan Gate");
 
-</div>
 
-<div class="card">
 
-<h3>USS WITAN GATE1</h3>
+L.marker([
+52.025478,
+-0.738211
+]).addTo(map)
+.bindPopup("<b>MK University Hospital</b><br>Eaglesone");
 
-<p>
-500-600 Witan Gate<br>
-Milton Keynes<br>
-MK9 1ES
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+52.020702,
+-0.754643
+]).addTo(map)
+.bindPopup("<b>BT Fleet</b><br>Bleak Hall");
 
-<h3>MK University Hospital</h3>
 
-<p>
-Eaglesone<br>
-Milton Keynes<br>
-MK6 5LD
-</p>
 
-</div>
+L.marker([
+52.0220377,
+-0.8064768
+]).addTo(map)
+.bindPopup("<b>Grange Farm</b><br>Dunthorne Way");
 
-<div class="card">
 
-<h3>BT Fleet</h3>
 
-<p>
-Bleak Hall<br>
-Milton Keynes<br>
-MK6 1BA
-</p>
+L.marker([
+52.0388316,
+-0.776698
+]).addTo(map)
+.bindPopup("<b>McDonald's Milton Keynes</b><br>Portway");
 
-</div>
 
-<div class="card">
 
-<h3>Grange Farm</h3>
+L.marker([
+52.0155566,
+-0.7223536
+]).addTo(map)
+.bindPopup("<b>Ashlands Lakes Carkpark</b><br>Ashlands Lakes Carkpark");
 
-<p>
-Dunthorne Way<br>
-Milton Keynes<br>
-MK8 0LX
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+51.999086,
+-0.754905
+]).addTo(map)
+.bindPopup("<b>Middlesex Drive 1, Bletchley</b><br>Middlesex Drive, Bletchley");
 
-<h3>McDonald's Milton Keynes</h3>
 
-<p>
-Portway<br>
-Milton Keynes<br>
-MK9 1DY
-</p>
 
-</div>
+L.marker([
+51.9594993072901,
+-0.843398401022506
+]).addTo(map)
+.bindPopup("<b>EVC Horwood House Hotel</b><br>Horwood House Hotel, Mursley Road");
 
-<div class="card">
 
-<h3>Ashlands Lakes Carkpark</h3>
 
-<p>
-Ashlands Lakes Carkpark<br>
-Milton Keynes<br>
-MK6 3AA
-</p>
+L.marker([
+52.054485,
+-0.809803
+]).addTo(map)
+.bindPopup("<b>Southern Way 1</b><br>Wolverton");
 
-</div>
 
-<div class="card">
 
-<h3>Middlesex Drive 1, Bletchley</h3>
+L.marker([
+52.029182,
+-0.765506
+]).addTo(map)
+.bindPopup("<b>Snowdon Drive</b><br>Snowdon Drive");
 
-<p>
-Middlesex Drive, Bletchley<br>
-Milton Keynes<br>
-MK3 7JA
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+52.01445,
+-0.78192
+]).addTo(map)
+.bindPopup("<b>LCP Egerton Gate</b><br>LCP EGERTON GATE");
 
-<h3>EVC Horwood House Hotel</h3>
 
-<p>
-Horwood House Hotel, Mursley Road<br>
-Milton Keynes<br>
-MK17 0PH
-</p>
 
-</div>
+L.marker([
+52.043499,
+-0.778831
+]).addTo(map)
+.bindPopup("<b>Cummins Inc</b><br>Rooksley");
 
-<div class="card">
 
-<h3>Southern Way 1</h3>
 
-<p>
-Wolverton<br>
-Milton Keynes<br>
-MK12 5ED
-</p>
+L.marker([
+52.021439,
+-0.734624
+]).addTo(map)
+.bindPopup("<b>Buckland Drive</b><br>Netherfield");
 
-</div>
 
-<div class="card">
 
-<h3>Snowdon Drive</h3>
+L.marker([
+52.0577211018707,
+-0.767372414915144
+]).addTo(map)
+.bindPopup("<b>BP Chargemaster Head Office</b><br>Breckland");
 
-<p>
-Snowdon Drive<br>
-Milton Keynes<br>
-MK6 1AZ
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+52.002834,
+-0.794051
+]).addTo(map)
+.bindPopup("<b>The Nut And Squirrel</b><br>1 Barnsdale Drive");
 
-<h3>LCP Egerton Gate</h3>
 
-<p>
-LCP EGERTON GATE<br>
-Milton Keynes<br>
-MK5 7HH
-</p>
 
-</div>
+L.marker([
+52.059662,
+-0.834531
+]).addTo(map)
+.bindPopup("<b>Warren Yard</b><br>Wolverton and Greenleys");
 
-<div class="card">
 
-<h3>Cummins Inc</h3>
 
-<p>
-Rooksley<br>
-Milton Keynes<br>
-MK13 8PE
-</p>
+L.marker([
+52.008377,
+-0.73209
+]).addTo(map)
+.bindPopup("<b>Stadium MK</b><br>Stadium Way");
 
-</div>
 
-<div class="card">
 
-<h3>Buckland Drive</h3>
-
-<p>
-Netherfield<br>
-Milton Keynes<br>
-MK6 4HH
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>BP Chargemaster Head Office</h3>
-
-<p>
-Breckland<br>
-Milton Keynes<br>
-MK14 6GY
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>The Nut And Squirrel</h3>
-
-<p>
-1 Barnsdale Drive<br>
-Milton Keynes<br>
-MK4 4DD
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Warren Yard</h3>
-
-<p>
-Wolverton and Greenleys<br>
-Milton Keynes<br>
-MK12 5NW
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Stadium MK</h3>
-
-<p>
-Stadium Way<br>
-Milton Keynes<br>
-MK1 1ST
-</p>
-
-</div>
-
-
-</div>
-
-<footer>
-EV Charger Directory
-</footer>
+</script>
 
 </body>
 </html>

@@ -1,88 +1,112 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>EV Chargers in Brighouse</title>
-<link rel="stylesheet" href="/style.css">
+<title>Brighouse EV Chargers</title>
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+
+<style>
+#map {
+  height: 400px;
+  margin-bottom: 30px;
+  border-radius: 8px;
+}
+</style>
+
 </head>
 
 <body>
 
-<header>
-<h1>EV Chargers in Brighouse</h1>
-</header>
+<h1>Brighouse EV Chargers</h1>
 
-<div class="container">
+<div id="map"></div>
 
-<p>5 charging locations found.</p>
+<ul>
 
+<li>
+<strong>Hartshead Moor East Supercharger</strong><br>
+M62 Junction 25/26
+</li>
 
-<div class="card">
+<li>
+<strong>Hartshead Moor West Supercharger</strong><br>
+M62 Junction 25/26
+</li>
 
-<h3>Hartshead Moor East Supercharger</h3>
+<li>
+<strong>Household Waste Recycling Centre</strong><br>
+Atlas Mill Road
+</li>
 
-<p>
-M62 Junction 25/26<br>
-Brighouse<br>
-HD6 4JX
-</p>
+<li>
+<strong>Parsonage Lane Car Park</strong><br>
+20 Church Ln
+</li>
 
-</div>
+<li>
+<strong>Bethel Street</strong><br>
+Bethel Street
+</li>
 
-<div class="card">
+</ul>
 
-<h3>Hartshead Moor West Supercharger</h3>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
-<p>
-M62 Junction 25/26<br>
-Brighouse<br>
-HD6 4JX
-</p>
+<script>
 
-</div>
+var map = L.map('map').setView([
+53.7119356597463,
+-1.7466530393886615
+], 12);
 
-<div class="card">
-
-<h3>Household Waste Recycling Centre</h3>
-
-<p>
-Atlas Mill Road<br>
-Brighouse<br>
-HD6 1ES
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Parsonage Lane Car Park</h3>
-
-<p>
-20 Church Ln<br>
-Brighouse<br>
-HD6 1AT
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Bethel Street</h3>
-
-<p>
-Bethel Street<br>
-Brighouse<br>
-HD6 1JR
-</p>
-
-</div>
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+attribution: '&copy; OpenStreetMap contributors'
+}).addTo(map);
 
 
-</div>
 
-<footer>
-EV Charger Directory
-</footer>
+L.marker([
+53.7119356597463,
+-1.7466530393886615
+]).addTo(map)
+.bindPopup("<b>Hartshead Moor East Supercharger</b><br>M62 Junction 25/26");
+
+
+
+L.marker([
+53.71441557983812,
+-1.7429971449622599
+]).addTo(map)
+.bindPopup("<b>Hartshead Moor West Supercharger</b><br>M62 Junction 25/26");
+
+
+
+L.marker([
+53.70079230127399,
+-1.7862741465937688
+]).addTo(map)
+.bindPopup("<b>Household Waste Recycling Centre</b><br>Atlas Mill Road");
+
+
+
+L.marker([
+53.70243954239024,
+-1.7831382135070726
+]).addTo(map)
+.bindPopup("<b>Parsonage Lane Car Park</b><br>20 Church Ln");
+
+
+
+L.marker([
+53.70093053344618,
+-1.7801003242386741
+]).addTo(map)
+.bindPopup("<b>Bethel Street</b><br>Bethel Street");
+
+
+
+</script>
 
 </body>
 </html>

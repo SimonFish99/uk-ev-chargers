@@ -1,496 +1,554 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>EV Chargers in Watford</title>
-<link rel="stylesheet" href="/style.css">
+<title>Watford EV Chargers</title>
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+
+<style>
+#map {
+  height: 400px;
+  margin-bottom: 30px;
+  border-radius: 8px;
+}
+</style>
+
 </head>
 
 <body>
 
-<header>
-<h1>EV Chargers in Watford</h1>
-</header>
+<h1>Watford EV Chargers</h1>
+
+<div id="map"></div>
+
+<ul>
+
+<li>
+<strong>The Arches Retail Park</strong><br>
+642 Lower High Street
+</li>
+
+<li>
+<strong>Sainsbury's Dome Roundabout</strong><br>
+Colne Way
+</li>
+
+<li>
+<strong>Dapple Court</strong><br>
+300 Croxley View
+</li>
+
+<li>
+<strong>Westland Road, Watford</strong><br>
+Westland Road
+</li>
+
+<li>
+<strong>The Avenue Carpark</strong><br>
+Rickmansworth Road
+</li>
+
+<li>
+<strong>Sutton Road, Watford</strong><br>
+Sutton Road
+</li>
+
+<li>
+<strong>Watford Gade 01</strong><br>
+CitiPark Gade
+</li>
+
+<li>
+<strong>Intu Watford</strong><br>
+Queens Car-park Level 1
+</li>
+
+<li>
+<strong>Granvill Road, Watford</strong><br>
+Granvill Road
+</li>
+
+<li>
+<strong>Bandbury Street</strong><br>
+Bandbury Street
+</li>
+
+<li>
+<strong>Century Retail Park</strong><br>
+Dalton Way
+</li>
+
+<li>
+<strong>Watford Business Park</strong><br>
+Greenhill Crescent
+</li>
+
+<li>
+<strong>Croxley Business Park</strong><br>
+Building 1
+</li>
+
+<li>
+<strong>RAWOWNED ATTENBOROUGH C1</strong><br>
+5 Edinburgh Mews
+</li>
+
+<li>
+<strong>Renault Nissan Alliance</strong><br>
+Unit 5, Wolsey Business Park, Watford, Hertfordshire
+</li>
+
+<li>
+<strong>Grovesnor Road, Watford</strong><br>
+Grovesnor Road
+</li>
+
+<li>
+<strong>Century Park</strong><br>
+Dalton Way
+</li>
+
+<li>
+<strong>Watford, Bradshaw Road</strong><br>
+78 Bradshaw Road
+</li>
+
+<li>
+<strong>Victoria Road, Watford</strong><br>
+67 Victoria Road
+</li>
+
+<li>
+<strong>Salisbury Road, Watford</strong><br>
+Salisbury Road
+</li>
+
+<li>
+<strong>Church Road, Watford</strong><br>
+Church Road
+</li>
+
+<li>
+<strong>Stamford Road, Watford</strong><br>
+Stamford Road
+</li>
+
+<li>
+<strong>Watford, Essex Road</strong><br>
+Next to Post Box, Essex Road
+</li>
+
+<li>
+<strong>Sotheron Road, Watford</strong><br>
+Southernon Road
+</li>
+
+<li>
+<strong>Watford, Cassiobury Park 1 (Gade Avenue)</strong><br>
+Cassiobury Park Car Park, Gade Avenue,
+</li>
+
+<li>
+<strong>Watford, Shaftesbury Road</strong><br>
+Shaftesbury Road, Watford
+</li>
 
-<div class="container">
+<li>
+<strong>Mildred Avenue, Watford</strong><br>
+Mildred Avenue
+</li>
 
-<p>39 charging locations found.</p>
+<li>
+<strong>Watford, Durban Road East</strong><br>
+33 Durban Road East
+</li>
 
+<li>
+<strong>Holywell Road</strong><br>
+Holywell Road
+</li>
 
-<div class="card">
+<li>
+<strong>Belgrave Avenue</strong><br>
+Belgrave Avenue
+</li>
 
-<h3>The Arches Retail Park</h3>
+<li>
+<strong>Liverpool Road</strong><br>
+Liverpool Road
+</li>
 
-<p>
-642 Lower High Street<br>
-Watford<br>
-WD17 2SD
-</p>
+<li>
+<strong>Tucker Street</strong><br>
+Tucker Street
+</li>
 
-</div>
+<li>
+<strong>Elfrida Road</strong><br>
+Elfrida Road
+</li>
 
-<div class="card">
+<li>
+<strong>Bushey Arches Car Park</strong><br>
+Bushey Arches Car Park, Arches Service Station, Pinner Road, Bushey
+</li>
 
-<h3>Sainsbury's Dome Roundabout</h3>
+<li>
+<strong>Caxton Way Exit, Watford</strong><br>
+Caxton Road
+</li>
 
-<p>
-Colne Way<br>
-Watford<br>
-WD25 9GP
-</p>
+<li>
+<strong>Lower Paddock Road</strong><br>
+Lower Paddock Road
+</li>
 
-</div>
+<li>
+<strong>Caxton Way Entrance, Watford</strong><br>
+Caxton Road
+</li>
 
-<div class="card">
+<li>
+<strong>BT Fleet</strong><br>
+Orphanage Road
+</li>
 
-<h3>Dapple Court</h3>
+<li>
+<strong>Toby Carvery Watford</strong><br>
+3 Hartspring Lane
+</li>
 
-<p>
-300 Croxley View<br>
-Watford<br>
-WD18 6AH
-</p>
+</ul>
 
-</div>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
-<div class="card">
+<script>
 
-<h3>Westland Road, Watford</h3>
+var map = L.map('map').setView([
+51.64847271,
+-0.38735624
+], 12);
 
-<p>
-Westland Road<br>
-Watford<br>
-WD17 1QS
-</p>
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+attribution: '&copy; OpenStreetMap contributors'
+}).addTo(map);
 
-</div>
 
-<div class="card">
 
-<h3>The Avenue Carpark</h3>
+L.marker([
+51.64847271,
+-0.38735624
+]).addTo(map)
+.bindPopup("<b>The Arches Retail Park</b><br>642 Lower High Street");
 
-<p>
-Rickmansworth Road<br>
-Watford<br>
-WD17 3EX
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+51.68154132563524,
+-0.38936309802494407
+]).addTo(map)
+.bindPopup("<b>Sainsbury's Dome Roundabout</b><br>Colne Way");
 
-<h3>Sutton Road, Watford</h3>
 
-<p>
-Sutton Road<br>
-Watford<br>
-WD17 2QG
-</p>
 
-</div>
+L.marker([
+51.644441,
+-0.423675
+]).addTo(map)
+.bindPopup("<b>Dapple Court</b><br>300 Croxley View");
 
-<div class="card">
 
-<h3>Watford Gade 01</h3>
 
-<p>
-CitiPark Gade<br>
-Watford<br>
-WD18 0JX
-</p>
+L.marker([
+51.661521,
+-0.398813
+]).addTo(map)
+.bindPopup("<b>Westland Road, Watford</b><br>Westland Road");
 
-</div>
 
-<div class="card">
 
-<h3>Intu Watford</h3>
+L.marker([
+51.658964,
+-0.403444
+]).addTo(map)
+.bindPopup("<b>The Avenue Carpark</b><br>Rickmansworth Road");
 
-<p>
-Queens Car-park Level 1<br>
-Watford<br>
-WD17 2UB
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+51.658999,
+-0.393842
+]).addTo(map)
+.bindPopup("<b>Sutton Road, Watford</b><br>Sutton Road");
 
-<h3>Granvill Road, Watford</h3>
 
-<p>
-Granvill Road<br>
-Watford<br>
-WD18 0AH
-</p>
 
-</div>
+L.marker([
+51.657893,
+-0.401357
+]).addTo(map)
+.bindPopup("<b>Watford Gade 01</b><br>CitiPark Gade");
 
-<div class="card">
 
-<h3>Bandbury Street</h3>
 
-<p>
-Bandbury Street<br>
-Watford<br>
-WD18 0EX
-</p>
+L.marker([
+51.654999,
+-0.392859
+]).addTo(map)
+.bindPopup("<b>Intu Watford</b><br>Queens Car-park Level 1");
 
-</div>
 
-<div class="card">
 
-<h3>Century Retail Park</h3>
+L.marker([
+51.653278,
+-0.395104
+]).addTo(map)
+.bindPopup("<b>Granvill Road, Watford</b><br>Granvill Road");
 
-<p>
-Dalton Way<br>
-Watford<br>
-WD17 2SF
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+51.650611,
+-0.404032
+]).addTo(map)
+.bindPopup("<b>Bandbury Street</b><br>Bandbury Street");
 
-<h3>Watford Business Park</h3>
 
-<p>
-Greenhill Crescent<br>
-Watford<br>
-WD18 8QU
-</p>
 
-</div>
+L.marker([
+51.648285,
+-0.386395
+]).addTo(map)
+.bindPopup("<b>Century Retail Park</b><br>Dalton Way");
 
-<div class="card">
 
-<h3>Croxley Business Park</h3>
 
-<p>
-Building 1<br>
-Watford<br>
-WD18 8YR
-</p>
+L.marker([
+51.646622,
+-0.426528
+]).addTo(map)
+.bindPopup("<b>Watford Business Park</b><br>Greenhill Crescent");
 
-</div>
 
-<div class="card">
 
-<h3>RAWOWNED ATTENBOROUGH C1</h3>
+L.marker([
+51.646599,
+-0.42811
+]).addTo(map)
+.bindPopup("<b>Croxley Business Park</b><br>Building 1");
 
-<p>
-5 Edinburgh Mews<br>
-Watford<br>
-WD19 4FS
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+51.64593,
+-0.383176
+]).addTo(map)
+.bindPopup("<b>RAWOWNED ATTENBOROUGH C1</b><br>5 Edinburgh Mews");
 
-<h3>Renault Nissan Alliance</h3>
 
-<p>
-Unit 5, Wolsey Business Park, Watford, Hertfordshire<br>
-Watford<br>
-WD18 9BL
-</p>
 
-</div>
+L.marker([
+51.640562,
+-0.427887
+]).addTo(map)
+.bindPopup("<b>Renault Nissan Alliance</b><br>Unit 5, Wolsey Business Park, Watford, Hertfordshire");
 
-<div class="card">
 
-<h3>Grovesnor Road, Watford</h3>
 
-<p>
-Grovesnor Road<br>
-Watford<br>
-WD17 2QS
-</p>
+L.marker([
+51.656713,
+-0.39201
+]).addTo(map)
+.bindPopup("<b>Grovesnor Road, Watford</b><br>Grovesnor Road");
 
-</div>
 
-<div class="card">
 
-<h3>Century Park</h3>
+L.marker([
+51.64857258397426,
+-0.3899420955300043
+]).addTo(map)
+.bindPopup("<b>Century Park</b><br>Dalton Way");
 
-<p>
-Dalton Way<br>
-Watford<br>
-WD17 2SF
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+51.670549,
+-0.39444
+]).addTo(map)
+.bindPopup("<b>Watford, Bradshaw Road</b><br>78 Bradshaw Road");
 
-<h3>Watford, Bradshaw Road</h3>
 
-<p>
-78 Bradshaw Road<br>
-Watford<br>
-WD24 4DF
-</p>
 
-</div>
+L.marker([
+51.670414,
+-0.400168
+]).addTo(map)
+.bindPopup("<b>Victoria Road, Watford</b><br>67 Victoria Road");
 
-<div class="card">
 
-<h3>Victoria Road, Watford</h3>
 
-<p>
-67 Victoria Road<br>
-Watford<br>
-WD24 5DN
-</p>
+L.marker([
+51.670033,
+-0.396951
+]).addTo(map)
+.bindPopup("<b>Salisbury Road, Watford</b><br>Salisbury Road");
 
-</div>
 
-<div class="card">
 
-<h3>Salisbury Road, Watford</h3>
+L.marker([
+51.666349,
+-0.400482
+]).addTo(map)
+.bindPopup("<b>Church Road, Watford</b><br>Church Road");
 
-<p>
-Salisbury Road<br>
-Watford<br>
-WD24 4DT
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+51.664678,
+-0.401976
+]).addTo(map)
+.bindPopup("<b>Stamford Road, Watford</b><br>Stamford Road");
 
-<h3>Church Road, Watford</h3>
 
-<p>
-Church Road<br>
-Watford<br>
-WD17 4PU
-</p>
 
-</div>
+L.marker([
+51.662258,
+-0.40143
+]).addTo(map)
+.bindPopup("<b>Watford, Essex Road</b><br>Next to Post Box, Essex Road");
 
-<div class="card">
 
-<h3>Stamford Road, Watford</h3>
 
-<p>
-Stamford Road<br>
-Watford<br>
-WD17 4QS
-</p>
+L.marker([
+51.660112,
+-0.394206
+]).addTo(map)
+.bindPopup("<b>Sotheron Road, Watford</b><br>Southernon Road");
 
-</div>
 
-<div class="card">
 
-<h3>Watford, Essex Road</h3>
+L.marker([
+51.658916,
+-0.421683
+]).addTo(map)
+.bindPopup("<b>Watford, Cassiobury Park 1 (Gade Avenue)</b><br>Cassiobury Park Car Park, Gade Avenue,");
 
-<p>
-Next to Post Box, Essex Road<br>
-Watford<br>
-WD17 4EL
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+51.65795,
+-0.389919
+]).addTo(map)
+.bindPopup("<b>Watford, Shaftesbury Road</b><br>Shaftesbury Road, Watford");
 
-<h3>Sotheron Road, Watford</h3>
 
-<p>
-Southernon Road<br>
-Watford<br>
-WD17 2QA
-</p>
 
-</div>
+L.marker([
+51.654924,
+-0.409749
+]).addTo(map)
+.bindPopup("<b>Mildred Avenue, Watford</b><br>Mildred Avenue");
 
-<div class="card">
 
-<h3>Watford, Cassiobury Park 1 (Gade Avenue)</h3>
 
-<p>
-Cassiobury Park Car Park, Gade Avenue,<br>
-Watford<br>
-WD18 7LG
-</p>
+L.marker([
+51.653821,
+-0.404949
+]).addTo(map)
+.bindPopup("<b>Watford, Durban Road East</b><br>33 Durban Road East");
 
-</div>
 
-<div class="card">
 
-<h3>Watford, Shaftesbury Road</h3>
+L.marker([
+51.65027,
+-0.405378
+]).addTo(map)
+.bindPopup("<b>Holywell Road</b><br>Holywell Road");
 
-<p>
-Shaftesbury Road, Watford<br>
-Watford<br>
-WD17 2RQ
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+51.65032,
+-0.410844
+]).addTo(map)
+.bindPopup("<b>Belgrave Avenue</b><br>Belgrave Avenue");
 
-<h3>Mildred Avenue, Watford</h3>
 
-<p>
-Mildred Avenue<br>
-Watford<br>
-WD18 7DX
-</p>
 
-</div>
+L.marker([
+51.650167,
+-0.399586
+]).addTo(map)
+.bindPopup("<b>Liverpool Road</b><br>Liverpool Road");
 
-<div class="card">
 
-<h3>Watford, Durban Road East</h3>
 
-<p>
-33 Durban Road East<br>
-Watford<br>
-WD18 0RN
-</p>
+L.marker([
+51.649592,
+-0.394906
+]).addTo(map)
+.bindPopup("<b>Tucker Street</b><br>Tucker Street");
 
-</div>
 
-<div class="card">
 
-<h3>Holywell Road</h3>
+L.marker([
+51.648852,
+-0.394098
+]).addTo(map)
+.bindPopup("<b>Elfrida Road</b><br>Elfrida Road");
 
-<p>
-Holywell Road<br>
-Watford<br>
-WD18 0HU
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+51.64673,
+0.384228
+]).addTo(map)
+.bindPopup("<b>Bushey Arches Car Park</b><br>Bushey Arches Car Park, Arches Service Station, Pinner Road, Bushey");
 
-<h3>Belgrave Avenue</h3>
 
-<p>
-Belgrave Avenue<br>
-Watford<br>
-WD18 7UE
-</p>
 
-</div>
+L.marker([
+51.644341,
+-0.425849
+]).addTo(map)
+.bindPopup("<b>Caxton Way Exit, Watford</b><br>Caxton Road");
 
-<div class="card">
 
-<h3>Liverpool Road</h3>
 
-<p>
-Liverpool Road<br>
-Watford<br>
-WD18 0DW
-</p>
+L.marker([
+51.643177,
+-0.377865
+]).addTo(map)
+.bindPopup("<b>Lower Paddock Road</b><br>Lower Paddock Road");
 
-</div>
 
-<div class="card">
 
-<h3>Tucker Street</h3>
+L.marker([
+51.642024,
+-0.425212
+]).addTo(map)
+.bindPopup("<b>Caxton Way Entrance, Watford</b><br>Caxton Road");
 
-<p>
-Tucker Street<br>
-Watford<br>
-WD18 0AU
-</p>
 
-</div>
 
-<div class="card">
+L.marker([
+51.661476,
+-0.391724
+]).addTo(map)
+.bindPopup("<b>BT Fleet</b><br>Orphanage Road");
 
-<h3>Elfrida Road</h3>
 
-<p>
-Elfrida Road<br>
-Watford<br>
-WD18 0AT
-</p>
 
-</div>
+L.marker([
+51.665806,
+-0.361965
+]).addTo(map)
+.bindPopup("<b>Toby Carvery Watford</b><br>3 Hartspring Lane");
 
-<div class="card">
 
-<h3>Bushey Arches Car Park</h3>
 
-<p>
-Bushey Arches Car Park, Arches Service Station, Pinner Road, Bushey<br>
-Watford<br>
-WD19 4FB
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Caxton Way Exit, Watford</h3>
-
-<p>
-Caxton Road<br>
-Watford<br>
-WD18 8FQ
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Lower Paddock Road</h3>
-
-<p>
-Lower Paddock Road<br>
-Watford<br>
-WD19 4GU
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Caxton Way Entrance, Watford</h3>
-
-<p>
-Caxton Road<br>
-Watford<br>
-WD18 8QZ
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>BT Fleet</h3>
-
-<p>
-Orphanage Road<br>
-Watford<br>
-WD24 4QH
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Toby Carvery Watford</h3>
-
-<p>
-3 Hartspring Lane<br>
-Watford<br>
-WD25 8AD
-</p>
-
-</div>
-
-
-</div>
-
-<footer>
-EV Charger Directory
-</footer>
+</script>
 
 </body>
 </html>

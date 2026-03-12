@@ -1,88 +1,112 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>EV Chargers in Southend-on-Sea</title>
-<link rel="stylesheet" href="/style.css">
+<title>Southend-on-Sea EV Chargers</title>
+
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+
+<style>
+#map {
+  height: 400px;
+  margin-bottom: 30px;
+  border-radius: 8px;
+}
+</style>
+
 </head>
 
 <body>
 
-<header>
-<h1>EV Chargers in Southend-on-Sea</h1>
-</header>
+<h1>Southend-on-Sea EV Chargers</h1>
 
-<div class="container">
+<div id="map"></div>
 
-<p>5 charging locations found.</p>
+<ul>
 
+<li>
+<strong>Shell Fossetts Way</strong><br>
+Fossetts Way
+</li>
 
-<div class="card">
+<li>
+<strong>Warrior Square Car Park</strong><br>
+off Chichester Road
+</li>
 
-<h3>Shell Fossetts Way</h3>
+<li>
+<strong>Alexandra Street 3</strong><br>
+Alexandra Street Car Park
+</li>
 
-<p>
-Fossetts Way<br>
-Southend-on-Sea<br>
-SS2 4DQ
-</p>
+<li>
+<strong>Alexandra Street 1</strong><br>
+Alexandra Street Car Park
+</li>
 
-</div>
+<li>
+<strong>Tesco Extra-Southend</strong><br>
+Prince Avenue
+</li>
 
-<div class="card">
+</ul>
 
-<h3>Warrior Square Car Park</h3>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 
-<p>
-off Chichester Road<br>
-Southend-on-Sea<br>
-SS1 2JH
-</p>
+<script>
 
-</div>
+var map = L.map('map').setView([
+51.5563860252675,
+0.7262628223772936
+], 12);
 
-<div class="card">
-
-<h3>Alexandra Street 3</h3>
-
-<p>
-Alexandra Street Car Park<br>
-Southend-on-Sea<br>
-SS1 1BW
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Alexandra Street 1</h3>
-
-<p>
-Alexandra Street Car Park<br>
-Southend-on-Sea<br>
-SS1 1BW
-</p>
-
-</div>
-
-<div class="card">
-
-<h3>Tesco Extra-Southend</h3>
-
-<p>
-Prince Avenue<br>
-Southend-on-Sea<br>
-SS0 0JP
-</p>
-
-</div>
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+attribution: '&copy; OpenStreetMap contributors'
+}).addTo(map);
 
 
-</div>
 
-<footer>
-EV Charger Directory
-</footer>
+L.marker([
+51.5563860252675,
+0.7262628223772936
+]).addTo(map)
+.bindPopup("<b>Shell Fossetts Way</b><br>Fossetts Way");
+
+
+
+L.marker([
+51.538571,
+0.714268
+]).addTo(map)
+.bindPopup("<b>Warrior Square Car Park</b><br>off Chichester Road");
+
+
+
+L.marker([
+51.535038,
+0.712574
+]).addTo(map)
+.bindPopup("<b>Alexandra Street 3</b><br>Alexandra Street Car Park");
+
+
+
+L.marker([
+51.534951,
+0.712596
+]).addTo(map)
+.bindPopup("<b>Alexandra Street 1</b><br>Alexandra Street Car Park");
+
+
+
+L.marker([
+51.56043,
+0.683779
+]).addTo(map)
+.bindPopup("<b>Tesco Extra-Southend</b><br>Prince Avenue");
+
+
+
+</script>
 
 </body>
 </html>
