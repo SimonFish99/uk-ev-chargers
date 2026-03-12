@@ -6,19 +6,61 @@
 
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
+
 <style>
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+}
+
+header {
+  background: #1f2937;
+  padding: 12px 20px;
+}
+
+.logo {
+  color: white;
+  text-decoration: none;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.container {
+  padding: 20px;
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 15px;
+  text-decoration: none;
+  color: #2563eb;
+  font-weight: bold;
+}
+
 #map {
-  height: 400px;
+  height: 420px;
   margin-bottom: 30px;
   border-radius: 8px;
 }
+
 </style>
 
 </head>
 
 <body>
 
+<header>
+<a href="/" class="logo">PlugMap</a>
+</header>
+
+<div class="container">
+
 <h1>Derby EV Chargers</h1>
+
+<a href="/" class="back-link">← Back to homepage</a>
 
 <div id="map"></div>
 
@@ -191,7 +233,11 @@ Orient Way
 
 </ul>
 
+</div>
+
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 
 <script>
 
@@ -204,13 +250,16 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 attribution: '&copy; OpenStreetMap contributors'
 }).addTo(map);
 
+var markers = L.markerClusterGroup();
 
 
-L.marker([
+
+var marker = L.marker([
 52.896255,
 -1.478067
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Lidl-Foresters Leisure Park</b><br>
 Foresters Leisure Park<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.896255,-1.478067" target="_blank">
@@ -218,13 +267,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.920834,
 -1.486081
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Lidl-Uttoxeter Road</b><br>
 Uttoxeter New Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.920834,-1.486081" target="_blank">
@@ -232,13 +284,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.90465506933688,
 -1.449052457672451
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Derby Conference Centre</b><br>
 London Rd<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.90465506933688,-1.449052457672451" target="_blank">
@@ -246,13 +301,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.93455,
 -1.465609
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Restricted access to Renault customers</b><br>
 Sir Frank Whittle Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.93455,-1.465609" target="_blank">
@@ -260,13 +318,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.90864,
 -1.43174
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>ROLLS_ROYCE GCP AH 13-14</b><br>
 70 Raynesway Atlantic House<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.90864,-1.43174" target="_blank">
@@ -274,13 +335,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.899247,
 -1.469451
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>ROLLS_ROYCE ELTON ROAD WM2</b><br>
 68 Elton Rd<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.899247,-1.469451" target="_blank">
@@ -288,13 +352,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.89064,
 -1.462463
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>DLEV STATION 2</b><br>
 Moor Lane<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.89064,-1.462463" target="_blank">
@@ -302,13 +369,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.890066,
 -1.476445
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>ROLLS_ROYCE DERBY ROTA 2</b><br>
 Rotatives Sinfin D<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.890066,-1.476445" target="_blank">
@@ -316,13 +386,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.889764,
 -1.466985
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>ROLLS_ROYCE A SITE GREEN 3</b><br>
 Victory Road Rolls-Royce Derby<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.889764,-1.466985" target="_blank">
@@ -330,13 +403,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.888345,
 -1.465884
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>ROLLS_ROYCE A SITE GREEN 1</b><br>
 Victory Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.888345,-1.465884" target="_blank">
@@ -344,13 +420,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.888147,
 -1.460621
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>ROLLS_ROYCE MOOR LANE 1</b><br>
 Moor Lane<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.888147,-1.460621" target="_blank">
@@ -358,13 +437,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.886139,
 -1.472063
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>ROLLS_ROYCE WILMORE ROAD</b><br>
 Rolls Royce Gate 8<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.886139,-1.472063" target="_blank">
@@ -372,13 +454,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.883246,
 -1.469364
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>ROLLS_ROYCE TBF CHARGER 02</b><br>
 TBF Rolls Royce Gate 6<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.883246,-1.469364" target="_blank">
@@ -386,13 +471,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.912202,
 -1.449406
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>EG GROUP PRIDE PARK</b><br>
 Murdoch Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.912202,-1.449406" target="_blank">
@@ -400,13 +488,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.919029,
 -1.5072558
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Kings Highway Pub & Restaurant</b><br>
 Rowditch PL<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.919029,-1.5072558" target="_blank">
@@ -414,13 +505,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.942575,
 -1.463252
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Meteor Centre Retail Park</b><br>
 Meteor Centre<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.942575,-1.463252" target="_blank">
@@ -428,13 +522,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.867848,
 -1.366556
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Welcome Break Derby Eastbound Services</b><br>
 A50 Eastbound<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.867848,-1.366556" target="_blank">
@@ -442,13 +539,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.926281,
 -1.466381
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Derby County Council</b><br>
 15 Stores Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.926281,-1.466381" target="_blank">
@@ -456,13 +556,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.920237,
 -1.504397
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Best Buy Derby</b><br>
 Kingsway Retail Park, Kingsway, Derby<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.920237,-1.504397" target="_blank">
@@ -470,13 +573,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.914249,
 -1.448108
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Pride Park Park & Ride</b><br>
 Pride Park Park & Ride<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.914249,-1.448108" target="_blank">
@@ -484,13 +590,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.914089,
 -1.447951
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Pride Park Park & Ride</b><br>
 Pride Park Park & Ride<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.914089,-1.447951" target="_blank">
@@ -498,13 +607,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.915779,
 -1.46001
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>SNC Lavalin</b><br>
 2 Roundhouse Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.915779,-1.46001" target="_blank">
@@ -512,13 +624,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.91916151868108,
 -1.4723005283719885
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Derbion Centre Superchargers</b><br>
 Level 1, South Mall <br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.91916151868108,-1.4723005283719885" target="_blank">
@@ -526,13 +641,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.944401,
 -1.503
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>The Markeaton</b><br>
 Kedleston Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.944401,-1.503" target="_blank">
@@ -540,13 +658,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.94142983429097,
 -1.4313807750320393
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>The Oak and Acorn</b><br>
 Danebridge Cres<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.94142983429097,-1.4313807750320393" target="_blank">
@@ -554,13 +675,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.915913,
 -1.457225
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Harvester Pride Park</b><br>
 Roundhouse Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.915913,-1.457225" target="_blank">
@@ -568,13 +692,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.911575,
 -1.507667
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>The Argosy</b><br>
 Manor Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.911575,-1.507667" target="_blank">
@@ -582,13 +709,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.895748,
 -1.428999
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>The Blue Peter Stonehouse</b><br>
 90 Baker St<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.895748,-1.428999" target="_blank">
@@ -596,13 +726,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.876446,
 -1.503376
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>The Stenson Fields</b><br>
 6 Northfield<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.876446,-1.503376" target="_blank">
@@ -610,13 +743,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.892105058907,
 -1.53186366392254
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>The Hollybrook</b><br>
 Hollybrook Way<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.892105058907,-1.53186366392254" target="_blank">
@@ -624,13 +760,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.142477,
 -1.552198
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Chatsworth Hall, Chesterfield Road, Matlock</b><br>
 Chatsworth Hall, Chesterfield Road, Matlock<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.142477,-1.552198" target="_blank">
@@ -638,13 +777,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.91385,
 -1.44973
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>80673</b><br>
 Pride Park Park-&-Ride, Derby Arena<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.91385,-1.44973" target="_blank">
@@ -652,13 +794,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.911088,
 -1.450624
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Restricted access to Toyota customers</b><br>
 Orient Way<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.911088,-1.450624" target="_blank">
@@ -666,7 +811,11 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
+
+
+map.addLayer(markers);
 
 </script>
 

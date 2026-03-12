@@ -6,19 +6,61 @@
 
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
+
 <style>
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+}
+
+header {
+  background: #1f2937;
+  padding: 12px 20px;
+}
+
+.logo {
+  color: white;
+  text-decoration: none;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.container {
+  padding: 20px;
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 15px;
+  text-decoration: none;
+  color: #2563eb;
+  font-weight: bold;
+}
+
 #map {
-  height: 400px;
+  height: 420px;
   margin-bottom: 30px;
   border-radius: 8px;
 }
+
 </style>
 
 </head>
 
 <body>
 
+<header>
+<a href="/" class="logo">PlugMap</a>
+</header>
+
+<div class="container">
+
 <h1>Hove EV Chargers</h1>
+
+<a href="/" class="back-link">← Back to homepage</a>
 
 <div id="map"></div>
 
@@ -66,7 +108,11 @@ Salisbury Road
 
 </ul>
 
+</div>
+
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 
 <script>
 
@@ -79,13 +125,16 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 attribution: '&copy; OpenStreetMap contributors'
 }).addTo(map);
 
+var markers = L.markerClusterGroup();
 
 
-L.marker([
+
+var marker = L.marker([
 50.825,
 -0.162
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>05898 Holland Road</b><br>
 Holland Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=50.825,-0.162" target="_blank">
@@ -93,13 +142,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 50.834,
 -0.174
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>05799 Clarendon Road</b><br>
 Clarendon Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=50.834,-0.174" target="_blank">
@@ -107,13 +159,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 50.833,
 -0.183
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>05750 Portland Road</b><br>
 Portland Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=50.833,-0.183" target="_blank">
@@ -121,13 +176,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 50.827452,
 -0.181584
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Princes Avenue</b><br>
 7 Princes Avenue<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=50.827452,-0.181584" target="_blank">
@@ -135,13 +193,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 50.823966,
 -0.164191
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Adelaide Crescent</b><br>
 Adelaide Crescent<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=50.823966,-0.164191" target="_blank">
@@ -149,13 +210,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 50.838601,
 -0.175953
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>SHELL RECHARGE HOVE</b><br>
 132-134 Old Shoreham Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=50.838601,-0.175953" target="_blank">
@@ -163,13 +227,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 50.828,
 -0.167
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>05801 Harewood Court</b><br>
 Harewood Court<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=50.828,-0.167" target="_blank">
@@ -177,13 +244,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 50.827,
 -0.164
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>05765 Salisbury Road</b><br>
 Salisbury Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=50.827,-0.164" target="_blank">
@@ -191,7 +261,11 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
+
+
+map.addLayer(markers);
 
 </script>
 

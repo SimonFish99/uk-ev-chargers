@@ -6,19 +6,61 @@
 
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
+
 <style>
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+}
+
+header {
+  background: #1f2937;
+  padding: 12px 20px;
+}
+
+.logo {
+  color: white;
+  text-decoration: none;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.container {
+  padding: 20px;
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 15px;
+  text-decoration: none;
+  color: #2563eb;
+  font-weight: bold;
+}
+
 #map {
-  height: 400px;
+  height: 420px;
   margin-bottom: 30px;
   border-radius: 8px;
 }
+
 </style>
 
 </head>
 
 <body>
 
+<header>
+<a href="/" class="logo">PlugMap</a>
+</header>
+
+<div class="container">
+
 <h1>Amesbury EV Chargers</h1>
+
+<a href="/" class="back-link">← Back to homepage</a>
 
 <div id="map"></div>
 
@@ -56,7 +98,11 @@ London Road
 
 </ul>
 
+</div>
+
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 
 <script>
 
@@ -69,13 +115,16 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 attribution: '&copy; OpenStreetMap contributors'
 }).addTo(map);
 
+var markers = L.markerClusterGroup();
 
 
-L.marker([
+
+var marker = L.marker([
 51.172256412234844,
 -1.7792164864164874
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Amesbury Central Car Park</b><br>
 Roses Lane<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.172256412234844,-1.7792164864164874" target="_blank">
@@ -83,13 +132,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.176991,
 -1.76069
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Solstice Park</b><br>
 Mid Summer Place<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.176991,-1.76069" target="_blank">
@@ -97,13 +149,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.1770575784368,
 -1.75903966021008
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Instavolt McDonald's Solstice Park</b><br>
 MacDonald's Solstice Park Avenue<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.1770575784368,-1.75903966021008" target="_blank">
@@ -111,13 +166,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.1770625711239,
 -1.75839094040271
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Instavolt Costa Solstice Park</b><br>
 Costa Solstice Park Avenue<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.1770625711239,-1.75839094040271" target="_blank">
@@ -125,13 +183,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.1738926219467,
 -1.77905423119387
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Instavolt Amesbury</b><br>
 Amesbury Filling Station<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.1738926219467,-1.77905423119387" target="_blank">
@@ -139,13 +200,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.175978,
 -1.766382
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Tesco Superstore-Amesbury</b><br>
 London Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.175978,-1.766382" target="_blank">
@@ -153,7 +217,11 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
+
+
+map.addLayer(markers);
 
 </script>
 

@@ -6,19 +6,61 @@
 
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
+
 <style>
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+}
+
+header {
+  background: #1f2937;
+  padding: 12px 20px;
+}
+
+.logo {
+  color: white;
+  text-decoration: none;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.container {
+  padding: 20px;
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 15px;
+  text-decoration: none;
+  color: #2563eb;
+  font-weight: bold;
+}
+
 #map {
-  height: 400px;
+  height: 420px;
   margin-bottom: 30px;
   border-radius: 8px;
 }
+
 </style>
 
 </head>
 
 <body>
 
+<header>
+<a href="/" class="logo">PlugMap</a>
+</header>
+
+<div class="container">
+
 <h1>Oakham EV Chargers</h1>
+
+<a href="/" class="back-link">← Back to homepage</a>
 
 <div id="map"></div>
 
@@ -66,7 +108,11 @@ Stud Lane
 
 </ul>
 
+</div>
+
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 
 <script>
 
@@ -79,13 +125,16 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 attribution: '&copy; OpenStreetMap contributors'
 }).addTo(map);
 
+var markers = L.markerClusterGroup();
 
 
-L.marker([
+
+var marker = L.marker([
 52.56415574,
 -0.711458422
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Old White Hart Hotel </b><br>
 51 Main Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.56415574,-0.711458422" target="_blank">
@@ -93,13 +142,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.6918952,
 -0.770395252
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Mick Appleby Racing & Breading</b><br>
 The Homestead<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.6918952,-0.770395252" target="_blank">
@@ -107,13 +159,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.674694,
 -0.657411
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Barnsdale Lodge Hotel</b><br>
 Exton Lane<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.674694,-0.657411" target="_blank">
@@ -121,13 +176,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.589279,
 -0.722626
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Sycamore Harley-Davidson</b><br>
 Uppingham<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.589279,-0.722626" target="_blank">
@@ -135,13 +193,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.671526,
 -0.729489
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Oakham Town Council-Church Street Car Park</b><br>
 Church Street Car Park<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.671526,-0.729489" target="_blank">
@@ -149,13 +210,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.667877,
 -0.731603
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Tesco Superstore-Oakham</b><br>
 96 South Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.667877,-0.731603" target="_blank">
@@ -163,13 +227,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.647256802448396,
 -0.618427126358938
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Normanton Hall Hotel</b><br>
 Normanton Park Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.647256802448396,-0.618427126358938" target="_blank">
@@ -177,13 +244,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.678717,
 -0.739405
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Larkfleet Homes Barleythorpe</b><br>
 Stud Lane<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.678717,-0.739405" target="_blank">
@@ -191,7 +261,11 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
+
+
+map.addLayer(markers);
 
 </script>
 

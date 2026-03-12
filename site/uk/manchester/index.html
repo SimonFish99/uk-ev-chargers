@@ -6,19 +6,61 @@
 
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
+
 <style>
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+}
+
+header {
+  background: #1f2937;
+  padding: 12px 20px;
+}
+
+.logo {
+  color: white;
+  text-decoration: none;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.container {
+  padding: 20px;
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 15px;
+  text-decoration: none;
+  color: #2563eb;
+  font-weight: bold;
+}
+
 #map {
-  height: 400px;
+  height: 420px;
   margin-bottom: 30px;
   border-radius: 8px;
 }
+
 </style>
 
 </head>
 
 <body>
 
+<header>
+<a href="/" class="logo">PlugMap</a>
+</header>
+
+<div class="container">
+
 <h1>Manchester EV Chargers</h1>
+
+<a href="/" class="back-link">← Back to homepage</a>
 
 <div id="map"></div>
 
@@ -397,7 +439,11 @@ Greenpark Road
 
 </ul>
 
+</div>
+
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 
 <script>
 
@@ -410,13 +456,16 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 attribution: '&copy; OpenStreetMap contributors'
 }).addTo(map);
 
+var markers = L.markerClusterGroup();
 
 
-L.marker([
+
+var marker = L.marker([
 53.4894443,
 -2.3696864
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Lidl-Manchester</b><br>
 319 Worsley Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.4894443,-2.3696864" target="_blank">
@@ -424,13 +473,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.49145176,
 -2.26165439
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Lidl-Mocha Parade</b><br>
 6 Lower Broughton Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.49145176,-2.26165439" target="_blank">
@@ -438,13 +490,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.549216,
 -2.197326
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Tesco Extra - Middleton</b><br>
 Barton Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.549216,-2.197326" target="_blank">
@@ -452,13 +507,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.532113,
 -2.20621
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Tesco Superstore - Blackley Manchester</b><br>
 Victoria Avenue East<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.532113,-2.20621" target="_blank">
@@ -466,13 +524,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.513229,
 -2.336827
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Morrisons Swinton</b><br>
 Swinton<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.513229,-2.336827" target="_blank">
@@ -480,13 +541,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.508885,
 -2.158075
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Tesco Extra - Failsworth</b><br>
 Ashton Road West<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.508885,-2.158075" target="_blank">
@@ -494,13 +558,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.480411,
 -2.148428
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Tesco Superstore - Droylsden</b><br>
 Manchester Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.480411,-2.148428" target="_blank">
@@ -508,13 +575,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.475013,
 -2.290234
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Victoria MSCP</b><br>
 Victoria MSCP<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.475013,-2.290234" target="_blank">
@@ -522,13 +592,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.465015,
 -2.344624
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Trafford Centre Parking East</b><br>
 Trafford Centre Parking East<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.465015,-2.344624" target="_blank">
@@ -536,13 +609,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.461875,
 -2.173153
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Tesco Extra - Manchester Gorton</b><br>
 Hyde Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.461875,-2.173153" target="_blank">
@@ -550,13 +626,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.43825,
 -2.42306
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Tesco Extra - Irlam</b><br>
 Fairhills Industrial Estate<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.43825,-2.42306" target="_blank">
@@ -564,13 +643,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.411654,
 -2.219369
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Tesco Superstore - East Didsbury</b><br>
 Parrs Wood Lane<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.411654,-2.219369" target="_blank">
@@ -578,13 +660,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.400464,
 -2.297544
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Tesco Extra - Baguley</b><br>
 Altrincham Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.400464,-2.297544" target="_blank">
@@ -592,13 +677,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.540244,
 -2.171421
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Radclyffe Arms Manchester</b><br>
 390 Grimshaw Lane<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.540244,-2.171421" target="_blank">
@@ -606,13 +694,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.481199,
 -2.241843
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>RAW AVIVA SPRING GRDNS 01</b><br>
 40 Spring Gardens<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.481199,-2.241843" target="_blank">
@@ -620,13 +711,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.477456,
 -2.241328
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Q-Park Piazza, Manchester 4</b><br>
 St James Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.477456,-2.241328" target="_blank">
@@ -634,13 +728,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.469688,
 -2.23968
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Ormand Quad</b><br>
 Manchester Metropolitan University<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.469688,-2.23968" target="_blank">
@@ -648,13 +745,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.4736088226682,
 -2.21605965611228
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>MFG Ardwick</b><br>
 Chancellor Lane<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.4736088226682,-2.21605965611228" target="_blank">
@@ -662,13 +762,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.5339676593721,
 -2.15308265414868
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>MFG Nimblenook</b><br>
 300 Broadway<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.5339676593721,-2.15308265414868" target="_blank">
@@ -676,13 +779,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.4352211197506,
 -2.27367357336951
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>MFG Chorlton</b><br>
 Barlow Moor Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.4352211197506,-2.27367357336951" target="_blank">
@@ -690,13 +796,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.378162909531,
 -2.26114109397172
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>MFG Civic Centre</b><br>
 Rowlands Way<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.378162909531,-2.26114109397172" target="_blank">
@@ -704,13 +813,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.524652,
 -2.397656
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>GMEV PAYG Charge Point</b><br>
 Smith Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.524652,-2.397656" target="_blank">
@@ -718,13 +830,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.517136,
 -2.150955
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>GMEV PAYG Charge Point</b><br>
 Wickentree Lane<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.517136,-2.150955" target="_blank">
@@ -732,13 +847,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.511233,
 -2.433434
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Lidl - Tyldesley</b><br>
 Units 2, Parr Bridge Retail Park<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.511233,-2.433434" target="_blank">
@@ -746,13 +864,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.49124,
 -2.351682
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>GMEV PAYG Charge Point</b><br>
 Monton Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.49124,-2.351682" target="_blank">
@@ -760,13 +881,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.487445,
 -2.252847
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>GMEV PAYG Charge Point</b><br>
 Blackfriars Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.487445,-2.252847" target="_blank">
@@ -774,13 +898,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.4865,
 -2.194377
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>RAWOWNED SPORT CITY 1</b><br>
 10 Archer St<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.4865,-2.194377" target="_blank">
@@ -788,13 +915,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.485722,
 -2.320119
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Stott Lane Car Park</b><br>
 Salford Roayl Hospital<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.485722,-2.320119" target="_blank">
@@ -802,13 +932,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.483388,
 -2.252597
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>GMEV PAYG Charge Point</b><br>
 Quay Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.483388,-2.252597" target="_blank">
@@ -816,13 +949,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.483009,
 -2.271178
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Irwell Place Car Park</b><br>
 University of Salford<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.483009,-2.271178" target="_blank">
@@ -830,13 +966,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.48225,
 -2.23112
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>70 Port Street</b><br>
 70 Port Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.48225,-2.23112" target="_blank">
@@ -844,13 +983,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.481558,
 -2.230435
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Manchester Tariff street 01</b><br>
 CitiPark, Tariff street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.481558,-2.230435" target="_blank">
@@ -858,13 +1000,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.480961,
 -2.228849
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Laystall Street</b><br>
 34 Laystall Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.480961,-2.228849" target="_blank">
@@ -872,13 +1017,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.479179,
 -2.228218
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>GMEV PAYG Charge Point</b><br>
 Store Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.479179,-2.228218" target="_blank">
@@ -886,13 +1034,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.476812,
 -2.247388
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>RAWOWNED RAW CP6 DEMO</b><br>
 Windmill Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.476812,-2.247388" target="_blank">
@@ -900,13 +1051,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.475385,
 -2.247578
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>GMEV PAYG Charge Point</b><br>
 Windmill Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.475385,-2.247578" target="_blank">
@@ -914,13 +1068,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.467362,
 -2.236971
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>GMEV PAYG Charge Point</b><br>
 Higher Chatham Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.467362,-2.236971" target="_blank">
@@ -928,13 +1085,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.466286,
 -2.238032
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>University of Manchester</b><br>
 (car park D)<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.466286,-2.238032" target="_blank">
@@ -942,13 +1102,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.452091,
 -2.370709
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>GMEV PAYG Charge Point</b><br>
 Moorside Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.452091,-2.370709" target="_blank">
@@ -956,13 +1119,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.448051,
 -2.229073
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Platt Lane Sports Complex</b><br>
 Yew Tree Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.448051,-2.229073" target="_blank">
@@ -970,13 +1136,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.445225,
 -2.307264
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>GMEV PAYG Charge Point</b><br>
 Lacy Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.445225,-2.307264" target="_blank">
@@ -984,13 +1153,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.415569,
 -2.231669
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Shell Didsbury</b><br>
 761-765 Wilmslow Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.415569,-2.231669" target="_blank">
@@ -998,13 +1170,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.408157,
 -2.262008
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Greenpark Road</b><br>
 Northenden<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.408157,-2.262008" target="_blank">
@@ -1012,13 +1187,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.380537,
 -2.26451
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>GMEV PAYG Charge Point</b><br>
 Simonsway<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.380537,-2.26451" target="_blank">
@@ -1026,13 +1204,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.514091,
 -2.360755
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>ATE CHARGER-01</b><br>
 10 Shield Dr<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.514091,-2.360755" target="_blank">
@@ -1040,13 +1221,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.50502,
 -2.169174
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Morrisons Failsworth Poplar Street</b><br>
 Failsworth<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.50502,-2.169174" target="_blank">
@@ -1054,13 +1238,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.480217,
 -2.239821
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>ROYAL LONDON PARKING LVL -2</b><br>
 1 New York St<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.480217,-2.239821" target="_blank">
@@ -1068,13 +1255,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.479546,
 -2.253003
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>ROYAL LONDON 3 HARDMAN SQ</b><br>
 3 Hardman Square Spinningfields Square<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.479546,-2.253003" target="_blank">
@@ -1082,13 +1272,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.466336904263045,
 -2.3542561994581774
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Manchester Trafford Centre Supercharger</b><br>
 Trafford Centre<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.466336904263045,-2.3542561994581774" target="_blank">
@@ -1096,13 +1289,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.4593407,
 -2.1616192
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>McDonald's Debdale Park</b><br>
  21 Wall Way<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.4593407,-2.1616192" target="_blank">
@@ -1110,13 +1306,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.46909,
 -2.22512
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Brunswick Church</b><br>
 39a Brunswick Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.46909,-2.22512" target="_blank">
@@ -1124,13 +1323,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.47801089275606,
 -2.2286802122691824
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Manchester Piccadilly Car Park</b><br>
 Broad Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.47801089275606,-2.2286802122691824" target="_blank">
@@ -1138,13 +1340,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.4433286,
 -2.3094702
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>McDonald's</b><br>
 1235 Chester Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.4433286,-2.3094702" target="_blank">
@@ -1152,13 +1357,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.4493877494475,
 -2.30269728360531
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>MFG EV Power Chester Road</b><br>
 Chester Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.4493877494475,-2.30269728360531" target="_blank">
@@ -1166,13 +1374,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.4617,
 -2.359176
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Trafford Retail Park</b><br>
 Urmston<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.4617,-2.359176" target="_blank">
@@ -1180,13 +1391,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.513854716364,
 -2.24407081800518
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Tesco Superstore Cheetham Hill</b><br>
 Thomas Street (Off Bury Old Road)<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.513854716364,-2.24407081800518" target="_blank">
@@ -1194,13 +1408,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.488083526696556,
 -2.236699025514781
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>RCP Parking</b><br>
 Angel Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.488083526696556,-2.236699025514781" target="_blank">
@@ -1208,13 +1425,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.478772241621925,
 -2.2332333606930206
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>DoubleTree by Hilton</b><br>
 One Piccadilly Place<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.478772241621925,-2.2332333606930206" target="_blank">
@@ -1222,13 +1442,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.486858,
 -2.235988
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Angel Gardens</b><br>
 1 Rochdale Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.486858,-2.235988" target="_blank">
@@ -1236,13 +1459,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.364215,
 -2.240965
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>8001509</b><br>
 MIOC , STYAL ROAD, Wythenshawe<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.364215,-2.240965" target="_blank">
@@ -1250,13 +1476,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.474251,
 -2.244031
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>GMEV PAYG Charge Point</b><br>
 8 Chester Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.474251,-2.244031" target="_blank">
@@ -1264,13 +1493,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.46534,
 -2.34518
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Trafford Centre Parking Garage East</b><br>
 Trafford Centre Parking Garage<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.46534,-2.34518" target="_blank">
@@ -1278,13 +1510,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.535628,
 -2.293772
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Parking Charges Apply
 Subject to Annual review car parking Char..</b><br>
 Greater Manchester West Mental<br><br>
@@ -1293,13 +1528,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.520542,
 -2.243543
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>GMEV PAYG Charge Point</b><br>
 Delaunays Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.520542,-2.243543" target="_blank">
@@ -1307,13 +1545,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.504557,
 -2.236365
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>GMEV PAYG Charge Point</b><br>
 Crescent Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.504557,-2.236365" target="_blank">
@@ -1321,13 +1562,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.486391,
 -2.19684
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>GMEV PAYG Charge Point</b><br>
 Gibbon Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.486391,-2.19684" target="_blank">
@@ -1335,13 +1579,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.484593,
 -2.202694
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>GMEV PAYG Charge Point</b><br>
 Joe Mercer Way<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.484593,-2.202694" target="_blank">
@@ -1349,13 +1596,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.476579,
 -2.239554
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>GMEV PAYG Charge Point</b><br>
 Waterloo Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.476579,-2.239554" target="_blank">
@@ -1363,13 +1613,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.475928,
 -2.228712
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>GMEV PAYG Charge Point</b><br>
 Travis Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.475928,-2.228712" target="_blank">
@@ -1377,13 +1630,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.471982756488984,
 -2.240938266744706
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Chester Street</b><br>
 Chester Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.471982756488984,-2.240938266744706" target="_blank">
@@ -1391,13 +1647,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.469243,
 -2.240341
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>GMEV PAYG Charge Point</b><br>
 Cambridge Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.469243,-2.240341" target="_blank">
@@ -1405,13 +1664,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.468853,
 -2.198175
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>GMEV PAYG Charge Point</b><br>
 Wenlock Way<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.468853,-2.198175" target="_blank">
@@ -1419,13 +1681,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.464504,
 -2.212614
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Stockport Road</b><br>
 Stockport Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.464504,-2.212614" target="_blank">
@@ -1433,13 +1698,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.406931,
 -2.26317
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>GMEV PAYG Charge Point</b><br>
 Greenpark Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.406931,-2.26317" target="_blank">
@@ -1447,7 +1715,11 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
+
+
+map.addLayer(markers);
 
 </script>
 

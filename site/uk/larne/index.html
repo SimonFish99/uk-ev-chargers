@@ -6,19 +6,61 @@
 
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
+
 <style>
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+}
+
+header {
+  background: #1f2937;
+  padding: 12px 20px;
+}
+
+.logo {
+  color: white;
+  text-decoration: none;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.container {
+  padding: 20px;
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 15px;
+  text-decoration: none;
+  color: #2563eb;
+  font-weight: bold;
+}
+
 #map {
-  height: 400px;
+  height: 420px;
   margin-bottom: 30px;
   border-radius: 8px;
 }
+
 </style>
 
 </head>
 
 <body>
 
+<header>
+<a href="/" class="logo">PlugMap</a>
+</header>
+
+<div class="container">
+
 <h1>Larne EV Chargers</h1>
+
+<a href="/" class="back-link">← Back to homepage</a>
 
 <div id="map"></div>
 
@@ -51,7 +93,11 @@ Circular Road
 
 </ul>
 
+</div>
+
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 
 <script>
 
@@ -64,13 +110,16 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 attribution: '&copy; OpenStreetMap contributors'
 }).addTo(map);
 
+var markers = L.markerClusterGroup();
 
 
-L.marker([
+
+var marker = L.marker([
 54.849495098269415,
 -5.81761193636666
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Circular Road West Car Park</b><br>
 Circular Rd<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.849495098269415,-5.81761193636666" target="_blank">
@@ -78,13 +127,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.84572274826334,
 -5.808342725044753
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Curran Court Hotel</b><br>
 6 Redlands Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.84572274826334,-5.808342725044753" target="_blank">
@@ -92,13 +144,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.850706103127436,
 -5.840601686824584
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Linn Road Service Station</b><br>
 16 Linn Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.850706103127436,-5.840601686824584" target="_blank">
@@ -106,13 +161,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.83476557361965,
 -5.867127775523414
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>HRL Kilwaughter</b><br>
 44 Belfast Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.83476557361965,-5.867127775523414" target="_blank">
@@ -120,13 +178,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.85035,
 -5.82056
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Narrow Gauge</b><br>
 Circular Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.85035,-5.82056" target="_blank">
@@ -134,7 +195,11 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
+
+
+map.addLayer(markers);
 
 </script>
 

@@ -6,19 +6,61 @@
 
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
+
 <style>
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+}
+
+header {
+  background: #1f2937;
+  padding: 12px 20px;
+}
+
+.logo {
+  color: white;
+  text-decoration: none;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.container {
+  padding: 20px;
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 15px;
+  text-decoration: none;
+  color: #2563eb;
+  font-weight: bold;
+}
+
 #map {
-  height: 400px;
+  height: 420px;
   margin-bottom: 30px;
   border-radius: 8px;
 }
+
 </style>
 
 </head>
 
 <body>
 
+<header>
+<a href="/" class="logo">PlugMap</a>
+</header>
+
+<div class="container">
+
 <h1>Llanelli EV Chargers</h1>
+
+<a href="/" class="back-link">← Back to homepage</a>
 
 <div id="map"></div>
 
@@ -71,7 +113,11 @@ Stepney Place
 
 </ul>
 
+</div>
+
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 
 <script>
 
@@ -84,13 +130,16 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 attribution: '&copy; OpenStreetMap contributors'
 }).addTo(map);
 
+var markers = L.markerClusterGroup();
 
 
-L.marker([
+
+var marker = L.marker([
 51.682049,
 -4.13133
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Premier inn Llanelli Central East</b><br>
 Premier inn Llanelli Central E<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.682049,-4.13133" target="_blank">
@@ -98,13 +147,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.697917,
 -4.119859
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>The Beacon Enterprise Centre</b><br>
 Heol Aur<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.697917,-4.119859" target="_blank">
@@ -112,13 +164,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.67628,
 -4.140133
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Parc Trostre Retail Park</b><br>
 Trostre Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.67628,-4.140133" target="_blank">
@@ -126,13 +181,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.678077,
 -4.131347
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Sessile Oak Pub & Restaurant</b><br>
 Pemberton Park<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.678077,-4.131347" target="_blank">
@@ -140,13 +198,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.684574,
 -4.162147
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Edgar Street Car Park</b><br>
 Edgar Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.684574,-4.162147" target="_blank">
@@ -154,13 +215,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.677032,
 -4.136141
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Tesco Extra - Llanelli</b><br>
 Parc Trostre<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.677032,-4.136141" target="_blank">
@@ -168,13 +232,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.683705,
 -4.162802
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Church Street Car Park</b><br>
 Church Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.683705,-4.162802" target="_blank">
@@ -182,13 +249,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.683421,
 -4.157256
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Eastgate Car Park</b><br>
 Stepney Place<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.683421,-4.157256" target="_blank">
@@ -196,13 +266,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.677315657365,
 -4.13684743928468
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Tesco Extra - Llanelli</b><br>
  Parc Trostre<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.677315657365,-4.13684743928468" target="_blank">
@@ -210,7 +283,11 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
+
+
+map.addLayer(markers);
 
 </script>
 

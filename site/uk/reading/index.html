@@ -6,19 +6,61 @@
 
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
+
 <style>
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+}
+
+header {
+  background: #1f2937;
+  padding: 12px 20px;
+}
+
+.logo {
+  color: white;
+  text-decoration: none;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.container {
+  padding: 20px;
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 15px;
+  text-decoration: none;
+  color: #2563eb;
+  font-weight: bold;
+}
+
 #map {
-  height: 400px;
+  height: 420px;
   margin-bottom: 30px;
   border-radius: 8px;
 }
+
 </style>
 
 </head>
 
 <body>
 
+<header>
+<a href="/" class="logo">PlugMap</a>
+</header>
+
+<div class="container">
+
 <h1>Reading EV Chargers</h1>
+
+<a href="/" class="back-link">← Back to homepage</a>
 
 <div id="map"></div>
 
@@ -201,7 +243,11 @@ Portman Road
 
 </ul>
 
+</div>
+
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 
 <script>
 
@@ -214,13 +260,16 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 attribution: '&copy; OpenStreetMap contributors'
 }).addTo(map);
 
+var markers = L.markerClusterGroup();
 
 
-L.marker([
+
+var marker = L.marker([
 51.465317372485146,
 -0.9839511023766931
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Rivermead Leisure Centre</b><br>
 Richfield Avenue<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.465317372485146,-0.9839511023766931" target="_blank">
@@ -228,13 +277,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.405361,
 -0.98102
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Mereoak Park and Ride</b><br>
 Mereoak Land<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.405361,-0.98102" target="_blank">
@@ -242,13 +294,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.4289981867029,
 -0.9455596753273312
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>The Sportsman</b><br>
 201 Shinfield Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.4289981867029,-0.9455596753273312" target="_blank">
@@ -256,13 +311,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.43433535,
 -1.07369779
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>EVC BizSpace Theale Merlin House</b><br>
 Merlin House<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.43433535,-1.07369779" target="_blank">
@@ -270,13 +328,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.424236,
 -1.067394
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Fox & Hounds</b><br>
 Fox & Hounds<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.424236,-1.067394" target="_blank">
@@ -284,13 +345,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.421455,
 -0.983437
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Reading FC Stadium</b><br>
 Biscuit Way<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.421455,-0.983437" target="_blank">
@@ -298,13 +362,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.451876,
 -0.972436
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Civic Offices Bridge Street</b><br>
 Arnold<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.451876,-0.972436" target="_blank">
@@ -312,13 +379,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.43868904819041,
 -0.9685906596296263
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Reading Katesgrove Supercharger</b><br>
 160 Basingstoke Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.43868904819041,-0.9685906596296263" target="_blank">
@@ -326,13 +396,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.4532079,
 -0.97441
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Reading Civic Centre, outside Car Park</b><br>
 Simmonds Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.4532079,-0.97441" target="_blank">
@@ -340,13 +413,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.456131,
 -0.980571
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Q-Park Chatham Place, Reading 1</b><br>
 Chatham Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.456131,-0.980571" target="_blank">
@@ -354,13 +430,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.456046,
 -0.980552
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Q-Park Chatham Place, Reading 4</b><br>
 Chatham Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.456046,-0.980552" target="_blank">
@@ -368,13 +447,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.455928,
 -0.980515
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Q-Park Chatham Place, Reading 8</b><br>
 Chatham Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.455928,-0.980515" target="_blank">
@@ -382,13 +464,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.455882,
 -0.980518
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Q-Park Chatham Place, Reading 7</b><br>
 Chatham Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.455882,-0.980518" target="_blank">
@@ -396,13 +481,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.425836,
 -1.03482
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Moto Reading Eastbound Services</b><br>
 Moto Reading Eastbound Services<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.425836,-1.03482" target="_blank">
@@ -410,13 +498,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.441585,
 -1.065328
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>IKEA Reading</b><br>
 Pincents Lane<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.441585,-1.065328" target="_blank">
@@ -424,13 +515,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.423283,
 -1.036994
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Moto Reading Westbound Services</b><br>
 Moto Reading Westbound Services<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.423283,-1.036994" target="_blank">
@@ -438,13 +532,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.4596,
 -0.954765
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Tesco Extra - Reading</b><br>
 Napier Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.4596,-0.954765" target="_blank">
@@ -452,13 +549,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.457626,
 -0.945636
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Estates and Facilities</b><br>
 Whiteknights<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.457626,-0.945636" target="_blank">
@@ -466,13 +566,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.457314,
 -0.945714
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Estates and Facilities</b><br>
 Whiteknights<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.457314,-0.945714" target="_blank">
@@ -480,13 +583,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.45674,
 -0.97352
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>DRAX_00105</b><br>
 Friar Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.45674,-0.97352" target="_blank">
@@ -494,13 +600,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.417182,
 -0.971093
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>SHELL RECHARGE FAIRFIELD</b><br>
 585 Basingstoke Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.417182,-0.971093" target="_blank">
@@ -508,13 +617,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.42787,
 -0.945597
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>MFG</b><br>
 Shell, Shinfield Rd<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.42787,-0.945597" target="_blank">
@@ -522,13 +634,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.385194,
 -1.030479
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>WOK EV CHARGERS WOKEFIELD 2</b><br>
 de vere wokefield estate Goodboys lane<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.385194,-1.030479" target="_blank">
@@ -536,13 +651,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.4207115,
 -0.9511469
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Crosfield School</b><br>
 Shinfield Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.4207115,-0.9511469" target="_blank">
@@ -550,13 +668,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.45995564458485,
 -0.9706435926951826
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Reading Railway Station Car Park</b><br>
 Vastern Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.45995564458485,-0.9706435926951826" target="_blank">
@@ -564,13 +685,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.4214153,
 -0.96857354
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Lidl-Basingstoke Road</b><br>
 577 Basingstoke Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.4214153,-0.96857354" target="_blank">
@@ -578,13 +702,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.449779517352596,
 -1.0595079332208286
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Turnhams Farm House</b><br>
 Pincents Lane<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.449779517352596,-1.0595079332208286" target="_blank">
@@ -592,13 +719,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.46856,
 -0.97299
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Chester Street Car Park</b><br>
 19 Chester Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.46856,-0.97299" target="_blank">
@@ -606,13 +736,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.46596,
 -0.97946
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Thames Promenade Car Park</b><br>
 Thames Promenade Car Park<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.46596,-0.97946" target="_blank">
@@ -620,13 +753,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.45412,
 -0.99915
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Kensington Road Car Park</b><br>
 Kensington Road Car Park<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.45412,-0.99915" target="_blank">
@@ -634,13 +770,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.37941,
 -0.903434
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Aborfield C2</b><br>
 Nine Mile Ride Extension<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.37941,-0.903434" target="_blank">
@@ -648,13 +787,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.4599463165781,
 -0.955714871435475
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Tesco Extra - Reading</b><br>
  Napier Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.4599463165781,-0.955714871435475" target="_blank">
@@ -662,13 +804,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.459167,
 -0.975912
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Area</b><br>
 1 Station Hill<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.459167,-0.975912" target="_blank">
@@ -676,13 +821,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.4298220342637,
 -0.968881985533699
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>The World Upside Down</b><br>
 387 Basingstoke Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.4298220342637,-0.968881985533699" target="_blank">
@@ -690,13 +838,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.459066,
 -0.998738
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Tesco Extra-Reading West</b><br>
 Portman Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.459066,-0.998738" target="_blank">
@@ -704,7 +855,11 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
+
+
+map.addLayer(markers);
 
 </script>
 

@@ -6,19 +6,61 @@
 
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
+
 <style>
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+}
+
+header {
+  background: #1f2937;
+  padding: 12px 20px;
+}
+
+.logo {
+  color: white;
+  text-decoration: none;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.container {
+  padding: 20px;
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 15px;
+  text-decoration: none;
+  color: #2563eb;
+  font-weight: bold;
+}
+
 #map {
-  height: 400px;
+  height: 420px;
   margin-bottom: 30px;
   border-radius: 8px;
 }
+
 </style>
 
 </head>
 
 <body>
 
+<header>
+<a href="/" class="logo">PlugMap</a>
+</header>
+
+<div class="container">
+
 <h1>Hemel Hempstead EV Chargers</h1>
+
+<a href="/" class="back-link">← Back to homepage</a>
 
 <div id="map"></div>
 
@@ -61,7 +103,11 @@ Duxons Turn Ind Est
 
 </ul>
 
+</div>
+
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 
 <script>
 
@@ -74,13 +120,16 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 attribution: '&copy; OpenStreetMap contributors'
 }).addTo(map);
 
+var markers = L.markerClusterGroup();
 
 
-L.marker([
+
+var marker = L.marker([
 51.7597006903178,
 -0.440070337905325
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Wood Lane Car Park</b><br>
 Wood Lane End<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.7597006903178,-0.440070337905325" target="_blank">
@@ -88,13 +137,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.74809,
 -0.432141
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Leverstock Green Shopping Parade</b><br>
 Leverstock Green Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.74809,-0.432141" target="_blank">
@@ -102,13 +154,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.760677,
 -0.473739
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>High Street Car Park</b><br>
 High Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.760677,-0.473739" target="_blank">
@@ -116,13 +171,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.75634402255682,
 -0.4283684082864738
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Shell Recharge Hemel Hempstead</b><br>
 Breakspear Way<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.75634402255682,-0.4283684082864738" target="_blank">
@@ -130,13 +188,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.74883653,
 -0.45828112
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Tesco Extra-Hemel Hempstead</b><br>
 Jarman Way<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.74883653,-0.45828112" target="_blank">
@@ -144,13 +205,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.76754806206716,
 -0.43630957147274785
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Swarco UK Ltd</b><br>
 Unit 1, Maxted Corner<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.76754806206716,-0.43630957147274785" target="_blank">
@@ -158,13 +222,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.751222,
 -0.474841
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Wood Lane End</b><br>
 Duxons Turn Ind Est<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.751222,-0.474841" target="_blank">
@@ -172,7 +239,11 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
+
+
+map.addLayer(markers);
 
 </script>
 

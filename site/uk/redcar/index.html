@@ -6,19 +6,61 @@
 
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
+
 <style>
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+}
+
+header {
+  background: #1f2937;
+  padding: 12px 20px;
+}
+
+.logo {
+  color: white;
+  text-decoration: none;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.container {
+  padding: 20px;
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 15px;
+  text-decoration: none;
+  color: #2563eb;
+  font-weight: bold;
+}
+
 #map {
-  height: 400px;
+  height: 420px;
   margin-bottom: 30px;
   border-radius: 8px;
 }
+
 </style>
 
 </head>
 
 <body>
 
+<header>
+<a href="/" class="logo">PlugMap</a>
+</header>
+
+<div class="container">
+
 <h1>Redcar EV Chargers</h1>
+
+<a href="/" class="back-link">← Back to homepage</a>
 
 <div id="map"></div>
 
@@ -96,7 +138,11 @@ Plantation Road
 
 </ul>
 
+</div>
+
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 
 <script>
 
@@ -109,13 +155,16 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 attribution: '&copy; OpenStreetMap contributors'
 }).addTo(map);
 
+var markers = L.markerClusterGroup();
 
 
-L.marker([
+
+var marker = L.marker([
 54.617907,
 -1.060863
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Graffenburg Street Car Park, Redcar 1</b><br>
 7 Graffenburg Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.617907,-1.060863" target="_blank">
@@ -123,13 +172,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.57611288096236,
 -1.099406020486193
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>EVC Wilton Centre</b><br>
 Wilton<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.57611288096236,-1.099406020486193" target="_blank">
@@ -137,13 +189,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.61609,
 -1.056821
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Fishermans Square Car Park, Redcar 6</b><br>
 Lord Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.61609,-1.056821" target="_blank">
@@ -151,13 +206,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.615598,
 -1.068503
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Redcar Central Rail Station Car Park 2</b><br>
 West Dyke Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.615598,-1.068503" target="_blank">
@@ -165,13 +223,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.593118,
 -1.051787
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>J. Murphy and Sons-Redcar</b><br>
 Acacia Court<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.593118,-1.051787" target="_blank">
@@ -179,13 +240,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.6144741,
 -1.0661131
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>McDonald's Redcar Retail Park</b><br>
 Redcar Retail Park<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.6144741,-1.0661131" target="_blank">
@@ -193,13 +257,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.613524,
 -1.066035
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Tesco Superstore-Redcar</b><br>
 West Dyke Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.613524,-1.066035" target="_blank">
@@ -207,13 +274,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.617108457239226,
 -1.0669979850952132
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Morrisons Redcar</b><br>
 Lord Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.617108457239226,-1.0669979850952132" target="_blank">
@@ -221,13 +291,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.61304384157674,
 -1.0861671068339547
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Drive Vauxhall</b><br>
 Trunk Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.61304384157674,-1.0861671068339547" target="_blank">
@@ -235,13 +308,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.59227300803525,
 -1.0881980071761745
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Geocore Site Investigations</b><br>
 Tralee Close<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.59227300803525,-1.0881980071761745" target="_blank">
@@ -249,13 +325,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.59392150874953,
 -1.08818854695528
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>The Innovation Centre</b><br>
 Vienna Court<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.59392150874953,-1.08818854695528" target="_blank">
@@ -263,13 +342,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.61724184113868,
 -1.0718268616482192
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Coatham Surgery</b><br>
 Coatham Health Village<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.61724184113868,-1.0718268616482192" target="_blank">
@@ -277,13 +359,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.60850318420691,
 -1.09819421843099
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Beyond Housing</b><br>
 14 Ennis Square<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.60850318420691,-1.09819421843099" target="_blank">
@@ -291,13 +376,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.58689963333106,
 -1.0809733321173098
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Kirkleatham Walled Garden</b><br>
 Plantation Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.58689963333106,-1.0809733321173098" target="_blank">
@@ -305,7 +393,11 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
+
+
+map.addLayer(markers);
 
 </script>
 

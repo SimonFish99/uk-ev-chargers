@@ -6,19 +6,61 @@
 
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
+
 <style>
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+}
+
+header {
+  background: #1f2937;
+  padding: 12px 20px;
+}
+
+.logo {
+  color: white;
+  text-decoration: none;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.container {
+  padding: 20px;
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 15px;
+  text-decoration: none;
+  color: #2563eb;
+  font-weight: bold;
+}
+
 #map {
-  height: 400px;
+  height: 420px;
   margin-bottom: 30px;
   border-radius: 8px;
 }
+
 </style>
 
 </head>
 
 <body>
 
+<header>
+<a href="/" class="logo">PlugMap</a>
+</header>
+
+<div class="container">
+
 <h1>Oldham EV Chargers</h1>
+
+<a href="/" class="back-link">← Back to homepage</a>
 
 <div id="map"></div>
 
@@ -66,7 +108,11 @@ Wm Morrison Supermarkets PLC Tweedale Way
 
 </ul>
 
+</div>
+
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 
 <script>
 
@@ -79,13 +125,16 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 attribution: '&copy; OpenStreetMap contributors'
 }).addTo(map);
 
+var markers = L.markerClusterGroup();
 
 
-L.marker([
+
+var marker = L.marker([
 53.51660966,
 -2.143303432
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>EVC Hollinwood Business Centre</b><br>
 Hollinwood Business Centre, Albert St<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.51660966,-2.143303432" target="_blank">
@@ -93,13 +142,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.538542,
 -2.012683
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Kingfisher</b><br>
 Chew Valley Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.538542,-2.012683" target="_blank">
@@ -107,13 +159,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.537,
 -2.110644
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Alexandra Retail Park</b><br>
 Park Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.537,-2.110644" target="_blank">
@@ -121,13 +176,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.55227,
 -2.120017
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>GMEV PAYG Charge Point</b><br>
 Rochdale Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.55227,-2.120017" target="_blank">
@@ -135,13 +193,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.550205,
 -2.101159
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Derker Metrolink Park & Ride</b><br>
 Cromford Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.550205,-2.101159" target="_blank">
@@ -149,13 +210,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.542674,
 -2.116911
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>GMEV PAYG Charge Point</b><br>
 New Radcliffe Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.542674,-2.116911" target="_blank">
@@ -163,13 +227,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.54232,
 -2.11738
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Oldham Civic Centre</b><br>
 Croft Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.54232,-2.11738" target="_blank">
@@ -177,13 +244,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.521222,
 -2.15388
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Morrisons Oldham</b><br>
 Wm Morrison Supermarkets PLC Tweedale Way<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.521222,-2.15388" target="_blank">
@@ -191,7 +261,11 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
+
+
+map.addLayer(markers);
 
 </script>
 

@@ -6,19 +6,61 @@
 
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
+
 <style>
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+}
+
+header {
+  background: #1f2937;
+  padding: 12px 20px;
+}
+
+.logo {
+  color: white;
+  text-decoration: none;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.container {
+  padding: 20px;
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 15px;
+  text-decoration: none;
+  color: #2563eb;
+  font-weight: bold;
+}
+
 #map {
-  height: 400px;
+  height: 420px;
   margin-bottom: 30px;
   border-radius: 8px;
 }
+
 </style>
 
 </head>
 
 <body>
 
+<header>
+<a href="/" class="logo">PlugMap</a>
+</header>
+
+<div class="container">
+
 <h1>Kirkcaldy EV Chargers</h1>
+
+<a href="/" class="back-link">← Back to homepage</a>
 
 <div id="map"></div>
 
@@ -61,7 +103,11 @@ Kinghorn Road
 
 </ul>
 
+</div>
+
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 
 <script>
 
@@ -74,13 +120,16 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 attribution: '&copy; OpenStreetMap contributors'
 }).addTo(map);
 
+var markers = L.markerClusterGroup();
 
 
-L.marker([
+
+var marker = L.marker([
 56.098932,
 -3.162204
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Lidl-the Esplanade</b><br>
 The Esplanade<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=56.098932,-3.162204" target="_blank">
@@ -88,13 +137,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 56.135434,
 -3.205224
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Spiral Weave Pub & Restaurant</b><br>
 Chapelton Drive<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=56.135434,-3.205224" target="_blank">
@@ -102,13 +154,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 56.113011,
 -3.167813
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Kirkcaldy Railway Station Car Park</b><br>
 Whyte Melville Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=56.113011,-3.167813" target="_blank">
@@ -116,13 +171,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 56.096882,
 -3.163291
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Morrisons</b><br>
 The Esplanade<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=56.096882,-3.163291" target="_blank">
@@ -130,13 +188,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 56.110931,
 -3.159613
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Thistle Street Car Park, Kirkcaldy</b><br>
 Thistle Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=56.110931,-3.159613" target="_blank">
@@ -144,13 +205,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 56.125813,
 -3.161284
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Victoria Hospital Service Area</b><br>
 54 Hayfield Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=56.125813,-3.161284" target="_blank">
@@ -158,13 +222,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 56.097017,
 -3.164339
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Mind & Body Studio Ltd</b><br>
 Kinghorn Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=56.097017,-3.164339" target="_blank">
@@ -172,7 +239,11 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
+
+
+map.addLayer(markers);
 
 </script>
 

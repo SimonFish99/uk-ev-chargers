@@ -6,19 +6,61 @@
 
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
+
 <style>
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+}
+
+header {
+  background: #1f2937;
+  padding: 12px 20px;
+}
+
+.logo {
+  color: white;
+  text-decoration: none;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.container {
+  padding: 20px;
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 15px;
+  text-decoration: none;
+  color: #2563eb;
+  font-weight: bold;
+}
+
 #map {
-  height: 400px;
+  height: 420px;
   margin-bottom: 30px;
   border-radius: 8px;
 }
+
 </style>
 
 </head>
 
 <body>
 
+<header>
+<a href="/" class="logo">PlugMap</a>
+</header>
+
+<div class="container">
+
 <h1>Rochester EV Chargers</h1>
+
+<a href="/" class="back-link">← Back to homepage</a>
 
 <div id="map"></div>
 
@@ -51,7 +93,11 @@ Cory's Road
 
 </ul>
 
+</div>
+
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 
 <script>
 
@@ -64,13 +110,16 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 attribution: '&copy; OpenStreetMap contributors'
 }).addTo(map);
 
+var markers = L.markerClusterGroup();
 
 
-L.marker([
+
+var marker = L.marker([
 51.39872166283743,
 0.5104633474360298
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Tap Zap Go - Medway City Estate</b><br>
 Whitewall Centre, Whitewall Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.39872166283743,0.5104633474360298" target="_blank">
@@ -78,13 +127,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.39211,
 0.491478
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Morrisons Strood</b><br>
 Wm Morrisons PLC<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.39211,0.491478" target="_blank">
@@ -92,13 +144,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.4003529,
 0.5152004
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>McDonald's Terance Butler Avenue</b><br>
 Terance Butler Avenue<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.4003529,0.5152004" target="_blank">
@@ -106,13 +161,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.395,
 0.494028
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Commercial Road 1</b><br>
 Commercial Rd<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.395,0.494028" target="_blank">
@@ -120,13 +178,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.390601,
 0.506367
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Cory's Road 1</b><br>
 Cory's Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.390601,0.506367" target="_blank">
@@ -134,7 +195,11 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
+
+
+map.addLayer(markers);
 
 </script>
 

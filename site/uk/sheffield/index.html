@@ -6,19 +6,61 @@
 
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
+
 <style>
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+}
+
+header {
+  background: #1f2937;
+  padding: 12px 20px;
+}
+
+.logo {
+  color: white;
+  text-decoration: none;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.container {
+  padding: 20px;
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 15px;
+  text-decoration: none;
+  color: #2563eb;
+  font-weight: bold;
+}
+
 #map {
-  height: 400px;
+  height: 420px;
   margin-bottom: 30px;
   border-radius: 8px;
 }
+
 </style>
 
 </head>
 
 <body>
 
+<header>
+<a href="/" class="logo">PlugMap</a>
+</header>
+
+<div class="container">
+
 <h1>Sheffield EV Chargers</h1>
+
+<a href="/" class="back-link">← Back to homepage</a>
 
 <div id="map"></div>
 
@@ -216,7 +258,11 @@ Queens Road
 
 </ul>
 
+</div>
+
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 
 <script>
 
@@ -229,13 +275,16 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 attribution: '&copy; OpenStreetMap contributors'
 }).addTo(map);
 
+var markers = L.markerClusterGroup();
 
 
-L.marker([
+
+var marker = L.marker([
 53.447633,
 -1.459572
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>MERRYCHEF STATION 01</b><br>
 Welbuilt 6 Nether Lane<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.447633,-1.459572" target="_blank">
@@ -243,13 +292,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.37864362,
 -1.49163314
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Consultants Car Park</b><br>
 Glossop Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.37864362,-1.49163314" target="_blank">
@@ -257,13 +309,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.40546625250491,
 -1.414082712931986
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Meadowhall Retail Park Supercharger</b><br>
 Meadowhall Retail Park<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.40546625250491,-1.414082712931986" target="_blank">
@@ -271,13 +326,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.461644,
 -1.491865
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>RAW GREENE KING ACORN 2</b><br>
 Acorn 516 Burncross Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.461644,-1.491865" target="_blank">
@@ -285,13 +343,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.388191,
 -1.467784
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Riverside Car Park, Sheffield 2</b><br>
 5 Millsands<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.388191,-1.467784" target="_blank">
@@ -299,13 +360,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.404844,
 -1.492928
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>zest-line-club-band</b><br>
 Livesey Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.404844,-1.492928" target="_blank">
@@ -313,13 +377,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.385607,
 -1.443524
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Park & Ride - Nunnery Square 1</b><br>
 Sheffield Parkway<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.385607,-1.443524" target="_blank">
@@ -327,13 +394,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.427591,
 -1.4912406
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Eight-Foot Way Pub & Restaurant</b><br>
 2 Chaucer RD<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.427591,-1.4912406" target="_blank">
@@ -341,13 +411,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.443724,
 -1.459267
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Morrisons Sheffield Ecclesfield</b><br>
 299 The Common, Ecclesfield<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.443724,-1.459267" target="_blank">
@@ -355,13 +428,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.427559,
 -1.486815
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Asda</b><br>
 Chaucer Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.427559,-1.486815" target="_blank">
@@ -369,13 +445,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.415688,
 -1.509242
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Middlewood Park & Ride 6</b><br>
 Middlewood Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.415688,-1.509242" target="_blank">
@@ -383,13 +462,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.400371,
 -1.508333
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Malin Bridge Park & Ride 1</b><br>
 42 Loxley New Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.400371,-1.508333" target="_blank">
@@ -397,13 +479,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.390856,
 -1.44991
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Harratts Nissan Sheffield</b><br>
 Attercliffe Road, Sheffield, South Yorkshire<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.390856,-1.44991" target="_blank">
@@ -411,13 +496,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.389416,
 -1.486104
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Shipton Road Car Park, Sheffield 1</b><br>
 Upperthorpe Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.389416,-1.486104" target="_blank">
@@ -425,13 +513,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.387939,
 -1.475336
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Ebenezer Street Car Park, Sheffield 2</b><br>
 Ebenezer Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.387939,-1.475336" target="_blank">
@@ -439,13 +530,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.387145,
 -1.474057
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Trinity Street Car Park, Sheffield 2</b><br>
 Trinity Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.387145,-1.474057" target="_blank">
@@ -453,13 +547,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.386432,
 -1.461501
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Windrush Way Car Park, Sheffield 5</b><br>
 Windrush Way<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.386432,-1.461501" target="_blank">
@@ -467,13 +564,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.379551,
 -1.479467
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Fitzwilliam Street Car Park, Sheffield 8</b><br>
 Fitzwilliam Street, Sheffield City Centre<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.379551,-1.479467" target="_blank">
@@ -481,13 +581,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.379401,
 -1.479645
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Fitzwilliam Street Car Park, Sheffield 4</b><br>
 Fitzwilliam Street, Sheffield City Centre<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.379401,-1.479645" target="_blank">
@@ -495,13 +598,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.378259,
 -1.502119
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Spooner Road Car Park, Sheffield 4</b><br>
 45 Spooner Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.378259,-1.502119" target="_blank">
@@ -509,13 +615,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.378163,
 -1.484386
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Broomspring Lane Car Park, Sheffield 1</b><br>
 90 Broomspring Lane, Broomhall<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.378163,-1.484386" target="_blank">
@@ -523,13 +632,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.370721,
 -1.468034
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Lancing Road Car Park, Sheffield 2</b><br>
 114 Lancing Road, Highfield<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.370721,-1.468034" target="_blank">
@@ -537,13 +649,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.370453,
 -1.211895
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Tesco Superstore - Sheffield Dinnington</b><br>
 Undergate Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.370453,-1.211895" target="_blank">
@@ -551,13 +666,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.367547,
 -1.497893
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Stewart Road Car Park, Sheffield 4</b><br>
 Stewart Road, Sharrow<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.367547,-1.497893" target="_blank">
@@ -565,13 +683,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.35897,
 -1.474235
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Albert Road Car Park, Sheffield 1</b><br>
 659-661 London Rd<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.35897,-1.474235" target="_blank">
@@ -579,13 +700,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.328089,
 -1.344302
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Halfway Park & Ride 1</b><br>
 Eckington Way<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.328089,-1.344302" target="_blank">
@@ -593,13 +717,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.38777,
 -1.467487
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Riverside Car Park, Sheffield 3</b><br>
 5 Millsands<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.38777,-1.467487" target="_blank">
@@ -607,13 +734,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.386809,
 -1.467861
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Riverside Car Park, Sheffield 4</b><br>
 5 Millsands<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.386809,-1.467861" target="_blank">
@@ -621,13 +751,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.3999553845194,
 -1.51392505951219
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Lidl-Malin Bridge</b><br>
 20 Stannington Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.3999553845194,-1.51392505951219" target="_blank">
@@ -635,13 +768,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.347228,
 -1.492858
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Tesco Superstore-Sheffield Abbeydale</b><br>
 Abbeydale Drive<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.347228,-1.492858" target="_blank">
@@ -649,13 +785,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.525627,
 -1.62738
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Shrewsbury Road Car Park</b><br>
 Penistone<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.525627,-1.62738" target="_blank">
@@ -663,13 +802,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.362020585112276,
 -1.3282597152579
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Aldi Supermarket, Swallownest</b><br>
 81 81 Park Hill<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.362020585112276,-1.3282597152579" target="_blank">
@@ -677,13 +819,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.372544,
 -1.486449
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>M&S Food Eco Store</b><br>
 250 - 266 Ecclesall Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.372544,-1.486449" target="_blank">
@@ -691,13 +836,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.4829792316872,
 -1.58795599059522
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Fox Valley Shopping Centre</b><br>
 Fox Valley Way<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.4829792316872,-1.58795599059522" target="_blank">
@@ -705,13 +853,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.3957735130336,
 -1.4428335086053
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Costa Coffee</b><br>
 Princess Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.3957735130336,-1.4428335086053" target="_blank">
@@ -719,13 +870,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.362894,
 -1.316377
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Aston Library </b><br>
 3 Workshop Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.362894,-1.316377" target="_blank">
@@ -733,13 +887,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.338907,
 -1.321058
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Water Sports</b><br>
 Water Sports<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.338907,-1.321058" target="_blank">
@@ -747,13 +904,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.369358,
 -1.465098
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Queens Road Parking/Charging</b><br>
 Queens Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.369358,-1.465098" target="_blank">
@@ -761,7 +921,11 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
+
+
+map.addLayer(markers);
 
 </script>
 

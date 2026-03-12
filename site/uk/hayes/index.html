@@ -6,19 +6,61 @@
 
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
+
 <style>
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+}
+
+header {
+  background: #1f2937;
+  padding: 12px 20px;
+}
+
+.logo {
+  color: white;
+  text-decoration: none;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.container {
+  padding: 20px;
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 15px;
+  text-decoration: none;
+  color: #2563eb;
+  font-weight: bold;
+}
+
 #map {
-  height: 400px;
+  height: 420px;
   margin-bottom: 30px;
   border-radius: 8px;
 }
+
 </style>
 
 </head>
 
 <body>
 
+<header>
+<a href="/" class="logo">PlugMap</a>
+</header>
+
+<div class="container">
+
 <h1>Hayes EV Chargers</h1>
+
+<a href="/" class="back-link">← Back to homepage</a>
 
 <div id="map"></div>
 
@@ -81,7 +123,11 @@ Glencoe Road
 
 </ul>
 
+</div>
+
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 
 <script>
 
@@ -94,13 +140,16 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 attribution: '&copy; OpenStreetMap contributors'
 }).addTo(map);
 
+var markers = L.markerClusterGroup();
 
 
-L.marker([
+
+var marker = L.marker([
 51.516147,
 -0.403127
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>9000310</b><br>
 Lombardy Retail Park, Coldharbour Lane<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.516147,-0.403127" target="_blank">
@@ -108,13 +157,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.516021,
 -0.403364
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>8001378</b><br>
 Lombardy Retail Park , Coldharbour Lane<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.516021,-0.403364" target="_blank">
@@ -122,13 +174,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.515974,
 -0.403098
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>8000787</b><br>
 Lombardy Retail Park, Coldharbour Lane<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.515974,-0.403098" target="_blank">
@@ -136,13 +191,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.501141,
 -0.424914
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Asda Hayes 21</b><br>
 Millington Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.501141,-0.424914" target="_blank">
@@ -150,13 +208,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.501057,
 -0.424543
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Asda Hayes 9</b><br>
 Millington Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.501057,-0.424543" target="_blank">
@@ -164,13 +225,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.500706,
 -0.424671
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Asda Hayes 17</b><br>
 Millington Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.500706,-0.424671" target="_blank">
@@ -178,13 +242,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.495796,
 -0.445836
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>EG GROUP HEATHROW NORTH3</b><br>
 4b Shepiston Ln<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.495796,-0.445836" target="_blank">
@@ -192,13 +259,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.48167903,
 -0.448418932
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>EVC ibis Styles Heathrow Airport</b><br>
 ibis Styles Heathrow Airport<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.48167903,-0.448418932" target="_blank">
@@ -206,13 +276,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.519228,
 -0.409331
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Lidl-Uxbridge Road</b><br>
 482 Uxbridge Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.519228,-0.409331" target="_blank">
@@ -220,13 +293,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.506821,
 -0.416031
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Pump Lane Car Park</b><br>
 Pump Lane<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.506821,-0.416031" target="_blank">
@@ -234,13 +310,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.524624,
 -0.385989
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Tesco Extra-Hayes Yeading</b><br>
 Glencoe Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.524624,-0.385989" target="_blank">
@@ -248,7 +327,11 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
+
+
+map.addLayer(markers);
 
 </script>
 

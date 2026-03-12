@@ -6,19 +6,61 @@
 
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
+
 <style>
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+}
+
+header {
+  background: #1f2937;
+  padding: 12px 20px;
+}
+
+.logo {
+  color: white;
+  text-decoration: none;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.container {
+  padding: 20px;
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 15px;
+  text-decoration: none;
+  color: #2563eb;
+  font-weight: bold;
+}
+
 #map {
-  height: 400px;
+  height: 420px;
   margin-bottom: 30px;
   border-radius: 8px;
 }
+
 </style>
 
 </head>
 
 <body>
 
+<header>
+<a href="/" class="logo">PlugMap</a>
+</header>
+
+<div class="container">
+
 <h1>Redruth EV Chargers</h1>
+
+<a href="/" class="back-link">← Back to homepage</a>
 
 <div id="map"></div>
 
@@ -61,7 +103,11 @@ Station Road
 
 </ul>
 
+</div>
+
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 
 <script>
 
@@ -74,13 +120,16 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 attribution: '&copy; OpenStreetMap contributors'
 }).addTo(map);
 
+var markers = L.markerClusterGroup();
 
 
-L.marker([
+
+var marker = L.marker([
 50.233365181807926,
 -5.234984306765909
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Penventon Park Hotel</b><br>
 West End<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=50.233365181807926,-5.234984306765909" target="_blank">
@@ -88,13 +137,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 50.252337,
 -5.200696
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Scorrier 1</b><br>
 Cornwall Council / CORMAC offices<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=50.252337,-5.200696" target="_blank">
@@ -102,13 +154,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 50.227222,
 -5.276512
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Cornwall College Camborne</b><br>
 Pool<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=50.227222,-5.276512" target="_blank">
@@ -116,13 +171,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 50.2261151,
 -5.2762352
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>McDonald's Trevenson Road</b><br>
 Trevenson Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=50.2261151,-5.2762352" target="_blank">
@@ -130,13 +188,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 50.234379,
 -5.226364
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Flowerpot Chapel Car Park</b><br>
 Fore Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=50.234379,-5.226364" target="_blank">
@@ -144,13 +205,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 50.235993,
 -5.236026
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Tesco Superstore-Redruth Tolgus</b><br>
 Tolgus Hill<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=50.235993,-5.236026" target="_blank">
@@ -158,13 +222,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 50.221847,
 -5.270103
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Tesco Extra-Redruth</b><br>
 Station Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=50.221847,-5.270103" target="_blank">
@@ -172,7 +239,11 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
+
+
+map.addLayer(markers);
 
 </script>
 

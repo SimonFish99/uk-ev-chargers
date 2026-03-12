@@ -6,19 +6,61 @@
 
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
+
 <style>
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+}
+
+header {
+  background: #1f2937;
+  padding: 12px 20px;
+}
+
+.logo {
+  color: white;
+  text-decoration: none;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.container {
+  padding: 20px;
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 15px;
+  text-decoration: none;
+  color: #2563eb;
+  font-weight: bold;
+}
+
 #map {
-  height: 400px;
+  height: 420px;
   margin-bottom: 30px;
   border-radius: 8px;
 }
+
 </style>
 
 </head>
 
 <body>
 
+<header>
+<a href="/" class="logo">PlugMap</a>
+</header>
+
+<div class="container">
+
 <h1>Wandsworth EV Chargers</h1>
+
+<a href="/" class="back-link">← Back to homepage</a>
 
 <div id="map"></div>
 
@@ -106,7 +148,11 @@ Louvaine Road
 
 </ul>
 
+</div>
+
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 
 <script>
 
@@ -119,13 +165,16 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 attribution: '&copy; OpenStreetMap contributors'
 }).addTo(map);
 
+var markers = L.markerClusterGroup();
 
 
-L.marker([
+
+var marker = L.marker([
 51.449652,
 -0.190538
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Esparto Street</b><br>
 Esparto Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.449652,-0.190538" target="_blank">
@@ -133,13 +182,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.44285,
 -0.197877
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Lavenham Road</b><br>
 Lavenham Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.44285,-0.197877" target="_blank">
@@ -147,13 +199,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.439447,
 -0.1835
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Quinton Street</b><br>
 Quinton Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.439447,-0.1835" target="_blank">
@@ -161,13 +216,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.451999,
 -0.174043
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Skipsea House</b><br>
 Skipsea House<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.451999,-0.174043" target="_blank">
@@ -175,13 +233,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.47381,
 -0.159281
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>401 Battersea Park Road (opp 154A)</b><br>
 401 Battersea Park Road (opp 154A), Battersea Park<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.47381,-0.159281" target="_blank">
@@ -189,13 +250,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.45856,
 -0.20913
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Upper Richmond Road</b><br>
 Upper Richmond Road, 3 Keswick Broadway<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.45856,-0.20913" target="_blank">
@@ -203,13 +267,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.451577,
 -0.209211
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Sutherland Grove</b><br>
 Sutherland Grove<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.451577,-0.209211" target="_blank">
@@ -217,13 +284,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.448242,
 -0.204169
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Gatwick Road</b><br>
 Gatwick Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.448242,-0.204169" target="_blank">
@@ -231,13 +301,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.448111,
 -0.171747
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Patten Road</b><br>
 Patten Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.448111,-0.171747" target="_blank">
@@ -245,13 +318,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.435187,
 -0.149209
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Hillbury Road (Site 2)</b><br>
 Hillbury Road (Site 2)<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.435187,-0.149209" target="_blank">
@@ -259,13 +335,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.42735,
 -0.174714
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Coverton Road</b><br>
 Coverton Road, Wandsworth, London<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.42735,-0.174714" target="_blank">
@@ -273,13 +352,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.453071,
 -0.175676
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Woodhall House</b><br>
 Woodhall House<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.453071,-0.175676" target="_blank">
@@ -287,13 +369,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.452688,
 -0.175171
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Morwille House</b><br>
 Morwille House<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.452688,-0.175171" target="_blank">
@@ -301,13 +386,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.45255,
 -0.174461
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>St Quentin House</b><br>
 St Quentin House<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.45255,-0.174461" target="_blank">
@@ -315,13 +403,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.451961,
 -0.174817
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Gernigan House</b><br>
 Gernigan House<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.451961,-0.174817" target="_blank">
@@ -329,13 +420,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.460665,
 -0.176336
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Louvaine Road</b><br>
 Louvaine Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.460665,-0.176336" target="_blank">
@@ -343,7 +437,11 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
+
+
+map.addLayer(markers);
 
 </script>
 

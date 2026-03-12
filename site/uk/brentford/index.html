@@ -6,19 +6,61 @@
 
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
+
 <style>
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+}
+
+header {
+  background: #1f2937;
+  padding: 12px 20px;
+}
+
+.logo {
+  color: white;
+  text-decoration: none;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.container {
+  padding: 20px;
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 15px;
+  text-decoration: none;
+  color: #2563eb;
+  font-weight: bold;
+}
+
 #map {
-  height: 400px;
+  height: 420px;
   margin-bottom: 30px;
   border-radius: 8px;
 }
+
 </style>
 
 </head>
 
 <body>
 
+<header>
+<a href="/" class="logo">PlugMap</a>
+</header>
+
+<div class="container">
+
 <h1>Brentford EV Chargers</h1>
+
+<a href="/" class="back-link">← Back to homepage</a>
 
 <div id="map"></div>
 
@@ -71,7 +113,11 @@ Dual charging post
 
 </ul>
 
+</div>
+
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 
 <script>
 
@@ -84,13 +130,16 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 attribution: '&copy; OpenStreetMap contributors'
 }).addTo(map);
 
+var markers = L.markerClusterGroup();
 
 
-L.marker([
+
+var marker = L.marker([
 51.49022,
 -0.30634
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>York Road</b><br>
 York Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.49022,-0.30634" target="_blank">
@@ -98,13 +147,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.49003,
 -0.30682
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>York Road</b><br>
 York Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.49003,-0.30682" target="_blank">
@@ -112,13 +164,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.48963,
 -0.31126
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Boston Park Road</b><br>
 Boston Park Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.48963,-0.31126" target="_blank">
@@ -126,13 +181,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.48953,
 -0.30882
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Glenhurst Road</b><br>
 Glenhurst Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.48953,-0.30882" target="_blank">
@@ -140,13 +198,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.48603,
 -0.30232
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Grosvenor Road</b><br>
 Grosvenor Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.48603,-0.30232" target="_blank">
@@ -154,13 +215,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.488766,
 -0.292573
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>St James Group Limited</b><br>
 Kew Bridge Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.488766,-0.292573" target="_blank">
@@ -168,13 +232,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.486095,
 -0.2993664
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>McDonald's Brentford</b><br>
 322 High Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.486095,-0.2993664" target="_blank">
@@ -182,13 +249,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.487497,
 -0.303839
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Brook Rd S 82</b><br>
 Brook Rd S 82<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.487497,-0.303839" target="_blank">
@@ -196,13 +266,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.485209,
 -0.307528
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Dual charging post</b><br>
 Dual charging post<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.485209,-0.307528" target="_blank">
@@ -210,7 +283,11 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
+
+
+map.addLayer(markers);
 
 </script>
 

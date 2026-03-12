@@ -6,19 +6,61 @@
 
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
+
 <style>
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+}
+
+header {
+  background: #1f2937;
+  padding: 12px 20px;
+}
+
+.logo {
+  color: white;
+  text-decoration: none;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.container {
+  padding: 20px;
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 15px;
+  text-decoration: none;
+  color: #2563eb;
+  font-weight: bold;
+}
+
 #map {
-  height: 400px;
+  height: 420px;
   margin-bottom: 30px;
   border-radius: 8px;
 }
+
 </style>
 
 </head>
 
 <body>
 
+<header>
+<a href="/" class="logo">PlugMap</a>
+</header>
+
+<div class="container">
+
 <h1>Street EV Chargers</h1>
+
+<a href="/" class="back-link">← Back to homepage</a>
 
 <div id="map"></div>
 
@@ -51,7 +93,11 @@ Outlet Shopping Village
 
 </ul>
 
+</div>
+
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 
 <script>
 
@@ -64,13 +110,16 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 attribution: '&copy; OpenStreetMap contributors'
 }).addTo(map);
 
+var markers = L.markerClusterGroup();
 
 
-L.marker([
+
+var marker = L.marker([
 51.12851884,
 -2.73801329
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Clarks International</b><br>
 40 High St<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.12851884,-2.73801329" target="_blank">
@@ -78,13 +127,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.1256173534157,
 -2.75451838852678
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>McDonald's Street</b><br>
 Gravenchon Way<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.1256173534157,-2.75451838852678" target="_blank">
@@ -92,13 +144,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.12952907813812,
 -2.7359690154322607
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>High Street</b><br>
 High Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.12952907813812,-2.7359690154322607" target="_blank">
@@ -106,13 +161,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.12546,
 -2.740649
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Southside Car Park, Street 1</b><br>
 Southside Car Park, Street 1<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.12546,-2.740649" target="_blank">
@@ -120,13 +178,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.130008,
 -2.740425
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Outlet Shopping Village</b><br>
 Outlet Shopping Village<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.130008,-2.740425" target="_blank">
@@ -134,7 +195,11 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
+
+
+map.addLayer(markers);
 
 </script>
 

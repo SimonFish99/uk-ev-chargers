@@ -6,19 +6,61 @@
 
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
+
 <style>
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+}
+
+header {
+  background: #1f2937;
+  padding: 12px 20px;
+}
+
+.logo {
+  color: white;
+  text-decoration: none;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.container {
+  padding: 20px;
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 15px;
+  text-decoration: none;
+  color: #2563eb;
+  font-weight: bold;
+}
+
 #map {
-  height: 400px;
+  height: 420px;
   margin-bottom: 30px;
   border-radius: 8px;
 }
+
 </style>
 
 </head>
 
 <body>
 
+<header>
+<a href="/" class="logo">PlugMap</a>
+</header>
+
+<div class="container">
+
 <h1>South Croydon EV Chargers</h1>
+
+<a href="/" class="back-link">← Back to homepage</a>
 
 <div id="map"></div>
 
@@ -61,7 +103,11 @@ Marlborough Road
 
 </ul>
 
+</div>
+
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 
 <script>
 
@@ -74,13 +120,16 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 attribution: '&copy; OpenStreetMap contributors'
 }).addTo(map);
 
+var markers = L.markerClusterGroup();
 
 
-L.marker([
+
+var marker = L.marker([
 51.362317,
 -0.090329
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Birdhurst Rise</b><br>
 Birdhurst Rise<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.362317,-0.090329" target="_blank">
@@ -88,13 +137,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.357712,
 -0.098674
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Haling Park Road</b><br>
 Haling Park Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.357712,-0.098674" target="_blank">
@@ -102,13 +154,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.352185,
 -0.095552
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Bynes Road</b><br>
 Bynes Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.352185,-0.095552" target="_blank">
@@ -116,13 +171,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.3594782,
 -0.0943005
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>129 St Peter's Street</b><br>
 129 St Peter's Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.3594782,-0.0943005" target="_blank">
@@ -130,13 +188,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.361455,
 -0.090375
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Dornton Road</b><br>
 Dornton Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.361455,-0.090375" target="_blank">
@@ -144,13 +205,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.35412,
 -0.101506
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Marlborough Road</b><br>
 Marlborough Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.35412,-0.101506" target="_blank">
@@ -158,13 +222,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.3495655248525,
 -0.100148909159543
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Toby Carvery</b><br>
 415 Brighton Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.3495655248525,-0.100148909159543" target="_blank">
@@ -172,7 +239,11 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
+
+
+map.addLayer(markers);
 
 </script>
 

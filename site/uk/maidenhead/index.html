@@ -6,19 +6,61 @@
 
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
+
 <style>
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+}
+
+header {
+  background: #1f2937;
+  padding: 12px 20px;
+}
+
+.logo {
+  color: white;
+  text-decoration: none;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.container {
+  padding: 20px;
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 15px;
+  text-decoration: none;
+  color: #2563eb;
+  font-weight: bold;
+}
+
 #map {
-  height: 400px;
+  height: 420px;
   margin-bottom: 30px;
   border-radius: 8px;
 }
+
 </style>
 
 </head>
 
 <body>
 
+<header>
+<a href="/" class="logo">PlugMap</a>
+</header>
+
+<div class="container">
+
 <h1>Maidenhead EV Chargers</h1>
+
+<a href="/" class="back-link">← Back to homepage</a>
 
 <div id="map"></div>
 
@@ -61,7 +103,11 @@ Sainsbury's Building - Underground Floor
 
 </ul>
 
+</div>
+
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 
 <script>
 
@@ -74,13 +120,16 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 attribution: '&copy; OpenStreetMap contributors'
 }).addTo(map);
 
+var markers = L.markerClusterGroup();
 
 
-L.marker([
+
+var marker = L.marker([
 51.524101,
 -0.715837
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Hines Meadow Car Park</b><br>
 Lower ground left corner<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.524101,-0.715837" target="_blank">
@@ -88,13 +137,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.526241,
 -0.73362
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>College Road 1</b><br>
 12 College Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.526241,-0.73362" target="_blank">
@@ -102,13 +154,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.519688,
 -0.732679
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Lower Boyndon Road 1</b><br>
 30 Lower Boyndon Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.519688,-0.732679" target="_blank">
@@ -116,13 +171,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.525258,
 -0.739616
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Cromwell Road 1</b><br>
 Cromwell Road 1<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.525258,-0.739616" target="_blank">
@@ -130,13 +188,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.5227,
 -0.69143
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Shell Maidenhead</b><br>
 237 Bath Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.5227,-0.69143" target="_blank">
@@ -144,13 +205,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.54875309,
 -0.80591815
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Hurleyford Farm Limited</b><br>
 Mill Lane<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.54875309,-0.80591815" target="_blank">
@@ -158,13 +222,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.52449992931548,
 -0.718860198698053
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Sainsbury's Building Car Park</b><br>
 Sainsbury's Building - Underground Floor<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.52449992931548,-0.718860198698053" target="_blank">
@@ -172,7 +239,11 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
+
+
+map.addLayer(markers);
 
 </script>
 

@@ -6,19 +6,61 @@
 
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
+
 <style>
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+}
+
+header {
+  background: #1f2937;
+  padding: 12px 20px;
+}
+
+.logo {
+  color: white;
+  text-decoration: none;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.container {
+  padding: 20px;
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 15px;
+  text-decoration: none;
+  color: #2563eb;
+  font-weight: bold;
+}
+
 #map {
-  height: 400px;
+  height: 420px;
   margin-bottom: 30px;
   border-radius: 8px;
 }
+
 </style>
 
 </head>
 
 <body>
 
+<header>
+<a href="/" class="logo">PlugMap</a>
+</header>
+
+<div class="container">
+
 <h1>Rotherham EV Chargers</h1>
+
+<a href="/" class="back-link">← Back to homepage</a>
 
 <div id="map"></div>
 
@@ -141,7 +183,11 @@ Sycamore Road
 
 </ul>
 
+</div>
+
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 
 <script>
 
@@ -154,13 +200,16 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 attribution: '&copy; OpenStreetMap contributors'
 }).addTo(map);
 
+var markers = L.markerClusterGroup();
 
 
-L.marker([
+
+var marker = L.marker([
 53.31614044589014,
 -1.2814129367635019
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>M1 Woodall Southbound Services</b><br>
 M1<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.31614044589014,-1.2814129367635019" target="_blank">
@@ -168,13 +217,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.434517,
 -1.352677
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Tesco Extra - Rotherham</b><br>
 Drummond Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.434517,-1.352677" target="_blank">
@@ -182,13 +234,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.420085,
 -1.193762
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Aldi - Maltby</b><br>
 Muglet Lane, Maltby<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.420085,-1.193762" target="_blank">
@@ -196,13 +251,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.4227,
 -1.25567
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>DRAX00234</b><br>
 Moorhead Way<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.4227,-1.25567" target="_blank">
@@ -210,13 +268,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.45937,
 -1.287399
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Thrybergh Country Park (83448R024)</b><br>
 Doncaster Road, Thrybergh<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.45937,-1.287399" target="_blank">
@@ -224,13 +285,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.423382,
 -1.255981
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Morrison Rotherham Bramley</b><br>
 Bramley<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.423382,-1.255981" target="_blank">
@@ -238,13 +302,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.340021,
 -1.320378
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Rother Valley Country Park-Visitor Centre</b><br>
 Rother Valley Country Park-Visitor Centre<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.340021,-1.320378" target="_blank">
@@ -252,13 +319,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.44359,
 -1.31551
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Lidl-Doncaster Road</b><br>
 Doncaster Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.44359,-1.31551" target="_blank">
@@ -266,13 +336,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.413502,
 -1.345689
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Rotherham General Hospital-Public Carpark</b><br>
 Moorgate Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.413502,-1.345689" target="_blank">
@@ -280,13 +353,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.4428044,
 -1.3210055
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>McDonald's, Aldwarke Lane</b><br>
 Aldwarke Lane<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.4428044,-1.3210055" target="_blank">
@@ -294,13 +370,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.441891680996,
 -1.34885812214083
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>McDonald's Rotherham</b><br>
 Parkgate<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.441891680996,-1.34885812214083" target="_blank">
@@ -308,13 +387,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.389975,
 -1.372662
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Morrisons Rotherham Catcliffe</b><br>
 Poplar Way, Catcliffe<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.389975,-1.372662" target="_blank">
@@ -322,13 +404,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.5044518239504,
 -1.34485494546925
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Tesco Extra - Rotherham Wath-upon-Dearne</b><br>
 Biscay Way<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.5044518239504,-1.34485494546925" target="_blank">
@@ -336,13 +421,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.3705601,
 -1.2110165
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Tesco Superstore</b><br>
 Tesco Superstore<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.3705601,-1.2110165" target="_blank">
@@ -350,13 +438,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.4,
 -1.19
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Grange Wood</b><br>
 Grange Wood<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.4,-1.19" target="_blank">
@@ -364,13 +455,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.502878,
 -1.344798
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Montgomery Road</b><br>
 Montgomery Road/Wath Bus Station 1<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.502878,-1.344798" target="_blank">
@@ -378,13 +472,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.488097,
 -1.302033
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Walker Street</b><br>
 Walker Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.488097,-1.302033" target="_blank">
@@ -392,13 +489,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.459054,
 -1.28827
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Doncaster Road/Thrybergh Country Park</b><br>
 Doncaster Road/Thrybergh Country Park<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.459054,-1.28827" target="_blank">
@@ -406,13 +506,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.456675,
 -1.338076
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Barbers Avenue</b><br>
 Barbers Avenue<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.456675,-1.338076" target="_blank">
@@ -420,13 +523,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.432117,
 -1.358381
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>4 Corporation Street</b><br>
 4 Corporation Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.432117,-1.358381" target="_blank">
@@ -434,13 +540,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.4291,
 -1.346627
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Clifton Park & Museum</b><br>
 49 Clifton Lane<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.4291,-1.346627" target="_blank">
@@ -448,13 +557,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.428835,
 -1.353408
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Wellgate Car Park</b><br>
 Wellgate Car Park<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.428835,-1.353408" target="_blank">
@@ -462,13 +574,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.441916,
 -1.324219
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Sycamore Road</b><br>
 Sycamore Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.441916,-1.324219" target="_blank">
@@ -476,7 +591,11 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
+
+
+map.addLayer(markers);
 
 </script>
 

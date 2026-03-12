@@ -6,19 +6,61 @@
 
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
+
 <style>
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+}
+
+header {
+  background: #1f2937;
+  padding: 12px 20px;
+}
+
+.logo {
+  color: white;
+  text-decoration: none;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.container {
+  padding: 20px;
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 15px;
+  text-decoration: none;
+  color: #2563eb;
+  font-weight: bold;
+}
+
 #map {
-  height: 400px;
+  height: 420px;
   margin-bottom: 30px;
   border-radius: 8px;
 }
+
 </style>
 
 </head>
 
 <body>
 
+<header>
+<a href="/" class="logo">PlugMap</a>
+</header>
+
+<div class="container">
+
 <h1>Braintree EV Chargers</h1>
+
+<a href="/" class="back-link">← Back to homepage</a>
 
 <div id="map"></div>
 
@@ -51,7 +93,11 @@ Pierrefitte Way
 
 </ul>
 
+</div>
+
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 
 <script>
 
@@ -64,13 +110,16 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 attribution: '&copy; OpenStreetMap contributors'
 }).addTo(map);
 
+var markers = L.markerClusterGroup();
 
 
-L.marker([
+
+var marker = L.marker([
 51.857605,
 0.521807
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Tesco Superstore - Braintree Great Notley</b><br>
 1 The Square<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.857605,0.521807" target="_blank">
@@ -78,13 +127,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.877405,
 0.552103
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Tesco Superstore-Braintree Town Centre</b><br>
 Market Place<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.877405,0.552103" target="_blank">
@@ -92,13 +144,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.852568,
 0.522422
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Braintree Supercharger</b><br>
 Blackley Lane<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.852568,0.522422" target="_blank">
@@ -106,13 +161,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.8524064,
 0.52128118
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Gridserve Electric Forecourt - Braintree</b><br>
 Edison Way <br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.8524064,0.52128118" target="_blank">
@@ -120,13 +178,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.878417,
 0.548924
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>George Yard Car Park</b><br>
 Pierrefitte Way<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.878417,0.548924" target="_blank">
@@ -134,7 +195,11 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
+
+
+map.addLayer(markers);
 
 </script>
 

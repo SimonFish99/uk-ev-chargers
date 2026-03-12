@@ -6,19 +6,61 @@
 
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
+
 <style>
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+}
+
+header {
+  background: #1f2937;
+  padding: 12px 20px;
+}
+
+.logo {
+  color: white;
+  text-decoration: none;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.container {
+  padding: 20px;
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 15px;
+  text-decoration: none;
+  color: #2563eb;
+  font-weight: bold;
+}
+
 #map {
-  height: 400px;
+  height: 420px;
   margin-bottom: 30px;
   border-radius: 8px;
 }
+
 </style>
 
 </head>
 
 <body>
 
+<header>
+<a href="/" class="logo">PlugMap</a>
+</header>
+
+<div class="container">
+
 <h1>Hartlepool EV Chargers</h1>
+
+<a href="/" class="back-link">← Back to homepage</a>
 
 <div id="map"></div>
 
@@ -76,7 +118,11 @@ Clarence Road
 
 </ul>
 
+</div>
+
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 
 <script>
 
@@ -89,13 +135,16 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 attribution: '&copy; OpenStreetMap contributors'
 }).addTo(map);
 
+var markers = L.markerClusterGroup();
 
 
-L.marker([
+
+var marker = L.marker([
 54.68996,
 -1.20855
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Royal Navy Museum</b><br>
 Maritime Avenue<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.68996,-1.20855" target="_blank">
@@ -103,13 +152,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.665278,
 -1.208947
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Teesbay Retail Park 1</b><br>
 16 Brenda Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.665278,-1.208947" target="_blank">
@@ -117,13 +169,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.684182,
 -1.215038
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Middleton Grange Shopping Centre</b><br>
 Middleton Grange Shopping Centre<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.684182,-1.215038" target="_blank">
@@ -131,13 +186,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.685975,
 -1.214915
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Hartlepool Civic Centre</b><br>
 Hartlepool Civic Centre<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.685975,-1.214915" target="_blank">
@@ -145,13 +203,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.684408,
 -1.215985
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>West Side Car Park 3</b><br>
 Villiers Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.684408,-1.215985" target="_blank">
@@ -159,13 +220,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.682808,
 -1.214883
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Walden Street Car Park 3</b><br>
 Villers Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.682808,-1.214883" target="_blank">
@@ -173,13 +237,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.680323,
 -1.213973
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Housing Hartlepool Front Car Park</b><br>
 Greenbank<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.680323,-1.213973" target="_blank">
@@ -187,13 +254,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.65634,
 -1.18464
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Seaton Carew Coach Park 6</b><br>
 Tees Road, Seaton Carew<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.65634,-1.18464" target="_blank">
@@ -201,13 +271,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.67755037,
 -1.20881267
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Tesco Extra-Hartlepool</b><br>
 Belle Vue Way<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.67755037,-1.20881267" target="_blank">
@@ -215,13 +288,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.688079,
 -1.211883
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Morrisons Hartlepool</b><br>
 Clarence Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.688079,-1.211883" target="_blank">
@@ -229,7 +305,11 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
+
+
+map.addLayer(markers);
 
 </script>
 

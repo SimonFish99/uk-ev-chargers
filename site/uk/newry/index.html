@@ -6,19 +6,61 @@
 
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
+
 <style>
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+}
+
+header {
+  background: #1f2937;
+  padding: 12px 20px;
+}
+
+.logo {
+  color: white;
+  text-decoration: none;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.container {
+  padding: 20px;
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 15px;
+  text-decoration: none;
+  color: #2563eb;
+  font-weight: bold;
+}
+
 #map {
-  height: 400px;
+  height: 420px;
   margin-bottom: 30px;
   border-radius: 8px;
 }
+
 </style>
 
 </head>
 
 <body>
 
+<header>
+<a href="/" class="logo">PlugMap</a>
+</header>
+
+<div class="container">
+
 <h1>Newry EV Chargers</h1>
+
+<a href="/" class="back-link">← Back to homepage</a>
 
 <div id="map"></div>
 
@@ -91,7 +133,11 @@ Bridge Street
 
 </ul>
 
+</div>
+
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 
 <script>
 
@@ -104,13 +150,16 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 attribution: '&copy; OpenStreetMap contributors'
 }).addTo(map);
 
+var markers = L.markerClusterGroup();
 
 
-L.marker([
+
+var marker = L.marker([
 54.030441212589324,
 -6.068342975481869
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Chestnutt Holiday Park</b><br>
 3 Grange Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.030441212589324,-6.068342975481869" target="_blank">
@@ -118,13 +167,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.171282869883726,
 -6.341730082759312
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Buttercrane Shopping Centre</b><br>
 Bridge Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.171282869883726,-6.341730082759312" target="_blank">
@@ -132,13 +184,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.19663261000278,
 -6.342957837246502
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Norbrook Laboratories</b><br>
 Carnbane East Industrial Estate<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.19663261000278,-6.342957837246502" target="_blank">
@@ -146,13 +201,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.19359374522645,
 -6.354705439595136
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Norbrook Laboratories</b><br>
 Armagh Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.19359374522645,-6.354705439595136" target="_blank">
@@ -160,13 +218,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.18015490699156,
 -6.345129648580922
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Newry Leisure Centre</b><br>
 Cecil Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.18015490699156,-6.345129648580922" target="_blank">
@@ -174,13 +235,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.145517219079636,
 -6.356718127434675
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Claire's Coffee</b><br>
 Forkhill Rd<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.145517219079636,-6.356718127434675" target="_blank">
@@ -188,13 +252,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.18866782815138,
 -6.363186823286014
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Norbrook Laboratories</b><br>
 Station Rd<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.18866782815138,-6.363186823286014" target="_blank">
@@ -202,13 +269,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.19133770551889,
 -6.348560856273139
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Damolly Retail Park</b><br>
 Armagh Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.19133770551889,-6.348560856273139" target="_blank">
@@ -216,13 +286,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.176446359863604,
 -6.3421095379494545
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Monaghan Street Car Park</b><br>
 Monaghan Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.176446359863604,-6.3421095379494545" target="_blank">
@@ -230,13 +303,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.17600161019362,
 -6.341547619244125
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Canal Court Hotel</b><br>
 Merchants Quay<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.17600161019362,-6.341547619244125" target="_blank">
@@ -244,13 +320,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.175294491790055,
 -6.337922024620326
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Hill Street</b><br>
 Hill Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.175294491790055,-6.337922024620326" target="_blank">
@@ -258,13 +337,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.17025269489454,
 -6.341441230138344
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Bridge Street Car Park</b><br>
 Bridge Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.17025269489454,-6.341441230138344" target="_blank">
@@ -272,13 +354,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.168319,
 -6.34252
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>The Quays Shopping Centre</b><br>
 20 The Quays<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.168319,-6.34252" target="_blank">
@@ -286,7 +371,11 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
+
+
+map.addLayer(markers);
 
 </script>
 

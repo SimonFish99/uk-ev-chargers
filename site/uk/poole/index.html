@@ -6,19 +6,61 @@
 
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
+
 <style>
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+}
+
+header {
+  background: #1f2937;
+  padding: 12px 20px;
+}
+
+.logo {
+  color: white;
+  text-decoration: none;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.container {
+  padding: 20px;
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 15px;
+  text-decoration: none;
+  color: #2563eb;
+  font-weight: bold;
+}
+
 #map {
-  height: 400px;
+  height: 420px;
   margin-bottom: 30px;
   border-radius: 8px;
 }
+
 </style>
 
 </head>
 
 <body>
 
+<header>
+<a href="/" class="logo">PlugMap</a>
+</header>
+
+<div class="container">
+
 <h1>Poole EV Chargers</h1>
+
+<a href="/" class="back-link">← Back to homepage</a>
 
 <div id="map"></div>
 
@@ -96,7 +138,11 @@ Walking Field Lane
 
 </ul>
 
+</div>
+
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 
 <script>
 
@@ -109,13 +155,16 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 attribution: '&copy; OpenStreetMap contributors'
 }).addTo(map);
 
+var markers = L.markerClusterGroup();
 
 
-L.marker([
+
+var marker = L.marker([
 50.762856,
 -1.995645
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Station Approach</b><br>
 Station Approach<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=50.762856,-1.995645" target="_blank">
@@ -123,13 +172,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 50.7401,
 -1.988875
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Tesco Extra - Waterloo Road</b><br>
 Waterloo Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=50.7401,-1.988875" target="_blank">
@@ -137,13 +189,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 50.722363,
 -1.96198
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Municipal Road</b><br>
 Municipal Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=50.722363,-1.96198" target="_blank">
@@ -151,13 +206,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 50.719081,
 -1.98206
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Serpentine Lane & Serpentine Lane Disabled</b><br>
 Serpentine Lane<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=50.719081,-1.98206" target="_blank">
@@ -165,13 +223,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 50.706826,
 -1.909386
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>West Hill</b><br>
 Pinecliff Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=50.706826,-1.909386" target="_blank">
@@ -179,13 +240,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 50.688644,
 -1.939355
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Sandbanks 2</b><br>
 Banks Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=50.688644,-1.939355" target="_blank">
@@ -193,13 +257,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 50.71315,
 -1.98531
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Old Orchard</b><br>
 Old Orchard<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=50.71315,-1.98531" target="_blank">
@@ -207,13 +274,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 50.74272773359465,
 -1.897947456601969
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Bournemouth University</b><br>
 Fern Barrow<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=50.74272773359465,-1.897947456601969" target="_blank">
@@ -221,13 +291,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 50.729843,
 -1.936863
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>BCPC Jubilee Road Car Park</b><br>
 Jubilee Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=50.729843,-1.936863" target="_blank">
@@ -235,13 +308,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 50.7384126,
 -1.9162732
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>McDonald's Poole</b><br>
 180 Alder Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=50.7384126,-1.9162732" target="_blank">
@@ -249,13 +325,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 50.73630698239131,
 -1.9953161280851361
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>MFG Creekmoor</b><br>
 Safety Drive<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=50.73630698239131,-1.9953161280851361" target="_blank">
@@ -263,13 +342,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 50.7293409716377,
 -1.92125402521603
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Poole Retail Park</b><br>
 Redlands<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=50.7293409716377,-1.92125402521603" target="_blank">
@@ -277,13 +359,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 50.725021,
 -1.91432
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Tesco Superstore-Poole Branksome</b><br>
 Poole Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=50.725021,-1.91432" target="_blank">
@@ -291,13 +376,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 50.7161908,
 -1.9754434
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Holiday Inn Express Poole,</b><br>
 Walking Field Lane<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=50.7161908,-1.9754434" target="_blank">
@@ -305,7 +393,11 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
+
+
+map.addLayer(markers);
 
 </script>
 

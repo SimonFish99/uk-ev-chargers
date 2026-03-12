@@ -6,19 +6,61 @@
 
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
+
 <style>
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+}
+
+header {
+  background: #1f2937;
+  padding: 12px 20px;
+}
+
+.logo {
+  color: white;
+  text-decoration: none;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.container {
+  padding: 20px;
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 15px;
+  text-decoration: none;
+  color: #2563eb;
+  font-weight: bold;
+}
+
 #map {
-  height: 400px;
+  height: 420px;
   margin-bottom: 30px;
   border-radius: 8px;
 }
+
 </style>
 
 </head>
 
 <body>
 
+<header>
+<a href="/" class="logo">PlugMap</a>
+</header>
+
+<div class="container">
+
 <h1>Newtownabbey EV Chargers</h1>
+
+<a href="/" class="back-link">← Back to homepage</a>
 
 <div id="map"></div>
 
@@ -81,7 +123,11 @@ Belfast Zoo
 
 </ul>
 
+</div>
+
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 
 <script>
 
@@ -94,13 +140,16 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 attribution: '&copy; OpenStreetMap contributors'
 }).addTo(map);
 
+var markers = L.markerClusterGroup();
 
 
-L.marker([
+
+var marker = L.marker([
 54.67121353226352,
 -5.981142556497048
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Mallusk Enterprise Park</b><br>
 Mallusk Drive<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.67121353226352,-5.981142556497048" target="_blank">
@@ -108,13 +157,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.698280907855974,
 -5.957496468595991
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Antrim & Newtownabbey Crematorium</b><br>
 582 Doagh Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.698280907855974,-5.957496468595991" target="_blank">
@@ -122,13 +174,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.69573043145863,
 -5.947687591075066
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Mossley Mill Civic Centre</b><br>
 Carnmoney Road North<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.69573043145863,-5.947687591075066" target="_blank">
@@ -136,13 +191,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.67157400547137,
 -5.9573414829069975
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>NBAS Chartered Accountants</b><br>
 17 Carnmoney Rd<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.67157400547137,-5.9573414829069975" target="_blank">
@@ -150,13 +208,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.677912052828674,
 -5.999278929127854
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Hydepark Mallusk</b><br>
 64 Mallusk Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.677912052828674,-5.999278929127854" target="_blank">
@@ -164,13 +225,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.69351919368424,
 -5.971575404546883
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Corr's Corner Hotel</b><br>
 315 Ballyclare Rd<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.69351919368424,-5.971575404546883" target="_blank">
@@ -178,13 +242,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.68329891831354,
 -5.988855563672644
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Crown & Shamrock</b><br>
 584 Antrim Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.68329891831354,-5.988855563672644" target="_blank">
@@ -192,13 +259,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.669815542011,
 -5.95703212709165
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>HRL Glenwell</b><br>
 290 Antrim Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.669815542011,-5.95703212709165" target="_blank">
@@ -206,13 +276,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.700973,
 -5.956038
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Ballyearl Golf Leisure Complex</b><br>
 Ballyearl Golf Leisure Complex<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.700973,-5.956038" target="_blank">
@@ -220,13 +293,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.695518,
 -5.947971
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Mossley Mill</b><br>
 Mossley Crescent<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.695518,-5.947971" target="_blank">
@@ -234,13 +310,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.658105,
 -5.943716
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Belfast Zoo</b><br>
 Belfast Zoo<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.658105,-5.943716" target="_blank">
@@ -248,7 +327,11 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
+
+
+map.addLayer(markers);
 
 </script>
 

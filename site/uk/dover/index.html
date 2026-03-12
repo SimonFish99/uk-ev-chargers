@@ -6,19 +6,61 @@
 
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
+
 <style>
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+}
+
+header {
+  background: #1f2937;
+  padding: 12px 20px;
+}
+
+.logo {
+  color: white;
+  text-decoration: none;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.container {
+  padding: 20px;
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 15px;
+  text-decoration: none;
+  color: #2563eb;
+  font-weight: bold;
+}
+
 #map {
-  height: 400px;
+  height: 420px;
   margin-bottom: 30px;
   border-radius: 8px;
 }
+
 </style>
 
 </head>
 
 <body>
 
+<header>
+<a href="/" class="logo">PlugMap</a>
+</header>
+
+<div class="container">
+
 <h1>Dover EV Chargers</h1>
+
+<a href="/" class="back-link">← Back to homepage</a>
 
 <div id="map"></div>
 
@@ -91,7 +133,11 @@ Ramsgate Road
 
 </ul>
 
+</div>
+
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 
 <script>
 
@@ -104,13 +150,16 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 attribution: '&copy; OpenStreetMap contributors'
 }).addTo(map);
 
+var markers = L.markerClusterGroup();
 
 
-L.marker([
+
+var marker = L.marker([
 51.124371,
 1.294852
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Charger only available to members of the public at evenings and weekends</b><br>
 Vale View Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.124371,1.294852" target="_blank">
@@ -118,13 +167,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.1540720789193,
 1.29939767103181
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Tesco Extra Dover</b><br>
 Honeywood Parkway<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.1540720789193,1.29939767103181" target="_blank">
@@ -132,13 +184,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.11281,
 1.31552
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>St James Retail and Leisure Park</b><br>
 St James Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.11281,1.31552" target="_blank">
@@ -146,13 +201,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.128985169899416,
 1.3096731170586375
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Dover Police Station</b><br>
 6 Park Place<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.128985169899416,1.3096731170586375" target="_blank">
@@ -160,13 +218,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.12281,
 1.31552
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Waterloo Crescent</b><br>
 13 Waterloo Crescent<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.12281,1.31552" target="_blank">
@@ -174,13 +235,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.1180228584967,
 1.3071460292129
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>MFG Dover Forecourt</b><br>
 Limekiln Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.1180228584967,1.3071460292129" target="_blank">
@@ -188,13 +252,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.278282,
 1.33839
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>GAZEN SALTS CAR PARK 1</b><br>
 Sandwich<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.278282,1.33839" target="_blank">
@@ -202,13 +269,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.14401804691737,
 1.273850390409955
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>169 Lewisham Road (Car Park)</b><br>
 169 Lewisham Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.14401804691737,1.273850390409955" target="_blank">
@@ -216,13 +286,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.12871449364174,
 1.311413747254271
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Maison Dieu Car Park</b><br>
 Maison Dieu Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.12871449364174,1.311413747254271" target="_blank">
@@ -230,13 +303,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.12503890395585,
 1.3048697877249624
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>81 Folkestone Road</b><br>
 81 Folkestone Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.12503890395585,1.3048697877249624" target="_blank">
@@ -244,13 +320,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.12361904389009,
 1.3115949512182132
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Albany Place Car Park</b><br>
 Albany Place<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.12361904389009,1.3115949512182132" target="_blank">
@@ -258,13 +337,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.145237620318916,
 1.3293921819208443
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Shell Guston Road</b><br>
 Guston Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.145237620318916,1.3293921819208443" target="_blank">
@@ -272,13 +354,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.2848222914615,
 1.34550755970861
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Discovery Park Sandwich</b><br>
 Ramsgate Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.2848222914615,1.34550755970861" target="_blank">
@@ -286,7 +371,11 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
+
+
+map.addLayer(markers);
 
 </script>
 

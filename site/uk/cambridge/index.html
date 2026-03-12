@@ -6,19 +6,61 @@
 
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
+
 <style>
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+}
+
+header {
+  background: #1f2937;
+  padding: 12px 20px;
+}
+
+.logo {
+  color: white;
+  text-decoration: none;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.container {
+  padding: 20px;
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 15px;
+  text-decoration: none;
+  color: #2563eb;
+  font-weight: bold;
+}
+
 #map {
-  height: 400px;
+  height: 420px;
   margin-bottom: 30px;
   border-radius: 8px;
 }
+
 </style>
 
 </head>
 
 <body>
 
+<header>
+<a href="/" class="logo">PlugMap</a>
+</header>
+
+<div class="container">
+
 <h1>Cambridge EV Chargers</h1>
+
+<a href="/" class="back-link">← Back to homepage</a>
 
 <div id="map"></div>
 
@@ -261,7 +303,11 @@ Babraham
 
 </ul>
 
+</div>
+
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 
 <script>
 
@@ -274,13 +320,16 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 attribution: '&copy; OpenStreetMap contributors'
 }).addTo(map);
 
+var markers = L.markerClusterGroup();
 
 
-L.marker([
+
+var marker = L.marker([
 52.218378,
 0.084317
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>346 Turing Way</b><br>
 346 Turing Way<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.218378,0.084317" target="_blank">
@@ -288,13 +337,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.19977325,
 0.116768312
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Graduate Hotel Cambridge</b><br>
 Granta Place<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.19977325,0.116768312" target="_blank">
@@ -302,13 +354,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.235417,
 0.151738
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Maurice Wilkes Building</b><br>
 St John's Innovation Park<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.235417,0.151738" target="_blank">
@@ -316,13 +371,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.235367,
 0.151699
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Maurice Wilkes Building</b><br>
 St John's Innovation Park<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.235367,0.151699" target="_blank">
@@ -330,13 +388,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.233879,
 0.137306
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Building 406, Cambridge Science Park</b><br>
 Building 406, Cambridge Science Park<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.233879,0.137306" target="_blank">
@@ -344,13 +405,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.227228,
 0.158198
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>CAMBRIDGE SQ CAMBRIDGE SQ 3</b><br>
 One Cambridge Square Cowley Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.227228,0.158198" target="_blank">
@@ -358,13 +422,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.225832,
 0.156976
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>CAMBRIDGE SQ CAMBRIDGE SQ 12</b><br>
 One Cambridge Square Milton Ave<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.225832,0.156976" target="_blank">
@@ -372,13 +439,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.22453,
 0.157204
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>CAMBRIDGE SQ CAMBRIDGE SQ 10</b><br>
 One Cambridge Square Cowley Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.22453,0.157204" target="_blank">
@@ -386,13 +456,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.2228,
 -0.0785
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>SCDC Cambourne</b><br>
 Cambourne Business Park<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.2228,-0.0785" target="_blank">
@@ -400,13 +473,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.21101,
 0.13924
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Riverside</b><br>
 Riverside<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.21101,0.13924" target="_blank">
@@ -414,13 +490,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.210675,
 0.137196
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Riverside Car Park</b><br>
 Abbey Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.210675,0.137196" target="_blank">
@@ -428,13 +507,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.183949,
 0.172619
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>RAW GREENE KING ROBIN HOOD C 1</b><br>
 High Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.183949,0.172619" target="_blank">
@@ -442,13 +524,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.221859,
 0.093439
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Premier inn Cambridge North (Girton)</b><br>
 Premier inn Cambridge North (G<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.221859,0.093439" target="_blank">
@@ -456,13 +541,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.23427578662455,
 0.13898566606187046
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Cambridge Science Park</b><br>
 Cambridge Science Park<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.23427578662455,0.13898566606187046" target="_blank">
@@ -470,13 +558,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.235404,
 0.135074
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Cambridge Regional College</b><br>
 Kings Hedges Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.235404,0.135074" target="_blank">
@@ -484,13 +575,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.126198,
 0.223954
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>SHELL RECHARGE FOUR WENT WAYS</b><br>
 Fourwentways<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.126198,0.223954" target="_blank">
@@ -498,13 +592,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.19514083862305,
 0.13495700061321259
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Microsoft Cambridge</b><br>
 21 Station Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.19514083862305,0.13495700061321259" target="_blank">
@@ -512,13 +609,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.246611,
 0.165488
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Milton</b><br>
 Landbeach Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.246611,0.165488" target="_blank">
@@ -526,13 +626,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.244728,
 0.150296
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Milton Road P&R 2</b><br>
 Butt Lane<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.244728,0.150296" target="_blank">
@@ -540,13 +643,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.2241,
 -0.0745
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>MK21018</b><br>
 Elms BMW, 4 Sheepfold Ln, Cambridge<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.2241,-0.0745" target="_blank">
@@ -554,13 +660,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.220103,
 -0.067224
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Morrisons Cambourne</b><br>
 Great Cambourne<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.220103,-0.067224" target="_blank">
@@ -568,13 +677,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.214945,
 0.083652
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Madingly Park & Ride 1</b><br>
 Madingley Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.214945,0.083652" target="_blank">
@@ -582,13 +694,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.21454,
 0.13235
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Montague Road West</b><br>
 Montague Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.21454,0.13235" target="_blank">
@@ -596,13 +711,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.21364,
 0.13196
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Humberstone Road</b><br>
 Humberstone Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.21364,0.13196" target="_blank">
@@ -610,13 +728,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.21039,
 0.14239
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>River Lane</b><br>
 River Lane<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.21039,0.14239" target="_blank">
@@ -624,13 +745,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.207001,
 0.133275
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Grafton East Car Park</b><br>
 East Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.207001,0.133275" target="_blank">
@@ -638,13 +762,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.17607160256384,
 0.14036422391620818
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>mer Chargepoint Addenbrookes' Hospital </b><br>
 Richard Howe Way<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.17607160256384,0.14036422391620818" target="_blank">
@@ -652,13 +779,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.235002,
 0.130226
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Allia Future Business Centre1</b><br>
 Allia Future Business Centre<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.235002,0.130226" target="_blank">
@@ -666,13 +796,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.21449,
 0.1311
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Hamilton Road</b><br>
 Hamilton Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.21449,0.1311" target="_blank">
@@ -680,13 +813,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.2143,
 0.13635
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Montague Road East</b><br>
 Montague Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.2143,0.13635" target="_blank">
@@ -694,13 +830,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.21274,
 0.13112
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Aylestone Road East</b><br>
 Aylestone Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.21274,0.13112" target="_blank">
@@ -708,13 +847,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.20941,
 0.13903
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Beche Road</b><br>
 Beche Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.20941,0.13903" target="_blank">
@@ -722,13 +864,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.12704023761259,
 0.2227715242464683
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Fourwentways</b><br>
 Fourwentways<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.12704023761259,0.2227715242464683" target="_blank">
@@ -736,13 +881,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.11657,
 0.21451
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>DRAX00152</b><br>
 Solopark Trading Estate 3A Station Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.11657,0.21451" target="_blank">
@@ -750,13 +898,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.19511085454255,
 0.13351719342927026
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Station Road Cambridge</b><br>
 Station Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.19511085454255,0.13351719342927026" target="_blank">
@@ -764,13 +915,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.09302137529008,
 0.123239968421899
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>EMG Duxford</b><br>
 Newmarket Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.09302137529008,0.123239968421899" target="_blank">
@@ -778,13 +932,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.218992,
 0.116034
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Akeman Street</b><br>
 Akeman Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.218992,0.116034" target="_blank">
@@ -792,13 +949,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.214951,
 0.103677
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Trinity Hall</b><br>
 Storey's Way<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.214951,0.103677" target="_blank">
@@ -806,13 +966,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.238667,
 0.1547567
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Tesco Superstore-Cambridge Milton</b><br>
 Cambridge Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.238667,0.1547567" target="_blank">
@@ -820,13 +983,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.168184,
 0.109099
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Trumpington Supercharger</b><br>
 Hauxton Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.168184,0.109099" target="_blank">
@@ -834,13 +1000,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.18718281543491,
 0.17473773731853726
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Cherry Hinton Leisure Centre</b><br>
 Colville Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.18718281543491,0.17473773731853726" target="_blank">
@@ -848,13 +1017,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.18054893441882,
 0.15240012537401526
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Wulfstan Way</b><br>
 Wulfstan Way<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.18054893441882,0.15240012537401526" target="_blank">
@@ -862,13 +1034,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.2129050431896,
 0.163188189919083
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>McDonald's Newmarket Road</b><br>
 639 Newmarket Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.2129050431896,0.163188189919083" target="_blank">
@@ -876,13 +1051,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.115315,
 0.170048
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Sawston Medical Practice</b><br>
 London Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.115315,0.170048" target="_blank">
@@ -890,13 +1068,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.236911,
 0.136665
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Cambridge Regional College</b><br>
 Kings Hedges Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.236911,0.136665" target="_blank">
@@ -904,13 +1085,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.211946,
 0.092557
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>This charging point is part of the Pod Point Open Network</b><br>
 University Of Cambridge, West Cambridge Site, Off Clerk Maxwell Road, Cambridge<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.211946,0.092557" target="_blank">
@@ -918,13 +1102,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.16891,
 0.158726
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Babraham P&R 2</b><br>
 Babraham<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.16891,0.158726" target="_blank">
@@ -932,7 +1119,11 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
+
+
+map.addLayer(markers);
 
 </script>
 

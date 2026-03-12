@@ -6,19 +6,61 @@
 
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
+
 <style>
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+}
+
+header {
+  background: #1f2937;
+  padding: 12px 20px;
+}
+
+.logo {
+  color: white;
+  text-decoration: none;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.container {
+  padding: 20px;
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 15px;
+  text-decoration: none;
+  color: #2563eb;
+  font-weight: bold;
+}
+
 #map {
-  height: 400px;
+  height: 420px;
   margin-bottom: 30px;
   border-radius: 8px;
 }
+
 </style>
 
 </head>
 
 <body>
 
+<header>
+<a href="/" class="logo">PlugMap</a>
+</header>
+
+<div class="container">
+
 <h1>Cramlington EV Chargers</h1>
+
+<a href="/" class="back-link">← Back to homepage</a>
 
 <div id="map"></div>
 
@@ -61,7 +103,11 @@ Northumberland Business Park West
 
 </ul>
 
+</div>
+
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 
 <script>
 
@@ -74,13 +120,16 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 attribution: '&copy; OpenStreetMap contributors'
 }).addTo(map);
 
+var markers = L.markerClusterGroup();
 
 
-L.marker([
+
+var marker = L.marker([
 55.080007,
 -1.591051
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Percy Street</b><br>
 Percy Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.080007,-1.591051" target="_blank">
@@ -88,13 +137,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.08589,
 -1.58533
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Cramlington, Smithy Square 1</b><br>
 Smithy Square Car Park<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.08589,-1.58533" target="_blank">
@@ -102,13 +154,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.075359,
 -1.568967
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Northumbrian Road</b><br>
 Northumbrian Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.075359,-1.568967" target="_blank">
@@ -116,13 +171,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.10315,
 -1.615021
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Hyperdrive Innovation LTD</b><br>
 Hyperdrive Innovation LTD<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.10315,-1.615021" target="_blank">
@@ -130,13 +188,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.095599,
 -1.584241
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>9 Brockwell Centre</b><br>
 9 Brockwell Centre<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.095599,-1.584241" target="_blank">
@@ -144,13 +205,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.08582,
 -1.627847
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Northumberlandia</b><br>
 Blagdon Lane<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.08582,-1.627847" target="_blank">
@@ -158,13 +222,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.065693,
 -1.593027
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Northumberland Business Park West</b><br>
 Northumberland Business Park West<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.065693,-1.593027" target="_blank">
@@ -172,7 +239,11 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
+
+
+map.addLayer(markers);
 
 </script>
 

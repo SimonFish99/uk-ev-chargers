@@ -6,19 +6,61 @@
 
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
+
 <style>
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+}
+
+header {
+  background: #1f2937;
+  padding: 12px 20px;
+}
+
+.logo {
+  color: white;
+  text-decoration: none;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.container {
+  padding: 20px;
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 15px;
+  text-decoration: none;
+  color: #2563eb;
+  font-weight: bold;
+}
+
 #map {
-  height: 400px;
+  height: 420px;
   margin-bottom: 30px;
   border-radius: 8px;
 }
+
 </style>
 
 </head>
 
 <body>
 
+<header>
+<a href="/" class="logo">PlugMap</a>
+</header>
+
+<div class="container">
+
 <h1>Andover EV Chargers</h1>
+
+<a href="/" class="back-link">← Back to homepage</a>
 
 <div id="map"></div>
 
@@ -61,7 +103,11 @@ South Street
 
 </ul>
 
+</div>
+
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 
 <script>
 
@@ -74,13 +120,16 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 attribution: '&copy; OpenStreetMap contributors'
 }).addTo(map);
 
+var markers = L.markerClusterGroup();
 
 
-L.marker([
+
+var marker = L.marker([
 51.211727661332446,
 -1.4557245427471912
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Columbus Way</b><br>
 Columbus Way<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.211727661332446,-1.4557245427471912" target="_blank">
@@ -88,13 +137,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.20992,
 -1.5188713
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Chalkhill Blue Pub & Restaurant</b><br>
 Hawker Siddeley Way<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.20992,-1.5188713" target="_blank">
@@ -102,13 +154,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.21098,
 -1.513828
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Shell Little Waitrose Portway</b><br>
 280 Weyhill Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.21098,-1.513828" target="_blank">
@@ -116,13 +171,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.212002,
 -1.478989
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Shepherds Spring Lane</b><br>
 Shepherds Spring Lane<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.212002,-1.478989" target="_blank">
@@ -130,13 +188,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.216769,
 -1.473453
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Tesco Extra-Andover</b><br>
 River Way<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.216769,-1.473453" target="_blank">
@@ -144,13 +205,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.206867,
 -1.477911
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>George Yard</b><br>
 George Yard<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.206867,-1.477911" target="_blank">
@@ -158,13 +222,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.204827,
 -1.479853
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>South Street</b><br>
 South Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.204827,-1.479853" target="_blank">
@@ -172,7 +239,11 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
+
+
+map.addLayer(markers);
 
 </script>
 

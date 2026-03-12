@@ -6,19 +6,61 @@
 
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
+
 <style>
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+}
+
+header {
+  background: #1f2937;
+  padding: 12px 20px;
+}
+
+.logo {
+  color: white;
+  text-decoration: none;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.container {
+  padding: 20px;
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 15px;
+  text-decoration: none;
+  color: #2563eb;
+  font-weight: bold;
+}
+
 #map {
-  height: 400px;
+  height: 420px;
   margin-bottom: 30px;
   border-radius: 8px;
 }
+
 </style>
 
 </head>
 
 <body>
 
+<header>
+<a href="/" class="logo">PlugMap</a>
+</header>
+
+<div class="container">
+
 <h1>Banbury EV Chargers</h1>
+
+<a href="/" class="back-link">← Back to homepage</a>
 
 <div id="map"></div>
 
@@ -86,7 +128,11 @@ Ermont Way
 
 </ul>
 
+</div>
+
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 
 <script>
 
@@ -99,13 +145,16 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 attribution: '&copy; OpenStreetMap contributors'
 }).addTo(map);
 
+var markers = L.markerClusterGroup();
 
 
-L.marker([
+
+var marker = L.marker([
 52.05794302683271,
 -1.328073228147773
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Til Tramway Tilstone-1</b><br>
 4 Riverside<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.05794302683271,-1.328073228147773" target="_blank">
@@ -113,13 +162,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.059535424808885,
 -1.3389377826399005
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Calthorpe Street</b><br>
 Calthorpe Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.059535424808885,-1.3389377826399005" target="_blank">
@@ -127,13 +179,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.05929705205041,
 -1.3322317284087222
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Blenhiem Court</b><br>
 Blenhiem Court<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.05929705205041,-1.3322317284087222" target="_blank">
@@ -141,13 +196,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.070842,
 -1.337804
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Peugeot Vertu-Banbury</b><br>
 Southam Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.070842,-1.337804" target="_blank">
@@ -155,13 +213,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.072755,
 -1.341952
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Osprey Charging Banbury Cross</b><br>
 Banbury Cross<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.072755,-1.341952" target="_blank">
@@ -169,13 +230,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.016682,
 -1.37961
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Bloxham Mill</b><br>
 Barford Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.016682,-1.37961" target="_blank">
@@ -183,13 +247,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.07363,
 -1.338502
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Tesco Extra-Banbury</b><br>
 Lockheed Close<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.07363,-1.338502" target="_blank">
@@ -197,13 +264,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.072916,
 -1.341543
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Banbury Cross Supercharger</b><br>
 Banbury Cross Retail Park<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.072916,-1.341543" target="_blank">
@@ -211,13 +281,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.060082,
 -1.328125
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Banbury Station</b><br>
 Station Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.060082,-1.328125" target="_blank">
@@ -225,13 +298,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.991392,
 -1.368406
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>George Inn LTD-For Visitor Use Only</b><br>
 Barford St. Michael<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.991392,-1.368406" target="_blank">
@@ -239,13 +315,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.023914228519004,
 -1.3737651217179518
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Home</b><br>
 Willows End <br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.023914228519004,-1.3737651217179518" target="_blank">
@@ -253,13 +332,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.0710868048927,
 -1.31674903891667
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>InstaVolt Stroud Park</b><br>
 Ermont Way<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.0710868048927,-1.31674903891667" target="_blank">
@@ -267,7 +349,11 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
+
+
+map.addLayer(markers);
 
 </script>
 

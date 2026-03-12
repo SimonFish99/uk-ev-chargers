@@ -6,19 +6,61 @@
 
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
+
 <style>
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+}
+
+header {
+  background: #1f2937;
+  padding: 12px 20px;
+}
+
+.logo {
+  color: white;
+  text-decoration: none;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.container {
+  padding: 20px;
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 15px;
+  text-decoration: none;
+  color: #2563eb;
+  font-weight: bold;
+}
+
 #map {
-  height: 400px;
+  height: 420px;
   margin-bottom: 30px;
   border-radius: 8px;
 }
+
 </style>
 
 </head>
 
 <body>
 
+<header>
+<a href="/" class="logo">PlugMap</a>
+</header>
+
+<div class="container">
+
 <h1>Hamilton EV Chargers</h1>
+
+<a href="/" class="back-link">← Back to homepage</a>
 
 <div id="map"></div>
 
@@ -106,7 +148,11 @@ Duke Street
 
 </ul>
 
+</div>
+
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 
 <script>
 
@@ -119,13 +165,16 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 attribution: '&copy; OpenStreetMap contributors'
 }).addTo(map);
 
+var markers = L.markerClusterGroup();
 
 
-L.marker([
+
+var marker = L.marker([
 55.7790799,
 -4.042087
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Lidl-Hamilton-Muir Street</b><br>
 Muir Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.7790799,-4.042087" target="_blank">
@@ -133,13 +182,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.765347,
 -4.066827
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Nevis Avenue</b><br>
 Nevis Avenue<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.765347,-4.066827" target="_blank">
@@ -147,13 +199,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.763071,
 -4.05481
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Fairhill Avenue</b><br>
 Fairhill Avenue<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.763071,-4.05481" target="_blank">
@@ -161,13 +216,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.756008,
 -4.060464
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Ratho Park</b><br>
 Ratho Park<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.756008,-4.060464" target="_blank">
@@ -175,13 +233,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.779753,
 -4.055297
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Hamilton Shopping Park</b><br>
 Douglas Park Lane<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.779753,-4.055297" target="_blank">
@@ -189,13 +250,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.780129,
 -4.047571
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>University Of The West Of Scotland</b><br>
 8 Barrack Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.780129,-4.047571" target="_blank">
@@ -203,13 +267,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.775995,
 -4.033004
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Keith St Car Park, Keith Street, Hamilton</b><br>
 6 Keith Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.775995,-4.033004" target="_blank">
@@ -217,13 +284,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.773345,
 -4.035081
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Duke Street Car Park, Hamilton (1)</b><br>
 Duke Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.773345,-4.035081" target="_blank">
@@ -231,13 +301,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.783013,
 -4.054941
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Morrisons</b><br>
 5 New Park Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.783013,-4.054941" target="_blank">
@@ -245,13 +318,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.77674159447338,
 -4.027982995528674
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Palace Grounds Retail Park</b><br>
 Motherwell Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.77674159447338,-4.027982995528674" target="_blank">
@@ -259,13 +335,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.779599,
 -4.045774
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Storage Vault Hamilton Carpark</b><br>
 Storage Vault<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.779599,-4.045774" target="_blank">
@@ -273,13 +352,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.781494,
 -4.051545
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Bothwell Street Car Park, Hamilton</b><br>
 Bothwell Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.781494,-4.051545" target="_blank">
@@ -287,13 +369,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.77745,
 -4.05018
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Montrose Crescent, Hamilton</b><br>
 Montrose Crescent<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.77745,-4.05018" target="_blank">
@@ -301,13 +386,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.764858,
 -4.005348
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Chatelherault Station, Hamilton</b><br>
 Leven Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.764858,-4.005348" target="_blank">
@@ -315,13 +403,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.773005,
 -4.034351
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Duke Street Multi Storey Car Park, Hamilton</b><br>
 Duke Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.773005,-4.034351" target="_blank">
@@ -329,13 +420,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.782309,
 -4.034816
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>2 Mote Hill</b><br>
 2 Mote Hill<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.782309,-4.034816" target="_blank">
@@ -343,7 +437,11 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
+
+
+map.addLayer(markers);
 
 </script>
 

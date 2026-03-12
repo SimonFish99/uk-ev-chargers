@@ -6,19 +6,61 @@
 
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
+
 <style>
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+}
+
+header {
+  background: #1f2937;
+  padding: 12px 20px;
+}
+
+.logo {
+  color: white;
+  text-decoration: none;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.container {
+  padding: 20px;
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 15px;
+  text-decoration: none;
+  color: #2563eb;
+  font-weight: bold;
+}
+
 #map {
-  height: 400px;
+  height: 420px;
   margin-bottom: 30px;
   border-radius: 8px;
 }
+
 </style>
 
 </head>
 
 <body>
 
+<header>
+<a href="/" class="logo">PlugMap</a>
+</header>
+
+<div class="container">
+
 <h1>Bury St Edmunds EV Chargers</h1>
+
+<a href="/" class="back-link">← Back to homepage</a>
 
 <div id="map"></div>
 
@@ -101,7 +143,11 @@ Maynewater Lane
 
 </ul>
 
+</div>
+
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 
 <script>
 
@@ -114,13 +160,16 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 attribution: '&copy; OpenStreetMap contributors'
 }).addTo(map);
 
+var markers = L.markerClusterGroup();
 
 
-L.marker([
+
+var marker = L.marker([
 52.3557,
 0.4542
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>West Row VH</b><br>
 West Row Village Hall<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.3557,0.4542" target="_blank">
@@ -128,13 +177,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.3035,
 0.6388
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>SW Lackford Lakes</b><br>
 Lackford<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.3035,0.6388" target="_blank">
@@ -142,13 +194,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.2496,
 0.6894
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Glasswells</b><br>
 Glasswell<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.2496,0.6894" target="_blank">
@@ -156,13 +211,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.2395,
 0.9173
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Blackbourne</b><br>
 Blackbourne<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.2395,0.9173" target="_blank">
@@ -170,13 +228,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.2372,
 0.9092
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>PIS Elmswell Wesley</b><br>
 Wesley House<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.2372,0.9092" target="_blank">
@@ -184,13 +245,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.2487753384119,
 0.708061840337706
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>St Andrews long stay car park</b><br>
 St Andrews Street North<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.2487753384119,0.708061840337706" target="_blank">
@@ -198,13 +262,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.248295,
 0.724792
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Eastgate Street</b><br>
 Eastgate Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.248295,0.724792" target="_blank">
@@ -212,13 +279,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.25397,
 0.71627
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Tesco Superstore-Bury St Edmunds</b><br>
 St Saviours Interchange<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.25397,0.71627" target="_blank">
@@ -226,13 +296,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.249848,
 0.707977
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Springfield Road</b><br>
 Springfield Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.249848,0.707977" target="_blank">
@@ -240,13 +313,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.247135,
 0.7223
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>The Vinefields</b><br>
 The Vinefields<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.247135,0.7223" target="_blank">
@@ -254,13 +330,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.24137,
 0.718642
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Sparhawk Street</b><br>
 Sparhawk Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.24137,0.718642" target="_blank">
@@ -268,13 +347,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.240279,
 0.70902
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Out Westgate</b><br>
 Out Westgate<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.240279,0.70902" target="_blank">
@@ -282,13 +364,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.239852,
 0.720948
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Southgate Street</b><br>
 Southgate Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.239852,0.720948" target="_blank">
@@ -296,13 +381,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.239768,
 0.706531
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Out Westgate</b><br>
 Out Westgate<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.239768,0.706531" target="_blank">
@@ -310,13 +398,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.239323,
 0.720916
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Maynewater Lane</b><br>
 Maynewater Lane<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.239323,0.720916" target="_blank">
@@ -324,7 +415,11 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
+
+
+map.addLayer(markers);
 
 </script>
 

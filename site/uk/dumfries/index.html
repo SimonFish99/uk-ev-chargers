@@ -6,19 +6,61 @@
 
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
+
 <style>
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+}
+
+header {
+  background: #1f2937;
+  padding: 12px 20px;
+}
+
+.logo {
+  color: white;
+  text-decoration: none;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.container {
+  padding: 20px;
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 15px;
+  text-decoration: none;
+  color: #2563eb;
+  font-weight: bold;
+}
+
 #map {
-  height: 400px;
+  height: 420px;
   margin-bottom: 30px;
   border-radius: 8px;
 }
+
 </style>
 
 </head>
 
 <body>
 
+<header>
+<a href="/" class="logo">PlugMap</a>
+</header>
+
+<div class="container">
+
 <h1>Dumfries EV Chargers</h1>
+
+<a href="/" class="back-link">← Back to homepage</a>
 
 <div id="map"></div>
 
@@ -86,7 +128,11 @@ Bankend Road
 
 </ul>
 
+</div>
+
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 
 <script>
 
@@ -99,13 +145,16 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 attribution: '&copy; OpenStreetMap contributors'
 }).addTo(map);
 
+var markers = L.markerClusterGroup();
 
 
-L.marker([
+
+var marker = L.marker([
 54.98546376,
 -3.24871647
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Tesco Superstore-Annan</b><br>
 Scott's Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.98546376,-3.24871647" target="_blank">
@@ -113,13 +162,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.06714,
 -3.60721
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>SWARCO 7KW</b><br>
 Brooms Rd<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.06714,-3.60721" target="_blank">
@@ -127,13 +179,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.0671976,
 -3.61022406
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>The Loreburne Shopping Centre</b><br>
 The Loreburne Shopping Centre<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.0671976,-3.61022406" target="_blank">
@@ -141,13 +196,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.07072,
 -3.60839
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Dual Gecko</b><br>
 Newall Terrace<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.07072,-3.60839" target="_blank">
@@ -155,13 +213,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.070111,
 -3.606583
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Dual Gecko</b><br>
 Council Headquarters<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.070111,-3.606583" target="_blank">
@@ -169,13 +230,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.069912,
 -3.607619
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Dual Gecko</b><br>
 Newall Terrace Car Park<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.069912,-3.607619" target="_blank">
@@ -183,13 +247,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.06969,
 -3.6068
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>English Street, Dumfries (1)</b><br>
 132 English Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.06969,-3.6068" target="_blank">
@@ -197,13 +264,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.064535,
 -3.600911
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Dual Gecko</b><br>
 St. Joseph's College<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.064535,-3.600911" target="_blank">
@@ -211,13 +281,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.075025,
 -3.582216
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Tesco Superstore-Dumfries Peel Centre</b><br>
 Lockerbie Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.075025,-3.582216" target="_blank">
@@ -225,13 +298,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.05599,
 -3.59871
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Mountainhall Treatment Centre</b><br>
 66 Bankend Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.05599,-3.59871" target="_blank">
@@ -239,13 +315,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.068243,
 -3.601498
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Brooms Road Car Park</b><br>
 Brooms Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.068243,-3.601498" target="_blank">
@@ -253,13 +332,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.05184,
 -3.58918
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Mountainhall Treatment Centre, Dumfries</b><br>
 Bankend Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.05184,-3.58918" target="_blank">
@@ -267,7 +349,11 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
+
+
+map.addLayer(markers);
 
 </script>
 

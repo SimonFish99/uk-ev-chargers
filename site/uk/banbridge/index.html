@@ -6,19 +6,61 @@
 
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
+
 <style>
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+}
+
+header {
+  background: #1f2937;
+  padding: 12px 20px;
+}
+
+.logo {
+  color: white;
+  text-decoration: none;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.container {
+  padding: 20px;
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 15px;
+  text-decoration: none;
+  color: #2563eb;
+  font-weight: bold;
+}
+
 #map {
-  height: 400px;
+  height: 420px;
   margin-bottom: 30px;
   border-radius: 8px;
 }
+
 </style>
 
 </head>
 
 <body>
 
+<header>
+<a href="/" class="logo">PlugMap</a>
+</header>
+
+<div class="container">
+
 <h1>Banbridge EV Chargers</h1>
+
+<a href="/" class="back-link">← Back to homepage</a>
 
 <div id="map"></div>
 
@@ -61,7 +103,11 @@ Bridgewater Retail Park
 
 </ul>
 
+</div>
+
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 
 <script>
 
@@ -74,13 +120,16 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 attribution: '&copy; OpenStreetMap contributors'
 }).addTo(map);
 
+var markers = L.markerClusterGroup();
 
 
-L.marker([
+
+var marker = L.marker([
 54.33322342055695,
 -6.27747601830572
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>McDonald's</b><br>
 Bridgetwater Park<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.33322342055695,-6.27747601830572" target="_blank">
@@ -88,13 +137,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.33107298193403,
 -6.28055872042296
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Banbridge The Boulevard</b><br>
 Cascum Link<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.33107298193403,-6.28055872042296" target="_blank">
@@ -102,13 +154,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.34408329709541,
 -6.272890178153602
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Maxol</b><br>
 Newry Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.34408329709541,-6.272890178153602" target="_blank">
@@ -116,13 +171,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.34652316400653,
 -6.272488458459975
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Downshire Arms</b><br>
 Newry Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.34652316400653,-6.272488458459975" target="_blank">
@@ -130,13 +188,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.368550347799186,
 -6.217935696077632
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Barbican Centra A1, Banbridge</b><br>
 Dromore Rd<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.368550347799186,-6.217935696077632" target="_blank">
@@ -144,13 +205,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.333447039460054,
 -6.27394951934204
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Tesco Extra-Bridgewater</b><br>
 Bridgewater Retail Park<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.333447039460054,-6.27394951934204" target="_blank">
@@ -158,13 +222,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.34628829,
 -6.26442378
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Tesco Superstore-Banbridge</b><br>
 25a Castlewellan Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.34628829,-6.26442378" target="_blank">
@@ -172,7 +239,11 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
+
+
+map.addLayer(markers);
 
 </script>
 

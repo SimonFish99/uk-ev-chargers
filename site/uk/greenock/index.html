@@ -6,19 +6,61 @@
 
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
+
 <style>
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+}
+
+header {
+  background: #1f2937;
+  padding: 12px 20px;
+}
+
+.logo {
+  color: white;
+  text-decoration: none;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.container {
+  padding: 20px;
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 15px;
+  text-decoration: none;
+  color: #2563eb;
+  font-weight: bold;
+}
+
 #map {
-  height: 400px;
+  height: 420px;
   margin-bottom: 30px;
   border-radius: 8px;
 }
+
 </style>
 
 </head>
 
 <body>
 
+<header>
+<a href="/" class="logo">PlugMap</a>
+</header>
+
+<div class="container">
+
 <h1>Greenock EV Chargers</h1>
+
+<a href="/" class="back-link">← Back to homepage</a>
 
 <div id="map"></div>
 
@@ -51,7 +93,11 @@ Battery Park
 
 </ul>
 
+</div>
+
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 
 <script>
 
@@ -64,13 +110,16 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 attribution: '&copy; OpenStreetMap contributors'
 }).addTo(map);
 
+var markers = L.markerClusterGroup();
 
 
-L.marker([
+
+var marker = L.marker([
 55.911119162511596,
 -4.873019099067884
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>EVC Kip Marina</b><br>
 The Yacht<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.911119162511596,-4.873019099067884" target="_blank">
@@ -78,13 +127,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.946571,
 -4.753378
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Cathcart Street, Greenock</b><br>
 75-81 Cathcart Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.946571,-4.753378" target="_blank">
@@ -92,13 +144,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.942178,
 -4.725005
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>James Watt Dock Marina</b><br>
 60-64 East Hamilton Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.942178,-4.725005" target="_blank">
@@ -106,13 +161,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.95019,
 -4.758336
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Tesco Extra-Greenock</b><br>
 Dalrymple Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.95019,-4.758336" target="_blank">
@@ -120,13 +178,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.960352,
 -4.79682
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Battery Park, Greenock</b><br>
 Battery Park<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.960352,-4.79682" target="_blank">
@@ -134,7 +195,11 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
+
+
+map.addLayer(markers);
 
 </script>
 

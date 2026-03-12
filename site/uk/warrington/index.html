@@ -6,19 +6,61 @@
 
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
+
 <style>
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+}
+
+header {
+  background: #1f2937;
+  padding: 12px 20px;
+}
+
+.logo {
+  color: white;
+  text-decoration: none;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.container {
+  padding: 20px;
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 15px;
+  text-decoration: none;
+  color: #2563eb;
+  font-weight: bold;
+}
+
 #map {
-  height: 400px;
+  height: 420px;
   margin-bottom: 30px;
   border-radius: 8px;
 }
+
 </style>
 
 </head>
 
 <body>
 
+<header>
+<a href="/" class="logo">PlugMap</a>
+</header>
+
+<div class="container">
+
 <h1>Warrington EV Chargers</h1>
+
+<a href="/" class="back-link">← Back to homepage</a>
 
 <div id="map"></div>
 
@@ -121,7 +163,11 @@ Bank Street
 
 </ul>
 
+</div>
+
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 
 <script>
 
@@ -134,13 +180,16 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 attribution: '&copy; OpenStreetMap contributors'
 }).addTo(map);
 
+var markers = L.markerClusterGroup();
 
 
-L.marker([
+
+var marker = L.marker([
 53.4159366,
 -2.64014065
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Apollo Retail Park</b><br>
 Charon Way<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.4159366,-2.64014065" target="_blank">
@@ -148,13 +197,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.47629,
 -2.496495
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Bents Garden Centre</b><br>
 Warrington Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.47629,-2.496495" target="_blank">
@@ -162,13 +214,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.417366,
 -2.638865
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Welcome Break Burtonwood Services</b><br>
 M62 Motorway<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.417366,-2.638865" target="_blank">
@@ -176,13 +231,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.418091,
 -2.626349
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>IKEA Warrington Services</b><br>
 910 Europa Boulevard	<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.418091,-2.626349" target="_blank">
@@ -190,13 +248,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.4804,
 -2.6055
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Asda</b><br>
 Golborne<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.4804,-2.6055" target="_blank">
@@ -204,13 +265,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.411476,
 -2.63299
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Miller & Carter Warrington</b><br>
 Westbrook<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.411476,-2.63299" target="_blank">
@@ -218,13 +282,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.408882,
 -2.629443
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Asda</b><br>
 Cromwell Avenue<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.408882,-2.629443" target="_blank">
@@ -232,13 +299,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.396675,
 -2.595931
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Tesco Extra - Warrington</b><br>
 Winwick Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.396675,-2.595931" target="_blank">
@@ -246,13 +316,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.387582,
 -2.601269
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>White Street 1</b><br>
 White Street 2<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.387582,-2.601269" target="_blank">
@@ -260,13 +333,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.393142,
 -2.614297
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Lexden Street 1</b><br>
 Lexden Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.393142,-2.614297" target="_blank">
@@ -274,13 +350,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.419025731577534,
 -2.527277912258455
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>MFG Oakwood Gate</b><br>
 Oakwood Gate Service Station<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.419025731577534,-2.527277912258455" target="_blank">
@@ -288,13 +367,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.396267,
 -2.570285
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Manchester Road 1</b><br>
 Manchester Road 1<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.396267,-2.570285" target="_blank">
@@ -302,13 +384,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.393697,
 -2.601855
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Gladstone Street 1</b><br>
 Gladstone Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.393697,-2.601855" target="_blank">
@@ -316,13 +401,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.392141,
 -2.59633
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Bewsey Street 1</b><br>
 Bewsey Street 1<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.392141,-2.59633" target="_blank">
@@ -330,13 +418,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.3972870545603,
 -2.59562390852977
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Tesco Extra Warrington</b><br>
 Winwick Rd<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.3972870545603,-2.59562390852977" target="_blank">
@@ -344,13 +435,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.4119593050515,
 -2.63318158811603
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Miller & Carter Warrington</b><br>
 Delta Crescent<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.4119593050515,-2.63318158811603" target="_blank">
@@ -358,13 +452,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.420643,
 -2.599431
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Premier Inn Warrington</b><br>
 Winwick Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.420643,-2.599431" target="_blank">
@@ -372,13 +469,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.3946,
 -2.638034
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Warrington West Railway Station</b><br>
 Great Sankey<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.3946,-2.638034" target="_blank">
@@ -386,13 +486,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.387424,
 -2.591303
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Time Square Multi Story Car Park</b><br>
 Bank Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.387424,-2.591303" target="_blank">
@@ -400,7 +503,11 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
+
+
+map.addLayer(markers);
 
 </script>
 

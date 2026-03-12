@@ -6,19 +6,61 @@
 
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
+
 <style>
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+}
+
+header {
+  background: #1f2937;
+  padding: 12px 20px;
+}
+
+.logo {
+  color: white;
+  text-decoration: none;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.container {
+  padding: 20px;
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 15px;
+  text-decoration: none;
+  color: #2563eb;
+  font-weight: bold;
+}
+
 #map {
-  height: 400px;
+  height: 420px;
   margin-bottom: 30px;
   border-radius: 8px;
 }
+
 </style>
 
 </head>
 
 <body>
 
+<header>
+<a href="/" class="logo">PlugMap</a>
+</header>
+
+<div class="container">
+
 <h1>Belfast EV Chargers</h1>
+
+<a href="/" class="back-link">← Back to homepage</a>
 
 <div id="map"></div>
 
@@ -286,7 +328,11 @@ Blacks Road - Park & Ride
 
 </ul>
 
+</div>
+
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 
 <script>
 
@@ -299,13 +345,16 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 attribution: '&copy; OpenStreetMap contributors'
 }).addTo(map);
 
+var markers = L.markerClusterGroup();
 
 
-L.marker([
+
+var marker = L.marker([
 54.58683597868861,
 -5.926869327870463
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Holiday Inn Express</b><br>
 106 University Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.58683597868861,-5.926869327870463" target="_blank">
@@ -313,13 +362,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.59781838901711,
 -5.9247848069618385
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Q-Park Victoria Square</b><br>
 Level 2<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.59781838901711,-5.9247848069618385" target="_blank">
@@ -327,13 +379,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.60587197968522,
 -5.921836948395139
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Belfast Harbour Gatehouse</b><br>
 Corporation St<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.60587197968522,-5.921836948395139" target="_blank">
@@ -341,13 +396,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.582130927429404,
 -5.978269372892328
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Kennedy Centre (Rear)</b><br>
 564 - 568 Falls Rd<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.582130927429404,-5.978269372892328" target="_blank">
@@ -355,13 +413,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.5731282351679,
 -5.958685269006196
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Maven</b><br>
 364 Lisburn Rd<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.5731282351679,-5.958685269006196" target="_blank">
@@ -369,13 +430,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.57655888754823,
 -5.907399562193774
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Aquinas Diocesan Grammar School</b><br>
 518 Ravenhill Rd<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.57655888754823,-5.907399562193774" target="_blank">
@@ -383,13 +447,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.59597268906438,
 -5.877610089232121
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Hagan Homes</b><br>
 149 Upper Newtownards Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.59597268906438,-5.877610089232121" target="_blank">
@@ -397,13 +464,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.60030701379449,
 -5.908954860252749
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>City East Business Centre</b><br>
 68 - 72 Newtownards Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.60030701379449,-5.908954860252749" target="_blank">
@@ -411,13 +481,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.568316314021985,
 -6.008840773806838
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Lidl</b><br>
 Stewartstown Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.568316314021985,-6.008840773806838" target="_blank">
@@ -425,13 +498,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.61775849347384,
 -5.916718598216534
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Translink</b><br>
 Duncrue St<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.61775849347384,-5.916718598216534" target="_blank">
@@ -439,13 +515,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.59755058291415,
 -5.910319280454331
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Translink</b><br>
 Mountpottinger Link<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.59755058291415,-5.910319280454331" target="_blank">
@@ -453,13 +532,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.6036580967251,
 -5.901660286614742
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Porsche</b><br>
 90 Sydenham Rd<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.6036580967251,-5.901660286614742" target="_blank">
@@ -467,13 +549,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.6216797381515,
 -5.918406052354868
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Coastways Storage & Removals</b><br>
 132 Duncrue St<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.6216797381515,-5.918406052354868" target="_blank">
@@ -481,13 +566,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.57916577204068,
 -5.891458824304209
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>EJ Harper & Co</b><br>
 34 Montgomery Rd<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.57916577204068,-5.891458824304209" target="_blank">
@@ -495,13 +583,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.5915543638793,
 -5.92074940106855
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Lloyds Banking Group</b><br>
 Cromac Place<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.5915543638793,-5.92074940106855" target="_blank">
@@ -509,13 +600,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.57908481093622,
 -5.979554429275595
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Lidl</b><br>
 Andersonstown Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.57908481093622,-5.979554429275595" target="_blank">
@@ -523,13 +617,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.584264165100905,
 -5.959307193742603
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Lidl</b><br>
 Boucher Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.584264165100905,-5.959307193742603" target="_blank">
@@ -537,13 +634,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.621903551329495,
 -5.923884929254882
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Grove Wellbeing Centre</b><br>
 York Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.621903551329495,-5.923884929254882" target="_blank">
@@ -551,13 +651,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.60398421999412,
 -5.92192310509779
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>NCP Belfast City Quays</b><br>
 Donegall Quay<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.60398421999412,-5.92192310509779" target="_blank">
@@ -565,13 +668,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.60841974123156,
 -5.909708620940933
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Titanic Visitors Centre</b><br>
 1 Olympic Way<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.60841974123156,-5.909708620940933" target="_blank">
@@ -579,13 +685,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.60835944858832,
 -5.9067947823361635
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Titanic Quarter Carpark B</b><br>
 12 Queens Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.60835944858832,-5.9067947823361635" target="_blank">
@@ -593,13 +702,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.604066886025265,
 -5.910100410717945
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Public Record Office of Northern Ireland</b><br>
 Titanic Boulevard<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.604066886025265,-5.910100410717945" target="_blank">
@@ -607,13 +719,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.58044190417212,
 -5.949735867959902
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Cordia Apartments</b><br>
 355, 367 Lisburn Rd<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.58044190417212,-5.949735867959902" target="_blank">
@@ -621,13 +736,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.580512802135644,
 -5.979838237998365
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Ionity Belfast</b><br>
 Kennedy Centre<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.580512802135644,-5.979838237998365" target="_blank">
@@ -635,13 +753,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.590877563269146,
 -5.985115461845453
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Whiterock Leisure Centre</b><br>
 Whiterock Close<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.590877563269146,-5.985115461845453" target="_blank">
@@ -649,13 +770,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.59464514971165,
 -5.896093001252439
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Avoniel Leisure Centre</b><br>
 Avoniel Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.59464514971165,-5.896093001252439" target="_blank">
@@ -663,13 +787,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.5728532432052,
 -6.00815883633922
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Patrick Sarsfields GAC Belfast</b><br>
 25A Stewartstown Ave<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.5728532432052,-6.00815883633922" target="_blank">
@@ -677,13 +804,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.62046,
 -5.863654
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>IKEA Belfast</b><br>
 Airport Road West<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.62046,-5.863654" target="_blank">
@@ -691,13 +821,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.595833,
 -5.937272
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Value Car Parks Weavers Cross</b><br>
 19-31 Grosvenor Rd<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.595833,-5.937272" target="_blank">
@@ -705,13 +838,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.577258,
 -5.882369
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Lisnasharragh Leisure Centre</b><br>
 27-35 Montgomery Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.577258,-5.882369" target="_blank">
@@ -719,13 +855,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.61513637147459,
 -5.89892167461403
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Catalyst (Front)</b><br>
 The Concourse<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.61513637147459,-5.89892167461403" target="_blank">
@@ -733,13 +872,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.6130606793281,
 -5.901966030342209
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Catalyst (Front)</b><br>
 Innovation Centre<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.6130606793281,-5.901966030342209" target="_blank">
@@ -747,13 +889,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.590904,
 -5.926493
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Ormeau Car Park</b><br>
 Ormeau Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.590904,-5.926493" target="_blank">
@@ -761,13 +906,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.55085811721446,
 -5.947997314391614
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Crown Plaza Hotel</b><br>
 117 Milltown Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.55085811721446,-5.947997314391614" target="_blank">
@@ -775,13 +923,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.62974979695787,
 -5.908305137857269
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Fibrus</b><br>
 104 - 108 Dargan Crescent<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.62974979695787,-5.908305137857269" target="_blank">
@@ -789,13 +940,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.58341412055637,
 -5.960459339587487
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Tesla Supercharger Belfast</b><br>
 15 Boucher Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.58341412055637,-5.960459339587487" target="_blank">
@@ -803,13 +957,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.6223745160932,
 -5.8617556740236125
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Lidl Hollywood Exchange</b><br>
 Hollywood Exchange<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.6223745160932,-5.8617556740236125" target="_blank">
@@ -817,13 +974,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.61185639886631,
 -5.955474564955665
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Lidl Hillview, Belfast</b><br>
 Hillview<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.61185639886631,-5.955474564955665" target="_blank">
@@ -831,13 +991,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.58865542359729,
 -5.9622359252388435
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Park Centre</b><br>
 Donegall Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.58865542359729,-5.9622359252388435" target="_blank">
@@ -845,13 +1008,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.61113615041856,
 -5.956293608115857
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Maxol Edenderry</b><br>
 298 Crumlin Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.61113615041856,-5.956293608115857" target="_blank">
@@ -859,13 +1025,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.57952193481066,
 -5.877712377179222
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Lidl</b><br>
 Montgomery Rd<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.57952193481066,-5.877712377179222" target="_blank">
@@ -873,13 +1042,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.5819116093646,
 -5.86600632203834
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>HRL Shandon Park</b><br>
 211 Knock Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.5819116093646,-5.86600632203834" target="_blank">
@@ -887,13 +1059,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.570703,
 -5.945917
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Ulster Independent Clinic</b><br>
 245 Stranmillis Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.570703,-5.945917" target="_blank">
@@ -901,13 +1076,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.58815078,
 -5.89395577
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Tesco Superstore-Castlereagh Road</b><br>
 160-220 Castlereagh Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.58815078,-5.89395577" target="_blank">
@@ -915,13 +1093,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.626669824542404,
 -5.923842823967959
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Lidl Shore Road</b><br>
 Shore Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.626669824542404,-5.923842823967959" target="_blank">
@@ -929,13 +1110,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.59970384875399,
 -5.946686602353452
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Twin Spires Complex</b><br>
 155 Northumberland Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.59970384875399,-5.946686602353452" target="_blank">
@@ -943,13 +1127,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.595005,
 -5.931841
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Grand Central Hotel</b><br>
 9-15 Bedford St<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.595005,-5.931841" target="_blank">
@@ -957,13 +1144,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.593905,
 -5.839092
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>The Stormont Hotel</b><br>
 Upper Newtownards<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.593905,-5.839092" target="_blank">
@@ -971,13 +1161,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.587703,
 -5.943756
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Belfast City Hospital Multi Storey Car Park</b><br>
 Belfast City Hospital,<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.587703,-5.943756" target="_blank">
@@ -985,13 +1178,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.57771141713525,
 -5.882713830855437
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Montgomery Road</b><br>
 27-35 Montgomery Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.57771141713525,-5.882713830855437" target="_blank">
@@ -999,13 +1195,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.566999,
 -5.97582
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Musgrave Park Hospital</b><br>
 Musgrave Park Hospital<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.566999,-5.97582" target="_blank">
@@ -1013,13 +1212,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.555115,
 -5.998244
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Blacks Road - Park & Ride</b><br>
 Blacks Road - Park & Ride<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.555115,-5.998244" target="_blank">
@@ -1027,7 +1229,11 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
+
+
+map.addLayer(markers);
 
 </script>
 

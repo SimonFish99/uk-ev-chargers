@@ -6,19 +6,61 @@
 
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
+
 <style>
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+}
+
+header {
+  background: #1f2937;
+  padding: 12px 20px;
+}
+
+.logo {
+  color: white;
+  text-decoration: none;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.container {
+  padding: 20px;
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 15px;
+  text-decoration: none;
+  color: #2563eb;
+  font-weight: bold;
+}
+
 #map {
-  height: 400px;
+  height: 420px;
   margin-bottom: 30px;
   border-radius: 8px;
 }
+
 </style>
 
 </head>
 
 <body>
 
+<header>
+<a href="/" class="logo">PlugMap</a>
+</header>
+
+<div class="container">
+
 <h1>King's Lynn EV Chargers</h1>
+
+<a href="/" class="back-link">← Back to homepage</a>
 
 <div id="map"></div>
 
@@ -76,7 +118,11 @@ Kellard Place
 
 </ul>
 
+</div>
+
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 
 <script>
 
@@ -89,13 +135,16 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 attribution: '&copy; OpenStreetMap contributors'
 }).addTo(map);
 
+var markers = L.markerClusterGroup();
 
 
-L.marker([
+
+var marker = L.marker([
 52.739363464544965,
 0.41792134738508935
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Sainsbury's Kings Lynn</b><br>
 Scania Way<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.739363464544965,0.41792134738508935" target="_blank">
@@ -103,13 +152,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.947033,
 0.727832
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>North Street Car Park, Burnham Market</b><br>
 Burnham Market<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.947033,0.727832" target="_blank">
@@ -117,13 +169,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.946882,
 0.727798
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>North Street Car Park, Burnham Market</b><br>
 Burnham Market<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.946882,0.727798" target="_blank">
@@ -131,13 +186,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.754442,
 0.404868
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Morrisons Kings Lynn</b><br>
 Coburg Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.754442,0.404868" target="_blank">
@@ -145,13 +203,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.76376,
 0.41741
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Lynnsport North Car Park</b><br>
 Lynnsport North Car Park<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.76376,0.41741" target="_blank">
@@ -159,13 +220,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.757732,
 0.420211
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Gaywood Library Car Park</b><br>
 Gaywood Library Car Park<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.757732,0.420211" target="_blank">
@@ -173,13 +237,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.73559279546518,
 0.41405724771050245
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>king's Lynn supercharger</b><br>
 Beveridge Way<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.73559279546518,0.41405724771050245" target="_blank">
@@ -187,13 +254,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.753291,
 0.438242
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Fairstead Centre Point Car Park</b><br>
 Fairstead Centre Point Car Park<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.753291,0.438242" target="_blank">
@@ -201,13 +271,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.756259,
 0.39626
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>The Duke's Head Hotel</b><br>
 5-6 Tuesday Market Place<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.756259,0.39626" target="_blank">
@@ -215,13 +288,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.7438444896264,
 0.402042676932865
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Kings Lynn Starbucks</b><br>
 Kellard Place<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.7438444896264,0.402042676932865" target="_blank">
@@ -229,7 +305,11 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
+
+
+map.addLayer(markers);
 
 </script>
 

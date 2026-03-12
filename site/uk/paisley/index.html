@@ -6,19 +6,61 @@
 
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
+
 <style>
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+}
+
+header {
+  background: #1f2937;
+  padding: 12px 20px;
+}
+
+.logo {
+  color: white;
+  text-decoration: none;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.container {
+  padding: 20px;
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 15px;
+  text-decoration: none;
+  color: #2563eb;
+  font-weight: bold;
+}
+
 #map {
-  height: 400px;
+  height: 420px;
   margin-bottom: 30px;
   border-radius: 8px;
 }
+
 </style>
 
 </head>
 
 <body>
 
+<header>
+<a href="/" class="logo">PlugMap</a>
+</header>
+
+<div class="container">
+
 <h1>Paisley EV Chargers</h1>
+
+<a href="/" class="back-link">← Back to homepage</a>
 
 <div id="map"></div>
 
@@ -71,7 +113,11 @@ East Lane
 
 </ul>
 
+</div>
+
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 
 <script>
 
@@ -84,13 +130,16 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 attribution: '&copy; OpenStreetMap contributors'
 }).addTo(map);
 
+var markers = L.markerClusterGroup();
 
 
-L.marker([
+
+var marker = L.marker([
 55.860328,
 -4.415917
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Abbotsinch Retail Park</b><br>
 Washington Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.860328,-4.415917" target="_blank">
@@ -98,13 +147,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.842129,
 -4.415631
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Morrisons</b><br>
 Anchor Mills<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.842129,-4.415631" target="_blank">
@@ -112,13 +164,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.843247,
 -4.420461
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Bridge Street Car Park</b><br>
 Bridge Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.843247,-4.420461" target="_blank">
@@ -126,13 +181,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.8499,
 -4.4532
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Falcon Centre</b><br>
 Falcon Crescent<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.8499,-4.4532" target="_blank">
@@ -140,13 +198,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.8235,
 -4.4429
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Glenburn Community Centre</b><br>
 Fairway Avenue<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.8235,-4.4429" target="_blank">
@@ -154,13 +215,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.846057,
 -4.402967
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Tesco Superstore-Paisley</b><br>
 East Lane<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.846057,-4.402967" target="_blank">
@@ -168,13 +232,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.843554,
 -4.477321
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>1 West Avenue</b><br>
 1 West Avenue<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.843554,-4.477321" target="_blank">
@@ -182,13 +249,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.854042,
 -4.435102
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Community Meals Service, Paisley</b><br>
 5 Clark Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.854042,-4.435102" target="_blank">
@@ -196,13 +266,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.843674,
 -4.428495
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>41 Storie Street</b><br>
 41 Storie Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.843674,-4.428495" target="_blank">
@@ -210,7 +283,11 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
+
+
+map.addLayer(markers);
 
 </script>
 

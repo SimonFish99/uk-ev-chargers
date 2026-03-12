@@ -6,19 +6,61 @@
 
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
+
 <style>
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+}
+
+header {
+  background: #1f2937;
+  padding: 12px 20px;
+}
+
+.logo {
+  color: white;
+  text-decoration: none;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.container {
+  padding: 20px;
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 15px;
+  text-decoration: none;
+  color: #2563eb;
+  font-weight: bold;
+}
+
 #map {
-  height: 400px;
+  height: 420px;
   margin-bottom: 30px;
   border-radius: 8px;
 }
+
 </style>
 
 </head>
 
 <body>
 
+<header>
+<a href="/" class="logo">PlugMap</a>
+</header>
+
+<div class="container">
+
 <h1>Swansea EV Chargers</h1>
+
+<a href="/" class="back-link">← Back to homepage</a>
 
 <div id="map"></div>
 
@@ -151,7 +193,11 @@ Townhill
 
 </ul>
 
+</div>
+
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 
 <script>
 
@@ -164,13 +210,16 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 attribution: '&copy; OpenStreetMap contributors'
 }).addTo(map);
 
+var markers = L.markerClusterGroup();
 
 
-L.marker([
+
+var marker = L.marker([
 51.658672,
 -3.901234
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Tesco Extra - Llansamlet</b><br>
 Nantyffin Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.658672,-3.901234" target="_blank">
@@ -178,13 +227,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.648968,
 -3.919454
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>BEMIS-SWAN STATION 1</b><br>
 Siemens Way Enterprise Park<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.648968,-3.919454" target="_blank">
@@ -192,13 +244,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.61982557450335,
 -3.8753238213055283
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Swansea University - Active Buildings</b><br>
 Bay Campus<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.61982557450335,-3.8753238213055283" target="_blank">
@@ -206,13 +261,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.619952,
 -3.939262
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>The Strand Car Park</b><br>
 The Strand<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.619952,-3.939262" target="_blank">
@@ -220,13 +278,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.599391,
 -3.994256
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Blackpill Car Park</b><br>
 Derwen Fawr Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.599391,-3.994256" target="_blank">
@@ -234,13 +295,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.678688,
 -3.99368
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Moto Swansea Services</b><br>
 M4 47<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.678688,-3.99368" target="_blank">
@@ -248,13 +312,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.760616,
 -3.791097
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Asda</b><br>
 Godrergraig<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.760616,-3.791097" target="_blank">
@@ -262,13 +329,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.620953,
 -3.946566
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Pell Street Car Park</b><br>
 Pell Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.620953,-3.946566" target="_blank">
@@ -276,13 +346,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.579438307620734,
 -4.035179911888235
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b> Down to Earth Project (Murton Site)</b><br>
 72a Manselfield Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.579438307620734,-4.035179911888235" target="_blank">
@@ -290,13 +363,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.657556,
 -3.925563
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Bassetts Nissan</b><br>
 Neath Road, Morriston, Swansea<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.657556,-3.925563" target="_blank">
@@ -304,13 +380,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.64349,
 -3.926646
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Pentrechwyth</b><br>
 Pentrechwyth<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.64349,-3.926646" target="_blank">
@@ -318,13 +397,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.62143,
 -3.946135
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Uwtsd-Dynefor</b><br>
 University of Wales Trinity Saint David<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.62143,-3.946135" target="_blank">
@@ -332,13 +414,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.71596,
 -4.041841
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Pontarddulais Car Park</b><br>
 Water Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.71596,-4.041841" target="_blank">
@@ -346,13 +431,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.696842,
 -3.892164
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Clydach Car Park</b><br>
 Vardre Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.696842,-3.892164" target="_blank">
@@ -360,13 +448,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.667815,
 -4.040865
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Goreseinon Car Park</b><br>
 Lime Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.667815,-4.040865" target="_blank">
@@ -374,13 +465,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.666508,
 -3.926733
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Morriston Car Park</b><br>
 Treharne Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.666508,-3.926733" target="_blank">
@@ -388,13 +482,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.648485,
 -4.037119
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Gowerton Car Park</b><br>
 Gorwydd Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.648485,-4.037119" target="_blank">
@@ -402,13 +499,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.639351,
 -3.934725
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Landore Park and Ride Car Park</b><br>
 Plasmarl<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.639351,-3.934725" target="_blank">
@@ -416,13 +516,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.621895,
 -3.910315
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Fabian Way Park and Ride Car Park</b><br>
 Fabian Way<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.621895,-3.910315" target="_blank">
@@ -430,13 +533,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.618206,
 -3.934674
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>East Burrows Car Park</b><br>
 East Burrows Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.618206,-3.934674" target="_blank">
@@ -444,13 +550,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.61444,
 -3.930318
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Swansea Point Car Park</b><br>
 Trawler Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.61444,-3.930318" target="_blank">
@@ -458,13 +567,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.614245,
 -3.941645
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Trawler Road Car Park</b><br>
 Trawler Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.614245,-3.941645" target="_blank">
@@ -472,13 +584,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.6125,
 -3.960844
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Baths Car Park</b><br>
 St Helens Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.6125,-3.960844" target="_blank">
@@ -486,13 +601,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.601662025095436,
 -4.239874088411852
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Kennexstone Camping & Touring Park</b><br>
 Llangennith<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.601662025095436,-4.239874088411852" target="_blank">
@@ -500,13 +618,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.63335,
 -3.973451
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>BT Swansea Fleet Garage</b><br>
 Townhill<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.63335,-3.973451" target="_blank">
@@ -514,7 +635,11 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
+
+
+map.addLayer(markers);
 
 </script>
 

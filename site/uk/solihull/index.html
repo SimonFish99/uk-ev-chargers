@@ -6,19 +6,61 @@
 
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
+
 <style>
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+}
+
+header {
+  background: #1f2937;
+  padding: 12px 20px;
+}
+
+.logo {
+  color: white;
+  text-decoration: none;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.container {
+  padding: 20px;
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 15px;
+  text-decoration: none;
+  color: #2563eb;
+  font-weight: bold;
+}
+
 #map {
-  height: 400px;
+  height: 420px;
   margin-bottom: 30px;
   border-radius: 8px;
 }
+
 </style>
 
 </head>
 
 <body>
 
+<header>
+<a href="/" class="logo">PlugMap</a>
+</header>
+
+<div class="container">
+
 <h1>Solihull EV Chargers</h1>
+
+<a href="/" class="back-link">← Back to homepage</a>
 
 <div id="map"></div>
 
@@ -156,7 +198,11 @@ Huskisson Way
 
 </ul>
 
+</div>
+
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 
 <script>
 
@@ -169,13 +215,16 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 attribution: '&copy; OpenStreetMap contributors'
 }).addTo(map);
 
+var markers = L.markerClusterGroup();
 
 
-L.marker([
+
+var marker = L.marker([
 52.4259647178086,
 -1.7057146156606
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Hampton Manor</b><br>
 Shadowbrook Lane<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.4259647178086,-1.7057146156606" target="_blank">
@@ -183,13 +232,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.502143,
 -1.749091
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Pembroke House</b><br>
 Barle Grove<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.502143,-1.749091" target="_blank">
@@ -197,13 +249,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.489314,
 -1.756177
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Digby House</b><br>
 Kingshurst<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.489314,-1.756177" target="_blank">
@@ -211,13 +266,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.485972,
 -1.738864
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Westham House</b><br>
 Forth Drive<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.485972,-1.738864" target="_blank">
@@ -225,13 +283,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.482091,
 -1.728591
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Mansfield House</b><br>
 Woodlands Way<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.482091,-1.728591" target="_blank">
@@ -239,13 +300,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.479962,
 -1.753874
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Crabtree Hall</b><br>
 Kingshurst<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.479962,-1.753874" target="_blank">
@@ -253,13 +317,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.477752,
 -1.725934
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Dunster Road</b><br>
 Chelmsley Wood<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.477752,-1.725934" target="_blank">
@@ -267,13 +334,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.45132462931761,
 -1.7123735321194715
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>BP Pulse Charging Hub</b><br>
 East Car Park Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.45132462931761,-1.7123735321194715" target="_blank">
@@ -281,13 +351,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.386021,
 -1.800132
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Premier Inn Solihull South (M42)</b><br>
 Stratford Road, Shirley<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.386021,-1.800132" target="_blank">
@@ -295,13 +368,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.358471,
 -1.780429
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Premier Inn Solihull Hockley Heath</b><br>
 Hockley Heath<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.358471,-1.780429" target="_blank">
@@ -309,13 +385,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.452319,
 -1.731253
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Birmingham International Airport</b><br>
 Drop and Go<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.452319,-1.731253" target="_blank">
@@ -323,13 +402,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.412998,
 -1.82881
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Asda</b><br>
 Shirley<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.412998,-1.82881" target="_blank">
@@ -337,13 +419,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.441852,
 -1.771401
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Tanhouse Farm Road</b><br>
 Tanhouse Farm Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.441852,-1.771401" target="_blank">
@@ -351,13 +436,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.440131,
 -1.806586
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Masons Way</b><br>
 Masons Way<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.440131,-1.806586" target="_blank">
@@ -365,13 +453,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.438983,
 -1.787567
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Redfern Close</b><br>
 Redfern Close<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.438983,-1.787567" target="_blank">
@@ -379,13 +470,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.436029,
 -1.781964
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Lode Ln 35</b><br>
 Lode Ln 35<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.436029,-1.781964" target="_blank">
@@ -393,13 +487,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.427053,
 -1.769338
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Draycote Close</b><br>
 Draycote Close<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.427053,-1.769338" target="_blank">
@@ -407,13 +504,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.42601,
 -1.766515
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Walsgrave Rd</b><br>
 Walsgrave Rd<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.42601,-1.766515" target="_blank">
@@ -421,13 +521,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.424857,
 -1.771805
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Wharf Lane</b><br>
 Wharf Lane<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.424857,-1.771805" target="_blank">
@@ -435,13 +538,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.404565,
 -1.843456
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Haslucks Green Road</b><br>
 Haslucks Green Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.404565,-1.843456" target="_blank">
@@ -449,13 +555,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.402216,
 -1.822242
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Falstaff Rd</b><br>
 Falstaff Rd<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.402216,-1.822242" target="_blank">
@@ -463,13 +572,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.388288,
 -1.736306
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Village Hall Car Park Knowle</b><br>
 St Johns Close<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.388288,-1.736306" target="_blank">
@@ -477,13 +589,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.375599,
 -1.79792
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Arup Campus</b><br>
 Blythe Valley Park<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.375599,-1.79792" target="_blank">
@@ -491,13 +606,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.414558,
 -1.78143
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Lode Lane</b><br>
 Lode Lane<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.414558,-1.78143" target="_blank">
@@ -505,13 +623,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.384201,
 -1.789985
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Tesco Extra-Solihull</b><br>
 Stratford Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.384201,-1.789985" target="_blank">
@@ -519,13 +640,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.381916,
 -1.788267
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>IM Properties (Longton) Ltd</b><br>
 Huskisson Way<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.381916,-1.788267" target="_blank">
@@ -533,7 +657,11 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
+
+
+map.addLayer(markers);
 
 </script>
 

@@ -6,19 +6,61 @@
 
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
+
 <style>
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+}
+
+header {
+  background: #1f2937;
+  padding: 12px 20px;
+}
+
+.logo {
+  color: white;
+  text-decoration: none;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.container {
+  padding: 20px;
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 15px;
+  text-decoration: none;
+  color: #2563eb;
+  font-weight: bold;
+}
+
 #map {
-  height: 400px;
+  height: 420px;
   margin-bottom: 30px;
   border-radius: 8px;
 }
+
 </style>
 
 </head>
 
 <body>
 
+<header>
+<a href="/" class="logo">PlugMap</a>
+</header>
+
+<div class="container">
+
 <h1>Dungannon EV Chargers</h1>
+
+<a href="/" class="back-link">← Back to homepage</a>
 
 <div id="map"></div>
 
@@ -81,7 +123,11 @@ Tamnamore Park and Ride
 
 </ul>
 
+</div>
+
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 
 <script>
 
@@ -94,13 +140,16 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 attribution: '&copy; OpenStreetMap contributors'
 }).addTo(map);
 
+var markers = L.markerClusterGroup();
 
 
-L.marker([
+
+var marker = L.marker([
 54.50945295333054,
 -6.768056833638639
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>South Tyrone Hospital</b><br>
 Carland Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.50945295333054,-6.768056833638639" target="_blank">
@@ -108,13 +157,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.48742652115209,
 -6.7515753633933855
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Dungannon Supercharger</b><br>
 Main Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.48742652115209,-6.7515753633933855" target="_blank">
@@ -122,13 +174,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.479401476698115,
 -6.7810060659115265
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Ionity Dungannon</b><br>
 M1 Motorway<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.479401476698115,-6.7810060659115265" target="_blank">
@@ -136,13 +191,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.47994419463808,
 -6.78195291924726
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Centra M1 Dungannon</b><br>
 Woodlough Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.47994419463808,-6.78195291924726" target="_blank">
@@ -150,13 +208,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.4455661112533,
 -6.689352661581779
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Eurospar Moy</b><br>
 Charlemont Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.4455661112533,-6.689352661581779" target="_blank">
@@ -164,13 +225,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.4940295201435,
 -6.75439175213532
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>HRL Ranfurly</b><br>
 20 Moy Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.4940295201435,-6.75439175213532" target="_blank">
@@ -178,13 +242,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.48694419339179,
 -6.745024812051497
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Maxol</b><br>
 57 Moy Rd<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.48694419339179,-6.745024812051497" target="_blank">
@@ -192,13 +259,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.501241,
 -6.777122
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Tesco Superstore-Dungannon</b><br>
 Beech Vly<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.501241,-6.777122" target="_blank">
@@ -206,13 +276,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.5399,
 -6.7
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>DRD Car Park Cornmill Coalisland</b><br>
 B520<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.5399,-6.7" target="_blank">
@@ -220,13 +293,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.49672577845715,
 -6.651600726777588
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Tamnamore Park and Ride</b><br>
 Tamnamore Park and Ride<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.49672577845715,-6.651600726777588" target="_blank">
@@ -234,13 +310,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.483491296750145,
 -6.616297904206476
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Peatland Park Dungannon</b><br>
 33 Derryhubbert Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.483491296750145,-6.616297904206476" target="_blank">
@@ -248,7 +327,11 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
+
+
+map.addLayer(markers);
 
 </script>
 

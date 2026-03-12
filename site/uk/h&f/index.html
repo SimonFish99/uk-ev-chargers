@@ -6,19 +6,61 @@
 
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
+
 <style>
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+}
+
+header {
+  background: #1f2937;
+  padding: 12px 20px;
+}
+
+.logo {
+  color: white;
+  text-decoration: none;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.container {
+  padding: 20px;
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 15px;
+  text-decoration: none;
+  color: #2563eb;
+  font-weight: bold;
+}
+
 #map {
-  height: 400px;
+  height: 420px;
   margin-bottom: 30px;
   border-radius: 8px;
 }
+
 </style>
 
 </head>
 
 <body>
 
+<header>
+<a href="/" class="logo">PlugMap</a>
+</header>
+
+<div class="container">
+
 <h1>H&F EV Chargers</h1>
+
+<a href="/" class="back-link">← Back to homepage</a>
 
 <div id="map"></div>
 
@@ -76,7 +118,11 @@ Steventon Road
 
 </ul>
 
+</div>
+
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 
 <script>
 
@@ -89,13 +135,16 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 attribution: '&copy; OpenStreetMap contributors'
 }).addTo(map);
 
+var markers = L.markerClusterGroup();
 
 
-L.marker([
+
+var marker = L.marker([
 51.50114,
 -0.228492
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Hammersmith Grove 2</b><br>
 Hammersmith Grove 2<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.50114,-0.228492" target="_blank">
@@ -103,13 +152,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.496547,
 -0.223916
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Shepherds Bush Road</b><br>
 Shepherds Bush Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.496547,-0.223916" target="_blank">
@@ -117,13 +169,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.494427,
 -0.215715
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Brook Green Site 2</b><br>
 Brook Green Site 2<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.494427,-0.215715" target="_blank">
@@ -131,13 +186,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.484226,
 -0.19497
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Seagrave Road - Site 2</b><br>
 Seagrave Road - Site 2<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.484226,-0.19497" target="_blank">
@@ -145,13 +203,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.480029,
 -0.19335
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Waterford Road</b><br>
 Waterford Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.480029,-0.19335" target="_blank">
@@ -159,13 +220,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.477518,
 -0.202017
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Kelvedon Road Site 2</b><br>
 Kelvedon Road Site 2<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.477518,-0.202017" target="_blank">
@@ -173,13 +237,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.470875,
 -0.195151
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Clancarty Road Site charge point re-position</b><br>
 Clancarty Road Site charge point re-position<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.470875,-0.195151" target="_blank">
@@ -187,13 +254,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.467487,
 -0.194119
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Peterborough Road</b><br>
 Peterborough Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.467487,-0.194119" target="_blank">
@@ -201,13 +271,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.496979,
 -0.214448
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Blythe Road Site 2</b><br>
 Blythe Road Site 2<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.496979,-0.214448" target="_blank">
@@ -215,13 +288,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.510552,
 -0.243259
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Steventon Road</b><br>
 Steventon Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.510552,-0.243259" target="_blank">
@@ -229,7 +305,11 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
+
+
+map.addLayer(markers);
 
 </script>
 

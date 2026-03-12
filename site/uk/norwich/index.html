@@ -6,19 +6,61 @@
 
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
+
 <style>
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+}
+
+header {
+  background: #1f2937;
+  padding: 12px 20px;
+}
+
+.logo {
+  color: white;
+  text-decoration: none;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.container {
+  padding: 20px;
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 15px;
+  text-decoration: none;
+  color: #2563eb;
+  font-weight: bold;
+}
+
 #map {
-  height: 400px;
+  height: 420px;
   margin-bottom: 30px;
   border-radius: 8px;
 }
+
 </style>
 
 </head>
 
 <body>
 
+<header>
+<a href="/" class="logo">PlugMap</a>
+</header>
+
+<div class="container">
+
 <h1>Norwich EV Chargers</h1>
+
+<a href="/" class="back-link">← Back to homepage</a>
 
 <div id="map"></div>
 
@@ -156,7 +198,11 @@ Volcan Road North
 
 </ul>
 
+</div>
+
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 
 <script>
 
@@ -169,13 +215,16 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 attribution: '&copy; OpenStreetMap contributors'
 }).addTo(map);
 
+var markers = L.markerClusterGroup();
 
 
-L.marker([
+
+var marker = L.marker([
 52.6016845,
 1.2274456
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>The Jubilee Centre</b><br>
 Walpole Crescent<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.6016845,1.2274456" target="_blank">
@@ -183,13 +232,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.6805,
 1.4215
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Acle Recreation Centre</b><br>
 Acle<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.6805,1.4215" target="_blank">
@@ -197,13 +249,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.641691,
 1.548347
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Acle Community Centre</b><br>
 Acle<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.641691,1.548347" target="_blank">
@@ -211,13 +266,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.6189,
 1.2148
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Ella May</b><br>
 Rosalind Franklin Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.6189,1.2148" target="_blank">
@@ -225,13 +283,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.615428,
 1.306942
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>County Hall Main Forecourt, Norwich 1</b><br>
 Martineau Lane<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.615428,1.306942" target="_blank">
@@ -239,13 +300,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.607931,
 1.25118
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>GL162</b><br>
 Eaton Centre, Church Ln<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.607931,1.25118" target="_blank">
@@ -253,13 +317,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.563,
 1.3438
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>SN&B Poringland</b><br>
 Crafton House<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.563,1.3438" target="_blank">
@@ -267,13 +334,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.65629179773882,
 1.2876136816644248
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Tesla Service Superchargers</b><br>
 Tesla Service Centre<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.65629179773882,1.2876136816644248" target="_blank">
@@ -281,13 +351,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.626423,
 1.288438
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>zest-jack-king-hand</b><br>
 Chapel Field E<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.626423,1.288438" target="_blank">
@@ -295,13 +368,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.615184,
 1.308271
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>County Hall Pay on Foot Car Park, Norwich 7</b><br>
 Martineau Lane<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.615184,1.308271" target="_blank">
@@ -309,13 +385,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.664399,
 1.289379
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>COOP Fifers Lane</b><br>
 Fifers Lane COOP<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.664399,1.289379" target="_blank">
@@ -323,13 +402,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.632885,
 1.281419
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>COOP Dereham Road</b><br>
 Dereham Road COOP<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.632885,1.281419" target="_blank">
@@ -337,13 +419,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.629595,
 1.247491
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>COOP Earlham Green</b><br>
 Earlham Green Lane COOP<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.629595,1.247491" target="_blank">
@@ -351,13 +436,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.65435982,
 1.18173912
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Copper Beech Pub & Restaurant</b><br>
 Alex Moorhouse Way<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.65435982,1.18173912" target="_blank">
@@ -365,13 +453,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.6682294,
 1.2721205
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>InstaVolt McDonald's Norwich</b><br>
 Delft Way<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.6682294,1.2721205" target="_blank">
@@ -379,13 +470,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.791303,
 1.253465
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Tesco Superstore - Aylsham</b><br>
 28 Norwich Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.791303,1.253465" target="_blank">
@@ -393,13 +487,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.626927,
 1.306493
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Norwich Station Car Park</b><br>
 Station Approach<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.626927,1.306493" target="_blank">
@@ -407,13 +504,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.588747,
 1.272659
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Harford Park & Ride 2</b><br>
 Ipswich Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.588747,1.272659" target="_blank">
@@ -421,13 +521,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.5545,
 1.178917
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Hethel Engineering Centre</b><br>
 Chapman Way<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.5545,1.178917" target="_blank">
@@ -435,13 +538,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.7253437155276,
 1.36182188987731
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>EVC The Norfolk Mead Hotel</b><br>
 The Norfolk Mead Hotel<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.7253437155276,1.36182188987731" target="_blank">
@@ -449,13 +555,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.60738458147449,
 1.2498037198931797
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Waitrose Car Park</b><br>
 Waitrose Car Park<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.60738458147449,1.2498037198931797" target="_blank">
@@ -463,13 +572,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.6527247,
 1.3045267
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>InstaVolt Starbucks Chartwell</b><br>
 Chartwell Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.6527247,1.3045267" target="_blank">
@@ -477,13 +589,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.62348233647384,
 1.2261899918993322
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Norwich Research Park Car Park 1</b><br>
 Colney Lane<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.62348233647384,1.2261899918993322" target="_blank">
@@ -491,13 +606,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.61827428904297,
 1.217018412272182
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>NRP Public Carpark Customer Charging</b><br>
 NRP Public Carpark<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.61827428904297,1.217018412272182" target="_blank">
@@ -505,13 +623,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.62466,
 1.308538
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Morrisons Norwich Riverside</b><br>
 4 Albion Way<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.62466,1.308538" target="_blank">
@@ -519,13 +640,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.664566,
 1.282016
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Desira RC</b><br>
 Volcan Road North<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.664566,1.282016" target="_blank">
@@ -533,7 +657,11 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
+
+
+map.addLayer(markers);
 
 </script>
 

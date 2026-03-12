@@ -6,19 +6,61 @@
 
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
+
 <style>
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+}
+
+header {
+  background: #1f2937;
+  padding: 12px 20px;
+}
+
+.logo {
+  color: white;
+  text-decoration: none;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.container {
+  padding: 20px;
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 15px;
+  text-decoration: none;
+  color: #2563eb;
+  font-weight: bold;
+}
+
 #map {
-  height: 400px;
+  height: 420px;
   margin-bottom: 30px;
   border-radius: 8px;
 }
+
 </style>
 
 </head>
 
 <body>
 
+<header>
+<a href="/" class="logo">PlugMap</a>
+</header>
+
+<div class="container">
+
 <h1>Watford EV Chargers</h1>
+
+<a href="/" class="back-link">← Back to homepage</a>
 
 <div id="map"></div>
 
@@ -221,7 +263,11 @@ Orphanage Road
 
 </ul>
 
+</div>
+
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 
 <script>
 
@@ -234,13 +280,16 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 attribution: '&copy; OpenStreetMap contributors'
 }).addTo(map);
 
+var markers = L.markerClusterGroup();
 
 
-L.marker([
+
+var marker = L.marker([
 51.64847271,
 -0.38735624
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>The Arches Retail Park</b><br>
 642 Lower High Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.64847271,-0.38735624" target="_blank">
@@ -248,13 +297,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.68154132563524,
 -0.38936309802494407
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Sainsbury's Dome Roundabout</b><br>
 Colne Way<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.68154132563524,-0.38936309802494407" target="_blank">
@@ -262,13 +314,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.644441,
 -0.423675
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Dapple Court</b><br>
 300 Croxley View<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.644441,-0.423675" target="_blank">
@@ -276,13 +331,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.661521,
 -0.398813
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Westland Road, Watford</b><br>
 Westland Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.661521,-0.398813" target="_blank">
@@ -290,13 +348,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.658964,
 -0.403444
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>The Avenue Carpark</b><br>
 Rickmansworth Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.658964,-0.403444" target="_blank">
@@ -304,13 +365,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.658999,
 -0.393842
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Sutton Road, Watford</b><br>
 Sutton Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.658999,-0.393842" target="_blank">
@@ -318,13 +382,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.657893,
 -0.401357
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Watford Gade 01</b><br>
 CitiPark Gade<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.657893,-0.401357" target="_blank">
@@ -332,13 +399,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.654999,
 -0.392859
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Intu Watford</b><br>
 Queens Car-park Level 1<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.654999,-0.392859" target="_blank">
@@ -346,13 +416,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.653278,
 -0.395104
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Granvill Road, Watford</b><br>
 Granvill Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.653278,-0.395104" target="_blank">
@@ -360,13 +433,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.650611,
 -0.404032
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Bandbury Street</b><br>
 Bandbury Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.650611,-0.404032" target="_blank">
@@ -374,13 +450,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.648285,
 -0.386395
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Century Retail Park</b><br>
 Dalton Way<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.648285,-0.386395" target="_blank">
@@ -388,13 +467,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.646622,
 -0.426528
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Watford Business Park</b><br>
 Greenhill Crescent<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.646622,-0.426528" target="_blank">
@@ -402,13 +484,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.646599,
 -0.42811
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Croxley Business Park</b><br>
 Building 1<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.646599,-0.42811" target="_blank">
@@ -416,13 +501,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.64593,
 -0.383176
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>RAWOWNED ATTENBOROUGH C1</b><br>
 5 Edinburgh Mews<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.64593,-0.383176" target="_blank">
@@ -430,13 +518,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.640562,
 -0.427887
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Renault Nissan Alliance</b><br>
 Unit 5, Wolsey Business Park, Watford, Hertfordshire<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.640562,-0.427887" target="_blank">
@@ -444,13 +535,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.656713,
 -0.39201
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Grovesnor Road, Watford</b><br>
 Grovesnor Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.656713,-0.39201" target="_blank">
@@ -458,13 +552,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.64857258397426,
 -0.3899420955300043
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Century Park</b><br>
 Dalton Way<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.64857258397426,-0.3899420955300043" target="_blank">
@@ -472,13 +569,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.670549,
 -0.39444
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Watford, Bradshaw Road</b><br>
 78 Bradshaw Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.670549,-0.39444" target="_blank">
@@ -486,13 +586,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.670414,
 -0.400168
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Victoria Road, Watford</b><br>
 67 Victoria Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.670414,-0.400168" target="_blank">
@@ -500,13 +603,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.670033,
 -0.396951
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Salisbury Road, Watford</b><br>
 Salisbury Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.670033,-0.396951" target="_blank">
@@ -514,13 +620,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.666349,
 -0.400482
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Church Road, Watford</b><br>
 Church Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.666349,-0.400482" target="_blank">
@@ -528,13 +637,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.664678,
 -0.401976
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Stamford Road, Watford</b><br>
 Stamford Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.664678,-0.401976" target="_blank">
@@ -542,13 +654,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.662258,
 -0.40143
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Watford, Essex Road</b><br>
 Next to Post Box, Essex Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.662258,-0.40143" target="_blank">
@@ -556,13 +671,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.660112,
 -0.394206
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Sotheron Road, Watford</b><br>
 Southernon Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.660112,-0.394206" target="_blank">
@@ -570,13 +688,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.658916,
 -0.421683
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Watford, Cassiobury Park 1 (Gade Avenue)</b><br>
 Cassiobury Park Car Park, Gade Avenue,<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.658916,-0.421683" target="_blank">
@@ -584,13 +705,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.65795,
 -0.389919
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Watford, Shaftesbury Road</b><br>
 Shaftesbury Road, Watford<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.65795,-0.389919" target="_blank">
@@ -598,13 +722,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.654924,
 -0.409749
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Mildred Avenue, Watford</b><br>
 Mildred Avenue<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.654924,-0.409749" target="_blank">
@@ -612,13 +739,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.653821,
 -0.404949
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Watford, Durban Road East</b><br>
 33 Durban Road East<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.653821,-0.404949" target="_blank">
@@ -626,13 +756,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.65027,
 -0.405378
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Holywell Road</b><br>
 Holywell Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.65027,-0.405378" target="_blank">
@@ -640,13 +773,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.65032,
 -0.410844
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Belgrave Avenue</b><br>
 Belgrave Avenue<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.65032,-0.410844" target="_blank">
@@ -654,13 +790,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.650167,
 -0.399586
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Liverpool Road</b><br>
 Liverpool Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.650167,-0.399586" target="_blank">
@@ -668,13 +807,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.649592,
 -0.394906
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Tucker Street</b><br>
 Tucker Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.649592,-0.394906" target="_blank">
@@ -682,13 +824,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.648852,
 -0.394098
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Elfrida Road</b><br>
 Elfrida Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.648852,-0.394098" target="_blank">
@@ -696,13 +841,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.64673,
 0.384228
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Bushey Arches Car Park</b><br>
 Bushey Arches Car Park, Arches Service Station, Pinner Road, Bushey<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.64673,0.384228" target="_blank">
@@ -710,13 +858,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.644341,
 -0.425849
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Caxton Way Exit, Watford</b><br>
 Caxton Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.644341,-0.425849" target="_blank">
@@ -724,13 +875,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.643177,
 -0.377865
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Lower Paddock Road</b><br>
 Lower Paddock Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.643177,-0.377865" target="_blank">
@@ -738,13 +892,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.642024,
 -0.425212
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Caxton Way Entrance, Watford</b><br>
 Caxton Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.642024,-0.425212" target="_blank">
@@ -752,13 +909,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.661476,
 -0.391724
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>BT Fleet</b><br>
 Orphanage Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.661476,-0.391724" target="_blank">
@@ -766,13 +926,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.665806,
 -0.361965
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Toby Carvery Watford</b><br>
 3 Hartspring Lane<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.665806,-0.361965" target="_blank">
@@ -780,7 +943,11 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
+
+
+map.addLayer(markers);
 
 </script>
 

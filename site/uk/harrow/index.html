@@ -6,19 +6,61 @@
 
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
+
 <style>
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+}
+
+header {
+  background: #1f2937;
+  padding: 12px 20px;
+}
+
+.logo {
+  color: white;
+  text-decoration: none;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.container {
+  padding: 20px;
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 15px;
+  text-decoration: none;
+  color: #2563eb;
+  font-weight: bold;
+}
+
 #map {
-  height: 400px;
+  height: 420px;
   margin-bottom: 30px;
   border-radius: 8px;
 }
+
 </style>
 
 </head>
 
 <body>
 
+<header>
+<a href="/" class="logo">PlugMap</a>
+</header>
+
+<div class="container">
+
 <h1>Harrow EV Chargers</h1>
+
+<a href="/" class="back-link">← Back to homepage</a>
 
 <div id="map"></div>
 
@@ -151,7 +193,11 @@ South Harrow LU Station Car Park, South Hill Avenue, Harrow
 
 </ul>
 
+</div>
+
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 
 <script>
 
@@ -164,13 +210,16 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 attribution: '&copy; OpenStreetMap contributors'
 }).addTo(map);
 
+var markers = L.markerClusterGroup();
 
 
-L.marker([
+
+var marker = L.marker([
 51.581089,
 -0.297473
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>87 Vista Way</b><br>
 87 Vista Way<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.581089,-0.297473" target="_blank">
@@ -178,13 +227,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.6054,
 -0.339283
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Waitrose</b><br>
 350 High Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.6054,-0.339283" target="_blank">
@@ -192,13 +244,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.5676,
 -0.351734
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Waitrose</b><br>
 140 Northolt Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.5676,-0.351734" target="_blank">
@@ -206,13 +261,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.5726159,
 -0.3533546
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>McDonald's Shaftesbury</b><br>
 19 Porlock Avenue<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.5726159,-0.3533546" target="_blank">
@@ -220,13 +278,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.5836155,
 -0.3499291
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>55-57 Rutland Road</b><br>
 55 - 57 Rutland Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.5836155,-0.3499291" target="_blank">
@@ -234,13 +295,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.5845102,
 -0.351788
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>86-88 Sussex Road</b><br>
 86 - 88 Sussex Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.5845102,-0.351788" target="_blank">
@@ -248,13 +312,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.5833405,
 -0.3502601
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>42-44 Rutland Road</b><br>
 42 - 44 Rutland Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.5833405,-0.3502601" target="_blank">
@@ -262,13 +329,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.5839177,
 -0.3509823
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>53-55 Bedford Road</b><br>
 53 - 55 Bedford Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.5839177,-0.3509823" target="_blank">
@@ -276,13 +346,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.5711221,
 -0.3657072
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>83-95 Clitheroe Avenue</b><br>
 83 - 95 Clitheroe Avenue<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.5711221,-0.3657072" target="_blank">
@@ -290,13 +363,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.5847461,
 -0.353403
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>122-124 Sussex Road</b><br>
 122 - 124 Sussex Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.5847461,-0.353403" target="_blank">
@@ -304,13 +380,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.578405,
 -0.3518688
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>14-16 Drury Road</b><br>
 14 - 16 Drury Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.578405,-0.3518688" target="_blank">
@@ -318,13 +397,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.577064,
 -0.3493739
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>5-7 Merivale Road</b><br>
 5 - 7 Merivale Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.577064,-0.3493739" target="_blank">
@@ -332,13 +414,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.5787596,
 -0.3515546
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>3-5 Drury Road</b><br>
 3 - 5 Drury Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.5787596,-0.3515546" target="_blank">
@@ -346,13 +431,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.5776592,
 -0.3489688
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>45-47 Bowen Road</b><br>
 45 - 47 Bowen Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.5776592,-0.3489688" target="_blank">
@@ -360,13 +448,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.5765421,
 -0.3497228
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>25-27 Merivale Road</b><br>
 25 - 27 Merivale Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.5765421,-0.3497228" target="_blank">
@@ -374,13 +465,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.5830625,
 -0.3490107
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>38-40 Oxford Road</b><br>
 38 - 40 Oxford Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.5830625,-0.3490107" target="_blank">
@@ -388,13 +482,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.5838109,
 -0.3485194
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>12-14 Sussex Road</b><br>
 12 - 14 Sussex Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.5838109,-0.3485194" target="_blank">
@@ -402,13 +499,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.595868,
 -0.3317292
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>60-62 Grant Road</b><br>
 60 - 62 Grant Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.595868,-0.3317292" target="_blank">
@@ -416,13 +516,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.5959364,
 -0.3327752
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>38-40 Grant Road</b><br>
 38 - 40 Grant Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.5959364,-0.3327752" target="_blank">
@@ -430,13 +533,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.5825192,
 -0.3494158
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>18-20 Oxford Road</b><br>
 18 - 20 Oxford Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.5825192,-0.3494158" target="_blank">
@@ -444,13 +550,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.5710382,
 -0.3661257
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>80-82 Clitheroe Avenue</b><br>
 80 - 82 Clitheroe Avenue<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.5710382,-0.3661257" target="_blank">
@@ -458,13 +567,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.572985,
 -0.341118
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>87 West Street</b><br>
 87 West Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.572985,-0.341118" target="_blank">
@@ -472,13 +584,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.585842,
 -0.333703
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Tesco Superstore-Harrow Station Road</b><br>
 Station Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.585842,-0.333703" target="_blank">
@@ -486,13 +601,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.57842,
 -0.334269
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Harrow-On-The-Hill LU Station Car Park, Station Approach, Harrow</b><br>
 Harrow-On-The-Hill LU Station Car Park, Station Approach, Harrow<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.57842,-0.334269" target="_blank">
@@ -500,13 +618,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.564444,
 -0.351416
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>South Harrow LU Station Car Park</b><br>
 South Harrow LU Station Car Park, South Hill Avenue, Harrow<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.564444,-0.351416" target="_blank">
@@ -514,7 +635,11 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
+
+
+map.addLayer(markers);
 
 </script>
 

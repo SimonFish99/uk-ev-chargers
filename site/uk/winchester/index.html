@@ -6,19 +6,61 @@
 
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
+
 <style>
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+}
+
+header {
+  background: #1f2937;
+  padding: 12px 20px;
+}
+
+.logo {
+  color: white;
+  text-decoration: none;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.container {
+  padding: 20px;
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 15px;
+  text-decoration: none;
+  color: #2563eb;
+  font-weight: bold;
+}
+
 #map {
-  height: 400px;
+  height: 420px;
   margin-bottom: 30px;
   border-radius: 8px;
 }
+
 </style>
 
 </head>
 
 <body>
 
+<header>
+<a href="/" class="logo">PlugMap</a>
+</header>
+
+<div class="container">
+
 <h1>Winchester EV Chargers</h1>
+
+<a href="/" class="back-link">← Back to homepage</a>
 
 <div id="map"></div>
 
@@ -191,7 +233,11 @@ Park Avenue
 
 </ul>
 
+</div>
+
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 
 <script>
 
@@ -204,13 +250,16 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 attribution: '&copy; OpenStreetMap contributors'
 }).addTo(map);
 
+var markers = L.markerClusterGroup();
 
 
-L.marker([
+
+var marker = L.marker([
 51.156913,
 -1.346844
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>GS10229A</b><br>
 A34 By-Pass, Sutton Scotney<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.156913,-1.346844" target="_blank">
@@ -218,13 +267,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.094155,
 -1.293446
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Lovedon Fields</b><br>
 Lovedon Lane<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.094155,-1.293446" target="_blank">
@@ -232,13 +284,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.071112,
 -1.31978
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>RAW GREENE KING JOLLY FARMER 1</b><br>
 Boscobel Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.071112,-1.31978" target="_blank">
@@ -246,13 +301,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.066415,
 -1.30255
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>ETB WINCHESTER</b><br>
 ETB Autocentres - Winchester Unit 1 Easton La<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.066415,-1.30255" target="_blank">
@@ -260,13 +318,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.05461,
 -1.307292
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>WCC Vaultex MSCP 1</b><br>
 Barfield Close<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.05461,-1.307292" target="_blank">
@@ -274,13 +335,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.06941200360873,
 -1.3162851700797091
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Winchester City Council  : Coach Park Car Park</b><br>
 Worthy Lane<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.06941200360873,-1.3162851700797091" target="_blank">
@@ -288,13 +352,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.082394,
 -1.371325
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>RAWOWNED LAINSTONHOUSE 2</b><br>
 Lainston House<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.082394,-1.371325" target="_blank">
@@ -302,13 +369,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.064804,
 -1.308361
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Durngate 2</b><br>
 North Walls<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.064804,-1.308361" target="_blank">
@@ -316,13 +386,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.115446,
 -1.255064
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Moto Winchester Southbound Services</b><br>
 Moto Winchester Southbound Services<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.115446,-1.255064" target="_blank">
@@ -330,13 +403,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.071,
 -1.3138
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Arthur Road - Lighting Column 3</b><br>
 30-32 Arthur Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.071,-1.3138" target="_blank">
@@ -344,13 +420,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.0709,
 -1.3127
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Arthur Road - Lighting Column 5</b><br>
 10 Arthur Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.0709,-1.3127" target="_blank">
@@ -358,13 +437,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.0705,
 -1.3127
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Saxon Road - Lighting Column 2</b><br>
 20 Saxon Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.0705,-1.3127" target="_blank">
@@ -372,13 +454,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.0703,
 -1.3117
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Nuns Road - Lighting Column 2</b><br>
 16-18 Nuns Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.0703,-1.3117" target="_blank">
@@ -386,13 +471,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.069955,
 -1.317748
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>WIN HOTELSPA</b><br>
 26 Athelstan Rd<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.069955,-1.317748" target="_blank">
@@ -400,13 +488,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.0697,
 -1.3141
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Egbert Road - Lighting Column 2</b><br>
 4-6 Egbert Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.0697,-1.3141" target="_blank">
@@ -414,13 +505,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.0694,
 -1.3123
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Monks Road - Lighting Column 2</b><br>
 18-20 Monks Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.0694,-1.3123" target="_blank">
@@ -428,13 +522,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.0693,
 -1.3112
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Monks Road - Lighting Column 4</b><br>
 48 Monks Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.0693,-1.3112" target="_blank">
@@ -442,13 +539,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.0678,
 -1.3129
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>King Alfred Terrace - Lighting Column 2</b><br>
 7-8 King Alfred Terrace<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.0678,-1.3129" target="_blank">
@@ -456,13 +556,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.0677,
 -1.3124
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>King Alfred Terrace - Lighting Column 1</b><br>
 16-17 King Alfred Terrace<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.0677,-1.3124" target="_blank">
@@ -470,13 +573,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.0669,
 -1.3135
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Hyde Abbey Road - Lighting Column 5</b><br>
 20-21 Hyde Abbey Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.0669,-1.3135" target="_blank">
@@ -484,13 +590,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.0655,
 -1.3103
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Park Avenue - Lighting Column 3</b><br>
 Park Avenue<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.0655,-1.3103" target="_blank">
@@ -498,13 +607,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.065464,
 -1.312139
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>WCC St Peters Car Park</b><br>
 Gordon Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.065464,-1.312139" target="_blank">
@@ -512,13 +624,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.06267,
 -1.317215
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>ICUEVE900606</b><br>
 Southgate Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.06267,-1.317215" target="_blank">
@@ -526,13 +641,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.054167,
 -1.307521
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Barfield Park and Ride 1</b><br>
 Barfield Close<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.054167,-1.307521" target="_blank">
@@ -540,13 +658,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.046366,
 -1.339979
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Sainsbury's Badger Farm</b><br>
 Badger Farm Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.046366,-1.339979" target="_blank">
@@ -554,13 +675,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.008183,
 -1.342844
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Williams Garage</b><br>
 Otterbourne<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.008183,-1.342844" target="_blank">
@@ -568,13 +692,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.05062,
 -1.30572
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>East Winchester Park and Ride 1</b><br>
 Garnier Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.05062,-1.30572" target="_blank">
@@ -582,13 +709,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.0691425650617,
 -1.29309904763326
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Tesco Extra - Winchester</b><br>
 Easton Lane<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.0691425650617,-1.29309904763326" target="_blank">
@@ -596,13 +726,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.0703,
 -1.3141
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Egbert Road - Lighting Column 3</b><br>
 27-29 Egbert Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.0703,-1.3141" target="_blank">
@@ -610,13 +743,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.0701,
 -1.3107
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Nuns Road - Lighting Column 4</b><br>
 44-46 Nuns Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.0701,-1.3107" target="_blank">
@@ -624,13 +760,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.0685,
 -1.3127
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>6 Alswitha Terrace, King Alfred Pl</b><br>
 6 Alswitha Terrace, King Alfred Pl<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.0685,-1.3127" target="_blank">
@@ -638,13 +777,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.0663,
 -1.3138
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Hyde Abbey Road - Lighting Column 3</b><br>
 49 Hyde Abbey Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.0663,-1.3138" target="_blank">
@@ -652,13 +794,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.065553,
 -1.308969
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Park Avenue</b><br>
 Park Avenue<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.065553,-1.308969" target="_blank">
@@ -666,7 +811,11 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
+
+
+map.addLayer(markers);
 
 </script>
 

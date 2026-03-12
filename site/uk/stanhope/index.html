@@ -6,19 +6,61 @@
 
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
+
 <style>
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+}
+
+header {
+  background: #1f2937;
+  padding: 12px 20px;
+}
+
+.logo {
+  color: white;
+  text-decoration: none;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.container {
+  padding: 20px;
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 15px;
+  text-decoration: none;
+  color: #2563eb;
+  font-weight: bold;
+}
+
 #map {
-  height: 400px;
+  height: 420px;
   margin-bottom: 30px;
   border-radius: 8px;
 }
+
 </style>
 
 </head>
 
 <body>
 
+<header>
+<a href="/" class="logo">PlugMap</a>
+</header>
+
+<div class="container">
+
 <h1>Stanhope EV Chargers</h1>
+
+<a href="/" class="back-link">← Back to homepage</a>
 
 <div id="map"></div>
 
@@ -56,7 +98,11 @@ Stanhope Train Station
 
 </ul>
 
+</div>
+
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 
 <script>
 
@@ -69,13 +115,16 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 attribution: '&copy; OpenStreetMap contributors'
 }).addTo(map);
 
+var markers = L.markerClusterGroup();
 
 
-L.marker([
+
+var marker = L.marker([
 54.749192,
 -2.009254
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>DCC Cross Hill Cemetery Carpark</b><br>
 Cross Hill Cemetery Carpark<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.749192,-2.009254" target="_blank">
@@ -83,13 +132,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.749142,
 -2.013597
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>The Grey Bull layby</b><br>
 The Grey Bull layby<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.749142,-2.013597" target="_blank">
@@ -97,13 +149,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.748568,
 -2.007025
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>DCC Durham Dales Centre 1</b><br>
 Durham Dales Centre<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.748568,-2.007025" target="_blank">
@@ -111,13 +166,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.746209,
 -2.00381
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>DCC Weardale Hub 1</b><br>
 Weardale Hub<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.746209,-2.00381" target="_blank">
@@ -125,13 +183,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.744188,
 -1.999195
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>DCC Coronation Avenue 1</b><br>
 Coronation Avenue<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.744188,-1.999195" target="_blank">
@@ -139,13 +200,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.743545,
 -2.003158
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>DCC Stanhope Train Station</b><br>
 Stanhope Train Station<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.743545,-2.003158" target="_blank">
@@ -153,7 +217,11 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
+
+
+map.addLayer(markers);
 
 </script>
 

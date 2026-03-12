@@ -6,19 +6,61 @@
 
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
+
 <style>
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+}
+
+header {
+  background: #1f2937;
+  padding: 12px 20px;
+}
+
+.logo {
+  color: white;
+  text-decoration: none;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.container {
+  padding: 20px;
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 15px;
+  text-decoration: none;
+  color: #2563eb;
+  font-weight: bold;
+}
+
 #map {
-  height: 400px;
+  height: 420px;
   margin-bottom: 30px;
   border-radius: 8px;
 }
+
 </style>
 
 </head>
 
 <body>
 
+<header>
+<a href="/" class="logo">PlugMap</a>
+</header>
+
+<div class="container">
+
 <h1>Warwick EV Chargers</h1>
+
+<a href="/" class="back-link">← Back to homepage</a>
 
 <div id="map"></div>
 
@@ -116,7 +158,11 @@ Emscote Road
 
 </ul>
 
+</div>
+
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 
 <script>
 
@@ -129,13 +175,16 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 attribution: '&copy; OpenStreetMap contributors'
 }).addTo(map);
 
+var markers = L.markerClusterGroup();
 
 
-L.marker([
+
+var marker = L.marker([
 52.278488713994506,
 -1.6101435312403112
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Warwick Bypass</b><br>
 Warwick Bypass<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.278488713994506,-1.6101435312403112" target="_blank">
@@ -143,13 +192,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.292705375994785,
 -1.5767257848056886
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Guyscliffe SF Connect</b><br>
 Coventry Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.292705375994785,-1.5767257848056886" target="_blank">
@@ -157,13 +209,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.31275649644447,
 -1.5796320095021115
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>EVC The Warwickshire</b><br>
 Leek Wootton<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.31275649644447,-1.5796320095021115" target="_blank">
@@ -171,13 +226,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.219129,
 -1.502991
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Welcome Break Warwick Southbound Services</b><br>
 M40 Motorway Southbound<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.219129,-1.502991" target="_blank">
@@ -185,13 +243,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.216453921147234,
 -1.5052927416228385
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Welcome Break Warwick Northbound Services</b><br>
 M40<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.216453921147234,-1.5052927416228385" target="_blank">
@@ -199,13 +260,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.283396,
 -1.592207
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>West Rock Car Park, Warwick</b><br>
 Commainge Close<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.283396,-1.592207" target="_blank">
@@ -213,13 +277,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.276844,
 -1.546546
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>For Nissan EV owners only. Please call first</b><br>
 Tachbrook Park Drive<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.276844,-1.546546" target="_blank">
@@ -227,13 +294,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.154969,
 -1.501723
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Gilks' Garage Café</b><br>
 Banbury Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.154969,-1.501723" target="_blank">
@@ -241,13 +311,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.26919,
 -1.536935
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>RAW GREENE KING ROYAL HORSE 3</b><br>
 30 Heathcote Ln<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.26919,-1.536935" target="_blank">
@@ -255,13 +328,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.286155,
 -1.564236
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Tesco Superstore-Warwick</b><br>
 Emscote Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.286155,-1.564236" target="_blank">
@@ -269,13 +345,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.282062,
 -1.590836
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Market Square Car Park</b><br>
 Market Place<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.282062,-1.590836" target="_blank">
@@ -283,13 +362,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.276249,
 -1.599964
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>St Mary's Area 2, Hampton Road, Warwick</b><br>
 Hampton Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.276249,-1.599964" target="_blank">
@@ -297,13 +379,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.2603227906544,
 -1.61051771241034
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>McDonald's - Warwick Statford Road</b><br>
 A429<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.2603227906544,-1.61051771241034" target="_blank">
@@ -311,13 +396,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.285722,
 -1.571641
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Lidl-Warwick</b><br>
 Emscote Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.285722,-1.571641" target="_blank">
@@ -325,13 +413,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.275135,
 -1.564241
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Warwick Innovation Centre</b><br>
 Gallows Hill<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.275135,-1.564241" target="_blank">
@@ -339,13 +430,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.270857452149016,
 -1.5353603408193521
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Presto Music</b><br>
 Unit 5 <br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.270857452149016,-1.5353603408193521" target="_blank">
@@ -353,13 +447,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.291997,
 -1.58955
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Ecofix</b><br>
 Millers Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.291997,-1.58955" target="_blank">
@@ -367,13 +464,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.2866435,
 -1.5631478
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Mcdonald's-Warwick</b><br>
 Emscote Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.2866435,-1.5631478" target="_blank">
@@ -381,7 +481,11 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
+
+
+map.addLayer(markers);
 
 </script>
 

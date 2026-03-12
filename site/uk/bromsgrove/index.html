@@ -6,19 +6,61 @@
 
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
+
 <style>
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+}
+
+header {
+  background: #1f2937;
+  padding: 12px 20px;
+}
+
+.logo {
+  color: white;
+  text-decoration: none;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.container {
+  padding: 20px;
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 15px;
+  text-decoration: none;
+  color: #2563eb;
+  font-weight: bold;
+}
+
 #map {
-  height: 400px;
+  height: 420px;
   margin-bottom: 30px;
   border-radius: 8px;
 }
+
 </style>
 
 </head>
 
 <body>
 
+<header>
+<a href="/" class="logo">PlugMap</a>
+</header>
+
+<div class="container">
+
 <h1>Bromsgrove EV Chargers</h1>
+
+<a href="/" class="back-link">← Back to homepage</a>
 
 <div id="map"></div>
 
@@ -106,7 +148,11 @@ Godwalds Road
 
 </ul>
 
+</div>
+
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 
 <script>
 
@@ -119,13 +165,16 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 attribution: '&copy; OpenStreetMap contributors'
 }).addTo(map);
 
+var markers = L.markerClusterGroup();
 
 
-L.marker([
+
+var marker = L.marker([
 52.362911998173416,
 -1.945476533566648
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Hopwood Park Interchange</b><br>
 Hopwood Park Interchange<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.362911998173416,-1.945476533566648" target="_blank">
@@ -133,13 +182,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.3292916,
 -2.0608635
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Bromsgrove School</b><br>
 Worcester Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.3292916,-2.0608635" target="_blank">
@@ -147,13 +199,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.363614,
 -1.94635
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Welcome Break Hopwood Park Services</b><br>
 Welcome Break Hopwood Park Services<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.363614,-1.94635" target="_blank">
@@ -161,13 +216,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.337003,
 -2.056129
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Bromsgrove Leisure Centre</b><br>
 School Drive<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.337003,-2.056129" target="_blank">
@@ -175,13 +233,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.322372,
 -2.047654
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Aston Fields</b><br>
 St. Godwalds Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.322372,-2.047654" target="_blank">
@@ -189,13 +250,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.314819,
 -2.068057
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Restricted access to Nissan customers</b><br>
 Buntsford Drive<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.314819,-2.068057" target="_blank">
@@ -203,13 +267,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.343795,
 -2.056527
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Princess of Wales (POW) Community Hospital</b><br>
 Elm Grove<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.343795,-2.056527" target="_blank">
@@ -217,13 +284,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.335033,
 -2.069452
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Sanders Park Car Park</b><br>
 28-20 Kidderminster Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.335033,-2.069452" target="_blank">
@@ -231,13 +301,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.367682,
 -2.199741
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Hogarths Stone Manor LTD</b><br>
 Kidderminster<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.367682,-2.199741" target="_blank">
@@ -245,13 +318,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.3528677950954,
 -1.96099144073679
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Red Lion</b><br>
 Red Lion Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.3528677950954,-1.96099144073679" target="_blank">
@@ -259,13 +335,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.36407,
 -2.059197
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Golden Cross Car Park</b><br>
 Catshill<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.36407,-2.059197" target="_blank">
@@ -273,13 +352,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.33728565945839,
 -2.0549327967755744
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Bromsgrove Sports & Leisure Centre </b><br>
 School Drive<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.33728565945839,-2.0549327967755744" target="_blank">
@@ -287,13 +369,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.33725724471026,
 -2.054744000088931
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Bromsgrove Sport and Leisure centre</b><br>
 School Drive<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.33725724471026,-2.054744000088931" target="_blank">
@@ -301,13 +386,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.33725724471026,
 -2.054744000088931
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Bromsgrove Sport and Leisure centre</b><br>
 School Drive<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.33725724471026,-2.054744000088931" target="_blank">
@@ -315,13 +403,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.33456662465247,
 -2.059857567272047
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Windsor Street Car Park</b><br>
 1 Windsor Gardens<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.33456662465247,-2.059857567272047" target="_blank">
@@ -329,13 +420,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.32276004504399,
 -2.0471679914626293
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Aston Fields St. </b><br>
 Godwalds Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.32276004504399,-2.0471679914626293" target="_blank">
@@ -343,7 +437,11 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
+
+
+map.addLayer(markers);
 
 </script>
 

@@ -6,19 +6,61 @@
 
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
+
 <style>
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+}
+
+header {
+  background: #1f2937;
+  padding: 12px 20px;
+}
+
+.logo {
+  color: white;
+  text-decoration: none;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.container {
+  padding: 20px;
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 15px;
+  text-decoration: none;
+  color: #2563eb;
+  font-weight: bold;
+}
+
 #map {
-  height: 400px;
+  height: 420px;
   margin-bottom: 30px;
   border-radius: 8px;
 }
+
 </style>
 
 </head>
 
 <body>
 
+<header>
+<a href="/" class="logo">PlugMap</a>
+</header>
+
+<div class="container">
+
 <h1>Lower Morden EV Chargers</h1>
+
+<a href="/" class="back-link">← Back to homepage</a>
 
 <div id="map"></div>
 
@@ -61,7 +103,11 @@ Salcombe Drive
 
 </ul>
 
+</div>
+
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 
 <script>
 
@@ -74,13 +120,16 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 attribution: '&copy; OpenStreetMap contributors'
 }).addTo(map);
 
+var markers = L.markerClusterGroup();
 
 
-L.marker([
+
+var marker = L.marker([
 51.38998,
 -0.222452
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Opposite 475 Lynmouth Avenue</b><br>
 Lynmouth Avenue<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.38998,-0.222452" target="_blank">
@@ -88,13 +137,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.388133,
 -0.201643
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>53 Holne Chase</b><br>
 Holne Chase<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.388133,-0.201643" target="_blank">
@@ -102,13 +154,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.388059,
 -0.211097
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Cardinal Avenue, adjacent to 14 Wolsey Crescent</b><br>
 Wolsey Crescent<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.388059,-0.211097" target="_blank">
@@ -116,13 +171,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.386793,
 -0.220892
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>165 Seymour Avenue</b><br>
 Seymour Avenue<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.386793,-0.220892" target="_blank">
@@ -130,13 +188,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.386165,
 -0.223102
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>327 Lynmouth Avenue</b><br>
 Lynmouth Avenue<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.386165,-0.223102" target="_blank">
@@ -144,13 +205,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.384312,
 -0.217041
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Opposite 94 Aragon Road</b><br>
 Aragon Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.384312,-0.217041" target="_blank">
@@ -158,13 +222,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.38373,
 -0.219938
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Salcombe Drive adjacent to 83 Kingsbridge Road</b><br>
 Salcombe Drive<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.38373,-0.219938" target="_blank">
@@ -172,7 +239,11 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
+
+
+map.addLayer(markers);
 
 </script>
 

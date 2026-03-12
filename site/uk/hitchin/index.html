@@ -6,19 +6,61 @@
 
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
+
 <style>
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+}
+
+header {
+  background: #1f2937;
+  padding: 12px 20px;
+}
+
+.logo {
+  color: white;
+  text-decoration: none;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.container {
+  padding: 20px;
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 15px;
+  text-decoration: none;
+  color: #2563eb;
+  font-weight: bold;
+}
+
 #map {
-  height: 400px;
+  height: 420px;
   margin-bottom: 30px;
   border-radius: 8px;
 }
+
 </style>
 
 </head>
 
 <body>
 
+<header>
+<a href="/" class="logo">PlugMap</a>
+</header>
+
+<div class="container">
+
 <h1>Hitchin EV Chargers</h1>
+
+<a href="/" class="back-link">← Back to homepage</a>
 
 <div id="map"></div>
 
@@ -66,7 +108,11 @@ Walsworth Road
 
 </ul>
 
+</div>
+
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 
 <script>
 
@@ -79,13 +125,16 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 attribution: '&copy; OpenStreetMap contributors'
 }).addTo(map);
 
+var markers = L.markerClusterGroup();
 
 
-L.marker([
+
+var marker = L.marker([
 51.950067,
 -0.282671
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Waitrose Hitchin 2</b><br>
 Bedford Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.950067,-0.282671" target="_blank">
@@ -93,13 +142,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.9404328174753,
 -0.269523890186719
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>BP Oakfield SF Connect</b><br>
 247 Stevenage Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.9404328174753,-0.269523890186719" target="_blank">
@@ -107,13 +159,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.949,
 -0.28
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Lairage Car Park</b><br>
 Bedford Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.949,-0.28" target="_blank">
@@ -121,13 +176,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.014103,
 -0.229349
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Stotfold Town Council Car Park</b><br>
 Brook Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.014103,-0.229349" target="_blank">
@@ -135,13 +193,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.949,
 -0.282534
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Lairaige Multi Storey Carpark</b><br>
 Lairaige Multi Storey Carpark<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.949,-0.282534" target="_blank">
@@ -149,13 +210,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.95373,
 -0.2579
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>North Herts College</b><br>
 Cambridge Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.95373,-0.2579" target="_blank">
@@ -163,13 +227,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.949,
 -0.274582
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Woodside Carpark Walsworth</b><br>
 Woodside Carpark Walsworth<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.949,-0.274582" target="_blank">
@@ -177,13 +244,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.949,
 -0.27
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Woodside Car Park</b><br>
 Walsworth Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.949,-0.27" target="_blank">
@@ -191,7 +261,11 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
+
+
+map.addLayer(markers);
 
 </script>
 

@@ -6,19 +6,61 @@
 
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
+
 <style>
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+}
+
+header {
+  background: #1f2937;
+  padding: 12px 20px;
+}
+
+.logo {
+  color: white;
+  text-decoration: none;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.container {
+  padding: 20px;
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 15px;
+  text-decoration: none;
+  color: #2563eb;
+  font-weight: bold;
+}
+
 #map {
-  height: 400px;
+  height: 420px;
   margin-bottom: 30px;
   border-radius: 8px;
 }
+
 </style>
 
 </head>
 
 <body>
 
+<header>
+<a href="/" class="logo">PlugMap</a>
+</header>
+
+<div class="container">
+
 <h1>Shrewsbury EV Chargers</h1>
+
+<a href="/" class="back-link">← Back to homepage</a>
 
 <div id="map"></div>
 
@@ -81,7 +123,11 @@ Bicton Heath
 
 </ul>
 
+</div>
+
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 
 <script>
 
@@ -94,13 +140,16 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 attribution: '&copy; OpenStreetMap contributors'
 }).addTo(map);
 
+var markers = L.markerClusterGroup();
 
 
-L.marker([
+
+var marker = L.marker([
 52.70982186397765,
 -2.7951151839022828
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Estates Department</b><br>
 Royal Shrewsbury Hospital <br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.70982186397765,-2.7951151839022828" target="_blank">
@@ -108,13 +157,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.71064048503413,
 -2.791557581887787
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Learning Centre </b><br>
 The Royal Shrewsbury Hospital <br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.71064048503413,-2.791557581887787" target="_blank">
@@ -122,13 +174,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.7074102941964,
 -2.9089991895696
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Princess House</b><br>
 The Square <br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.7074102941964,-2.9089991895696" target="_blank">
@@ -136,13 +191,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.681895,
 -2.760908
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>EG Shrewsbury</b><br>
 Bayston Hill<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.681895,-2.760908" target="_blank">
@@ -150,13 +208,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.711207,
 -2.758196
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Frankwell Quay Car Park 1</b><br>
 Frankwell Quay Car Park<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.711207,-2.758196" target="_blank">
@@ -164,13 +225,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.688704,
 -2.772419
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Longden Depot 1</b><br>
 107 Longden Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.688704,-2.772419" target="_blank">
@@ -178,13 +242,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.717342,
 -2.746871
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Shropshire Fire and Rescue Service</b><br>
 Saint Michaelâ€™s Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.717342,-2.746871" target="_blank">
@@ -192,13 +259,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.714794,
 -2.793177
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>RAW GREENE KING OXON PRIORY 2</b><br>
 Welshpool Rd<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.714794,-2.793177" target="_blank">
@@ -206,13 +276,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.64144,
 -2.636478
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>RAW GREENE KING GK RIVERSIDE 1</b><br>
 Riverside Inn<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.64144,-2.636478" target="_blank">
@@ -220,13 +293,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.8575214,
 -2.6426867
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Hawkstone Park</b><br>
 Weston-Under-Redcastle<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.8575214,-2.6426867" target="_blank">
@@ -234,13 +310,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.711117,
 -2.79819
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>The Redwood Centre</b><br>
 Bicton Heath<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.711117,-2.79819" target="_blank">
@@ -248,7 +327,11 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
+
+
+map.addLayer(markers);
 
 </script>
 

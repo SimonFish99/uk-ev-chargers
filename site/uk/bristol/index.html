@@ -6,19 +6,61 @@
 
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
+
 <style>
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+}
+
+header {
+  background: #1f2937;
+  padding: 12px 20px;
+}
+
+.logo {
+  color: white;
+  text-decoration: none;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.container {
+  padding: 20px;
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 15px;
+  text-decoration: none;
+  color: #2563eb;
+  font-weight: bold;
+}
+
 #map {
-  height: 400px;
+  height: 420px;
   margin-bottom: 30px;
   border-radius: 8px;
 }
+
 </style>
 
 </head>
 
 <body>
 
+<header>
+<a href="/" class="logo">PlugMap</a>
+</header>
+
+<div class="container">
+
 <h1>Bristol EV Chargers</h1>
+
+<a href="/" class="back-link">← Back to homepage</a>
 
 <div id="map"></div>
 
@@ -491,7 +533,11 @@ Berkeley Place
 
 </ul>
 
+</div>
+
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 
 <script>
 
@@ -504,13 +550,16 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 attribution: '&copy; OpenStreetMap contributors'
 }).addTo(map);
 
+var markers = L.markerClusterGroup();
 
 
-L.marker([
+
+var marker = L.marker([
 51.54292656646189,
 -2.5687507274676022
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Aztec Hotel & Spa</b><br>
 110 Aztec West<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.54292656646189,-2.5687507274676022" target="_blank">
@@ -518,13 +567,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.460376500426435,
 -2.587607718405451
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Brunswick Square Car Club Only</b><br>
 Brunswick Square<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.460376500426435,-2.587607718405451" target="_blank">
@@ -532,13 +584,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.54755028,
 -2.557863531
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>BizSpace Bristol </b><br>
 Equinox South<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.54755028,-2.557863531" target="_blank">
@@ -546,13 +601,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.480312,
 -2.61253
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>GL184</b><br>
 51 Northumbria Dr, Henleaze<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.480312,-2.61253" target="_blank">
@@ -560,13 +618,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.443274,
 -2.560203
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Ultra Rapid EV Charging - Sainsbury's Castle Court</b><br>
 Arnos Vale<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.443274,-2.560203" target="_blank">
@@ -574,13 +635,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.434863,
 -2.752432
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Tesco Superstore - Nailsea</b><br>
 Stock Way North<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.434863,-2.752432" target="_blank">
@@ -588,13 +652,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.416674,
 -2.501015
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Tesco Superstore - Keynsham</b><br>
 Bristol Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.416674,-2.501015" target="_blank">
@@ -602,13 +669,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.292525,
 -2.498202
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Tesco Superstore - Midsomer Norton</b><br>
 Old Mills<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.292525,-2.498202" target="_blank">
@@ -616,13 +686,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.44877,
 -2.4992
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Legal & General Investment Management</b><br>
 Aspects Leisure Park<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.44877,-2.4992" target="_blank">
@@ -630,13 +703,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.601089,
 -2.52706
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Thornbury Leisure Centre</b><br>
 Thornbury Road, Thornbury<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.601089,-2.52706" target="_blank">
@@ -644,13 +720,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.522339,
 -2.618872
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>SHELL RECHARGE CRIBBS CAUSEWAY</b><br>
 Cribbs Causeway<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.522339,-2.618872" target="_blank">
@@ -658,13 +737,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.461107,
 -2.581821
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Shell Recharge Newfoundland Circus</b><br>
 95 Newfoundland Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.461107,-2.581821" target="_blank">
@@ -672,13 +754,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.45293,
 -2.63174
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Bridge Road, Leigh Woods</b><br>
 Leigh Woods<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.45293,-2.63174" target="_blank">
@@ -686,13 +771,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.448143,
 -2.572578
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>zest-park-race-year</b><br>
 Chandus Court<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.448143,-2.572578" target="_blank">
@@ -700,13 +788,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.494078,
 -2.488658
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Huntsman Taverners Pub and Restaurant</b><br>
 Westerleigh RD<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.494078,-2.488658" target="_blank">
@@ -714,13 +805,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.4068091,
 -2.4686405
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Instavolt Flourish at Glenavon Farm</b><br>
 Bath Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.4068091,-2.4686405" target="_blank">
@@ -728,13 +822,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.49681,
 -2.4826
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>MFG Blackhorse</b><br>
 Westerleigh Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.49681,-2.4826" target="_blank">
@@ -742,13 +839,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.4848309715113,
 -2.55040074039165
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>MFG Stapleton</b><br>
 Park Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.4848309715113,-2.55040074039165" target="_blank">
@@ -756,13 +856,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.473057,
 -2.564405
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>IKEA Bristol</b><br>
 Eastgate Road Eastgate Shopping Centre<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.473057,-2.564405" target="_blank">
@@ -770,13 +873,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.603802,
 -2.619964
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Moto Severn View Services</b><br>
 M48, Motorway, Jct 1, Aust<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.603802,-2.619964" target="_blank">
@@ -784,13 +890,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.541444,
 -2.416278
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Yate Shopping Centre</b><br>
 43 North Walk, Yate<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.541444,-2.416278" target="_blank">
@@ -798,13 +907,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.501557,
 -2.543303
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Motability Bristol</b><br>
 Bristol Park House, 610 Bristol Business Park, Coldharbour Lane, Bristol<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.501557,-2.543303" target="_blank">
@@ -812,13 +924,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.500902,
 -2.478183
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Private business car park</b><br>
 Dirac Crescent<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.500902,-2.478183" target="_blank">
@@ -826,13 +941,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.500883,
 -2.478359
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Car Park</b><br>
 Emersons Green<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.500883,-2.478359" target="_blank">
@@ -840,13 +958,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.480552,
 -2.509319
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Page Road Short Stay Car Park</b><br>
 Short Stay Car Park<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.480552,-2.509319" target="_blank">
@@ -854,13 +975,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.461423,
 -2.581415
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>SHELL RECHARGE BUDGENS BROADMEAD</b><br>
 95 Newfoundland Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.461423,-2.581415" target="_blank">
@@ -868,13 +992,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.455669,
 -2.59984
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Trenchard Street</b><br>
 West End<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.455669,-2.59984" target="_blank">
@@ -882,13 +1009,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.45557,
 -2.59984
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Trenchard Street</b><br>
 West End<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.45557,-2.59984" target="_blank">
@@ -896,13 +1026,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.455473,
 -2.609504
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>West End Car Park</b><br>
 West End Car Park<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.455473,-2.609504" target="_blank">
@@ -910,13 +1043,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.454951,
 -2.598929
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Trenchard Street Car Park 3</b><br>
 Lodge Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.454951,-2.598929" target="_blank">
@@ -924,13 +1060,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.454938,
 -2.598994
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Trenchard Street Car Park 2</b><br>
 Lodge Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.454938,-2.598994" target="_blank">
@@ -938,13 +1077,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.454872,
 -2.60906
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>West End Car Park</b><br>
 Berkeley Place<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.454872,-2.60906" target="_blank">
@@ -952,13 +1094,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.454736,
 -2.59893
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Trenchard Car Park</b><br>
 Trenchard Car Park<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.454736,-2.59893" target="_blank">
@@ -966,13 +1111,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.453754,
 -2.587966
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Aurora</b><br>
 Finzels Reach<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.453754,-2.587966" target="_blank">
@@ -980,13 +1128,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.45315,
 -2.58997
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>DRAX_00112</b><br>
 Victoria Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.45315,-2.58997" target="_blank">
@@ -994,13 +1145,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.4529,
 -2.59322
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>NCP Queen Charlotte Street</b><br>
 NCP Queen Charlotte Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.4529,-2.59322" target="_blank">
@@ -1008,13 +1162,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.452485,
 -2.602735
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Car Park</b><br>
 College Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.452485,-2.602735" target="_blank">
@@ -1022,13 +1179,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.451674,
 -2.604403
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>College Street Car Park</b><br>
 College Street Car Park<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.451674,-2.604403" target="_blank">
@@ -1036,13 +1196,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.449378,
 -2.595999
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Car Park</b><br>
 Harborside<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.449378,-2.595999" target="_blank">
@@ -1050,13 +1213,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.448799,
 -2.59505
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>The Grove</b><br>
 Harbourside<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.448799,-2.59505" target="_blank">
@@ -1064,13 +1230,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.448399,
 -2.50016
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Longwell Green Leisure Centre</b><br>
 Leisure Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.448399,-2.50016" target="_blank">
@@ -1078,13 +1247,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.435791,
 -2.63597
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Long Ashton Park and Ride</b><br>
 A370<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.435791,-2.63597" target="_blank">
@@ -1092,13 +1264,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.435692,
 -2.63597
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Long Ashton Park and Ride</b><br>
 A370<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.435692,-2.63597" target="_blank">
@@ -1106,13 +1281,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.5058307,
 -2.4885443
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>InstaVolt Costa Coffee</b><br>
 Fieldfare<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.5058307,-2.4885443" target="_blank">
@@ -1120,13 +1298,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.3818352,
 -2.8062283
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>DoubleTree Hilton</b><br>
 Frost Hill, Congresbury<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.3818352,-2.8062283" target="_blank">
@@ -1134,13 +1315,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.3573158,
 -2.7341611
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Lye Cross Farm</b><br>
 Lye Cross Farm<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.3573158,-2.7341611" target="_blank">
@@ -1148,13 +1332,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.45203599449857,
 -2.6032697512882805
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>College Street Car Park</b><br>
 Saint Georges Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.45203599449857,-2.6032697512882805" target="_blank">
@@ -1162,13 +1349,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.483509,
 -2.485488
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Revive_SGC</b><br>
 St James Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.483509,-2.485488" target="_blank">
@@ -1176,13 +1366,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.462379,
 -2.598996
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Revive_BCC</b><br>
 Portland Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.462379,-2.598996" target="_blank">
@@ -1190,13 +1383,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.462349,
 -2.50101
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Revive_NSC</b><br>
 High St<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.462349,-2.50101" target="_blank">
@@ -1204,13 +1400,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.409672,
 -2.581583
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Revive_BCC_02</b><br>
 Whitchurch Ln<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.409672,-2.581583" target="_blank">
@@ -1218,13 +1417,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.52585933652648,
 -2.5942216997941614
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Cribbs Causeway Car Park J</b><br>
 Pegasus Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.52585933652648,-2.5942216997941614" target="_blank">
@@ -1232,13 +1434,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.52187462119511,
 -2.527945756471013
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Winter Stream Farm Pub</b><br>
 Winterbourne Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.52187462119511,-2.527945756471013" target="_blank">
@@ -1246,13 +1451,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.400078,
 -2.449404
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Riverside Inn Saltford</b><br>
 The Shallows<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.400078,-2.449404" target="_blank">
@@ -1260,13 +1468,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.35092232822018,
 -2.808501069876009
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>EVC Mendip Spring Golf Club</b><br>
 Mendip Spring Golf Club<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.35092232822018,-2.808501069876009" target="_blank">
@@ -1274,13 +1485,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.45310876044138,
 -2.588564933685575
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Counterslip</b><br>
 Counterslip<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.45310876044138,-2.588564933685575" target="_blank">
@@ -1288,13 +1502,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.43184,
 -2.554912
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Tesco Extra-Bristol Brislington</b><br>
 Callington Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.43184,-2.554912" target="_blank">
@@ -1302,13 +1519,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.523281,
 -2.615222
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Premier Inn Cribbs Causeway</b><br>
 Catbrain Lane<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.523281,-2.615222" target="_blank">
@@ -1316,13 +1536,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.5253511419983,
 -2.60645044741739
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>McDonald's Cribbs Causeway</b><br>
 Lysander Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.5253511419983,-2.60645044741739" target="_blank">
@@ -1330,13 +1553,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.538861,
 -2.584056
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>The Parade Car Park</b><br>
 Patchway<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.538861,-2.584056" target="_blank">
@@ -1344,13 +1570,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.486672,
 -2.76478
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Portishead Marina Rapid Charging Hub</b><br>
 Portishead<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.486672,-2.76478" target="_blank">
@@ -1358,13 +1587,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.481917,
 -2.510278
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Haynes Lane Car Park</b><br>
 Haynes Lane<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.481917,-2.510278" target="_blank">
@@ -1372,13 +1604,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.461333,
 -2.506667
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Cecil Road Car Park</b><br>
 Kingswood<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.461333,-2.506667" target="_blank">
@@ -1386,13 +1621,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.46025,
 -2.551503
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Chalks Road Car Park</b><br>
 Chalks Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.46025,-2.551503" target="_blank">
@@ -1400,13 +1638,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.460058,
 -2.574235
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Easton Leisure Centre</b><br>
 Thrissell Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.460058,-2.574235" target="_blank">
@@ -1414,13 +1655,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.449444,
 -2.518417
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Laburnum Road Car Park</b><br>
 Hanham<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.449444,-2.518417" target="_blank">
@@ -1428,13 +1672,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.52511,
 -2.615667
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Mollies Bristol</b><br>
 Cribbs Causeway<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.52511,-2.615667" target="_blank">
@@ -1442,13 +1689,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.4938011169434,
 -2.58472204208374
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Horfield Leisure Centre</b><br>
 Dorian Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.4938011169434,-2.58472204208374" target="_blank">
@@ -1456,13 +1706,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.535657,
 -2.545928
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Bradley Stoke Leisure Centre</b><br>
 Fiddlers Wood Lane<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.535657,-2.545928" target="_blank">
@@ -1470,13 +1723,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.449286,
 -2.600439
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Millennium Square underground car park</b><br>
 10 Canons Way<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.449286,-2.600439" target="_blank">
@@ -1484,13 +1740,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.499195,
 -2.503604
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>The Sandringham</b><br>
 Quaker's Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.499195,-2.503604" target="_blank">
@@ -1498,13 +1757,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.496792,
 -2.593026
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Southmead HospitalTrust Headquarters</b><br>
 Southmead HospitalTrust Headquarters<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.496792,-2.593026" target="_blank">
@@ -1512,13 +1774,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.496483,
 -2.593058
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Brunel Building MSCP</b><br>
 Southmead Hospital<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.496483,-2.593058" target="_blank">
@@ -1526,13 +1791,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.496426,
 -2.593182
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Brunel Building MSCP</b><br>
 Southmead Hospital<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.496426,-2.593182" target="_blank">
@@ -1540,13 +1808,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.477985,
 -2.532846
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Morrisons Bristol Fishponds</b><br>
 690-718 Fishponds Road Fishponds<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.477985,-2.532846" target="_blank">
@@ -1554,13 +1825,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.474899,
 -2.724
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>The Priory</b><br>
 Station Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.474899,-2.724" target="_blank">
@@ -1568,13 +1842,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.462803,
 -2.623801
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Bristol Zoo Gardens (west)</b><br>
 Bristol Zoo Gardens (west)<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.462803,-2.623801" target="_blank">
@@ -1582,13 +1859,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.452831,
 -2.60201
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>City Hall</b><br>
 College Green<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.452831,-2.60201" target="_blank">
@@ -1596,13 +1876,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.451996,
 -2.602646
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>College Street</b><br>
 College Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.451996,-2.602646" target="_blank">
@@ -1610,13 +1893,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.447315,
 -2.62305
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Bristol City Council Building Car Park</b><br>
 Smeaton Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.447315,-2.62305" target="_blank">
@@ -1624,13 +1910,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.447262,
 -2.62225
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Create Centre</b><br>
 Smeaton Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.447262,-2.62225" target="_blank">
@@ -1638,13 +1927,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.447063,
 -2.622256
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Create Centre</b><br>
 Smeaton Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.447063,-2.622256" target="_blank">
@@ -1652,13 +1944,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.423004,
 -2.492674
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>St Monica Trust</b><br>
 Keynsham<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.423004,-2.492674" target="_blank">
@@ -1666,13 +1961,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.522884,
 -2.609229
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Bristol-Lysander Road Supercharger</b><br>
 Lysander Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.522884,-2.609229" target="_blank">
@@ -1680,13 +1978,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.491501,
 -2.689291
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Portway</b><br>
 Portway<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.491501,-2.689291" target="_blank">
@@ -1694,13 +1995,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.490342,
 -2.688797
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>A4 Portway Park and Ride</b><br>
 Portway<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.490342,-2.688797" target="_blank">
@@ -1708,13 +2012,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.47134,
 -2.615144
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Car Park</b><br>
 Redland Hill<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.47134,-2.615144" target="_blank">
@@ -1722,13 +2029,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.45497408065427,
 -2.5998864501924857
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Trenchard Street Multi-Storey Car Park</b><br>
 Trenchard Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.45497408065427,-2.5998864501924857" target="_blank">
@@ -1736,13 +2046,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.448218,
 -2.584469
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Templegate Car Park</b><br>
 Templegate House Templegate<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.448218,-2.584469" target="_blank">
@@ -1750,13 +2063,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.448168,
 -2.583835
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Temple Gate Car Park 1</b><br>
 Temple Gate<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.448168,-2.583835" target="_blank">
@@ -1764,13 +2080,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.436784,
 -2.6341
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Long Ashton Park and Ride</b><br>
 Long Ashton Park & Ride<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.436784,-2.6341" target="_blank">
@@ -1778,13 +2097,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.427926,
 -2.537032
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Brislington Park and Ride</b><br>
 Bath Road Brislington<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.427926,-2.537032" target="_blank">
@@ -1792,13 +2114,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.45598149902531,
 -2.609257691814264
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>West End Car Park</b><br>
 Berkeley Place<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.45598149902531,-2.609257691814264" target="_blank">
@@ -1806,7 +2131,11 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
+
+
+map.addLayer(markers);
 
 </script>
 

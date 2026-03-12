@@ -6,19 +6,61 @@
 
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
+
 <style>
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+}
+
+header {
+  background: #1f2937;
+  padding: 12px 20px;
+}
+
+.logo {
+  color: white;
+  text-decoration: none;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.container {
+  padding: 20px;
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 15px;
+  text-decoration: none;
+  color: #2563eb;
+  font-weight: bold;
+}
+
 #map {
-  height: 400px;
+  height: 420px;
   margin-bottom: 30px;
   border-radius: 8px;
 }
+
 </style>
 
 </head>
 
 <body>
 
+<header>
+<a href="/" class="logo">PlugMap</a>
+</header>
+
+<div class="container">
+
 <h1>Christchurch EV Chargers</h1>
+
+<a href="/" class="back-link">← Back to homepage</a>
 
 <div id="map"></div>
 
@@ -91,7 +133,11 @@ Christchurch, Saxon Square Multi-Storey Car Park
 
 </ul>
 
+</div>
+
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 
 <script>
 
@@ -104,13 +150,16 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 attribution: '&copy; OpenStreetMap contributors'
 }).addTo(map);
 
+var markers = L.markerClusterGroup();
 
 
-L.marker([
+
+var marker = L.marker([
 50.7274020658677,
 -1.73863817538663
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Sandhills Holiday Park</b><br>
 Friars Cliff<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=50.7274020658677,-1.73863817538663" target="_blank">
@@ -118,13 +167,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 50.740861,
 -1.708455
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Wortley Road</b><br>
 Wortley Rd<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=50.740861,-1.708455" target="_blank">
@@ -132,13 +184,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 50.738607,
 -1.695787
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Highcliffe Cliff Top 2</b><br>
 Wharncliffe Rd<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=50.738607,-1.695787" target="_blank">
@@ -146,13 +201,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 50.733496,
 -1.777291
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Wick Lane</b><br>
 Wick Ln<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=50.733496,-1.777291" target="_blank">
@@ -160,13 +218,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 50.731214,
 -1.782656
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Willow Way</b><br>
 Malmesbury Cl<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=50.731214,-1.782656" target="_blank">
@@ -174,13 +235,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 50.72977,
 -1.734808
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Avon Run Road 2</b><br>
 Avon Run Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=50.72977,-1.734808" target="_blank">
@@ -188,13 +252,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 50.725121,
 -1.740155
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Mudeford Quay</b><br>
 Haven Cottages<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=50.725121,-1.740155" target="_blank">
@@ -202,13 +269,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 50.7429807,
 -1.739677
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>KFC Christchurch</b><br>
 2 Somerford Roundabout<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=50.7429807,-1.739677" target="_blank">
@@ -216,13 +286,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 50.723701,
 -1.799675
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>RAWOWNED TOWER VIEW 1</b><br>
 19 Seafield Rd<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=50.723701,-1.799675" target="_blank">
@@ -230,13 +303,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 50.7406908,
 -1.7447135
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Somerford Business Park</b><br>
 Somerford Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=50.7406908,-1.7447135" target="_blank">
@@ -244,13 +320,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 50.7384515552201,
 -1.75055569491585
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>McDonald's - Christchurch</b><br>
 103 Somerford Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=50.7384515552201,-1.75055569491585" target="_blank">
@@ -258,13 +337,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 50.779875,
 -1.829399
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Jets Hurn Airport</b><br>
 Hurn<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=50.779875,-1.829399" target="_blank">
@@ -272,13 +354,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 50.73548,
 -1.77691
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Christchurch, Saxon Square Multi-Storey Car Park</b><br>
 Christchurch, Saxon Square Multi-Storey Car Park<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=50.73548,-1.77691" target="_blank">
@@ -286,7 +371,11 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
+
+
+map.addLayer(markers);
 
 </script>
 

@@ -6,19 +6,61 @@
 
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
+
 <style>
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+}
+
+header {
+  background: #1f2937;
+  padding: 12px 20px;
+}
+
+.logo {
+  color: white;
+  text-decoration: none;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.container {
+  padding: 20px;
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 15px;
+  text-decoration: none;
+  color: #2563eb;
+  font-weight: bold;
+}
+
 #map {
-  height: 400px;
+  height: 420px;
   margin-bottom: 30px;
   border-radius: 8px;
 }
+
 </style>
 
 </head>
 
 <body>
 
+<header>
+<a href="/" class="logo">PlugMap</a>
+</header>
+
+<div class="container">
+
 <h1>Taunton EV Chargers</h1>
+
+<a href="/" class="back-link">← Back to homepage</a>
 
 <div id="map"></div>
 
@@ -111,7 +153,11 @@ Wellington Road
 
 </ul>
 
+</div>
+
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 
 <script>
 
@@ -124,13 +170,16 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 attribution: '&copy; OpenStreetMap contributors'
 }).addTo(map);
 
+var markers = L.markerClusterGroup();
 
 
-L.marker([
+
+var marker = L.marker([
 51.021006,
 -3.091672
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Priory Fields</b><br>
 Priory Fields<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.021006,-3.091672" target="_blank">
@@ -138,13 +187,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.01765239817604,
 -3.0660507039348204
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>MFG Taunton Deane Service Station</b><br>
 Black Brook Park Avenue<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.01765239817604,-3.0660507039348204" target="_blank">
@@ -152,13 +204,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.0137,
 -3.10478
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Crescent Car Pak</b><br>
 Crescent Car Park<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.0137,-3.10478" target="_blank">
@@ -166,13 +221,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.0137,
 -3.44221
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>The Crescent Car Park</b><br>
 Crescent car park<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.0137,-3.44221" target="_blank">
@@ -180,13 +238,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.02079,
 -3.107233
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Belvedere Road car park</b><br>
 Belvedere Road car park<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.02079,-3.107233" target="_blank">
@@ -194,13 +255,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.019451,
 -3.105177
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Morrisons Taunton</b><br>
 Wm Morrison Supermarkets PLC<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.019451,-3.105177" target="_blank">
@@ -208,13 +272,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.018024,
 -3.058323
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Premier Inn Taunton Ruishton (M5, J25)</b><br>
 Ruishton<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.018024,-3.058323" target="_blank">
@@ -222,13 +289,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.0105998,
 -3.0716142
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Blackbrook Leisure Centre</b><br>
 Blackbrook Leisure Centre<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.0105998,-3.0716142" target="_blank">
@@ -236,13 +306,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.0241529,
 -3.0670894
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>McDonald's Heron Gate</b><br>
 Heron Gate<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.0241529,-3.0670894" target="_blank">
@@ -250,13 +323,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.0183,
 -3.10618
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Wood Street car park</b><br>
 Wood Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.0183,-3.10618" target="_blank">
@@ -264,13 +340,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.015382,
 -3.107971
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Castle Street car park</b><br>
 Castle Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.015382,-3.107971" target="_blank">
@@ -278,13 +357,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.013141,
 -3.068797
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Junction 25</b><br>
 Blackbrook Park Avenue<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.013141,-3.068797" target="_blank">
@@ -292,13 +374,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.021170787885,
 -3.10595216030237
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>The Deane House</b><br>
 Belvedere Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.021170787885,-3.10595216030237" target="_blank">
@@ -306,13 +391,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.041721,
 -2.930608
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Dark Lane</b><br>
 Dark Lane<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.041721,-2.930608" target="_blank">
@@ -320,13 +408,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.01966213648669,
 -3.1039019464901685
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Morrisons Taunton</b><br>
 1 Black Horse Lane<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.01966213648669,-3.1039019464901685" target="_blank">
@@ -334,13 +425,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.015426,
 -3.104144
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>The Castle Hotel</b><br>
 Castle Green<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.015426,-3.104144" target="_blank">
@@ -348,13 +442,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.015226,
 -3.112207
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Tesco Superstore-Taunton</b><br>
 Wellington Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.015226,-3.112207" target="_blank">
@@ -362,7 +459,11 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
+
+
+map.addLayer(markers);
 
 </script>
 

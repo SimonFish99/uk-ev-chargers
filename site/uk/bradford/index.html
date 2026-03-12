@@ -6,19 +6,61 @@
 
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
+
 <style>
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+}
+
+header {
+  background: #1f2937;
+  padding: 12px 20px;
+}
+
+.logo {
+  color: white;
+  text-decoration: none;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.container {
+  padding: 20px;
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 15px;
+  text-decoration: none;
+  color: #2563eb;
+  font-weight: bold;
+}
+
 #map {
-  height: 400px;
+  height: 420px;
   margin-bottom: 30px;
   border-radius: 8px;
 }
+
 </style>
 
 </head>
 
 <body>
 
+<header>
+<a href="/" class="logo">PlugMap</a>
+</header>
+
+<div class="container">
+
 <h1>Bradford EV Chargers</h1>
+
+<a href="/" class="back-link">← Back to homepage</a>
 
 <div id="map"></div>
 
@@ -256,7 +298,11 @@ Wellington Street
 
 </ul>
 
+</div>
+
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 
 <script>
 
@@ -269,13 +315,16 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 attribution: '&copy; OpenStreetMap contributors'
 }).addTo(map);
 
+var markers = L.markerClusterGroup();
 
 
-L.marker([
+
+var marker = L.marker([
 53.822809,
 -1.802243
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Heaton Crematorium, Bradford 6</b><br>
 Highgate<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.822809,-1.802243" target="_blank">
@@ -283,13 +332,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.778682,
 -1.73672
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Bowling Swimming Pool, East Bowling 1</b><br>
 East Bowling,<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.778682,-1.73672" target="_blank">
@@ -297,13 +349,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.75564882,
 -1.763727857
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Best Western Bradford Guide Post</b><br>
 Common Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.75564882,-1.763727857" target="_blank">
@@ -311,13 +366,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.873425,
 -1.901013
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Keighley Leisure Centre</b><br>
 Victoria Park, Keighley,<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.873425,-1.901013" target="_blank">
@@ -325,13 +383,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.768619,
 -1.75287
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>SHELL RECHARGE ROOLEY LANE</b><br>
 Rooley Lane<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.768619,-1.75287" target="_blank">
@@ -339,13 +400,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.914395,
 -1.937813
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Wesley Place Car Park 3</b><br>
 Keightley<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.914395,-1.937813" target="_blank">
@@ -353,13 +417,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.834332,
 -1.779449
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Saville Street, Shipley</b><br>
 Shipley<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.834332,-1.779449" target="_blank">
@@ -367,13 +434,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.793815,
 -1.789762
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Genie</b><br>
 Cemetery Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.793815,-1.789762" target="_blank">
@@ -381,13 +451,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.781216,
 -1.787817
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Tesco Extra - Bradford</b><br>
 Great Horton Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.781216,-1.787817" target="_blank">
@@ -395,13 +468,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.771671,
 -1.733218
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Asda Bradford</b><br>
 Rooley Lane<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.771671,-1.733218" target="_blank">
@@ -409,13 +485,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.760481,
 -1.759713
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Sedbergh Leisure Centre</b><br>
 Low Moor<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.760481,-1.759713" target="_blank">
@@ -423,13 +502,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.944214,
 -1.882045
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Bolton Rd Car Park 1</b><br>
 Addingham<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.944214,-1.882045" target="_blank">
@@ -437,13 +519,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.855448,
 -1.762459
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Jenny Lane 1</b><br>
 Balidon<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.855448,-1.762459" target="_blank">
@@ -451,13 +536,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.832797,
 -1.783162
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>St Pauls Car Park 1</b><br>
 Shipley<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.832797,-1.783162" target="_blank">
@@ -465,13 +553,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.828816,
 -1.82181
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Herbert Street, Cottingley 1</b><br>
 Cottingley<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.828816,-1.82181" target="_blank">
@@ -479,13 +570,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.825949,
 -1.780922
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Cliffewood Avenue 1</b><br>
 Shipley<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.825949,-1.780922" target="_blank">
@@ -493,13 +587,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.821224,
 -1.727175
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Eccleshill Recreation Ground 3</b><br>
 Mount Avenue<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.821224,-1.727175" target="_blank">
@@ -507,13 +604,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.819503,
 -1.761992
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Bute St Car Park 2</b><br>
 Bolton<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.819503,-1.761992" target="_blank">
@@ -521,13 +621,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.808271,
 -1.729463
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Killinghall Car Park 1</b><br>
 Eccleshill<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.808271,-1.729463" target="_blank">
@@ -535,13 +638,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.805902,
 -1.772043
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Manningham Library 2</b><br>
 Manningham<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.805902,-1.772043" target="_blank">
@@ -549,13 +655,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.7683623,
 -1.84202273
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Tesco Superstore-Queensbury</b><br>
 Brighouse Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.7683623,-1.84202273" target="_blank">
@@ -563,13 +672,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.8002605,
 -1.7093363
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>McDonald's Thornbury</b><br>
 1003 Leeds Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.8002605,-1.7093363" target="_blank">
@@ -577,13 +689,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.850256,
 -1.964474
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Oakworth Crematorium</b><br>
 Oakworth, Keighley<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.850256,-1.964474" target="_blank">
@@ -591,13 +706,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.782057,
 -1.759251
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Lidl-Bradford-Manchester Road</b><br>
 Manchester Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.782057,-1.759251" target="_blank">
@@ -605,13 +723,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.804144,
 -1.753911
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Tesco Superstore-Bradford Peel Centre</b><br>
 Peel Centre<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.804144,-1.753911" target="_blank">
@@ -619,13 +740,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.924313189284,
 -1.81760983411857
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Tesco Superstore - Ilkley </b><br>
 19 Springs Lane<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.924313189284,-1.81760983411857" target="_blank">
@@ -633,13 +757,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.738239,
 -1.76863
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Asda Wyke</b><br>
 Town Gate, Wyke<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.738239,-1.76863" target="_blank">
@@ -647,13 +774,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.758742,
 -1.794512
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Tesco Superstore-Bradford Buttershaw</b><br>
 Halifax Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.758742,-1.794512" target="_blank">
@@ -661,13 +791,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.76668661467215,
 -1.7778675805075181
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Wibsey Fairground</b><br>
 Tennyson Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.76668661467215,-1.7778675805075181" target="_blank">
@@ -675,13 +808,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.79132604047746,
 -1.7483990899461332
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Vicar Lane Car Park</b><br>
 Vicar Lane<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.79132604047746,-1.7483990899461332" target="_blank">
@@ -689,13 +825,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.808816301141235,
 -1.776283475878813
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Victor Street Car Park</b><br>
 Oak Lane<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.808816301141235,-1.776283475878813" target="_blank">
@@ -703,13 +842,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.80862556995987,
 -1.776521327441401
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Victor Street Car Park</b><br>
 Victor Terrace<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.80862556995987,-1.776521327441401" target="_blank">
@@ -717,13 +859,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.927554,
 -1.818015
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Booths Instavolt Ilkley</b><br>
 Leeds Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.927554,-1.818015" target="_blank">
@@ -731,13 +876,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.87423464481145,
 -1.9009915423337134
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Victoria Park, Keighley,</b><br>
 Victoria Park, Keighley,<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.87423464481145,-1.9009915423337134" target="_blank">
@@ -745,13 +893,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.79246,
 -1.723757
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Orange Street Car Park</b><br>
 Orange Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.79246,-1.723757" target="_blank">
@@ -759,13 +910,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.8025287546999,
 -1.70241695540949
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Starbucks Gain Lane</b><br>
 Gain Lane<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.8025287546999,-1.70241695540949" target="_blank">
@@ -773,13 +927,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.804088,
 -1.774611
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Manningham Sports Centre</b><br>
 Carlisle Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.804088,-1.774611" target="_blank">
@@ -787,13 +944,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.801846,
 -1.712276
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Morrisons Bradford Thornbury</b><br>
 Rushton Avenue<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.801846,-1.712276" target="_blank">
@@ -801,13 +961,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.79784,
 -1.75752
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>The Oastler Shopping Centre and Market</b><br>
 Rawson Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.79784,-1.75752" target="_blank">
@@ -815,13 +978,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.769028,
 -1.73779
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Toby Carvery Bradford</b><br>
 244-246 Rooley Lane<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.769028,-1.73779" target="_blank">
@@ -829,13 +995,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.7836866066673,
 -1.79724583449024
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Quora Retail Park</b><br>
 Bradford Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.7836866066673,-1.79724583449024" target="_blank">
@@ -843,13 +1012,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.79544465659018,
 -1.744441021467992
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Burnett Street Car Park</b><br>
 Burnett Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.79544465659018,-1.744441021467992" target="_blank">
@@ -857,13 +1029,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.83510610905546,
 -1.7298996180154518
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>The Green Car Park</b><br>
 The Green<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.83510610905546,-1.7298996180154518" target="_blank">
@@ -871,13 +1046,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.7642110757677,
 -1.76274648239109
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>KFC</b><br>
 Halifax Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.7642110757677,-1.76274648239109" target="_blank">
@@ -885,13 +1063,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.75987440055275,
 -1.7614335542655226
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Sedbergh Leisure Centre</b><br>
 Cleckheaton Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.75987440055275,-1.7614335542655226" target="_blank">
@@ -899,13 +1080,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.84807407794307,
 -1.8367932855298932
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Wellington Street Car Park</b><br>
 Wellington Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.84807407794307,-1.8367932855298932" target="_blank">
@@ -913,7 +1097,11 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
+
+
+map.addLayer(markers);
 
 </script>
 

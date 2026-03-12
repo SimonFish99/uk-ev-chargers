@@ -6,19 +6,61 @@
 
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
+
 <style>
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+}
+
+header {
+  background: #1f2937;
+  padding: 12px 20px;
+}
+
+.logo {
+  color: white;
+  text-decoration: none;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.container {
+  padding: 20px;
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 15px;
+  text-decoration: none;
+  color: #2563eb;
+  font-weight: bold;
+}
+
 #map {
-  height: 400px;
+  height: 420px;
   margin-bottom: 30px;
   border-radius: 8px;
 }
+
 </style>
 
 </head>
 
 <body>
 
+<header>
+<a href="/" class="logo">PlugMap</a>
+</header>
+
+<div class="container">
+
 <h1>Barnsley EV Chargers</h1>
+
+<a href="/" class="back-link">← Back to homepage</a>
 
 <div id="map"></div>
 
@@ -126,7 +168,11 @@ Lower Thomas Street
 
 </ul>
 
+</div>
+
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 
 <script>
 
@@ -139,13 +185,16 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 attribution: '&copy; OpenStreetMap contributors'
 }).addTo(map);
 
+var markers = L.markerClusterGroup();
 
 
-L.marker([
+
+var marker = L.marker([
 53.586385,
 -1.5312
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Church Street Car Park, Darton 1</b><br>
 Darton<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.586385,-1.5312" target="_blank">
@@ -153,13 +202,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.555437,
 -1.5039
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>West Road Pay and Display Car Park, Barnsley 1</b><br>
 West Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.555437,-1.5039" target="_blank">
@@ -167,13 +219,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.541294,
 -1.435568
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Tesco Extra - Barnsley</b><br>
 Wombwell Lane<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.541294,-1.435568" target="_blank">
@@ -181,13 +236,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.506038,
 -1.442547
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Tesco Superstore - Hoyland</b><br>
 Wombwell Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.506038,-1.442547" target="_blank">
@@ -195,13 +253,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.550253,
 -1.485245
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Mark Street Commuter Car Park, Barnsley 3</b><br>
 Mark Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.550253,-1.485245" target="_blank">
@@ -209,13 +270,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.550199,
 -1.485178
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Mark Street Commuter Car Park, Barnsley 1</b><br>
 Mark Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.550199,-1.485178" target="_blank">
@@ -223,13 +287,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.555038,
 -1.48701
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Churchfields 1</b><br>
 Sackville Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.555038,-1.48701" target="_blank">
@@ -237,13 +304,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.552444,
 -1.475808
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Market Gate Shopper Car Park, Barnsley 7</b><br>
 Kendray Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.552444,-1.475808" target="_blank">
@@ -251,13 +321,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.553934,
 -1.486465
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Sackville Street 1</b><br>
 Sackville Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.553934,-1.486465" target="_blank">
@@ -265,13 +338,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.549591,
 -1.480648
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Morrisons Barnsley Westway</b><br>
 Morrisons Barnsley Westway<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.549591,-1.480648" target="_blank">
@@ -279,13 +355,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.52637,
 -1.6283
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Shrewsbury Road 1</b><br>
 Shrewsbury Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.52637,-1.6283" target="_blank">
@@ -293,13 +372,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.50166,
 -1.44058
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Duke Street 1</b><br>
 Duke Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.50166,-1.44058" target="_blank">
@@ -307,13 +389,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.57617,
 -1.42134
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Bank Street 1</b><br>
 Bloemfontein Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.57617,-1.42134" target="_blank">
@@ -321,13 +406,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.558262,
 -1.469985
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Starbucks Barnsley</b><br>
 Harbourgh Hill Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.558262,-1.469985" target="_blank">
@@ -335,13 +423,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.53553,
 -1.30388
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Queen Street 1</b><br>
 Queen Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.53553,-1.30388" target="_blank">
@@ -349,13 +440,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.47782,
 -1.3189
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Elsecar Heritage Centre 1</b><br>
 Wentworth Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.47782,-1.3189" target="_blank">
@@ -363,13 +457,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.558012,
 -1.499145
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Barnsley Hospital Nhs Foundation Trust</b><br>
 Gawber Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.558012,-1.499145" target="_blank">
@@ -377,13 +474,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.56780568977217,
 -1.5195702083575497
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>ALDI - Claycliffe Road</b><br>
 Whaley Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.56780568977217,-1.5195702083575497" target="_blank">
@@ -391,13 +491,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.50754631682338,
 -1.3909673765029993
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Morrisons Brampton Corton Wood</b><br>
 Brampton Bierlow<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.50754631682338,-1.3909673765029993" target="_blank">
@@ -405,13 +508,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.549872,
 -1.482336
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Morrisons Barnsley</b><br>
 Lower Thomas Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.549872,-1.482336" target="_blank">
@@ -419,7 +525,11 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
+
+
+map.addLayer(markers);
 
 </script>
 

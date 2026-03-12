@@ -6,19 +6,61 @@
 
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
+
 <style>
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+}
+
+header {
+  background: #1f2937;
+  padding: 12px 20px;
+}
+
+.logo {
+  color: white;
+  text-decoration: none;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.container {
+  padding: 20px;
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 15px;
+  text-decoration: none;
+  color: #2563eb;
+  font-weight: bold;
+}
+
 #map {
-  height: 400px;
+  height: 420px;
   margin-bottom: 30px;
   border-radius: 8px;
 }
+
 </style>
 
 </head>
 
 <body>
 
+<header>
+<a href="/" class="logo">PlugMap</a>
+</header>
+
+<div class="container">
+
 <h1>Skelmersdale EV Chargers</h1>
+
+<a href="/" class="back-link">← Back to homepage</a>
 
 <div id="map"></div>
 
@@ -96,7 +138,11 @@ Abbeywood Little Digmoor
 
 </ul>
 
+</div>
+
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 
 <script>
 
@@ -109,13 +155,16 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 attribution: '&copy; OpenStreetMap contributors'
 }).addTo(map);
 
+var markers = L.markerClusterGroup();
 
 
-L.marker([
+
+var marker = L.marker([
 53.55066,
 -2.809403
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>EG GROUP NEWTOWN 1</b><br>
 BP Railway Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.55066,-2.809403" target="_blank">
@@ -123,13 +172,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.558371,
 -2.782419
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Irwell</b><br>
 Irwell<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.558371,-2.782419" target="_blank">
@@ -137,13 +189,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.553844,
 -2.792961
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Temple Martin and Thornton Off School Lane</b><br>
 Temple Martin & Thornton Off School lane<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.553844,-2.792961" target="_blank">
@@ -151,13 +206,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.55296,
 -2.805659
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Field Street, Skelmersdale</b><br>
 Rear of 1-37 Field Street Off School Lane<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.55296,-2.805659" target="_blank">
@@ -165,13 +223,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.547248,
 -2.796312
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Whitestock</b><br>
 Pennylands<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.547248,-2.796312" target="_blank">
@@ -179,13 +240,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.547038,
 -2.759572
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Tanhouse Community Centre</b><br>
 Enerdale<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.547038,-2.759572" target="_blank">
@@ -193,13 +257,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.5417,
 -2.765507
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Banksbarn, Digmoor</b><br>
 Digmoor<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.5417,-2.765507" target="_blank">
@@ -207,13 +274,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.540036,
 -2.753925
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Cherrycroft</b><br>
 Holland Moor<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.540036,-2.753925" target="_blank">
@@ -221,13 +291,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.538018,
 -2.768519
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Alderley Little Digmoor</b><br>
 Alderley, Little Digmoor<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.538018,-2.768519" target="_blank">
@@ -235,13 +308,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.55654,
 -2.780405
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Inskip</b><br>
 Inskip<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.55654,-2.780405" target="_blank">
@@ -249,13 +325,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.552172,
 -2.772889
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Firbeck Birch Green</b><br>
 Firbeck Birch Green<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.552172,-2.772889" target="_blank">
@@ -263,13 +342,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.546155,
 -2.758249
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Egerton</b><br>
 Egerton<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.546155,-2.758249" target="_blank">
@@ -277,13 +359,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.538485,
 -2.76814
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Abbeywood Little Digmoor</b><br>
 Abbeywood Little Digmoor<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.538485,-2.76814" target="_blank">
@@ -291,13 +376,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.550182,
 -2.806867
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Sandy Lane Parking/Charging</b><br>
 95 Sundy Lane<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.550182,-2.806867" target="_blank">
@@ -305,7 +393,11 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
+
+
+map.addLayer(markers);
 
 </script>
 

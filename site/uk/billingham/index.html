@@ -6,19 +6,61 @@
 
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
+
 <style>
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+}
+
+header {
+  background: #1f2937;
+  padding: 12px 20px;
+}
+
+.logo {
+  color: white;
+  text-decoration: none;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.container {
+  padding: 20px;
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 15px;
+  text-decoration: none;
+  color: #2563eb;
+  font-weight: bold;
+}
+
 #map {
-  height: 400px;
+  height: 420px;
   margin-bottom: 30px;
   border-radius: 8px;
 }
+
 </style>
 
 </head>
 
 <body>
 
+<header>
+<a href="/" class="logo">PlugMap</a>
+</header>
+
+<div class="container">
+
 <h1>Billingham EV Chargers</h1>
+
+<a href="/" class="back-link">← Back to homepage</a>
 
 <div id="map"></div>
 
@@ -56,7 +98,11 @@ City Learning Centre
 
 </ul>
 
+</div>
+
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 
 <script>
 
@@ -69,13 +115,16 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 attribution: '&copy; OpenStreetMap contributors'
 }).addTo(map);
 
+var markers = L.markerClusterGroup();
 
 
-L.marker([
+
+var marker = L.marker([
 54.607444,
 -1.288612
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Billingham Forum</b><br>
 Billingham Forum<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.607444,-1.288612" target="_blank">
@@ -83,13 +132,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.617636,
 -1.309439
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Northfield School and Sports College</b><br>
 Northfield School and Sports College<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.617636,-1.309439" target="_blank">
@@ -97,13 +149,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.61654,
 -1.28206
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Bede Sixth Form College</b><br>
 Bede Sixth Form College<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.61654,-1.28206" target="_blank">
@@ -111,13 +166,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.607345,
 -1.278325
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Billingham Community Transport Hub</b><br>
 Unit 1<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.607345,-1.278325" target="_blank">
@@ -125,13 +183,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.630848,
 -1.317894
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Wynyard Park</b><br>
 Wynyard Park<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.630848,-1.317894" target="_blank">
@@ -139,13 +200,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.618071,
 -1.281513
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>City Learning Centre</b><br>
 City Learning Centre<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.618071,-1.281513" target="_blank">
@@ -153,7 +217,11 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
+
+
+map.addLayer(markers);
 
 </script>
 

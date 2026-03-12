@@ -6,19 +6,61 @@
 
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
+
 <style>
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+}
+
+header {
+  background: #1f2937;
+  padding: 12px 20px;
+}
+
+.logo {
+  color: white;
+  text-decoration: none;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.container {
+  padding: 20px;
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 15px;
+  text-decoration: none;
+  color: #2563eb;
+  font-weight: bold;
+}
+
 #map {
-  height: 400px;
+  height: 420px;
   margin-bottom: 30px;
   border-radius: 8px;
 }
+
 </style>
 
 </head>
 
 <body>
 
+<header>
+<a href="/" class="logo">PlugMap</a>
+</header>
+
+<div class="container">
+
 <h1>Barrow-in-Furness EV Chargers</h1>
+
+<a href="/" class="back-link">← Back to homepage</a>
 
 <div id="map"></div>
 
@@ -66,7 +108,11 @@ Walney
 
 </ul>
 
+</div>
+
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 
 <script>
 
@@ -79,13 +125,16 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 attribution: '&copy; OpenStreetMap contributors'
 }).addTo(map);
 
+var markers = L.markerClusterGroup();
 
 
-L.marker([
+
+var marker = L.marker([
 54.12208044768752,
 -3.2351650940985337
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Evpoint Asda Barrow</b><br>
 Asda Barrow<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.12208044768752,-3.2351650940985337" target="_blank">
@@ -93,13 +142,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.119473,
 -3.241409
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>James Freel Close</b><br>
 James Freel Close<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.119473,-3.241409" target="_blank">
@@ -107,13 +159,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.105171,
 -3.258825
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Walney School</b><br>
 Sandy Gap Lane<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.105171,-3.258825" target="_blank">
@@ -121,13 +176,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.100349,
 -3.231278
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Waterfront Gateway</b><br>
 Waterfront Gateway<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.100349,-3.231278" target="_blank">
@@ -135,13 +193,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.108611747148814,
 -3.225181336415517
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Morrisons, Barrow-in-Furness</b><br>
 Strand<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.108611747148814,-3.225181336415517" target="_blank">
@@ -149,13 +210,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.108611747148814,
 -3.225181336415517
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Morrisons, Barrow-in-Furness</b><br>
 Strand<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.108611747148814,-3.225181336415517" target="_blank">
@@ -163,13 +227,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.108611747148814,
 -3.225181336415517
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Morrisons, Barrow-in-Furness</b><br>
 Strand<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.108611747148814,-3.225181336415517" target="_blank">
@@ -177,13 +244,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.116423,
 -3.261175
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>West Point House</b><br>
 Walney<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.116423,-3.261175" target="_blank">
@@ -191,7 +261,11 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
+
+
+map.addLayer(markers);
 
 </script>
 

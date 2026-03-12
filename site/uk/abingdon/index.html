@@ -6,19 +6,61 @@
 
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
+
 <style>
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+}
+
+header {
+  background: #1f2937;
+  padding: 12px 20px;
+}
+
+.logo {
+  color: white;
+  text-decoration: none;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.container {
+  padding: 20px;
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 15px;
+  text-decoration: none;
+  color: #2563eb;
+  font-weight: bold;
+}
+
 #map {
-  height: 400px;
+  height: 420px;
   margin-bottom: 30px;
   border-radius: 8px;
 }
+
 </style>
 
 </head>
 
 <body>
 
+<header>
+<a href="/" class="logo">PlugMap</a>
+</header>
+
+<div class="container">
+
 <h1>Abingdon EV Chargers</h1>
+
+<a href="/" class="back-link">← Back to homepage</a>
 
 <div id="map"></div>
 
@@ -76,7 +118,11 @@ Marcham Road
 
 </ul>
 
+</div>
+
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 
 <script>
 
@@ -89,13 +135,16 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 attribution: '&copy; OpenStreetMap contributors'
 }).addTo(map);
 
+var markers = L.markerClusterGroup();
 
 
-L.marker([
+
+var marker = L.marker([
 51.68214008816619,
 -1.2729919778185774
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Boundary House</b><br>
 Oxford Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.68214008816619,-1.2729919778185774" target="_blank">
@@ -103,13 +152,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.668223,
 -1.305213
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Hilton Garden Inn Carpark</b><br>
 Hilton Garden Inn Carpark<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.668223,-1.305213" target="_blank">
@@ -117,13 +169,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.67234,
 -1.278497
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Waitrose</b><br>
 2 Quakers Court<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.67234,-1.278497" target="_blank">
@@ -131,13 +186,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.621179,
 -1.299475
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Milton Park Business Centre</b><br>
 Milton Park, Milton, Abingdon, Oxfordshire<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.621179,-1.299475" target="_blank">
@@ -145,13 +203,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.619999,
 -1.3001
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Harvester Didcot</b><br>
 Milton<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.619999,-1.3001" target="_blank">
@@ -159,13 +220,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.673044,
 -1.262489
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>SOPHOS ABINGDON 1</b><br>
 Barton Ln<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.673044,-1.262489" target="_blank">
@@ -173,13 +237,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.671752848987495,
 -1.2795957194133507
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Waitrose Abingdon</b><br>
 Abbey Close<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.671752848987495,-1.2795957194133507" target="_blank">
@@ -187,13 +254,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.6698068376683,
 -1.30584025223936
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Fairacres Retail Park, Abingdon</b><br>
 Fairacres<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.6698068376683,-1.30584025223936" target="_blank">
@@ -201,13 +271,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.6697854467005,
 -1.36194135767028
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>InstaVolt Marcham Road</b><br>
 68 Marcham Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.6697854467005,-1.36194135767028" target="_blank">
@@ -215,13 +288,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.666851,
 -1.308468
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Tesco Extra-Abingdon</b><br>
 Marcham Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.666851,-1.308468" target="_blank">
@@ -229,7 +305,11 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
+
+
+map.addLayer(markers);
 
 </script>
 

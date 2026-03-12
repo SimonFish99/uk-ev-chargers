@@ -6,19 +6,61 @@
 
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
+
 <style>
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+}
+
+header {
+  background: #1f2937;
+  padding: 12px 20px;
+}
+
+.logo {
+  color: white;
+  text-decoration: none;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.container {
+  padding: 20px;
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 15px;
+  text-decoration: none;
+  color: #2563eb;
+  font-weight: bold;
+}
+
 #map {
-  height: 400px;
+  height: 420px;
   margin-bottom: 30px;
   border-radius: 8px;
 }
+
 </style>
 
 </head>
 
 <body>
 
+<header>
+<a href="/" class="logo">PlugMap</a>
+</header>
+
+<div class="container">
+
 <h1>Bromley EV Chargers</h1>
+
+<a href="/" class="back-link">← Back to homepage</a>
 
 <div id="map"></div>
 
@@ -106,7 +148,11 @@ Bromley Hill
 
 </ul>
 
+</div>
+
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 
 <script>
 
@@ -119,13 +165,16 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 attribution: '&copy; OpenStreetMap contributors'
 }).addTo(map);
 
+var markers = L.markerClusterGroup();
 
 
-L.marker([
+
+var marker = L.marker([
 51.40365,
 -0.040681
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Hampden Road</b><br>
 53 Hampden Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.40365,-0.040681" target="_blank">
@@ -133,13 +182,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.39924,
 -0.043673
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>St James Avenue</b><br>
 2 St James Avenue<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.39924,-0.043673" target="_blank">
@@ -147,13 +199,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.427379,
 -0.003627
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Shell Recharge/Ubitricity</b><br>
 null<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.427379,-0.003627" target="_blank">
@@ -161,13 +216,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.4221,
 0.022362
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Jemca Toyota Bromley</b><br>
 146-150 Burnt Ash Lane<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.4221,0.022362" target="_blank">
@@ -175,13 +233,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.419299,
 -0.054912
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Penge East Station (site 2)</b><br>
 Penge East Station (site 2)<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.419299,-0.054912" target="_blank">
@@ -189,13 +250,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.410999,
 0.026223
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Nissan Ancaster Bromley</b><br>
 88 Plaistow Lane<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.410999,0.026223" target="_blank">
@@ -203,13 +267,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.40959,
 -0.023402
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>St Georges Road car park</b><br>
 St Georges Road car park<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.40959,-0.023402" target="_blank">
@@ -217,13 +284,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.408651,
 -0.038727
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>The Spa Car Park Site 2</b><br>
 The Spa Car Park Site 2<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.408651,-0.038727" target="_blank">
@@ -231,13 +301,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.404468,
 0.020115
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Civic Centre Car Park (Stockwell Close)</b><br>
 Civic Centre Car Park (Stockwell Close)<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.404468,0.020115" target="_blank">
@@ -245,13 +318,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.4025,
 0.017469
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>NCP Bromley</b><br>
 Elmfield Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.4025,0.017469" target="_blank">
@@ -259,13 +335,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.376774,
 -0.019622
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>97 West Wickham</b><br>
 High Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.376774,-0.019622" target="_blank">
@@ -273,13 +352,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.376592,
 0.010597
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Hayes Station Car Park</b><br>
 Hayes Station Car Park<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.376592,0.010597" target="_blank">
@@ -287,13 +369,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.399995,
 0.032592
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Tesco Superstore-Bromley</b><br>
 Homesdale Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.399995,0.032592" target="_blank">
@@ -301,13 +386,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.406462,
 0.010857
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Hill Car Park(Site 2)</b><br>
 Hill Car Park(Site 2)<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.406462,0.010857" target="_blank">
@@ -315,13 +403,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.417217,
 -0.000418
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Matlida house</b><br>
 Hillbrow Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.417217,-0.000418" target="_blank">
@@ -329,13 +420,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.416599,
 0.002336
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Bromley Court Hotel</b><br>
 Bromley Hill<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.416599,0.002336" target="_blank">
@@ -343,7 +437,11 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
+
+
+map.addLayer(markers);
 
 </script>
 

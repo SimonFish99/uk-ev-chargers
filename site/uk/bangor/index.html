@@ -6,19 +6,61 @@
 
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
+
 <style>
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+}
+
+header {
+  background: #1f2937;
+  padding: 12px 20px;
+}
+
+.logo {
+  color: white;
+  text-decoration: none;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.container {
+  padding: 20px;
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 15px;
+  text-decoration: none;
+  color: #2563eb;
+  font-weight: bold;
+}
+
 #map {
-  height: 400px;
+  height: 420px;
   margin-bottom: 30px;
   border-radius: 8px;
 }
+
 </style>
 
 </head>
 
 <body>
 
+<header>
+<a href="/" class="logo">PlugMap</a>
+</header>
+
+<div class="container">
+
 <h1>Bangor EV Chargers</h1>
+
+<a href="/" class="back-link">← Back to homepage</a>
 
 <div id="map"></div>
 
@@ -101,7 +143,11 @@ Aurora Car Park
 
 </ul>
 
+</div>
+
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 
 <script>
 
@@ -114,13 +160,16 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 attribution: '&copy; OpenStreetMap contributors'
 }).addTo(map);
 
+var markers = L.markerClusterGroup();
 
 
-L.marker([
+
+var marker = L.marker([
 54.647116468557954,
 -5.658857192987625
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>McDonald's</b><br>
 Bloomfield Shopping Centre<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.647116468557954,-5.658857192987625" target="_blank">
@@ -128,13 +177,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.64813295345951,
 -5.65863465304426
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Bloomfield Shopping Centre & Retail Park</b><br>
 South Circular Rd<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.64813295345951,-5.65863465304426" target="_blank">
@@ -142,13 +194,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.64554118581495,
 -5.684365869048037
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Toscana Retail Park</b><br>
 Toscana Park<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.64554118581495,-5.684365869048037" target="_blank">
@@ -156,13 +211,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.648066847757605,
 -5.686861749135659
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Solo Clandeboye</b><br>
 173 Clandeboye Rd<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.648066847757605,-5.686861749135659" target="_blank">
@@ -170,13 +228,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.65305384957139,
 -5.665203304574419
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Bangor Aurora Aquatic & Leisure Complex</b><br>
 Valentine Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.65305384957139,-5.665203304574419" target="_blank">
@@ -184,13 +245,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.64964423700039,
 -5.708607492296096
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Bangor Sportsplex</b><br>
 Old Belfast Rd<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.64964423700039,-5.708607492296096" target="_blank">
@@ -198,13 +262,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.20544101568339,
 -4.1818745571147815
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Ffordd Y Parc</b><br>
 Ffordd Y Parc<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.20544101568339,-4.1818745571147815" target="_blank">
@@ -212,13 +279,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.6554589201595,
 -5.6834348804299
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>bp Belfast Road</b><br>
 139-141 Belfast Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.6554589201595,-5.6834348804299" target="_blank">
@@ -226,13 +296,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.6424254689651,
 -5.69322201032253
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>bp Rathgael Road</b><br>
 98 Rathgael Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.6424254689651,-5.69322201032253" target="_blank">
@@ -240,13 +313,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.20389,
 -4.10562
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>EG Bangor</b><br>
 Llandega<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.20389,-4.10562" target="_blank">
@@ -254,13 +330,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.2088912216266,
 -4.15122290805346
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Bangor Retail Park</b><br>
 Caernarfon Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.2088912216266,-4.15122290805346" target="_blank">
@@ -268,13 +347,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.206385,
 -4.153688
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Tesco Extra-Bangor</b><br>
 Caernarfon Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.206385,-4.153688" target="_blank">
@@ -282,13 +364,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.225986,
 -4.133832
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Morrisons Bangor Holyhead Road</b><br>
 Holyhead Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.225986,-4.133832" target="_blank">
@@ -296,13 +381,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.66610805744094,
 -5.72969103485147
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Crawfordsburn Country Park</b><br>
 32 Bridge Rd S<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.66610805744094,-5.72969103485147" target="_blank">
@@ -310,13 +398,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.65235,
 -5.664836
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Aurora Car Park Bangor</b><br>
 Aurora Car Park<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.65235,-5.664836" target="_blank">
@@ -324,7 +415,11 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
+
+
+map.addLayer(markers);
 
 </script>
 

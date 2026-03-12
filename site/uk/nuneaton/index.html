@@ -6,19 +6,61 @@
 
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
+
 <style>
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+}
+
+header {
+  background: #1f2937;
+  padding: 12px 20px;
+}
+
+.logo {
+  color: white;
+  text-decoration: none;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.container {
+  padding: 20px;
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 15px;
+  text-decoration: none;
+  color: #2563eb;
+  font-weight: bold;
+}
+
 #map {
-  height: 400px;
+  height: 420px;
   margin-bottom: 30px;
   border-radius: 8px;
 }
+
 </style>
 
 </head>
 
 <body>
 
+<header>
+<a href="/" class="logo">PlugMap</a>
+</header>
+
+<div class="container">
+
 <h1>Nuneaton EV Chargers</h1>
+
+<a href="/" class="back-link">← Back to homepage</a>
 
 <div id="map"></div>
 
@@ -61,7 +103,11 @@ Lutterworth Road
 
 </ul>
 
+</div>
+
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 
 <script>
 
@@ -74,13 +120,16 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 attribution: '&copy; OpenStreetMap contributors'
 }).addTo(map);
 
+var markers = L.markerClusterGroup();
 
 
-L.marker([
+
+var marker = L.marker([
 52.559349,
 -1.458165
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>MTP MIRA DRIVE 01</b><br>
 Mira Drive<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.559349,-1.458165" target="_blank">
@@ -88,13 +137,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.554281,
 -1.462914
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>MTP HORIBA NW03 -02</b><br>
 Mira Drive<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.554281,-1.462914" target="_blank">
@@ -102,13 +154,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.521715,
 -1.46704
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Nuneaton Town Hall</b><br>
 Coton Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.521715,-1.46704" target="_blank">
@@ -116,13 +171,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.521446,
 -1.467915
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Coton Road</b><br>
 Coton Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.521446,-1.467915" target="_blank">
@@ -130,13 +188,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.4979302,
 -1.4747809
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>McDonald's, Bermuda Park</b><br>
  St David's Way<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.4979302,-1.4747809" target="_blank">
@@ -144,13 +205,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.5124,
 -1.4537
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Lutterworth Shops</b><br>
 Lutterworth Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.5124,-1.4537" target="_blank">
@@ -158,13 +222,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.50921,
 -1.45264
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Roxburgh Road</b><br>
 10a-10h Roxburgh Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.50921,-1.45264" target="_blank">
@@ -172,7 +239,11 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
+
+
+map.addLayer(markers);
 
 </script>
 

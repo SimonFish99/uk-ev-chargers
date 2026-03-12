@@ -6,19 +6,61 @@
 
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
+
 <style>
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+}
+
+header {
+  background: #1f2937;
+  padding: 12px 20px;
+}
+
+.logo {
+  color: white;
+  text-decoration: none;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.container {
+  padding: 20px;
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 15px;
+  text-decoration: none;
+  color: #2563eb;
+  font-weight: bold;
+}
+
 #map {
-  height: 400px;
+  height: 420px;
   margin-bottom: 30px;
   border-radius: 8px;
 }
+
 </style>
 
 </head>
 
 <body>
 
+<header>
+<a href="/" class="logo">PlugMap</a>
+</header>
+
+<div class="container">
+
 <h1>Faversham EV Chargers</h1>
+
+<a href="/" class="back-link">← Back to homepage</a>
 
 <div id="map"></div>
 
@@ -66,7 +108,11 @@ North Lane
 
 </ul>
 
+</div>
+
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 
 <script>
 
@@ -79,13 +125,16 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 attribution: '&copy; OpenStreetMap contributors'
 }).addTo(map);
 
+var markers = L.markerClusterGroup();
 
 
-L.marker([
+
+var marker = L.marker([
 51.28933670851976,
 0.9952083175658949
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>MFG EV Power - A2 - Dunkirk</b><br>
 A2<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.28933670851976,0.9952083175658949" target="_blank">
@@ -93,13 +142,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.18465,
 -0.53197
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Boyd-Doug</b><br>
 Forbes Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.18465,-0.53197" target="_blank">
@@ -107,13 +159,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.31263,
 0.88884
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Queens Hall Car Park</b><br>
 Forbes Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.31263,0.88884" target="_blank">
@@ -121,13 +176,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.3258562790324,
 0.986218601445658
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>MFG Thanet Way Service Station</b><br>
 A299 Thanet Way<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.3258562790324,0.986218601445658" target="_blank">
@@ -135,13 +193,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.315,
 0.89012
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Central Car Park</b><br>
 Central Car Park<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.315,0.89012" target="_blank">
@@ -149,13 +210,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.316586,
 0.893619
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Tesco Superstore-Faversham</b><br>
 Crescent Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.316586,0.893619" target="_blank">
@@ -163,13 +227,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.2907,
 0.988762
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Red Lion, Faversham</b><br>
 London Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.2907,0.988762" target="_blank">
@@ -177,13 +244,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.317068799935186,
 0.8876867759285005
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Morrisons Faversham</b><br>
 North Lane<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.317068799935186,0.8876867759285005" target="_blank">
@@ -191,7 +261,11 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
+
+
+map.addLayer(markers);
 
 </script>
 

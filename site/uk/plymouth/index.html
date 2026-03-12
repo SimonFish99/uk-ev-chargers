@@ -6,19 +6,61 @@
 
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
+
 <style>
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+}
+
+header {
+  background: #1f2937;
+  padding: 12px 20px;
+}
+
+.logo {
+  color: white;
+  text-decoration: none;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.container {
+  padding: 20px;
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 15px;
+  text-decoration: none;
+  color: #2563eb;
+  font-weight: bold;
+}
+
 #map {
-  height: 400px;
+  height: 420px;
   margin-bottom: 30px;
   border-radius: 8px;
 }
+
 </style>
 
 </head>
 
 <body>
 
+<header>
+<a href="/" class="logo">PlugMap</a>
+</header>
+
+<div class="container">
+
 <h1>Plymouth EV Chargers</h1>
+
+<a href="/" class="back-link">← Back to homepage</a>
 
 <div id="map"></div>
 
@@ -251,7 +293,11 @@ A374 Western Approach - Open 06:00 to 00:00
 
 </ul>
 
+</div>
+
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 
 <script>
 
@@ -264,13 +310,16 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 attribution: '&copy; OpenStreetMap contributors'
 }).addTo(map);
 
+var markers = L.markerClusterGroup();
 
 
-L.marker([
+
+var marker = L.marker([
 50.414979,
 -4.124164
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Derriford Retail Park</b><br>
 International Business Park<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=50.414979,-4.124164" target="_blank">
@@ -278,13 +327,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 50.41247789508833,
 -4.168645266586054
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>West Park Short Stay Car Park (Wenea)</b><br>
 Crownhill Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=50.41247789508833,-4.168645266586054" target="_blank">
@@ -292,13 +344,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 50.368983428054065,
 -4.1442978876755205
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Theatre Royal Car Park (Wenea)</b><br>
 Old George Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=50.368983428054065,-4.1442978876755205" target="_blank">
@@ -306,13 +361,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 50.36836759704346,
 -4.135487364828123
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Exchange Street Car Park (Wenea)</b><br>
 Exchange Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=50.36836759704346,-4.135487364828123" target="_blank">
@@ -320,13 +378,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 50.409359,
 -4.145172
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>UK_PL_MANADOM_01</b><br>
 St Peters Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=50.409359,-4.145172" target="_blank">
@@ -334,13 +395,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 50.389082,
 -4.086207
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Ultra Rapid EV Charging - Sainsbury's Marsh Mills</b><br>
 Crabtree<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=50.389082,-4.086207" target="_blank">
@@ -348,13 +412,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 50.381584,
 -4.160648
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>City Business Park</b><br>
 Somerset Place<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=50.381584,-4.160648" target="_blank">
@@ -362,13 +429,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 50.371783,
 -4.168555
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Western Approach (Public Car Park)</b><br>
 A374 Western Approach  -  Open 06:00 to 00:00<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=50.371783,-4.168555" target="_blank">
@@ -376,13 +446,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 50.370039,
 -4.139002
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>UK_PL_WHIMPLE_01</b><br>
 Whimple Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=50.370039,-4.139002" target="_blank">
@@ -390,13 +463,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 50.358656,
 -4.12756
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>UK_PL_MOUNT_01</b><br>
 Lawrence Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=50.358656,-4.12756" target="_blank">
@@ -404,13 +480,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 50.370674,
 -4.136409
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>The Barcode</b><br>
 11 Bretonside<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=50.370674,-4.136409" target="_blank">
@@ -418,13 +497,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 50.426879,
 -4.111032
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>George Junction Park and Ride</b><br>
 Tavistock Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=50.426879,-4.111032" target="_blank">
@@ -432,13 +514,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 50.390999,
 -4.071882
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>The Unicorn</b><br>
 160 Plymouth Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=50.390999,-4.071882" target="_blank">
@@ -446,13 +531,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 50.38585,
 -4.154673
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Plymouth Life Centre</b><br>
 Mayflower Drive<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=50.38585,-4.154673" target="_blank">
@@ -460,13 +548,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 50.377861,
 -4.141582
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Glen Park Avenue 1</b><br>
 Glen Park Avenue 1<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=50.377861,-4.141582" target="_blank">
@@ -474,13 +565,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 50.372999,
 -4.139021
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Drake Circus Leisure Complex</b><br>
 1 Charles Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=50.372999,-4.139021" target="_blank">
@@ -488,13 +582,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 50.372956,
 -4.145204
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Plymouth Coach Station</b><br>
 Plymouth Coach Station<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=50.372956,-4.145204" target="_blank">
@@ -502,13 +599,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 50.373434,
 -4.17374
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Fore Street 1</b><br>
 Fore Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=50.373434,-4.17374" target="_blank">
@@ -516,13 +616,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 50.39193,
 -4.08262
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Plymouth Coypool Park</b><br>
 Coypool Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=50.39193,-4.08262" target="_blank">
@@ -530,13 +633,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 50.419078,
 -4.17956
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Hornchurch Road 1</b><br>
 Hornchurch Road 1<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=50.419078,-4.17956" target="_blank">
@@ -544,13 +650,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 50.41275,
 -4.168769
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>West Park 1</b><br>
 West Park 1<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=50.41275,-4.168769" target="_blank">
@@ -558,13 +667,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 50.407766,
 -4.104814
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Rydal Close 1</b><br>
 Rydal Close 1<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=50.407766,-4.104814" target="_blank">
@@ -572,13 +684,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 50.393743,
 -4.047988
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Galileo Cl</b><br>
 Galileo Cl<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=50.393743,-4.047988" target="_blank">
@@ -586,13 +701,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 50.38787,
 -4.174325
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Parkside 1, Plymouth</b><br>
 Keyham<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=50.38787,-4.174325" target="_blank">
@@ -600,13 +718,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 50.387026,
 -4.051215
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Plympton Mudge Way Public Car Park</b><br>
 Plympton<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=50.387026,-4.051215" target="_blank">
@@ -614,13 +735,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 50.380539,
 -4.125517
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Coleridge Road 1</b><br>
 Coleridge Road 1<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=50.380539,-4.125517" target="_blank">
@@ -628,13 +752,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 50.376945,
 -4.131026
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Hospital Road 1</b><br>
 Hospital Road 1<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=50.376945,-4.131026" target="_blank">
@@ -642,13 +769,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 50.375727,
 -4.117654
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Camarthen Road 1</b><br>
 Carmarthen Road 1<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=50.375727,-4.117654" target="_blank">
@@ -656,13 +786,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 50.375063,
 -4.129259
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>May Terrace 1</b><br>
 May Terrace 1<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=50.375063,-4.129259" target="_blank">
@@ -670,13 +803,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 50.365696,
 -4.100188
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Plymstock Pomphlett Rd</b><br>
 Wm Morrison Supermarkets PLC<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=50.365696,-4.100188" target="_blank">
@@ -684,13 +820,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 50.377798,
 -4.135077
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>A Home After Halls</b><br>
 70 North Hill<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=50.377798,-4.135077" target="_blank">
@@ -698,13 +837,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 50.39041143169487,
 -4.151447156827771
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Gridserve Plymouth Electric Forecourt</b><br>
 Outland Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=50.39041143169487,-4.151447156827771" target="_blank">
@@ -712,13 +854,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 50.377801,
 -4.135831
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>North Hill Car Park</b><br>
 North Hill Car Park<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=50.377801,-4.135831" target="_blank">
@@ -726,13 +871,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 50.375029,
 -4.160864
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Wilton Road 1</b><br>
 Wilton Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=50.375029,-4.160864" target="_blank">
@@ -740,13 +888,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 50.375029,
 -4.160864
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Wilton Road 2</b><br>
 Wilton Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=50.375029,-4.160864" target="_blank">
@@ -754,13 +905,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 50.410412,
 -4.1514913
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Transit Way</b><br>
 Transit Way<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=50.410412,-4.1514913" target="_blank">
@@ -768,13 +922,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 50.407711,
 -4.13364
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Crownhill Public Car park</b><br>
 Crownhill<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=50.407711,-4.13364" target="_blank">
@@ -782,13 +939,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 50.367442,
 4.156398
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>PL1 3EF</b><br>
 <br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=50.367442,4.156398" target="_blank">
@@ -796,13 +956,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 50.363884,
 -4.134459
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Elphinstone Public Car Park</b><br>
 Madeira Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=50.363884,-4.134459" target="_blank">
@@ -810,13 +973,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 50.359556,
 -4.090092
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Plymstock Broadway Public Car Park 1</b><br>
 Plymstock<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=50.359556,-4.090092" target="_blank">
@@ -824,13 +990,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 50.39681,
 -4.140532
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>282 Outland Road</b><br>
 282 Outland Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=50.39681,-4.140532" target="_blank">
@@ -838,13 +1007,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 50.417533,
 -4.108911
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>4002016</b><br>
 1 Davy Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=50.417533,-4.108911" target="_blank">
@@ -852,13 +1024,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 50.392519,
 -4.087057
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>9000590</b><br>
 270 Plymouth Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=50.392519,-4.087057" target="_blank">
@@ -866,13 +1041,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 50.370413,
 -4.14901
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Western Approach (public Car Park)</b><br>
 A374 Western Approach - Open 06:00 to 00:00<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=50.370413,-4.14901" target="_blank">
@@ -880,13 +1058,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 50.434695,
 -4.108894
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Tesco Extra-Plymouth Roborough</b><br>
 2 Woolwell Crescent<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=50.434695,-4.108894" target="_blank">
@@ -894,7 +1075,11 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
+
+
+map.addLayer(markers);
 
 </script>
 

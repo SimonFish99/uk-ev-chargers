@@ -6,19 +6,61 @@
 
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
+
 <style>
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+}
+
+header {
+  background: #1f2937;
+  padding: 12px 20px;
+}
+
+.logo {
+  color: white;
+  text-decoration: none;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.container {
+  padding: 20px;
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 15px;
+  text-decoration: none;
+  color: #2563eb;
+  font-weight: bold;
+}
+
 #map {
-  height: 400px;
+  height: 420px;
   margin-bottom: 30px;
   border-radius: 8px;
 }
+
 </style>
 
 </head>
 
 <body>
 
+<header>
+<a href="/" class="logo">PlugMap</a>
+</header>
+
+<div class="container">
+
 <h1>Dudley EV Chargers</h1>
+
+<a href="/" class="back-link">← Back to homepage</a>
 
 <div id="map"></div>
 
@@ -91,7 +133,11 @@ Stafford Street Dudley
 
 </ul>
 
+</div>
+
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 
 <script>
 
@@ -104,13 +150,16 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 attribution: '&copy; OpenStreetMap contributors'
 }).addTo(map);
 
+var markers = L.markerClusterGroup();
 
 
-L.marker([
+
+var marker = L.marker([
 52.4768075,
 -2.10752216
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Lidl-Merry Hill</b><br>
 Merry Hill<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.4768075,-2.10752216" target="_blank">
@@ -118,13 +167,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.488700768554935,
 -2.118998195292363
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Dudley Road</b><br>
 Dudley Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.488700768554935,-2.118998195292363" target="_blank">
@@ -132,13 +184,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.489289461932685,
 -2.1192106192881965
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Oak Park</b><br>
 Oak Park<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.489289461932685,-2.1192106192881965" target="_blank">
@@ -146,13 +201,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.48350143059566,
 -2.1134302957874556
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Merry Hill Supercharger</b><br>
 Central Way<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.48350143059566,-2.1134302957874556" target="_blank">
@@ -160,13 +218,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.482322,
 -2.108308
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>zest-pair-city-tour</b><br>
 Brierley Hill<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.482322,-2.108308" target="_blank">
@@ -174,13 +235,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.484481,
 -2.108136
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Starbucks Pedmore Rd</b><br>
 Brierley Hill,<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.484481,-2.108136" target="_blank">
@@ -188,13 +252,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.483775,
 -2.109767
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>zest-step-year-bill</b><br>
 Central Way<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.483775,-2.109767" target="_blank">
@@ -202,13 +269,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.48301,
 -2.111897
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>zest-gold-type-plan</b><br>
 The Embankment<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.48301,-2.111897" target="_blank">
@@ -216,13 +286,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.482,
 -2.11
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Best Buy Dudley</b><br>
 Unit B Phase 1 Merry Hill Centre, Brierley Hill<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.482,-2.11" target="_blank">
@@ -230,13 +303,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.481116,
 -2.10723
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>zest-case-food-need</b><br>
 Pedmore road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.481116,-2.10723" target="_blank">
@@ -244,13 +320,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.4804349,
 -2.1130154
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Merry Hill Car Park P6</b><br>
 Central Way<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.4804349,-2.1130154" target="_blank">
@@ -258,13 +337,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.52035255,
 -2.07467278
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Black Country Living Museum</b><br>
 Tipton Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.52035255,-2.07467278" target="_blank">
@@ -272,13 +354,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.52929,
 -2.08884
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Stafford Street Dudley</b><br>
 Stafford Street Dudley<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.52929,-2.08884" target="_blank">
@@ -286,7 +371,11 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
+
+
+map.addLayer(markers);
 
 </script>
 

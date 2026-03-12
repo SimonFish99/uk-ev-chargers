@@ -6,19 +6,61 @@
 
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
+
 <style>
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+}
+
+header {
+  background: #1f2937;
+  padding: 12px 20px;
+}
+
+.logo {
+  color: white;
+  text-decoration: none;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.container {
+  padding: 20px;
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 15px;
+  text-decoration: none;
+  color: #2563eb;
+  font-weight: bold;
+}
+
 #map {
-  height: 400px;
+  height: 420px;
   margin-bottom: 30px;
   border-radius: 8px;
 }
+
 </style>
 
 </head>
 
 <body>
 
+<header>
+<a href="/" class="logo">PlugMap</a>
+</header>
+
+<div class="container">
+
 <h1>Guildford EV Chargers</h1>
+
+<a href="/" class="back-link">← Back to homepage</a>
 
 <div id="map"></div>
 
@@ -121,7 +163,11 @@ Ashenden Road
 
 </ul>
 
+</div>
+
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 
 <script>
 
@@ -134,13 +180,16 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 attribution: '&copy; OpenStreetMap contributors'
 }).addTo(map);
 
+var markers = L.markerClusterGroup();
 
 
-L.marker([
+
+var marker = L.marker([
 51.25016365430727,
 -0.5926285495999082
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Aldershot Road</b><br>
 Aldershot Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.25016365430727,-0.5926285495999082" target="_blank">
@@ -148,13 +197,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.23746757,
 -0.503433347
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Guildford Manor Hotel & Spa</b><br>
 Newlands Corner <br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.23746757,-0.503433347" target="_blank">
@@ -162,13 +214,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.24708332224665,
 -0.5824508541255113
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>PORSCHE CENTRE GUILDFORD</b><br>
 Woodbridge Meadows<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.24708332224665,-0.5824508541255113" target="_blank">
@@ -176,13 +231,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.2459576937035,
 -0.530211305443913
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>MERROW SF CONNECT</b><br>
 Epsom Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.2459576937035,-0.530211305443913" target="_blank">
@@ -190,13 +248,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.26187,
 -0.566094
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>VINES GROUP GUILDFORD AC 2</b><br>
 21 Moorfield Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.26187,-0.566094" target="_blank">
@@ -204,13 +265,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.24920182544935,
 -0.5594503721707156
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Guildford Supercharger</b><br>
 Guildford Spectrum<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.24920182544935,-0.5594503721707156" target="_blank">
@@ -218,13 +282,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.246041,
 -0.586932
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Philips Electronics UK Ltd</b><br>
 Guilford, Surrey<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.246041,-0.586932" target="_blank">
@@ -232,13 +299,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.237549,
 -0.579737
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Bishops Wharf</b><br>
 Walnut Tree Close<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.237549,-0.579737" target="_blank">
@@ -246,13 +316,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.23888579611679,
 -0.566664806057048
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>G-Live Car Park</b><br>
 Dene Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.23888579611679,-0.566664806057048" target="_blank">
@@ -260,13 +333,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.2385086448831,
 -0.5653930170426236
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>London Road</b><br>
 28 London Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.2385086448831,-0.5653930170426236" target="_blank">
@@ -274,13 +350,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.23479810691353,
 -0.5720391311366768
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Guildford Borough Council - Castle Street</b><br>
 Castle Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.23479810691353,-0.5720391311366768" target="_blank">
@@ -288,13 +367,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.23473776516178,
 -0.5704087685159038
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Pewley Hill</b><br>
 1 Pewley Hill<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.23473776516178,-0.5704087685159038" target="_blank">
@@ -302,13 +384,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.232481181727195,
 -0.5734014321432142
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Millbrook Car Park</b><br>
 Millbrook Car Park<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.232481181727195,-0.5734014321432142" target="_blank">
@@ -316,13 +401,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.23451738910035,
 -0.5741316274680628
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Quarry Street</b><br>
 Quarry Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.23451738910035,-0.5741316274680628" target="_blank">
@@ -330,13 +418,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.23755455476558,
 -0.5731981484967719
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Leapale Lane Car Park</b><br>
 Leapale Lane<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.23755455476558,-0.5731981484967719" target="_blank">
@@ -344,13 +435,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.237395,
 -0.565422
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Jenner Road</b><br>
 Jenner Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.237395,-0.565422" target="_blank">
@@ -358,13 +452,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.23459,
 -0.570409
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>SUCC Pewley Hill 1</b><br>
 Pewley Hill<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.23459,-0.570409" target="_blank">
@@ -372,13 +469,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.226308,
 -0.723457
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Tongham Supercharger</b><br>
 Hog's Back Hotel<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.226308,-0.723457" target="_blank">
@@ -386,13 +486,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.241705,
 -0.604034
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Tesco Superstore-Guildford</b><br>
 Ashenden Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.241705,-0.604034" target="_blank">
@@ -400,7 +503,11 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
+
+
+map.addLayer(markers);
 
 </script>
 

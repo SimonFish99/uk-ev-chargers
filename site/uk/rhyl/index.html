@@ -6,19 +6,61 @@
 
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
+
 <style>
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+}
+
+header {
+  background: #1f2937;
+  padding: 12px 20px;
+}
+
+.logo {
+  color: white;
+  text-decoration: none;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.container {
+  padding: 20px;
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 15px;
+  text-decoration: none;
+  color: #2563eb;
+  font-weight: bold;
+}
+
 #map {
-  height: 400px;
+  height: 420px;
   margin-bottom: 30px;
   border-radius: 8px;
 }
+
 </style>
 
 </head>
 
 <body>
 
+<header>
+<a href="/" class="logo">PlugMap</a>
+</header>
+
+<div class="container">
+
 <h1>Rhyl EV Chargers</h1>
+
+<a href="/" class="back-link">← Back to homepage</a>
 
 <div id="map"></div>
 
@@ -66,7 +108,11 @@ Marsh Road
 
 </ul>
 
+</div>
+
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 
 <script>
 
@@ -79,13 +125,16 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 attribution: '&copy; OpenStreetMap contributors'
 }).addTo(map);
 
+var markers = L.markerClusterGroup();
 
 
-L.marker([
+
+var marker = L.marker([
 53.317369,
 -3.488348
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Morrison Rhyl</b><br>
 Morrison Rhyl<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.317369,-3.488348" target="_blank">
@@ -93,13 +142,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.314519900813366,
 -3.4995496919862603
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Animal Trust Car Park</b><br>
 Wellington Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.314519900813366,-3.4995496919862603" target="_blank">
@@ -107,13 +159,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.320557591957595,
 -3.484796896982914
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Morley Road</b><br>
 Morley Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.320557591957595,-3.484796896982914" target="_blank">
@@ -121,13 +176,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.270576,
 -3.518701
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>EG Kinmel Park East</b><br>
 A55 Expressway Eastbound<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.270576,-3.518701" target="_blank">
@@ -135,13 +193,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.2675730174141,
 -3.5187687939947
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>EG Kinmel Park West</b><br>
 Bodelwyddan<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.2675730174141,-3.5187687939947" target="_blank">
@@ -149,13 +210,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.316470206577435,
 -3.493140175780809
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>West Kinmel Street Car Park</b><br>
 West Kinmel Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.316470206577435,-3.493140175780809" target="_blank">
@@ -163,13 +227,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.3048758152111,
 -3.46909554673985
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>McDonald's Rhyl Retail Park</b><br>
 Ffordd Derwen<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.3048758152111,-3.46909554673985" target="_blank">
@@ -177,13 +244,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.317625363158356,
 -3.487189340942791
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Marsh Road</b><br>
 Marsh Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.317625363158356,-3.487189340942791" target="_blank">
@@ -191,7 +261,11 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
+
+
+map.addLayer(markers);
 
 </script>
 

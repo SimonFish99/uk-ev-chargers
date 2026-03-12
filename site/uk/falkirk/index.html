@@ -6,19 +6,61 @@
 
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
+
 <style>
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+}
+
+header {
+  background: #1f2937;
+  padding: 12px 20px;
+}
+
+.logo {
+  color: white;
+  text-decoration: none;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.container {
+  padding: 20px;
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 15px;
+  text-decoration: none;
+  color: #2563eb;
+  font-weight: bold;
+}
+
 #map {
-  height: 400px;
+  height: 420px;
   margin-bottom: 30px;
   border-radius: 8px;
 }
+
 </style>
 
 </head>
 
 <body>
 
+<header>
+<a href="/" class="logo">PlugMap</a>
+</header>
+
+<div class="container">
+
 <h1>Falkirk EV Chargers</h1>
+
+<a href="/" class="back-link">← Back to homepage</a>
 
 <div id="map"></div>
 
@@ -76,7 +118,11 @@ Colliery Road
 
 </ul>
 
+</div>
+
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 
 <script>
 
@@ -89,13 +135,16 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 attribution: '&copy; OpenStreetMap contributors'
 }).addTo(map);
 
+var markers = L.markerClusterGroup();
 
 
-L.marker([
+
+var marker = L.marker([
 55.9976165,
 -3.7781469
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Lidl-Falkirk</b><br>
 1 Arnott Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.9976165,-3.7781469" target="_blank">
@@ -103,13 +152,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.9974523716489,
 -3.71059727846298
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Macdonald Inchyra Hotel & Spa</b><br>
 Grange Rd<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.9974523716489,-3.71059727846298" target="_blank">
@@ -117,13 +169,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 56.007768,
 -3.765992
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>4 Middlefield Road</b><br>
 4 Middlefield Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=56.007768,-3.765992" target="_blank">
@@ -131,13 +186,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 56.005459,
 -3.75387
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Falkirk Stadium</b><br>
 4 Stadium Way<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=56.005459,-3.75387" target="_blank">
@@ -145,13 +203,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 56.0032,
 -3.786629
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Meeks Road, Falkirk</b><br>
 16 Meeks Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=56.0032,-3.786629" target="_blank">
@@ -159,13 +220,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.9991,
 -3.834532
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Scottish Canals - Falkirk Wheel</b><br>
 Lime Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.9991,-3.834532" target="_blank">
@@ -173,13 +237,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 56.005637,
 -3.82226
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Tesco Superstore-Falkirk</b><br>
 Glasgow Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=56.005637,-3.82226" target="_blank">
@@ -187,13 +254,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.9848235796378,
 -3.73666608814065
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Tesco Superstore - Falkirk Redding Road</b><br>
 Colliery Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.9848235796378,-3.73666608814065" target="_blank">
@@ -201,13 +271,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 56.02313,
 -3.83135
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Foundry Loan</b><br>
 24 Foundry Loan<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=56.02313,-3.83135" target="_blank">
@@ -215,13 +288,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 56.004652,
 -3.766921
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Forth Valley College, Grangemouth Road, Falkirk</b><br>
 35 Grangemouth Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=56.004652,-3.766921" target="_blank">
@@ -229,7 +305,11 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
+
+
+map.addLayer(markers);
 
 </script>
 

@@ -6,19 +6,61 @@
 
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
+
 <style>
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+}
+
+header {
+  background: #1f2937;
+  padding: 12px 20px;
+}
+
+.logo {
+  color: white;
+  text-decoration: none;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.container {
+  padding: 20px;
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 15px;
+  text-decoration: none;
+  color: #2563eb;
+  font-weight: bold;
+}
+
 #map {
-  height: 400px;
+  height: 420px;
   margin-bottom: 30px;
   border-radius: 8px;
 }
+
 </style>
 
 </head>
 
 <body>
 
+<header>
+<a href="/" class="logo">PlugMap</a>
+</header>
+
+<div class="container">
+
 <h1>Spalding EV Chargers</h1>
+
+<a href="/" class="back-link">← Back to homepage</a>
 
 <div id="map"></div>
 
@@ -61,7 +103,11 @@ South Holland District Council Priory Road
 
 </ul>
 
+</div>
+
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 
 <script>
 
@@ -74,13 +120,16 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 attribution: '&copy; OpenStreetMap contributors'
 }).addTo(map);
 
+var markers = L.markerClusterGroup();
 
 
-L.marker([
+
+var marker = L.marker([
 52.79791573065765,
 -0.12313360641951476
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>McDonalds Spalding</b><br>
 Ash Tree Lane<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.79791573065765,-0.12313360641951476" target="_blank">
@@ -88,13 +137,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.790716,
 -0.153463
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Winfrey Avenue Car Park, Spalding</b><br>
 Winfrey Avenue<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.790716,-0.153463" target="_blank">
@@ -102,13 +154,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.78766,
 -0.14688
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Holland Road Car Park, Spalding</b><br>
 Holland Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.78766,-0.14688" target="_blank">
@@ -116,13 +171,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.8081629781808,
 -0.1415074749345422
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Morrisons Spalding</b><br>
 Benner Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.8081629781808,-0.1415074749345422" target="_blank">
@@ -130,13 +188,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.8062669034484,
 0.0139513991143758
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Tesco Superstore - Spalding Holbeach</b><br>
  Boston Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.8062669034484,0.0139513991143758" target="_blank">
@@ -144,13 +205,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.786331,
 -0.154933
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Victoria Street Car Park Victoria Street</b><br>
 Victoria Street Car Park Victoria Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.786331,-0.154933" target="_blank">
@@ -158,13 +222,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.784787,
 -0.152937
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>South Holland District Council Priory Road</b><br>
 South Holland District Council Priory Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.784787,-0.152937" target="_blank">
@@ -172,7 +239,11 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
+
+
+map.addLayer(markers);
 
 </script>
 

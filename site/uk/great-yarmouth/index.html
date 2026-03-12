@@ -6,19 +6,61 @@
 
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
+
 <style>
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+}
+
+header {
+  background: #1f2937;
+  padding: 12px 20px;
+}
+
+.logo {
+  color: white;
+  text-decoration: none;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.container {
+  padding: 20px;
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 15px;
+  text-decoration: none;
+  color: #2563eb;
+  font-weight: bold;
+}
+
 #map {
-  height: 400px;
+  height: 420px;
   margin-bottom: 30px;
   border-radius: 8px;
 }
+
 </style>
 
 </head>
 
 <body>
 
+<header>
+<a href="/" class="logo">PlugMap</a>
+</header>
+
+<div class="container">
+
 <h1>Great Yarmouth EV Chargers</h1>
+
+<a href="/" class="back-link">← Back to homepage</a>
 
 <div id="map"></div>
 
@@ -81,7 +123,11 @@ Whitehorse Plain 1
 
 </ul>
 
+</div>
+
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 
 <script>
 
@@ -94,13 +140,16 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 attribution: '&copy; OpenStreetMap contributors'
 }).addTo(map);
 
+var markers = L.markerClusterGroup();
 
 
-L.marker([
+
+var marker = L.marker([
 52.60584,
 1.726966
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>King Street Carpark 1</b><br>
 King Street Carpark<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.60584,1.726966" target="_blank">
@@ -108,13 +157,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.603378,
 1.737388
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Marina Leisure Centre 2</b><br>
 Marina Leisure Centre<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.603378,1.737388" target="_blank">
@@ -122,13 +174,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.611141,
 1.733562
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>BMM-CP-000462</b><br>
 Nelson Road North<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.611141,1.733562" target="_blank">
@@ -136,13 +191,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.610208,
 1.737794
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>BMM-CP-000461</b><br>
 North Drive Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.610208,1.737794" target="_blank">
@@ -150,13 +208,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.609436,
 1.726515
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>BMM-CP-000459</b><br>
 South Market Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.609436,1.726515" target="_blank">
@@ -164,13 +225,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.605282,
 1.726104
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>BMM-CP-000464</b><br>
 Greyfriars Way<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.605282,1.726104" target="_blank">
@@ -178,13 +242,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.581458,
 1.728755
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Gorlestone High Street</b><br>
 Gorlestone High Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.581458,1.728755" target="_blank">
@@ -192,13 +259,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.5908,
 1.706407
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Sidegate Motors</b><br>
 Gapton Hall Industrial Estates<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.5908,1.706407" target="_blank">
@@ -206,13 +276,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.59745073452851,
 1.7355567132206033
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>St Nicholas Car Park</b><br>
 South Beach Parade<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.59745073452851,1.7355567132206033" target="_blank">
@@ -220,13 +293,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.61167124697292,
 1.7251977227765565
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Fullers Hill Car Park</b><br>
 Whitehorse Plain 1<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.61167124697292,1.7251977227765565" target="_blank">
@@ -234,13 +310,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.57655,
 1.703315
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>137 Beccles Road</b><br>
 137 Beccles Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.57655,1.703315" target="_blank">
@@ -248,7 +327,11 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
+
+
+map.addLayer(markers);
 
 </script>
 

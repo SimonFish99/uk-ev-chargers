@@ -6,19 +6,61 @@
 
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
+
 <style>
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+}
+
+header {
+  background: #1f2937;
+  padding: 12px 20px;
+}
+
+.logo {
+  color: white;
+  text-decoration: none;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.container {
+  padding: 20px;
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 15px;
+  text-decoration: none;
+  color: #2563eb;
+  font-weight: bold;
+}
+
 #map {
-  height: 400px;
+  height: 420px;
   margin-bottom: 30px;
   border-radius: 8px;
 }
+
 </style>
 
 </head>
 
 <body>
 
+<header>
+<a href="/" class="logo">PlugMap</a>
+</header>
+
+<div class="container">
+
 <h1>Bury EV Chargers</h1>
+
+<a href="/" class="back-link">← Back to homepage</a>
 
 <div id="map"></div>
 
@@ -61,7 +103,11 @@ Hollins Brook Way
 
 </ul>
 
+</div>
+
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 
 <script>
 
@@ -74,13 +120,16 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 attribution: '&copy; OpenStreetMap contributors'
 }).addTo(map);
 
+var markers = L.markerClusterGroup();
 
 
-L.marker([
+
+var marker = L.marker([
 53.592273,
 -2.290292
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>GMEV PAYG Charge Point</b><br>
 Foundry Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.592273,-2.290292" target="_blank">
@@ -88,13 +137,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.601635,
 -2.256491
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>GMEV PAYG Charge Point</b><br>
 Jericho Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.601635,-2.256491" target="_blank">
@@ -102,13 +154,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.593549,
 -2.299726
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>RRG Nissan Bury</b><br>
 23A Bolton Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.593549,-2.299726" target="_blank">
@@ -116,13 +171,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.590737,
 -2.293408
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>GMEV PAYG Charge Point</b><br>
 Harris Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.590737,-2.293408" target="_blank">
@@ -130,13 +188,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.589604,
 -2.293536
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>GMEV PAYG Charge Point</b><br>
 Trinity Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.589604,-2.293536" target="_blank">
@@ -144,13 +205,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.5778178,
 -2.2762076
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Park 66</b><br>
 Pilsworth Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.5778178,-2.2762076" target="_blank">
@@ -158,13 +222,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.574898,
 -2.278198
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Windsor House</b><br>
 Hollins Brook Way<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.574898,-2.278198" target="_blank">
@@ -172,7 +239,11 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
+
+
+map.addLayer(markers);
 
 </script>
 

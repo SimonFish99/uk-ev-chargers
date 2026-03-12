@@ -6,19 +6,61 @@
 
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
+
 <style>
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+}
+
+header {
+  background: #1f2937;
+  padding: 12px 20px;
+}
+
+.logo {
+  color: white;
+  text-decoration: none;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.container {
+  padding: 20px;
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 15px;
+  text-decoration: none;
+  color: #2563eb;
+  font-weight: bold;
+}
+
 #map {
-  height: 400px;
+  height: 420px;
   margin-bottom: 30px;
   border-radius: 8px;
 }
+
 </style>
 
 </head>
 
 <body>
 
+<header>
+<a href="/" class="logo">PlugMap</a>
+</header>
+
+<div class="container">
+
 <h1>Leighton Buzzard EV Chargers</h1>
+
+<a href="/" class="back-link">← Back to homepage</a>
 
 <div id="map"></div>
 
@@ -66,7 +108,11 @@ Hockliffe Street
 
 </ul>
 
+</div>
+
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 
 <script>
 
@@ -79,13 +125,16 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 attribution: '&copy; OpenStreetMap contributors'
 }).addTo(map);
 
+var markers = L.markerClusterGroup();
 
 
-L.marker([
+
+var marker = L.marker([
 51.917019,
 -0.676522
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Saba UK-Leighton Buzzard Station</b><br>
 Leighton Buzzard Station<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.917019,-0.676522" target="_blank">
@@ -93,13 +142,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.932382,
 -0.642161
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Leighton Buzzard</b><br>
 Chamberlain Barn<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.932382,-0.642161" target="_blank">
@@ -107,13 +159,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.919508,
 -0.660865
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Baker Street, Leighton Buzzard</b><br>
 Baker Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.919508,-0.660865" target="_blank">
@@ -121,13 +176,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.929454,
 -0.649505
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>OCPP22100005</b><br>
 Lawson Rd<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.929454,-0.649505" target="_blank">
@@ -135,13 +193,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.918308,
 -0.668806
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Tesco Superstore-Leighton Buzzard</b><br>
 Vimy Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.918308,-0.668806" target="_blank">
@@ -149,13 +210,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.915078,
 -0.656847
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Morrisons Leighton Buzzard</b><br>
 Lake Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.915078,-0.656847" target="_blank">
@@ -163,13 +227,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.916978,
 -0.662332
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>West Street, Leighton Buzzard</b><br>
 West Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.916978,-0.662332" target="_blank">
@@ -177,13 +244,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.916624,
 -0.659172
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Hockliffe Street</b><br>
 Hockliffe Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.916624,-0.659172" target="_blank">
@@ -191,7 +261,11 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
+
+
+map.addLayer(markers);
 
 </script>
 

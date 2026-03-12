@@ -6,19 +6,61 @@
 
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
+
 <style>
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+}
+
+header {
+  background: #1f2937;
+  padding: 12px 20px;
+}
+
+.logo {
+  color: white;
+  text-decoration: none;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.container {
+  padding: 20px;
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 15px;
+  text-decoration: none;
+  color: #2563eb;
+  font-weight: bold;
+}
+
 #map {
-  height: 400px;
+  height: 420px;
   margin-bottom: 30px;
   border-radius: 8px;
 }
+
 </style>
 
 </head>
 
 <body>
 
+<header>
+<a href="/" class="logo">PlugMap</a>
+</header>
+
+<div class="container">
+
 <h1>Enniskillen EV Chargers</h1>
+
+<a href="/" class="back-link">← Back to homepage</a>
 
 <div id="map"></div>
 
@@ -71,7 +113,11 @@ Castle Park Leisure Centre
 
 </ul>
 
+</div>
+
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 
 <script>
 
@@ -84,13 +130,16 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 attribution: '&copy; OpenStreetMap contributors'
 }).addTo(map);
 
+var markers = L.markerClusterGroup();
 
 
-L.marker([
+
+var marker = L.marker([
 54.34652290846017,
 -7.631129910708296
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Enniskilleen Hotel</b><br>
 72 Forthill Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.34652290846017,-7.631129910708296" target="_blank">
@@ -98,13 +147,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.37133243503982,
 -7.628692760453788
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>College of Agriculture Food and Rural Enterprise (CAFRE)</b><br>
 Mullaghmeen Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.37133243503982,-7.628692760453788" target="_blank">
@@ -112,13 +164,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.35549599710342,
 -7.596646961625424
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Enniskillen Business Centre</b><br>
 21 Lackaghboy Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.35549599710342,-7.596646961625424" target="_blank">
@@ -126,13 +181,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.334207223883396,
 -7.62040987791238
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Killyhevlin Business Centre</b><br>
 3 Black Stick Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.334207223883396,-7.62040987791238" target="_blank">
@@ -140,13 +198,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.32887774155765,
 -7.618484042835689
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Killyhevlin Lakeside Hotel & Lodges</b><br>
 Dublin Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.32887774155765,-7.618484042835689" target="_blank">
@@ -154,13 +215,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.470137,
 -7.640219
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Bawnacre Centre Irvinestown</b><br>
 85 Marble Arch Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.470137,-7.640219" target="_blank">
@@ -168,13 +232,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.29431211574337,
 -7.464007731278912
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>DRD Car Park, Main St, Maguiresbridge</b><br>
 36 Main Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.29431211574337,-7.464007731278912" target="_blank">
@@ -182,13 +249,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.258321,
 -7.813347
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Marble Arch Caves Florencecourt</b><br>
 Marble Arch Caves<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.258321,-7.813347" target="_blank">
@@ -196,13 +266,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.253583,
 -7.446717
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Castle Park Leisure Centre</b><br>
 Castle Park Leisure Centre<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.253583,-7.446717" target="_blank">
@@ -210,7 +283,11 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
+
+
+map.addLayer(markers);
 
 </script>
 

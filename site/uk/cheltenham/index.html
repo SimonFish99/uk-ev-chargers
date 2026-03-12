@@ -6,19 +6,61 @@
 
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
+
 <style>
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+}
+
+header {
+  background: #1f2937;
+  padding: 12px 20px;
+}
+
+.logo {
+  color: white;
+  text-decoration: none;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.container {
+  padding: 20px;
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 15px;
+  text-decoration: none;
+  color: #2563eb;
+  font-weight: bold;
+}
+
 #map {
-  height: 400px;
+  height: 420px;
   margin-bottom: 30px;
   border-radius: 8px;
 }
+
 </style>
 
 </head>
 
 <body>
 
+<header>
+<a href="/" class="logo">PlugMap</a>
+</header>
+
+<div class="container">
+
 <h1>Cheltenham EV Chargers</h1>
+
+<a href="/" class="back-link">← Back to homepage</a>
 
 <div id="map"></div>
 
@@ -76,7 +118,11 @@ Montpellier Street / Parabola Road
 
 </ul>
 
+</div>
+
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 
 <script>
 
@@ -89,13 +135,16 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 attribution: '&copy; OpenStreetMap contributors'
 }).addTo(map);
 
+var markers = L.markerClusterGroup();
 
 
-L.marker([
+
+var marker = L.marker([
 51.933867,
 -1.722396
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Tesco Superstore - Stow-on-the-wold</b><br>
 Fosse Way<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.933867,-1.722396" target="_blank">
@@ -103,13 +152,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.91642,
 -2.105061
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Premier Inn Cheltenham North West</b><br>
 Uckington<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.91642,-2.105061" target="_blank">
@@ -117,13 +169,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.91969,
 -2.06877
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>MK21014</b><br>
 Cheltenham Racecourse<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.91969,-2.06877" target="_blank">
@@ -131,13 +186,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.893471,
 -2.1314
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Arle Court Park & Ride</b><br>
 Arle Court<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.893471,-2.1314" target="_blank">
@@ -145,13 +203,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.80690500769981,
 -1.9250920256532709
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Seven Tuns Inn</b><br>
 Church Row<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.80690500769981,-1.9250920256532709" target="_blank">
@@ -159,13 +220,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.896122,
 -2.07975
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>SUTTON HOTELS QUEENS HOTEL</b><br>
 Queens hotel cheltenham The Promenade<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.896122,-2.07975" target="_blank">
@@ -173,13 +237,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.880539,
 -2.106792
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Morrisons</b><br>
 Morrisons Caernarvon Rd<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.880539,-2.106792" target="_blank">
@@ -187,13 +254,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.89471462616993,
 -2.104613172079212
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Shell Gloucester Road, Cheltenham</b><br>
 Gloucester Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.89471462616993,-2.104613172079212" target="_blank">
@@ -201,13 +271,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.905567,
 -2.087004
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Colletts Drive</b><br>
 Colletts Drive<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.905567,-2.087004" target="_blank">
@@ -215,13 +288,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.89491,
 -2.08329
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Montpellier Street / Parabola Road</b><br>
 Montpellier Street / Parabola Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.89491,-2.08329" target="_blank">
@@ -229,7 +305,11 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
+
+
+map.addLayer(markers);
 
 </script>
 

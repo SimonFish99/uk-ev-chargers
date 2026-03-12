@@ -6,19 +6,61 @@
 
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
+
 <style>
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+}
+
+header {
+  background: #1f2937;
+  padding: 12px 20px;
+}
+
+.logo {
+  color: white;
+  text-decoration: none;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.container {
+  padding: 20px;
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 15px;
+  text-decoration: none;
+  color: #2563eb;
+  font-weight: bold;
+}
+
 #map {
-  height: 400px;
+  height: 420px;
   margin-bottom: 30px;
   border-radius: 8px;
 }
+
 </style>
 
 </head>
 
 <body>
 
+<header>
+<a href="/" class="logo">PlugMap</a>
+</header>
+
+<div class="container">
+
 <h1>Bicester EV Chargers</h1>
+
+<a href="/" class="back-link">← Back to homepage</a>
 
 <div id="map"></div>
 
@@ -101,7 +143,11 @@ Lakeview Drive
 
 </ul>
 
+</div>
+
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 
 <script>
 
@@ -114,13 +160,16 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 attribution: '&copy; OpenStreetMap contributors'
 }).addTo(map);
 
+var markers = L.markerClusterGroup();
 
 
-L.marker([
+
+var marker = L.marker([
 51.949654,
 -1.198057
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>GS10043</b><br>
 M40 Motorway, Jct 10, Northampton Road, Ardley<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.949654,-1.198057" target="_blank">
@@ -128,13 +177,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.891133,
 -1.159868
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Tesco Superstore-Bicester (75KW)</b><br>
 Lakeview Drive<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.891133,-1.159868" target="_blank">
@@ -142,13 +194,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.852018,
 -1.224851
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Shell Layby</b><br>
 A34<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.852018,-1.224851" target="_blank">
@@ -156,13 +211,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.898695,
 -1.153264
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Sainsbury's Bicester</b><br>
 Bure Place<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.898695,-1.153264" target="_blank">
@@ -170,13 +228,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.8936,
 -1.16269
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Little Chef</b><br>
 Oxford Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.8936,-1.16269" target="_blank">
@@ -184,13 +245,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.849998,
 -1.2295
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Little Chef A34 North</b><br>
 Little Chef A34 North<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.849998,-1.2295" target="_blank">
@@ -198,13 +262,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.9190497362585,
 -1.15942217453471
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Pippin Close</b><br>
 Elmsbrook<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.9190497362585,-1.15942217453471" target="_blank">
@@ -212,13 +279,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.89324306010596,
 -1.150558940325709
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Bicester Shopping Village Car Park</b><br>
 Station Approach<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.89324306010596,-1.150558940325709" target="_blank">
@@ -226,13 +296,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.89328630760849,
 -1.1608701227904703
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Bicester Shopping Village</b><br>
 144a Pingle Drive<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.89328630760849,-1.1608701227904703" target="_blank">
@@ -240,13 +313,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.9591047079117,
 -1.20252694943372
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>McDonald's Baynards Green</b><br>
 Baynards Green Roundabout<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.9591047079117,-1.20252694943372" target="_blank">
@@ -254,13 +330,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.882091,
 -1.150491
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Bicester</b><br>
 Wendlebury Road, Bicester Gateway<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.882091,-1.150491" target="_blank">
@@ -268,13 +347,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.89875229553789,
 -1.1478156583920054
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Cattle Market Car Park</b><br>
 Victoria Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.89875229553789,-1.1478156583920054" target="_blank">
@@ -282,13 +364,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.89125,
 -1.164444
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Bicester Gateway</b><br>
 Bicester Gateway<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.89125,-1.164444" target="_blank">
@@ -296,13 +381,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.886296004799476,
 -1.1681428393518445
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Holiday Inn Express Bicester</b><br>
 Gateway Business Park<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.886296004799476,-1.1681428393518445" target="_blank">
@@ -310,13 +398,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.891106,
 -1.159765
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Tesco Superstore-Bicester</b><br>
 Lakeview Drive<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.891106,-1.159765" target="_blank">
@@ -324,7 +415,11 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
+
+
+map.addLayer(markers);
 
 </script>
 

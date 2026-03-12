@@ -6,19 +6,61 @@
 
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
+
 <style>
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+}
+
+header {
+  background: #1f2937;
+  padding: 12px 20px;
+}
+
+.logo {
+  color: white;
+  text-decoration: none;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.container {
+  padding: 20px;
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 15px;
+  text-decoration: none;
+  color: #2563eb;
+  font-weight: bold;
+}
+
 #map {
-  height: 400px;
+  height: 420px;
   margin-bottom: 30px;
   border-radius: 8px;
 }
+
 </style>
 
 </head>
 
 <body>
 
+<header>
+<a href="/" class="logo">PlugMap</a>
+</header>
+
+<div class="container">
+
 <h1>Glasgow EV Chargers</h1>
+
+<a href="/" class="back-link">← Back to homepage</a>
 
 <div id="map"></div>
 
@@ -621,7 +663,11 @@ Letherby Drive
 
 </ul>
 
+</div>
+
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 
 <script>
 
@@ -634,13 +680,16 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 attribution: '&copy; OpenStreetMap contributors'
 }).addTo(map);
 
+var markers = L.markerClusterGroup();
 
 
-L.marker([
+
+var marker = L.marker([
 56.05652215,
 -4.22722327
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Fintry Sports Club</b><br>
 Kippen Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=56.05652215,-4.22722327" target="_blank">
@@ -648,13 +697,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.944031252530664,
 -3.9783317588530736
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Arnold Clark Cumbernauld Kia</b><br>
 South Carbrain Ring Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.944031252530664,-3.9783317588530736" target="_blank">
@@ -662,13 +714,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.87189892216429,
 -4.143330931284993
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>For EV Redcastle Square Garthamlock</b><br>
 Redcastle Square<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.87189892216429,-4.143330931284993" target="_blank">
@@ -676,13 +731,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.84717339596679,
 -4.268461464739772
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Arnold Clark Glasgow Kilburnie Street Vanstore</b><br>
 149 Kilburnie Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.84717339596679,-4.268461464739772" target="_blank">
@@ -690,13 +748,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.82726971986685,
 -4.296871951548326
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Arnold Clark - Pollokshaws Road Volkswagen</b><br>
 1646 Pollokshaws Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.82726971986685,-4.296871951548326" target="_blank">
@@ -704,13 +765,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.875448,
 -4.2695239
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Lidl-Maryhill</b><br>
 2 Hopehill Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.875448,-4.2695239" target="_blank">
@@ -718,13 +782,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.8236165,
 -4.2947286
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Lidl-Pollokshaws</b><br>
 30 Riverford Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.8236165,-4.2947286" target="_blank">
@@ -732,13 +799,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.8585127,
 -4.22536493
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Lidl-Duke Street</b><br>
 285 Duke Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.8585127,-4.22536493" target="_blank">
@@ -746,13 +816,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.885384,
 -4.256834
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Lidl-Balmore Road</b><br>
 109 Balmore Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.885384,-4.256834" target="_blank">
@@ -760,13 +833,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.73978826541878,
 -4.1475887884987515
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Macdonald Crutherland House and Spa</b><br>
 Strathaven Rd<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.73978826541878,-4.1475887884987515" target="_blank">
@@ -774,13 +850,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.883221,
 -4.29057
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Kirklee Road</b><br>
 Kirklee Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.883221,-4.29057" target="_blank">
@@ -788,13 +867,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.869181,
 -4.231016
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Glenbarr Street</b><br>
 Glenbarr Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.869181,-4.231016" target="_blank">
@@ -802,13 +884,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.856797,
 -4.218684
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Reidvale Street</b><br>
 Reidvale Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.856797,-4.218684" target="_blank">
@@ -816,13 +901,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.799929,
 -4.323571
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>David Lloyd-Glasgow Rouken Glen</b><br>
 2 Stewarton Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.799929,-4.323571" target="_blank">
@@ -830,13 +918,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.925111,
 -4.142108
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Old Gatehouse</b><br>
 Woodilee Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.925111,-4.142108" target="_blank">
@@ -844,13 +935,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.776942,
 -3.949298
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Burger King</b><br>
 499 Glasgow Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.776942,-3.949298" target="_blank">
@@ -858,13 +952,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 56.0022,
 -4.37589
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Glasgow Club Drumchapel Pool</b><br>
 Drumry Road East<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=56.0022,-4.37589" target="_blank">
@@ -872,13 +969,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.9084,
 -4.37588
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Glasgow Club Drumchapel Pool</b><br>
 Drumry Road East<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.9084,-4.37588" target="_blank">
@@ -886,13 +986,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.896583,
 -4.323371
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Glasgow Club Milton</b><br>
 Liddesdale Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.896583,-4.323371" target="_blank">
@@ -900,13 +1003,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.88935,
 -4.35732
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Knightswood Library</b><br>
 Dunterlie Avenue<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.88935,-4.35732" target="_blank">
@@ -914,13 +1020,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.880633,
 -4.342526
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Scotstoun Stadium</b><br>
 Danes Drive<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.880633,-4.342526" target="_blank">
@@ -928,13 +1037,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.879644,
 -4.284755
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Queen Margaret Road</b><br>
 Queen Margaret Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.879644,-4.284755" target="_blank">
@@ -942,13 +1054,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.8771,
 -4.28001
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Belmont Street</b><br>
 Belmont Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.8771,-4.28001" target="_blank">
@@ -956,13 +1071,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.875376,
 -4.291877
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Lilybank Car Park</b><br>
 Lilybank Gardens<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.875376,-4.291877" target="_blank">
@@ -970,13 +1088,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.868761,
 -4.256547
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Dundasvale Multi-Storey Car Park, Glasgow</b><br>
 Dundasvale Court<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.868761,-4.256547" target="_blank">
@@ -984,13 +1105,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.863845,
 -4.238135
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Cathedral Precinct Car Park 1</b><br>
 Stirling Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.863845,-4.238135" target="_blank">
@@ -998,13 +1122,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.863268,
 -4.237289
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Cathedral Precinct Car Park 2</b><br>
 Cathedral Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.863268,-4.237289" target="_blank">
@@ -1012,13 +1139,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.862193,
 -4.210823
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Alexandra Park Street</b><br>
 Alexandra Park Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.862193,-4.210823" target="_blank">
@@ -1026,13 +1156,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.862147,
 -4.237455
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Cathedral Precinct Car Park 4</b><br>
 Collins Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.862147,-4.237455" target="_blank">
@@ -1040,13 +1173,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.859444,
 -4.244937
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Ingram Street - Car Club Only</b><br>
 Ingram Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.859444,-4.244937" target="_blank">
@@ -1054,13 +1190,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.859034,
 -4.22174
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Craigpark (Dennistoun Library)</b><br>
 Craigpark<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.859034,-4.22174" target="_blank">
@@ -1068,13 +1207,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.85761,
 -4.270013
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Newton Street Car Park - Taxis and PH ONLY</b><br>
 Newton Street - Taxi and Commercial ONLY<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.85761,-4.270013" target="_blank">
@@ -1082,13 +1224,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.85732,
 -4.270138
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Newton Street Car Park - Taxis and PH ONLY</b><br>
 Newton Street - Taxi and Commercial ONLY<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.85732,-4.270138" target="_blank">
@@ -1096,13 +1241,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.857227,
 -4.270152
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Newton Street Car Park - Goods Vehicles ONLY</b><br>
 Newton Street - Taxi and Commercial ONLY<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.857227,-4.270152" target="_blank">
@@ -1110,13 +1258,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.855841,
 -4.171868
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Greenfield Football Centre</b><br>
 Duror St<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.855841,-4.171868" target="_blank">
@@ -1124,13 +1275,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.852041,
 -4.294145
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Paisley Road West, Glasgow</b><br>
 Paisley Road West<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.852041,-4.294145" target="_blank">
@@ -1138,13 +1292,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.850036,
 -4.272882
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Shields Road Park and Ride</b><br>
 Scotland Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.850036,-4.272882" target="_blank">
@@ -1152,13 +1309,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.84744,
 -4.24368
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Waddell Street</b><br>
 Waddell Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.84744,-4.24368" target="_blank">
@@ -1166,13 +1326,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.84521,
 -4.23197
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Glasgow National Hockey Centre, Glasgow</b><br>
 Greenhead Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.84521,-4.23197" target="_blank">
@@ -1180,13 +1343,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.84226,
 -4.27304
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Kenmure Street (Albert Drive)</b><br>
 Albert Drive<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.84226,-4.27304" target="_blank">
@@ -1194,13 +1360,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.8371,
 -4.22272
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Brodick Street</b><br>
 Royston Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.8371,-4.22272" target="_blank">
@@ -1208,13 +1377,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.8361,
 -4.262
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Allison Street</b><br>
 Allison Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.8361,-4.262" target="_blank">
@@ -1222,13 +1394,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.835028,
 -4.266352
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Torrisdale Street, Glasgow</b><br>
 Torrisdale Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.835028,-4.266352" target="_blank">
@@ -1236,13 +1411,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.835022,
 -4.336686
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Glasgow Club, Corkerhill Road, Nethercraigs</b><br>
 Corkerhill Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.835022,-4.336686" target="_blank">
@@ -1250,13 +1428,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.834721,
 -4.26953
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Albert Avenue</b><br>
 Albert Avenue<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.834721,-4.26953" target="_blank">
@@ -1264,13 +1445,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.80539,
 -4.23017
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Glasgow Club Castlemilk Pool</b><br>
 Castlemilk Drive<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.80539,-4.23017" target="_blank">
@@ -1278,13 +1462,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.534941,
 -4.202724
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Netherton Community Centre</b><br>
 Netherton Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.534941,-4.202724" target="_blank">
@@ -1292,13 +1479,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.532171,
 -4.212665
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Knightswood Library</b><br>
 Dunterlie Avenue<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.532171,-4.212665" target="_blank">
@@ -1306,13 +1496,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.8638335,
 -4.2207754
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>MFG Craigpark Service Station</b><br>
 432 Alexandra Parade<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.8638335,-4.2207754" target="_blank">
@@ -1320,13 +1513,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.857174,
 -4.293906
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Glasgow Science Centre 1</b><br>
 Pacific Quay<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.857174,-4.293906" target="_blank">
@@ -1334,13 +1530,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.823208,
 -4.342856
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Pollok Leisure Centre, Glasgow</b><br>
 Cowglen Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.823208,-4.342856" target="_blank">
@@ -1348,13 +1547,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.864287,
 -4.259466
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Q-Park Sauchiehall Street, Glasgow 1</b><br>
 Sauchiehall Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.864287,-4.259466" target="_blank">
@@ -1362,13 +1564,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.860192,
 -4.264393
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Q-Park Waterloo Street, Glasgow 1</b><br>
 99 Waterloo Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.860192,-4.264393" target="_blank">
@@ -1376,13 +1581,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.855993,
 -4.253802
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Q-Park St Enoch, Glasgow 1</b><br>
 Maxwell Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.855993,-4.253802" target="_blank">
@@ -1390,13 +1598,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.9441825,
 -4.0317365
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Cumbernauld Retail Park</b><br>
 Cumbernauld Retail Park<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.9441825,-4.0317365" target="_blank">
@@ -1404,13 +1615,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.870191,
 -4.358452
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>IKEA Glasgow</b><br>
 99 Kings Inch Drive<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.870191,-4.358452" target="_blank">
@@ -1418,13 +1632,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.877068,
 -4.287597
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Great Western Rd, Glasgow</b><br>
 723 Great Western Rd<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.877068,-4.287597" target="_blank">
@@ -1432,13 +1649,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.868948,
 -4.259643
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Concert Square 1</b><br>
 97 COWCADDENS ROAD GLASGOW<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.868948,-4.259643" target="_blank">
@@ -1446,13 +1666,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.86689,
 -4.2594
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Cambridge Street Car Park, Glasgow (1)</b><br>
 Cambridge Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.86689,-4.2594" target="_blank">
@@ -1460,13 +1683,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.86549,
 -4.268828
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Cranworth St. Car Club</b><br>
 272 Bath Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.86549,-4.268828" target="_blank">
@@ -1474,13 +1700,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.865134,
 -4.306318
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Riverside Museum</b><br>
 Riverside Museum Pier<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.865134,-4.306318" target="_blank">
@@ -1488,13 +1717,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.864883,
 -4.27012
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Charing Cross 1</b><br>
 ELMBANK STREET GLASGOW<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.864883,-4.27012" target="_blank">
@@ -1502,13 +1734,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.86404,
 -4.262638
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Blythswood Square</b><br>
 6 Blythswood Square<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.86404,-4.262638" target="_blank">
@@ -1516,13 +1751,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.862997,
 -4.26787
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>EV1 & EV2 ST VINCENT</b><br>
 310 St Vincent St<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.862997,-4.26787" target="_blank">
@@ -1530,13 +1768,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.86009,
 -4.2607
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Cadogan Street Car Park, Glasgow (1)</b><br>
 1 Cadogan Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.86009,-4.2607" target="_blank">
@@ -1544,13 +1785,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.859316,
 -4.236345
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Duke Street Car Park</b><br>
 92 Duke Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.859316,-4.236345" target="_blank">
@@ -1558,13 +1802,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.858646,
 -4.364595
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Clyde Marine Training, Hillington</b><br>
 Barrie Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.858646,-4.364595" target="_blank">
@@ -1572,13 +1819,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.857566,
 -4.245133
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Q-Park Candleriggs, Glasgow 1</b><br>
 37 Albion Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.857566,-4.245133" target="_blank">
@@ -1586,13 +1836,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.85497,
 -4.35703
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Landscapes and Contracts, Hillngton (1)</b><br>
 Carnegie Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.85497,-4.35703" target="_blank">
@@ -1600,13 +1853,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.846372,
 -4.234039
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Glasgow National Hockey Centre</b><br>
 King's Drive<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.846372,-4.234039" target="_blank">
@@ -1614,13 +1870,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.834008,
 -4.244732
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Polmadie 1</b><br>
 425 POLMADIE ROAD GLASGOW<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.834008,-4.244732" target="_blank">
@@ -1628,13 +1887,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.831962,
 -4.249485
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Holyrood Leisure Centre</b><br>
 Albert Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.831962,-4.249485" target="_blank">
@@ -1642,13 +1904,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.797814,
 -4.303596
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>EASTWOOD PARK</b><br>
 46 Rouken Glen Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.797814,-4.303596" target="_blank">
@@ -1656,13 +1921,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.762816,
 -4.172292
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Lidl - East Kilbride</b><br>
 Churchill Avenue<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.762816,-4.172292" target="_blank">
@@ -1670,13 +1938,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.869289,
 -4.128937
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Morrisons</b><br>
 Auchinlea Way<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.869289,-4.128937" target="_blank">
@@ -1684,13 +1955,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.86862,
 -4.31486
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>SSEHUB001</b><br>
 290-330 Castlebank street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.86862,-4.31486" target="_blank">
@@ -1698,13 +1972,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.857539,
 -4.133365
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Barlanark Community Centre</b><br>
 Barlanark Community Centre<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.857539,-4.133365" target="_blank">
@@ -1712,13 +1989,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.83392,
 -4.287334
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Morrisons</b><br>
 Morrisons Crossmyloof<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.83392,-4.287334" target="_blank">
@@ -1726,13 +2006,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.873701,
 -4.311015
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Peel St Car Club</b><br>
 65 Peel Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.873701,-4.311015" target="_blank">
@@ -1740,13 +2023,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.815806,
 -4.356729
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>DRAX00132</b><br>
 320 Peat Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.815806,-4.356729" target="_blank">
@@ -1754,13 +2040,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.857867,
 -4.291453
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>BBC-Pacific Quay</b><br>
 40 Pacific Quay<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.857867,-4.291453" target="_blank">
@@ -1768,13 +2057,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.87024,
 -4.33487
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Glencrest Limited</b><br>
 150 Clydeholm Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.87024,-4.33487" target="_blank">
@@ -1782,13 +2074,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.837232,
 -4.242494
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>IONITY Polmadie</b><br>
 109 Polmadie Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.837232,-4.242494" target="_blank">
@@ -1796,13 +2091,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.822099,
 -4.340059
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Tesco Extra-Silverburn</b><br>
 Barrhead Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.822099,-4.340059" target="_blank">
@@ -1810,13 +2108,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.851701,
 -4.107198
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Lidl-Bailston</b><br>
 180 Main Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.851701,-4.107198" target="_blank">
@@ -1824,13 +2125,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.87901964742764,
 -4.270670733773244
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Woodside Health Centre, Glasgow</b><br>
 Doncaster Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.87901964742764,-4.270670733773244" target="_blank">
@@ -1838,13 +2142,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.859288,
 -4.238663
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Duke Street 1</b><br>
 92 DUKE STREET GLASGOW<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.859288,-4.238663" target="_blank">
@@ -1852,13 +2159,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.827177,
 -4.060527
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Cadogan Square Car Park 1</b><br>
 25 DOUGLAS STREET GLASGOW<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.827177,-4.060527" target="_blank">
@@ -1866,13 +2176,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.883244,
 -4.26416
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>2 Wester Common Drive</b><br>
 2 Wester Common Drive<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.883244,-4.26416" target="_blank">
@@ -1880,13 +2193,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.886849,
 -4.286794
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Tesco Extra-Glasgow Maryhill</b><br>
 Maryhill Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.886849,-4.286794" target="_blank">
@@ -1894,13 +2210,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.834436,
 -4.17265
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Storage Vault Cambuslang Carpark</b><br>
 Storage Vault<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.834436,-4.17265" target="_blank">
@@ -1908,13 +2227,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.8639,
 -4.2499
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Buchanan Galleries</b><br>
 220 Buchanan Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.8639,-4.2499" target="_blank">
@@ -1922,13 +2244,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.942955,
 -4.01828
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>The Red Deer</b><br>
 Cumbernauld<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.942955,-4.01828" target="_blank">
@@ -1936,13 +2261,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.86031,
 -4.291145
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Crowne Plaza Glasgow</b><br>
 Congress Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.86031,-4.291145" target="_blank">
@@ -1950,13 +2278,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.849615,
 -4.275779
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Shields Road Park and Ride, Glasgow</b><br>
 165-169 Scotland Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.849615,-4.275779" target="_blank">
@@ -1964,13 +2295,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.81863,
 -4.342979
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Level 1</b><br>
 Cowglen Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.81863,-4.342979" target="_blank">
@@ -1978,13 +2312,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.863572,
 -4.262374
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Blythswood Street</b><br>
 Blythswood Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.863572,-4.262374" target="_blank">
@@ -1992,13 +2329,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.865818,
 -4.261556
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Rose Street</b><br>
 Rose Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.865818,-4.261556" target="_blank">
@@ -2006,13 +2346,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.85766,
 -4.24316
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Bell Street</b><br>
 Bell Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.85766,-4.24316" target="_blank">
@@ -2020,13 +2363,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.85916,
 -4.26235
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>West Campbell Street</b><br>
 West Campbell Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.85916,-4.26235" target="_blank">
@@ -2034,13 +2380,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.86216,
 -4.2486
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>North Fredrick Street</b><br>
 North Fredrick Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.86216,-4.2486" target="_blank">
@@ -2048,13 +2397,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.86493,
 -4.26665
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Holland Street</b><br>
 Holland Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.86493,-4.26665" target="_blank">
@@ -2062,13 +2414,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.861514,
 -4.244327
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Richmond Street, Glasgow</b><br>
 Richmond Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.861514,-4.244327" target="_blank">
@@ -2076,13 +2431,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.854274,
 -4.241321
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Located at the back right of the car park, which is located in b..</b><br>
 Charlotte Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.854274,-4.241321" target="_blank">
@@ -2090,13 +2448,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.845342,
 -4.176739
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>350 Wellshot Road</b><br>
 350 Wellshot Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.845342,-4.176739" target="_blank">
@@ -2104,13 +2465,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.80121,
 -4.320431
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>4 Rouken Glen Road</b><br>
 4 Rouken Glen Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.80121,-4.320431" target="_blank">
@@ -2118,13 +2482,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.83517,
 -4.26529
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Victoria Road, Glasgow</b><br>
 Victoria Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.83517,-4.26529" target="_blank">
@@ -2132,13 +2499,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.882182,
 -4.207833
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Broomfield Road, Glasgow</b><br>
 Broomfield Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.882182,-4.207833" target="_blank">
@@ -2146,13 +2516,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.86088,
 -4.24591
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Exchange House, George St Offices, Glasgow</b><br>
 George Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.86088,-4.24591" target="_blank">
@@ -2160,13 +2533,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.846157,
 -4.220656
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Ruby Street, Glasgow</b><br>
 11 Ruby Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.846157,-4.220656" target="_blank">
@@ -2174,13 +2550,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.84574,
 -4.24206
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Mcneil Street, Glasgow</b><br>
 192 Mcneil Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.84574,-4.24206" target="_blank">
@@ -2188,13 +2567,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.84786,
 -4.25157
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Crown Street, Glasgow</b><br>
 Crown Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.84786,-4.25157" target="_blank">
@@ -2202,13 +2584,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.868551,
 -4.246441
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Henrys (Glasgow) LTD</b><br>
 151 Kyle Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.868551,-4.246441" target="_blank">
@@ -2216,13 +2601,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.887688,
 -4.376918
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Yoker Housing Association Ltd</b><br>
 2316 Dumbarton Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.887688,-4.376918" target="_blank">
@@ -2230,13 +2618,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.854309,
 -4.348039
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Southside Housing Association</b><br>
 Fifty Pitches Rd<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.854309,-4.348039" target="_blank">
@@ -2244,13 +2635,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.852535,
 -4.275713
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Edmundson Electrical Ltd, Glasgow</b><br>
 Houston Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.852535,-4.275713" target="_blank">
@@ -2258,13 +2652,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.846035,
 -4.203216
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Athlete's Village</b><br>
 191 Springfield Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.846035,-4.203216" target="_blank">
@@ -2272,13 +2669,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.838964,
 -4.230633
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Jenny Burn Oatlands Pub & Restaurant</b><br>
 8 Clyde Gateway<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.838964,-4.230633" target="_blank">
@@ -2286,13 +2686,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.825234,
 -4.253199
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Letherby Drive</b><br>
 Letherby Drive<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.825234,-4.253199" target="_blank">
@@ -2300,7 +2703,11 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
+
+
+map.addLayer(markers);
 
 </script>
 

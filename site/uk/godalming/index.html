@@ -6,19 +6,61 @@
 
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
+
 <style>
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+}
+
+header {
+  background: #1f2937;
+  padding: 12px 20px;
+}
+
+.logo {
+  color: white;
+  text-decoration: none;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.container {
+  padding: 20px;
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 15px;
+  text-decoration: none;
+  color: #2563eb;
+  font-weight: bold;
+}
+
 #map {
-  height: 400px;
+  height: 420px;
   margin-bottom: 30px;
   border-radius: 8px;
 }
+
 </style>
 
 </head>
 
 <body>
 
+<header>
+<a href="/" class="logo">PlugMap</a>
+</header>
+
+<div class="container">
+
 <h1>Godalming EV Chargers</h1>
+
+<a href="/" class="back-link">← Back to homepage</a>
 
 <div id="map"></div>
 
@@ -61,7 +103,11 @@ The Burys
 
 </ul>
 
+</div>
+
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 
 <script>
 
@@ -74,13 +120,16 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 attribution: '&copy; OpenStreetMap contributors'
 }).addTo(map);
 
+var markers = L.markerClusterGroup();
 
 
-L.marker([
+
+var marker = L.marker([
 51.16947464196451,
 -0.6481656358862722
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>InstaVolt Co-Op Car Park Farncombe</b><br>
 61 St John's Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.16947464196451,-0.6481656358862722" target="_blank">
@@ -88,13 +137,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.184679457803725,
 -0.6153672921838051
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>WBC South Car Park</b><br>
 Oglethorpe Court<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.184679457803725,-0.6153672921838051" target="_blank">
@@ -102,13 +154,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.186420654590876,
 -0.6086648728471573
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Waitrose Godalming</b><br>
 Bridge Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.186420654590876,-0.6086648728471573" target="_blank">
@@ -116,13 +171,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.1798593200454,
 -0.624160506748922
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>The Inn on the Lake</b><br>
 Ockford Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.1798593200454,-0.624160506748922" target="_blank">
@@ -130,13 +188,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.196751,
 -0.60536
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>SUCC Farncombe Station Road 1</b><br>
 Station Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.196751,-0.60536" target="_blank">
@@ -144,13 +205,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.18539,
 -0.608384
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>SUCC Catteshall Lane 1</b><br>
 Catteshall Lane<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.18539,-0.608384" target="_blank">
@@ -158,13 +222,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.187219,
 -0.609811
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>The Burys</b><br>
 The Burys<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.187219,-0.609811" target="_blank">
@@ -172,7 +239,11 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
+
+
+map.addLayer(markers);
 
 </script>
 

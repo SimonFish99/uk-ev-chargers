@@ -6,19 +6,61 @@
 
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
+
 <style>
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+}
+
+header {
+  background: #1f2937;
+  padding: 12px 20px;
+}
+
+.logo {
+  color: white;
+  text-decoration: none;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.container {
+  padding: 20px;
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 15px;
+  text-decoration: none;
+  color: #2563eb;
+  font-weight: bold;
+}
+
 #map {
-  height: 400px;
+  height: 420px;
   margin-bottom: 30px;
   border-radius: 8px;
 }
+
 </style>
 
 </head>
 
 <body>
 
+<header>
+<a href="/" class="logo">PlugMap</a>
+</header>
+
+<div class="container">
+
 <h1>Blackpool EV Chargers</h1>
+
+<a href="/" class="back-link">← Back to homepage</a>
 
 <div id="map"></div>
 
@@ -86,7 +128,11 @@ New Larkhill Street
 
 </ul>
 
+</div>
+
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 
 <script>
 
@@ -99,13 +145,16 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 attribution: '&copy; OpenStreetMap contributors'
 }).addTo(map);
 
+var markers = L.markerClusterGroup();
 
 
-L.marker([
+
+var marker = L.marker([
 53.823825,
 -3.038869
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Lidl-Devonshire Road</b><br>
 127 Devonshire Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.823825,-3.038869" target="_blank">
@@ -113,13 +162,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.852277,
 -3.039395
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Red Bank Road, Bispham, Blackpool</b><br>
 Bispham<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.852277,-3.039395" target="_blank">
@@ -127,13 +179,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.829313,
 -3.017734
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>The Grange, Blackpool</b><br>
 The Grange, Blackpool<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.829313,-3.017734" target="_blank">
@@ -141,13 +196,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.800716,
 -2.990341
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>ICUEVE900237</b><br>
 7 Winster Place<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.800716,-2.990341" target="_blank">
@@ -155,13 +213,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.796564,
 -3.019958
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Intelligent Charging Systems</b><br>
 Sandersons Way<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.796564,-3.019958" target="_blank">
@@ -169,13 +230,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.813596,
 -3.053276
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Blackpool Council 1</b><br>
 Central Car park<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.813596,-3.053276" target="_blank">
@@ -183,13 +247,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.817999853880195,
 -3.0544371675977118
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>West Street Car Park</b><br>
 West Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.817999853880195,-3.0544371675977118" target="_blank">
@@ -197,13 +264,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.815930421184106,
 -3.053972008130245
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Houndshill Shopping Centre Multistorey</b><br>
 27/29 Victoria Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.815930421184106,-3.053972008130245" target="_blank">
@@ -211,13 +281,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.79946766603926,
 -3.0554995139956036
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>ApartHotel421 By Seafront Collection</b><br>
 421 Promenade<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.79946766603926,-3.0554995139956036" target="_blank">
@@ -225,13 +298,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.8015269703755,
 -2.9932002944181
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Toby Carvery Blackpool </b><br>
 4 Oakleaf Way<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.8015269703755,-2.9932002944181" target="_blank">
@@ -239,13 +315,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.800237,
 -2.989691
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>The Harbour</b><br>
 10 Winster Place<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.800237,-2.989691" target="_blank">
@@ -253,13 +332,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.820859472717075,
 -3.0475799446630845
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Sainsbury's</b><br>
 New Larkhill Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.820859472717075,-3.0475799446630845" target="_blank">
@@ -267,7 +349,11 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
+
+
+map.addLayer(markers);
 
 </script>
 

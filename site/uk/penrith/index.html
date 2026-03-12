@@ -6,19 +6,61 @@
 
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
+
 <style>
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+}
+
+header {
+  background: #1f2937;
+  padding: 12px 20px;
+}
+
+.logo {
+  color: white;
+  text-decoration: none;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.container {
+  padding: 20px;
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 15px;
+  text-decoration: none;
+  color: #2563eb;
+  font-weight: bold;
+}
+
 #map {
-  height: 400px;
+  height: 420px;
   margin-bottom: 30px;
   border-radius: 8px;
 }
+
 </style>
 
 </head>
 
 <body>
 
+<header>
+<a href="/" class="logo">PlugMap</a>
+</header>
+
+<div class="container">
+
 <h1>Penrith EV Chargers</h1>
+
+<a href="/" class="back-link">← Back to homepage</a>
 
 <div id="map"></div>
 
@@ -81,7 +123,11 @@ Brunswick Road
 
 </ul>
 
+</div>
+
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 
 <script>
 
@@ -94,13 +140,16 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 attribution: '&copy; OpenStreetMap contributors'
 }).addTo(map);
 
+var markers = L.markerClusterGroup();
 
 
-L.marker([
+
+var marker = L.marker([
 54.529137,
 -2.67602
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Shap Village Hall</b><br>
 Shap Village Hall<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.529137,-2.67602" target="_blank">
@@ -108,13 +157,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.64700167,
 -2.78151868
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Westmorland Rheged Centre Services</b><br>
 Redhills Lane<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.64700167,-2.78151868" target="_blank">
@@ -122,13 +174,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.663616,
 -2.756512
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Morrisons Penrith</b><br>
 Wm Morrison Supermarkets PLC<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.663616,-2.756512" target="_blank">
@@ -136,13 +191,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.545391,
 -2.949612
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>The Inn on the Lake</b><br>
 Glenridding<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.545391,-2.949612" target="_blank">
@@ -150,13 +208,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.6412,
 -2.6568
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Center Parcs-Whinfell Forest (for Center Parcs Guests Only)</b><br>
 Whinfell Forest<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.6412,-2.6568" target="_blank">
@@ -164,13 +225,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.6570998167212,
 -2.76092322140357
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Ullswater Rd Garage</b><br>
 10 Ullswater Rd,<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.6570998167212,-2.76092322140357" target="_blank">
@@ -178,13 +242,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.60790424640109,
 -2.7376993333158453
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Lowther Castle and Gardens</b><br>
 Lowther Castle<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.60790424640109,-2.7376993333158453" target="_blank">
@@ -192,13 +259,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.658288431027245,
 -2.745184138733805
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Eden Housing Association CMS</b><br>
 Blain House <br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.658288431027245,-2.745184138733805" target="_blank">
@@ -206,13 +276,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.593685,
 -2.624575
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Morland and Newby Village Hall</b><br>
 Morland and Newby Village Hall<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.593685,-2.624575" target="_blank">
@@ -220,13 +293,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.6647076752547,
 -2.75753887957899
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Booths Penrith</b><br>
 Booths Car Park<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.6647076752547,-2.75753887957899" target="_blank">
@@ -234,13 +310,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.66384835086379,
 -2.755638418708031
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Morrisons Penrith</b><br>
 Brunswick Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.66384835086379,-2.755638418708031" target="_blank">
@@ -248,7 +327,11 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
+
+
+map.addLayer(markers);
 
 </script>
 

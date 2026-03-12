@@ -6,19 +6,61 @@
 
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
+
 <style>
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+}
+
+header {
+  background: #1f2937;
+  padding: 12px 20px;
+}
+
+.logo {
+  color: white;
+  text-decoration: none;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.container {
+  padding: 20px;
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 15px;
+  text-decoration: none;
+  color: #2563eb;
+  font-weight: bold;
+}
+
 #map {
-  height: 400px;
+  height: 420px;
   margin-bottom: 30px;
   border-radius: 8px;
 }
+
 </style>
 
 </head>
 
 <body>
 
+<header>
+<a href="/" class="logo">PlugMap</a>
+</header>
+
+<div class="container">
+
 <h1>Dundee EV Chargers</h1>
+
+<a href="/" class="back-link">← Back to homepage</a>
 
 <div id="map"></div>
 
@@ -186,7 +228,11 @@ Carlunie Road
 
 </ul>
 
+</div>
+
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 
 <script>
 
@@ -199,13 +245,16 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 attribution: '&copy; OpenStreetMap contributors'
 }).addTo(map);
 
+var markers = L.markerClusterGroup();
 
 
-L.marker([
+
+var marker = L.marker([
 56.4719455,
 -3.0125918
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Lidl-Lochee</b><br>
 71 South Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=56.4719455,-3.0125918" target="_blank">
@@ -213,13 +262,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 56.4706977,
 -2.9603149
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Lidl-Stobswell</b><br>
 28a Dura Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=56.4706977,-2.9603149" target="_blank">
@@ -227,13 +279,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 56.476764,
 -2.9314872
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Lidl-Dundee</b><br>
 New Craigie Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=56.476764,-2.9314872" target="_blank">
@@ -241,13 +296,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 56.473318,
 -3.052509
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>The Camper Down Elm Pub & Restaurant</b><br>
 1a Fulton Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=56.473318,-3.052509" target="_blank">
@@ -255,13 +313,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 56.480796,
 -2.817473
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Tesco Superstore - Dundee Monifieth</b><br>
 High Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=56.480796,-2.817473" target="_blank">
@@ -269,13 +330,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 56.470977,
 -3.042831
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Tesco Extra - Dundee South Road</b><br>
 South Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=56.470977,-3.042831" target="_blank">
@@ -283,13 +347,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 56.454513,
 -2.976637
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Tesco Extra - Dundee Riverside</b><br>
 Riverside Drive<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=56.454513,-2.976637" target="_blank">
@@ -297,13 +364,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 56.494875,
 -2.946799
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Jack Martin Way, Dundee</b><br>
 Forfar Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=56.494875,-2.946799" target="_blank">
@@ -311,13 +381,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 56.473072,
 -3.011416
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Housing Office West, Dundee</b><br>
 1B Sinclair Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=56.473072,-3.011416" target="_blank">
@@ -325,13 +398,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 56.470373,
 -2.910503
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Deanside Ltd, Belsize Road</b><br>
 Belsize Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=56.470373,-2.910503" target="_blank">
@@ -339,13 +415,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 56.469725,
 -3.05736
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Hillcrest Housing Association</b><br>
 3 Explorer Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=56.469725,-3.05736" target="_blank">
@@ -353,13 +432,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 56.465466,
 -2.962815
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Staybridge Lower Dens</b><br>
 Staybridge Lower Dens<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=56.465466,-2.962815" target="_blank">
@@ -367,13 +449,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 56.462,
 -2.9665
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Gellatly Street Car Park, Dundee</b><br>
 Gellatly Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=56.462,-2.9665" target="_blank">
@@ -381,13 +466,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 56.458868,
 -2.976572
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>University of Dundee - Park Place Car Park</b><br>
 35 Palais Court<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=56.458868,-2.976572" target="_blank">
@@ -395,13 +483,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 56.45734,
 -2.97325
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Green Market Multi-storey Car park</b><br>
 Green Market Multi-Storey Car<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=56.45734,-2.97325" target="_blank">
@@ -409,13 +500,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 56.456491,
 -3.025192
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Dundee University, Botanic Gardens</b><br>
 Riverside Drive<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=56.456491,-3.025192" target="_blank">
@@ -423,13 +517,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 56.484551,
 -2.947102
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Morrisons</b><br>
 1 Afton Way<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=56.484551,-2.947102" target="_blank">
@@ -437,13 +534,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 56.468137,
 -3.014515
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>JUTE JUICE CHARGER 4</b><br>
 Journalism Corner 2A Charleston Drive<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=56.468137,-3.014515" target="_blank">
@@ -451,13 +551,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 56.489181,
 -3.108945
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Peter Vardy - 1</b><br>
 3 Berryhill Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=56.489181,-3.108945" target="_blank">
@@ -465,13 +568,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 56.488907,
 -2.928023
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Whitfield Centre</b><br>
 Lothian Crescent<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=56.488907,-2.928023" target="_blank">
@@ -479,13 +585,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 56.485766,
 -2.892422
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Michelin Scotland Innovation Park</b><br>
 Baldovie Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=56.485766,-2.892422" target="_blank">
@@ -493,13 +602,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 56.485766,
 -2.892422
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Michelin Scotland Innovation Park</b><br>
 Baldovie Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=56.485766,-2.892422" target="_blank">
@@ -507,13 +619,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 56.472421,
 -2.971498
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>203020 Taxis</b><br>
 3-2 Isla Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=56.472421,-2.971498" target="_blank">
@@ -521,13 +636,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 56.48278,
 -2.993523
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Tesco Extra-Dundee</b><br>
 Kingsway<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=56.48278,-2.993523" target="_blank">
@@ -535,13 +653,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 56.469223,
 -2.968885
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Alexander Street, Dundee</b><br>
 Block 15-35 Annan Terrace<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=56.469223,-2.968885" target="_blank">
@@ -549,13 +670,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 56.47904,
 -2.92207
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Douglas Road Rapid Charger</b><br>
 Douglas Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=56.47904,-2.92207" target="_blank">
@@ -563,13 +687,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 56.4672,
 -3.0399
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Orleans Place, Dundee</b><br>
 Orleans Place<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=56.4672,-3.0399" target="_blank">
@@ -577,13 +704,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 56.481363,
 -3.040196
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Camperdown Country Park</b><br>
 Camperdown Country Park<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=56.481363,-3.040196" target="_blank">
@@ -591,13 +721,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 56.484259,
 -2.975453
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Dundee & Angus College, Kingsway Campus, Dundee</b><br>
 Old Glamis Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=56.484259,-2.975453" target="_blank">
@@ -605,13 +738,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 56.482168,
 -2.935639
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>East District Housing Office, Dundee</b><br>
 189 Pitkerro Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=56.482168,-2.935639" target="_blank">
@@ -619,13 +755,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 56.47989,
 -3.01609
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Winter K Simpsons, Dundee</b><br>
 Unit 16 Dunsinane Avenue<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=56.47989,-3.01609" target="_blank">
@@ -633,13 +772,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 56.479704,
 -3.013459
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Carlunie Road</b><br>
 Carlunie Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=56.479704,-3.013459" target="_blank">
@@ -647,7 +789,11 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
+
+
+map.addLayer(markers);
 
 </script>
 

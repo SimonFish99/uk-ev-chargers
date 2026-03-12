@@ -6,19 +6,61 @@
 
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
+
 <style>
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+}
+
+header {
+  background: #1f2937;
+  padding: 12px 20px;
+}
+
+.logo {
+  color: white;
+  text-decoration: none;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.container {
+  padding: 20px;
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 15px;
+  text-decoration: none;
+  color: #2563eb;
+  font-weight: bold;
+}
+
 #map {
-  height: 400px;
+  height: 420px;
   margin-bottom: 30px;
   border-radius: 8px;
 }
+
 </style>
 
 </head>
 
 <body>
 
+<header>
+<a href="/" class="logo">PlugMap</a>
+</header>
+
+<div class="container">
+
 <h1>Craigavon EV Chargers</h1>
+
+<a href="/" class="back-link">← Back to homepage</a>
 
 <div id="map"></div>
 
@@ -66,7 +108,11 @@ Shelbourne Motor Group, 334 Tanragee Road, Portadown, Armagh
 
 </ul>
 
+</div>
+
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 
 <script>
 
@@ -79,13 +125,16 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 attribution: '&copy; OpenStreetMap contributors'
 }).addTo(map);
 
+var markers = L.markerClusterGroup();
 
 
-L.marker([
+
+var marker = L.marker([
 54.444585406353156,
 -6.393026163231298
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>TrustFord Craigavon</b><br>
 Mandeville Rd<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.444585406353156,-6.393026163231298" target="_blank">
@@ -93,13 +142,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.43568919930152,
 -6.411356752430379
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Craigavon Area Hospital</b><br>
 Lurgan Rd<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.43568919930152,-6.411356752430379" target="_blank">
@@ -107,13 +159,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.44957495688237,
 -6.382718654523188
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>South Lake Leisure Centre</b><br>
 Lake Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.44957495688237,-6.382718654523188" target="_blank">
@@ -121,13 +176,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.45144993564904,
 -6.393551584239958
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Rushmere Shopping Centre (1)</b><br>
 Central Way<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.45144993564904,-6.393551584239958" target="_blank">
@@ -135,13 +193,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.450213772833166,
 -6.392763764270171
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Rushmere Shopping Centre (2)</b><br>
 4 - 7 Central Way<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.450213772833166,-6.392763764270171" target="_blank">
@@ -149,13 +210,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.393902,
 -6.4411
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Shelbourne Motor Group - Nissan Dealership</b><br>
 Shelbourne Motor Group, 334 Tanragee Road, Portadown, Armagh<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.393902,-6.4411" target="_blank">
@@ -163,13 +227,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.3869752124409,
 -6.44658350079339
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Shelbourne Motor Group - Renault Dealership</b><br>
 Shelbourne Motor Group, 334 Tanragee Road, Portadown, Armagh<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.3869752124409,-6.44658350079339" target="_blank">
@@ -177,13 +244,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.445935106975014,
 -6.39464129659541
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Tesco Extra-Craigavon</b><br>
 2 Marlborough Retail Park<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.445935106975014,-6.39464129659541" target="_blank">
@@ -191,7 +261,11 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
+
+
+map.addLayer(markers);
 
 </script>
 

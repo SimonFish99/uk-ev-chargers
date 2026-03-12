@@ -6,19 +6,61 @@
 
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
+
 <style>
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+}
+
+header {
+  background: #1f2937;
+  padding: 12px 20px;
+}
+
+.logo {
+  color: white;
+  text-decoration: none;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.container {
+  padding: 20px;
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 15px;
+  text-decoration: none;
+  color: #2563eb;
+  font-weight: bold;
+}
+
 #map {
-  height: 400px;
+  height: 420px;
   margin-bottom: 30px;
   border-radius: 8px;
 }
+
 </style>
 
 </head>
 
 <body>
 
+<header>
+<a href="/" class="logo">PlugMap</a>
+</header>
+
+<div class="container">
+
 <h1>Tamworth EV Chargers</h1>
+
+<a href="/" class="back-link">← Back to homepage</a>
 
 <div id="map"></div>
 
@@ -71,7 +113,11 @@ Upper Gungate
 
 </ul>
 
+</div>
+
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 
 <script>
 
@@ -84,13 +130,16 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 attribution: '&copy; OpenStreetMap contributors'
 }).addTo(map);
 
+var markers = L.markerClusterGroup();
 
 
-L.marker([
+
+var marker = L.marker([
 52.606163,
 -1.674948
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>ETB TAMWORTH</b><br>
 ETB Autocentres Tamworth unit 1 Forties, Tame<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.606163,-1.674948" target="_blank">
@@ -98,13 +147,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.637231,
 -1.688216
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Saba UK-Tamworth Station</b><br>
 Tamworth Station<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.637231,-1.688216" target="_blank">
@@ -112,13 +164,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.616963,
 -1.714398
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Longwood Pub & Restaurant</b><br>
 Fazeley<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.616963,-1.714398" target="_blank">
@@ -126,13 +181,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.607844,
 -1.641253
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>MOTO Tamworth Services</b><br>
 M42 Motorway<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.607844,-1.641253" target="_blank">
@@ -140,13 +198,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.629215,
 -1.702336
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Premier Inn Tamworth Central</b><br>
 Bitterscote, Bonehill Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.629215,-1.702336" target="_blank">
@@ -154,13 +215,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.611771,
 -1.673339
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Morrisons Tamworth Marlborough Way</b><br>
 Hilmore Way<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.611771,-1.673339" target="_blank">
@@ -168,13 +232,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.643133,
 -1.680969
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Willowherb Close 6</b><br>
 Willowherb Close 6<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.643133,-1.680969" target="_blank">
@@ -182,13 +249,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.611759147910874,
 -1.6742084885776194
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Morrison’s Tamworth</b><br>
 Hilmore Way<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.611759147910874,-1.6742084885776194" target="_blank">
@@ -196,13 +266,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.63727850113497,
 -1.6933046227062505
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Morrisons Tamworth Upper Gungate</b><br>
 Upper Gungate<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.63727850113497,-1.6933046227062505" target="_blank">
@@ -210,7 +283,11 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
+
+
+map.addLayer(markers);
 
 </script>
 

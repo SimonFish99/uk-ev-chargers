@@ -6,19 +6,61 @@
 
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
+
 <style>
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+}
+
+header {
+  background: #1f2937;
+  padding: 12px 20px;
+}
+
+.logo {
+  color: white;
+  text-decoration: none;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.container {
+  padding: 20px;
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 15px;
+  text-decoration: none;
+  color: #2563eb;
+  font-weight: bold;
+}
+
 #map {
-  height: 400px;
+  height: 420px;
   margin-bottom: 30px;
   border-radius: 8px;
 }
+
 </style>
 
 </head>
 
 <body>
 
+<header>
+<a href="/" class="logo">PlugMap</a>
+</header>
+
+<div class="container">
+
 <h1>Dorking EV Chargers</h1>
+
+<a href="/" class="back-link">← Back to homepage</a>
 
 <div id="map"></div>
 
@@ -71,7 +113,11 @@ Holmesdale Road
 
 </ul>
 
+</div>
+
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 
 <script>
 
@@ -84,13 +130,16 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 attribution: '&copy; OpenStreetMap contributors'
 }).addTo(map);
 
+var markers = L.markerClusterGroup();
 
 
-L.marker([
+
+var marker = L.marker([
 51.23356,
 -0.333344
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>St Martins Walk Car Park 1</b><br>
 St Martins Walk Car Park 1<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.23356,-0.333344" target="_blank">
@@ -98,13 +147,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.237350826838195,
 -0.32528014550462103
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>London Road</b><br>
 London Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.237350826838195,-0.32528014550462103" target="_blank">
@@ -112,13 +164,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.24698581964327,
 -0.3311748297738575
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Denbies Vineyard</b><br>
 Bradley Lane<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.24698581964327,-0.3311748297738575" target="_blank">
@@ -126,13 +181,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.247449,
 -0.33128
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Denbies Wine Estate</b><br>
 London Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.247449,-0.33128" target="_blank">
@@ -140,13 +198,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.234295,
 -0.324019
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Reigate Road Car Park, Dorking 6</b><br>
 Reigate Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.234295,-0.324019" target="_blank">
@@ -154,13 +215,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.233703,
 -0.329298
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Wathen Road Car Park, Dorking 1</b><br>
 Wathen Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.233703,-0.329298" target="_blank">
@@ -168,13 +232,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.230771,
 -0.332391
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Southside Car Park, Dorking 4</b><br>
 High Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.230771,-0.332391" target="_blank">
@@ -182,13 +249,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.2353,
 -0.325746
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Pippbrook Council Offices Car Park, Dorking 1</b><br>
 Pippbrook Car Park<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.2353,-0.325746" target="_blank">
@@ -196,13 +266,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.21408625646586,
 -0.3280461895184317
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Holmesdale Road</b><br>
 Holmesdale Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.21408625646586,-0.3280461895184317" target="_blank">
@@ -210,7 +283,11 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
+
+
+map.addLayer(markers);
 
 </script>
 

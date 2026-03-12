@@ -6,19 +6,61 @@
 
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
+
 <style>
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+}
+
+header {
+  background: #1f2937;
+  padding: 12px 20px;
+}
+
+.logo {
+  color: white;
+  text-decoration: none;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.container {
+  padding: 20px;
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 15px;
+  text-decoration: none;
+  color: #2563eb;
+  font-weight: bold;
+}
+
 #map {
-  height: 400px;
+  height: 420px;
   margin-bottom: 30px;
   border-radius: 8px;
 }
+
 </style>
 
 </head>
 
 <body>
 
+<header>
+<a href="/" class="logo">PlugMap</a>
+</header>
+
+<div class="container">
+
 <h1>Chesterfield EV Chargers</h1>
+
+<a href="/" class="back-link">← Back to homepage</a>
 
 <div id="map"></div>
 
@@ -116,7 +158,11 @@ Tesco Extra
 
 </ul>
 
+</div>
+
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 
 <script>
 
@@ -129,13 +175,16 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 attribution: '&copy; OpenStreetMap contributors'
 }).addTo(map);
 
+var markers = L.markerClusterGroup();
 
 
-L.marker([
+
+var marker = L.marker([
 53.253227,
 -1.427212
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Chesterfield Football Club Hub</b><br>
 Sheffield Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.253227,-1.427212" target="_blank">
@@ -143,13 +192,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.2353558250851,
 -1.43574401616115
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>McDonald's Chesterfield </b><br>
 Markham Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.2353558250851,-1.43574401616115" target="_blank">
@@ -157,13 +209,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.221385,
 -1.425217
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Birdholme Working Men's Club Car Park</b><br>
 -1.425217<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.221385,-1.425217" target="_blank">
@@ -171,13 +226,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.252005,
 -1.42454
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Tesco Extra - Chesterfield</b><br>
 Lockoford Lane<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.252005,-1.42454" target="_blank">
@@ -185,13 +243,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.272046,
 -1.439457
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>HEN UK STATION 2</b><br>
 655 Sheffield Rd<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.272046,-1.439457" target="_blank">
@@ -199,13 +260,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.25288,
 -1.42872
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>The Glass Yard</b><br>
 Sheffield Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.25288,-1.42872" target="_blank">
@@ -213,13 +277,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.29609,
 -1.4462
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Littlemoor Shops Car Park</b><br>
 Littlemoor<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.29609,-1.4462" target="_blank">
@@ -227,13 +294,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.273572,
 -1.37611
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Barrowhill Car Park</b><br>
 Barrowhill<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.273572,-1.37611" target="_blank">
@@ -241,13 +311,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.247344,
 -1.424972
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Old Brickworks Lane Car Park</b><br>
 Old Brickworks Lane<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.247344,-1.424972" target="_blank">
@@ -255,13 +328,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.243847,
 -1.457307
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Pennine Way Car Park</b><br>
 Pennine Way<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.243847,-1.457307" target="_blank">
@@ -269,13 +345,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.223955,
 -1.426802
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Derby Road Car Park</b><br>
 Derby Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.223955,-1.426802" target="_blank">
@@ -283,13 +362,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.251037,
 -1.424268
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Casa Hotel</b><br>
 Lockoford Lane<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.251037,-1.424268" target="_blank">
@@ -297,13 +379,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.267927476786014,
 -1.3548129636508293
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Morrisons Chesterfield Staveley</b><br>
 Barnfield Close<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.267927476786014,-1.3548129636508293" target="_blank">
@@ -311,13 +396,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.25861,
 -1.382465
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Ringwood Hall Hotel & Spa</b><br>
 Brimington<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.25861,-1.382465" target="_blank">
@@ -325,13 +413,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.245691879717754,
 -1.4425923042283557
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>The Highfield</b><br>
 38 Newbold Rd<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.245691879717754,-1.4425923042283557" target="_blank">
@@ -339,13 +430,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.23209679845172,
 -1.4607384044390983
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Glenthorne Close</b><br>
 Glenthorne Close<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.23209679845172,-1.4607384044390983" target="_blank">
@@ -353,13 +447,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.2842977022189,
 -1.28962930182638
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>The Treble Bob</b><br>
 Tallys End<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.2842977022189,-1.28962930182638" target="_blank">
@@ -367,13 +464,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.1686,
 -1.409971
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Tesco Extra-Clay Cross</b><br>
 Tesco Extra<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.1686,-1.409971" target="_blank">
@@ -381,7 +481,11 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
+
+
+map.addLayer(markers);
 
 </script>
 

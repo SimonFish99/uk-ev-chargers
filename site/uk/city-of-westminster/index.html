@@ -6,19 +6,61 @@
 
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
+
 <style>
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+}
+
+header {
+  background: #1f2937;
+  padding: 12px 20px;
+}
+
+.logo {
+  color: white;
+  text-decoration: none;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.container {
+  padding: 20px;
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 15px;
+  text-decoration: none;
+  color: #2563eb;
+  font-weight: bold;
+}
+
 #map {
-  height: 400px;
+  height: 420px;
   margin-bottom: 30px;
   border-radius: 8px;
 }
+
 </style>
 
 </head>
 
 <body>
 
+<header>
+<a href="/" class="logo">PlugMap</a>
+</header>
+
+<div class="container">
+
 <h1>City of Westminster EV Chargers</h1>
+
+<a href="/" class="back-link">← Back to homepage</a>
 
 <div id="map"></div>
 
@@ -71,7 +113,11 @@ Park West Place
 
 </ul>
 
+</div>
+
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 
 <script>
 
@@ -84,13 +130,16 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 attribution: '&copy; OpenStreetMap contributors'
 }).addTo(map);
 
+var markers = L.markerClusterGroup();
 
 
-L.marker([
+
+var marker = L.marker([
 51.52327,
 -0.156206
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Allsop Place</b><br>
 7 Allsop Place<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.52327,-0.156206" target="_blank">
@@ -98,13 +147,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.518974,
 -0.174772
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>North Wharf Road</b><br>
 35 North Wharf Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.518974,-0.174772" target="_blank">
@@ -112,13 +164,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.501152,
 -0.162632
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Raphael Street</b><br>
 Raphael Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.501152,-0.162632" target="_blank">
@@ -126,13 +181,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.52238,
 -0.161778
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Melcombe Place</b><br>
 3 Melcombe Place<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.52238,-0.161778" target="_blank">
@@ -140,13 +198,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.51752,
 -0.154709
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>George Street</b><br>
 35 George Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.51752,-0.154709" target="_blank">
@@ -154,13 +215,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.51612,
 -0.165359
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Park West Place</b><br>
 Park West Place<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.51612,-0.165359" target="_blank">
@@ -168,13 +232,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.512165,
 -0.145341
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Grosvenor Street</b><br>
 18 Grosvenor Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.512165,-0.145341" target="_blank">
@@ -182,13 +249,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.499294,
 -0.165891
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Montpelier Street</b><br>
 15 Montpelier Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.499294,-0.165891" target="_blank">
@@ -196,13 +266,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.493137,
 -0.143204
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Gillingham Street</b><br>
 84 Gillingham Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.493137,-0.143204" target="_blank">
@@ -210,7 +283,11 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
+
+
+map.addLayer(markers);
 
 </script>
 

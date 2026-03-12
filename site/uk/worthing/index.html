@@ -6,19 +6,61 @@
 
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
+
 <style>
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+}
+
+header {
+  background: #1f2937;
+  padding: 12px 20px;
+}
+
+.logo {
+  color: white;
+  text-decoration: none;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.container {
+  padding: 20px;
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 15px;
+  text-decoration: none;
+  color: #2563eb;
+  font-weight: bold;
+}
+
 #map {
-  height: 400px;
+  height: 420px;
   margin-bottom: 30px;
   border-radius: 8px;
 }
+
 </style>
 
 </head>
 
 <body>
 
+<header>
+<a href="/" class="logo">PlugMap</a>
+</header>
+
+<div class="container">
+
 <h1>Worthing EV Chargers</h1>
+
+<a href="/" class="back-link">← Back to homepage</a>
 
 <div id="map"></div>
 
@@ -96,7 +138,11 @@ Upper Brighton Road
 
 </ul>
 
+</div>
+
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 
 <script>
 
@@ -109,13 +155,16 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 attribution: '&copy; OpenStreetMap contributors'
 }).addTo(map);
 
+var markers = L.markerClusterGroup();
 
 
-L.marker([
+
+var marker = L.marker([
 50.827307009118186,
 -0.3949751332281437
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Pelham Road</b><br>
 Pelham Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=50.827307009118186,-0.3949751332281437" target="_blank">
@@ -123,13 +172,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 50.824083,
 -0.426392
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>SWEV STATION 4</b><br>
 Southern House Yeoman Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=50.824083,-0.426392" target="_blank">
@@ -137,13 +189,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 50.827471,
 -0.31948
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Freshbrook Road 1</b><br>
 Lancing<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=50.827471,-0.31948" target="_blank">
@@ -151,13 +206,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 50.819359,
 -0.395769
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Canterbury Road 1</b><br>
 Canterbury Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=50.819359,-0.395769" target="_blank">
@@ -165,13 +223,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 50.81909,
 -0.36405
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Chesswood Road, Broadwater 1</b><br>
 Broadwater<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=50.81909,-0.36405" target="_blank">
@@ -179,13 +240,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 50.815525,
 -0.376887
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Victoria Road, Broadwater 1</b><br>
 Broadwater<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=50.815525,-0.376887" target="_blank">
@@ -193,13 +257,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 50.814711,
 -0.356744
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Church Walk 1</b><br>
 Church Walk<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=50.814711,-0.356744" target="_blank">
@@ -207,13 +274,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 50.809872,
 -0.385523
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Rowlands Road, West Worthing 1</b><br>
 Rowlands Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=50.809872,-0.385523" target="_blank">
@@ -221,13 +291,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 50.807285,
 -0.388768
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>West Parade 1</b><br>
 West Parade<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=50.807285,-0.388768" target="_blank">
@@ -235,13 +308,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 50.806369,
 -0.400508
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Roberts Marine 1</b><br>
 West Parade<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=50.806369,-0.400508" target="_blank">
@@ -249,13 +325,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 50.813249713391116,
 -0.43245180900476043
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>The Bulls Head</b><br>
 Goring Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=50.813249713391116,-0.43245180900476043" target="_blank">
@@ -263,13 +342,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 50.8501126675625,
 -0.398871585708434
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>BP Petrol Forecourt</b><br>
 183 Findon Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=50.8501126675625,-0.398871585708434" target="_blank">
@@ -277,13 +359,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 50.818506,
 -0.370578
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Morrisons Worthing</b><br>
 Wm Morrison Supermarkets PLC<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=50.818506,-0.370578" target="_blank">
@@ -291,13 +376,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 50.8346823165435,
 -0.367652378776711
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Toby Carvery Worthing </b><br>
 Upper Brighton Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=50.8346823165435,-0.367652378776711" target="_blank">
@@ -305,7 +393,11 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
+
+
+map.addLayer(markers);
 
 </script>
 

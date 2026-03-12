@@ -6,19 +6,61 @@
 
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
+
 <style>
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+}
+
+header {
+  background: #1f2937;
+  padding: 12px 20px;
+}
+
+.logo {
+  color: white;
+  text-decoration: none;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.container {
+  padding: 20px;
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 15px;
+  text-decoration: none;
+  color: #2563eb;
+  font-weight: bold;
+}
+
 #map {
-  height: 400px;
+  height: 420px;
   margin-bottom: 30px;
   border-radius: 8px;
 }
+
 </style>
 
 </head>
 
 <body>
 
+<header>
+<a href="/" class="logo">PlugMap</a>
+</header>
+
+<div class="container">
+
 <h1>Dunbar EV Chargers</h1>
+
+<a href="/" class="back-link">← Back to homepage</a>
 
 <div id="map"></div>
 
@@ -66,7 +108,11 @@ Floors Terrace
 
 </ul>
 
+</div>
+
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 
 <script>
 
@@ -79,13 +125,16 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 attribution: '&copy; OpenStreetMap contributors'
 }).addTo(map);
 
+var markers = L.markerClusterGroup();
 
 
-L.marker([
+
+var marker = L.marker([
 56.002811,
 -2.524181
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Gardener Street, Dunbar</b><br>
 Gardener Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=56.002811,-2.524181" target="_blank">
@@ -93,13 +142,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 56.000434,
 -2.519709
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>The Bleachingfield Centre, Dunbar</b><br>
 The Bleachingfield Centre<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=56.000434,-2.519709" target="_blank">
@@ -107,13 +159,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.998806,
 -2.530611
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Dunbar Grammar School</b><br>
 Dunbar Grammar School<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.998806,-2.530611" target="_blank">
@@ -121,13 +176,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.994954,
 -2.513238
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Warrender Crescent, Dunbar</b><br>
 Warrender Crescent<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.994954,-2.513238" target="_blank">
@@ -135,13 +193,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.991244,
 -2.529995
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Alexander Gardens, Dunbar</b><br>
 Alexander Gardens<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.991244,-2.529995" target="_blank">
@@ -149,13 +210,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 56.000084,
 -2.512772
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Church Street, Dunbar</b><br>
 Church Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=56.000084,-2.512772" target="_blank">
@@ -163,13 +227,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.995614,
 -2.509078
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Spott Road, Dunbar</b><br>
 1A Spott Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.995614,-2.509078" target="_blank">
@@ -177,13 +244,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 56.002651,
 -2.527871
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Floors Terrace</b><br>
 Floors Terrace<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=56.002651,-2.527871" target="_blank">
@@ -191,7 +261,11 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
+
+
+map.addLayer(markers);
 
 </script>
 

@@ -6,19 +6,61 @@
 
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
+
 <style>
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+}
+
+header {
+  background: #1f2937;
+  padding: 12px 20px;
+}
+
+.logo {
+  color: white;
+  text-decoration: none;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.container {
+  padding: 20px;
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 15px;
+  text-decoration: none;
+  color: #2563eb;
+  font-weight: bold;
+}
+
 #map {
-  height: 400px;
+  height: 420px;
   margin-bottom: 30px;
   border-radius: 8px;
 }
+
 </style>
 
 </head>
 
 <body>
 
+<header>
+<a href="/" class="logo">PlugMap</a>
+</header>
+
+<div class="container">
+
 <h1>Bathgate EV Chargers</h1>
+
+<a href="/" class="back-link">← Back to homepage</a>
 
 <div id="map"></div>
 
@@ -66,7 +108,11 @@ East Main Street
 
 </ul>
 
+</div>
+
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 
 <script>
 
@@ -79,13 +125,16 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 attribution: '&copy; OpenStreetMap contributors'
 }).addTo(map);
 
+var markers = L.markerClusterGroup();
 
 
-L.marker([
+
+var marker = L.marker([
 55.903091,
 -3.638074
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Gideon Street Car Park, Bathgate</b><br>
 28 Gideon Court<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.903091,-3.638074" target="_blank">
@@ -93,13 +142,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.901892,
 -3.641062
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Acredale Car Park</b><br>
 8 Engine Lane<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.901892,-3.641062" target="_blank">
@@ -107,13 +159,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.866128,
 -3.687528
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Whitburn Swimming Pool</b><br>
 101 West Main Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.866128,-3.687528" target="_blank">
@@ -121,13 +176,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.896309,
 -3.644442
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Morrisons</b><br>
 Linkston Way<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.896309,-3.644442" target="_blank">
@@ -135,13 +193,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.891395,
 -3.529514
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Best Western Hilcroft Hotel</b><br>
 East Main Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.891395,-3.529514" target="_blank">
@@ -149,13 +210,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.877663,
 -3.654682
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Schuh - distribution warehouse</b><br>
 62 Pottishaw Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.877663,-3.654682" target="_blank">
@@ -163,13 +227,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.88048,
 -3.62597
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Everwarm</b><br>
 3 Inchcourse Place<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.88048,-3.62597" target="_blank">
@@ -177,13 +244,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.86744,
 -3.671184
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Best Western Hotel, Hilcroft</b><br>
 East Main Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.86744,-3.671184" target="_blank">
@@ -191,7 +261,11 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
+
+
+map.addLayer(markers);
 
 </script>
 

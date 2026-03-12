@@ -6,19 +6,61 @@
 
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
+
 <style>
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+}
+
+header {
+  background: #1f2937;
+  padding: 12px 20px;
+}
+
+.logo {
+  color: white;
+  text-decoration: none;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.container {
+  padding: 20px;
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 15px;
+  text-decoration: none;
+  color: #2563eb;
+  font-weight: bold;
+}
+
 #map {
-  height: 400px;
+  height: 420px;
   margin-bottom: 30px;
   border-radius: 8px;
 }
+
 </style>
 
 </head>
 
 <body>
 
+<header>
+<a href="/" class="logo">PlugMap</a>
+</header>
+
+<div class="container">
+
 <h1>Burnley EV Chargers</h1>
+
+<a href="/" class="back-link">← Back to homepage</a>
 
 <div id="map"></div>
 
@@ -91,7 +133,11 @@ Keswick Road
 
 </ul>
 
+</div>
+
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 
 <script>
 
@@ -104,13 +150,16 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 attribution: '&copy; OpenStreetMap contributors'
 }).addTo(map);
 
+var markers = L.markerClusterGroup();
 
 
-L.marker([
+
+var marker = L.marker([
 53.801135,
 -2.242902
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Elm Street Car Park, Burnley 1</b><br>
 Elm Street Car Park<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.801135,-2.242902" target="_blank">
@@ -118,13 +167,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.792596,
 -2.241437
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Bank Parade Car Park, Burnley 3</b><br>
 Bank Parade Car Park<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.792596,-2.241437" target="_blank">
@@ -132,13 +184,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.791536,
 -2.245252
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Pioneer Place Car Park, Burnley 2</b><br>
 Pioneer Place Car Park<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.791536,-2.245252" target="_blank">
@@ -146,13 +201,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.79054,
 -2.253634
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Westgate Car Park, Burnley 1</b><br>
 Westgate Car Park<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.79054,-2.253634" target="_blank">
@@ -160,13 +218,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.788581,
 -2.247854
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Sutcliffe Street Car Park, Burnley 3</b><br>
 Sutcliffe Street Car Park<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.788581,-2.247854" target="_blank">
@@ -174,13 +235,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.777799,
 -2.214943
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Towneley Garden Centre</b><br>
 Deer Park Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.777799,-2.214943" target="_blank">
@@ -188,13 +252,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.787269,
 -2.239261
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Burnley - Centenary Way CP 1</b><br>
 Centenary Way Car Park<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.787269,-2.239261" target="_blank">
@@ -202,13 +269,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.810436,
 -2.22788
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>TRANSPORT BURNLEY 1</b><br>
 Casterton Ave<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.810436,-2.22788" target="_blank">
@@ -216,13 +286,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.788053,
 -2.248758
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Burnley - Kings St CP 2</b><br>
 Kings Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.788053,-2.248758" target="_blank">
@@ -230,13 +303,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.78858563864611,
 -2.2616677106595944
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Eurogarages Barracks Road</b><br>
 Barracks Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.78858563864611,-2.2616677106595944" target="_blank">
@@ -244,13 +320,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.7860861529255,
 -2.2403411143265
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Tesco Extra</b><br>
 Centenary Way<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.7860861529255,-2.2403411143265" target="_blank">
@@ -258,13 +337,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.789608,
 -2.274234
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>150- 160 Gannow Lane</b><br>
 Gannow Lane<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.789608,-2.274234" target="_blank">
@@ -272,13 +354,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.809696,
 -2.234595
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>The Prairie</b><br>
 Keswick Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.809696,-2.234595" target="_blank">
@@ -286,7 +371,11 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
+
+
+map.addLayer(markers);
 
 </script>
 

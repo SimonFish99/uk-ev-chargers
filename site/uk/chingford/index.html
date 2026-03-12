@@ -6,19 +6,61 @@
 
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
+
 <style>
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+}
+
+header {
+  background: #1f2937;
+  padding: 12px 20px;
+}
+
+.logo {
+  color: white;
+  text-decoration: none;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.container {
+  padding: 20px;
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 15px;
+  text-decoration: none;
+  color: #2563eb;
+  font-weight: bold;
+}
+
 #map {
-  height: 400px;
+  height: 420px;
   margin-bottom: 30px;
   border-radius: 8px;
 }
+
 </style>
 
 </head>
 
 <body>
 
+<header>
+<a href="/" class="logo">PlugMap</a>
+</header>
+
+<div class="container">
+
 <h1>Chingford EV Chargers</h1>
+
+<a href="/" class="back-link">← Back to homepage</a>
 
 <div id="map"></div>
 
@@ -56,7 +98,11 @@ Chingford Rd
 
 </ul>
 
+</div>
+
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 
 <script>
 
@@ -69,13 +115,16 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 attribution: '&copy; OpenStreetMap contributors'
 }).addTo(map);
 
+var markers = L.markerClusterGroup();
 
 
-L.marker([
+
+var marker = L.marker([
 51.641521,
 -0.01084
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Yardely Lane</b><br>
 Yardely Lane<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.641521,-0.01084" target="_blank">
@@ -83,13 +132,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.61092,
 -0.013062
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Royston Avenue</b><br>
 Royston Avenue<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.61092,-0.013062" target="_blank">
@@ -97,13 +149,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.605035,
 -0.000369
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Studley Avenue</b><br>
 Studley Avenue<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.605035,-0.000369" target="_blank">
@@ -111,13 +166,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.630024,
 0.000965
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Pretoria Road</b><br>
 Pretoria Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.630024,0.000965" target="_blank">
@@ -125,13 +183,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.615057,
 -0.016845
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Larkswood Road</b><br>
 Larkswood Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.615057,-0.016845" target="_blank">
@@ -139,13 +200,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.607311,
 -0.020777
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Chingford Rd</b><br>
 Chingford Rd<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.607311,-0.020777" target="_blank">
@@ -153,7 +217,11 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
+
+
+map.addLayer(markers);
 
 </script>
 

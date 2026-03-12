@@ -6,19 +6,61 @@
 
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
+
 <style>
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+}
+
+header {
+  background: #1f2937;
+  padding: 12px 20px;
+}
+
+.logo {
+  color: white;
+  text-decoration: none;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.container {
+  padding: 20px;
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 15px;
+  text-decoration: none;
+  color: #2563eb;
+  font-weight: bold;
+}
+
 #map {
-  height: 400px;
+  height: 420px;
   margin-bottom: 30px;
   border-radius: 8px;
 }
+
 </style>
 
 </head>
 
 <body>
 
+<header>
+<a href="/" class="logo">PlugMap</a>
+</header>
+
+<div class="container">
+
 <h1>Kent EV Chargers</h1>
+
+<a href="/" class="back-link">← Back to homepage</a>
 
 <div id="map"></div>
 
@@ -71,7 +113,11 @@ Amherst Hill
 
 </ul>
 
+</div>
+
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 
 <script>
 
@@ -84,13 +130,16 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 attribution: '&copy; OpenStreetMap contributors'
 }).addTo(map);
 
+var markers = L.markerClusterGroup();
 
 
-L.marker([
+
+var marker = L.marker([
 51.136946,
 0.260256
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Royal Wells Park - Twining Close</b><br>
 6 Twining Close<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.136946,0.260256" target="_blank">
@@ -98,13 +147,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.2219733,
 1.3931447
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>MFG Deal Service Station</b><br>
 47 London Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.2219733,1.3931447" target="_blank">
@@ -112,13 +164,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.070878,
 1.08535
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>THE PADDOCKS CAR PARK 1</b><br>
 Prospect Rd, Hythe CT21 5NN, UK<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.070878,1.08535" target="_blank">
@@ -126,13 +181,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.447539,
 0.308846
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>The Grove Car Park 2</b><br>
 Swanscombe<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.447539,0.308846" target="_blank">
@@ -140,13 +198,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.293269,
 0.471739
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>South Aylesford Retail Park</b><br>
 Quarry Wood<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.293269,0.471739" target="_blank">
@@ -154,13 +215,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.012178,
 0.983517
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>HIGH KNOCKE CAR PARK</b><br>
 Cobsden Road, Romney Marsh TN29 0RJ, UK<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.012178,0.983517" target="_blank">
@@ -168,13 +232,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.273101,
 0.399016
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Alexander Grove Car Park</b><br>
 Kings Hill<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.273101,0.399016" target="_blank">
@@ -182,13 +249,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.1240755,
 1.3147457
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Fishmonger's Lane Car Park</b><br>
 Mill Lane<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.1240755,1.3147457" target="_blank">
@@ -196,13 +266,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.283379,
 0.169965
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Miller & Carter Riverhead</b><br>
 Amherst Hill<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.283379,0.169965" target="_blank">
@@ -210,7 +283,11 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
+
+
+map.addLayer(markers);
 
 </script>
 

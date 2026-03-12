@@ -6,19 +6,61 @@
 
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
+
 <style>
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+}
+
+header {
+  background: #1f2937;
+  padding: 12px 20px;
+}
+
+.logo {
+  color: white;
+  text-decoration: none;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.container {
+  padding: 20px;
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 15px;
+  text-decoration: none;
+  color: #2563eb;
+  font-weight: bold;
+}
+
 #map {
-  height: 400px;
+  height: 420px;
   margin-bottom: 30px;
   border-radius: 8px;
 }
+
 </style>
 
 </head>
 
 <body>
 
+<header>
+<a href="/" class="logo">PlugMap</a>
+</header>
+
+<div class="container">
+
 <h1>Newark EV Chargers</h1>
+
+<a href="/" class="back-link">← Back to homepage</a>
 
 <div id="map"></div>
 
@@ -71,7 +113,11 @@ Appleton Gate Car-Park
 
 </ul>
 
+</div>
+
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 
 <script>
 
@@ -84,13 +130,16 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 attribution: '&copy; OpenStreetMap contributors'
 }).addTo(map);
 
+var markers = L.markerClusterGroup();
 
 
-L.marker([
+
+var marker = L.marker([
 53.09658891826544,
 -0.7826490832558193
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>MFG EV Power ESSO A46 north-eastbound</b><br>
 Esso A46<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.09658891826544,-0.7826490832558193" target="_blank">
@@ -98,13 +147,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.097736,
 -0.769253
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>SHELL RECHARGE LITTLE WAITROSE NEWARK</b><br>
 A17 Winthorpe Roundabout<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.097736,-0.769253" target="_blank">
@@ -112,13 +164,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.072239,
 -0.812972
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Co-op</b><br>
 Albert Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.072239,-0.812972" target="_blank">
@@ -126,13 +181,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.080786144108146,
 -0.8137074707101419
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Newark And Sherwood Council Offices</b><br>
 Great North Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.080786144108146,-0.8137074707101419" target="_blank">
@@ -140,13 +198,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.074632,
 -0.808659
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>London Road</b><br>
 London Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.074632,-0.808659" target="_blank">
@@ -154,13 +215,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.2006739303231,
 -1.02715300192551
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Big fish restaurant</b><br>
 Mansfield Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.2006739303231,-1.02715300192551" target="_blank">
@@ -168,13 +232,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.078795,
 -0.808461
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Morrisons Newark</b><br>
 Wm Morrison Supermarkets PLC<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.078795,-0.808461" target="_blank">
@@ -182,13 +249,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.0954192943708,
 -0.7820533463188895
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>A17 Winthorpe Roundabout</b><br>
 A17 Winthorpe Roundabout<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.0954192943708,-0.7820533463188895" target="_blank">
@@ -196,13 +266,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.0777,
 -0.806
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Appleton Gate Car-Park, Newark</b><br>
 Appleton Gate Car-Park<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.0777,-0.806" target="_blank">
@@ -210,7 +283,11 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
+
+
+map.addLayer(markers);
 
 </script>
 

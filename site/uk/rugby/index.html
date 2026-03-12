@@ -6,19 +6,61 @@
 
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
+
 <style>
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+}
+
+header {
+  background: #1f2937;
+  padding: 12px 20px;
+}
+
+.logo {
+  color: white;
+  text-decoration: none;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.container {
+  padding: 20px;
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 15px;
+  text-decoration: none;
+  color: #2563eb;
+  font-weight: bold;
+}
+
 #map {
-  height: 400px;
+  height: 420px;
   margin-bottom: 30px;
   border-radius: 8px;
 }
+
 </style>
 
 </head>
 
 <body>
 
+<header>
+<a href="/" class="logo">PlugMap</a>
+</header>
+
+<div class="container">
+
 <h1>Rugby EV Chargers</h1>
+
+<a href="/" class="back-link">← Back to homepage</a>
 
 <div id="map"></div>
 
@@ -76,7 +118,11 @@ Leicester Road
 
 </ul>
 
+</div>
+
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 
 <script>
 
@@ -89,13 +135,16 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 attribution: '&copy; OpenStreetMap contributors'
 }).addTo(map);
 
+var markers = L.markerClusterGroup();
 
 
-L.marker([
+
+var marker = L.marker([
 52.382159,
 -1.265348
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Hu-Newbold Rugby</b><br>
 Newbold Road 104<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.382159,-1.265348" target="_blank">
@@ -103,13 +152,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.40961,
 -1.250245
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>MOTO Rugby Services</b><br>
 M6 Motorway Northbound, Jct 1<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.40961,-1.250245" target="_blank">
@@ -117,13 +169,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.375427,
 -1.287034
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Off Grid Energy</b><br>
 The Energy Innovation Centre, Unit 3 & 4<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.375427,-1.287034" target="_blank">
@@ -131,13 +186,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.37406,
 -1.26087
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>45 Regent Street, Rugby</b><br>
 Regent Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.37406,-1.26087" target="_blank">
@@ -145,13 +203,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.36151,
 -1.2576
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>4 Barby Road, Rugby</b><br>
 Barby Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.36151,-1.2576" target="_blank">
@@ -159,13 +220,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.3412303,
 -1.3302845
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Draycote Hotel</b><br>
 London Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.3412303,-1.3302845" target="_blank">
@@ -173,13 +237,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.37702663501142,
 -1.2369170053382277
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Rugby Golf Club</b><br>
 Clifton Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.37702663501142,-1.2369170053382277" target="_blank">
@@ -187,13 +254,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.41009693079866,
 -1.2513283596296105
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Moto Services Rugby Motorway Services M6 (Tesla)</b><br>
 M6 Junction 1<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.41009693079866,-1.2513283596296105" target="_blank">
@@ -201,13 +271,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.4102118698514,
 -1.2503437507537
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Moto Rugby Motorway Services M6</b><br>
 Leicester Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.4102118698514,-1.2503437507537" target="_blank">
@@ -215,13 +288,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.387153,
 -1.256546
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Tesco Superstore-Rugby</b><br>
 1 Leicester Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.387153,-1.256546" target="_blank">
@@ -229,7 +305,11 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
+
+
+map.addLayer(markers);
 
 </script>
 

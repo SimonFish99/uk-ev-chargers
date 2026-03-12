@@ -6,19 +6,61 @@
 
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
+
 <style>
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+}
+
+header {
+  background: #1f2937;
+  padding: 12px 20px;
+}
+
+.logo {
+  color: white;
+  text-decoration: none;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.container {
+  padding: 20px;
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 15px;
+  text-decoration: none;
+  color: #2563eb;
+  font-weight: bold;
+}
+
 #map {
-  height: 400px;
+  height: 420px;
   margin-bottom: 30px;
   border-radius: 8px;
 }
+
 </style>
 
 </head>
 
 <body>
 
+<header>
+<a href="/" class="logo">PlugMap</a>
+</header>
+
+<div class="container">
+
 <h1>Carmarthen EV Chargers</h1>
+
+<a href="/" class="back-link">← Back to homepage</a>
 
 <div id="map"></div>
 
@@ -91,7 +133,11 @@ Parc Pensarn
 
 </ul>
 
+</div>
+
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 
 <script>
 
@@ -104,13 +150,16 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 attribution: '&copy; OpenStreetMap contributors'
 }).addTo(map);
 
+var markers = L.markerClusterGroup();
 
 
-L.marker([
+
+var marker = L.marker([
 51.845871,
 -4.309961
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Carmarthen Garden Centre Hub</b><br>
 Myrtle Hill<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.845871,-4.309961" target="_blank">
@@ -118,13 +167,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.860361,
 -4.301413
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Priory Street Car Park</b><br>
 Priory Street Car Park<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.860361,-4.301413" target="_blank">
@@ -132,13 +184,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.846806,
 -4.352596
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Nant y Ci P & R</b><br>
 Llysonnen Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.846806,-4.352596" target="_blank">
@@ -146,13 +201,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.85345232,
 -4.31692096
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Tesco Extra-Carmarthen</b><br>
 Morfa Lane<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.85345232,-4.31692096" target="_blank">
@@ -160,13 +218,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.84808,
 -4.3236
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Xcel Bowl, Llansteffan Road,</b><br>
 Llansteffan Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.84808,-4.3236" target="_blank">
@@ -174,13 +235,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.85835305607105,
 -4.311615089085194
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Tesla Carmarthen Supercharger</b><br>
 Heol y Gŵyddau<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.85835305607105,-4.311615089085194" target="_blank">
@@ -188,13 +252,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.845131,
 -4.30712
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Morrisons</b><br>
 Wm Morrison Supermarkets PLC<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.845131,-4.30712" target="_blank">
@@ -202,13 +269,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.844162,
 -4.304553
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Old Oak Dental Practice</b><br>
 Parc Pensarn<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.844162,-4.304553" target="_blank">
@@ -216,13 +286,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.848680042804915,
 -4.323100434076423
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Xcel Bowl</b><br>
 Old Llansteffan Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.848680042804915,-4.323100434076423" target="_blank">
@@ -230,13 +303,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.858517,
 -4.303042
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>St Peter's Street Car Park</b><br>
 St Peter's Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.858517,-4.303042" target="_blank">
@@ -244,13 +320,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.858071,
 -4.305678
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>John Street Car Park</b><br>
 36-53 Orchard Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.858071,-4.305678" target="_blank">
@@ -258,13 +337,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.855833,
 -4.310714
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Friars Park Car Park</b><br>
 Friars Park<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.855833,-4.310714" target="_blank">
@@ -272,13 +354,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.844193269775616,
 -4.304413641643805
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Old Oak Dental Practice</b><br>
 Parc Pensarn<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.844193269775616,-4.304413641643805" target="_blank">
@@ -286,7 +371,11 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
+
+
+map.addLayer(markers);
 
 </script>
 

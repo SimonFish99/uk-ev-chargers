@@ -6,19 +6,61 @@
 
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
+
 <style>
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+}
+
+header {
+  background: #1f2937;
+  padding: 12px 20px;
+}
+
+.logo {
+  color: white;
+  text-decoration: none;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.container {
+  padding: 20px;
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 15px;
+  text-decoration: none;
+  color: #2563eb;
+  font-weight: bold;
+}
+
 #map {
-  height: 400px;
+  height: 420px;
   margin-bottom: 30px;
   border-radius: 8px;
 }
+
 </style>
 
 </head>
 
 <body>
 
+<header>
+<a href="/" class="logo">PlugMap</a>
+</header>
+
+<div class="container">
+
 <h1>Jarrow EV Chargers</h1>
+
+<a href="/" class="back-link">← Back to homepage</a>
 
 <div id="map"></div>
 
@@ -71,7 +113,11 @@ Napier Street Car Park
 
 </ul>
 
+</div>
+
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 
 <script>
 
@@ -84,13 +130,16 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 attribution: '&copy; OpenStreetMap contributors'
 }).addTo(map);
 
+var markers = L.markerClusterGroup();
 
 
-L.marker([
+
+var marker = L.marker([
 54.985248,
 -1.487059
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Tyne Street Car Park</b><br>
 Tyne Street Car Park<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.985248,-1.487059" target="_blank">
@@ -98,13 +147,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.965642,
 -1.488519
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Primrose Childrens Centre</b><br>
 Primrose Childrens Centre<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.965642,-1.488519" target="_blank">
@@ -112,13 +164,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.984479,
 -1.497284
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>South Tyneside Homes Viking Industrial Estate</b><br>
 11<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.984479,-1.497284" target="_blank">
@@ -126,13 +181,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.979055,
 -1.487446
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Hibernian Road 1</b><br>
 Hibernian Road Car Park<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.979055,-1.487446" target="_blank">
@@ -140,13 +198,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.971789,
 -1.468112
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Bilton Hall</b><br>
 Bilton Hall<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.971789,-1.468112" target="_blank">
@@ -154,13 +215,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.9706566929595,
 -1.46389436679397
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Tesco Superstore-South Shields</b><br>
 Towers Place<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.9706566929595,-1.46389436679397" target="_blank">
@@ -168,13 +232,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.961996,
 -1.468906
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Perth Green Community Centre</b><br>
 Inverness Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.961996,-1.468906" target="_blank">
@@ -182,13 +249,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.979603,
 -1.492109
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Jarrow Station Car Park 2</b><br>
 Station Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.979603,-1.492109" target="_blank">
@@ -196,13 +266,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.977491,
 -1.443943
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Napier Street Car Park</b><br>
 Napier Street Car Park<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.977491,-1.443943" target="_blank">
@@ -210,7 +283,11 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
+
+
+map.addLayer(markers);
 
 </script>
 

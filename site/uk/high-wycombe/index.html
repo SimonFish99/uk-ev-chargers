@@ -6,19 +6,61 @@
 
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
+
 <style>
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+}
+
+header {
+  background: #1f2937;
+  padding: 12px 20px;
+}
+
+.logo {
+  color: white;
+  text-decoration: none;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.container {
+  padding: 20px;
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 15px;
+  text-decoration: none;
+  color: #2563eb;
+  font-weight: bold;
+}
+
 #map {
-  height: 400px;
+  height: 420px;
   margin-bottom: 30px;
   border-radius: 8px;
 }
+
 </style>
 
 </head>
 
 <body>
 
+<header>
+<a href="/" class="logo">PlugMap</a>
+</header>
+
+<div class="container">
+
 <h1>High Wycombe EV Chargers</h1>
+
+<a href="/" class="back-link">← Back to homepage</a>
 
 <div id="map"></div>
 
@@ -66,7 +108,11 @@ Wm Morrison Supermarkets PLC
 
 </ul>
 
+</div>
+
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 
 <script>
 
@@ -79,13 +125,16 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 attribution: '&copy; OpenStreetMap contributors'
 }).addTo(map);
 
+var markers = L.markerClusterGroup();
 
 
-L.marker([
+
+var marker = L.marker([
 51.678430775448476,
 -0.7940361983160074
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Home Charger</b><br>
 14 New Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.678430775448476,-0.7940361983160074" target="_blank">
@@ -93,13 +142,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.62513327435548,
 -0.776409880134679
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Basepoint Business Centre</b><br>
 Chairborough Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.62513327435548,-0.776409880134679" target="_blank">
@@ -107,13 +159,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.62271981,
 -0.7286150442
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Lidl At 300 London Road</b><br>
 300 London Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.62271981,-0.7286150442" target="_blank">
@@ -121,13 +176,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.61348974,
 -0.764641464
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>EVC Hampton by Hilton High Wycombe</b><br>
 Hampton by Hilton High Wycombe<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.61348974,-0.764641464" target="_blank">
@@ -135,13 +193,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.641223,
 -0.739014
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>RGS High Wycombe</b><br>
 Amersham Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.641223,-0.739014" target="_blank">
@@ -149,13 +210,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.618498,
 -0.764984
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Marlow Road</b><br>
 Marlow Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.618498,-0.764984" target="_blank">
@@ -163,13 +227,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.628414,
 -0.750396
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Swan MSCP</b><br>
 Saint Mary street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.628414,-0.750396" target="_blank">
@@ -177,13 +244,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.6352835427046,
 -0.7530651851677703
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Morrison High Wycombe</b><br>
 Wm Morrison Supermarkets PLC<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.6352835427046,-0.7530651851677703" target="_blank">
@@ -191,7 +261,11 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
+
+
+map.addLayer(markers);
 
 </script>
 

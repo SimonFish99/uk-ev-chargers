@@ -6,19 +6,61 @@
 
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
+
 <style>
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+}
+
+header {
+  background: #1f2937;
+  padding: 12px 20px;
+}
+
+.logo {
+  color: white;
+  text-decoration: none;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.container {
+  padding: 20px;
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 15px;
+  text-decoration: none;
+  color: #2563eb;
+  font-weight: bold;
+}
+
 #map {
-  height: 400px;
+  height: 420px;
   margin-bottom: 30px;
   border-radius: 8px;
 }
+
 </style>
 
 </head>
 
 <body>
 
+<header>
+<a href="/" class="logo">PlugMap</a>
+</header>
+
+<div class="container">
+
 <h1>Grimsby EV Chargers</h1>
+
+<a href="/" class="back-link">← Back to homepage</a>
 
 <div id="map"></div>
 
@@ -71,7 +113,11 @@ Corporation Road
 
 </ul>
 
+</div>
+
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 
 <script>
 
@@ -84,13 +130,16 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 attribution: '&copy; OpenStreetMap contributors'
 }).addTo(map);
 
+var markers = L.markerClusterGroup();
 
 
-L.marker([
+
+var marker = L.marker([
 53.56527,
 -0.103091
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Lidl-Cromwell Road</b><br>
 Cromwell Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.56527,-0.103091" target="_blank">
@@ -98,13 +147,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.567737,
 -0.073629
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Wellington Street</b><br>
 Wellington Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.567737,-0.073629" target="_blank">
@@ -112,13 +164,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.58307258800943,
 -0.11843275923069996
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Woad Lane</b><br>
 Woad Lane<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.58307258800943,-0.11843275923069996" target="_blank">
@@ -126,13 +181,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.57006542,
 -0.07985169
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Tesco Extra-Grimsby</b><br>
 Market Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.57006542,-0.07985169" target="_blank">
@@ -140,13 +198,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.55024,
 -0.137955
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Morrisons Cleethorpes</b><br>
 Hilmore Road, Laceby<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.55024,-0.137955" target="_blank">
@@ -154,13 +215,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.55081204751349,
 -0.14022371374528575
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Morrisons Grimsby</b><br>
 Hilmore Rd<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.55081204751349,-0.14022371374528575" target="_blank">
@@ -168,13 +232,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.5538262788832,
 -0.0740418635042488
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Miller & Carter Grimsby</b><br>
 Weelsby Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.5538262788832,-0.0740418635042488" target="_blank">
@@ -182,13 +249,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.5569665612589,
 -0.0906788900565516
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Millfields Hotel</b><br>
 53 Bargate<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.5569665612589,-0.0906788900565516" target="_blank">
@@ -196,13 +266,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.571209,
 -0.089176
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Side of Nissan showroom</b><br>
 Corporation Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.571209,-0.089176" target="_blank">
@@ -210,7 +283,11 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
+
+
+map.addLayer(markers);
 
 </script>
 

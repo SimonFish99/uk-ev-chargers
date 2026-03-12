@@ -6,19 +6,61 @@
 
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
+
 <style>
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+}
+
+header {
+  background: #1f2937;
+  padding: 12px 20px;
+}
+
+.logo {
+  color: white;
+  text-decoration: none;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.container {
+  padding: 20px;
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 15px;
+  text-decoration: none;
+  color: #2563eb;
+  font-weight: bold;
+}
+
 #map {
-  height: 400px;
+  height: 420px;
   margin-bottom: 30px;
   border-radius: 8px;
 }
+
 </style>
 
 </head>
 
 <body>
 
+<header>
+<a href="/" class="logo">PlugMap</a>
+</header>
+
+<div class="container">
+
 <h1>Lisburn EV Chargers</h1>
+
+<a href="/" class="back-link">← Back to homepage</a>
 
 <div id="map"></div>
 
@@ -71,7 +113,11 @@ Bentrim Road
 
 </ul>
 
+</div>
+
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 
 <script>
 
@@ -84,13 +130,16 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 attribution: '&copy; OpenStreetMap contributors'
 }).addTo(map);
 
+var markers = L.markerClusterGroup();
 
 
-L.marker([
+
+var marker = L.marker([
 54.492515314823265,
 -6.067680410544597
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Sprucefield Supercharger</b><br>
 Sprucefield Shopping Centre<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.492515314823265,-6.067680410544597" target="_blank">
@@ -98,13 +147,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.51053577837695,
 -6.091195018763528
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Andrew Ingredients</b><br>
 27 Ferguson Drive<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.51053577837695,-6.091195018763528" target="_blank">
@@ -112,13 +164,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.505569776187315,
 -6.044251280198978
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Lagan Valley Hospital</b><br>
 3 Hillsborough Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.505569776187315,-6.044251280198978" target="_blank">
@@ -126,13 +181,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.49203217028344,
 -6.057906052828031
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Sprucefield Centre</b><br>
 Hillsborough Rd<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.49203217028344,-6.057906052828031" target="_blank">
@@ -140,13 +198,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.513034640133185,
 -6.075054428295971
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Lisburn Enterprise Organisation</b><br>
 6 Enterprise Crescent<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.513034640133185,-6.075054428295971" target="_blank">
@@ -154,13 +215,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.58157487276216,
 -6.109824533897267
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Ballymac Hotel</b><br>
 Rock Rd<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.58157487276216,-6.109824533897267" target="_blank">
@@ -168,13 +232,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.5036856499898,
 -6.04819464455224
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>HRL Lagan Valley</b><br>
 75-81 Hillsborough Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.5036856499898,-6.04819464455224" target="_blank">
@@ -182,13 +249,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.507107,
 -6.053091
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Lisburn Bowl</b><br>
 12 Governors Rd<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.507107,-6.053091" target="_blank">
@@ -196,13 +266,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.51512235,
 -6.05703924
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Tesco Superstore-Lisburn Bentrim Road</b><br>
 Bentrim Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.51512235,-6.05703924" target="_blank">
@@ -210,7 +283,11 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
+
+
+map.addLayer(markers);
 
 </script>
 

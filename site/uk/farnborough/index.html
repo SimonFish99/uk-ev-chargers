@@ -6,19 +6,61 @@
 
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
+
 <style>
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+}
+
+header {
+  background: #1f2937;
+  padding: 12px 20px;
+}
+
+.logo {
+  color: white;
+  text-decoration: none;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.container {
+  padding: 20px;
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 15px;
+  text-decoration: none;
+  color: #2563eb;
+  font-weight: bold;
+}
+
 #map {
-  height: 400px;
+  height: 420px;
   margin-bottom: 30px;
   border-radius: 8px;
 }
+
 </style>
 
 </head>
 
 <body>
 
+<header>
+<a href="/" class="logo">PlugMap</a>
+</header>
+
+<div class="container">
+
 <h1>Farnborough EV Chargers</h1>
+
+<a href="/" class="back-link">← Back to homepage</a>
 
 <div id="map"></div>
 
@@ -61,7 +103,11 @@ Hawley Lane
 
 </ul>
 
+</div>
+
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 
 <script>
 
@@ -74,13 +120,16 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 attribution: '&copy; OpenStreetMap contributors'
 }).addTo(map);
 
+var markers = L.markerClusterGroup();
 
 
-L.marker([
+
+var marker = L.marker([
 51.30811,
 -0.74918
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>The British Land Company PLC</b><br>
 Farnborough Gate<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.30811,-0.74918" target="_blank">
@@ -88,13 +137,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.2810951413601,
 -0.737031123753781
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>The Squirrel</b><br>
 125 Park Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.2810951413601,-0.737031123753781" target="_blank">
@@ -102,13 +154,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.285099,
 -0.758775
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>FARNBOROUGH BUSINESS PARK</b><br>
 Fowler Avenue<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.285099,-0.758775" target="_blank">
@@ -116,13 +171,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.292091,
 -0.788516
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Morrisons Farnborough Southwood</b><br>
 Morrisons Farnborough Southwoo<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.292091,-0.788516" target="_blank">
@@ -130,13 +188,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.282995927348566,
 -0.7701412504382006
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Costa Coffee</b><br>
 Meadow Gate Avenue<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.282995927348566,-0.7701412504382006" target="_blank">
@@ -144,13 +205,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.284862,
 -0.758704
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>The Hub</b><br>
 Farnborough Business Park<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.284862,-0.758704" target="_blank">
@@ -158,13 +222,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.314487,
 -0.759311
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Mercedes-Benz of Farnborough</b><br>
 Hawley Lane<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.314487,-0.759311" target="_blank">
@@ -172,7 +239,11 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
+
+
+map.addLayer(markers);
 
 </script>
 

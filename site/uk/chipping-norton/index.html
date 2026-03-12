@@ -6,19 +6,61 @@
 
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
+
 <style>
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+}
+
+header {
+  background: #1f2937;
+  padding: 12px 20px;
+}
+
+.logo {
+  color: white;
+  text-decoration: none;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.container {
+  padding: 20px;
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 15px;
+  text-decoration: none;
+  color: #2563eb;
+  font-weight: bold;
+}
+
 #map {
-  height: 400px;
+  height: 420px;
   margin-bottom: 30px;
   border-radius: 8px;
 }
+
 </style>
 
 </head>
 
 <body>
 
+<header>
+<a href="/" class="logo">PlugMap</a>
+</header>
+
+<div class="container">
+
 <h1>Chipping Norton EV Chargers</h1>
+
+<a href="/" class="back-link">← Back to homepage</a>
 
 <div id="map"></div>
 
@@ -51,7 +93,11 @@ Primsdown Industrial Estate
 
 </ul>
 
+</div>
+
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 
 <script>
 
@@ -64,13 +110,16 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 attribution: '&copy; OpenStreetMap contributors'
 }).addTo(map);
 
+var markers = L.markerClusterGroup();
 
 
-L.marker([
+
+var marker = L.marker([
 51.945835366185435,
 -1.5379239015763915
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>ALDI Chipping Norton</b><br>
 Banbury Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.945835366185435,-1.5379239015763915" target="_blank">
@@ -78,13 +127,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.95121,
 -1.525395
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>SHELL RECHARGE LITTLE WAITROSE HOLYWELL</b><br>
 Chapel Cross Roads<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.95121,-1.525395" target="_blank">
@@ -92,13 +144,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.944583,
 -1.535028
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Willow Gardens</b><br>
 Russell Way<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.944583,-1.535028" target="_blank">
@@ -106,13 +161,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.940587588458584,
 -1.547606191109253
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>New Street Carpark</b><br>
 New Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.940587588458584,-1.547606191109253" target="_blank">
@@ -120,13 +178,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.941444,
 -1.558101
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Owen Mumford Ltd</b><br>
 Primsdown Industrial Estate<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.941444,-1.558101" target="_blank">
@@ -134,7 +195,11 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
+
+
+map.addLayer(markers);
 
 </script>
 

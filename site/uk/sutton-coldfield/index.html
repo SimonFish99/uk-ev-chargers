@@ -6,19 +6,61 @@
 
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
+
 <style>
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+}
+
+header {
+  background: #1f2937;
+  padding: 12px 20px;
+}
+
+.logo {
+  color: white;
+  text-decoration: none;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.container {
+  padding: 20px;
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 15px;
+  text-decoration: none;
+  color: #2563eb;
+  font-weight: bold;
+}
+
 #map {
-  height: 400px;
+  height: 420px;
   margin-bottom: 30px;
   border-radius: 8px;
 }
+
 </style>
 
 </head>
 
 <body>
 
+<header>
+<a href="/" class="logo">PlugMap</a>
+</header>
+
+<div class="container">
+
 <h1>Sutton Coldfield EV Chargers</h1>
+
+<a href="/" class="back-link">← Back to homepage</a>
 
 <div id="map"></div>
 
@@ -56,7 +98,11 @@ Victoria Road
 
 </ul>
 
+</div>
+
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 
 <script>
 
@@ -69,13 +115,16 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 attribution: '&copy; OpenStreetMap contributors'
 }).addTo(map);
 
+var markers = L.markerClusterGroup();
 
 
-L.marker([
+
+var marker = L.marker([
 52.587659,
 -1.826905
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Lidl-Mere Green</b><br>
 Mere Green Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.587659,-1.826905" target="_blank">
@@ -83,13 +132,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.581282,
 -1.904929
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Foley Arms</b><br>
 293 Foley Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.581282,-1.904929" target="_blank">
@@ -97,13 +149,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.5538,
 -1.73399
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>The Belfry Hotel & Golf Resort</b><br>
 Lichfield Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.5538,-1.73399" target="_blank">
@@ -111,13 +166,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.57739,
 -1.883626
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Restricted access to Nissan customers</b><br>
 Chester Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.57739,-1.883626" target="_blank">
@@ -125,13 +183,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.548944,
 -1.858482
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Tesco Extra-New Oscott</b><br>
 11 Princess Alice Drive<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.548944,-1.858482" target="_blank">
@@ -139,13 +200,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.562366,
 -1.821778
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Victoria Road Car Park Birmingham - 70517</b><br>
 Victoria Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.562366,-1.821778" target="_blank">
@@ -153,7 +217,11 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
+
+
+map.addLayer(markers);
 
 </script>
 

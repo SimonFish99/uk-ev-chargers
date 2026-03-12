@@ -6,19 +6,61 @@
 
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
+
 <style>
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+}
+
+header {
+  background: #1f2937;
+  padding: 12px 20px;
+}
+
+.logo {
+  color: white;
+  text-decoration: none;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.container {
+  padding: 20px;
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 15px;
+  text-decoration: none;
+  color: #2563eb;
+  font-weight: bold;
+}
+
 #map {
-  height: 400px;
+  height: 420px;
   margin-bottom: 30px;
   border-radius: 8px;
 }
+
 </style>
 
 </head>
 
 <body>
 
+<header>
+<a href="/" class="logo">PlugMap</a>
+</header>
+
+<div class="container">
+
 <h1>Bolton EV Chargers</h1>
+
+<a href="/" class="back-link">← Back to homepage</a>
 
 <div id="map"></div>
 
@@ -106,7 +148,11 @@ Bolton Road
 
 </ul>
 
+</div>
+
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 
 <script>
 
@@ -119,13 +165,16 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 attribution: '&copy; OpenStreetMap contributors'
 }).addTo(map);
 
+var markers = L.markerClusterGroup();
 
 
-L.marker([
+
+var marker = L.marker([
 53.545988,
 -2.399358
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Lidl-Farnworth</b><br>
 Albert Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.545988,-2.399358" target="_blank">
@@ -133,13 +182,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.567687,
 -2.464241
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>STAGS RETAIL STAGS RETAIL 1</b><br>
 7 Horsfield St<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.567687,-2.464241" target="_blank">
@@ -147,13 +199,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.549079,
 -2.519034
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>GMEV PAYG Charge Point</b><br>
 Bolton Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.549079,-2.519034" target="_blank">
@@ -161,13 +216,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.546758,
 -2.521489
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Sainsburys Westhoughton</b><br>
 28 Sunny Garth<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.546758,-2.521489" target="_blank">
@@ -175,13 +233,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.582336,
 -2.43112
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Topp Way Multi Storey Car Park</b><br>
 Topp Way<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.582336,-2.43112" target="_blank">
@@ -189,13 +250,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.58222,
 -2.43283
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>GMEV PAYG Charge Point</b><br>
 Duke Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.58222,-2.43283" target="_blank">
@@ -203,13 +267,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.581327,
 -2.530503
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Tesco Extra - Bolton Horwich</b><br>
 Mansell Way<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.581327,-2.530503" target="_blank">
@@ -217,13 +284,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.579683,
 -2.380233
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Shell Meadow</b><br>
 1041 Bury Road,<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.579683,-2.380233" target="_blank">
@@ -231,13 +301,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.573391,
 -2.441613
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Deane Road Multi Storey Car Park</b><br>
 Deane Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.573391,-2.441613" target="_blank">
@@ -245,13 +318,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.571338,
 -2.421618
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>SureStore - Self Storage Bolton</b><br>
 Orlando Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.571338,-2.421618" target="_blank">
@@ -259,13 +335,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.569094914374745,
 -2.419523625836746
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Lidl Manchester Rd</b><br>
 202 Manchester Rd<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.569094914374745,-2.419523625836746" target="_blank">
@@ -273,13 +352,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.57597211180817,
 -2.4293105676104005
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Soho Street Parking</b><br>
 Soho Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.57597211180817,-2.4293105676104005" target="_blank">
@@ -287,13 +369,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.5814684,
 -2.532021
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Tesco Extra Bolton Horwich</b><br>
 Mansell Way<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.5814684,-2.532021" target="_blank">
@@ -301,13 +386,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.583637,
 -2.53652
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Middlebrook Retail & Leisure Park</b><br>
 37 The Linkway<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.583637,-2.53652" target="_blank">
@@ -315,13 +403,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.57525,
 -2.43839
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>GMEV PAYG Charge Point</b><br>
 Wellington Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.57525,-2.43839" target="_blank">
@@ -329,13 +420,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.54911505785057,
 -2.520718454076814
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Bolton Road</b><br>
 Bolton Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.54911505785057,-2.520718454076814" target="_blank">
@@ -343,7 +437,11 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
+
+
+map.addLayer(markers);
 
 </script>
 

@@ -6,19 +6,61 @@
 
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
+
 <style>
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+}
+
+header {
+  background: #1f2937;
+  padding: 12px 20px;
+}
+
+.logo {
+  color: white;
+  text-decoration: none;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.container {
+  padding: 20px;
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 15px;
+  text-decoration: none;
+  color: #2563eb;
+  font-weight: bold;
+}
+
 #map {
-  height: 400px;
+  height: 420px;
   margin-bottom: 30px;
   border-radius: 8px;
 }
+
 </style>
 
 </head>
 
 <body>
 
+<header>
+<a href="/" class="logo">PlugMap</a>
+</header>
+
+<div class="container">
+
 <h1>Dundonald EV Chargers</h1>
+
+<a href="/" class="back-link">← Back to homepage</a>
 
 <div id="map"></div>
 
@@ -66,7 +108,11 @@ Carrowreagh Rd
 
 </ul>
 
+</div>
+
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 
 <script>
 
@@ -79,13 +125,16 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 attribution: '&copy; OpenStreetMap contributors'
 }).addTo(map);
 
+var markers = L.markerClusterGroup();
 
 
-L.marker([
+
+var marker = L.marker([
 54.59664925618725,
 -5.815424114233224
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Ulster Hospital (Homes 1 -3)</b><br>
 Upper Newtownards Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.59664925618725,-5.815424114233224" target="_blank">
@@ -93,13 +142,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.59619587896347,
 -5.814191182801977
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Ulster Hospital (Graham-Bam Healthcare Partnership)</b><br>
 Upper Newtownards Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.59619587896347,-5.814191182801977" target="_blank">
@@ -107,13 +159,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.59625401252359,
 -5.808580354321492
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Ulster Hospital (Tor Bank)</b><br>
 Tor Bank<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.59625401252359,-5.808580354321492" target="_blank">
@@ -121,13 +176,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.59696499199171,
 -5.807831167700186
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Ulster Hospital</b><br>
 Upper Newtownards Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.59696499199171,-5.807831167700186" target="_blank">
@@ -135,13 +193,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.59838342564484,
 -5.80803161291098
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Ulster Hospital (Car Park F)</b><br>
 Car Park F<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.59838342564484,-5.80803161291098" target="_blank">
@@ -149,13 +210,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.59735952797129,
 -5.781471693348919
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Inspire Business Centre</b><br>
 Carrowreagh Rd<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.59735952797129,-5.781471693348919" target="_blank">
@@ -163,13 +227,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.588337351951765,
 -5.825495694824639
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>HRL Hanwood</b><br>
 200 Old Dundonald Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.588337351951765,-5.825495694824639" target="_blank">
@@ -177,13 +244,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.58051034925276,
 -4.593198014323349
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Dundonald Activity Centre</b><br>
 35 Castle Drive<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.58051034925276,-4.593198014323349" target="_blank">
@@ -191,7 +261,11 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
+
+
+map.addLayer(markers);
 
 </script>
 

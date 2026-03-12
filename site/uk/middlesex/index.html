@@ -6,19 +6,61 @@
 
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
+
 <style>
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+}
+
+header {
+  background: #1f2937;
+  padding: 12px 20px;
+}
+
+.logo {
+  color: white;
+  text-decoration: none;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.container {
+  padding: 20px;
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 15px;
+  text-decoration: none;
+  color: #2563eb;
+  font-weight: bold;
+}
+
 #map {
-  height: 400px;
+  height: 420px;
   margin-bottom: 30px;
   border-radius: 8px;
 }
+
 </style>
 
 </head>
 
 <body>
 
+<header>
+<a href="/" class="logo">PlugMap</a>
+</header>
+
+<div class="container">
+
 <h1>Middlesex EV Chargers</h1>
+
+<a href="/" class="back-link">← Back to homepage</a>
 
 <div id="map"></div>
 
@@ -76,7 +118,11 @@ The Management Centre, Furzeground Way
 
 </ul>
 
+</div>
+
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 
 <script>
 
@@ -89,13 +135,16 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 attribution: '&copy; OpenStreetMap contributors'
 }).addTo(map);
 
+var markers = L.markerClusterGroup();
 
 
-L.marker([
+
+var marker = L.marker([
 51.471048,
 -0.489691
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Heathrow Airport T5</b><br>
 (Level 2 Car Park) London Heathrow Airport<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.471048,-0.489691" target="_blank">
@@ -103,13 +152,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.470583,
 -0.489744
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Heathrow Airport T5</b><br>
 (Level 2 Car Park) London Heathrow Airport<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.470583,-0.489744" target="_blank">
@@ -117,13 +169,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.458751,
 -0.446136
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Heathrow Airport T4</b><br>
 London Heathrow Airport<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.458751,-0.446136" target="_blank">
@@ -131,13 +186,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.435959,
 -0.512282
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Two Rivers Retail Park</b><br>
 Mustard Mill Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.435959,-0.512282" target="_blank">
@@ -145,13 +203,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.472482,
 -0.45104
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Heathrow Airport T1 - Legacy</b><br>
 London Heathrow Airport<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.472482,-0.45104" target="_blank">
@@ -159,13 +220,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.472385,
 -0.450959
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Heathrow Airport T1 - Legacy</b><br>
 London Heathrow Airport<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.472385,-0.450959" target="_blank">
@@ -173,13 +237,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.469595,
 -0.452828
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Heathrow Airport T2</b><br>
 London Heathrow Airport<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.469595,-0.452828" target="_blank">
@@ -187,13 +254,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.531987,
 -0.46713
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Kingston Lane</b><br>
 Kingston Lane<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.531987,-0.46713" target="_blank">
@@ -201,13 +271,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.531553,
 -0.467307
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Kingston Lane</b><br>
 Kingston Lane<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.531553,-0.467307" target="_blank">
@@ -215,13 +288,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.512831,
 -0.444307
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>The Arena - Stockley Park</b><br>
 The Management Centre, Furzeground Way<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.512831,-0.444307" target="_blank">
@@ -229,7 +305,11 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
+
+
+map.addLayer(markers);
 
 </script>
 

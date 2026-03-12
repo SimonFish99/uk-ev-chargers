@@ -6,19 +6,61 @@
 
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
+
 <style>
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+}
+
+header {
+  background: #1f2937;
+  padding: 12px 20px;
+}
+
+.logo {
+  color: white;
+  text-decoration: none;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.container {
+  padding: 20px;
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 15px;
+  text-decoration: none;
+  color: #2563eb;
+  font-weight: bold;
+}
+
 #map {
-  height: 400px;
+  height: 420px;
   margin-bottom: 30px;
   border-radius: 8px;
 }
+
 </style>
 
 </head>
 
 <body>
 
+<header>
+<a href="/" class="logo">PlugMap</a>
+</header>
+
+<div class="container">
+
 <h1>Bexley EV Chargers</h1>
+
+<a href="/" class="back-link">← Back to homepage</a>
 
 <div id="map"></div>
 
@@ -66,7 +108,11 @@ Steynton Avenue
 
 </ul>
 
+</div>
+
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 
 <script>
 
@@ -79,13 +125,16 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 attribution: '&copy; OpenStreetMap contributors'
 }).addTo(map);
 
+var markers = L.markerClusterGroup();
 
 
-L.marker([
+
+var marker = L.marker([
 51.43148,
 0.15553
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Hurst Grid Substation Site</b><br>
 Haul Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.43148,0.15553" target="_blank">
@@ -93,13 +142,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.481227,
 0.144192
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Nuxley Road Car Park, 4</b><br>
 Nuxley Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.481227,0.144192" target="_blank">
@@ -107,13 +159,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.473021,
 0.161038
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Mill Road Car Park, 1</b><br>
 Mill Road Car Park<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.473021,0.161038" target="_blank">
@@ -121,13 +176,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.463343,
 0.098323
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Westwood Lane Car Park 2</b><br>
 Westwood Lane Car Park 2<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.463343,0.098323" target="_blank">
@@ -135,13 +193,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.463334,
 0.098395
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Westwood Lane Car Park 1</b><br>
 Westwood Lane Car Park 1<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.463334,0.098395" target="_blank">
@@ -149,13 +210,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.442195,
 0.149667
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Thanet Road Car Park, 4</b><br>
 Thanet Road Car Park, 1<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.442195,0.149667" target="_blank">
@@ -163,13 +227,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.435798,
 0.125138
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Albany Park Car Park, 4</b><br>
 Steynton Avenue<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.435798,0.125138" target="_blank">
@@ -177,13 +244,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.435703,
 0.125006
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Albany Park Car Park, 1</b><br>
 Steynton Avenue<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.435703,0.125006" target="_blank">
@@ -191,7 +261,11 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
+
+
+map.addLayer(markers);
 
 </script>
 

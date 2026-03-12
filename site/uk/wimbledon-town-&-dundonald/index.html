@@ -6,19 +6,61 @@
 
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
+
 <style>
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+}
+
+header {
+  background: #1f2937;
+  padding: 12px 20px;
+}
+
+.logo {
+  color: white;
+  text-decoration: none;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.container {
+  padding: 20px;
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 15px;
+  text-decoration: none;
+  color: #2563eb;
+  font-weight: bold;
+}
+
 #map {
-  height: 400px;
+  height: 420px;
   margin-bottom: 30px;
   border-radius: 8px;
 }
+
 </style>
 
 </head>
 
 <body>
 
+<header>
+<a href="/" class="logo">PlugMap</a>
+</header>
+
+<div class="container">
+
 <h1>Wimbledon Town & Dundonald EV Chargers</h1>
+
+<a href="/" class="back-link">← Back to homepage</a>
 
 <div id="map"></div>
 
@@ -51,7 +93,11 @@ South Park Road
 
 </ul>
 
+</div>
+
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 
 <script>
 
@@ -64,13 +110,16 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 attribution: '&copy; OpenStreetMap contributors'
 }).addTo(map);
 
+var markers = L.markerClusterGroup();
 
 
-L.marker([
+
+var marker = L.marker([
 51.42374,
 -0.198954
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Opposite 93 Queens Road</b><br>
 Queens Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.42374,-0.198954" target="_blank">
@@ -78,13 +127,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.423136,
 -0.19002
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Birkbeck Road, adjacent 111 Effra Road</b><br>
 Birkbeck Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.423136,-0.19002" target="_blank">
@@ -92,13 +144,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.422699,
 -0.189641
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Edith Road, adjacent to 71 Clarence Road</b><br>
 Edith Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.422699,-0.189641" target="_blank">
@@ -106,13 +161,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.422116,
 -0.189526
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Fernleigh, 20 - 25 Edith Road</b><br>
 Edith Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.422116,-0.189526" target="_blank">
@@ -120,13 +178,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.420592,
 -0.202226
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>10 South Park Road</b><br>
 South Park Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.420592,-0.202226" target="_blank">
@@ -134,7 +195,11 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
+
+
+map.addLayer(markers);
 
 </script>
 

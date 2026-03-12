@@ -6,19 +6,61 @@
 
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
+
 <style>
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+}
+
+header {
+  background: #1f2937;
+  padding: 12px 20px;
+}
+
+.logo {
+  color: white;
+  text-decoration: none;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.container {
+  padding: 20px;
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 15px;
+  text-decoration: none;
+  color: #2563eb;
+  font-weight: bold;
+}
+
 #map {
-  height: 400px;
+  height: 420px;
   margin-bottom: 30px;
   border-radius: 8px;
 }
+
 </style>
 
 </head>
 
 <body>
 
+<header>
+<a href="/" class="logo">PlugMap</a>
+</header>
+
+<div class="container">
+
 <h1>Canterbury EV Chargers</h1>
+
+<a href="/" class="back-link">← Back to homepage</a>
 
 <div id="map"></div>
 
@@ -76,7 +118,11 @@ Sunnymead
 
 </ul>
 
+</div>
+
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 
 <script>
 
@@ -89,13 +135,16 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 attribution: '&copy; OpenStreetMap contributors'
 }).addTo(map);
 
+var markers = L.markerClusterGroup();
 
 
-L.marker([
+
+var marker = L.marker([
 51.27630953482898,
 1.0809356848135394
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>(e-Taxis Only) St George's Lane</b><br>
 St Georges Lane<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.27630953482898,1.0809356848135394" target="_blank">
@@ -103,13 +152,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.27636805391066,
 1.079648659585473
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Ev Dot Watling Street Car Park</b><br>
 Watling Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.27636805391066,1.079648659585473" target="_blank">
@@ -117,13 +169,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.275299601011284,
 1.0759109027325735
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Castle Row Car Park</b><br>
 Castle Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.275299601011284,1.0759109027325735" target="_blank">
@@ -131,13 +186,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.2906505280916,
 1.10038147113888
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>MFG Lakeside</b><br>
 Sturry Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.2906505280916,1.10038147113888" target="_blank">
@@ -145,13 +203,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.190871416622905,
 1.1758473153787783
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>EVC Broome Park</b><br>
 Broome Park Hotel<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.190871416622905,1.1758473153787783" target="_blank">
@@ -159,13 +220,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.279886,
 1.280559
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Ash Parish Hall</b><br>
 Ash<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.279886,1.280559" target="_blank">
@@ -173,13 +237,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.255799,
 1.01909
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>CT4 7HZ</b><br>
 <br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.255799,1.01909" target="_blank">
@@ -187,13 +254,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.28359,
 1.074741
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Multi-Storey Car Park</b><br>
 Station Road West<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.28359,1.074741" target="_blank">
@@ -201,13 +271,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.27143005525622,
 1.0626519240046264
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Morrisons Canterbury</b><br>
 Ten Perch Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.27143005525622,1.0626519240046264" target="_blank">
@@ -215,13 +288,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.30865285730525,
 1.0669486596888191
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Sunnymead</b><br>
 Sunnymead<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.30865285730525,1.0669486596888191" target="_blank">
@@ -229,7 +305,11 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
+
+
+map.addLayer(markers);
 
 </script>
 

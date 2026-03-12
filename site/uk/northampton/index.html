@@ -6,19 +6,61 @@
 
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
+
 <style>
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+}
+
+header {
+  background: #1f2937;
+  padding: 12px 20px;
+}
+
+.logo {
+  color: white;
+  text-decoration: none;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.container {
+  padding: 20px;
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 15px;
+  text-decoration: none;
+  color: #2563eb;
+  font-weight: bold;
+}
+
 #map {
-  height: 400px;
+  height: 420px;
   margin-bottom: 30px;
   border-radius: 8px;
 }
+
 </style>
 
 </head>
 
 <body>
 
+<header>
+<a href="/" class="logo">PlugMap</a>
+</header>
+
+<div class="container">
+
 <h1>Northampton EV Chargers</h1>
+
+<a href="/" class="back-link">← Back to homepage</a>
 
 <div id="map"></div>
 
@@ -156,7 +198,11 @@ Wm Morrison Supermarkets PLC, 26 Victoria Promenade
 
 </ul>
 
+</div>
+
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 
 <script>
 
@@ -169,13 +215,16 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 attribution: '&copy; OpenStreetMap contributors'
 }).addTo(map);
 
+var markers = L.markerClusterGroup();
 
 
-L.marker([
+
+var marker = L.marker([
 52.24549337288799,
 -0.812294031050069
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>The Quays</b><br>
 Crow Lane<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.24549337288799,-0.812294031050069" target="_blank">
@@ -183,13 +232,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.24258845658197,
 -0.8342945560274015
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Tesla </b><br>
 Carousel Way<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.24258845658197,-0.8342945560274015" target="_blank">
@@ -197,13 +249,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.253345,
 -0.876198
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Oakwood Road</b><br>
 Oakwood Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.253345,-0.876198" target="_blank">
@@ -211,13 +266,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.247624,
 -0.900267
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Semilong Road</b><br>
 Semilong Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.247624,-0.900267" target="_blank">
@@ -225,13 +283,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.244001,
 -0.86909
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Ardington Road</b><br>
 Ardington Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.244001,-0.86909" target="_blank">
@@ -239,13 +300,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.242517,
 -0.917393
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Vicarage Road</b><br>
 Vicarage Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.242517,-0.917393" target="_blank">
@@ -253,13 +317,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.239516,
 -0.910608
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>St James Park Road</b><br>
 St James' Park Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.239516,-0.910608" target="_blank">
@@ -267,13 +334,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.239377,
 -0.872254
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Barry Road</b><br>
 Barry Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.239377,-0.872254" target="_blank">
@@ -281,13 +351,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.238713,
 -0.876164
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>GB-LCL-A0100</b><br>
 Upper Thrift Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.238713,-0.876164" target="_blank">
@@ -295,13 +368,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.351669,
 -1.148878
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Holiday Inn Rugby-Northampton</b><br>
 M1 Junction18 A428<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.351669,-1.148878" target="_blank">
@@ -309,13 +385,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.273869,
 -0.875469
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Nationwide Adminsitration Centre</b><br>
 Moulten Park Industrial Estate<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.273869,-0.875469" target="_blank">
@@ -323,13 +402,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.272926,
 -0.744971
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Crystal HQ</b><br>
 4 Titlet Bawk Avenue<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.272926,-0.744971" target="_blank">
@@ -337,13 +419,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.244692,
 -0.833783
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Restricted access to Vauxhall customers</b><br>
 Carousel Way<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.244692,-0.833783" target="_blank">
@@ -351,13 +436,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.243466,
 -0.83466
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Restricted access to Toyota customers</b><br>
 Ferris Row<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.243466,-0.83466" target="_blank">
@@ -365,13 +453,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.23397,
 -0.893858
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Morrisons Northampton</b><br>
 Wm Morrison Supermarkets Plc<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.23397,-0.893858" target="_blank">
@@ -379,13 +470,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.186321,
 -0.891303
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Harvester Grange Park</b><br>
 Loake Close<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.186321,-0.891303" target="_blank">
@@ -393,13 +487,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.259491,
 -0.872798
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Morrisons</b><br>
 Kettering Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.259491,-0.872798" target="_blank">
@@ -407,13 +504,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.234957,
 -0.900784
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Northampton, Commercial Street</b><br>
 Commercial Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.234957,-0.900784" target="_blank">
@@ -421,13 +521,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.410021,
 -0.740299
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Linnell Way</b><br>
 Linnnell Way<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.410021,-0.740299" target="_blank">
@@ -435,13 +538,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.241422,
 -0.894584
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Northampton, Upper Mounts</b><br>
 1 Victoria St<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.241422,-0.894584" target="_blank">
@@ -449,13 +555,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.240202,
 -0.896219
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Northampton, Newlands</b><br>
 Newland<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.240202,-0.896219" target="_blank">
@@ -463,13 +572,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.239498,
 -0.892761
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Northampton, Wellington Street</b><br>
 28-34 Wellington St<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.239498,-0.892761" target="_blank">
@@ -477,13 +589,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.215136,
 -0.912466
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Tesco Extra-Northampton South</b><br>
 Clannell Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.215136,-0.912466" target="_blank">
@@ -491,13 +606,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.25675,
 -0.83712
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>LCP Weston Favell</b><br>
 LCP Weston Favell<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.25675,-0.83712" target="_blank">
@@ -505,13 +623,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.227479,
 -0.742344
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>The Falcon</b><br>
 Castle Ashby<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.227479,-0.742344" target="_blank">
@@ -519,13 +640,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.233494,
 -0.894641
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Morrisons Northampton</b><br>
 Wm Morrison Supermarkets PLC, 26 Victoria Promenade<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.233494,-0.894641" target="_blank">
@@ -533,7 +657,11 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
+
+
+map.addLayer(markers);
 
 </script>
 

@@ -6,19 +6,61 @@
 
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
+
 <style>
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+}
+
+header {
+  background: #1f2937;
+  padding: 12px 20px;
+}
+
+.logo {
+  color: white;
+  text-decoration: none;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.container {
+  padding: 20px;
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 15px;
+  text-decoration: none;
+  color: #2563eb;
+  font-weight: bold;
+}
+
 #map {
-  height: 400px;
+  height: 420px;
   margin-bottom: 30px;
   border-radius: 8px;
 }
+
 </style>
 
 </head>
 
 <body>
 
+<header>
+<a href="/" class="logo">PlugMap</a>
+</header>
+
+<div class="container">
+
 <h1>Maidstone EV Chargers</h1>
+
+<a href="/" class="back-link">← Back to homepage</a>
 
 <div id="map"></div>
 
@@ -96,7 +138,11 @@ Wm Morrison Supermarkets PLC St. Saviours Road
 
 </ul>
 
+</div>
+
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 
 <script>
 
@@ -109,13 +155,16 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 attribution: '&copy; OpenStreetMap contributors'
 }).addTo(map);
 
+var markers = L.markerClusterGroup();
 
 
-L.marker([
+
+var marker = L.marker([
 51.27390528,
 0.51563406
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Wickes Maidstone</b><br>
 St Peters Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.27390528,0.51563406" target="_blank">
@@ -123,13 +172,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.27383741170001,
 0.5206227064647675
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Pudding Lane</b><br>
 Pudding Lane<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.27383741170001,0.5206227064647675" target="_blank">
@@ -137,13 +189,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.2857985714808,
 0.5430197490062483
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Chiltern Hundreds</b><br>
 Penenden Heath Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.2857985714808,0.5430197490062483" target="_blank">
@@ -151,13 +206,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.229147,
 0.542806
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>The Cock Inn</b><br>
 The Cock Inn<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.229147,0.542806" target="_blank">
@@ -165,13 +223,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.273859,
 0.526436
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>King Street Car Park</b><br>
 King Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.273859,0.526436" target="_blank">
@@ -179,13 +240,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.27906,
 0.52102
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Invicta House</b><br>
 County Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.27906,0.52102" target="_blank">
@@ -193,13 +257,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.290635,
 0.48867772
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>The Fields At Aylesford</b><br>
 St Laurence Avenue<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.290635,0.48867772" target="_blank">
@@ -207,13 +274,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.266807,
 0.614396
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Roadchef Maidstone Services</b><br>
 M20 Motorway, Jct 8, Hollingbourne<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.266807,0.614396" target="_blank">
@@ -221,13 +291,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.239922,
 0.56417
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Mercedes-Benz of Maidstone</b><br>
 Bircholt Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.239922,0.56417" target="_blank">
@@ -235,13 +308,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.268601,
 0.525373
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Brunswick Street Car Park</b><br>
 George Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.268601,0.525373" target="_blank">
@@ -249,13 +325,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.2710098,
 0.5166113
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>InstaVolt/McDonald's Hart Street</b><br>
 2-8 Hart Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.2710098,0.5166113" target="_blank">
@@ -263,13 +342,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.2865642540376,
 0.548709143273072
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>M&S Maidstone</b><br>
 Eclipse Park<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.2865642540376,0.548709143273072" target="_blank">
@@ -277,13 +359,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.280739,
 0.51924
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Miller & Carter White Rabbit</b><br>
 Sandling Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.280739,0.51924" target="_blank">
@@ -291,13 +376,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.246651,
 0.546458
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Wm Morrison Supermarkets PLC St. Saviours Road</b><br>
 Wm Morrison Supermarkets PLC St. Saviours Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.246651,0.546458" target="_blank">
@@ -305,7 +393,11 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
+
+
+map.addLayer(markers);
 
 </script>
 

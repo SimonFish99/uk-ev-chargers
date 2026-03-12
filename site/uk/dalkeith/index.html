@@ -6,19 +6,61 @@
 
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
+
 <style>
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+}
+
+header {
+  background: #1f2937;
+  padding: 12px 20px;
+}
+
+.logo {
+  color: white;
+  text-decoration: none;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.container {
+  padding: 20px;
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 15px;
+  text-decoration: none;
+  color: #2563eb;
+  font-weight: bold;
+}
+
 #map {
-  height: 400px;
+  height: 420px;
   margin-bottom: 30px;
   border-radius: 8px;
 }
+
 </style>
 
 </head>
 
 <body>
 
+<header>
+<a href="/" class="logo">PlugMap</a>
+</header>
+
+<div class="container">
+
 <h1>Dalkeith EV Chargers</h1>
+
+<a href="/" class="back-link">← Back to homepage</a>
 
 <div id="map"></div>
 
@@ -91,7 +133,11 @@ Bonnyrigg Road
 
 </ul>
 
+</div>
+
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 
 <script>
 
@@ -104,13 +150,16 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 attribution: '&copy; OpenStreetMap contributors'
 }).addTo(map);
 
+var markers = L.markerClusterGroup();
 
 
-L.marker([
+
+var marker = L.marker([
 55.8934844,
 -3.0681182
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Lidl-Dalkeith</b><br>
 5a Newmilles Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.8934844,-3.0681182" target="_blank">
@@ -118,13 +167,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.881446,
 -3.086375
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Mcdonalds Car Park</b><br>
 Bonnyrigg Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.881446,-3.086375" target="_blank">
@@ -132,13 +184,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.920016,
 -3.078725
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Shawfair Station</b><br>
 Shawfair Station<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.920016,-3.078725" target="_blank">
@@ -146,13 +201,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.880229,
 -3.090126
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Sheriffhall P & R</b><br>
 2 Sheriffhall Roundabout<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.880229,-3.090126" target="_blank">
@@ -160,13 +218,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.881133,
 -3.086771
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Dalkeith Retail Park</b><br>
 Bonnyrigg Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.881133,-3.086771" target="_blank">
@@ -174,13 +235,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.906862,
 -3.101645
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Old Colliery Pub & Restaurant A7</b><br>
 Danderhall<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.906862,-3.101645" target="_blank">
@@ -188,13 +252,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.88348,
 -3.077125
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Edinburgh College, Midlothian Campus</b><br>
 Dalhousie Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.88348,-3.077125" target="_blank">
@@ -202,13 +269,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.882421,
 -3.079255
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Midlothian Campus, Edinburgh</b><br>
 Midlothian Campus<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.882421,-3.079255" target="_blank">
@@ -216,13 +286,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.881986,
 -3.08554
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Eskbank Station</b><br>
 32 Hardengreen Lane<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.881986,-3.08554" target="_blank">
@@ -230,13 +303,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.864919,
 -3.068526
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Newtongrange Station</b><br>
 37 Murderdean Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.864919,-3.068526" target="_blank">
@@ -244,13 +320,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.901211,
 -3.095113
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Sheriffhall Park and Ride</b><br>
 698 Old Dalkeith Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.901211,-3.095113" target="_blank">
@@ -258,13 +337,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.899639,
 -3.088976
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Sheriffhall P & R</b><br>
 2 Sheriffhall Roundabout<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.899639,-3.088976" target="_blank">
@@ -272,13 +354,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.882664,
 -3.085777
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Tesco Superstore-Dalkeith Hardengreen</b><br>
 Bonnyrigg Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.882664,-3.085777" target="_blank">
@@ -286,7 +371,11 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
+
+
+map.addLayer(markers);
 
 </script>
 

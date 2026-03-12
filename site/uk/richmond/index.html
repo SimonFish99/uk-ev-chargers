@@ -6,19 +6,61 @@
 
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
+
 <style>
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+}
+
+header {
+  background: #1f2937;
+  padding: 12px 20px;
+}
+
+.logo {
+  color: white;
+  text-decoration: none;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.container {
+  padding: 20px;
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 15px;
+  text-decoration: none;
+  color: #2563eb;
+  font-weight: bold;
+}
+
 #map {
-  height: 400px;
+  height: 420px;
   margin-bottom: 30px;
   border-radius: 8px;
 }
+
 </style>
 
 </head>
 
 <body>
 
+<header>
+<a href="/" class="logo">PlugMap</a>
+</header>
+
+<div class="container">
+
 <h1>Richmond EV Chargers</h1>
+
+<a href="/" class="back-link">← Back to homepage</a>
 
 <div id="map"></div>
 
@@ -161,7 +203,11 @@ High Park Rd 15
 
 </ul>
 
+</div>
+
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 
 <script>
 
@@ -174,13 +220,16 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 attribution: '&copy; OpenStreetMap contributors'
 }).addTo(map);
 
+var markers = L.markerClusterGroup();
 
 
-L.marker([
+
+var marker = L.marker([
 51.455762,
 -0.310703
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Lidl-Richmond Road</b><br>
 383-393 Richmond Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.455762,-0.310703" target="_blank">
@@ -188,13 +237,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.467139,
 -0.286563
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Sainsbury's Richmond</b><br>
 Lower Richmond Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.467139,-0.286563" target="_blank">
@@ -202,13 +254,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.466457,
 -0.287409
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Ultra Rapid EV Charging - Sainsbury's Richmond</b><br>
 Sainsbury's<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.466457,-0.287409" target="_blank">
@@ -216,13 +271,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.44381,
 -1.66722
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>MO Scotch Corner</b><br>
 Scotch Corner<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.44381,-1.66722" target="_blank">
@@ -230,13 +288,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.476527,
 -0.283145
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>22 West Park Road</b><br>
 22 West Park Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.476527,-0.283145" target="_blank">
@@ -244,13 +305,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.476797,
 -0.284099
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Burlington Avenue</b><br>
 Burlington Avenue<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.476797,-0.284099" target="_blank">
@@ -258,13 +322,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.476673,
 -0.286711
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Sandycombe Rd 369</b><br>
 Sandycombe Rd 369<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.476673,-0.286711" target="_blank">
@@ -272,13 +339,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.476527,
 -0.283145
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>22 West Park Road</b><br>
 22 West Park Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.476527,-0.283145" target="_blank">
@@ -286,13 +356,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.476437,
 -0.286748
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Sandycombe Rd 302</b><br>
 Sandycombe Rd 302<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.476437,-0.286748" target="_blank">
@@ -300,13 +373,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.475548,
 -0.282442
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>High Park Rd 4</b><br>
 High Park Rd 4<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.475548,-0.282442" target="_blank">
@@ -314,13 +390,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.474142,
 -0.291974
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>The Avenue (Richmond)</b><br>
 The Avenue (Richmond)<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.474142,-0.291974" target="_blank">
@@ -328,13 +407,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.465807,
 -0.286541
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Manor Grove 64</b><br>
 Manor Grove 64<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.465807,-0.286541" target="_blank">
@@ -342,13 +424,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.465556,
 -0.292927
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Sheendale Rd 7</b><br>
 Sheendale Rd 7<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.465556,-0.292927" target="_blank">
@@ -356,13 +441,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.465251,
 -0.292523
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Sheendale Rd</b><br>
 Sheendale Rd<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.465251,-0.292523" target="_blank">
@@ -370,13 +458,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.462754,
 -0.2711
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Palmerston Rd 18</b><br>
 Palmerston Rd 18<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.462754,-0.2711" target="_blank">
@@ -384,13 +475,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.462399,
 -0.302488
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Richmond Station</b><br>
 Kew Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.462399,-0.302488" target="_blank">
@@ -398,13 +492,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.46568,
 -0.248654
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Westwood Road</b><br>
 Westwood Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.46568,-0.248654" target="_blank">
@@ -412,13 +509,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.479725,
 -0.280986
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Defoe Ave 29</b><br>
 Defoe Ave 29<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.479725,-0.280986" target="_blank">
@@ -426,13 +526,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.479543,
 -0.284508
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Leyborne Park 54</b><br>
 Leyborne Park 54<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.479543,-0.284508" target="_blank">
@@ -440,13 +543,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.479483,
 -0.280669
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Defoe Ave 46</b><br>
 Defoe Ave 46<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.479483,-0.280669" target="_blank">
@@ -454,13 +560,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.479282,
 -0.285025
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>TW9 3HB</b><br>
 Leyborne Park 17<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.479282,-0.285025" target="_blank">
@@ -468,13 +577,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.479219,
 -0.280474
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Defoe Ave 57</b><br>
 Defoe Ave 57<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.479219,-0.280474" target="_blank">
@@ -482,13 +594,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.479047,
 -0.285131
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Leyborne Park 34</b><br>
 Leyborne Park 34<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.479047,-0.285131" target="_blank">
@@ -496,13 +611,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.478042,
 -0.28275
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Beechwood Ave 24</b><br>
 Beechwood Ave 24<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.478042,-0.28275" target="_blank">
@@ -510,13 +628,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.477698,
 -0.282814
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Beechwood Ave 27</b><br>
 Beechwood Ave 27<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.477698,-0.282814" target="_blank">
@@ -524,13 +645,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.475528,
 -0.289296
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Ennerdale Rd 30</b><br>
 Ennerdale Rd 30<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.475528,-0.289296" target="_blank">
@@ -538,13 +662,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.475212,
 -0.280983
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>High Park Rd 15</b><br>
 High Park Rd 15<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.475212,-0.280983" target="_blank">
@@ -552,7 +679,11 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
+
+
+map.addLayer(markers);
 
 </script>
 

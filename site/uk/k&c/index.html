@@ -6,19 +6,61 @@
 
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
+
 <style>
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+}
+
+header {
+  background: #1f2937;
+  padding: 12px 20px;
+}
+
+.logo {
+  color: white;
+  text-decoration: none;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.container {
+  padding: 20px;
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 15px;
+  text-decoration: none;
+  color: #2563eb;
+  font-weight: bold;
+}
+
 #map {
-  height: 400px;
+  height: 420px;
   margin-bottom: 30px;
   border-radius: 8px;
 }
+
 </style>
 
 </head>
 
 <body>
 
+<header>
+<a href="/" class="logo">PlugMap</a>
+</header>
+
+<div class="container">
+
 <h1>K&C EV Chargers</h1>
+
+<a href="/" class="back-link">← Back to homepage</a>
 
 <div id="map"></div>
 
@@ -121,7 +163,11 @@ Hortensia Road
 
 </ul>
 
+</div>
+
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 
 <script>
 
@@ -134,13 +180,16 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 attribution: '&copy; OpenStreetMap contributors'
 }).addTo(map);
 
+var markers = L.markerClusterGroup();
 
 
-L.marker([
+
+var marker = L.marker([
 51.501323,
 -0.199193
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Phillimore Gardens</b><br>
 Phillimore Gardens<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.501323,-0.199193" target="_blank">
@@ -148,13 +197,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.520679,
 -0.224231
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Latimer Road Site 2</b><br>
 Latimer Road Site 2<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.520679,-0.224231" target="_blank">
@@ -162,13 +214,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.51707,
 -0.208633
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Lancaster Road</b><br>
 Lancaster Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.51707,-0.208633" target="_blank">
@@ -176,13 +231,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.512306,
 -0.217639
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Bramley Road</b><br>
 Bramley Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.512306,-0.217639" target="_blank">
@@ -190,13 +248,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.511299,
 -0.196465
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Pembridge Square</b><br>
 Pembridge Square<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.511299,-0.196465" target="_blank">
@@ -204,13 +265,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.507972,
 -0.212924
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Addison Avenue</b><br>
 Addison Avenue<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.507972,-0.212924" target="_blank">
@@ -218,13 +282,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.507176,
 -0.200865
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Campden Hill Square</b><br>
 Campden Hill Square<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.507176,-0.200865" target="_blank">
@@ -232,13 +299,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.497197,
 -0.188205
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Cornwall Gardens</b><br>
 Cornwall Gardens<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.497197,-0.188205" target="_blank">
@@ -246,13 +316,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.495904,
 -0.191224
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Lexham Gardens</b><br>
 Lexham Gardens<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.495904,-0.191224" target="_blank">
@@ -260,13 +333,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.493957,
 -0.171767
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Thurloe Square</b><br>
 Thurloe Square<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.493957,-0.171767" target="_blank">
@@ -274,13 +350,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.490131,
 -0.157184
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Turks Row</b><br>
 Turks Row<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.490131,-0.157184" target="_blank">
@@ -288,13 +367,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.490023,
 -0.19477
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Penywern Road</b><br>
 Penywern Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.490023,-0.19477" target="_blank">
@@ -302,13 +384,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.485053,
 -0.165944
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Chelsea Manor Street</b><br>
 Chelsea Manor Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.485053,-0.165944" target="_blank">
@@ -316,13 +401,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.484684,
 -0.158498
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Embankment Gardens</b><br>
 Embankment Gardens<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.484684,-0.158498" target="_blank">
@@ -330,13 +418,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.484093,
 -0.162036
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Chelsea Embankment site 2</b><br>
 Chelsea Embankment site 2<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.484093,-0.162036" target="_blank">
@@ -344,13 +435,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.526273,
 -0.214196
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Kensal Road</b><br>
 Kensal Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.526273,-0.214196" target="_blank">
@@ -358,13 +452,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.493909,
 -0.184331
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Ashburn Place</b><br>
 Ashburn Place<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.493909,-0.184331" target="_blank">
@@ -372,13 +469,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.489438,
 -0.174396
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>South Parade (K&C)</b><br>
 South Parade (K&C)<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.489438,-0.174396" target="_blank">
@@ -386,13 +486,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.481996,
 -0.18561
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Hortensia Road</b><br>
 Hortensia Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.481996,-0.18561" target="_blank">
@@ -400,7 +503,11 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
+
+
+map.addLayer(markers);
 
 </script>
 

@@ -6,19 +6,61 @@
 
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
+
 <style>
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+}
+
+header {
+  background: #1f2937;
+  padding: 12px 20px;
+}
+
+.logo {
+  color: white;
+  text-decoration: none;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.container {
+  padding: 20px;
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 15px;
+  text-decoration: none;
+  color: #2563eb;
+  font-weight: bold;
+}
+
 #map {
-  height: 400px;
+  height: 420px;
   margin-bottom: 30px;
   border-radius: 8px;
 }
+
 </style>
 
 </head>
 
 <body>
 
+<header>
+<a href="/" class="logo">PlugMap</a>
+</header>
+
+<div class="container">
+
 <h1>Middlesbrough EV Chargers</h1>
+
+<a href="/" class="back-link">← Back to homepage</a>
 
 <div id="map"></div>
 
@@ -116,7 +158,11 @@ Central Depot
 
 </ul>
 
+</div>
+
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 
 <script>
 
@@ -129,13 +175,16 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 attribution: '&copy; OpenStreetMap contributors'
 }).addTo(map);
 
+var markers = L.markerClusterGroup();
 
 
-L.marker([
+
+var marker = L.marker([
 54.570934,
 -1.252869
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Lidl-Newport Road</b><br>
 Newport Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.570934,-1.252869" target="_blank">
@@ -143,13 +192,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.5696352,
 -1.200523
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Lidl-North Ormesby</b><br>
 Cargo Fleet Lane<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.5696352,-1.200523" target="_blank">
@@ -157,13 +209,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.574083,
 -1.232384
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>MIMA Car Park, Middlesbrough</b><br>
 102 Grange Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.574083,-1.232384" target="_blank">
@@ -171,13 +226,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.578798,
 -1.239281
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Zetland Park</b><br>
 Zetland Park<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.578798,-1.239281" target="_blank">
@@ -185,13 +243,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.57771,
 -1.233122
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Buxton Street Car Park 5</b><br>
 41 Wilson Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.57771,-1.233122" target="_blank">
@@ -199,13 +260,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.560536,
 -1.202606
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Morrisons Middlesbrough</b><br>
 Ormesby Rd<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.560536,-1.202606" target="_blank">
@@ -213,13 +277,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.542879,
 -1.202966
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Stewart Park, Middlesborough</b><br>
 The Grove, Marton-in-Cleveland<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.542879,-1.202966" target="_blank">
@@ -227,13 +294,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.560262,
 -1.241996
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Bink Street Car Park 1</b><br>
 20 Bink Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.560262,-1.241996" target="_blank">
@@ -241,13 +311,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.574434,
 -1.225524
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Rivers House</b><br>
 Rivers House<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.574434,-1.225524" target="_blank">
@@ -255,13 +328,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.577356,
 -1.226179
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Windward Way</b><br>
 Windward Way<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.577356,-1.226179" target="_blank">
@@ -269,13 +345,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.55959795083811,
 -1.202846608519394
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Morrisons Middlesbrough</b><br>
 The Berwick Hills Centre<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.55959795083811,-1.202846608519394" target="_blank">
@@ -283,13 +362,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.57999130541657,
 -1.2347479896218374
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>PD Ports Head Office</b><br>
 17-27 Queen's Square<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.57999130541657,-1.2347479896218374" target="_blank">
@@ -297,13 +379,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.57793477582777,
 -1.2514535391593427
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Cleveland Cable Company</b><br>
 Riverside Park Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.57793477582777,-1.2514535391593427" target="_blank">
@@ -311,13 +396,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.57687208068185,
 -1.2223330201913996
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Thirteen Housing</b><br>
 2 Hudson Quay<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.57687208068185,-1.2223330201913996" target="_blank">
@@ -325,13 +413,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.56707,
 -1.23429
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Park Road North</b><br>
 Park Road North<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.56707,-1.23429" target="_blank">
@@ -339,13 +430,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.578635980104565,
 -1.2286303058333488
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Middlesbrough College</b><br>
 Windward Way<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.578635980104565,-1.2286303058333488" target="_blank">
@@ -353,13 +447,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.575484,
 -1.239919
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Captain Cook Carpark</b><br>
 Captain Cook Carpark<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.575484,-1.239919" target="_blank">
@@ -367,13 +464,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.572642,
 -1.203266
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Cargofleet Lane</b><br>
 Central Depot<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.572642,-1.203266" target="_blank">
@@ -381,7 +481,11 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
+
+
+map.addLayer(markers);
 
 </script>
 

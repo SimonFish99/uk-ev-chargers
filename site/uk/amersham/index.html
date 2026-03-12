@@ -6,19 +6,61 @@
 
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
+
 <style>
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+}
+
+header {
+  background: #1f2937;
+  padding: 12px 20px;
+}
+
+.logo {
+  color: white;
+  text-decoration: none;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.container {
+  padding: 20px;
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 15px;
+  text-decoration: none;
+  color: #2563eb;
+  font-weight: bold;
+}
+
 #map {
-  height: 400px;
+  height: 420px;
   margin-bottom: 30px;
   border-radius: 8px;
 }
+
 </style>
 
 </head>
 
 <body>
 
+<header>
+<a href="/" class="logo">PlugMap</a>
+</header>
+
+<div class="container">
+
 <h1>Amersham EV Chargers</h1>
+
+<a href="/" class="back-link">← Back to homepage</a>
 
 <div id="map"></div>
 
@@ -81,7 +123,11 @@ London Road West
 
 </ul>
 
+</div>
+
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 
 <script>
 
@@ -94,13 +140,16 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 attribution: '&copy; OpenStreetMap contributors'
 }).addTo(map);
 
+var markers = L.markerClusterGroup();
 
 
-L.marker([
+
+var marker = L.marker([
 51.68060416153574,
 -0.608239090836463
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Boot & Slipper</b><br>
 Chesham Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.68060416153574,-0.608239090836463" target="_blank">
@@ -108,13 +157,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.66414946427466,
 -0.6355673527804697
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Shardeloes Farm Equestrian Centre</b><br>
 Cherry Lane<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.66414946427466,-0.6355673527804697" target="_blank">
@@ -122,13 +174,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.6666582443422,
 -0.613322188399394
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Old Town Car Park</b><br>
 The Broadway<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.6666582443422,-0.613322188399394" target="_blank">
@@ -136,13 +191,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.6715023851101,
 -0.583793967505471
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>BP Chalfonts Way SF Connect</b><br>
 66 White Lion Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.6715023851101,-0.583793967505471" target="_blank">
@@ -150,13 +208,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.67413,
 -0.606514
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>MK18</b><br>
 King George V Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.67413,-0.606514" target="_blank">
@@ -164,13 +225,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.668205,
 -0.6227
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>183 High Street</b><br>
 183 High Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.668205,-0.6227" target="_blank">
@@ -178,13 +242,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.667046,
 -0.56346
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Chenies Parade</b><br>
 Little Chalfont<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.667046,-0.56346" target="_blank">
@@ -192,13 +259,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.666342,
 -0.616582
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>The Crown Inn-Amersham</b><br>
 16 High Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.666342,-0.616582" target="_blank">
@@ -206,13 +276,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.6789991961664,
 -0.607264173045792
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Sycamore Road Car Park</b><br>
 Sycamore Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.6789991961664,-0.607264173045792" target="_blank">
@@ -220,13 +293,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.665632,
 -0.610537
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Tesco Superstore-Amersham</b><br>
 London Road West<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.665632,-0.610537" target="_blank">
@@ -234,13 +310,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.667944,
 -0.621973
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>155 High Street</b><br>
 155 High Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.667944,-0.621973" target="_blank">
@@ -248,7 +327,11 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
+
+
+map.addLayer(markers);
 
 </script>
 

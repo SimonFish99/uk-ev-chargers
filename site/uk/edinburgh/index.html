@@ -6,19 +6,61 @@
 
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
+
 <style>
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+}
+
+header {
+  background: #1f2937;
+  padding: 12px 20px;
+}
+
+.logo {
+  color: white;
+  text-decoration: none;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.container {
+  padding: 20px;
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 15px;
+  text-decoration: none;
+  color: #2563eb;
+  font-weight: bold;
+}
+
 #map {
-  height: 400px;
+  height: 420px;
   margin-bottom: 30px;
   border-radius: 8px;
 }
+
 </style>
 
 </head>
 
 <body>
 
+<header>
+<a href="/" class="logo">PlugMap</a>
+</header>
+
+<div class="container">
+
 <h1>Edinburgh EV Chargers</h1>
+
+<a href="/" class="back-link">← Back to homepage</a>
 
 <div id="map"></div>
 
@@ -236,7 +278,11 @@ Crewe Toll
 
 </ul>
 
+</div>
+
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 
 <script>
 
@@ -249,13 +295,16 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 attribution: '&copy; OpenStreetMap contributors'
 }).addTo(map);
 
+var markers = L.markerClusterGroup();
 
 
-L.marker([
+
+var marker = L.marker([
 55.933103,
 -3.133011
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Lidl-Craigmillar</b><br>
 119 Niddrie Mains Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.933103,-3.133011" target="_blank">
@@ -263,13 +312,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.962856,
 -3.170248
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Lidl-Easter Road</b><br>
 Easter Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.962856,-3.170248" target="_blank">
@@ -277,13 +329,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.931434,
 -3.2362092
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Lidl-Slateford Road</b><br>
 155 Slateford Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.931434,-3.2362092" target="_blank">
@@ -291,13 +346,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.974817,
 -3.195984
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>FC18128</b><br>
 Craighall Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.974817,-3.195984" target="_blank">
@@ -305,13 +363,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.964843,
 -3.169036
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>FC18532</b><br>
 St Clair Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.964843,-3.169036" target="_blank">
@@ -319,13 +380,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.963821,
 -3.197269
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Tesco Superstore - Broughton Road</b><br>
 7 Broughton Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.963821,-3.197269" target="_blank">
@@ -333,13 +397,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.961363,
 -3.305099
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>FC18608</b><br>
 Barnton Grove<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.961363,-3.305099" target="_blank">
@@ -347,13 +414,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.956304,
 -3.244544
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>FC18604</b><br>
 Craigleith Crescent<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.956304,-3.244544" target="_blank">
@@ -361,13 +431,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.952242,
 -3.140852
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>FC18116</b><br>
 Northfield Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.952242,-3.140852" target="_blank">
@@ -375,13 +448,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.94501,
 -3.19946
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>DRAX00201</b><br>
 Lauriston Place<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.94501,-3.19946" target="_blank">
@@ -389,13 +465,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.944632,
 -3.197533
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>FC18111</b><br>
 Chalmers Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.944632,-3.197533" target="_blank">
@@ -403,13 +482,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.94416,
 -3.098387
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Edinburgh College</b><br>
 9 Tait Wynd<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.94416,-3.098387" target="_blank">
@@ -417,13 +499,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.938761,
 -3.182625
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>FC18112</b><br>
 Sciennes<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.938761,-3.182625" target="_blank">
@@ -431,13 +516,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.93366,
 -3.163372
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>FC18127</b><br>
 Prestonfield Avenue<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.93366,-3.163372" target="_blank">
@@ -445,13 +533,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.905422,
 -3.220817
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>FC18606</b><br>
 Oxgangs View<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.905422,-3.220817" target="_blank">
@@ -459,13 +550,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.93494686183095,
 -3.309841484726064
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Westgate Farm </b><br>
 1 Craw Yard Place<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.93494686183095,-3.309841484726064" target="_blank">
@@ -473,13 +567,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.880723,
 -3.168606
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>IKEA Edinburgh</b><br>
 Straiton Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.880723,-3.168606" target="_blank">
@@ -487,13 +584,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.977332,
 -3.244953
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Granton Campus, Edinburgh</b><br>
 350 West Granton Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.977332,-3.244953" target="_blank">
@@ -501,13 +601,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.969161,
 -3.247991
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>North Edinburgh Office</b><br>
 1-5 West Pilton Gardens<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.969161,-3.247991" target="_blank">
@@ -515,13 +618,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.962304,
 -3.234667
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>NHS Western General, Crewe Road South</b><br>
 Porterfield Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.962304,-3.234667" target="_blank">
@@ -529,13 +635,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.959383,
 -3.148301
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Craigentinny Community Centre</b><br>
 1/4 Loaning Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.959383,-3.148301" target="_blank">
@@ -543,13 +652,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.943175,
 -3.096842
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Edinburgh College Milton Road Campus</b><br>
 9 Tait Wynd<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.943175,-3.096842" target="_blank">
@@ -557,13 +669,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.942754,
 -3.188781
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>University of Edinburgh Main Library Car Park</b><br>
 25 Buccleuch Place<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.942754,-3.188781" target="_blank">
@@ -571,13 +686,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.941441,
 -3.408043
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Western Toyota 2 Lonehead Drive</b><br>
 Newbridge<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.941441,-3.408043" target="_blank">
@@ -585,13 +703,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.940118,
 -3.312106
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Edinburgh Marriott Hotel Car Park</b><br>
 111 Glasgow Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.940118,-3.312106" target="_blank">
@@ -599,13 +720,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.903489,
 -3.152711
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>South Edinburgh Local Office</b><br>
 11 Captain's Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.903489,-3.152711" target="_blank">
@@ -613,13 +737,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 50.817799,
 -0.498348
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Sainsbury's Rustington Retail Park 1</b><br>
 Unit C, Rustington Retail Park  New Road, Rustington  LITTLEHAMPTON<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=50.817799,-0.498348" target="_blank">
@@ -627,13 +754,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.92315028749499,
 -3.2874063454379154
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>MFG Napier Service Station</b><br>
 382 Calder Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.92315028749499,-3.2874063454379154" target="_blank">
@@ -641,13 +771,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.970089,
 -3.231207
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Morrisons</b><br>
 Ferry Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.970089,-3.231207" target="_blank">
@@ -655,13 +788,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.955009,
 -3.142943
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Morrisons</b><br>
 Portobello Rd<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.955009,-3.142943" target="_blank">
@@ -669,13 +805,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.934719,
 -3.315212
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Aegon UK-Staff Entrance / Service Road</b><br>
 Edinburgh Park<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.934719,-3.315212" target="_blank">
@@ -683,13 +822,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.922457,
 -3.270558
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Murrayburn Depot</b><br>
 29A Murrayburn Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.922457,-3.270558" target="_blank">
@@ -697,13 +839,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.912199,
 -3.282349
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>30 Harvesters Way</b><br>
 23-6 Harvesters Way<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.912199,-3.282349" target="_blank">
@@ -711,13 +856,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.896842,
 -3.30879
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Hermiston Park and Ride</b><br>
 4-5 Riccarton Mains Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.896842,-3.30879" target="_blank">
@@ -725,13 +873,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.9525607158964,
 -3.1832206544613655
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Edinburgh Waveley Railway Station Car Park</b><br>
 New Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.9525607158964,-3.1832206544613655" target="_blank">
@@ -739,13 +890,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.8834,
 -3.165731
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Straiton, Loanhead</b><br>
 Straiton, Loanhead<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.8834,-3.165731" target="_blank">
@@ -753,13 +907,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.911113,
 -3.238268
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Tesco Superstore-Colinton</b><br>
 Colinton Mains Drive<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.911113,-3.238268" target="_blank">
@@ -767,13 +924,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.9453739,
 -3.3671657
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Edinburgh Supercharger</b><br>
 Edinburgh Airport<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.9453739,-3.3671657" target="_blank">
@@ -781,13 +941,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.967531,
 -3.235827
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Crewe Toll</b><br>
 Crewe Toll<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.967531,-3.235827" target="_blank">
@@ -795,13 +958,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.90277,
 -3.17047
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Mortonhall Crematorium, Howden Hall Road, Edinburgh</b><br>
 30B Howden Hall Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.90277,-3.17047" target="_blank">
@@ -809,13 +975,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.934734,
 -3.122766
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>4 Hay Avenue, Edinburgh</b><br>
 4 Hay Avenue<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.934734,-3.122766" target="_blank">
@@ -823,13 +992,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.933326,
 -3.213896
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Edinburgh Napier University Colinton Road, Edinburgh</b><br>
 33A Colinton Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.933326,-3.213896" target="_blank">
@@ -837,7 +1009,11 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
+
+
+map.addLayer(markers);
 
 </script>
 

@@ -6,19 +6,61 @@
 
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
+
 <style>
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+}
+
+header {
+  background: #1f2937;
+  padding: 12px 20px;
+}
+
+.logo {
+  color: white;
+  text-decoration: none;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.container {
+  padding: 20px;
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 15px;
+  text-decoration: none;
+  color: #2563eb;
+  font-weight: bold;
+}
+
 #map {
-  height: 400px;
+  height: 420px;
   margin-bottom: 30px;
   border-radius: 8px;
 }
+
 </style>
 
 </head>
 
 <body>
 
+<header>
+<a href="/" class="logo">PlugMap</a>
+</header>
+
+<div class="container">
+
 <h1>Thirsk EV Chargers</h1>
+
+<a href="/" class="back-link">← Back to homepage</a>
 
 <div id="map"></div>
 
@@ -61,7 +103,11 @@ Marage Road
 
 </ul>
 
+</div>
+
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 
 <script>
 
@@ -74,13 +120,16 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 attribution: '&copy; OpenStreetMap contributors'
 }).addTo(map);
 
+var markers = L.markerClusterGroup();
 
 
-L.marker([
+
+var marker = L.marker([
 54.24097,
 -1.20893
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>North York Moors National Park Authority</b><br>
 Sutton Bank National Park Centre<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.24097,-1.20893" target="_blank">
@@ -88,13 +137,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.2284145885184,
 -1.32831669419841
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>MFG Thirsk (Coming Soon) </b><br>
 York Road A170<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.2284145885184,-1.32831669419841" target="_blank">
@@ -102,13 +154,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.21701192824952,
 -1.4284655289421835
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Hambleton Crematorium </b><br>
 Maple Park Skipton Bridge<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.21701192824952,-1.4284655289421835" target="_blank">
@@ -116,13 +171,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.231046,
 -1.34766
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Tesco Superstore-Thirsk</b><br>
 Station Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.231046,-1.34766" target="_blank">
@@ -130,13 +188,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.2344198105917,
 -1.3431449561580848
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Millgate Car Park</b><br>
 Marage Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.2344198105917,-1.3431449561580848" target="_blank">
@@ -144,13 +205,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.1951752250879,
 -1.36333726084331
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Starbucks, Topcliffe, A168</b><br>
 Malthurst Thirsk Petrol Station<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.1951752250879,-1.36333726084331" target="_blank">
@@ -158,13 +222,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.2343383700408,
 -1.34286766231594
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Millgate Car Park</b><br>
 Marage Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.2343383700408,-1.34286766231594" target="_blank">
@@ -172,7 +239,11 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
+
+
+map.addLayer(markers);
 
 </script>
 

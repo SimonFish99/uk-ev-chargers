@@ -6,19 +6,61 @@
 
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
+
 <style>
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+}
+
+header {
+  background: #1f2937;
+  padding: 12px 20px;
+}
+
+.logo {
+  color: white;
+  text-decoration: none;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.container {
+  padding: 20px;
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 15px;
+  text-decoration: none;
+  color: #2563eb;
+  font-weight: bold;
+}
+
 #map {
-  height: 400px;
+  height: 420px;
   margin-bottom: 30px;
   border-radius: 8px;
 }
+
 </style>
 
 </head>
 
 <body>
 
+<header>
+<a href="/" class="logo">PlugMap</a>
+</header>
+
+<div class="container">
+
 <h1>Hythe EV Chargers</h1>
+
+<a href="/" class="back-link">← Back to homepage</a>
 
 <div id="map"></div>
 
@@ -76,7 +118,11 @@ Jones Lane Car Park
 
 </ul>
 
+</div>
+
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 
 <script>
 
@@ -89,13 +135,16 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 attribution: '&copy; OpenStreetMap contributors'
 }).addTo(map);
 
+var markers = L.markerClusterGroup();
 
 
-L.marker([
+
+var marker = L.marker([
 50.870577,
 -1.400693
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Jones Lane Car Park 2</b><br>
 Brinton Lane<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=50.870577,-1.400693" target="_blank">
@@ -103,13 +152,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 50.858175,
 -1.399746
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Ladycross Road</b><br>
 Brook Row, Ladycross Rd<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=50.858175,-1.399746" target="_blank">
@@ -117,13 +169,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.0724173059041,
 1.11316539075818
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Rydal Mount</b><br>
 Cliff Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.0724173059041,1.11316539075818" target="_blank">
@@ -131,13 +186,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.064598,
 1.077762
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Fishermans Beach Car Park, Hythe</b><br>
 Fishermans Beach Car Park<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.064598,1.077762" target="_blank">
@@ -145,13 +203,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.07165,
 1.124721
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Battery Point Car Park 1</b><br>
 Battery Point Car Park 1<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.07165,1.124721" target="_blank">
@@ -159,13 +220,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.07068,
 1.083612
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Mount Street Car Park 1</b><br>
 Mount Street Car Park 1<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.07068,1.083612" target="_blank">
@@ -173,13 +237,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.067769,
 1.093739
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Twiss Fort Car Park 1</b><br>
 Twiss Fort Car Park 1<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.067769,1.093739" target="_blank">
@@ -187,13 +254,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 50.86899,
 -1.40012
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>New Road Car Park</b><br>
 New Road Car Park<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=50.86899,-1.40012" target="_blank">
@@ -201,13 +271,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 50.868884,
 -1.397169
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Jones Lane Car Park</b><br>
 Jones Lane Car Park<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=50.868884,-1.397169" target="_blank">
@@ -215,13 +288,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.068348,
 1.066169
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>ALDI Hythe</b><br>
 142 Dymchurch Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.068348,1.066169" target="_blank">
@@ -229,7 +305,11 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
+
+
+map.addLayer(markers);
 
 </script>
 

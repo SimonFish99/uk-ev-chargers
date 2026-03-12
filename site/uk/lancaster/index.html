@@ -6,19 +6,61 @@
 
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
+
 <style>
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+}
+
+header {
+  background: #1f2937;
+  padding: 12px 20px;
+}
+
+.logo {
+  color: white;
+  text-decoration: none;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.container {
+  padding: 20px;
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 15px;
+  text-decoration: none;
+  color: #2563eb;
+  font-weight: bold;
+}
+
 #map {
-  height: 400px;
+  height: 420px;
   margin-bottom: 30px;
   border-radius: 8px;
 }
+
 </style>
 
 </head>
 
 <body>
 
+<header>
+<a href="/" class="logo">PlugMap</a>
+</header>
+
+<div class="container">
+
 <h1>Lancaster EV Chargers</h1>
+
+<a href="/" class="back-link">← Back to homepage</a>
 
 <div id="map"></div>
 
@@ -106,7 +148,11 @@ Dallas Rd
 
 </ul>
 
+</div>
+
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 
 <script>
 
@@ -119,13 +165,16 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 attribution: '&copy; OpenStreetMap contributors'
 }).addTo(map);
 
+var markers = L.markerClusterGroup();
 
 
-L.marker([
+
+var marker = L.marker([
 54.178479,
 -2.733997
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>MO Burton-in-Kendal</b><br>
 Burton West<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.178479,-2.733997" target="_blank">
@@ -133,13 +182,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.666619,
 -2.634996
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Car Park P, Chorley & South Ribble, Preston Road, Chorley</b><br>
 Chorley & South Ribble<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.666619,-2.634996" target="_blank">
@@ -147,13 +199,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.063849,
 -2.786712
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>SHELL RECHARGE LANCASTER</b><br>
 Caton Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.063849,-2.786712" target="_blank">
@@ -161,13 +216,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.962596,
 -2.759978
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Moto Lancaster Southbound Services</b><br>
 M6<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.962596,-2.759978" target="_blank">
@@ -175,13 +233,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.013651,
 -2.785377
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>LICA Building</b><br>
 Furness Avenue<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.013651,-2.785377" target="_blank">
@@ -189,13 +250,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.055875,
 -2.834814
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Pye Motors (Ford)</b><br>
 Ovangle Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.055875,-2.834814" target="_blank">
@@ -203,13 +267,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.046648,
 -2.801069
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Lancaster - Spring Garden CP 1</b><br>
 Spring Garden<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.046648,-2.801069" target="_blank">
@@ -217,13 +284,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.04427,
 -2.801438
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Aldcliffe Rd</b><br>
 Aldcliffe Rd<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.04427,-2.801438" target="_blank">
@@ -231,13 +301,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.07133,
 -2.87268
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Festival Market Car Park</b><br>
 Central Drive<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.07133,-2.87268" target="_blank">
@@ -245,13 +318,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.05535,
 -2.8249
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Salt Ayre</b><br>
 Salt Ayre<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.05535,-2.8249" target="_blank">
@@ -259,13 +335,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.05048,
 -2.814
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Cedar Road</b><br>
 Cedar Road Car Park<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.05048,-2.814" target="_blank">
@@ -273,13 +352,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.04721,
 -2.8045
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Dallas Road Car Park</b><br>
 Dallas Road Car Park<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.04721,-2.8045" target="_blank">
@@ -287,13 +369,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.04281,
 -2.78369
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Williamson Park Car Park</b><br>
 Williamson Park Car Park<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.04281,-2.78369" target="_blank">
@@ -301,13 +386,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.070744197735934,
 -2.7722239071869126
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Lancaster Park & Ride (7kw charging)</b><br>
 Caton Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.070744197735934,-2.7722239071869126" target="_blank">
@@ -315,13 +403,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.070164,
 -2.77224
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Lancaster Park & Ride</b><br>
 Caton Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.070164,-2.77224" target="_blank">
@@ -329,13 +420,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.045342,
 -2.805308
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Lancaster Boys & Girls Club CMS Lancaster</b><br>
 Dallas Rd<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.045342,-2.805308" target="_blank">
@@ -343,7 +437,11 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
+
+
+map.addLayer(markers);
 
 </script>
 

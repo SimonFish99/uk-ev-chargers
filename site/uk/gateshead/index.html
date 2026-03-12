@@ -6,19 +6,61 @@
 
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
+
 <style>
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+}
+
+header {
+  background: #1f2937;
+  padding: 12px 20px;
+}
+
+.logo {
+  color: white;
+  text-decoration: none;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.container {
+  padding: 20px;
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 15px;
+  text-decoration: none;
+  color: #2563eb;
+  font-weight: bold;
+}
+
 #map {
-  height: 400px;
+  height: 420px;
   margin-bottom: 30px;
   border-radius: 8px;
 }
+
 </style>
 
 </head>
 
 <body>
 
+<header>
+<a href="/" class="logo">PlugMap</a>
+</header>
+
+<div class="container">
+
 <h1>Gateshead EV Chargers</h1>
+
+<a href="/" class="back-link">← Back to homepage</a>
 
 <div id="map"></div>
 
@@ -136,7 +178,11 @@ Blackhall Mill
 
 </ul>
 
+</div>
+
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 
 <script>
 
@@ -149,13 +195,16 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 attribution: '&copy; OpenStreetMap contributors'
 }).addTo(map);
 
+var markers = L.markerClusterGroup();
 
 
-L.marker([
+
+var marker = L.marker([
 54.92692,
 -1.57492
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Lidl-Gateshead Wrekenton</b><br>
 Durham Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.92692,-1.57492" target="_blank">
@@ -163,13 +212,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.93291,
 -1.612619
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Gateshead College Autoskills Centre</b><br>
 Gateshead College Autoskills Centre<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.93291,-1.612619" target="_blank">
@@ -177,13 +229,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.965666,
 -1.59742
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Gateshead College Baltic Campus</b><br>
 Baltic Campus, Quarryfield Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.965666,-1.59742" target="_blank">
@@ -191,13 +246,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.960277,
 -1.580953
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Gateshead International Stadium</b><br>
 Gateshead International Stadium<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.960277,-1.580953" target="_blank">
@@ -205,13 +263,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.959505,
 -1.670352
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>zest-year-rock-size</b><br>
 St. Michaels Way<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.959505,-1.670352" target="_blank">
@@ -219,13 +280,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.958653,
 -1.674237
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Gateshead, Metro Centre 1</b><br>
 Gateshead Leisure Centre,<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.958653,-1.674237" target="_blank">
@@ -233,13 +297,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.958313,
 -1.671397
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Metrocentre Yellow Car Park</b><br>
 Metrocentre Yellow Car Park<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.958313,-1.671397" target="_blank">
@@ -247,13 +314,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.958069,
 -1.540813
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Bill Quay Farm</b><br>
 Bill Quay Farm<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.958069,-1.540813" target="_blank">
@@ -261,13 +331,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.952284,
 -1.601777
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Gateshead Leisure Centre 2</b><br>
 Prince Consort Road Car Park, Prince Consort Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.952284,-1.601777" target="_blank">
@@ -275,13 +348,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.951862,
 -1.602898
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Gateshead Library Leisure</b><br>
 Gateshead<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.951862,-1.602898" target="_blank">
@@ -289,13 +365,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.947144,
 -1.650786
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Dunston Leisure Centre</b><br>
 Dunston<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.947144,-1.650786" target="_blank">
@@ -303,13 +382,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.942993,
 -1.624498
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Maingate Kingsway</b><br>
 Maingate Kingsway<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.942993,-1.624498" target="_blank">
@@ -317,13 +399,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.933672,
 -1.615441
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Gateshead Housing Keelman House</b><br>
 5th Avenue<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.933672,-1.615441" target="_blank">
@@ -331,13 +416,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.97935845256316,
 -1.7920743425963792
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Clara Vale Village Hall</b><br>
 South View<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.97935845256316,-1.7920743425963792" target="_blank">
@@ -345,13 +433,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.963717,
 -1.603064
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Tesco Extra-Gateshead Trinity Square</b><br>
 1 Trinity Square<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.963717,-1.603064" target="_blank">
@@ -359,13 +450,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.91543513355222,
 -1.5889915272223334
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Angel of the North</b><br>
 Durham Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.91543513355222,-1.5889915272223334" target="_blank">
@@ -373,13 +467,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.9613,
 -1.5886
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Evans Halshaw Vauxhall</b><br>
 Felling<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.9613,-1.5886" target="_blank">
@@ -387,13 +484,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.946105,
 -1.548331
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Heworth Leisure Centre High Lanes</b><br>
 Heworth Leisure Centre High Lanes<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.946105,-1.548331" target="_blank">
@@ -401,13 +501,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.953704,
 -1.558154
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Gateshead</b><br>
 Benfield Motors<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.953704,-1.558154" target="_blank">
@@ -415,13 +518,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.967298,
 -1.601517
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>The Sage Gateshead</b><br>
 The Sage Gateshead<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.967298,-1.601517" target="_blank">
@@ -429,13 +535,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.940335,
 -1.620068
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>UK Land Estates</b><br>
 UK Land Estates<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.940335,-1.620068" target="_blank">
@@ -443,13 +552,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.905493,
 -1.815635
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Blackhall Mill Community Centre</b><br>
 Blackhall Mill<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.905493,-1.815635" target="_blank">
@@ -457,7 +569,11 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
+
+
+map.addLayer(markers);
 
 </script>
 

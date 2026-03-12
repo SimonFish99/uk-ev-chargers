@@ -6,19 +6,61 @@
 
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
+
 <style>
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+}
+
+header {
+  background: #1f2937;
+  padding: 12px 20px;
+}
+
+.logo {
+  color: white;
+  text-decoration: none;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.container {
+  padding: 20px;
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 15px;
+  text-decoration: none;
+  color: #2563eb;
+  font-weight: bold;
+}
+
 #map {
-  height: 400px;
+  height: 420px;
   margin-bottom: 30px;
   border-radius: 8px;
 }
+
 </style>
 
 </head>
 
 <body>
 
+<header>
+<a href="/" class="logo">PlugMap</a>
+</header>
+
+<div class="container">
+
 <h1>Twickenham EV Chargers</h1>
+
+<a href="/" class="back-link">← Back to homepage</a>
 
 <div id="map"></div>
 
@@ -76,7 +118,11 @@ Colne Rd 102
 
 </ul>
 
+</div>
+
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 
 <script>
 
@@ -89,13 +135,16 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 attribution: '&copy; OpenStreetMap contributors'
 }).addTo(map);
 
+var markers = L.markerClusterGroup();
 
 
-L.marker([
+
+var marker = L.marker([
 51.441182,
 -0.334449
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Holmes Rd 32</b><br>
 Holmes Rd 32<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.441182,-0.334449" target="_blank">
@@ -103,13 +152,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.459356,
 -0.323819
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>13 Ailsa Avenue</b><br>
 13 Ailsa Avenue<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.459356,-0.323819" target="_blank">
@@ -117,13 +169,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.459133,
 -0.325174
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>47 Ailsa Avenue</b><br>
 47 Ailsa Avenue<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.459133,-0.325174" target="_blank">
@@ -131,13 +186,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.454811,
 -0.357222
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Prospect Cres 39</b><br>
 Prospect Cres 39<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.454811,-0.357222" target="_blank">
@@ -145,13 +203,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.449233,
 -0.324431
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Strafford Rd 2</b><br>
 Strafford Rd 2<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.449233,-0.324431" target="_blank">
@@ -159,13 +220,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.448807,
 -0.325399
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Oak Lane 9</b><br>
 Oak Lane 9<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.448807,-0.325399" target="_blank">
@@ -173,13 +237,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.448699,
 -0.324758
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>SHELL RECHARGE OAK LANE</b><br>
 Richmond Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.448699,-0.324758" target="_blank">
@@ -187,13 +254,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.44762,
 -0.336762
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Albert Rd 12</b><br>
 Albert Rd 12<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.44762,-0.336762" target="_blank">
@@ -201,13 +271,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.44646,
 -0.332751
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>31 Copthall Gardens</b><br>
 31 Copthall Gardens<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.44646,-0.332751" target="_blank">
@@ -215,13 +288,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.445819,
 -0.342188
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Colne Rd 102</b><br>
 Colne Rd 102<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.445819,-0.342188" target="_blank">
@@ -229,7 +305,11 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
+
+
+map.addLayer(markers);
 
 </script>
 

@@ -6,19 +6,61 @@
 
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
+
 <style>
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+}
+
+header {
+  background: #1f2937;
+  padding: 12px 20px;
+}
+
+.logo {
+  color: white;
+  text-decoration: none;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.container {
+  padding: 20px;
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 15px;
+  text-decoration: none;
+  color: #2563eb;
+  font-weight: bold;
+}
+
 #map {
-  height: 400px;
+  height: 420px;
   margin-bottom: 30px;
   border-radius: 8px;
 }
+
 </style>
 
 </head>
 
 <body>
 
+<header>
+<a href="/" class="logo">PlugMap</a>
+</header>
+
+<div class="container">
+
 <h1>Castleford EV Chargers</h1>
+
+<a href="/" class="back-link">← Back to homepage</a>
 
 <div id="map"></div>
 
@@ -71,7 +113,11 @@ Welbeck Street
 
 </ul>
 
+</div>
+
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 
 <script>
 
@@ -84,13 +130,16 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 attribution: '&copy; OpenStreetMap contributors'
 }).addTo(map);
 
+var markers = L.markerClusterGroup();
 
 
-L.marker([
+
+var marker = L.marker([
 53.715887,
 -1.382661
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Tap Zap Go - Castleford</b><br>
 Willowbridge Lane<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.715887,-1.382661" target="_blank">
@@ -98,13 +147,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.7147377781576,
 -1.3491883557226174
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Birchwood Farm</b><br>
 Colorado Way<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.7147377781576,-1.3491883557226174" target="_blank">
@@ -112,13 +164,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.71784391,
 -1.394816071
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>EVC Whitwood Golf Course</b><br>
 Altofts Ln, Whitwood Ln<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.71784391,-1.394816071" target="_blank">
@@ -126,13 +181,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.726627,
 -1.363725
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>PETER AMBROSE CARPARK 1</b><br>
 5 Methley Rd<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.726627,-1.363725" target="_blank">
@@ -140,13 +198,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.70986178,
 -1.3399258
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Xscape Yorkshire</b><br>
 Colorado Way<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.70986178,-1.3399258" target="_blank">
@@ -154,13 +215,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.714512,
 -1.351551
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Asda Glasshoughton</b><br>
 Glasshoughton<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.714512,-1.351551" target="_blank">
@@ -168,13 +232,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.71185838443719,
 -1.3408038229654267
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Junction 32 Retail Outlet : Blue Car Park</b><br>
 Tomahawk Trail<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.71185838443719,-1.3408038229654267" target="_blank">
@@ -182,13 +249,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.709185315141,
 -1.33570178168929
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>McDonald's Glasshoughton</b><br>
 Colorado Way<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.709185315141,-1.33570178168929" target="_blank">
@@ -196,13 +266,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.725265,
 -1.355897
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Welbeck Street</b><br>
 Welbeck Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.725265,-1.355897" target="_blank">
@@ -210,7 +283,11 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
+
+
+map.addLayer(markers);
 
 </script>
 

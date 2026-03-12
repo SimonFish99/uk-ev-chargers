@@ -6,19 +6,61 @@
 
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
+
 <style>
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+}
+
+header {
+  background: #1f2937;
+  padding: 12px 20px;
+}
+
+.logo {
+  color: white;
+  text-decoration: none;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.container {
+  padding: 20px;
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 15px;
+  text-decoration: none;
+  color: #2563eb;
+  font-weight: bold;
+}
+
 #map {
-  height: 400px;
+  height: 420px;
   margin-bottom: 30px;
   border-radius: 8px;
 }
+
 </style>
 
 </head>
 
 <body>
 
+<header>
+<a href="/" class="logo">PlugMap</a>
+</header>
+
+<div class="container">
+
 <h1>Greenford EV Chargers</h1>
+
+<a href="/" class="back-link">← Back to homepage</a>
 
 <div id="map"></div>
 
@@ -81,7 +123,11 @@ Gainsborogh Gardens
 
 </ul>
 
+</div>
+
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 
 <script>
 
@@ -94,13 +140,16 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 attribution: '&copy; OpenStreetMap contributors'
 }).addTo(map);
 
+var markers = L.markerClusterGroup();
 
 
-L.marker([
+
+var marker = L.marker([
 51.548956,
 -0.33001
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>RAW GREENE KING BALLOT BOX 3</b><br>
 Ballot Box Horsenden Lane North<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.548956,-0.33001" target="_blank">
@@ -108,13 +157,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.542864,
 -0.361384
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>SEGRO AREAS MET PARK COM 2</b><br>
 25 Derby Rd<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.542864,-0.361384" target="_blank">
@@ -122,13 +174,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.535562,
 -0.346017
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>SHELL RECHARGE ROUNDABOUT</b><br>
 744-748 Greenford Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.535562,-0.346017" target="_blank">
@@ -136,13 +191,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.550725,
 -0.338228
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>north side of Horsenden lane</b><br>
 north side of Horsenden lane<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.550725,-0.338228" target="_blank">
@@ -150,13 +208,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.548546,
 -0.345235
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>SEGRO AREAS AURIOL DR YARD1</b><br>
 439 Oldfield Ln N<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.548546,-0.345235" target="_blank">
@@ -164,13 +225,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.524336,
 -0.353306
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Shell Recharge/Ubitricity</b><br>
 null<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.524336,-0.353306" target="_blank">
@@ -178,13 +242,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.52398,
 -0.353596
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Shell Recharge/Ubitricity</b><br>
 null<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.52398,-0.353596" target="_blank">
@@ -192,13 +259,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.54425583,
 -0.359164
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>R&R Greenford LTD</b><br>
 428 Long Drive<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.54425583,-0.359164" target="_blank">
@@ -206,13 +276,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.53339,
 -0.324436
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>A40 Westbound Parking/Charging</b><br>
 5 Western Avenue<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.53339,-0.324436" target="_blank">
@@ -220,13 +293,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.535101,
 -0.346589
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Shell Roundabout</b><br>
 744-748 Greenford Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.535101,-0.346589" target="_blank">
@@ -234,13 +310,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.5556,
 -0.33884
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Kellogg Tower, London</b><br>
 Gainsborogh Gardens<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.5556,-0.33884" target="_blank">
@@ -248,7 +327,11 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
+
+
+map.addLayer(markers);
 
 </script>
 

@@ -6,19 +6,61 @@
 
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
+
 <style>
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+}
+
+header {
+  background: #1f2937;
+  padding: 12px 20px;
+}
+
+.logo {
+  color: white;
+  text-decoration: none;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.container {
+  padding: 20px;
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 15px;
+  text-decoration: none;
+  color: #2563eb;
+  font-weight: bold;
+}
+
 #map {
-  height: 400px;
+  height: 420px;
   margin-bottom: 30px;
   border-radius: 8px;
 }
+
 </style>
 
 </head>
 
 <body>
 
+<header>
+<a href="/" class="logo">PlugMap</a>
+</header>
+
+<div class="container">
+
 <h1>Newport EV Chargers</h1>
+
+<a href="/" class="back-link">← Back to homepage</a>
 
 <div id="map"></div>
 
@@ -271,7 +313,11 @@ Lilleshall
 
 </ul>
 
+</div>
+
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 
 <script>
 
@@ -284,13 +330,16 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 attribution: '&copy; OpenStreetMap contributors'
 }).addTo(map);
 
+var markers = L.markerClusterGroup();
 
 
-L.marker([
+
+var marker = L.marker([
 52.029035,
 -4.837101
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Newport Sands Car Park, Newport</b><br>
 Parrog Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.029035,-4.837101" target="_blank">
@@ -298,13 +347,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.601792,
 -2.982319
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Bank Street, Newport</b><br>
 Bank Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.601792,-2.982319" target="_blank">
@@ -312,13 +364,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.601438,
 -2.995302
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Ultra Rapid EV Charging - Sainsbury's Newport</b><br>
 Sainsbury's<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.601438,-2.995302" target="_blank">
@@ -326,13 +381,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.600276,
 -3.000789
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Ross Street, Newport</b><br>
 Ross Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.600276,-3.000789" target="_blank">
@@ -340,13 +398,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.589091,
 -3.020376
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Ridgeway, Newport</b><br>
 Allt Yr Yn Avenue<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.589091,-3.020376" target="_blank">
@@ -354,13 +415,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.588791,
 -2.982269
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Oriel Road, Newport</b><br>
 Oriel Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.588791,-2.982269" target="_blank">
@@ -368,13 +432,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.587156,
 -2.967613
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Wyeverne Road, Newport</b><br>
 Wyeverne Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.587156,-2.967613" target="_blank">
@@ -382,13 +449,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.586027,
 -2.980318
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Lennard Street, Newport</b><br>
 Lennard Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.586027,-2.980318" target="_blank">
@@ -396,13 +466,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.585044,
 -2.977387
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Telford Street, Newport</b><br>
 Telford Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.585044,-2.977387" target="_blank">
@@ -410,13 +483,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.583561,
 -2.968826
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Henson Street, Newport</b><br>
 Henson Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.583561,-2.968826" target="_blank">
@@ -424,13 +500,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.579757,
 -2.992493
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Alma Street, Newport</b><br>
 Alma Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.579757,-2.992493" target="_blank">
@@ -438,13 +517,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.572216,
 -2.993198
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Alice Street, Newport</b><br>
 Alice Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.572216,-2.993198" target="_blank">
@@ -452,13 +534,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.572152,
 -2.989939
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Alexandra Road, Newport</b><br>
 Alexandra Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.572152,-2.989939" target="_blank">
@@ -466,13 +551,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.978724,
 0.20787
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Newport Rec</b><br>
 Frambury Lane<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.978724,0.20787" target="_blank">
@@ -480,13 +568,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 50.706768,
 -1.288166
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Seaclose Park Car Park</b><br>
 Seaclose Park Car Park<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=50.706768,-1.288166" target="_blank">
@@ -494,13 +585,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.576917,
 -2.9791489
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Blaina Wharf Newport Pub & Restaurant</b><br>
 E Dock RD<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.576917,-2.9791489" target="_blank">
@@ -508,13 +602,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.5974622,
 -3.0765198
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>InstaVolt McDonald's Meadowland</b><br>
 Afon Ebbw Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.5974622,-3.0765198" target="_blank">
@@ -522,13 +619,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.60160641034875,
 -2.9342881853233678
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Tesla Newport Supercharger</b><br>
 Coldra Woods Drive<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.60160641034875,-2.9342881853233678" target="_blank">
@@ -536,13 +636,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.584522,
 -2.99694
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Stow Hill Car Park, Newport</b><br>
 Stow Hill<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.584522,-2.99694" target="_blank">
@@ -550,13 +653,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.570924,
 -3.012681
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Maesglas Community Centre</b><br>
 Maesglas Community Centre<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.570924,-3.012681" target="_blank">
@@ -564,13 +670,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.60776,
 -2.895596
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>RAW GREENE KING NEW INN 1</b><br>
 New Inn<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.60776,-2.895596" target="_blank">
@@ -578,13 +687,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.603014,
 -2.985976
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Newport Indoor Bowls Centre</b><br>
 Newport Indoor Bowls Centre<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.603014,-2.985976" target="_blank">
@@ -592,13 +704,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.599185,
 -2.96313
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Beaufort Centre Car Park</b><br>
 Beaufort Centre Car Park<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.599185,-2.96313" target="_blank">
@@ -606,13 +721,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.594429,
 -3.070126
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Rivermead Centre Car Park, Newport</b><br>
 Rivermead Centre Car Par<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.594429,-3.070126" target="_blank">
@@ -620,13 +738,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.591625,
 -2.956975
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Hatherleigh Community Centre, Newport</b><br>
 Hatherleigh Community Centre, Newport<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.591625,-2.956975" target="_blank">
@@ -634,13 +755,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.586385,
 -2.945515
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>mAlway Community Centre. Aberthaw Rise, Newport</b><br>
 Alway Community Centre. Aberthaw Rise<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.586385,-2.945515" target="_blank">
@@ -648,13 +772,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.582171,
 -2.949073
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Newport East Community Centre</b><br>
 Newport East Community Centre<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.582171,-2.949073" target="_blank">
@@ -662,13 +789,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.577668,
 -3.018607
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Gaer Community Centre</b><br>
 Gaer Community Centre<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.577668,-3.018607" target="_blank">
@@ -676,13 +806,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.57747,
 -2.967201
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Morrisons</b><br>
 Orb Drive<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.57747,-2.967201" target="_blank">
@@ -690,13 +823,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 50.704875,
 -1.294469
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>PremierFord</b><br>
 2-3 Riverway<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=50.704875,-1.294469" target="_blank">
@@ -704,13 +840,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 50.700915,
 -1.292227
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>IOW Quay Street 2</b><br>
 15/16 Quay Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=50.700915,-1.292227" target="_blank">
@@ -718,13 +857,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.58147283050593,
 -3.041134763146971
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Pye Corner Railway Station</b><br>
 Western Valley Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.58147283050593,-3.041134763146971" target="_blank">
@@ -732,13 +874,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.57658057,
 -2.94751755
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Tesco Extra-Newport Spytty</b><br>
 Spytty Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.57658057,-2.94751755" target="_blank">
@@ -746,13 +891,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.60819,
 -3.00827
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Hollybush Avenue, Newport</b><br>
 Malpas Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.60819,-3.00827" target="_blank">
@@ -760,13 +908,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.592908,
 -2.991721
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Riverfront Car Park, Newport</b><br>
 Newport<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.592908,-2.991721" target="_blank">
@@ -774,13 +925,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.590351,
 -2.98073
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Maindee Car Park, Newport</b><br>
 Newport<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.590351,-2.98073" target="_blank">
@@ -788,13 +942,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.587269,
 -2.992266
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Riverfront Car Park, Newport</b><br>
 Newport<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.587269,-2.992266" target="_blank">
@@ -802,13 +959,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.5713,
 -2.98795
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Mill Parade Car Park</b><br>
 Mill Parade<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.5713,-2.98795" target="_blank">
@@ -816,13 +976,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.569014,
 -3.021717
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Tredegar Park, Newport</b><br>
 Newport<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.569014,-3.021717" target="_blank">
@@ -830,13 +993,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 50.657946793927636,
 -1.247180550433427
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>40 kW Project EV Atess</b><br>
 Medina Way<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=50.657946793927636,-1.247180550433427" target="_blank">
@@ -844,13 +1010,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.59952068,
 -2.92687531
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Holiday Inn Newport</b><br>
 The Coldra<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.59952068,-2.92687531" target="_blank">
@@ -858,13 +1027,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.588719,
 -3.00387
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Faulkner Road Car Park</b><br>
 Faulkner Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.588719,-3.00387" target="_blank">
@@ -872,13 +1044,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.634661,
 -3.106308
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Cwmcarn Visitor Centre</b><br>
 Cwmcarn Forest Drive<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.634661,-3.106308" target="_blank">
@@ -886,13 +1061,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.584775,
 -3.052874
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Rogerstone</b><br>
 Rogerstone<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.584775,-3.052874" target="_blank">
@@ -900,13 +1078,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.57173,
 -3.012668
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Lidl-Cardiff Road</b><br>
 Cardiff Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.57173,-3.012668" target="_blank">
@@ -914,13 +1095,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.595108,
 -3.066715
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>NP10 9LG</b><br>
 <br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.595108,-3.066715" target="_blank">
@@ -928,13 +1112,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.579385,
 -3.003861
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Waterloo Road</b><br>
 Waterloo Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.579385,-3.003861" target="_blank">
@@ -942,13 +1129,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.567146,
 -3.029248
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Concept House</b><br>
 South Wales<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.567146,-3.029248" target="_blank">
@@ -956,13 +1146,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.745297,
 -2.399713
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Lilleshall</b><br>
 Lilleshall<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.745297,-2.399713" target="_blank">
@@ -970,7 +1163,11 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
+
+
+map.addLayer(markers);
 
 </script>
 

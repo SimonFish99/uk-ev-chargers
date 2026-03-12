@@ -6,19 +6,61 @@
 
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
+
 <style>
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+}
+
+header {
+  background: #1f2937;
+  padding: 12px 20px;
+}
+
+.logo {
+  color: white;
+  text-decoration: none;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.container {
+  padding: 20px;
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 15px;
+  text-decoration: none;
+  color: #2563eb;
+  font-weight: bold;
+}
+
 #map {
-  height: 400px;
+  height: 420px;
   margin-bottom: 30px;
   border-radius: 8px;
 }
+
 </style>
 
 </head>
 
 <body>
 
+<header>
+<a href="/" class="logo">PlugMap</a>
+</header>
+
+<div class="container">
+
 <h1>Worcester EV Chargers</h1>
+
+<a href="/" class="back-link">← Back to homepage</a>
 
 <div id="map"></div>
 
@@ -91,7 +133,11 @@ Whittington Road
 
 </ul>
 
+</div>
+
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 
 <script>
 
@@ -104,13 +150,16 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 attribution: '&copy; OpenStreetMap contributors'
 }).addTo(map);
 
+var markers = L.markerClusterGroup();
 
 
-L.marker([
+
+var marker = L.marker([
 52.171523021183,
 -2.44546698282117
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Malvern View Holiday Homes</b><br>
 Stanford Bishop<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.171523021183,-2.44546698282117" target="_blank">
@@ -118,13 +167,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.057379,
 -2.140795
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Roadchef Strensham Southbound Services</b><br>
 Junction 8 M5<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.057379,-2.140795" target="_blank">
@@ -132,13 +184,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.170837,
 -2.20462
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Tesco Superstore - Worcester</b><br>
 St Peters Drive<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.170837,-2.20462" target="_blank">
@@ -146,13 +201,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.213147,
 -2.1980712
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Blackpole Inn Pub & Restaurant</b><br>
 Blackpole Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.213147,-2.1980712" target="_blank">
@@ -160,13 +218,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.193115,
 -2.223942
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Crowngate 1</b><br>
 Crowngate Shopping Centre Car park<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.193115,-2.223942" target="_blank">
@@ -174,13 +235,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.192879,
 -2.225538
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Crowngate Shopping Centre</b><br>
 Friary Walk<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.192879,-2.225538" target="_blank">
@@ -188,13 +252,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.191664,
 -2.216371
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>St Martins Gate</b><br>
 Spring Gardens<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.191664,-2.216371" target="_blank">
@@ -202,13 +269,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.185554,
 -2.182539
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>WCC County Hall</b><br>
 County Hall Spetchley Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.185554,-2.182539" target="_blank">
@@ -216,13 +286,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.189475,
 -2.262663
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Redrow Homes Group-Kensington Gate</b><br>
 Bromyard Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.189475,-2.262663" target="_blank">
@@ -230,13 +303,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.1884935470461,
 -2.17251287777776
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>MFG Nunnery Park</b><br>
 Nunnery Park<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.1884935470461,-2.17251287777776" target="_blank">
@@ -244,13 +320,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.222271,
 -2.193829
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Mercedes-Benz of Worcester</b><br>
 Hindlip Lane Blackpole Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.222271,-2.193829" target="_blank">
@@ -258,13 +337,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.15689993437161,
 -2.158879488885532
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Worcestershire Parkway Railway Station</b><br>
 Whittington Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.15689993437161,-2.158879488885532" target="_blank">
@@ -272,13 +354,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.187005,
 -2.247648
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Restricted access to Nissan and Renault customers</b><br>
 <br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.187005,-2.247648" target="_blank">
@@ -286,7 +371,11 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
+
+
+map.addLayer(markers);
 
 </script>
 

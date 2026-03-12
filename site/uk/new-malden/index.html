@@ -6,19 +6,61 @@
 
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
+
 <style>
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+}
+
+header {
+  background: #1f2937;
+  padding: 12px 20px;
+}
+
+.logo {
+  color: white;
+  text-decoration: none;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.container {
+  padding: 20px;
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 15px;
+  text-decoration: none;
+  color: #2563eb;
+  font-weight: bold;
+}
+
 #map {
-  height: 400px;
+  height: 420px;
   margin-bottom: 30px;
   border-radius: 8px;
 }
+
 </style>
 
 </head>
 
 <body>
 
+<header>
+<a href="/" class="logo">PlugMap</a>
+</header>
+
+<div class="container">
+
 <h1>New Malden EV Chargers</h1>
+
+<a href="/" class="back-link">← Back to homepage</a>
 
 <div id="map"></div>
 
@@ -71,7 +113,11 @@ Huntley Way
 
 </ul>
 
+</div>
+
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 
 <script>
 
@@ -84,13 +130,16 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 attribution: '&copy; OpenStreetMap contributors'
 }).addTo(map);
 
+var markers = L.markerClusterGroup();
 
 
-L.marker([
+
+var marker = L.marker([
 51.407369,
 -0.258784
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Sycamore Grove</b><br>
 Sycamore Grove<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.407369,-0.258784" target="_blank">
@@ -98,13 +147,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.406185,
 -0.267721
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Mount Pleasant Road</b><br>
 Mount Pleasant Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.406185,-0.267721" target="_blank">
@@ -112,13 +164,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.399094,
 -0.26779
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Grayham Road</b><br>
 Grayham Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.399094,-0.26779" target="_blank">
@@ -126,13 +181,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.3966212,
 -0.2404419
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>72 Belmont Avenue</b><br>
 72 Belmont Avenue<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.3966212,-0.2404419" target="_blank">
@@ -140,13 +198,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.3972452,
 -0.2315291
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>35 Kingsway</b><br>
 35 Kingsway<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.3972452,-0.2315291" target="_blank">
@@ -154,13 +215,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.403257,
 -0.255142
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>CI TOWER STATION 1</b><br>
 CI Tower High Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.403257,-0.255142" target="_blank">
@@ -168,13 +232,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.401751,
 -0.239067
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Tesco Extra - New Malden</b><br>
 300 Beverley Way<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.401751,-0.239067" target="_blank">
@@ -182,13 +249,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.40974,
 -0.24615
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Huntley Way</b><br>
 Huntley Way<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.40974,-0.24615" target="_blank">
@@ -196,13 +266,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.4018097463459,
 -0.240372788861805
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Tesco Extra New Malden</b><br>
  300 Beverley Way <br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.4018097463459,-0.240372788861805" target="_blank">
@@ -210,7 +283,11 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
+
+
+map.addLayer(markers);
 
 </script>
 

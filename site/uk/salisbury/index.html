@@ -6,19 +6,61 @@
 
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
+
 <style>
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+}
+
+header {
+  background: #1f2937;
+  padding: 12px 20px;
+}
+
+.logo {
+  color: white;
+  text-decoration: none;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.container {
+  padding: 20px;
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 15px;
+  text-decoration: none;
+  color: #2563eb;
+  font-weight: bold;
+}
+
 #map {
-  height: 400px;
+  height: 420px;
   margin-bottom: 30px;
   border-radius: 8px;
 }
+
 </style>
 
 </head>
 
 <body>
 
+<header>
+<a href="/" class="logo">PlugMap</a>
+</header>
+
+<div class="container">
+
 <h1>Salisbury EV Chargers</h1>
+
+<a href="/" class="back-link">← Back to homepage</a>
 
 <div id="map"></div>
 
@@ -126,7 +168,11 @@ Brown Street
 
 </ul>
 
+</div>
+
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 
 <script>
 
@@ -139,13 +185,16 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 attribution: '&copy; OpenStreetMap contributors'
 }).addTo(map);
 
+var markers = L.markerClusterGroup();
 
 
-L.marker([
+
+var marker = L.marker([
 51.06723516594158,
 -1.7947619425035555
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Old George Mall Car Park</b><br>
 New Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.06723516594158,-1.7947619425035555" target="_blank">
@@ -153,13 +202,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.0712897295312,
 -1.798526923124541
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Salisbury Council Fleet chargers</b><br>
 Avon Approach<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.0712897295312,-1.798526923124541" target="_blank">
@@ -167,13 +219,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.07399958668455,
 -1.8167666670625806
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Shell Wilton Road</b><br>
 133 Wilton Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.07399958668455,-1.8167666670625806" target="_blank">
@@ -181,13 +236,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.05684579803449,
 -1.7929700274374056
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>BP Pulse Salisbury SF Connect</b><br>
 Salisbury SF Connect<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.05684579803449,-1.7929700274374056" target="_blank">
@@ -195,13 +253,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.078536,
 -1.803527
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Five Rivers Leisure Centre 1</b><br>
 88 Hulse Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.078536,-1.803527" target="_blank">
@@ -209,13 +270,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.078026,
 -1.803645
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Five Rivers (Campus)</b><br>
 Hulse Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.078026,-1.803645" target="_blank">
@@ -223,13 +287,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.072337,
 -1.79105
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Bourne Hill</b><br>
 Bourne Hill<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.072337,-1.79105" target="_blank">
@@ -237,13 +304,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.067167,
 -2.085186
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Tisbury Community Campus</b><br>
 Weaveland Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.067167,-2.085186" target="_blank">
@@ -251,13 +321,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.062444,
 -1.773421
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Tesco Extra - Salisbury</b><br>
 Bourne Centre<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.062444,-1.773421" target="_blank">
@@ -265,13 +338,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.06257816045908,
 -1.7715930116473828
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Petersfinger (Park and Ride)</b><br>
 A36 Southampton Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.06257816045908,-1.7715930116473828" target="_blank">
@@ -279,13 +355,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.049436,
 -1.777814
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Britford</b><br>
 3 High Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.049436,-1.777814" target="_blank">
@@ -293,13 +372,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.07837650464111,
 -1.8019259231576825
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Five Rivers Leisure Centre</b><br>
 Hulse Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.07837650464111,-1.8019259231576825" target="_blank">
@@ -307,13 +389,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.07838059048842,
 -1.8022965480145388
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Five Rivers Leisure Centre</b><br>
 Hulse Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.07838059048842,-1.8022965480145388" target="_blank">
@@ -321,13 +406,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.04424174140581,
 -1.7876382528814645
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Salisbury District Hospital</b><br>
 Odstock Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.04424174140581,-1.7876382528814645" target="_blank">
@@ -335,13 +423,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.19135722554175,
 -1.6678794663969492
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>EVC Gray Manor Hotel</b><br>
 Parkhouse Cross<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.19135722554175,-1.6678794663969492" target="_blank">
@@ -349,13 +440,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.0846187,
 -1.776408
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>London Road Car Park</b><br>
 London Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.0846187,-1.776408" target="_blank">
@@ -363,13 +457,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.09954104333491,
 -1.7956213215868502
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Beehive Park and Ride</b><br>
 The Portway<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.09954104333491,-1.7956213215868502" target="_blank">
@@ -377,13 +474,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.063851,
 -1.778708
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Dolphin Retail Park Salisbury</b><br>
 Southampton Road Retail Park<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.063851,-1.778708" target="_blank">
@@ -391,13 +491,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.0624636560095,
 -1.77847520159301
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Bourne Retail Park</b><br>
 Southampton Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.0624636560095,-1.77847520159301" target="_blank">
@@ -405,13 +508,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.06739553106078,
 -1.7929140297214587
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Brown Street (West) Car Park</b><br>
 Brown Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.06739553106078,-1.7929140297214587" target="_blank">
@@ -419,7 +525,11 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
+
+
+map.addLayer(markers);
 
 </script>
 

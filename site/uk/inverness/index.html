@@ -6,19 +6,61 @@
 
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
+
 <style>
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+}
+
+header {
+  background: #1f2937;
+  padding: 12px 20px;
+}
+
+.logo {
+  color: white;
+  text-decoration: none;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.container {
+  padding: 20px;
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 15px;
+  text-decoration: none;
+  color: #2563eb;
+  font-weight: bold;
+}
+
 #map {
-  height: 400px;
+  height: 420px;
   margin-bottom: 30px;
   border-radius: 8px;
 }
+
 </style>
 
 </head>
 
 <body>
 
+<header>
+<a href="/" class="logo">PlugMap</a>
+</header>
+
+<div class="container">
+
 <h1>Inverness EV Chargers</h1>
+
+<a href="/" class="back-link">← Back to homepage</a>
 
 <div id="map"></div>
 
@@ -101,7 +143,11 @@ Old Town Rose Street Multi Storey Car Park
 
 </ul>
 
+</div>
+
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 
 <script>
 
@@ -114,13 +160,16 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 attribution: '&copy; OpenStreetMap contributors'
 }).addTo(map);
 
+var markers = L.markerClusterGroup();
 
 
-L.marker([
+
+var marker = L.marker([
 57.482498,
 -4.18724
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Inverness (Howdens)</b><br>
 Howdens Garden Centre<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=57.482498,-4.18724" target="_blank">
@@ -128,13 +177,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 57.472840967700336,
 -4.1805656052525535
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>UHI Reception</b><br>
 Inverness Campus<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=57.472840967700336,-4.1805656052525535" target="_blank">
@@ -142,13 +194,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 57.4772838674067,
 -4.091461422697989
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Culloden Battlefield Visiter Centre</b><br>
 Culloden Battlefield<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=57.4772838674067,-4.091461422697989" target="_blank">
@@ -156,13 +211,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 57.533563456324146,
 -4.055889816463036
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Inverness Airport Railway Station</b><br>
 Inverness Airport<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=57.533563456324146,-4.055889816463036" target="_blank">
@@ -170,13 +228,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 57.47710113,
 -4.18203619
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Highlands & Islands Enterprise</b><br>
 10 Inverness Campus<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=57.47710113,-4.18203619" target="_blank">
@@ -184,13 +245,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 57.474894,
 -4.231315
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Inverness, Cathedral Car Park</b><br>
 14A Ardross Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=57.474894,-4.231315" target="_blank">
@@ -198,13 +262,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 57.336135,
 -4.480535
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Drumnadrochit, Tourist Information Centre</b><br>
 Tourist Information Centre<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=57.336135,-4.480535" target="_blank">
@@ -212,13 +279,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 57.47196466898595,
 -4.209366012525265
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Kingsmills Hotel</b><br>
 Culcabock Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=57.47196466898595,-4.209366012525265" target="_blank">
@@ -226,13 +296,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 57.481079,
 -4.21757
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Morrisons</b><br>
 Milburn Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=57.481079,-4.21757" target="_blank">
@@ -240,13 +313,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 57.485143,
 -4.22183
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Inverness College</b><br>
 5 Longman Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=57.485143,-4.22183" target="_blank">
@@ -254,13 +330,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 57.45230169,
 -4.25046828
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Tesco Superstore-Inverness Ness Side</b><br>
 Dores Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=57.45230169,-4.25046828" target="_blank">
@@ -268,13 +347,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 57.470101,
 -4.188712
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Tesco Extra-Inverness Inshes</b><br>
 Milton of Inshes<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=57.470101,-4.188712" target="_blank">
@@ -282,13 +364,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 57.483566,
 -4.176726
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Tesco Extra-Inverness</b><br>
 1a Eastfield Way<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=57.483566,-4.176726" target="_blank">
@@ -296,13 +381,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 57.477049,
 -4.230606
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Tesco Superstore-Iverness</b><br>
 8-10 Tomnahurich Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=57.477049,-4.230606" target="_blank">
@@ -310,13 +398,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 57.4817062715494,
 -4.22533406257412
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Inverness Supercharger</b><br>
 Old Town Rose Street Multi Storey Car Park<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=57.4817062715494,-4.22533406257412" target="_blank">
@@ -324,7 +415,11 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
+
+
+map.addLayer(markers);
 
 </script>
 

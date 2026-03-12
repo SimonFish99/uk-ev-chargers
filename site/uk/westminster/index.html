@@ -6,19 +6,61 @@
 
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
+
 <style>
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+}
+
+header {
+  background: #1f2937;
+  padding: 12px 20px;
+}
+
+.logo {
+  color: white;
+  text-decoration: none;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.container {
+  padding: 20px;
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 15px;
+  text-decoration: none;
+  color: #2563eb;
+  font-weight: bold;
+}
+
 #map {
-  height: 400px;
+  height: 420px;
   margin-bottom: 30px;
   border-radius: 8px;
 }
+
 </style>
 
 </head>
 
 <body>
 
+<header>
+<a href="/" class="logo">PlugMap</a>
+</header>
+
+<div class="container">
+
 <h1>Westminster EV Chargers</h1>
+
+<a href="/" class="back-link">← Back to homepage</a>
 
 <div id="map"></div>
 
@@ -111,7 +153,11 @@ Whitehall Place
 
 </ul>
 
+</div>
+
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 
 <script>
 
@@ -124,13 +170,16 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 attribution: '&copy; OpenStreetMap contributors'
 }).addTo(map);
 
+var markers = L.markerClusterGroup();
 
 
-L.marker([
+
+var marker = L.marker([
 51.493336,
 -0.141381
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Wilton Road</b><br>
 105 Wilton Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.493336,-0.141381" target="_blank">
@@ -138,13 +187,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.531716,
 -0.170067
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Wellington Place</b><br>
 Wellington Place, St. Johns Wood<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.531716,-0.170067" target="_blank">
@@ -152,13 +204,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.525075,
 -0.164654
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>10-6 Rossmore Road, Westminster</b><br>
 10-6 Rossmore Road, Westminster, London NW1 6PA, UK<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.525075,-0.164654" target="_blank">
@@ -166,13 +221,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.52401,
 -0.175726
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Edgware Road</b><br>
 Edgware Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.52401,-0.175726" target="_blank">
@@ -180,13 +238,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.523033,
 -0.183562
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Warwick Avenue</b><br>
 Warwick Avenue (N.Bound @Nr. 27), Little Venice<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.523033,-0.183562" target="_blank">
@@ -194,13 +255,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.52113,
 -0.151084
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Devonshire Street</b><br>
 Devonshire Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.52113,-0.151084" target="_blank">
@@ -208,13 +272,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.51881,
 -0.19696
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Westbourne Park Road</b><br>
 Westbourne Park Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.51881,-0.19696" target="_blank">
@@ -222,13 +289,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.512536,
 -0.172412
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Brook Street, Hyde Park Estate, Westminster</b><br>
 Brook Street, Hyde Park Estate, Westminster, London W2 2LZ<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.512536,-0.172412" target="_blank">
@@ -236,13 +306,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.511611,
 -0.180296
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Lancaster Gate (Spire House), Bayswater</b><br>
 Lancaster Gate (Spire House), Bayswater<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.511611,-0.180296" target="_blank">
@@ -250,13 +323,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.511407,
 -0.112471
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Temple Place site 2</b><br>
 Temple Place site 2<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.511407,-0.112471" target="_blank">
@@ -264,13 +340,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.5017,
 -0.18363
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Kensington Road,Kensington</b><br>
 Kensington Road, Kensington<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.5017,-0.18363" target="_blank">
@@ -278,13 +357,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.500074,
 -0.153404
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>2 Belgrave Square, Westminster</b><br>
 2 Belgrave Square, Westminster, London SW1X 8PJ, United Kingdom<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.500074,-0.153404" target="_blank">
@@ -292,13 +374,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.494868,
 -0.132312
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Regency Place, Belgravia</b><br>
 Regency Place, Belgravia, Westminster, SW1P 2DZ<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.494868,-0.132312" target="_blank">
@@ -306,13 +391,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.494862,
 -0.13817
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Francis Street</b><br>
 Francis Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.494862,-0.13817" target="_blank">
@@ -320,13 +408,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.488705,
 -0.134094
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Aylesford Street</b><br>
 Aylesford Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.488705,-0.134094" target="_blank">
@@ -334,13 +425,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.518613,
 -0.170045
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>23 Praed Street, Westminster</b><br>
 23 Praed Street, Westminster, London W2 1PP, UK<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.518613,-0.170045" target="_blank">
@@ -348,13 +442,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.506477,
 -0.12377
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Westminster-Whitehall Place</b><br>
 Whitehall Place<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.506477,-0.12377" target="_blank">
@@ -362,7 +459,11 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
+
+
+map.addLayer(markers);
 
 </script>
 

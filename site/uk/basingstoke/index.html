@@ -6,19 +6,61 @@
 
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
+
 <style>
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+}
+
+header {
+  background: #1f2937;
+  padding: 12px 20px;
+}
+
+.logo {
+  color: white;
+  text-decoration: none;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.container {
+  padding: 20px;
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 15px;
+  text-decoration: none;
+  color: #2563eb;
+  font-weight: bold;
+}
+
 #map {
-  height: 400px;
+  height: 420px;
   margin-bottom: 30px;
   border-radius: 8px;
 }
+
 </style>
 
 </head>
 
 <body>
 
+<header>
+<a href="/" class="logo">PlugMap</a>
+</header>
+
+<div class="container">
+
 <h1>Basingstoke EV Chargers</h1>
+
+<a href="/" class="back-link">← Back to homepage</a>
 
 <div id="map"></div>
 
@@ -121,7 +163,11 @@ Basing View
 
 </ul>
 
+</div>
+
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 
 <script>
 
@@ -134,13 +180,16 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 attribution: '&copy; OpenStreetMap contributors'
 }).addTo(map);
 
+var markers = L.markerClusterGroup();
 
 
-L.marker([
+
+var marker = L.marker([
 51.2679182902956,
 -1.08682692117344
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>HCC Basingstoke Railway Station Car Park</b><br>
 Clifton Terrace<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.2679182902956,-1.08682692117344" target="_blank">
@@ -148,13 +197,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.251013542592,
 -1.08692293796619
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>BP Grove Road SF Connect</b><br>
 Grove Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.251013542592,-1.08692293796619" target="_blank">
@@ -162,13 +214,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.284532,
 -1.0717583
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>The Dragonfly Pub & Restaurant</b><br>
 Maldive Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.284532,-1.0717583" target="_blank">
@@ -176,13 +231,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.2836,
 -1.05748
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Hampshire Court Hotel</b><br>
 Chineham<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.2836,-1.05748" target="_blank">
@@ -190,13 +248,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.266402,
 -1.090874
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Churchill Way Car Park, Basingstoke</b><br>
 Churchill Way East<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.266402,-1.090874" target="_blank">
@@ -204,13 +265,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.264706,
 -1.086677
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Festival place</b><br>
 Shopping Centre<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.264706,-1.086677" target="_blank">
@@ -218,13 +282,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.263929,
 -1.105611
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Morrisons Basingstoke</b><br>
 Wm Morrison Supermarkets PLC<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.263929,-1.105611" target="_blank">
@@ -232,13 +299,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.262953,
 -1.085863
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Feathers Yard 1</b><br>
 Red Lion Lane<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.262953,-1.085863" target="_blank">
@@ -246,13 +316,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.262798,
 -1.082982
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Eastlands Car Park 1</b><br>
 London Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.262798,-1.082982" target="_blank">
@@ -260,13 +333,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.262665,
 -1.085169
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Central Car Park</b><br>
 Red Lion Lane<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.262665,-1.085169" target="_blank">
@@ -274,13 +350,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.274542331336534,
 -1.102684008288179
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Taran Microsystems Ltd</b><br>
 Tempus Business Centre 61-62 Kingsclere Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.274542331336534,-1.102684008288179" target="_blank">
@@ -288,13 +367,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.271152,
 -1.055658
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Redrow Homes-Southern Counties-Cromwell Court</b><br>
 Basing Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.271152,-1.055658" target="_blank">
@@ -302,13 +384,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.26391852277632,
 -1.1035326924247784
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Morrisons Basingstoke</b><br>
 Worting Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.26391852277632,-1.1035326924247784" target="_blank">
@@ -316,13 +401,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.282018,
 -1.118853
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>ICUEVE900605</b><br>
 23-31 Park Prewett Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.282018,-1.118853" target="_blank">
@@ -330,13 +418,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.273521,
 -1.113354
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Aldi</b><br>
 Winklebury Way<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.273521,-1.113354" target="_blank">
@@ -344,13 +435,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.249313,
 -1.11468
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Harvester The Stag and Hounds</b><br>
 Winchester Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.249313,-1.11468" target="_blank">
@@ -358,13 +452,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.262089,
 -1.081899
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Parklands Upper Car Park 1</b><br>
 White Hart Lane<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.262089,-1.081899" target="_blank">
@@ -372,13 +469,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.250129280163975,
 -1.114282730591185
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Shell Pied Piper</b><br>
 Winchester Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.250129280163975,-1.114282730591185" target="_blank">
@@ -386,13 +486,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.269136,
 -1.074393
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Village Hotels</b><br>
 Basing View<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.269136,-1.074393" target="_blank">
@@ -400,7 +503,11 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
+
+
+map.addLayer(markers);
 
 </script>
 

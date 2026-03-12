@@ -6,19 +6,61 @@
 
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
+
 <style>
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+}
+
+header {
+  background: #1f2937;
+  padding: 12px 20px;
+}
+
+.logo {
+  color: white;
+  text-decoration: none;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.container {
+  padding: 20px;
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 15px;
+  text-decoration: none;
+  color: #2563eb;
+  font-weight: bold;
+}
+
 #map {
-  height: 400px;
+  height: 420px;
   margin-bottom: 30px;
   border-radius: 8px;
 }
+
 </style>
 
 </head>
 
 <body>
 
+<header>
+<a href="/" class="logo">PlugMap</a>
+</header>
+
+<div class="container">
+
 <h1>Stroud EV Chargers</h1>
+
+<a href="/" class="back-link">← Back to homepage</a>
 
 <div id="map"></div>
 
@@ -76,7 +118,11 @@ Doctor Newton's Way Fromeside Industrial Esta
 
 </ul>
 
+</div>
+
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 
 <script>
 
@@ -89,13 +135,16 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 attribution: '&copy; OpenStreetMap contributors'
 }).addTo(map);
 
+var markers = L.markerClusterGroup();
 
 
-L.marker([
+
+var marker = L.marker([
 51.81993284759437,
 -2.227388845641542
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Tesla Public Supercharger Gloucester Northbound</b><br>
 M5 Northbound<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.81993284759437,-2.227388845641542" target="_blank">
@@ -103,13 +152,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.81986568263676,
 -2.2271542650632625
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Westmorland Gloucester Northbound</b><br>
 M5 Northbound<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.81986568263676,-2.2271542650632625" target="_blank">
@@ -117,13 +169,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.81858250896832,
 -2.2245752195061073
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Westmorland Gloucester Services Southbound</b><br>
 M5 Southbound<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.81858250896832,-2.2245752195061073" target="_blank">
@@ -131,13 +186,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.747464,
 -2.223792
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Tesco Superstore - Stroud</b><br>
 Stratford Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.747464,-2.223792" target="_blank">
@@ -145,13 +203,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.707752,
 -2.228269
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>WOODCHESTER WV20</b><br>
 Bath Rd South Woodchester<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.707752,-2.228269" target="_blank">
@@ -159,13 +220,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.706703,
 -2.226992
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>WOODCHESTER W7</b><br>
 Bath Rd South Woodchester<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.706703,-2.226992" target="_blank">
@@ -173,13 +237,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.705894,
 -2.226987
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>WOODCHESTER W17</b><br>
 Bath Rd South Woodchester<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.705894,-2.226987" target="_blank">
@@ -187,13 +254,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.656938,
 -2.427534
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Welcome Break Michaelwood Southbound Services</b><br>
 M5 Southbound<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.656938,-2.427534" target="_blank">
@@ -201,13 +271,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.741476,
 -2.240454
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>OLYMPIC ONE DEMOCHARGEPOINT</b><br>
 The Wharf Dudbridge Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.741476,-2.240454" target="_blank">
@@ -215,13 +288,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.742874,
 -2.219051
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>JOHN STAYTE JOHN STAYTE 1</b><br>
 Doctor Newton's Way Fromeside Industrial Esta<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.742874,-2.219051" target="_blank">
@@ -229,7 +305,11 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
+
+
+map.addLayer(markers);
 
 </script>
 

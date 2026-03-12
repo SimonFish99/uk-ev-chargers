@@ -6,19 +6,61 @@
 
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
+
 <style>
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+}
+
+header {
+  background: #1f2937;
+  padding: 12px 20px;
+}
+
+.logo {
+  color: white;
+  text-decoration: none;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.container {
+  padding: 20px;
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 15px;
+  text-decoration: none;
+  color: #2563eb;
+  font-weight: bold;
+}
+
 #map {
-  height: 400px;
+  height: 420px;
   margin-bottom: 30px;
   border-radius: 8px;
 }
+
 </style>
 
 </head>
 
 <body>
 
+<header>
+<a href="/" class="logo">PlugMap</a>
+</header>
+
+<div class="container">
+
 <h1>Falmouth EV Chargers</h1>
+
+<a href="/" class="back-link">← Back to homepage</a>
 
 <div id="map"></div>
 
@@ -56,7 +98,11 @@ Grove Place
 
 </ul>
 
+</div>
+
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 
 <script>
 
@@ -69,13 +115,16 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 attribution: '&copy; OpenStreetMap contributors'
 }).addTo(map);
 
+var markers = L.markerClusterGroup();
 
 
-L.marker([
+
+var marker = L.marker([
 50.16219011807888,
 -5.087119756547935
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>McDonald's Falmouth</b><br>
 Dracaena Avenue<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=50.16219011807888,-5.087119756547935" target="_blank">
@@ -83,13 +132,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 50.14898493720361,
 -5.064095921548358
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>The Dell Car Park</b><br>
 Grovehill Crescent<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=50.14898493720361,-5.064095921548358" target="_blank">
@@ -97,13 +149,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 50.15544497158538,
 -5.074741338297287
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Town Quarry Car Park</b><br>
 Quarry Hill<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=50.15544497158538,-5.074741338297287" target="_blank">
@@ -111,13 +166,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 50.153068,
 -5.099616
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Britannia Lanes</b><br>
 Bickland Water RD<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=50.153068,-5.099616" target="_blank">
@@ -125,13 +183,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 50.15102502684164,
 -5.063736410775448
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Grove Place Car Park</b><br>
 Grove Place<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=50.15102502684164,-5.063736410775448" target="_blank">
@@ -139,13 +200,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 50.1483,
 -5.0741
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Merchants Manor Gym & Swim</b><br>
 1 Western Terrace<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=50.1483,-5.0741" target="_blank">
@@ -153,7 +217,11 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
+
+
+map.addLayer(markers);
 
 </script>
 

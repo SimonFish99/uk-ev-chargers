@@ -6,19 +6,61 @@
 
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
+
 <style>
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+}
+
+header {
+  background: #1f2937;
+  padding: 12px 20px;
+}
+
+.logo {
+  color: white;
+  text-decoration: none;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.container {
+  padding: 20px;
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 15px;
+  text-decoration: none;
+  color: #2563eb;
+  font-weight: bold;
+}
+
 #map {
-  height: 400px;
+  height: 420px;
   margin-bottom: 30px;
   border-radius: 8px;
 }
+
 </style>
 
 </head>
 
 <body>
 
+<header>
+<a href="/" class="logo">PlugMap</a>
+</header>
+
+<div class="container">
+
 <h1>Marlow EV Chargers</h1>
+
+<a href="/" class="back-link">← Back to homepage</a>
 
 <div id="map"></div>
 
@@ -56,7 +98,11 @@ Pound Lane
 
 </ul>
 
+</div>
+
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 
 <script>
 
@@ -69,13 +115,16 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 attribution: '&copy; OpenStreetMap contributors'
 }).addTo(map);
 
+var markers = L.markerClusterGroup();
 
 
-L.marker([
+
+var marker = L.marker([
 51.573581,
 -0.761387
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Globe Park Marlow 1</b><br>
 Regus Marlow  Globe Park<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.573581,-0.761387" target="_blank">
@@ -83,13 +132,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.5751601,
 -0.771447
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>45-48 Foxes Piece</b><br>
 45 - 48 Foxes Piece<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.5751601,-0.771447" target="_blank">
@@ -97,13 +149,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.5687728572621,
 -0.777131316358805
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Court Garden Car Park</b><br>
 Pound Lane<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.5687728572621,-0.777131316358805" target="_blank">
@@ -111,13 +166,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.570972,
 -0.770386
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>61 Station Road</b><br>
 61 Station Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.570972,-0.770386" target="_blank">
@@ -125,13 +183,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.570921,
 -0.778976
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>3 Oxford Road</b><br>
 3 Oxford Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.570921,-0.778976" target="_blank">
@@ -139,13 +200,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.570894,
 -0.771603
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>1 Station Rise</b><br>
 1 Station Rise<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.570894,-0.771603" target="_blank">
@@ -153,7 +217,11 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
+
+
+map.addLayer(markers);
 
 </script>
 

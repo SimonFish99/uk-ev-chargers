@@ -6,19 +6,61 @@
 
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
+
 <style>
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+}
+
+header {
+  background: #1f2937;
+  padding: 12px 20px;
+}
+
+.logo {
+  color: white;
+  text-decoration: none;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.container {
+  padding: 20px;
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 15px;
+  text-decoration: none;
+  color: #2563eb;
+  font-weight: bold;
+}
+
 #map {
-  height: 400px;
+  height: 420px;
   margin-bottom: 30px;
   border-radius: 8px;
 }
+
 </style>
 
 </head>
 
 <body>
 
+<header>
+<a href="/" class="logo">PlugMap</a>
+</header>
+
+<div class="container">
+
 <h1>Melksham EV Chargers</h1>
+
+<a href="/" class="back-link">← Back to homepage</a>
 
 <div id="map"></div>
 
@@ -62,7 +104,11 @@ Melksham Hub
 
 </ul>
 
+</div>
+
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 
 <script>
 
@@ -75,13 +121,16 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 attribution: '&copy; OpenStreetMap contributors'
 }).addTo(map);
 
+var markers = L.markerClusterGroup();
 
 
-L.marker([
+
+var marker = L.marker([
 51.370791,
 -2.14115
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Melksham Campus</b><br>
 Market Place<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.370791,-2.14115" target="_blank">
@@ -89,13 +138,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.3702,
 -2.13743
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Free to use
 Must be a member of BMW Chargenow or a Polar custom..</b><br>
 King Street<br><br>
@@ -104,13 +156,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.368646,
 -2.131612
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>SSEHUB034</b><br>
 61 Spa Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.368646,-2.131612" target="_blank">
@@ -118,13 +173,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.36811141163335,
 -2.1303683740732993
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>SSE Charging EV Hub Melksham</b><br>
 Spa Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.36811141163335,-2.1303683740732993" target="_blank">
@@ -132,13 +190,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.3558012553363,
 -2.1405714228963006
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Travelodge Melksham</b><br>
 Commerce Way<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.3558012553363,-2.1405714228963006" target="_blank">
@@ -146,13 +207,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.3816775546173,
 -2.14345875116496
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>McDonald's Melksham</b><br>
 GEC Industrial Estate<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.3816775546173,-2.14345875116496" target="_blank">
@@ -160,13 +224,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.380156,
 -2.144511
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Melksham Hub</b><br>
 Melksham Hub<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.380156,-2.144511" target="_blank">
@@ -174,7 +241,11 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
+
+
+map.addLayer(markers);
 
 </script>
 

@@ -6,19 +6,61 @@
 
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
+
 <style>
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+}
+
+header {
+  background: #1f2937;
+  padding: 12px 20px;
+}
+
+.logo {
+  color: white;
+  text-decoration: none;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.container {
+  padding: 20px;
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 15px;
+  text-decoration: none;
+  color: #2563eb;
+  font-weight: bold;
+}
+
 #map {
-  height: 400px;
+  height: 420px;
   margin-bottom: 30px;
   border-radius: 8px;
 }
+
 </style>
 
 </head>
 
 <body>
 
+<header>
+<a href="/" class="logo">PlugMap</a>
+</header>
+
+<div class="container">
+
 <h1>Chippenham EV Chargers</h1>
+
+<a href="/" class="back-link">← Back to homepage</a>
 
 <div id="map"></div>
 
@@ -71,7 +113,11 @@ London Road
 
 </ul>
 
+</div>
+
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 
 <script>
 
@@ -84,13 +130,16 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 attribution: '&copy; OpenStreetMap contributors'
 }).addTo(map);
 
+var markers = L.markerClusterGroup();
 
 
-L.marker([
+
+var marker = L.marker([
 51.5100942737801,
 -2.15815354224788
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>GS10075B</b><br>
 M4 Motorway Westbound, Jct 17/18<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.5100942737801,-2.15815354224788" target="_blank">
@@ -98,13 +147,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.509924,
 -2.158175
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Moto Leigh Delamere Westbound</b><br>
 M4 Westbound Between Junction 17 and 18<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.509924,-2.158175" target="_blank">
@@ -112,13 +164,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.461548,
 -2.112661
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Monkton Park Car Park</b><br>
 Sadlers Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.461548,-2.112661" target="_blank">
@@ -126,13 +181,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.46157997139275,
 -2.1203753839638466
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>HPH Limited, Bewley House Car Park</b><br>
 Dallas Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.46157997139275,-2.1203753839638466" target="_blank">
@@ -140,13 +198,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.47692096755807,
 -2.131558213502217
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Morrisons Chippenham</b><br>
 Stainers Way<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.47692096755807,-2.131558213502217" target="_blank">
@@ -154,13 +215,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.45481448964097,
 -2.1322517850213103
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>McDonald's Chippenham</b><br>
 Bath Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.45481448964097,-2.1322517850213103" target="_blank">
@@ -168,13 +232,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.5243082355591,
 -2.12287385074634
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>MFG Stanton St Quintin Service Station</b><br>
 A429<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.5243082355591,-2.12287385074634" target="_blank">
@@ -182,13 +249,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.563463430731645,
 -1.9990662441592804
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Newleaze Cottages</b><br>
 3 Newleaze Cottages<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.563463430731645,-1.9990662441592804" target="_blank">
@@ -196,13 +266,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.440379,
 -2.075596
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Pewsham Garages</b><br>
 London Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.440379,-2.075596" target="_blank">
@@ -210,7 +283,11 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
+
+
+map.addLayer(markers);
 
 </script>
 

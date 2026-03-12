@@ -6,19 +6,61 @@
 
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
+
 <style>
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+}
+
+header {
+  background: #1f2937;
+  padding: 12px 20px;
+}
+
+.logo {
+  color: white;
+  text-decoration: none;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.container {
+  padding: 20px;
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 15px;
+  text-decoration: none;
+  color: #2563eb;
+  font-weight: bold;
+}
+
 #map {
-  height: 400px;
+  height: 420px;
   margin-bottom: 30px;
   border-radius: 8px;
 }
+
 </style>
 
 </head>
 
 <body>
 
+<header>
+<a href="/" class="logo">PlugMap</a>
+</header>
+
+<div class="container">
+
 <h1>Bracknell EV Chargers</h1>
+
+<a href="/" class="back-link">← Back to homepage</a>
 
 <div id="map"></div>
 
@@ -106,7 +148,11 @@ Whitton Road
 
 </ul>
 
+</div>
+
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 
 <script>
 
@@ -119,13 +165,16 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 attribution: '&copy; OpenStreetMap contributors'
 }).addTo(map);
 
+var markers = L.markerClusterGroup();
 
 
-L.marker([
+
+var marker = L.marker([
 51.39960624560106,
 -0.7704283729584631
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Great Hollands Shops</b><br>
 Great Hollands Square<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.39960624560106,-0.7704283729584631" target="_blank">
@@ -133,13 +182,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.415381,
 -0.759315
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>OAS STATION 5</b><br>
 1 Arlington Square<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.415381,-0.759315" target="_blank">
@@ -147,13 +199,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.3982426421509,
 -0.744681896989306
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Hornbill SF Connect </b><br>
 Bagshot Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.3982426421509,-0.744681896989306" target="_blank">
@@ -161,13 +216,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.393882,
 -0.765235
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Bywood</b><br>
 Bywood car park<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.393882,-0.765235" target="_blank">
@@ -175,13 +233,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.407383,
 -0.762721
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Wildridings</b><br>
 Wildridings<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.407383,-0.762721" target="_blank">
@@ -189,13 +250,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.390917,
 -0.752001
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Birch Hill Shops</b><br>
 Birch Hill Shops<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.390917,-0.752001" target="_blank">
@@ -203,13 +267,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.415798,
 -0.7525
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>High Street Car Park</b><br>
 The Ring<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.415798,-0.7525" target="_blank">
@@ -217,13 +284,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.414597,
 -0.751616
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Braccan Walk Car Park</b><br>
 The Ring<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.414597,-0.751616" target="_blank">
@@ -231,13 +301,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.421143,
 -0.763886
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>BFC Priestwood Community</b><br>
 Priestwood Community Car Park<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.421143,-0.763886" target="_blank">
@@ -245,13 +318,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.41693,
 -0.724824
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Bracknell Forest GBR024</b><br>
 Lily Hill Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.41693,-0.724824" target="_blank">
@@ -259,13 +335,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.416474,
 -0.734464
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>BFC Bay Road</b><br>
 Bay Road Car Park<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.416474,-0.734464" target="_blank">
@@ -273,13 +352,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.413057,
 -0.728764
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>BFC Forest Park</b><br>
 Horndean Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.413057,-0.728764" target="_blank">
@@ -287,13 +369,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.39605,
 -0.736925
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>BFC Crown Wood 1</b><br>
 Crown Row<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.39605,-0.736925" target="_blank">
@@ -301,13 +386,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.347167,
 -0.795556
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>BFC The Broadway</b><br>
 The Broadway, Sandhurst,<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.347167,-0.795556" target="_blank">
@@ -315,13 +403,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.41533,
 -0.78868
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Coppid Beech Hotel</b><br>
 John Nike Way<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.41533,-0.78868" target="_blank">
@@ -329,13 +420,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.40839,
 -0.725797
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Tesco Superstore-Bracknell</b><br>
 Whitton Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.40839,-0.725797" target="_blank">
@@ -343,7 +437,11 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
+
+
+map.addLayer(markers);
 
 </script>
 

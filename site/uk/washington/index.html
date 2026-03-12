@@ -6,19 +6,61 @@
 
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
+
 <style>
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+}
+
+header {
+  background: #1f2937;
+  padding: 12px 20px;
+}
+
+.logo {
+  color: white;
+  text-decoration: none;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.container {
+  padding: 20px;
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 15px;
+  text-decoration: none;
+  color: #2563eb;
+  font-weight: bold;
+}
+
 #map {
-  height: 400px;
+  height: 420px;
   margin-bottom: 30px;
   border-radius: 8px;
 }
+
 </style>
 
 </head>
 
 <body>
 
+<header>
+<a href="/" class="logo">PlugMap</a>
+</header>
+
+<div class="container">
+
 <h1>Washington EV Chargers</h1>
+
+<a href="/" class="back-link">← Back to homepage</a>
 
 <div id="map"></div>
 
@@ -86,7 +128,11 @@ The Peel Centre
 
 </ul>
 
+</div>
+
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 
 <script>
 
@@ -99,13 +145,16 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 attribution: '&copy; OpenStreetMap contributors'
 }).addTo(map);
 
+var markers = L.markerClusterGroup();
 
 
-L.marker([
+
+var marker = L.marker([
 54.883812,
 -1.547135
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>ROLLS_ROYCE WASHINGTON 2</b><br>
 Radial Park Rd<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.883812,-1.547135" target="_blank">
@@ -113,13 +162,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.912041,
 -1.54244
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Parsons House</b><br>
 Parsons House<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.912041,-1.54244" target="_blank">
@@ -127,13 +179,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.900282,
 -1.533078
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Galleries Shopping Centre</b><br>
 Galleries<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.900282,-1.533078" target="_blank">
@@ -141,13 +196,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.894206,
 -1.36523
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Parsons Road</b><br>
 14-15 Parsons Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.894206,-1.36523" target="_blank">
@@ -155,13 +213,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.90925534033937,
 -1.5395082664367084
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>FastNed Parsons Road</b><br>
 19 Parsons Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.90925534033937,-1.5395082664367084" target="_blank">
@@ -169,13 +230,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.91217776572299,
 -1.5209999239866647
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Spout Lane</b><br>
 Spout Lane<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.91217776572299,-1.5209999239866647" target="_blank">
@@ -183,13 +247,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.90125669,
 -1.53209105
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Galleries Shopping Centre</b><br>
 Galleries<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.90125669,-1.53209105" target="_blank">
@@ -197,13 +264,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.89912195947721,
 -1.5343446400059975
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Galleries Shopping Centre</b><br>
  Galleries<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.89912195947721,-1.5343446400059975" target="_blank">
@@ -211,13 +281,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.904289,
 -1.48778
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Fergusons Transport Haulage</b><br>
 Barmstone Lane<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.904289,-1.48778" target="_blank">
@@ -225,13 +298,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.885955,
 -1.519224
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Washington</b><br>
 Biddick Arts Centre<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.885955,-1.519224" target="_blank">
@@ -239,13 +315,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.912154,
 -1.520853
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Speculation Place Car Park</b><br>
 Speculation Place Car Park<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.912154,-1.520853" target="_blank">
@@ -253,13 +332,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.906948,
 -1.503104
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>The Peel Centre Washington</b><br>
 The Peel Centre<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.906948,-1.503104" target="_blank">
@@ -267,7 +349,11 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
+
+
+map.addLayer(markers);
 
 </script>
 

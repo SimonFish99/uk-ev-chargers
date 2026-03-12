@@ -6,19 +6,61 @@
 
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
+
 <style>
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+}
+
+header {
+  background: #1f2937;
+  padding: 12px 20px;
+}
+
+.logo {
+  color: white;
+  text-decoration: none;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.container {
+  padding: 20px;
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 15px;
+  text-decoration: none;
+  color: #2563eb;
+  font-weight: bold;
+}
+
 #map {
-  height: 400px;
+  height: 420px;
   margin-bottom: 30px;
   border-radius: 8px;
 }
+
 </style>
 
 </head>
 
 <body>
 
+<header>
+<a href="/" class="logo">PlugMap</a>
+</header>
+
+<div class="container">
+
 <h1>Stockton-on-Tees EV Chargers</h1>
+
+<a href="/" class="back-link">← Back to homepage</a>
 
 <div id="map"></div>
 
@@ -146,7 +188,11 @@ Stirling House
 
 </ul>
 
+</div>
+
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 
 <script>
 
@@ -159,13 +205,16 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 attribution: '&copy; OpenStreetMap contributors'
 }).addTo(map);
 
+var markers = L.markerClusterGroup();
 
 
-L.marker([
+
+var marker = L.marker([
 54.54907,
 -1.331404
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Lidl-Yarm Road</b><br>
 Yarm Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.54907,-1.331404" target="_blank">
@@ -173,13 +222,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.560856,
 -1.311406
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Lidl-Stockton-on-Tees</b><br>
 1 Tower Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.560856,-1.311406" target="_blank">
@@ -187,13 +239,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.548798,
 -1.284075
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Littleboy Recreation Ground Car Park 3</b><br>
 Acklam Road, Thornaby,<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.548798,-1.284075" target="_blank">
@@ -201,13 +256,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.562539,
 -1.296173
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Durham University Ebsworth Building</b><br>
 Infinity Bridge Access Stairway<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.562539,-1.296173" target="_blank">
@@ -215,13 +273,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.53545,
 -1.34137
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Preston Park, Stockton-on-Tees</b><br>
 Yarm Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.53545,-1.34137" target="_blank">
@@ -229,13 +290,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.62189,
 -1.25886
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Cowpen Bewley Country Park Car Park, Billingham 1</b><br>
 Cowpen Bewley Country Park, Billingham<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.62189,-1.25886" target="_blank">
@@ -243,13 +307,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.612319,
 -1.377729
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Wynyard Woodlands Park</b><br>
 Wynyard Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.612319,-1.377729" target="_blank">
@@ -257,13 +324,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.566662,
 -1.310634
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Stockton Municipal Buildings</b><br>
 Stockton Municipal Buildings<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.566662,-1.310634" target="_blank">
@@ -271,13 +341,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.563116,
 -1.296596
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Durham University Queens Campus</b><br>
 Infinity Bridge Access Stairway<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.563116,-1.296596" target="_blank">
@@ -285,13 +358,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.562163,
 -1.29971
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Stockton Riverside College</b><br>
 Stockton Riverside College<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.562163,-1.29971" target="_blank">
@@ -299,13 +375,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.544331,
 -1.318501
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>RMB Toyota</b><br>
 1 Cygnet Drive<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.544331,-1.318501" target="_blank">
@@ -313,13 +392,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.542553,
 -1.323233
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Tristar House</b><br>
 Lockheed Court<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.542553,-1.323233" target="_blank">
@@ -327,13 +409,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.592803,
 -1.352526
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Tesco Extra-Stockton-on-Tees</b><br>
 Durham Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.592803,-1.352526" target="_blank">
@@ -341,13 +426,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.56383,
 -1.302882
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Razorblue-Admiralty House</b><br>
 Fudan Way<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.56383,-1.302882" target="_blank">
@@ -355,13 +443,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.6277436975158,
 -1.30655169308761
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>MFG Wolviston Services</b><br>
 Coal Lane<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.6277436975158,-1.30655169308761" target="_blank">
@@ -369,13 +460,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.54879202368886,
 -1.319761030247264
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>DTN Academy</b><br>
 1 Wylam Court<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.54879202368886,-1.319761030247264" target="_blank">
@@ -383,13 +477,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.52886940052696,
 -1.3588843625440177
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Prestige Motor Services Ltd</b><br>
 10 Cowton Way<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.52886940052696,-1.3588843625440177" target="_blank">
@@ -397,13 +494,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.566502,
 -1.29953
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Thirteen Housing</b><br>
 North Shore Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.566502,-1.29953" target="_blank">
@@ -411,13 +511,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.558939407522786,
 -1.277656052418024
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Morrisons Thornaby</b><br>
 Thornaby<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.558939407522786,-1.277656052418024" target="_blank">
@@ -425,13 +528,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.5570854633319,
 -1.27525178903352
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Teesside Shopping Park</b><br>
 Goodwood Square<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.5570854633319,-1.27525178903352" target="_blank">
@@ -439,13 +545,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.607125,
 -1.280032
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Tesco Superstore-Billingham</b><br>
 Leeholme Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.607125,-1.280032" target="_blank">
@@ -453,13 +562,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.6280084806994,
 -1.30666943599203
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Wolviston Services</b><br>
 Wolviston Services<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.6280084806994,-1.30666943599203" target="_blank">
@@ -467,13 +579,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.567511,
 -1.306015
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Simon Bailes Peugeot Stockton</b><br>
 Simon Bailes Peugeot Stockton<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.567511,-1.306015" target="_blank">
@@ -481,13 +596,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.533209,
 -1.289589
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Stirling House</b><br>
 Stirling House<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.533209,-1.289589" target="_blank">
@@ -495,7 +613,11 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
+
+
+map.addLayer(markers);
 
 </script>
 

@@ -6,19 +6,61 @@
 
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
+
 <style>
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+}
+
+header {
+  background: #1f2937;
+  padding: 12px 20px;
+}
+
+.logo {
+  color: white;
+  text-decoration: none;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.container {
+  padding: 20px;
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 15px;
+  text-decoration: none;
+  color: #2563eb;
+  font-weight: bold;
+}
+
 #map {
-  height: 400px;
+  height: 420px;
   margin-bottom: 30px;
   border-radius: 8px;
 }
+
 </style>
 
 </head>
 
 <body>
 
+<header>
+<a href="/" class="logo">PlugMap</a>
+</header>
+
+<div class="container">
+
 <h1>Haringey EV Chargers</h1>
+
+<a href="/" class="back-link">← Back to homepage</a>
 
 <div id="map"></div>
 
@@ -241,7 +283,11 @@ Parkland Road car park
 
 </ul>
 
+</div>
+
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 
 <script>
 
@@ -254,13 +300,16 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 attribution: '&copy; OpenStreetMap contributors'
 }).addTo(map);
 
+var markers = L.markerClusterGroup();
 
 
-L.marker([
+
+var marker = L.marker([
 51.598804,
 -0.107521
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Cranbrook Park</b><br>
 64 Cranbrook Park<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.598804,-0.107521" target="_blank">
@@ -268,13 +317,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.598263,
 -0.087357
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Waltheof Avenue</b><br>
 Waltheof Avenue jn Lordship Lane<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.598263,-0.087357" target="_blank">
@@ -282,13 +334,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.598213,
 -0.056936
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Glendish Road</b><br>
 72 Glendish Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.598213,-0.056936" target="_blank">
@@ -296,13 +351,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.597885,
 -0.108931
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Gathorne Road</b><br>
 1 Gathorne Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.597885,-0.108931" target="_blank">
@@ -310,13 +368,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.59596,
 -0.094919
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Mark Road</b><br>
 75 Mark Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.59596,-0.094919" target="_blank">
@@ -324,13 +385,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.58861,
 -0.122857
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Rectory Gardens</b><br>
 69 Rectory Gardens<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.58861,-0.122857" target="_blank">
@@ -338,13 +402,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.58717,
 -0.124807
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Linzee Road</b><br>
 1 Linzee Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.58717,-0.124807" target="_blank">
@@ -352,13 +419,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.581936,
 -0.128732
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Glasslyn Road</b><br>
 1 Glasslyn Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.581936,-0.128732" target="_blank">
@@ -366,13 +436,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.580734,
 -0.114868
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Weston Park</b><br>
 106 Weston Park<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.580734,-0.114868" target="_blank">
@@ -380,13 +453,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.578224,
 -0.130111
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Crouch Hall Road</b><br>
 2 Crouch Hall Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.578224,-0.130111" target="_blank">
@@ -394,13 +470,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.57698,
 -0.065058
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Craven Park Road</b><br>
 246 Craven Park Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.57698,-0.065058" target="_blank">
@@ -408,13 +487,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.57631,
 -0.077787
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Eastbourne Road</b><br>
 Eastbourne Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.57631,-0.077787" target="_blank">
@@ -422,13 +504,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.608006,
 -0.123776
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Maidstone Road</b><br>
 11 Maidstone Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.608006,-0.123776" target="_blank">
@@ -436,13 +521,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.60764,
 -0.126318
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Gordon Road</b><br>
 8 Gordon Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.60764,-0.126318" target="_blank">
@@ -450,13 +538,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.607323,
 -0.065661
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Grasmere Road</b><br>
 Grasmere Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.607323,-0.065661" target="_blank">
@@ -464,13 +555,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.607002,
 -0.067971
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>High Road</b><br>
 838 High Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.607002,-0.067971" target="_blank">
@@ -478,13 +572,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.6059,
 -0.105291
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Cross Road</b><br>
 106 Cross Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.6059,-0.105291" target="_blank">
@@ -492,13 +589,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.601376,
 -0.105147
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Winkfield Road</b><br>
 78 Winkfield Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.601376,-0.105147" target="_blank">
@@ -506,13 +606,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.599895,
 -0.114335
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Selbourne Road</b><br>
 2 Selbourne Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.599895,-0.114335" target="_blank">
@@ -520,13 +623,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.599167,
 -0.135778
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Alexandra Park Road</b><br>
 154 Alexandra Park Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.599167,-0.135778" target="_blank">
@@ -534,13 +640,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.596912,
 -0.141502
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Curzon Road</b><br>
 Curzon Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.596912,-0.141502" target="_blank">
@@ -548,13 +657,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.593952,
 -0.079483
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Willan Road</b><br>
 38 Willan Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.593952,-0.079483" target="_blank">
@@ -562,13 +674,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.59147,
 -0.143456
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Queens Avenue</b><br>
 2 Queens Avenue<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.59147,-0.143456" target="_blank">
@@ -576,13 +691,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.59087,
 -0.15298
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Midhurst Avenue</b><br>
 1 Midhurst Avenue<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.59087,-0.15298" target="_blank">
@@ -590,13 +708,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.58911,
 -0.084653
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Alton Road</b><br>
 2 Alton Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.58911,-0.084653" target="_blank">
@@ -604,13 +725,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.586697,
 -0.116787
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Temple Road</b><br>
 6 Temple Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.586697,-0.116787" target="_blank">
@@ -618,13 +742,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.58575,
 -0.112741
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Tottenham Lane</b><br>
 50 Tottenham Lane<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.58575,-0.112741" target="_blank">
@@ -632,13 +759,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.584927,
 -0.065905
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Cunningham Road</b><br>
 1 Cunningham Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.584927,-0.065905" target="_blank">
@@ -646,13 +776,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.584843,
 -0.1066
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Fairfax Road</b><br>
 Fairfax Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.584843,-0.1066" target="_blank">
@@ -660,13 +793,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.58405,
 -0.146463
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Onslow Gardens</b><br>
 3 Onslow Gardens<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.58405,-0.146463" target="_blank">
@@ -674,13 +810,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.58337,
 -0.100599
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Allison Road</b><br>
 Allison Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.58337,-0.100599" target="_blank">
@@ -688,13 +827,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.581844,
 -0.123699
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Middle Lane</b><br>
 43 Middle Lane<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.581844,-0.123699" target="_blank">
@@ -702,13 +844,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.580666,
 -0.126273
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Bryanstone Road</b><br>
 2 Bryanstone Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.580666,-0.126273" target="_blank">
@@ -716,13 +861,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.578533,
 -0.151402
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Church Road</b><br>
 2 Church Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.578533,-0.151402" target="_blank">
@@ -730,13 +878,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.578514,
 -0.125813
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Berkeley Road</b><br>
 Berkeley Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.578514,-0.125813" target="_blank">
@@ -744,13 +895,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.5766,
 -0.111099
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Albany Road</b><br>
 54 Albany Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.5766,-0.111099" target="_blank">
@@ -758,13 +912,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.57657,
 -0.149346
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>The Park</b><br>
 2 The Park<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.57657,-0.149346" target="_blank">
@@ -772,13 +929,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.574966,
 -0.146961
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Southwood Lawn Road</b><br>
 32 Southwood Lawn Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.574966,-0.146961" target="_blank">
@@ -786,13 +946,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.572998,
 -0.136468
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Milton Road</b><br>
 2 Milton Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.572998,-0.136468" target="_blank">
@@ -800,13 +963,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.571075,
 -0.143147
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Cholmeley Park</b><br>
 50 Cholmeley Park<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.571075,-0.143147" target="_blank">
@@ -814,13 +980,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.570866,
 -0.107903
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Upper Tollington Park</b><br>
 85 Upper Tollington Park<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.570866,-0.107903" target="_blank">
@@ -828,13 +997,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.595,
 -0.111
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Parkland Road</b><br>
 Parkland Road car park<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.595,-0.111" target="_blank">
@@ -842,13 +1014,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.576762,
 -0.144592
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Shepherds Hill, Highgate</b><br>
 1 Shepherds Hill, Highgate<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.576762,-0.144592" target="_blank">
@@ -856,7 +1031,11 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
+
+
+map.addLayer(markers);
 
 </script>
 

@@ -6,19 +6,61 @@
 
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
+
 <style>
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+}
+
+header {
+  background: #1f2937;
+  padding: 12px 20px;
+}
+
+.logo {
+  color: white;
+  text-decoration: none;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.container {
+  padding: 20px;
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 15px;
+  text-decoration: none;
+  color: #2563eb;
+  font-weight: bold;
+}
+
 #map {
-  height: 400px;
+  height: 420px;
   margin-bottom: 30px;
   border-radius: 8px;
 }
+
 </style>
 
 </head>
 
 <body>
 
+<header>
+<a href="/" class="logo">PlugMap</a>
+</header>
+
+<div class="container">
+
 <h1>Antrim EV Chargers</h1>
+
+<a href="/" class="back-link">← Back to homepage</a>
 
 <div id="map"></div>
 
@@ -71,7 +113,11 @@ Ballymena Road
 
 </ul>
 
+</div>
+
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 
 <script>
 
@@ -84,13 +130,16 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 attribution: '&copy; OpenStreetMap contributors'
 }).addTo(map);
 
+var markers = L.markerClusterGroup();
 
 
-L.marker([
+
+var marker = L.marker([
 54.728554505939,
 -6.227776093458829
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Tim Hortons</b><br>
 The Junction<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.728554505939,-6.227776093458829" target="_blank">
@@ -98,13 +147,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.72609849035433,
 -6.247357275620459
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Allen Park Leisure Centre</b><br>
 45 Castle Rd<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.72609849035433,-6.247357275620459" target="_blank">
@@ -112,13 +164,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.717896942749064,
 -6.225961501865157
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Clotworthy Arts & Heritage Centre</b><br>
 Randalstown Rd<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.717896942749064,-6.225961501865157" target="_blank">
@@ -126,13 +181,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.73033331866765,
 -6.228527105819097
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>The Junction</b><br>
 Ballymena Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.73033331866765,-6.228527105819097" target="_blank">
@@ -140,13 +198,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.727440590689696,
 -6.227710389999459
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Lidl</b><br>
 Ballymena Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.727440590689696,-6.227710389999459" target="_blank">
@@ -154,13 +215,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.742893690717835,
 -6.233568569504655
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Dunsilly Hotel</b><br>
 20 Dunsilly Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.742893690717835,-6.233568569504655" target="_blank">
@@ -168,13 +232,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.72137838148478,
 -6.220870141424825
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Maxol Service Station</b><br>
 15 Ballymena Rd<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.72137838148478,-6.220870141424825" target="_blank">
@@ -182,13 +249,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.753928,
 -6.326239
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Portglenone Road, Randalstown</b><br>
 67 Portglenon Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.753928,-6.326239" target="_blank">
@@ -196,13 +266,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.726803,
 -6.208262
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Antrim Civic Centre</b><br>
 50 Stiles Way<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.726803,-6.208262" target="_blank">
@@ -210,7 +283,11 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
+
+
+map.addLayer(markers);
 
 </script>
 

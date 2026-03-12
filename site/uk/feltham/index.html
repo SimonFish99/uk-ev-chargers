@@ -6,19 +6,61 @@
 
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
+
 <style>
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+}
+
+header {
+  background: #1f2937;
+  padding: 12px 20px;
+}
+
+.logo {
+  color: white;
+  text-decoration: none;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.container {
+  padding: 20px;
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 15px;
+  text-decoration: none;
+  color: #2563eb;
+  font-weight: bold;
+}
+
 #map {
-  height: 400px;
+  height: 420px;
   margin-bottom: 30px;
   border-radius: 8px;
 }
+
 </style>
 
 </head>
 
 <body>
 
+<header>
+<a href="/" class="logo">PlugMap</a>
+</header>
+
+<div class="container">
+
 <h1>Feltham EV Chargers</h1>
+
+<a href="/" class="back-link">← Back to homepage</a>
 
 <div id="map"></div>
 
@@ -71,7 +113,11 @@ Dukes Green Avenue
 
 </ul>
 
+</div>
+
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 
 <script>
 
@@ -84,13 +130,16 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 attribution: '&copy; OpenStreetMap contributors'
 }).addTo(map);
 
+var markers = L.markerClusterGroup();
 
 
-L.marker([
+
+var marker = L.marker([
 51.4474491,
 -0.4102182
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>McDonalds Feltham</b><br>
 2 Bedfont Lane<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.4474491,-0.4102182" target="_blank">
@@ -98,13 +147,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.430852,
 -0.398863
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Power League Sunbury-on-Thames</b><br>
 Nallhead Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.430852,-0.398863" target="_blank">
@@ -112,13 +164,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.436752,
 -0.3777978
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>McDonald's Hanworth</b><br>
 Twickenham Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.436752,-0.3777978" target="_blank">
@@ -126,13 +181,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.443383,
 -0.413574
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Tesco Superstore-Feltham</b><br>
 98 High Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.443383,-0.413574" target="_blank">
@@ -140,13 +198,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.4538,
 -0.428724
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Bethany Waye Car Park</b><br>
 East Bedfont<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.4538,-0.428724" target="_blank">
@@ -154,13 +215,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.446255,
 -0.446335
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Birdseye Ltd</b><br>
 1 New Square<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.446255,-0.446335" target="_blank">
@@ -168,13 +232,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.445683,
 -0.399848
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>JK Off Licence</b><br>
 220 Uxbridge Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.445683,-0.399848" target="_blank">
@@ -182,13 +249,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.440491,
 -0.387877
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>7 Market Parade</b><br>
 Hampton Road W<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.440491,-0.387877" target="_blank">
@@ -196,13 +266,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.459862,
 -0.414479
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Tesco Superstore-Feltham Dukes Green</b><br>
 Dukes Green Avenue<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.459862,-0.414479" target="_blank">
@@ -210,7 +283,11 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
+
+
+map.addLayer(markers);
 
 </script>
 

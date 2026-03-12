@@ -6,19 +6,61 @@
 
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
+
 <style>
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+}
+
+header {
+  background: #1f2937;
+  padding: 12px 20px;
+}
+
+.logo {
+  color: white;
+  text-decoration: none;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.container {
+  padding: 20px;
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 15px;
+  text-decoration: none;
+  color: #2563eb;
+  font-weight: bold;
+}
+
 #map {
-  height: 400px;
+  height: 420px;
   margin-bottom: 30px;
   border-radius: 8px;
 }
+
 </style>
 
 </head>
 
 <body>
 
+<header>
+<a href="/" class="logo">PlugMap</a>
+</header>
+
+<div class="container">
+
 <h1>Scarborough EV Chargers</h1>
+
+<a href="/" class="back-link">← Back to homepage</a>
 
 <div id="map"></div>
 
@@ -76,7 +118,11 @@ Westwood
 
 </ul>
 
+</div>
+
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 
 <script>
 
@@ -89,13 +135,16 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 attribution: '&copy; OpenStreetMap contributors'
 }).addTo(map);
 
+var markers = L.markerClusterGroup();
 
 
-L.marker([
+
+var marker = L.marker([
 54.234534,
 -0.38051
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>The Farrier - B</b><br>
 89 Main Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.234534,-0.38051" target="_blank">
@@ -103,13 +152,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.29245560677015,
 -0.4113474926500089
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Northstead Lower Car Park</b><br>
 burniston Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.29245560677015,-0.4113474926500089" target="_blank">
@@ -117,13 +169,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.28572064520938,
 -0.39912327368199385
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>North Terrace Car Park</b><br>
 North Terrace<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.28572064520938,-0.39912327368199385" target="_blank">
@@ -131,13 +186,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.284881761896116,
 -0.3988197947072649
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Friars Way Car Park</b><br>
 Friar's Way<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.284881761896116,-0.3988197947072649" target="_blank">
@@ -145,13 +203,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.28398508955098,
 -0.40174584715595074
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>North Street Car Park </b><br>
 6 North St<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.28398508955098,-0.40174584715595074" target="_blank">
@@ -159,13 +220,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.283672804104526,
 -0.39958626874079073
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>St Thomas Street Car Park </b><br>
 19 St Thomas St<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.283672804104526,-0.39958626874079073" target="_blank">
@@ -173,13 +237,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.28421828263001,
 -0.39303168444828884
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Eastborough Car Park</b><br>
 Eastborough<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.28421828263001,-0.39303168444828884" target="_blank">
@@ -187,13 +254,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.27536396944595,
 -0.4002586255765266
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Albion Road Car Park</b><br>
 <br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.27536396944595,-0.4002586255765266" target="_blank">
@@ -201,13 +271,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.308885,
 -0.424241
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Duchy of Lancaster-Scalby Lodge Holiday Cottages</b><br>
 Burniston<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.308885,-0.424241" target="_blank">
@@ -215,13 +288,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.278111,
 -0.406095
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Tesco Superstore-Scarborough</b><br>
 Westwood<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.278111,-0.406095" target="_blank">
@@ -229,7 +305,11 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
+
+
+map.addLayer(markers);
 
 </script>
 

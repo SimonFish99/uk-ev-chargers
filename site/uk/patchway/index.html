@@ -6,19 +6,61 @@
 
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
+
 <style>
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+}
+
+header {
+  background: #1f2937;
+  padding: 12px 20px;
+}
+
+.logo {
+  color: white;
+  text-decoration: none;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.container {
+  padding: 20px;
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 15px;
+  text-decoration: none;
+  color: #2563eb;
+  font-weight: bold;
+}
+
 #map {
-  height: 400px;
+  height: 420px;
   margin-bottom: 30px;
   border-radius: 8px;
 }
+
 </style>
 
 </head>
 
 <body>
 
+<header>
+<a href="/" class="logo">PlugMap</a>
+</header>
+
+<div class="container">
+
 <h1>Patchway EV Chargers</h1>
+
+<a href="/" class="back-link">← Back to homepage</a>
 
 <div id="map"></div>
 
@@ -76,7 +118,11 @@ Long Down Avenue
 
 </ul>
 
+</div>
+
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 
 <script>
 
@@ -89,13 +135,16 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 attribution: '&copy; OpenStreetMap contributors'
 }).addTo(map);
 
+var markers = L.markerClusterGroup();
 
 
-L.marker([
+
+var marker = L.marker([
 51.52514484277822,
 -2.575196831409187
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Lidl Patchway</b><br>
 Hayes Way<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.52514484277822,-2.575196831409187" target="_blank">
@@ -103,13 +152,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.533531,
 -2.571271
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Coniston Road Car Park</b><br>
 Coniston Road Car Park<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.533531,-2.571271" target="_blank">
@@ -117,13 +169,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.525502,
 -2.570349
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>ROLLS_ROYCE BRISTOL AC</b><br>
 Rolls Royce Gloucester Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.525502,-2.570349" target="_blank">
@@ -131,13 +186,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.52629,
 -2.59919
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Centaurus Retail Park</b><br>
 Cribbs Causeway<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.52629,-2.59919" target="_blank">
@@ -145,13 +203,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.525213,
 -2.594085
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Car Park</b><br>
 Lysander Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.525213,-2.594085" target="_blank">
@@ -159,13 +220,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.5223920009235,
 -2.58831800936252
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>MFG Filton Service Station</b><br>
 First Field Way<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.5223920009235,-2.58831800936252" target="_blank">
@@ -173,13 +237,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.52614,
 -2.6006
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Cribbs Causeway Retail Park</b><br>
 Lysander Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.52614,-2.6006" target="_blank">
@@ -187,13 +254,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.501138,
 -2.55421
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Hewlett Packard Bristol Office 3</b><br>
 Long Down Avenue<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.501138,-2.55421" target="_blank">
@@ -201,13 +271,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.501078,
 -2.554901
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Business Car Park</b><br>
 Longdown Avenue<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.501078,-2.554901" target="_blank">
@@ -215,13 +288,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.501004,
 -2.554038
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Hewlett Packard Bristol Office 2</b><br>
 Long Down Avenue<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.501004,-2.554038" target="_blank">
@@ -229,7 +305,11 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
+
+
+map.addLayer(markers);
 
 </script>
 

@@ -6,19 +6,61 @@
 
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
+
 <style>
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+}
+
+header {
+  background: #1f2937;
+  padding: 12px 20px;
+}
+
+.logo {
+  color: white;
+  text-decoration: none;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.container {
+  padding: 20px;
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 15px;
+  text-decoration: none;
+  color: #2563eb;
+  font-weight: bold;
+}
+
 #map {
-  height: 400px;
+  height: 420px;
   margin-bottom: 30px;
   border-radius: 8px;
 }
+
 </style>
 
 </head>
 
 <body>
 
+<header>
+<a href="/" class="logo">PlugMap</a>
+</header>
+
+<div class="container">
+
 <h1>Sutton EV Chargers</h1>
+
+<a href="/" class="back-link">← Back to homepage</a>
 
 <div id="map"></div>
 
@@ -91,7 +133,11 @@ Cheam Road 56-58
 
 </ul>
 
+</div>
+
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 
 <script>
 
@@ -104,13 +150,16 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 attribution: '&copy; OpenStreetMap contributors'
 }).addTo(map);
 
+var markers = L.markerClusterGroup();
 
 
-L.marker([
+
+var marker = L.marker([
 51.3575529902069,
 -0.191653095122995
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>MFG Sutton Court</b><br>
 Brighton Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.3575529902069,-0.191653095122995" target="_blank">
@@ -118,13 +167,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.380474,
 -0.184104
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Saint Helier Hospital</b><br>
 Carshalton<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.380474,-0.184104" target="_blank">
@@ -132,13 +184,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.362125,
 -0.1967
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Gibson Road Car Park</b><br>
 Gibson Road Car Park<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.362125,-0.1967" target="_blank">
@@ -146,13 +201,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.361435,
 -0.197464
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>SHELL RECHARGE LITTLE WAITROSE SUTTON</b><br>
 56-58 Cheam Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.361435,-0.197464" target="_blank">
@@ -160,13 +218,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.36079,
 -0.194311
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Morrisons Sutton</b><br>
 31 High Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.36079,-0.194311" target="_blank">
@@ -174,13 +235,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.358314,
 -0.151261
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Wallington Library (Shotfield)</b><br>
 Wallington Library (Shotfield)<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.358314,-0.151261" target="_blank">
@@ -188,13 +252,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.35691,
 -0.217904
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Kingsway Road Car Park (site 2)</b><br>
 Kingsway Road Car Park (site 2)<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.35691,-0.217904" target="_blank">
@@ -202,13 +269,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.372056,
 -0.223934
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Sainsbury's North Cheam</b><br>
 566 London Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.372056,-0.223934" target="_blank">
@@ -216,13 +286,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.361651,
 -0.200196
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Cheam Road 56-58</b><br>
 Cheam Road 56-58<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.361651,-0.200196" target="_blank">
@@ -230,13 +303,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.372056,
 -0.223934
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Sainsbury's North Cheam</b><br>
 566 London Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.372056,-0.223934" target="_blank">
@@ -244,13 +320,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.376366,
 -0.222026
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>716-702 London Road</b><br>
 716-702 London Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.376366,-0.222026" target="_blank">
@@ -258,13 +337,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.371315,
 -0.209089
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>St Dunstan's Hill Parking/Charging</b><br>
 2 Saint Dunstan's Hill<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.371315,-0.209089" target="_blank">
@@ -272,13 +354,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.360031,
 -0.194116
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>A232 High Street</b><br>
 62 Grove Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.360031,-0.194116" target="_blank">
@@ -286,7 +371,11 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
+
+
+map.addLayer(markers);
 
 </script>
 

@@ -6,19 +6,61 @@
 
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
+
 <style>
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+}
+
+header {
+  background: #1f2937;
+  padding: 12px 20px;
+}
+
+.logo {
+  color: white;
+  text-decoration: none;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.container {
+  padding: 20px;
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 15px;
+  text-decoration: none;
+  color: #2563eb;
+  font-weight: bold;
+}
+
 #map {
-  height: 400px;
+  height: 420px;
   margin-bottom: 30px;
   border-radius: 8px;
 }
+
 </style>
 
 </head>
 
 <body>
 
+<header>
+<a href="/" class="logo">PlugMap</a>
+</header>
+
+<div class="container">
+
 <h1>Ebbw Vale EV Chargers</h1>
+
+<a href="/" class="back-link">← Back to homepage</a>
 
 <div id="map"></div>
 
@@ -81,7 +123,11 @@ Colliers' Row
 
 </ul>
 
+</div>
+
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 
 <script>
 
@@ -94,13 +140,16 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 attribution: '&copy; OpenStreetMap contributors'
 }).addTo(map);
 
+var markers = L.markerClusterGroup();
 
 
-L.marker([
+
+var marker = L.marker([
 51.7930409012659,
 -3.221057917406398
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Morrisons Ebbw Vale</b><br>
 Beaufort Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.7930409012659,-3.221057917406398" target="_blank">
@@ -108,13 +157,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.777794,
 -3.204184
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Boxworks, Ebbw Vale</b><br>
 Lime Avenue<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.777794,-3.204184" target="_blank">
@@ -122,13 +174,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.771615,
 -3.203178
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Lime Avenue, Ebbw Vale</b><br>
 Lime Avenue<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.771615,-3.203178" target="_blank">
@@ -136,13 +191,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.766651,
 -3.198405
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Ebbw Fawr Primary School, Ebbw Vale</b><br>
 Strand Annealing Lane<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.766651,-3.198405" target="_blank">
@@ -150,13 +208,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.751722,
 -3.194011
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Augusta House Care Home, Ebbw Vale</b><br>
 Augusta Park<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.751722,-3.194011" target="_blank">
@@ -164,13 +225,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.777055,
 -3.201728
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Genral Offices ( west car park ) 2, Blaenau Gwent</b><br>
 Genral Offices ( west car park )<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.777055,-3.201728" target="_blank">
@@ -178,13 +242,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.78600815,
 -3.21398074
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Tesco Superstore-Ebbw Vale</b><br>
 North West Approach<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.78600815,-3.21398074" target="_blank">
@@ -192,13 +259,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.79986,
 -3.17521
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Worcester St Car Park</b><br>
 Worcester Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.79986,-3.17521" target="_blank">
@@ -206,13 +276,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.7752,
 -3.20404
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>The Works Multistorey Ground Floor</b><br>
 Lime Avenue<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.7752,-3.20404" target="_blank">
@@ -220,13 +293,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.7690582,
 -3.2032556
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Ysbyty Aneurin Bevan</b><br>
 Lime Ave<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.7690582,-3.2032556" target="_blank">
@@ -234,13 +310,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.78245995279275,
 -3.207875003117465
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Colliers' Row</b><br>
 Colliers' Row<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.78245995279275,-3.207875003117465" target="_blank">
@@ -248,7 +327,11 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
+
+
+map.addLayer(markers);
 
 </script>
 

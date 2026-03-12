@@ -6,19 +6,61 @@
 
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
+
 <style>
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+}
+
+header {
+  background: #1f2937;
+  padding: 12px 20px;
+}
+
+.logo {
+  color: white;
+  text-decoration: none;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.container {
+  padding: 20px;
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 15px;
+  text-decoration: none;
+  color: #2563eb;
+  font-weight: bold;
+}
+
 #map {
-  height: 400px;
+  height: 420px;
   margin-bottom: 30px;
   border-radius: 8px;
 }
+
 </style>
 
 </head>
 
 <body>
 
+<header>
+<a href="/" class="logo">PlugMap</a>
+</header>
+
+<div class="container">
+
 <h1>Birmingham  EV Chargers</h1>
+
+<a href="/" class="back-link">← Back to homepage</a>
 
 <div id="map"></div>
 
@@ -66,7 +108,11 @@ Lawley Middleway
 
 </ul>
 
+</div>
+
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 
 <script>
 
@@ -79,13 +125,16 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 attribution: '&copy; OpenStreetMap contributors'
 }).addTo(map);
 
+var markers = L.markerClusterGroup();
 
 
-L.marker([
+
+var marker = L.marker([
 52.478916,
 -1.913105
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Brindleyplace, Building 3 - 1, Birmingham</b><br>
 3 Brindley Pl,<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.478916,-1.913105" target="_blank">
@@ -93,13 +142,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.480637,
 -1.898745
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Temple Row Birmingham - 70530</b><br>
 Temple Row<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.480637,-1.898745" target="_blank">
@@ -107,13 +159,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.485966,
 -1.889467
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Aston Street Birmingham - 70529</b><br>
 Aston Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.485966,-1.889467" target="_blank">
@@ -121,13 +176,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.483643,
 -1.885518
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Millenium Point Car Park Birmingham - 70519</b><br>
 Howe Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.483643,-1.885518" target="_blank">
@@ -135,13 +193,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.483251,
 -1.899288
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Livery Street Car Park Birmingham - 70520</b><br>
 Livery Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.483251,-1.899288" target="_blank">
@@ -149,13 +210,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.481152,
 -1.903726
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>On-street</b><br>
 Margaret Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.481152,-1.903726" target="_blank">
@@ -163,13 +227,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.480918,
 -1.90771
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Brindley Drive Car Park Birmingham - 70524</b><br>
 Brindley Drive<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.480918,-1.90771" target="_blank">
@@ -177,13 +244,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.479413,
 -1.8777
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Restricted access to Smart and Mercedes customers</b><br>
 Lawley Middleway<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.479413,-1.8777" target="_blank">
@@ -191,7 +261,11 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
+
+
+map.addLayer(markers);
 
 </script>
 

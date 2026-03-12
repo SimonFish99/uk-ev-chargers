@@ -6,19 +6,61 @@
 
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
+
 <style>
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+}
+
+header {
+  background: #1f2937;
+  padding: 12px 20px;
+}
+
+.logo {
+  color: white;
+  text-decoration: none;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.container {
+  padding: 20px;
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 15px;
+  text-decoration: none;
+  color: #2563eb;
+  font-weight: bold;
+}
+
 #map {
-  height: 400px;
+  height: 420px;
   margin-bottom: 30px;
   border-radius: 8px;
 }
+
 </style>
 
 </head>
 
 <body>
 
+<header>
+<a href="/" class="logo">PlugMap</a>
+</header>
+
+<div class="container">
+
 <h1>Lichfield EV Chargers</h1>
+
+<a href="/" class="back-link">← Back to homepage</a>
 
 <div id="map"></div>
 
@@ -76,7 +118,11 @@ Stonnyland Drive
 
 </ul>
 
+</div>
+
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 
 <script>
 
@@ -89,13 +135,16 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 attribution: '&copy; OpenStreetMap contributors'
 }).addTo(map);
 
+var markers = L.markerClusterGroup();
 
 
-L.marker([
+
+var marker = L.marker([
 52.683399,
 -1.823414
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Three Spires Car Park</b><br>
 Backcester Lane<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.683399,-1.823414" target="_blank">
@@ -103,13 +152,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.6812532781834,
 -1.83472083700336
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Central Co-op Alexandra House</b><br>
 Central Co-op Support Centre<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.6812532781834,-1.83472083700336" target="_blank">
@@ -117,13 +169,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.68096232504838,
 -1.804712961470833
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Central Co-op</b><br>
 Boley Park Centre<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.68096232504838,-1.804712961470833" target="_blank">
@@ -131,13 +186,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.688599,
 -1.839918
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Morrisons Lichfield</b><br>
 Morrisons Lichfield<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.688599,-1.839918" target="_blank">
@@ -145,13 +203,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.684916,
 -1.821656
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Tesco Extra - Lichfield</b><br>
 Church Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.684916,-1.821656" target="_blank">
@@ -159,13 +220,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.674047,
 -1.841626
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Inkwell At Lichfield</b><br>
 Stonneyland Drive<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.674047,-1.841626" target="_blank">
@@ -173,13 +237,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.71745652493879,
 -1.850660195701602
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>EVC Lichfield Golf & Country Club</b><br>
 Seedy Mill Lane<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.71745652493879,-1.850660195701602" target="_blank">
@@ -187,13 +254,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.686801,
 -1.800669
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Saba UK-Lichfield Trent Valley</b><br>
 Lichfield Trent Valley (station Side)<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.686801,-1.800669" target="_blank">
@@ -201,13 +271,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.68986,
 -1.808133
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>SureStore - Self Storage Lichfield</b><br>
 Industrial Estate, Trent Valley Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.68986,-1.808133" target="_blank">
@@ -215,13 +288,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.5359,
 -1.76948
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Waitrose Lichfield</b><br>
 Stonnyland Drive<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.5359,-1.76948" target="_blank">
@@ -229,7 +305,11 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
+
+
+map.addLayer(markers);
 
 </script>
 

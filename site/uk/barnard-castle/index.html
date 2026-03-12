@@ -6,19 +6,61 @@
 
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
+
 <style>
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+}
+
+header {
+  background: #1f2937;
+  padding: 12px 20px;
+}
+
+.logo {
+  color: white;
+  text-decoration: none;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.container {
+  padding: 20px;
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 15px;
+  text-decoration: none;
+  color: #2563eb;
+  font-weight: bold;
+}
+
 #map {
-  height: 400px;
+  height: 420px;
   margin-bottom: 30px;
   border-radius: 8px;
 }
+
 </style>
 
 </head>
 
 <body>
 
+<header>
+<a href="/" class="logo">PlugMap</a>
+</header>
+
+<div class="container">
+
 <h1>Barnard Castle EV Chargers</h1>
+
+<a href="/" class="back-link">← Back to homepage</a>
 
 <div id="map"></div>
 
@@ -56,7 +98,11 @@ Morritt County House Hotel
 
 </ul>
 
+</div>
+
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 
 <script>
 
@@ -69,13 +115,16 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 attribution: '&copy; OpenStreetMap contributors'
 }).addTo(map);
 
+var markers = L.markerClusterGroup();
 
 
-L.marker([
+
+var marker = L.marker([
 54.607824,
 -2.043463
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Mickleton Services</b><br>
 Mickleton Services<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.607824,-2.043463" target="_blank">
@@ -83,13 +132,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.54449527408144,
 -1.9227343691680971
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>DCC Galgate Car Park </b><br>
 15 King St<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.54449527408144,-1.9227343691680971" target="_blank">
@@ -97,13 +149,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.551232271129976,
 -1.913441438926725
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Teesdale Leisure Centre</b><br>
 Strathmore Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.551232271129976,-1.913441438926725" target="_blank">
@@ -111,13 +166,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.542654853499954,
 -1.9221550036158987
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Queen Street Car Park</b><br>
 11 Queen Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.542654853499954,-1.9221550036158987" target="_blank">
@@ -125,13 +183,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.519029,
 -1.923412
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Cross Lanes Organic Farm</b><br>
 Cross Lanes<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.519029,-1.923412" target="_blank">
@@ -139,13 +200,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 54.515178,
 -1.870712
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Durham</b><br>
 Morritt County House Hotel<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=54.515178,-1.870712" target="_blank">
@@ -153,7 +217,11 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
+
+
+map.addLayer(markers);
 
 </script>
 

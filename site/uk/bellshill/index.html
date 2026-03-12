@@ -6,19 +6,61 @@
 
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
+
 <style>
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+}
+
+header {
+  background: #1f2937;
+  padding: 12px 20px;
+}
+
+.logo {
+  color: white;
+  text-decoration: none;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.container {
+  padding: 20px;
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 15px;
+  text-decoration: none;
+  color: #2563eb;
+  font-weight: bold;
+}
+
 #map {
-  height: 400px;
+  height: 420px;
   margin-bottom: 30px;
   border-radius: 8px;
 }
+
 </style>
 
 </head>
 
 <body>
 
+<header>
+<a href="/" class="logo">PlugMap</a>
+</header>
+
+<div class="container">
+
 <h1>Bellshill EV Chargers</h1>
+
+<a href="/" class="back-link">← Back to homepage</a>
 
 <div id="map"></div>
 
@@ -61,7 +103,11 @@ Glebe Street
 
 </ul>
 
+</div>
+
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 
 <script>
 
@@ -74,13 +120,16 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 attribution: '&copy; OpenStreetMap contributors'
 }).addTo(map);
 
+var markers = L.markerClusterGroup();
 
 
-L.marker([
+
+var marker = L.marker([
 55.820534,
 -4.0341825
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Lidl-Bellshill</b><br>
 1 Mossbell Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.820534,-4.0341825" target="_blank">
@@ -88,13 +137,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.818272,
 -4.020498
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>John Street</b><br>
 John Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.818272,-4.020498" target="_blank">
@@ -102,13 +154,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.801138,
 -4.042117
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>M&DS CHARGERS LOCHVIEW 5</b><br>
 Hamilton Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.801138,-4.042117" target="_blank">
@@ -116,13 +171,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.79959,
 -4.039811
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>M&DS CHARGERS LOCHVIEW 1</b><br>
 Strathclyde Country Park<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.79959,-4.039811" target="_blank">
@@ -130,13 +188,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.565096,
 -1.79184
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Adderstone Supercharger</b><br>
 Adderstone Services<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.565096,-1.79184" target="_blank">
@@ -144,13 +205,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.819979,
 -4.022299
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Tesco Extra-Bellshill</b><br>
 12 North Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.819979,-4.022299" target="_blank">
@@ -158,13 +222,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.817438,
 -4.027086
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Glebe Street Car Park</b><br>
 Glebe Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.817438,-4.027086" target="_blank">
@@ -172,7 +239,11 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
+
+
+map.addLayer(markers);
 
 </script>
 

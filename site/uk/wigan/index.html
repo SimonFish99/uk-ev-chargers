@@ -6,19 +6,61 @@
 
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
+
 <style>
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+}
+
+header {
+  background: #1f2937;
+  padding: 12px 20px;
+}
+
+.logo {
+  color: white;
+  text-decoration: none;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.container {
+  padding: 20px;
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 15px;
+  text-decoration: none;
+  color: #2563eb;
+  font-weight: bold;
+}
+
 #map {
-  height: 400px;
+  height: 420px;
   margin-bottom: 30px;
   border-radius: 8px;
 }
+
 </style>
 
 </head>
 
 <body>
 
+<header>
+<a href="/" class="logo">PlugMap</a>
+</header>
+
+<div class="container">
+
 <h1>Wigan EV Chargers</h1>
+
+<a href="/" class="back-link">← Back to homepage</a>
 
 <div id="map"></div>
 
@@ -86,7 +128,11 @@ Mona Street Pay and Display
 
 </ul>
 
+</div>
+
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 
 <script>
 
@@ -99,13 +145,16 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 attribution: '&copy; OpenStreetMap contributors'
 }).addTo(map);
 
+var markers = L.markerClusterGroup();
 
 
-L.marker([
+
+var marker = L.marker([
 53.58783204977493,
 -2.699204846507854
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Golden Days Garden Centre</b><br>
 Back Lane<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.58783204977493,-2.699204846507854" target="_blank">
@@ -113,13 +162,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.556042,
 -2.658832
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Lidl-Woodhouse Lane</b><br>
 15 Doolan Crescent<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.556042,-2.658832" target="_blank">
@@ -127,13 +179,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.543002,
 -2.625043
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Lidl-Wigan Centre</b><br>
 Darlington Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.543002,-2.625043" target="_blank">
@@ -141,13 +196,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.546784,
 -2.658493
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Robin Leisure Park</b><br>
 4 Anjou Boulevard<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.546784,-2.658493" target="_blank">
@@ -155,13 +213,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.519294,
 -2.657105
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>GATWICK HOUSE HAWKLEY DC150</b><br>
 Hawkley Brook Trading Estate Worthington Way<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.519294,-2.657105" target="_blank">
@@ -169,13 +230,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.548226,
 -2.628135
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>GMEV PAYG Charge Point</b><br>
 Water Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.548226,-2.628135" target="_blank">
@@ -183,13 +247,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.541738,
 -2.645141
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Chorley Group Wigan Nissan</b><br>
 Pottery Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.541738,-2.645141" target="_blank">
@@ -197,13 +264,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.5435,
 -2.636204
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>SureStore - Self Storage Wigan</b><br>
 Brown Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.5435,-2.636204" target="_blank">
@@ -211,13 +281,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.550856,
 -2.625483
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Tesco Extra-Wigan</b><br>
 Central Park Way<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.550856,-2.625483" target="_blank">
@@ -225,13 +298,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.5909598564969,
 -2.6967191036041
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>MFG BP/Costa Crow Orchard Service Station</b><br>
 Mossy Lea Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.5909598564969,-2.6967191036041" target="_blank">
@@ -239,13 +315,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.591099,
 -2.7422
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Miller & Carter Parbold</b><br>
 Parbold<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.591099,-2.7422" target="_blank">
@@ -253,13 +332,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 53.547289,
 -2.636972
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Mona Street Pay and Display</b><br>
 Mona Street Pay and Display<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=53.547289,-2.636972" target="_blank">
@@ -267,7 +349,11 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
+
+
+map.addLayer(markers);
 
 </script>
 

@@ -6,19 +6,61 @@
 
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
+
 <style>
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+}
+
+header {
+  background: #1f2937;
+  padding: 12px 20px;
+}
+
+.logo {
+  color: white;
+  text-decoration: none;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.container {
+  padding: 20px;
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 15px;
+  text-decoration: none;
+  color: #2563eb;
+  font-weight: bold;
+}
+
 #map {
-  height: 400px;
+  height: 420px;
   margin-bottom: 30px;
   border-radius: 8px;
 }
+
 </style>
 
 </head>
 
 <body>
 
+<header>
+<a href="/" class="logo">PlugMap</a>
+</header>
+
+<div class="container">
+
 <h1>Morpeth EV Chargers</h1>
+
+<a href="/" class="back-link">← Back to homepage</a>
 
 <div id="map"></div>
 
@@ -91,7 +133,11 @@ Northgate Hospital
 
 </ul>
 
+</div>
+
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 
 <script>
 
@@ -104,13 +150,16 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 attribution: '&copy; OpenStreetMap contributors'
 }).addTo(map);
 
+var markers = L.markerClusterGroup();
 
 
-L.marker([
+
+var marker = L.marker([
 55.170553787542616,
 -1.6919061054688882
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>St James Carpark</b><br>
 Well Way<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.170553787542616,-1.6919061054688882" target="_blank">
@@ -118,13 +167,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.170024,
 -1.69018
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>St James</b><br>
 Wellway<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.170024,-1.69018" target="_blank">
@@ -132,13 +184,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.166432,
 -1.690391
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Newmarket Car Park</b><br>
 Newmarket East<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.166432,-1.690391" target="_blank">
@@ -146,13 +201,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.165686437626576,
 -1.6857642276507758
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Goose Hill Car Park</b><br>
 Goose Hill<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.165686437626576,-1.6857642276507758" target="_blank">
@@ -160,13 +218,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.315155,
 -1.885767
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Cragside Hall</b><br>
 Cragside Hall<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.315155,-1.885767" target="_blank">
@@ -174,13 +235,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.162166,
 -1.682229
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Coopies Lane Morpeth</b><br>
 Coopie's Lane<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.162166,-1.682229" target="_blank">
@@ -188,13 +252,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.326762,
 -1.582318
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Morrisons Amble</b><br>
 Amble<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.326762,-1.582318" target="_blank">
@@ -202,13 +269,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.169552,
 -1.685545
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Morrisons Morpeth</b><br>
 Wm Morrison Supermarkets PLC<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.169552,-1.685545" target="_blank">
@@ -216,13 +286,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.162623,
 -1.67997
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Morpeth Railway Station (South) Car Park</b><br>
 Coopies Lane<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.162623,-1.67997" target="_blank">
@@ -230,13 +303,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.152933,
 -1.683965
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>County Hall Morpeth</b><br>
 County Hall<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.152933,-1.683965" target="_blank">
@@ -244,13 +320,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.306628,
 -1.914088
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Rothbury Community Hospital</b><br>
 Whitton Bank Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.306628,-1.914088" target="_blank">
@@ -258,13 +337,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.168136,
 -1.686938
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Stanley Terrace</b><br>
 Stanley Terrace<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.168136,-1.686938" target="_blank">
@@ -272,13 +354,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 55.15311,
 -1.68629
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Northgate Hospital</b><br>
 Northgate Hospital<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=55.15311,-1.68629" target="_blank">
@@ -286,7 +371,11 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
+
+
+map.addLayer(markers);
 
 </script>
 

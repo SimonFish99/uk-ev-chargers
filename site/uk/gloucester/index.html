@@ -6,19 +6,61 @@
 
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
+
 <style>
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+}
+
+header {
+  background: #1f2937;
+  padding: 12px 20px;
+}
+
+.logo {
+  color: white;
+  text-decoration: none;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.container {
+  padding: 20px;
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 15px;
+  text-decoration: none;
+  color: #2563eb;
+  font-weight: bold;
+}
+
 #map {
-  height: 400px;
+  height: 420px;
   margin-bottom: 30px;
   border-radius: 8px;
 }
+
 </style>
 
 </head>
 
 <body>
 
+<header>
+<a href="/" class="logo">PlugMap</a>
+</header>
+
+<div class="container">
+
 <h1>Gloucester EV Chargers</h1>
+
+<a href="/" class="back-link">← Back to homepage</a>
 
 <div id="map"></div>
 
@@ -126,7 +168,11 @@ Edison Close
 
 </ul>
 
+</div>
+
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 
 <script>
 
@@ -139,13 +185,16 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 attribution: '&copy; OpenStreetMap contributors'
 }).addTo(map);
 
+var markers = L.markerClusterGroup();
 
 
-L.marker([
+
+var marker = L.marker([
 51.81888984230943,
 -2.2243323892222406
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Westmorland Gloucester Services Southbound</b><br>
 M5 Southbound<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.81888984230943,-2.2243323892222406" target="_blank">
@@ -153,13 +202,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.794371,
 -2.288868
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Dobbies Gloucester</b><br>
 Bath Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.794371,-2.288868" target="_blank">
@@ -167,13 +219,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.886573,
 -2.188334
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Tesco Superstore - Churchdown</b><br>
 Cheltenham Road East<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.886573,-2.188334" target="_blank">
@@ -181,13 +236,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.848407,
 -2.172519
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Tesco Extra - Gloucester Brockworth</b><br>
 Gloucester Business Park<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.848407,-2.172519" target="_blank">
@@ -195,13 +253,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.827333,
 -2.278748
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Tesco Extra - Gloucester Quedgeley</b><br>
 Bristol Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.827333,-2.278748" target="_blank">
@@ -209,13 +270,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.8668923,
 -2.206875946
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>EVC Barnwood Point Business Park</b><br>
 Corinium Ave<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.8668923,-2.206875946" target="_blank">
@@ -223,13 +287,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.757094,
 -2.29463
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Redrow Homes- Great Oldbury-the Alders</b><br>
 De Lisle Bush Way<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.757094,-2.29463" target="_blank">
@@ -237,13 +304,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.85591167,
 -2.22201257
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Custodian Capital Limited-Farmfoods</b><br>
 108 Eastern Avenue<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.85591167,-2.22201257" target="_blank">
@@ -251,13 +321,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.83979,
 -2.139585
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Premier inn Gloucester (Little Witcombe)</b><br>
 Little Witcombe<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.83979,-2.139585" target="_blank">
@@ -265,13 +338,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.875801,
 -2.270267
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>The Lock Keepers</b><br>
 The Lock Keepers<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.875801,-2.270267" target="_blank">
@@ -279,13 +355,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.871153,
 -2.248832
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Tesco Superstore - Gloucester</b><br>
 St Oswalds Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.871153,-2.248832" target="_blank">
@@ -293,13 +372,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.822121,
 -2.275357
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Asda</b><br>
 Kingsway<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.822121,-2.275357" target="_blank">
@@ -307,13 +389,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.859529564820036,
 -2.252497881911495
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Gloucester Quays MSCP</b><br>
 St Ann Way<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.859529564820036,-2.252497881911495" target="_blank">
@@ -321,13 +406,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.86001290207332,
 -2.252027104547551
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Gloucester Quays MSCP - Staff parking</b><br>
 Baker Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.86001290207332,-2.252027104547551" target="_blank">
@@ -335,13 +423,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.78443568,
 -2.19340595
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>The Painswick Kemps Lane</b><br>
 Painswick<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.78443568,-2.19340595" target="_blank">
@@ -349,13 +440,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.86864692135953,
 -2.2332687801106204
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>The Edward Hotel</b><br>
 88-92 London Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.86864692135953,-2.2332687801106204" target="_blank">
@@ -363,13 +457,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.844482,
 -2.173463
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Plot 4100 Hurricane Road</b><br>
 Plot 4100 Hurricane Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.844482,-2.173463" target="_blank">
@@ -377,13 +474,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.8612592480618,
 -2.21645347252684
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Instavolt [Southbrook Retail Park Gloucester]</b><br>
 Eastern Avenue<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.8612592480618,-2.21645347252684" target="_blank">
@@ -391,13 +491,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.897385,
 -2.173807
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Safran Landing Systems</b><br>
 Cheltenham Road E<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.897385,-2.173807" target="_blank">
@@ -405,13 +508,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.815437,
 -2.277822
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Phoenix House</b><br>
 Edison Close<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.815437,-2.277822" target="_blank">
@@ -419,7 +525,11 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
+
+
+map.addLayer(markers);
 
 </script>
 

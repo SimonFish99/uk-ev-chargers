@@ -6,19 +6,61 @@
 
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
+
 <style>
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+}
+
+header {
+  background: #1f2937;
+  padding: 12px 20px;
+}
+
+.logo {
+  color: white;
+  text-decoration: none;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.container {
+  padding: 20px;
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 15px;
+  text-decoration: none;
+  color: #2563eb;
+  font-weight: bold;
+}
+
 #map {
-  height: 400px;
+  height: 420px;
   margin-bottom: 30px;
   border-radius: 8px;
 }
+
 </style>
 
 </head>
 
 <body>
 
+<header>
+<a href="/" class="logo">PlugMap</a>
+</header>
+
+<div class="container">
+
 <h1>Leicester EV Chargers</h1>
+
+<a href="/" class="back-link">← Back to homepage</a>
 
 <div id="map"></div>
 
@@ -291,7 +333,11 @@ Long Furrow
 
 </ul>
 
+</div>
+
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 
 <script>
 
@@ -304,13 +350,16 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 attribution: '&copy; OpenStreetMap contributors'
 }).addTo(map);
 
+var markers = L.markerClusterGroup();
 
 
-L.marker([
+
+var marker = L.marker([
 52.635919434920595,
 -1.1212281521212617
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>St Georges Retail Park</b><br>
 St George's Way<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.635919434920595,-1.1212281521212617" target="_blank">
@@ -318,13 +367,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.657969,
 -1.082954
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Leicester East</b><br>
 Fletton Close<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.657969,-1.082954" target="_blank">
@@ -332,13 +384,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.73059,
 -1.1101
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>King Street Car Park, Leicester 2</b><br>
 Loughborough<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.73059,-1.1101" target="_blank">
@@ -346,13 +401,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.67329,
 -1.18731
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>The Nook, Leicester 1</b><br>
 The Nook<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.67329,-1.18731" target="_blank">
@@ -360,13 +418,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.6528,
 -1.068168
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Tesco Extra - Leicester Hamilton</b><br>
 Maidenwell Avenue<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.6528,-1.068168" target="_blank">
@@ -374,13 +435,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.719814,
 -1.126777
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Hu-Dobbies Leicester</b><br>
 Loughborough Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.719814,-1.126777" target="_blank">
@@ -388,13 +452,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.616392,
 -1.1166556
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Otterway House: Bulwer Road</b><br>
 Otterway House: Bulwer Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.616392,-1.1166556" target="_blank">
@@ -402,13 +469,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.6174887,
 -1.1208593
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>81 Howard Road</b><br>
 81 Howard Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.6174887,-1.1208593" target="_blank">
@@ -416,13 +486,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.643841,
 -0.904465
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Tilton on the Hill Village Hall 1</b><br>
 Oakham Road, Tilton on the Hill<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.643841,-0.904465" target="_blank">
@@ -430,13 +503,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.5868768,
 -1.1043756
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>InstaVolt LCP Leicester Road</b><br>
 Leicester Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.5868768,-1.1043756" target="_blank">
@@ -444,13 +520,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.5886509,
 -1.1041046
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>InstaVolt McDonald's Wigston</b><br>
 1 North Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.5886509,-1.1041046" target="_blank">
@@ -458,13 +537,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.5948234,
 -1.1106757
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>InstaVolt Stage Service Station</b><br>
 282 Leicester Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.5948234,-1.1106757" target="_blank">
@@ -472,13 +554,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.6600206,
 -1.0675579
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>InstaVolt Sandhills Avenue</b><br>
 Sandhills Avenue<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.6600206,-1.0675579" target="_blank">
@@ -486,13 +571,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.6023688,
 -1.1884683
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>McDonald's Leicester</b><br>
 Meridian Way<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.6023688,-1.1884683" target="_blank">
@@ -500,13 +588,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.5763036,
 -1.2176616
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>InstaVolt Copt Oak Court</b><br>
 Copt Oak Court<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.5763036,-1.2176616" target="_blank">
@@ -514,13 +605,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.668367,
 -1.104922
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Sainsbury's Leicester North 1</b><br>
 Melton Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.668367,-1.104922" target="_blank">
@@ -528,13 +622,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.643675,
 -1.130351
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Leicester Community Sports Arena (Morningside Arena)</b><br>
 31 Charter Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.643675,-1.130351" target="_blank">
@@ -542,13 +639,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.631298,
 -1.13555
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Newarke Street Car Park</b><br>
 York Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.631298,-1.13555" target="_blank">
@@ -556,13 +656,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.62072,
 -1.133915
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Morrisons</b><br>
 Aylestone Rd<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.62072,-1.133915" target="_blank">
@@ -570,13 +673,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.581405,
 -1.124759
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Lidl - Blaby Road</b><br>
 Blaby Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.581405,-1.124759" target="_blank">
@@ -584,13 +690,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.576196,
 -1.165148
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Enderby Road Car Park 1</b><br>
 Villers Ct, Blaby<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.576196,-1.165148" target="_blank">
@@ -598,13 +707,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.6176419,
 -1.1206012
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>112 Howard Road</b><br>
 112 Howard Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.6176419,-1.1206012" target="_blank">
@@ -612,13 +724,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.6173418,
 -1.1210209
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>54 Hartopp Road</b><br>
 54 Hartopp Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.6173418,-1.1210209" target="_blank">
@@ -626,13 +741,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.6185526,
 -1.112941
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>31 East Avenue</b><br>
 31 East Avenue<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.6185526,-1.112941" target="_blank">
@@ -640,13 +758,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.6174537,
 -1.114922
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>60 Clarendon Park Road</b><br>
 60 Clarendon Park Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.6174537,-1.114922" target="_blank">
@@ -654,13 +775,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.6176625,
 -1.1140995
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>46-48 Clarendon Park Road</b><br>
 46 - 48 Clarendon Park Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.6176625,-1.1140995" target="_blank">
@@ -668,13 +792,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.6184583,
 -1.1165916
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>20 Cecilla Road</b><br>
 20 Cecilla Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.6184583,-1.1165916" target="_blank">
@@ -682,13 +809,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.6155438,
 -1.1232298
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>39 Fleetwood Road</b><br>
 39 Fleetwood Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.6155438,-1.1232298" target="_blank">
@@ -696,13 +826,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.6174506,
 -1.1175613
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>43 Montague Road</b><br>
 43 Montague Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.6174506,-1.1175613" target="_blank">
@@ -710,13 +843,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.6154183,
 -1.1236972
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>10 Fleetwood Road</b><br>
 10 Fleetwood Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.6154183,-1.1236972" target="_blank">
@@ -724,13 +860,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.6182725,
 -1.1141535
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>8 Central Avenue</b><br>
 8 Central Avenue<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.6182725,-1.1141535" target="_blank">
@@ -738,13 +877,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.6290319,
 -1.1568072
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>183 Harrow Road</b><br>
 183 Harrow Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.6290319,-1.1568072" target="_blank">
@@ -752,13 +894,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.61625,
 -1.1138764
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>30 Avenue Road</b><br>
 30 Avenue Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.61625,-1.1138764" target="_blank">
@@ -766,13 +911,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.6276563,
 -1.1575887
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>43 Sykefield Avenue</b><br>
 43 Sykefield Avenue<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.6276563,-1.1575887" target="_blank">
@@ -780,13 +928,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.6300158,
 -1.1499195
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>58 Ridley Street</b><br>
 58 Ridley Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.6300158,-1.1499195" target="_blank">
@@ -794,13 +945,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.6265637,
 -1.1532064
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Opposite 52 Browning Street</b><br>
 Opposite 52 Browning Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.6265637,-1.1532064" target="_blank">
@@ -808,13 +962,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.6289362,
 -1.1570714
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>7 Sykefield Avenue</b><br>
 7 Sykefield Avenue<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.6289362,-1.1570714" target="_blank">
@@ -822,13 +979,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.6161613,
 -1.1149096
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>35 Portland Road</b><br>
 35 Portland Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.6161613,-1.1149096" target="_blank">
@@ -836,13 +996,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.6266808,
 -1.1530296
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>50 Browning Street</b><br>
 50 Browning Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.6266808,-1.1530296" target="_blank">
@@ -850,13 +1013,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.65066,
 -1.168808
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>RAW GREENE KING HEATHLEY 1</b><br>
 Heathley Park Drive<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.65066,-1.168808" target="_blank">
@@ -864,13 +1030,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.574458,
 -1.164825
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>St.Johns Car Park 1</b><br>
 St.Johns Car Park<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.574458,-1.164825" target="_blank">
@@ -878,13 +1047,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.572987,
 -1.201405
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Leicester Road Car Park</b><br>
 Leicester Road Car Park<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.572987,-1.201405" target="_blank">
@@ -892,13 +1064,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.572397,
 -1.205023
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Weavers Court 3</b><br>
 Weavers Court<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.572397,-1.205023" target="_blank">
@@ -906,13 +1081,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.59482046,
 -1.18086166
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Fosse Shopping Park</b><br>
 Fosse Park Avenue<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.59482046,-1.18086166" target="_blank">
@@ -920,13 +1098,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.631652,
 -1.146534
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Tesco Superstore-Leicester</b><br>
 100 New Park Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.631652,-1.146534" target="_blank">
@@ -934,13 +1115,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.619548,
 -0.934537
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>The Coplow Centre</b><br>
 Uppingham Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.619548,-0.934537" target="_blank">
@@ -948,13 +1132,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.59974,
 -1.08285
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>East Street Car Park 1</b><br>
 East Street Car Park<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.59974,-1.08285" target="_blank">
@@ -962,13 +1149,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.58164,
 -1.127313
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Tesco Superstore-Wigston</b><br>
 Blaby Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.58164,-1.127313" target="_blank">
@@ -976,13 +1166,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.618188160716755,
 -1.290931625448934
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Sport in Desford</b><br>
 The Flying Fields, Peckleton Lane<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.618188160716755,-1.290931625448934" target="_blank">
@@ -990,13 +1183,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.59756448138933,
 -1.1790825167181538
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Fosse Shopping Park</b><br>
 Fosse Park Ave<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.59756448138933,-1.1790825167181538" target="_blank">
@@ -1004,13 +1200,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.585329,
 -1.125274
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Cromwell Tools Limited (employeeÃÂÃÂ¢ÃÂÃÂÃÂÃÂs Use Only)</b><br>
 65 Chartwell Drive<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.585329,-1.125274" target="_blank">
@@ -1018,13 +1217,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.554362,
 -1.382325
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Morrisons Hinckley</b><br>
 Hinckley<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.554362,-1.382325" target="_blank">
@@ -1032,13 +1234,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 52.713297,
 -1.050596
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Restricted access to Renault customers</b><br>
 Long Furrow<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=52.713297,-1.050596" target="_blank">
@@ -1046,7 +1251,11 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
+
+
+map.addLayer(markers);
 
 </script>
 

@@ -6,19 +6,61 @@
 
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
+
 <style>
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+}
+
+header {
+  background: #1f2937;
+  padding: 12px 20px;
+}
+
+.logo {
+  color: white;
+  text-decoration: none;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.container {
+  padding: 20px;
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 15px;
+  text-decoration: none;
+  color: #2563eb;
+  font-weight: bold;
+}
+
 #map {
-  height: 400px;
+  height: 420px;
   margin-bottom: 30px;
   border-radius: 8px;
 }
+
 </style>
 
 </head>
 
 <body>
 
+<header>
+<a href="/" class="logo">PlugMap</a>
+</header>
+
+<div class="container">
+
 <h1>Tabard Street EV Chargers</h1>
+
+<a href="/" class="back-link">← Back to homepage</a>
 
 <div id="map"></div>
 
@@ -56,7 +98,11 @@ Opposite Great Dover Street Apartments
 
 </ul>
 
+</div>
+
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 
 <script>
 
@@ -69,13 +115,16 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 attribution: '&copy; OpenStreetMap contributors'
 }).addTo(map);
 
+var markers = L.markerClusterGroup();
 
 
-L.marker([
+
+var marker = L.marker([
 51.4982656,
 -0.0895219
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Opposite Tabard Gardens</b><br>
 Opposite Tabard Gardens<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.4982656,-0.0895219" target="_blank">
@@ -83,13 +132,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.499013,
 -0.0903243
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Becket House</b><br>
 Becket House<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.499013,-0.0903243" target="_blank">
@@ -97,13 +149,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.4974483,
 -0.0884659
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Opposite Sidney Webb House</b><br>
 Opposite Sidney Webb House<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.4974483,-0.0884659" target="_blank">
@@ -111,13 +166,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.4962433,
 -0.0874068
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Pallant House</b><br>
 Pallant House<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.4962433,-0.0874068" target="_blank">
@@ -125,13 +183,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.4984793,
 -0.0896097
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Tabard Gardens</b><br>
 Tabard Gardens<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.4984793,-0.0896097" target="_blank">
@@ -139,13 +200,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 51.4977927,
 -0.0888687
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Opposite Great Dover Street Apartments</b><br>
 Opposite Great Dover Street Apartments<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=51.4977927,-0.0888687" target="_blank">
@@ -153,7 +217,11 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
+
+
+map.addLayer(markers);
 
 </script>
 

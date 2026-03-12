@@ -6,19 +6,61 @@
 
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
+
 <style>
+
+body {
+  font-family: Arial, sans-serif;
+  margin: 0;
+}
+
+header {
+  background: #1f2937;
+  padding: 12px 20px;
+}
+
+.logo {
+  color: white;
+  text-decoration: none;
+  font-size: 22px;
+  font-weight: bold;
+}
+
+.container {
+  padding: 20px;
+}
+
+.back-link {
+  display: inline-block;
+  margin-bottom: 15px;
+  text-decoration: none;
+  color: #2563eb;
+  font-weight: bold;
+}
+
 #map {
-  height: 400px;
+  height: 420px;
   margin-bottom: 30px;
   border-radius: 8px;
 }
+
 </style>
 
 </head>
 
 <body>
 
+<header>
+<a href="/" class="logo">PlugMap</a>
+</header>
+
+<div class="container">
+
 <h1>Perth EV Chargers</h1>
+
+<a href="/" class="back-link">← Back to homepage</a>
 
 <div id="map"></div>
 
@@ -76,7 +118,11 @@ The Triangle
 
 </ul>
 
+</div>
+
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 
 <script>
 
@@ -89,13 +135,16 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 attribution: '&copy; OpenStreetMap contributors'
 }).addTo(map);
 
+var markers = L.markerClusterGroup();
 
 
-L.marker([
+
+var marker = L.marker([
 56.400476,
 -3.412323
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Murray Hospital</b><br>
 Muirhall Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=56.400476,-3.412323" target="_blank">
@@ -103,13 +152,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 56.394097,
 -3.428789
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Canal Street Car Park, Perth</b><br>
 Canal Street<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=56.394097,-3.428789" target="_blank">
@@ -117,13 +169,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 56.390662,
 -3.426569
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>South Inch Car Park</b><br>
 Inch Head Terrace<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=56.390662,-3.426569" target="_blank">
@@ -131,13 +186,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 56.388004,
 -3.481691
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Broxden Park & Ride</b><br>
 3 Broxden Avenue<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=56.388004,-3.481691" target="_blank">
@@ -145,13 +203,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 56.399453,
 -3.4387713
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>St. Catherine's Leisure Park</b><br>
 St. Catherine's Leisure Park<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=56.399453,-3.4387713" target="_blank">
@@ -159,13 +220,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 56.448987,
 -3.464977
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Luncarty Inn, Luncarty</b><br>
 Marshall Way<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=56.448987,-3.464977" target="_blank">
@@ -173,13 +237,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 56.381637,
 -3.433429
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Tesco Superstore-Edinburgh Road</b><br>
 Edinburgh Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=56.381637,-3.433429" target="_blank">
@@ -187,13 +254,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 56.4172065642953,
 -3.46180377231644
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>BP, The Triangle</b><br>
 The Triangle<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=56.4172065642953,-3.46180377231644" target="_blank">
@@ -201,13 +271,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 56.408223,
 -3.479582
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Tesco Extra-Perth</b><br>
 Crieff Road<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=56.408223,-3.479582" target="_blank">
@@ -215,13 +288,16 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
 
-L.marker([
+
+var marker = L.marker([
 56.41927351133435,
 -3.4632258114766046
-]).addTo(map)
-.bindPopup(`
+]);
+
+marker.bindPopup(`
 <b>Ionity Perth</b><br>
 The Triangle<br><br>
 <a href="https://www.google.com/maps/dir/?api=1&destination=56.41927351133435,-3.4632258114766046" target="_blank">
@@ -229,7 +305,11 @@ Get directions
 </a>
 `);
 
+markers.addLayer(marker);
 
+
+
+map.addLayer(markers);
 
 </script>
 
