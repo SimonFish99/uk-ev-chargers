@@ -2,117 +2,101 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>{{ town }} EV Chargers</title>
-
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>{{ town }} EV Chargers – {{ chargers|length }} Public Charge Points | PlugMap</title>
+<meta name="description" content="Find {{ chargers|length }} public EV charging station{{ 's' if chargers|length != 1 else '' }} in {{ town }}, UK. View locations on a map, see connection types and charging speeds, and get directions.">
+<link rel="canonical" href="{{ base_url }}/uk/{{ slug }}/">
+<link rel="stylesheet" href="/style.css">
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
-
-<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css" />
-<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css" />
-
-<style>
-
-body {
-  font-family: Arial, sans-serif;
-  margin: 0;
-}
-
-header {
-  background: #1f2937;
-  padding: 12px 20px;
-}
-
-.logo {
-  color: white;
-  text-decoration: none;
-  font-size: 22px;
-  font-weight: bold;
-}
-
-.container {
-  padding: 20px;
-}
-
-.back-link {
-  display: inline-block;
-  margin-bottom: 15px;
-  text-decoration: none;
-  color: #2563eb;
-  font-weight: bold;
-}
-
-#map {
-  height: 420px;
-  margin-bottom: 30px;
-  border-radius: 8px;
-}
-
-</style>
-
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css"/>
+<link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css"/>
 </head>
 
 <body>
 
 <header>
-<a href="/" class="logo">PlugMap</a>
+<div class="container">
+<a href="/" class="logo">PlugMap <span class="tagline">UK EV Charger Locator</span></a>
+</div>
 </header>
 
 <div class="container">
 
-<h1>{{ town }} EV Chargers</h1>
+<nav class="breadcrumb" aria-label="Breadcrumb">
+<a href="/">Home</a> › {{ town }}
+</nav>
 
-<a href="/" class="back-link">← Back to homepage</a>
+<h1>EV Chargers in {{ town }}</h1>
+<p class="page-intro">{{ chargers|length }} public charging station{{ 's' if chargers|length != 1 else '' }} found in {{ town }}.</p>
 
 <div id="map"></div>
 
-<ul>
+<ul class="charger-list">
 {% for charger in chargers %}
-<li>
-<strong>{{ charger.AddressInfo.Title }}</strong><br>
-{{ charger.AddressInfo.AddressLine1 }}
+{% set addr = charger.AddressInfo %}
+<li class="charger-item">
+  <h2 class="charger-name">{{ addr.Title }}</h2>
+  <p class="charger-address">
+    {%- if addr.AddressLine1 %}{{ addr.AddressLine1 }}{% endif %}
+    {%- if addr.Town and addr.Town != town %}, {{ addr.Town }}{% endif %}
+    {%- if addr.Postcode %} {{ addr.Postcode }}{% endif %}
+  </p>
+  {% if charger.Connections %}
+  <div class="charger-connections">
+    {% for conn in charger.Connections %}
+    <span class="connection-badge">
+      {{- conn.ConnectionType.Title if conn.ConnectionType else 'Unknown' -}}
+      {%- if conn.PowerKW %} · {{ conn.PowerKW }}kW{% endif -%}
+      {%- if conn.Quantity and conn.Quantity > 1 %} ×{{ conn.Quantity }}{% endif %}
+    </span>
+    {% endfor %}
+  </div>
+  {% endif %}
+  {% if charger.OperatorInfo and charger.OperatorInfo.Title %}
+  <p class="charger-meta">Operator: {{ charger.OperatorInfo.Title }}</p>
+  {% endif %}
+  {% if addr.Latitude and addr.Longitude %}
+  <a class="directions-link" href="https://www.google.com/maps/dir/?api=1&destination={{ addr.Latitude }},{{ addr.Longitude }}" target="_blank" rel="noopener">Get directions →</a>
+  {% endif %}
 </li>
 {% endfor %}
 </ul>
 
+<p><a href="/" class="back-link">← All UK towns</a></p>
+
 </div>
 
+<footer>
+<div class="container">
+<p>Data sourced from <a href="https://openchargemap.org" rel="nofollow noopener">OpenChargeMap</a> under <a href="https://creativecommons.org/licenses/by/4.0/" rel="nofollow noopener">CC BY 4.0</a>.</p>
+</div>
+</footer>
+
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-
 <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
-
 <script>
+(function () {
+  var map = L.map('map').setView([{{ center_lat }}, {{ center_lng }}], 12);
 
-var map = L.map('map').setView([
-{{ chargers[0].AddressInfo.Latitude }},
-{{ chargers[0].AddressInfo.Longitude }}
-], 12);
+  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+  }).addTo(map);
 
-L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-attribution: '&copy; OpenStreetMap contributors'
-}).addTo(map);
+  var markers = L.markerClusterGroup();
+  var chargerData = {{ map_data | safe }};
 
-var markers = L.markerClusterGroup();
+  chargerData.forEach(function (c) {
+    var marker = L.marker([c.lat, c.lng]);
+    marker.bindPopup(
+      '<b>' + c.title + '</b><br>' + c.address + '<br><br>' +
+      '<a href="https://www.google.com/maps/dir/?api=1&destination=' + c.lat + ',' + c.lng +
+      '" target="_blank" rel="noopener">Get directions</a>'
+    );
+    markers.addLayer(marker);
+  });
 
-{% for charger in chargers %}
-
-var marker = L.marker([
-{{ charger.AddressInfo.Latitude }},
-{{ charger.AddressInfo.Longitude }}
-]);
-
-marker.bindPopup(`
-<b>{{ charger.AddressInfo.Title }}</b><br>
-{{ charger.AddressInfo.AddressLine1 }}<br><br>
-<a href="https://www.google.com/maps/dir/?api=1&destination={{ charger.AddressInfo.Latitude }},{{ charger.AddressInfo.Longitude }}" target="_blank">
-Get directions
-</a>
-`);
-
-markers.addLayer(marker);
-
-{% endfor %}
-
-map.addLayer(markers);
-
+  map.addLayer(markers);
+}());
 </script>
 
 </body>
