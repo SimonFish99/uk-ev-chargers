@@ -34,6 +34,56 @@ def map_center(chargers):
     return 54.5, -3.0  # UK geographic centre fallback
 
 
+def build_jsonld(town: str, chargers: list, base_url: str, slug: str) -> str:
+    items = []
+    for i, charger in enumerate(chargers, 1):
+        addr = charger.get("AddressInfo", {})
+        lat = addr.get("Latitude")
+        lng = addr.get("Longitude")
+
+        station = {
+            "@type": "EvChargingStation",
+            "name": addr.get("Title", ""),
+            "address": {
+                "@type": "PostalAddress",
+                "streetAddress": addr.get("AddressLine1", ""),
+                "addressLocality": addr.get("Town", town),
+                "postalCode": addr.get("Postcode", ""),
+                "addressCountry": "GB",
+            },
+        }
+
+        if lat and lng:
+            station["geo"] = {
+                "@type": "GeoCoordinates",
+                "latitude": lat,
+                "longitude": lng,
+            }
+            station["hasMap"] = f"https://www.google.com/maps?q={lat},{lng}"
+
+        connections = charger.get("Connections") or []
+        features = [
+            {"@type": "LocationFeatureSpecification", "name": c["ConnectionType"]["Title"], "value": True}
+            for c in connections
+            if c.get("ConnectionType", {}).get("Title")
+        ]
+        if features:
+            station["amenityFeature"] = features
+
+        items.append({"@type": "ListItem", "position": i, "item": station})
+
+    schema = {
+        "@context": "https://schema.org",
+        "@type": "ItemList",
+        "name": f"EV Chargers in {town}",
+        "description": f"Public EV charging stations in {town}, UK",
+        "url": f"{base_url}/uk/{slug}/",
+        "numberOfItems": len(chargers),
+        "itemListElement": items,
+    }
+    return json.dumps(schema, ensure_ascii=False)
+
+
 def load_towns():
     with open(INPUT_FILE, "r", encoding="utf-8") as f:
         raw = json.load(f)
@@ -63,6 +113,8 @@ def generate_pages(towns):
             if c.get("AddressInfo", {}).get("Latitude") and c.get("AddressInfo", {}).get("Longitude")
         ])
 
+        jsonld = build_jsonld(town, chargers, BASE_URL, slug)
+
         html = template.render(
             town=town,
             chargers=chargers,
@@ -71,6 +123,7 @@ def generate_pages(towns):
             center_lat=center_lat,
             center_lng=center_lng,
             map_data=map_data,
+            jsonld=jsonld,
         )
 
         with open(os.path.join(town_dir, "index.html"), "w", encoding="utf-8") as f:
@@ -82,7 +135,14 @@ def generate_pages(towns):
 def generate_homepage(towns):
     template = env.get_template("home.html")
     town_list = [{"name": town, "slug": slugify(town)} for town in towns.keys()]
-    html = template.render(towns=town_list, base_url=BASE_URL)
+    homepage_jsonld = json.dumps({
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "PlugMap",
+        "description": "Find public EV charging stations across the UK.",
+        "url": BASE_URL,
+    }, ensure_ascii=False)
+    html = template.render(towns=town_list, base_url=BASE_URL, jsonld=homepage_jsonld)
     with open("site/index.html", "w", encoding="utf-8") as f:
         f.write(html)
     print("Generated homepage")
