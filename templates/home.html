@@ -4,9 +4,10 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>PlugMap – UK EV Charger Locations | Find Public Charge Points</title>
-<meta name="description" content="Find public EV charging stations across the UK. Browse hundreds of towns and cities with charge point locations, connection types, and directions.">
+<meta name="description" content="Find public EV charging stations across the UK. Search by town, use your location, or browse the map.">
 <link rel="canonical" href="{{ base_url }}/">
 <link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 <script type="application/ld+json">{{ jsonld | safe }}</script>
 </head>
 
@@ -15,42 +16,59 @@
 <header>
 <div class="container">
 <a href="/" class="logo">
-  <svg class="logo-bolt" viewBox="0 0 24 24" fill="currentColor" width="22" height="22" aria-hidden="true"><path d="M13 2L4.5 13.5H11L10 22L19.5 10.5H13Z"/></svg>
+  <svg class="logo-bolt" viewBox="0 0 24 24" fill="currentColor" width="26" height="26" aria-hidden="true"><path d="M13 2L4.5 13.5H11L10 22L19.5 10.5H13Z"/></svg>
   PlugMap <span class="tagline">UK EV Charger Locator</span>
 </a>
 </div>
 </header>
 
-<div class="hero">
+<div class="home-hero">
 <div class="container">
-  <h1>Find EV Chargers Across the UK</h1>
-  <p>Public charge point locations, connection types, and directions — free, no login needed.</p>
-  <div class="hero-stats">
-    <span class="hero-stat"><strong>{{ total_towns }}</strong> towns</span>
-    <span class="hero-stat"><strong>{{ total_chargers }}+</strong> charge points</span>
+  <p class="hero-sub">{{ total_towns }} towns &middot; {{ total_chargers }}+ charge points</p>
+  <div class="search-wrap">
+    <svg class="search-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" width="18" height="18" aria-hidden="true"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+    <input type="search" id="town-search" placeholder="Search for a town or city..." autocomplete="off" spellcheck="false">
+  </div>
+  <div class="mode-tabs">
+    <button class="mode-tab active" data-mode="list">&#9776; All towns</button>
+    <button class="mode-tab" data-mode="nearby">&#x25CE; Near me</button>
+    <button class="mode-tab" data-mode="map">&#9783; Map</button>
   </div>
 </div>
 </div>
 
 <div class="container">
 
-<div class="search-bar">
-  <input type="search" id="town-search" placeholder="Search for a town or city..." autocomplete="off" spellcheck="false">
+<div id="recent-section" hidden>
+  <h2 class="section-heading">Recently viewed</h2>
+  <ul id="recent-list" class="recent-list"></ul>
 </div>
 
-<p id="search-count" class="search-count" hidden></p>
+<div id="mode-list" class="mode-panel">
+  <p id="search-count" class="search-count" hidden></p>
+  <ul class="town-list" id="town-list">
+  {% for town in towns %}
+  <li data-town="{{ town.name | lower }}">
+    <a href="/uk/{{ town.slug }}/">
+      {{ town.name }}<span class="town-count">{{ town.count }}</span>
+    </a>
+  </li>
+  {% endfor %}
+  </ul>
+  <p class="no-results" id="no-results" hidden>No towns found. Try a different spelling.</p>
+</div>
 
-<ul class="town-list">
-{% for town in towns %}
-<li data-town="{{ town.name | lower }}">
-  <a href="/uk/{{ town.slug }}/">
-    {{ town.name }}<span class="town-count">{{ town.count }}</span>
-  </a>
-</li>
-{% endfor %}
-</ul>
+<div id="mode-nearby" class="mode-panel" hidden>
+  <div id="nearby-prompt">
+    <p class="nearby-intro">Find the closest towns with public charge points to your current location.</p>
+    <button id="locate-btn" class="locate-btn">Use my location</button>
+  </div>
+  <ul id="nearby-results" class="town-list" hidden></ul>
+</div>
 
-<p class="no-results" id="no-results" hidden>No towns found. Try a different spelling.</p>
+<div id="mode-map" class="mode-panel" hidden>
+  <div id="overview-map"></div>
+</div>
 
 </div>
 
@@ -60,15 +78,39 @@
 </div>
 </footer>
 
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script>
 (function () {
-  var input = document.getElementById('town-search');
-  var items = document.querySelectorAll('.town-list li');
-  var countEl = document.getElementById('search-count');
+  var TOWNS = {{ towns_json | safe }};
+
+  // --- Tab switching ---
+  var tabs = document.querySelectorAll('.mode-tab');
+  var panels = {
+    list:   document.getElementById('mode-list'),
+    nearby: document.getElementById('mode-nearby'),
+    map:    document.getElementById('mode-map'),
+  };
+  var mapReady = false;
+
+  function switchTab(mode) {
+    tabs.forEach(function (t) { t.classList.toggle('active', t.dataset.mode === mode); });
+    Object.keys(panels).forEach(function (k) { panels[k].hidden = k !== mode; });
+    if (mode === 'map' && !mapReady) initMap();
+  }
+
+  tabs.forEach(function (tab) {
+    tab.addEventListener('click', function () { switchTab(tab.dataset.mode); });
+  });
+
+  // --- Search ---
+  var input     = document.getElementById('town-search');
+  var items     = document.querySelectorAll('#town-list li');
+  var countEl   = document.getElementById('search-count');
   var noResults = document.getElementById('no-results');
 
   input.addEventListener('input', function () {
     var q = this.value.toLowerCase().trim();
+    if (q && panels.list.hidden) switchTab('list');
     var visible = 0;
     items.forEach(function (li) {
       var show = !q || li.dataset.town.indexOf(q) !== -1;
@@ -84,6 +126,72 @@
       noResults.hidden = true;
     }
   });
+
+  // --- Recently viewed ---
+  try {
+    var recent = JSON.parse(localStorage.getItem('pm_recent') || '[]');
+    if (recent.length) {
+      var sec = document.getElementById('recent-section');
+      var ul  = document.getElementById('recent-list');
+      recent.forEach(function (item) {
+        var li = document.createElement('li');
+        li.innerHTML = '<a href="/uk/' + item.slug + '/">' + item.name + '</a>';
+        ul.appendChild(li);
+      });
+      sec.hidden = false;
+    }
+  } catch (e) {}
+
+  // --- Near me ---
+  document.getElementById('locate-btn').addEventListener('click', function () {
+    var btn = this;
+    btn.textContent = 'Finding location…';
+    btn.disabled = true;
+    if (!navigator.geolocation) { btn.textContent = 'Not supported'; return; }
+    navigator.geolocation.getCurrentPosition(function (pos) {
+      var lat = pos.coords.latitude, lng = pos.coords.longitude;
+      var sorted = TOWNS
+        .filter(function (t) { return t.lat && t.lng; })
+        .map(function (t) { return { t: t, d: Math.pow(lat - t.lat, 2) + Math.pow(lng - t.lng, 2) }; })
+        .sort(function (a, b) { return a.d - b.d; })
+        .slice(0, 8);
+      var ul = document.getElementById('nearby-results');
+      ul.innerHTML = '';
+      sorted.forEach(function (row) {
+        var t = row.t;
+        var li = document.createElement('li');
+        li.dataset.town = t.name.toLowerCase();
+        li.innerHTML = '<a href="/uk/' + t.slug + '/">' + t.name + '<span class="town-count">' + t.count + '</span></a>';
+        ul.appendChild(li);
+      });
+      document.getElementById('nearby-prompt').hidden = true;
+      ul.hidden = false;
+    }, function () {
+      btn.textContent = 'Could not get location';
+      btn.disabled = false;
+    });
+  });
+
+  // --- Overview map (lazy) ---
+  function initMap() {
+    mapReady = true;
+    var map = L.map('overview-map').setView([54.5, -3.0], 6);
+    L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
+      subdomains: 'abcd',
+      maxZoom: 20,
+    }).addTo(map);
+    TOWNS.forEach(function (t) {
+      if (!t.lat || !t.lng) return;
+      L.marker([t.lat, t.lng])
+        .bindPopup(
+          '<b>' + t.name + '</b><br>' +
+          t.count + ' charge point' + (t.count !== 1 ? 's' : '') + '<br>' +
+          '<a href="/uk/' + t.slug + '/" style="color:#2563eb">View chargers &rarr;</a>'
+        )
+        .addTo(map);
+    });
+  }
 }());
 </script>
 

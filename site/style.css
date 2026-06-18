@@ -14,10 +14,10 @@ header {
 .logo {
   display: inline-flex;
   align-items: center;
-  gap: 8px;
+  gap: 10px;
   color: white;
   text-decoration: none;
-  font-size: 20px;
+  font-size: 24px;
   font-weight: bold;
 }
 
@@ -29,47 +29,75 @@ header {
 .logo .tagline {
   font-size: 13px;
   font-weight: normal;
-  margin-left: 4px;
-  opacity: 0.7;
+  margin-left: 2px;
+  opacity: 0.65;
 }
 
-/* ── Hero (homepage only) ────────────────────────── */
-.hero {
-  background: linear-gradient(135deg, #0f172a 0%, #1e3a5f 100%);
-  color: white;
-  padding: 48px 0 40px;
+/* ── Home hero ───────────────────────────────────── */
+.home-hero {
+  background: linear-gradient(135deg, #1d4ed8 0%, #38bdf8 100%);
+  padding: 40px 0 32px;
 }
 
-.hero h1 {
-  color: white;
-  font-size: 32px;
-  margin: 0 0 10px;
-}
-
-.hero p {
-  color: rgba(255, 255, 255, 0.75);
-  font-size: 16px;
-  margin: 0 0 24px;
-}
-
-.hero-stats {
-  display: flex;
-  gap: 12px;
-  flex-wrap: wrap;
-}
-
-.hero-stat {
-  background: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-  border-radius: 20px;
-  padding: 6px 16px;
+.hero-sub {
+  color: rgba(255, 255, 255, 0.85);
   font-size: 14px;
-  color: rgba(255, 255, 255, 0.9);
+  margin: 0 0 16px;
+  letter-spacing: 0.02em;
 }
 
-.hero-stat strong {
-  color: #facc15;
+/* ── Search wrap (homepage) ──────────────────────── */
+.search-wrap {
+  position: relative;
+  max-width: 540px;
 }
+
+.search-icon {
+  position: absolute;
+  left: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #94a3b8;
+  pointer-events: none;
+}
+
+.search-wrap input {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 14px 16px 14px 42px;
+  font-size: 16px;
+  border: none;
+  border-radius: 10px;
+  outline: none;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+  background: white;
+}
+
+.search-wrap input:focus {
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.25);
+}
+
+/* ── Mode tabs ───────────────────────────────────── */
+.mode-tabs {
+  display: flex;
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.mode-tab {
+  padding: 7px 16px;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  border-radius: 20px;
+  background: rgba(255, 255, 255, 0.15);
+  color: white;
+  font-size: 13px;
+  cursor: pointer;
+  font-family: inherit;
+  transition: all 0.15s;
+}
+
+.mode-tab:hover { background: rgba(255, 255, 255, 0.25); }
+.mode-tab.active { background: white; color: #1d4ed8; border-color: white; font-weight: bold; }
 
 /* ── Layout ──────────────────────────────────────── */
 .container {
@@ -105,10 +133,7 @@ h2 {
   margin-top: 8px;
 }
 
-.breadcrumb a {
-  color: #2563eb;
-  text-decoration: none;
-}
+.breadcrumb a { color: #2563eb; text-decoration: none; }
 
 .back-link {
   display: inline-block;
@@ -118,27 +143,44 @@ h2 {
   margin-top: 16px;
 }
 
-/* ── Search bar (homepage) ───────────────────────── */
-.search-bar {
-  margin: 24px 0 12px;
+/* ── Section headings ────────────────────────────── */
+.section-heading {
+  font-size: 15px;
+  font-weight: 600;
+  color: #64748b;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin: 24px 0 10px;
 }
 
-.search-bar input {
-  width: 100%;
-  box-sizing: border-box;
-  padding: 12px 16px;
-  font-size: 16px;
-  border: 2px solid #e2e8f0;
-  border-radius: 8px;
-  outline: none;
-  transition: border-color 0.15s;
-  background: white;
+/* ── Recently viewed ─────────────────────────────── */
+.recent-list {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 8px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
 }
 
-.search-bar input:focus {
-  border-color: #2563eb;
+.recent-list li a {
+  display: inline-block;
+  padding: 6px 14px;
+  background: #eff6ff;
+  border: 1px solid #bfdbfe;
+  border-radius: 20px;
+  text-decoration: none;
+  color: #1d4ed8;
+  font-size: 14px;
+  transition: all 0.15s;
 }
 
+.recent-list li a:hover { background: #dbeafe; }
+
+/* ── Mode panels ─────────────────────────────────── */
+.mode-panel { margin-top: 16px; }
+
+/* ── Search result info ──────────────────────────── */
 .search-count {
   font-size: 14px;
   color: #64748b;
@@ -151,7 +193,36 @@ h2 {
   padding: 32px 0;
 }
 
-/* ── Town grid (homepage) ────────────────────────── */
+/* ── Near me panel ───────────────────────────────── */
+.nearby-intro {
+  color: #64748b;
+  margin: 8px 0 16px;
+  font-size: 15px;
+}
+
+.locate-btn {
+  padding: 10px 22px;
+  background: #2563eb;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 15px;
+  cursor: pointer;
+  font-family: inherit;
+  transition: background 0.15s;
+}
+
+.locate-btn:hover { background: #1d4ed8; }
+.locate-btn:disabled { background: #94a3b8; cursor: not-allowed; }
+
+/* ── Overview map ────────────────────────────────── */
+#overview-map {
+  height: 520px;
+  border-radius: 10px;
+  border: 1px solid #e2e8f0;
+}
+
+/* ── Town grid ───────────────────────────────────── */
 .town-list {
   list-style: none;
   padding: 0;
@@ -211,7 +282,7 @@ h2 {
 .stat-fast  { background: #eff6ff; color: #1d4ed8; border: 1px solid #bfdbfe; }
 .stat-slow  { background: #f0fdf4; color: #166534; border: 1px solid #bbf7d0; }
 
-/* ── Map ─────────────────────────────────────────── */
+/* ── Map (town pages) ────────────────────────────── */
 #map {
   height: 400px;
   border-radius: 8px;
@@ -228,11 +299,7 @@ h2 {
   margin-bottom: 16px;
 }
 
-.filter-label {
-  font-size: 13px;
-  color: #64748b;
-  font-weight: 600;
-}
+.filter-label { font-size: 13px; color: #64748b; font-weight: 600; }
 
 .filter-btn {
   padding: 5px 12px;
@@ -250,11 +317,7 @@ h2 {
 .filter-btn.active { background: #2563eb; border-color: #2563eb; color: white; }
 
 /* ── Charger cards ───────────────────────────────── */
-.charger-list {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
+.charger-list { list-style: none; padding: 0; margin: 0; }
 
 .charger-item {
   background: white;
@@ -277,10 +340,7 @@ h2 {
   gap: 8px;
 }
 
-.charger-name {
-  margin: 0;
-  flex: 1;
-}
+.charger-name { margin: 0; flex: 1; }
 
 .speed-badge {
   font-size: 10px;
@@ -295,11 +355,7 @@ h2 {
 .speed-badge--rapid { background: #fff7ed; color: #c2410c; border: 1px solid #fed7aa; }
 .speed-badge--fast  { background: #eff6ff; color: #1d4ed8; border: 1px solid #bfdbfe; }
 
-.charger-address {
-  color: #64748b;
-  font-size: 14px;
-  margin: 0 0 10px;
-}
+.charger-address { color: #64748b; font-size: 14px; margin: 0 0 10px; }
 
 .charger-connections {
   display: flex;
@@ -318,11 +374,7 @@ h2 {
   white-space: nowrap;
 }
 
-.charger-meta {
-  font-size: 13px;
-  color: #64748b;
-  margin: 0 0 10px;
-}
+.charger-meta { font-size: 13px; color: #64748b; margin: 0 0 10px; }
 
 /* ── Copy postcode button ────────────────────────── */
 .copy-btn {
@@ -342,18 +394,47 @@ h2 {
 .copy-btn:hover { background: #f1f5f9; border-color: #94a3b8; }
 .copy-btn--success { background: #dcfce7; border-color: #86efac; color: #166534; }
 
-/* ── Directions link ─────────────────────────────── */
-.directions-link {
+/* ── Directions dropdown ─────────────────────────── */
+.directions-wrap {
+  display: inline-block;
+  position: relative;
+}
+
+.directions-summary {
   display: inline-block;
   padding: 6px 14px;
   background: #2563eb;
   color: white;
   border-radius: 4px;
-  text-decoration: none;
   font-size: 13px;
+  cursor: pointer;
+  user-select: none;
+  list-style: none;
 }
 
-.directions-link:hover { background: #1d4ed8; }
+.directions-summary::-webkit-details-marker { display: none; }
+.directions-summary:hover { background: #1d4ed8; }
+
+.directions-options {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+  margin-top: 8px;
+}
+
+.dir-opt {
+  padding: 6px 14px;
+  border-radius: 4px;
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 500;
+  transition: opacity 0.15s;
+}
+
+.dir-opt:hover { opacity: 0.85; }
+.dir-google { background: #4285f4; color: white; }
+.dir-apple  { background: #1c1c1e; color: white; }
+.dir-waze   { background: #05c8f7; color: #1c1c1e; }
 
 /* ── Nearby towns ────────────────────────────────── */
 .nearby-towns {
@@ -362,10 +443,7 @@ h2 {
   border-top: 1px solid #e2e8f0;
 }
 
-.nearby-heading {
-  font-size: 17px;
-  margin: 0 0 12px;
-}
+.nearby-heading { font-size: 17px; margin: 0 0 12px; }
 
 .nearby-list {
   list-style: none;
@@ -405,11 +483,11 @@ footer a:hover { text-decoration: underline; }
 
 /* ── Responsive ──────────────────────────────────── */
 @media (max-width: 600px) {
-  .hero { padding: 32px 0 28px; }
-  .hero h1 { font-size: 24px; }
-  .hero-stats { gap: 8px; }
+  .home-hero { padding: 28px 0 24px; }
   #map { height: 280px; }
+  #overview-map { height: 360px; }
   .town-list { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); }
   h1 { font-size: 22px; }
-  .connector-filter { gap: 4px; }
+  .mode-tabs { flex-wrap: wrap; gap: 6px; }
+  .directions-options { flex-direction: column; }
 }

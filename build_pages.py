@@ -12,6 +12,7 @@ env = Environment(
     loader=FileSystemLoader("templates"),
     autoescape=select_autoescape(["html"]),
 )
+env.filters["tojson"] = lambda v: json.dumps(v, ensure_ascii=False)
 
 
 def slugify(name: str) -> str:
@@ -175,24 +176,39 @@ def generate_pages(towns, centroids):
             stats=town_stats(chargers),
             nearby=get_nearby_towns(town, centroids),
             connector_types=connector_types,
+            town_json=json.dumps(town, ensure_ascii=False),
+            slug_json=json.dumps(slug, ensure_ascii=False),
         )
         with open(os.path.join(OUTPUT_DIR, slug, "index.html"), "w", encoding="utf-8") as f:
             f.write(html)
     print("Generated", len(towns), "town pages")
 
 
-def generate_homepage(towns):
+def generate_homepage(towns, centroids):
     template = env.get_template("home.html")
+    # Alphabetical order
     town_list = [
         {"name": town, "slug": slugify(town), "count": len(chargers)}
-        for town, chargers in towns.items()
+        for town, chargers in sorted(towns.items(), key=lambda x: x[0].lower())
     ]
     total_chargers = sum(t["count"] for t in town_list)
+    # Centroid data for client-side nearby/map features
+    towns_json = json.dumps([
+        {
+            "name": t["name"],
+            "slug": t["slug"],
+            "count": t["count"],
+            "lat": centroids.get(t["name"], (None, None))[0],
+            "lng": centroids.get(t["name"], (None, None))[1],
+        }
+        for t in town_list
+    ], ensure_ascii=False)
     html = template.render(
         towns=town_list,
         base_url=BASE_URL,
         total_towns=len(town_list),
         total_chargers=total_chargers,
+        towns_json=towns_json,
         jsonld=json.dumps({
             "@context": "https://schema.org",
             "@type": "WebSite",
@@ -238,7 +254,7 @@ def main():
     towns = load_towns()
     centroids = compute_centroids(towns)
     generate_pages(towns, centroids)
-    generate_homepage(towns)
+    generate_homepage(towns, centroids)
     generate_sitemap(towns)
     generate_robots()
 

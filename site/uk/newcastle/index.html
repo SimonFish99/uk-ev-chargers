@@ -113,7 +113,14 @@
   <p class="charger-meta">Operator: GridServe</p>
   
   
-  <a class="directions-link" href="https://www.google.com/maps/dir/?api=1&destination=53.02875,-2.208628" target="_blank" rel="noopener">Get directions →</a>
+  <details class="directions-wrap">
+    <summary class="directions-summary">Get directions &#9660;</summary>
+    <div class="directions-options">
+      <a class="dir-opt dir-google" href="https://www.google.com/maps/dir/?api=1&destination=53.02875,-2.208628" target="_blank" rel="noopener">Google Maps</a>
+      <a class="dir-opt dir-apple" href="https://maps.apple.com/?daddr=53.02875,-2.208628" target="_blank" rel="noopener">Apple Maps</a>
+      <a class="dir-opt dir-waze" href="https://waze.com/ul?ll=53.02875,-2.208628&navigate=yes" target="_blank" rel="noopener">Waze</a>
+    </div>
+  </details>
   
 </li>
 
@@ -141,7 +148,14 @@
   <p class="charger-meta">Operator: EZO (IE)</p>
   
   
-  <a class="directions-link" href="https://www.google.com/maps/dir/?api=1&destination=54.209902724504246,-5.89033413887239" target="_blank" rel="noopener">Get directions →</a>
+  <details class="directions-wrap">
+    <summary class="directions-summary">Get directions &#9660;</summary>
+    <div class="directions-options">
+      <a class="dir-opt dir-google" href="https://www.google.com/maps/dir/?api=1&destination=54.209902724504246,-5.89033413887239" target="_blank" rel="noopener">Google Maps</a>
+      <a class="dir-opt dir-apple" href="https://maps.apple.com/?daddr=54.209902724504246,-5.89033413887239" target="_blank" rel="noopener">Apple Maps</a>
+      <a class="dir-opt dir-waze" href="https://waze.com/ul?ll=54.209902724504246,-5.89033413887239&navigate=yes" target="_blank" rel="noopener">Waze</a>
+    </div>
+  </details>
   
 </li>
 
@@ -168,7 +182,14 @@
   <p class="charger-meta">Operator: POD Point (UK)</p>
   
   
-  <a class="directions-link" href="https://www.google.com/maps/dir/?api=1&destination=54.981209,-1.613098" target="_blank" rel="noopener">Get directions →</a>
+  <details class="directions-wrap">
+    <summary class="directions-summary">Get directions &#9660;</summary>
+    <div class="directions-options">
+      <a class="dir-opt dir-google" href="https://www.google.com/maps/dir/?api=1&destination=54.981209,-1.613098" target="_blank" rel="noopener">Google Maps</a>
+      <a class="dir-opt dir-apple" href="https://maps.apple.com/?daddr=54.981209,-1.613098" target="_blank" rel="noopener">Apple Maps</a>
+      <a class="dir-opt dir-waze" href="https://waze.com/ul?ll=54.981209,-1.613098&navigate=yes" target="_blank" rel="noopener">Waze</a>
+    </div>
+  </details>
   
 </li>
 
@@ -195,7 +216,14 @@
   <p class="charger-meta">Operator: POD Point (UK)</p>
   
   
-  <a class="directions-link" href="https://www.google.com/maps/dir/?api=1&destination=55.03432,-1.648391" target="_blank" rel="noopener">Get directions →</a>
+  <details class="directions-wrap">
+    <summary class="directions-summary">Get directions &#9660;</summary>
+    <div class="directions-options">
+      <a class="dir-opt dir-google" href="https://www.google.com/maps/dir/?api=1&destination=55.03432,-1.648391" target="_blank" rel="noopener">Google Maps</a>
+      <a class="dir-opt dir-apple" href="https://maps.apple.com/?daddr=55.03432,-1.648391" target="_blank" rel="noopener">Apple Maps</a>
+      <a class="dir-opt dir-waze" href="https://waze.com/ul?ll=55.03432,-1.648391&navigate=yes" target="_blank" rel="noopener">Waze</a>
+    </div>
+  </details>
   
 </li>
 
@@ -222,7 +250,14 @@
   <p class="charger-meta">Operator: POD Point (UK)</p>
   
   
-  <a class="directions-link" href="https://www.google.com/maps/dir/?api=1&destination=54.978794,-1.643839" target="_blank" rel="noopener">Get directions →</a>
+  <details class="directions-wrap">
+    <summary class="directions-summary">Get directions &#9660;</summary>
+    <div class="directions-options">
+      <a class="dir-opt dir-google" href="https://www.google.com/maps/dir/?api=1&destination=54.978794,-1.643839" target="_blank" rel="noopener">Google Maps</a>
+      <a class="dir-opt dir-apple" href="https://maps.apple.com/?daddr=54.978794,-1.643839" target="_blank" rel="noopener">Apple Maps</a>
+      <a class="dir-opt dir-waze" href="https://waze.com/ul?ll=54.978794,-1.643839&navigate=yes" target="_blank" rel="noopener">Waze</a>
+    </div>
+  </details>
   
 </li>
 
@@ -261,8 +296,10 @@
 (function () {
   // --- Map ---
   var map = L.map('map').setView([54.44659514490085, -2.600858027774478], 12);
-  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+  L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
+    subdomains: 'abcd',
+    maxZoom: 20,
   }).addTo(map);
 
   var markers = L.markerClusterGroup();
@@ -315,6 +352,15 @@
     });
   });
 }());
+
+// Track recently viewed in localStorage
+try {
+  var _t = { name: "Newcastle", slug: "newcastle" };
+  var _r = JSON.parse(localStorage.getItem('pm_recent') || '[]');
+  _r = _r.filter(function (i) { return i.slug !== _t.slug; });
+  _r.unshift(_t);
+  localStorage.setItem('pm_recent', JSON.stringify(_r.slice(0, 6)));
+} catch (e) {}
 </script>
 
 </body>

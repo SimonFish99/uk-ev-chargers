@@ -80,7 +80,14 @@
   <p class="charger-meta">Operator: ForEV</p>
   
   
-  <a class="directions-link" href="https://www.google.com/maps/dir/?api=1&destination=52.584415,-2.012753" target="_blank" rel="noopener">Get directions →</a>
+  <details class="directions-wrap">
+    <summary class="directions-summary">Get directions &#9660;</summary>
+    <div class="directions-options">
+      <a class="dir-opt dir-google" href="https://www.google.com/maps/dir/?api=1&destination=52.584415,-2.012753" target="_blank" rel="noopener">Google Maps</a>
+      <a class="dir-opt dir-apple" href="https://maps.apple.com/?daddr=52.584415,-2.012753" target="_blank" rel="noopener">Apple Maps</a>
+      <a class="dir-opt dir-waze" href="https://waze.com/ul?ll=52.584415,-2.012753&navigate=yes" target="_blank" rel="noopener">Waze</a>
+    </div>
+  </details>
   
 </li>
 
@@ -105,7 +112,14 @@
   <p class="charger-meta">Operator: ForEV</p>
   
   
-  <a class="directions-link" href="https://www.google.com/maps/dir/?api=1&destination=52.58414125980488,-2.012602781192328" target="_blank" rel="noopener">Get directions →</a>
+  <details class="directions-wrap">
+    <summary class="directions-summary">Get directions &#9660;</summary>
+    <div class="directions-options">
+      <a class="dir-opt dir-google" href="https://www.google.com/maps/dir/?api=1&destination=52.58414125980488,-2.012602781192328" target="_blank" rel="noopener">Google Maps</a>
+      <a class="dir-opt dir-apple" href="https://maps.apple.com/?daddr=52.58414125980488,-2.012602781192328" target="_blank" rel="noopener">Apple Maps</a>
+      <a class="dir-opt dir-waze" href="https://waze.com/ul?ll=52.58414125980488,-2.012602781192328&navigate=yes" target="_blank" rel="noopener">Waze</a>
+    </div>
+  </details>
   
 </li>
 
@@ -130,7 +144,14 @@
   <p class="charger-meta">Operator: ForEV</p>
   
   
-  <a class="directions-link" href="https://www.google.com/maps/dir/?api=1&destination=52.584415,-2.012753" target="_blank" rel="noopener">Get directions →</a>
+  <details class="directions-wrap">
+    <summary class="directions-summary">Get directions &#9660;</summary>
+    <div class="directions-options">
+      <a class="dir-opt dir-google" href="https://www.google.com/maps/dir/?api=1&destination=52.584415,-2.012753" target="_blank" rel="noopener">Google Maps</a>
+      <a class="dir-opt dir-apple" href="https://maps.apple.com/?daddr=52.584415,-2.012753" target="_blank" rel="noopener">Apple Maps</a>
+      <a class="dir-opt dir-waze" href="https://waze.com/ul?ll=52.584415,-2.012753&navigate=yes" target="_blank" rel="noopener">Waze</a>
+    </div>
+  </details>
   
 </li>
 
@@ -164,7 +185,14 @@
   <p class="charger-meta">Operator: POD Point (UK)</p>
   
   
-  <a class="directions-link" href="https://www.google.com/maps/dir/?api=1&destination=52.58759742,-1.98286864" target="_blank" rel="noopener">Get directions →</a>
+  <details class="directions-wrap">
+    <summary class="directions-summary">Get directions &#9660;</summary>
+    <div class="directions-options">
+      <a class="dir-opt dir-google" href="https://www.google.com/maps/dir/?api=1&destination=52.58759742,-1.98286864" target="_blank" rel="noopener">Google Maps</a>
+      <a class="dir-opt dir-apple" href="https://maps.apple.com/?daddr=52.58759742,-1.98286864" target="_blank" rel="noopener">Apple Maps</a>
+      <a class="dir-opt dir-waze" href="https://waze.com/ul?ll=52.58759742,-1.98286864&navigate=yes" target="_blank" rel="noopener">Waze</a>
+    </div>
+  </details>
   
 </li>
 
@@ -192,7 +220,14 @@
   <p class="charger-meta">Operator: InstaVolt Ltd</p>
   
   
-  <a class="directions-link" href="https://www.google.com/maps/dir/?api=1&destination=52.6063208264965,-1.96163722847766" target="_blank" rel="noopener">Get directions →</a>
+  <details class="directions-wrap">
+    <summary class="directions-summary">Get directions &#9660;</summary>
+    <div class="directions-options">
+      <a class="dir-opt dir-google" href="https://www.google.com/maps/dir/?api=1&destination=52.6063208264965,-1.96163722847766" target="_blank" rel="noopener">Google Maps</a>
+      <a class="dir-opt dir-apple" href="https://maps.apple.com/?daddr=52.6063208264965,-1.96163722847766" target="_blank" rel="noopener">Apple Maps</a>
+      <a class="dir-opt dir-waze" href="https://waze.com/ul?ll=52.6063208264965,-1.96163722847766&navigate=yes" target="_blank" rel="noopener">Waze</a>
+    </div>
+  </details>
   
 </li>
 
@@ -231,8 +266,10 @@
 (function () {
   // --- Map ---
   var map = L.map('map').setView([52.58937790126028, -1.9965229299339975], 12);
-  L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+  L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
+    attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
+    subdomains: 'abcd',
+    maxZoom: 20,
   }).addTo(map);
 
   var markers = L.markerClusterGroup();
@@ -285,6 +322,15 @@
     });
   });
 }());
+
+// Track recently viewed in localStorage
+try {
+  var _t = { name: "Walsall", slug: "walsall" };
+  var _r = JSON.parse(localStorage.getItem('pm_recent') || '[]');
+  _r = _r.filter(function (i) { return i.slug !== _t.slug; });
+  _r.unshift(_t);
+  localStorage.setItem('pm_recent', JSON.stringify(_r.slice(0, 6)));
+} catch (e) {}
 </script>
 
 </body>
