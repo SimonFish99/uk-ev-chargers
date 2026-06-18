@@ -15,14 +15,29 @@
 
 <body>
 
-<header>
-<div class="container">
-<a href="/" class="logo">
-  <svg class="logo-bolt" viewBox="0 0 24 24" fill="currentColor" width="22" height="22" aria-hidden="true"><path d="M13 2L4.5 13.5H11L10 22L19.5 10.5H13Z"/></svg>
-  PlugMap <span class="tagline">UK EV Charger Locator</span>
-</a>
-</div>
+<header class="site-header">
+  <a href="/" class="logo-link">
+    <img src="/logo.png" alt="PlugMap – UK EV Charger Locator" class="logo-img" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+    <span class="logo-fallback" style="display:none">
+      <svg viewBox="0 0 24 24" fill="currentColor" width="26" height="26" aria-hidden="true"><path d="M13 2L4.5 13.5H11L10 22L19.5 10.5H13Z"/></svg>
+      PlugMap
+    </span>
+  </a>
+  <button class="hamburger" id="hamburger" aria-label="Menu" aria-expanded="false">
+    <span></span><span></span><span></span>
+  </button>
 </header>
+
+<nav class="nav-drawer" id="nav-drawer" aria-hidden="true">
+  <button class="nav-close" id="nav-close" aria-label="Close menu">&times;</button>
+  <a href="/" class="nav-item">All Locations</a>
+  <a href="/" class="nav-item">Near me</a>
+  <a href="/" class="nav-item">Map</a>
+  <hr class="nav-divider">
+  <a href="/about/" class="nav-item">About us</a>
+  <a href="/contact/" class="nav-item">Contact us</a>
+</nav>
+<div class="nav-overlay" id="nav-overlay"></div>
 
 <div class="container">
 
@@ -502,6 +517,19 @@
       });
     });
   });
+}());
+
+// Hamburger nav
+(function() {
+  var btn = document.getElementById('hamburger');
+  var drawer = document.getElementById('nav-drawer');
+  var overlay = document.getElementById('nav-overlay');
+  var closeBtn = document.getElementById('nav-close');
+  function open()  { drawer.classList.add('open'); overlay.classList.add('open'); btn.setAttribute('aria-expanded','true'); }
+  function close() { drawer.classList.remove('open'); overlay.classList.remove('open'); btn.setAttribute('aria-expanded','false'); }
+  btn.addEventListener('click', open);
+  closeBtn.addEventListener('click', close);
+  overlay.addEventListener('click', close);
 }());
 
 // Track recently viewed in localStorage

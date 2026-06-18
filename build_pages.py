@@ -222,9 +222,37 @@ def generate_homepage(towns, centroids):
     print("Generated homepage")
 
 
+def generate_about():
+    template = env.get_template("about.html")
+    os.makedirs("site/about", exist_ok=True)
+    html = template.render(base_url=BASE_URL)
+    with open("site/about/index.html", "w", encoding="utf-8") as f:
+        f.write(html)
+    print("Generated about page")
+
+
+def generate_contact():
+    template = env.get_template("contact.html")
+    os.makedirs("site/contact", exist_ok=True)
+    html = template.render(base_url=BASE_URL)
+    with open("site/contact/index.html", "w", encoding="utf-8") as f:
+        f.write(html)
+    print("Generated contact page")
+
+
+def generate_robots():
+    with open("site/robots.txt", "w", encoding="utf-8") as f:
+        f.write(f"User-agent: *\nAllow: /\nSitemap: {BASE_URL}/sitemap.xml\n")
+    print("Generated robots.txt")
+
+
 def generate_sitemap(towns):
     today = date.today().isoformat()
-    urls = [(f"{BASE_URL}/", "1.0", "weekly")]
+    urls = [
+        (f"{BASE_URL}/", "1.0", "weekly"),
+        (f"{BASE_URL}/about/", "0.6", "monthly"),
+        (f"{BASE_URL}/contact/", "0.4", "yearly"),
+    ]
     for town in towns.keys():
         urls.append((f"{BASE_URL}/uk/{slugify(town)}/", "0.8", "monthly"))
     lines = ['<?xml version="1.0" encoding="UTF-8"?>',
@@ -244,12 +272,6 @@ def generate_sitemap(towns):
     print("Generated sitemap.xml")
 
 
-def generate_robots():
-    with open("site/robots.txt", "w", encoding="utf-8") as f:
-        f.write(f"User-agent: *\nAllow: /\nSitemap: {BASE_URL}/sitemap.xml\n")
-    print("Generated robots.txt")
-
-
 def main():
     towns = load_towns()
     centroids = compute_centroids(towns)
@@ -257,6 +279,8 @@ def main():
     generate_homepage(towns, centroids)
     generate_sitemap(towns)
     generate_robots()
+    generate_about()
+    generate_contact()
 
 
 if __name__ == "__main__":
