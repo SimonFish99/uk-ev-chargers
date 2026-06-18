@@ -738,7 +738,7 @@
   function esc(s) { return String(s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
 
   // --- Map ---
-  var map = L.map('map').setView([51.490325684210525, -0.261553947368421], 12);
+  var map = L.map('map');
   L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
     subdomains: 'abcd',
@@ -754,7 +754,14 @@
     });
   }
 
-  var markers = L.markerClusterGroup();
+  // Cluster only when markers genuinely overlap, and stop clustering once
+  // zoomed in so a town's handful of chargers show as individual pins.
+  var markers = L.markerClusterGroup({
+    maxClusterRadius: 40,
+    disableClusteringAtZoom: 14,
+    spiderfyOnMaxZoom: true,
+    showCoverageOnHover: false,
+  });
   var chargerData = [{"lat": 51.4947, "lng": -0.24877, "title": "Cleveland Avenue", "address": "Cleveland Avenue", "connectors": ["Type 2 (Socket Only) · 4.8kW"], "speed": "slow"}, {"lat": 51.49453, "lng": -0.25175, "title": "Upham Park Road", "address": "Upham Park Road", "connectors": ["Type 2 (Socket Only) · 4.8kW"], "speed": "slow"}, {"lat": 51.49394, "lng": -0.250785, "title": "Ennismore Avenue", "address": "Ennismore Avenue", "connectors": ["Type 2 (Socket Only) · 4.8kW"], "speed": "slow"}, {"lat": 51.4936, "lng": -0.250784, "title": "Ennismore Avenue", "address": "Ennismore Avenue", "connectors": ["Type 2 (Socket Only) · 4.8kW"], "speed": "slow"}, {"lat": 51.49336, "lng": -0.250657, "title": "Ennismore Avenue", "address": "Ennismore Avenue", "connectors": ["Type 2 (Socket Only) · 4.8kW"], "speed": "slow"}, {"lat": 51.49246, "lng": -0.2483, "title": "Airedale Avenue", "address": "Airedale Avenue", "connectors": ["Type 2 (Socket Only) · 4.8kW"], "speed": "slow"}, {"lat": 51.49203, "lng": -0.24825, "title": "Airedale Avenue", "address": "Airedale Avenue", "connectors": ["Type 2 (Socket Only) · 4.8kW"], "speed": "slow"}, {"lat": 51.49117, "lng": -0.25538, "title": "Ingress Street", "address": "Ingress Street", "connectors": ["Type 2 (Socket Only) · 4.8kW"], "speed": "slow"}, {"lat": 51.49055, "lng": -0.26359, "title": "Sharon Road", "address": "Sharon Road", "connectors": ["Type 2 (Socket Only) · 4.8kW"], "speed": "slow"}, {"lat": 51.49016, "lng": -0.26888, "title": "Heathfield Gardens", "address": "Heathfield Gardens", "connectors": ["Type 2 (Socket Only) · 4.8kW"], "speed": "slow"}, {"lat": 51.49005, "lng": -0.2586, "title": "Duke Road", "address": "Duke Road", "connectors": ["Type 2 (Socket Only) · 4.8kW"], "speed": "slow"}, {"lat": 51.48928, "lng": -0.25135, "title": "Balfern Grove", "address": "Balfern Grove", "connectors": ["Type 2 (Socket Only) · 4.8kW"], "speed": "slow"}, {"lat": 51.48922, "lng": -0.27254, "title": "Harvard Road", "address": "Harvard Road", "connectors": ["Type 2 (Socket Only) · 4.8kW"], "speed": "slow"}, {"lat": 51.48875, "lng": -0.27333, "title": "Harvard Road", "address": "Harvard Road", "connectors": ["Type 2 (Socket Only) · 4.8kW"], "speed": "slow"}, {"lat": 51.48808, "lng": -0.28288, "title": "Pyrmont Road", "address": "Pyrmont Road", "connectors": ["Type 2 (Socket Only) · 4.8kW"], "speed": "slow"}, {"lat": 51.48793, "lng": -0.27751, "title": "Chiswick Village", "address": "Chiswick Village", "connectors": ["Type 2 (Socket Only) · 4.8kW"], "speed": "slow"}, {"lat": 51.48743, "lng": -0.27821, "title": "Chiswick Village", "address": "Chiswick Village", "connectors": ["Type 2 (Socket Only) · 4.8kW"], "speed": "slow"}, {"lat": 51.485898, "lng": -0.270199, "title": "Compton Cresent", "address": "Compton Cresent", "connectors": ["Type 2 (Socket Only) · 4.8kW"], "speed": "slow"}, {"lat": 51.48305, "lng": -0.26776, "title": "Lawford Road", "address": "Lawford Road", "connectors": ["Type 2 (Socket Only) · 4.8kW"], "speed": "slow"}];
 
   chargerData.forEach(function (c) {
@@ -772,6 +779,14 @@
     markers.addLayer(marker);
   });
   map.addLayer(markers);
+
+  // Frame the map to the actual chargers so a town's points are visible
+  // immediately (and small towns land past the de-clustering zoom).
+  if (chargerData.length) {
+    map.fitBounds(markers.getBounds(), { padding: [40, 40], maxZoom: 15 });
+  } else {
+    map.setView([51.490325684210525, -0.261553947368421], 12);
+  }
 
   // --- Connector filter ---
   var filterBtns = document.querySelectorAll('.filter-btn');

@@ -650,7 +650,7 @@
   function esc(s) { return String(s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
 
   // --- Map ---
-  var map = L.map('map').setView([52.04007796590383, -2.7332519390361947], 12);
+  var map = L.map('map');
   L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
     subdomains: 'abcd',
@@ -666,7 +666,14 @@
     });
   }
 
-  var markers = L.markerClusterGroup();
+  // Cluster only when markers genuinely overlap, and stop clustering once
+  // zoomed in so a town's handful of chargers show as individual pins.
+  var markers = L.markerClusterGroup({
+    maxClusterRadius: 40,
+    disableClusteringAtZoom: 14,
+    spiderfyOnMaxZoom: true,
+    showCoverageOnHover: false,
+  });
   var chargerData = [{"lat": 52.041699, "lng": -2.740215, "title": "Tesco Superstore - Hereford Abbotsmead Road", "address": "Abbotsmead Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 52.0850560412577, "lng": -2.7867850152933897, "title": "Oakfields, Credenhill Sales Office", "address": "Oakfields", "connectors": ["Type 2 (Socket Only) · 7.2kW"], "speed": "fast"}, {"lat": 51.91265166192636, "lng": -2.735409425973671, "title": "St Weonards Sales Office", "address": "Clifton Meadows", "connectors": ["Type 2 (Socket Only) · 7.3kW"], "speed": "fast"}, {"lat": 52.010519785373475, "lng": -2.620189044275861, "title": "Freeman Homes - Cherry Hill Sales Office", "address": "Cherry Hill", "connectors": ["Type 2 (Socket Only) · 7.3kW"], "speed": "fast"}, {"lat": 52.059009, "lng": -2.7187236, "title": "Old Market Hereford", "address": "Auctioneers Walk", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 52.066741, "lng": -2.734279, "title": "RAW GREENE KING GRANDSTAND 2", "address": "Grandstand Road", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 52.060137, "lng": -2.72741, "title": "Hereford Council Offices Plough Lane Her", "address": "Plough Lane", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 52.056099, "lng": -2.7119, "title": "Shirehall", "address": "Unit Street", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 52.054451, "lng": -2.702926, "title": "Texaco Ledbury Road", "address": "Ledbury Road", "connectors": ["Type 2 (Tethered Connector)  · 43kW", "CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 50kW"], "speed": "rapid"}, {"lat": 52.015474, "lng": -2.732831, "title": "Restricted access to Renault customers", "address": "Ross Road", "connectors": ["Type 2 (Socket Only) · 3.7kW"], "speed": "slow"}, {"lat": 51.952979, "lng": -2.892685, "title": "The Temple Bar Inn", "address": "Ewyas Harold", "connectors": ["Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 52.09739, "lng": -2.769634, "title": "Burghill Valley Golf Club", "address": "Tillington Road", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 52.060294, "lng": -2.709236, "title": "Morrisons Hereford", "address": "Station Approach", "connectors": ["Type 2 (Tethered Connector)  · 43kW", "CHAdeMO · 50kW", "CCS (Type 2) · 50kW"], "speed": "rapid"}, {"lat": 52.072609, "lng": -2.707226, "title": "Dealership wall", "address": "Centurion Way", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 52.05606, "lng": -2.70933, "title": "Venns Close Car Park Hereford - 70539", "address": "Venns Close", "connectors": ["Type 2 (Socket Only) · 3.7kW", "Type 2 (Socket Only) · 3.7kW"], "speed": "slow"}];
 
   chargerData.forEach(function (c) {
@@ -684,6 +691,14 @@
     markers.addLayer(marker);
   });
   map.addLayer(markers);
+
+  // Frame the map to the actual chargers so a town's points are visible
+  // immediately (and small towns land past the de-clustering zoom).
+  if (chargerData.length) {
+    map.fitBounds(markers.getBounds(), { padding: [40, 40], maxZoom: 15 });
+  } else {
+    map.setView([52.04007796590383, -2.7332519390361947], 12);
+  }
 
   // --- Connector filter ---
   var filterBtns = document.querySelectorAll('.filter-btn');

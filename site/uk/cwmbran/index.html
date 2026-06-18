@@ -566,7 +566,7 @@
   function esc(s) { return String(s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
 
   // --- Map ---
-  var map = L.map('map').setView([51.64885642688751, -3.0196569621582525], 12);
+  var map = L.map('map');
   L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
     subdomains: 'abcd',
@@ -582,7 +582,14 @@
     });
   }
 
-  var markers = L.markerClusterGroup();
+  // Cluster only when markers genuinely overlap, and stop clustering once
+  // zoomed in so a town's handful of chargers show as individual pins.
+  var markers = L.markerClusterGroup({
+    maxClusterRadius: 40,
+    disableClusteringAtZoom: 14,
+    spiderfyOnMaxZoom: true,
+    showCoverageOnHover: false,
+  });
   var chargerData = [{"lat": 51.65541469576269, "lng": -3.020840583740778, "title": "e-taxi charging point", "address": "Caradoc Road", "connectors": ["CCS (Type 2) · 50kW", "CHAdeMO · 50kW", "Type 2 (Socket Only) · 22kW"], "speed": "rapid"}, {"lat": 51.654862, "lng": -3.020408, "title": "Cwmbran", "address": "Glyndwr Road", "connectors": ["CCS (Type 2) · 100kW", "CCS (Type 2) · 100kW", "CCS (Type 2) · 100kW", "CCS (Type 2) · 100kW", "CCS (Type 2) · 100kW", "CCS (Type 2) · 100kW", "CCS (Type 2) · 100kW"], "speed": "rapid"}, {"lat": 51.655068, "lng": -3.018334, "title": "Morrisons Cwmbran", "address": "Grange Road", "connectors": ["CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 50kW", "Type 2 (Socket Only) · 22kW"], "speed": "rapid"}, {"lat": 51.648136, "lng": -3.023166, "title": "Cwmbran Village Surgery Car Park", "address": "Cwmbran Village Surgery Car Park", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.640562, "lng": -3.021, "title": "Fields Road, Torfaen", "address": "Fields Road, Torfaen", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.646106, "lng": -3.00776, "title": "Llanyrafon Car Park", "address": "Cwmbran", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 51.644636, "lng": -3.04825, "title": "Neighbourhood Centre", "address": "Fairwater Square", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 51.634475, "lng": -3.019249, "title": "Green & Co-Pembroke House", "address": "Ty Coch Lane", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.653181, "lng": -3.022232, "title": "Heol Llywelyn", "address": "Heol Llywelyn", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.649912, "lng": -2.996654, "title": "Llanyravon", "address": "Llanyravon", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.655068, "lng": -3.018333, "title": "Morrisons Cwmbran", "address": "Grange Road", "connectors": ["Type 2 (Socket Only) · 22kW", "CHAdeMO · 50kW", "CCS (Type 2) · 50kW"], "speed": "rapid"}];
 
   chargerData.forEach(function (c) {
@@ -600,6 +607,14 @@
     markers.addLayer(marker);
   });
   map.addLayer(markers);
+
+  // Frame the map to the actual chargers so a town's points are visible
+  // immediately (and small towns land past the de-clustering zoom).
+  if (chargerData.length) {
+    map.fitBounds(markers.getBounds(), { padding: [40, 40], maxZoom: 15 });
+  } else {
+    map.setView([51.64885642688751, -3.0196569621582525], 12);
+  }
 
   // --- Connector filter ---
   var filterBtns = document.querySelectorAll('.filter-btn');

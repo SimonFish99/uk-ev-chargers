@@ -348,7 +348,7 @@
   function esc(s) { return String(s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
 
   // --- Map ---
-  var map = L.map('map').setView([55.955497333333334, -2.782360166666667], 12);
+  var map = L.map('map');
   L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
     subdomains: 'abcd',
@@ -364,7 +364,14 @@
     });
   }
 
-  var markers = L.markerClusterGroup();
+  // Cluster only when markers genuinely overlap, and stop clustering once
+  // zoomed in so a town's handful of chargers show as individual pins.
+  var markers = L.markerClusterGroup({
+    maxClusterRadius: 40,
+    disableClusteringAtZoom: 14,
+    spiderfyOnMaxZoom: true,
+    showCoverageOnHover: false,
+  });
   var chargerData = [{"lat": 55.961363, "lng": -2.769913, "title": "Abbot's View, Haddington", "address": "Abbot's View", "connectors": ["Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 55.954994, "lng": -2.812622, "title": "Haddington Retail Park", "address": "Commerce Park", "connectors": ["CHAdeMO · 50kW", "CHAdeMO · 50kW", "CHAdeMO · 50kW", "CCS (Type 2) · 75kW", "CCS (Type 2) · 75kW", "CCS (Type 2) · 75kW"], "speed": "rapid"}, {"lat": 55.95408, "lng": -2.77999, "title": "John Muir House (Electric Car Park)", "address": "John Muir House", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 55.954174, "lng": -2.786755, "title": "Knox Academy, Haddington", "address": "Knox Academy", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 55.953303, "lng": -2.763611, "title": "Seggarsdean Court", "address": "Seggarsdean Court", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 55.95507, "lng": -2.78127, "title": "John Muir House Rapid Charger", "address": "Brewery Park", "connectors": ["CCS (Type 2) · 50kW", "CHAdeMO · 50kW"], "speed": "rapid"}];
 
   chargerData.forEach(function (c) {
@@ -382,6 +389,14 @@
     markers.addLayer(marker);
   });
   map.addLayer(markers);
+
+  // Frame the map to the actual chargers so a town's points are visible
+  // immediately (and small towns land past the de-clustering zoom).
+  if (chargerData.length) {
+    map.fitBounds(markers.getBounds(), { padding: [40, 40], maxZoom: 15 });
+  } else {
+    map.setView([55.955497333333334, -2.782360166666667], 12);
+  }
 
   // --- Connector filter ---
   var filterBtns = document.querySelectorAll('.filter-btn');

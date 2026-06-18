@@ -376,7 +376,7 @@
   function esc(s) { return String(s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
 
   // --- Map ---
-  var map = L.map('map').setView([51.49568573285715, -0.06727433714285715], 12);
+  var map = L.map('map');
   L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
     subdomains: 'abcd',
@@ -392,7 +392,14 @@
     });
   }
 
-  var markers = L.markerClusterGroup();
+  // Cluster only when markers genuinely overlap, and stop clustering once
+  // zoomed in so a town's handful of chargers show as individual pins.
+  var markers = L.markerClusterGroup({
+    maxClusterRadius: 40,
+    disableClusteringAtZoom: 14,
+    spiderfyOnMaxZoom: true,
+    showCoverageOnHover: false,
+  });
   var chargerData = [{"lat": 51.48163313, "lng": -0.06094236, "title": "Hochtief Murphy Joint Venture", "address": "Old Kent Road", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.50383, "lng": -0.075758, "title": "Horselydown Lane", "address": "36 Horselydown Lane", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.502992, "lng": -0.076624, "title": "Horselydown Lane (South Of Gainsford Street)", "address": "Horselydown Lane (South Of Gainsford Street)", "connectors": ["Type 1 (J1772) · 3kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.501285, "lng": -0.052187, "title": "Railway Avenue", "address": "Railway Avenue", "connectors": ["Type 1 (J1772) · 3kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.497426, "lng": -0.050493, "title": "Surrey Quays Road", "address": "Surrey Quays Road", "connectors": ["Type 1 (J1772) · 3kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.495797, "lng": -0.052046, "title": "Gomm Road", "address": "Gomm Road", "connectors": ["Type 1 (J1772) · 3kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.486837, "lng": -0.10287, "title": "Doddington Grove", "address": "Doddington Grove", "connectors": ["Type 1 (J1772) · 3kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}];
 
   chargerData.forEach(function (c) {
@@ -410,6 +417,14 @@
     markers.addLayer(marker);
   });
   map.addLayer(markers);
+
+  // Frame the map to the actual chargers so a town's points are visible
+  // immediately (and small towns land past the de-clustering zoom).
+  if (chargerData.length) {
+    map.fitBounds(markers.getBounds(), { padding: [40, 40], maxZoom: 15 });
+  } else {
+    map.setView([51.49568573285715, -0.06727433714285715], 12);
+  }
 
   // --- Connector filter ---
   var filterBtns = document.querySelectorAll('.filter-btn');

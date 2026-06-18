@@ -304,7 +304,7 @@
   function esc(s) { return String(s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
 
   // --- Map ---
-  var map = L.map('map').setView([51.638080176781365, -0.46913435312349083], 12);
+  var map = L.map('map');
   L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
     subdomains: 'abcd',
@@ -320,7 +320,14 @@
     });
   }
 
-  var markers = L.markerClusterGroup();
+  // Cluster only when markers genuinely overlap, and stop clustering once
+  // zoomed in so a town's handful of chargers show as individual pins.
+  var markers = L.markerClusterGroup({
+    maxClusterRadius: 40,
+    disableClusteringAtZoom: 14,
+    spiderfyOnMaxZoom: true,
+    showCoverageOnHover: false,
+  });
   var chargerData = [{"lat": 51.64727989763699, "lng": -0.44305305872183, "title": "Red House", "address": "New Road", "connectors": ["Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 51.633611, "lng": -0.470836, "title": "Tesco Superstore - Rickmansworth", "address": "Frogmoor Wharf", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.625607, "lng": -0.505838, "title": "Nissan Motors GB Ltd 2", "address": "10 Denham Way", "connectors": ["BS1363 3 Pin 13 Amp · 3kW", "BS1363 3 Pin 13 Amp · 3kW"], "speed": "slow"}, {"lat": 51.6342359862698, "lng": -0.489028706895624, "title": "BP - Mill End SF Connect", "address": "Uxbridge Road", "connectors": ["CCS (Type 2) · 150kW", "CCS (Type 2) · 150kW"], "speed": "rapid"}, {"lat": 51.649667, "lng": -0.436916, "title": "SHELL RECHARGE CROXLEY GREEN", "address": "185-187 Watford Road", "connectors": ["Type 2 (Tethered Connector)  · 50kW", "CHAdeMO · 50kW"], "speed": "rapid"}];
 
   chargerData.forEach(function (c) {
@@ -338,6 +345,14 @@
     markers.addLayer(marker);
   });
   map.addLayer(markers);
+
+  // Frame the map to the actual chargers so a town's points are visible
+  // immediately (and small towns land past the de-clustering zoom).
+  if (chargerData.length) {
+    map.fitBounds(markers.getBounds(), { padding: [40, 40], maxZoom: 15 });
+  } else {
+    map.setView([51.638080176781365, -0.46913435312349083], 12);
+  }
 
   // --- Connector filter ---
   var filterBtns = document.querySelectorAll('.filter-btn');

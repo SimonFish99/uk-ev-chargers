@@ -379,7 +379,7 @@
   function esc(s) { return String(s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
 
   // --- Map ---
-  var map = L.map('map').setView([51.22167707100868, 1.4009530438278426], 12);
+  var map = L.map('map');
   L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
     subdomains: 'abcd',
@@ -395,7 +395,14 @@
     });
   }
 
-  var markers = L.markerClusterGroup();
+  // Cluster only when markers genuinely overlap, and stop clustering once
+  // zoomed in so a town's handful of chargers show as individual pins.
+  var markers = L.markerClusterGroup({
+    maxClusterRadius: 40,
+    disableClusteringAtZoom: 14,
+    spiderfyOnMaxZoom: true,
+    showCoverageOnHover: false,
+  });
   var chargerData = [{"lat": 51.223581497060735, "lng": 1.4004993067948988, "title": "EV Aldi", "address": "West Street", "connectors": ["CCS (Type 2) · 150kW", "CHAdeMO · 75kW", "CCS (Type 2) · 150kW", "CCS (Type 2) · 150kW"], "speed": "rapid"}, {"lat": 51.226626, "lng": 1.4017, "title": "Union Road Car Park 1", "address": "Union Road Car Park 1", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.225205, "lng": 1.404302, "title": "Beach Street Car Park", "address": "Beach Street Car Park", "connectors": ["Type 1 (J1772) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.213492, "lng": 1.398439, "title": "DEAL RUGBY CLUB, WALMER 1", "address": "Walmer", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.225971, "lng": 1.40073, "title": "CT14 6EA", "address": "", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.213285, "lng": 1.399984, "title": "CT14 7EQ", "address": "", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.223579, "lng": 1.401017, "title": "Aldi Deal", "address": "27 West St", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}];
 
   chargerData.forEach(function (c) {
@@ -413,6 +420,14 @@
     markers.addLayer(marker);
   });
   map.addLayer(markers);
+
+  // Frame the map to the actual chargers so a town's points are visible
+  // immediately (and small towns land past the de-clustering zoom).
+  if (chargerData.length) {
+    map.fitBounds(markers.getBounds(), { padding: [40, 40], maxZoom: 15 });
+  } else {
+    map.setView([51.22167707100868, 1.4009530438278426], 12);
+  }
 
   // --- Connector filter ---
   var filterBtns = document.querySelectorAll('.filter-btn');

@@ -576,7 +576,7 @@
   function esc(s) { return String(s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
 
   // --- Map ---
-  var map = L.map('map').setView([53.426366357142854, -3.0459910714285714], 12);
+  var map = L.map('map');
   L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
     subdomains: 'abcd',
@@ -592,7 +592,14 @@
     });
   }
 
-  var markers = L.markerClusterGroup();
+  // Cluster only when markers genuinely overlap, and stop clustering once
+  // zoomed in so a town's handful of chargers show as individual pins.
+  var markers = L.markerClusterGroup({
+    maxClusterRadius: 40,
+    disableClusteringAtZoom: 14,
+    spiderfyOnMaxZoom: true,
+    showCoverageOnHover: false,
+  });
   var chargerData = [{"lat": 53.438499, "lng": -3.048, "title": "Atherton Street, Wallasey (Opp Wellington Mansions)", "address": "Atherton Street, (Opp Wellingt", "connectors": ["Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 53.438224, "lng": -3.045471, "title": "o/s house 6 Cressingham Road, Wallasey", "address": "6 Cressingham Road,", "connectors": ["Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 53.437898, "lng": -3.046949, "title": "Cressingham Road, Wallasey (OPP Buckley Ave)", "address": "Cressingham Road,  (OPP Buckle", "connectors": ["Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 53.43774, "lng": -3.04909, "title": "o/s house 15 Alexandra Road, Wallasey", "address": "o/s house 15 Alexandra Road,", "connectors": ["Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 53.436941, "lng": -3.047476, "title": "Atherton Street, Wallasey (Opp house 21)", "address": "Atherton Street,  (Opp house 2", "connectors": ["Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 53.425984, "lng": -3.038577, "title": "o/s house 30 Carrington Road, Wallasey", "address": "30 Carrington Road,", "connectors": ["Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 53.425624, "lng": -3.040021, "title": "o/s house 3 Carrington Road, Wallasey", "address": "3 Carrington Road", "connectors": ["Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 53.413617, "lng": -3.050371, "title": "Opp house 2 in Rostherne Avenue, Wallasey", "address": "Opp house 2", "connectors": ["Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 53.413394, "lng": -3.049049, "title": "o/s house 5 Rostherne Avenue, Wallasey", "address": "o/s house 5", "connectors": ["Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 53.420362, "lng": -3.038131, "title": "o/s house 21 The Summit, Wallasey", "address": "o/s house 21 The Summit,", "connectors": ["Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 53.427082, "lng": -3.06629, "title": "RAW GREENE KING LIGHTHOUSE 2", "address": "7 Farndon Ave", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 53.420831, "lng": -3.038672, "title": "o/s Ground Floor Flat, 39  The Summit, Wallasey", "address": "o/s Ground Floor Flat, 39 The", "connectors": ["Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 53.419973, "lng": -3.037514, "title": "o/s house 3 The Summit, Wallasey", "address": "o/s house 3", "connectors": ["Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 53.41296, "lng": -3.048264, "title": "o/s house 27 Rostherne Avenue, Wallasey", "address": "o/s house 27", "connectors": ["Type 2 (Socket Only) · 7kW"], "speed": "fast"}];
 
   chargerData.forEach(function (c) {
@@ -610,6 +617,14 @@
     markers.addLayer(marker);
   });
   map.addLayer(markers);
+
+  // Frame the map to the actual chargers so a town's points are visible
+  // immediately (and small towns land past the de-clustering zoom).
+  if (chargerData.length) {
+    map.fitBounds(markers.getBounds(), { padding: [40, 40], maxZoom: 15 });
+  } else {
+    map.setView([53.426366357142854, -3.0459910714285714], 12);
+  }
 
   // --- Connector filter ---
   var filterBtns = document.querySelectorAll('.filter-btn');

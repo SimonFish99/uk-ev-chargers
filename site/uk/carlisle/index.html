@@ -908,7 +908,7 @@
   function esc(s) { return String(s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
 
   // --- Map ---
-  var map = L.map('map').setView([54.89789457921506, -2.9227300397448537], 12);
+  var map = L.map('map');
   L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
     subdomains: 'abcd',
@@ -924,7 +924,14 @@
     });
   }
 
-  var markers = L.markerClusterGroup();
+  // Cluster only when markers genuinely overlap, and stop clustering once
+  // zoomed in so a town's handful of chargers show as individual pins.
+  var markers = L.markerClusterGroup({
+    maxClusterRadius: 40,
+    disableClusteringAtZoom: 14,
+    spiderfyOnMaxZoom: true,
+    showCoverageOnHover: false,
+  });
   var chargerData = [{"lat": 54.95182593342193, "lng": -2.9774759619713222, "title": "Todhills Southbound", "address": "Southbound M6", "connectors": ["CCS (Type 2) · 250kW"], "speed": "rapid"}, {"lat": 54.92240868066597, "lng": -2.946593443944778, "title": "Arnold Clark Carlisle Hyundai Motorstore", "address": "Wakefield Road", "connectors": ["CCS (Type 2) · 150kW", "CHAdeMO · 50kW"], "speed": "rapid"}, {"lat": 54.8921905737748, "lng": -2.931949273115663, "title": "Evology Charging - Mary Street Car Park", "address": "Mary St", "connectors": ["Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 54.950079, "lng": -2.979377, "title": "MO Todhills Northbound", "address": "Todhills Service Area", "connectors": ["CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 43kW", "Type 2 (Tethered Connector)  · 50kW"], "speed": "rapid"}, {"lat": 54.797792, "lng": -2.871333, "title": "Moto Southwaite Northbound Services", "address": "Broadfield Road Motorway Northbound, Jct 41/42", "connectors": ["CCS (Type 2) · 50kW", "CHAdeMO · 50kW", "CCS (Type 2) · 50kW", "CCS (Type 2) · 50kW", "Type 2 (Socket Only) · 11kW", "CCS (Type 2) · 142kW", "CCS (Type 2) · 142kW", "CCS (Type 2) · 142kW", "CCS (Type 2) · 142kW", "CCS (Type 2) · 142kW", "CCS (Type 2) · 142kW"], "speed": "rapid"}, {"lat": 54.891376, "lng": -2.929162, "title": "Workstone Ltd", "address": "Managing Suite", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 54.945577460100246, "lng": -2.7866541616608664, "title": "EVC The Sally", "address": "The Sally", "connectors": ["Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 54.890915, "lng": -2.927619, "title": "Cumbria House-Cecil St Car Park", "address": "12 Aglionby St", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 54.890664, "lng": -2.928696, "title": "Cumbria House", "address": "117 Botchergate", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 54.943764, "lng": -2.734706, "title": "Union Lane Car Park Brampton", "address": "Union Lane Car Park", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 54.904438, "lng": -2.936945, "title": "Stanwix Car Park Carlisle", "address": "Stanwix Cark Park", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 54.899391, "lng": -2.932818, "title": "The Sands Centre Car Park", "address": "The Sands Centre", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 54.89472, "lng": -2.94525, "title": "Paddys Market Car Park", "address": "Paddy's Market Car Park", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 54.892963, "lng": -2.942869, "title": "Milbourne Street", "address": "Milbourne Street Car Park", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 54.89294, "lng": -2.94988, "title": "Wigton Road", "address": "11 Wigton Road", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 54.892559, "lng": -2.944617, "title": "Linton Tweeds", "address": "Linton Tweeds", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 54.890739, "lng": -2.967174, "title": "Shady Grove Road, Carlisle", "address": "Shadygrove Road Car Park", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 54.8867, "lng": -2.942726, "title": "Westmorland Street Car Park", "address": "Westmorland Street Car Park", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 54.84094, "lng": -2.9839, "title": "Dalston Kingsway car park", "address": "Dalston", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 54.8870925155533, "lng": -2.9234289939493, "title": "St Nicholas Retail Park", "address": "London Road", "connectors": ["CHAdeMO · 50kW", "CCS (Type 2) · 50kW"], "speed": "rapid"}, {"lat": 54.896711, "lng": -2.894157, "title": "Tesco Superstore-Carlisle Warwick Road", "address": "Warwick Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}];
 
   chargerData.forEach(function (c) {
@@ -942,6 +949,14 @@
     markers.addLayer(marker);
   });
   map.addLayer(markers);
+
+  // Frame the map to the actual chargers so a town's points are visible
+  // immediately (and small towns land past the de-clustering zoom).
+  if (chargerData.length) {
+    map.fitBounds(markers.getBounds(), { padding: [40, 40], maxZoom: 15 });
+  } else {
+    map.setView([54.89789457921506, -2.9227300397448537], 12);
+  }
 
   // --- Connector filter ---
   var filterBtns = document.querySelectorAll('.filter-btn');

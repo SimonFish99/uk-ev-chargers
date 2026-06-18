@@ -451,7 +451,7 @@
   function esc(s) { return String(s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
 
   // --- Map ---
-  var map = L.map('map').setView([51.23483343366082, -0.32895324053299], 12);
+  var map = L.map('map');
   L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
     subdomains: 'abcd',
@@ -467,7 +467,14 @@
     });
   }
 
-  var markers = L.markerClusterGroup();
+  // Cluster only when markers genuinely overlap, and stop clustering once
+  // zoomed in so a town's handful of chargers show as individual pins.
+  var markers = L.markerClusterGroup({
+    maxClusterRadius: 40,
+    disableClusteringAtZoom: 14,
+    spiderfyOnMaxZoom: true,
+    showCoverageOnHover: false,
+  });
   var chargerData = [{"lat": 51.23356, "lng": -0.333344, "title": "St Martins Walk Car Park 1", "address": "St Martins Walk Car Park 1", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.237350826838195, "lng": -0.32528014550462103, "title": "London Road", "address": "London Road", "connectors": ["Type 2 (Socket Only) · 11kW", "Type 2 (Socket Only) · 11kW", "Type 2 (Socket Only) · 11kW"], "speed": "fast"}, {"lat": 51.24698581964327, "lng": -0.3311748297738575, "title": "Denbies Vineyard", "address": "Bradley Lane", "connectors": ["CCS (Type 2) · 250kW"], "speed": "rapid"}, {"lat": 51.247449, "lng": -0.33128, "title": "Denbies Wine Estate", "address": "London Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.234295, "lng": -0.324019, "title": "Reigate Road Car Park, Dorking 6", "address": "Reigate Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.233703, "lng": -0.329298, "title": "Wathen Road Car Park, Dorking 1", "address": "Wathen Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.230771, "lng": -0.332391, "title": "Southside Car Park, Dorking 4", "address": "High Street", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.2353, "lng": -0.325746, "title": "Pippbrook Council Offices Car Park, Dorking 1", "address": "Pippbrook Car Park", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.21408625646586, "lng": -0.3280461895184317, "title": "Holmesdale Road", "address": "Holmesdale Road", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}];
 
   chargerData.forEach(function (c) {
@@ -485,6 +492,14 @@
     markers.addLayer(marker);
   });
   map.addLayer(markers);
+
+  // Frame the map to the actual chargers so a town's points are visible
+  // immediately (and small towns land past the de-clustering zoom).
+  if (chargerData.length) {
+    map.fitBounds(markers.getBounds(), { padding: [40, 40], maxZoom: 15 });
+  } else {
+    map.setView([51.23483343366082, -0.32895324053299], 12);
+  }
 
   // --- Connector filter ---
   var filterBtns = document.querySelectorAll('.filter-btn');

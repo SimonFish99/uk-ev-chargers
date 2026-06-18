@@ -510,7 +510,7 @@
   function esc(s) { return String(s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
 
   // --- Map ---
-  var map = L.map('map').setView([51.2768893025, -0.13186059249999998], 12);
+  var map = L.map('map');
   L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
     subdomains: 'abcd',
@@ -526,7 +526,14 @@
     });
   }
 
-  var markers = L.markerClusterGroup();
+  // Cluster only when markers genuinely overlap, and stop clustering once
+  // zoomed in so a town's handful of chargers show as individual pins.
+  var markers = L.markerClusterGroup({
+    maxClusterRadius: 40,
+    disableClusteringAtZoom: 14,
+    spiderfyOnMaxZoom: true,
+    showCoverageOnHover: false,
+  });
   var chargerData = [{"lat": 51.39524342, "lng": 0.55037226, "title": "Lidl-Gillingham", "address": "Medway Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.364544, "lng": 0.569663, "title": "HENRY SCHEIN HENRY SCHEIN 3", "address": "Henry Schein", "connectors": ["Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 51.032949, "lng": -2.271462, "title": "MERCK B2 EV PTS STATION 1", "address": "New Road", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 51.340732, "lng": 0.608235, "title": "Moto Medway Westbound Services", "address": "Moto Medway Westbound Services", "connectors": ["CCS (Type 2) · 40kW", "CHAdeMO · 40kW", "Type 2 (Socket Only) · 11kW", "Type 2 (Socket Only) · 11kW", "CCS (Type 2) · 350kW", "CCS (Type 2) · 350kW", "CCS (Type 2) · 350kW", "CCS (Type 2) · 350kW", "CHAdeMO · 60kW", "CCS (Type 2) · 350kW", "CCS (Type 2) · 25kW", "CCS (Type 2) · 350kW", "CCS (Type 2) · 350kW", "CCS (Type 2) · 350kW", "CHAdeMO · 100kW", "CHAdeMO · 100kW", "CCS (Type 2) · 350kW", "CCS (Type 2) · 350kW"], "speed": "rapid"}, {"lat": 51.341991, "lng": 0.607724, "title": "MOTO Medway Eastbound Services", "address": "M2 Motorway Eastbound", "connectors": ["CCS (Type 2) · 40kW", "CHAdeMO · 40kW", "CCS (Type 2) · 350kW", "CCS (Type 2) · 350kW", "CCS (Type 2) · 350kW", "CCS (Type 2) · 350kW", "CCS (Type 2) · 350kW", "CCS (Type 2) · 350kW", "CCS (Type 2) · 350kW", "CCS (Type 2) · 350kW", "CCS (Type 2) · 350kW", "CHAdeMO · 100kW", "CCS (Type 2) · 350kW", "CHAdeMO · 100kW", "CCS (Type 2) · 25kW", "CHAdeMO · 60kW", "Type 2 (Socket Only) · 11kW", "Type 2 (Socket Only) · 11kW"], "speed": "rapid"}, {"lat": 51.341877, "lng": 0.574231, "title": "HEMPSTEAD VAL. HEMPSTEAD 1", "address": "Hempstead Valley Shopping Centre", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 51.030195, "lng": -2.276054, "title": "MERCK B2 EV PTS STATION 4", "address": "New Road", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 51.367583, "lng": 0.582406, "title": "Tesco Extra-Gillingham Kent", "address": "Courteney Road", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 7kW", "CCS (Type 2) · 50kW", "CHAdeMO · 50kW"], "speed": "rapid"}];
 
   chargerData.forEach(function (c) {
@@ -544,6 +551,14 @@
     markers.addLayer(marker);
   });
   map.addLayer(markers);
+
+  // Frame the map to the actual chargers so a town's points are visible
+  // immediately (and small towns land past the de-clustering zoom).
+  if (chargerData.length) {
+    map.fitBounds(markers.getBounds(), { padding: [40, 40], maxZoom: 15 });
+  } else {
+    map.setView([51.2768893025, -0.13186059249999998], 12);
+  }
 
   // --- Connector filter ---
   var filterBtns = document.querySelectorAll('.filter-btn');

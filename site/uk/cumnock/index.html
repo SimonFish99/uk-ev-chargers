@@ -300,7 +300,7 @@
   function esc(s) { return String(s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
 
   // --- Map ---
-  var map = L.map('map').setView([55.4426874, -4.2514502], 12);
+  var map = L.map('map');
   L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
     subdomains: 'abcd',
@@ -316,7 +316,14 @@
     });
   }
 
-  var markers = L.markerClusterGroup();
+  // Cluster only when markers genuinely overlap, and stop clustering once
+  // zoomed in so a town's handful of chargers show as individual pins.
+  var markers = L.markerClusterGroup({
+    maxClusterRadius: 40,
+    disableClusteringAtZoom: 14,
+    spiderfyOnMaxZoom: true,
+    showCoverageOnHover: false,
+  });
   var chargerData = [{"lat": 55.469174, "lng": -4.291583, "title": "Beechwood Ave, Auchinleck", "address": "13 Beechwood Avenue", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 55.398199, "lng": -4.183853, "title": "New Cumnock - Castle Car Park", "address": "4A Castle", "connectors": ["Type 2 (Tethered Connector)  · 43kW", "CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 50kW"], "speed": "rapid"}, {"lat": 55.449883, "lng": -4.269636, "title": "CUMNOCK KERR&SMITH 2", "address": "Riverside Garage Ayr Road", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 55.442205, "lng": -4.249896, "title": "Netherthird Community Centre", "address": "65 Ryderston Drive", "connectors": ["Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 55.453976, "lng": -4.262283, "title": "Townhead Street Car Park, Cumnock", "address": "Townhead Street Car Park", "connectors": ["Type 2 (Socket Only) · 7kW"], "speed": "fast"}];
 
   chargerData.forEach(function (c) {
@@ -334,6 +341,14 @@
     markers.addLayer(marker);
   });
   map.addLayer(markers);
+
+  // Frame the map to the actual chargers so a town's points are visible
+  // immediately (and small towns land past the de-clustering zoom).
+  if (chargerData.length) {
+    map.fitBounds(markers.getBounds(), { padding: [40, 40], maxZoom: 15 });
+  } else {
+    map.setView([55.4426874, -4.2514502], 12);
+  }
 
   // --- Connector filter ---
   var filterBtns = document.querySelectorAll('.filter-btn');

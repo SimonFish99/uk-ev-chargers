@@ -672,7 +672,7 @@
   function esc(s) { return String(s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
 
   // --- Map ---
-  var map = L.map('map').setView([51.082248235249935, 1.1655630375751442], 12);
+  var map = L.map('map');
   L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
     subdomains: 'abcd',
@@ -688,7 +688,14 @@
     });
   }
 
-  var markers = L.markerClusterGroup();
+  // Cluster only when markers genuinely overlap, and stop clustering once
+  // zoomed in so a town's handful of chargers show as individual pins.
+  var markers = L.markerClusterGroup({
+    maxClusterRadius: 40,
+    disableClusteringAtZoom: 14,
+    spiderfyOnMaxZoom: true,
+    showCoverageOnHover: false,
+  });
   var chargerData = [{"lat": 51.079282869355865, "lng": 1.1804454870807604, "title": "West Cliff Gardens", "address": "West Cliff Gardens", "connectors": ["CCS (Type 2) · 50kW", "CHAdeMO · 50kW", "Type 2 (Socket Only) · 22kW"], "speed": "rapid"}, {"lat": 51.09636726175373, "lng": 1.1212489493299245, "title": "EuroTunnel", "address": "Ashford Road", "connectors": ["CHAdeMO · 60kW", "CCS (Type 2) · 90kW", "Type 2 (Socket Only) · 22kW", "CCS (Type 2) · 210kW", "CHAdeMO · 90kW"], "speed": "rapid"}, {"lat": 51.0888433976394, "lng": 1.13544512721648, "title": "BP Pulse Charging Station", "address": "244 Cheriton High Street", "connectors": ["CCS (Type 2) · 150kW"], "speed": "rapid"}, {"lat": 51.08111, "lng": 1.182866, "title": "Lower Payers Car Park 1", "address": "Lower Payers Car Park 1", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.080975, "lng": 1.182179, "title": "Upper Payers Car Park 1", "address": "Upper Payers Car Park 1", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.076581, "lng": 1.177968, "title": "Coastal Car Park 1", "address": "Coastal Car Park 1", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.087592, "lng": 1.142315, "title": "Broomfield Road Car Park 1", "address": "Broomfield Road Car Park 1", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.079496, "lng": 1.16984, "title": "Civic Center Visitors Car Park 1", "address": "Civic Center Visitors Car Park 1", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 51.073318, "lng": 1.147519, "title": "Castle Road Car Park 1, Sandgate", "address": "Castle Road Car Park 1, Sandgate", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.090299, "lng": 1.130977, "title": "Tesco Superstore-Folkestone", "address": "Cheriton High Street", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.084006, "lng": 1.196316, "title": "East Cliff Paviliion Car Park 2", "address": "East Cliff Pavillion Car Park", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.080869, "lng": 1.185743, "title": "Tram Road 3", "address": "20 Harbour Way", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 51.077498, "lng": 1.176343, "title": "Pleydell Gardens 1", "address": "Pleydell Gardens 1", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.076874, "lng": 1.173326, "title": "Sandgate Road Car Park 1", "address": "Sandgate Road Car Park 1", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.080612, "lng": 1.180914, "title": "Shellons Street Car Park", "address": "Street Eanswythe Way", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}];
 
   chargerData.forEach(function (c) {
@@ -706,6 +713,14 @@
     markers.addLayer(marker);
   });
   map.addLayer(markers);
+
+  // Frame the map to the actual chargers so a town's points are visible
+  // immediately (and small towns land past the de-clustering zoom).
+  if (chargerData.length) {
+    map.fitBounds(markers.getBounds(), { padding: [40, 40], maxZoom: 15 });
+  } else {
+    map.setView([51.082248235249935, 1.1655630375751442], 12);
+  }
 
   // --- Connector filter ---
   var filterBtns = document.querySelectorAll('.filter-btn');

@@ -294,7 +294,7 @@
   function esc(s) { return String(s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
 
   // --- Map ---
-  var map = L.map('map').setView([55.1307426882109, -6.670391302401356], 12);
+  var map = L.map('map');
   L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
     subdomains: 'abcd',
@@ -310,7 +310,14 @@
     });
   }
 
-  var markers = L.markerClusterGroup();
+  // Cluster only when markers genuinely overlap, and stop clustering once
+  // zoomed in so a town's handful of chargers show as individual pins.
+  var markers = L.markerClusterGroup({
+    maxClusterRadius: 40,
+    disableClusteringAtZoom: 14,
+    spiderfyOnMaxZoom: true,
+    showCoverageOnHover: false,
+  });
   var chargerData = [{"lat": 55.12119724212917, "lng": -6.676560743258307, "title": "Lidl", "address": "Unit 17", "connectors": ["Type 2 (Socket Only) · 22.1kW", "CCS (Type 2) · 50kW", "CHAdeMO · 50kW"], "speed": "rapid"}, {"lat": 55.15103446041746, "lng": -6.677225350702372, "title": "Ulster University (Coleraine)", "address": "Portstewart Road", "connectors": ["Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 55.11664440969784, "lng": -6.677802032438279, "title": "Roadside Garages", "address": "Somerset Road", "connectors": ["Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 55.12564739289121, "lng": -6.654807175013104, "title": "Lodge Hotel", "address": "Lodge Park", "connectors": ["Type 2 (Socket Only) · 11kW"], "speed": "fast"}, {"lat": 55.139189935918836, "lng": -6.665561210594717, "title": "HRL Millburn Road", "address": "Milburn Road", "connectors": ["CCS (Type 2) · 150kW"], "speed": "rapid"}];
 
   chargerData.forEach(function (c) {
@@ -328,6 +335,14 @@
     markers.addLayer(marker);
   });
   map.addLayer(markers);
+
+  // Frame the map to the actual chargers so a town's points are visible
+  // immediately (and small towns land past the de-clustering zoom).
+  if (chargerData.length) {
+    map.fitBounds(markers.getBounds(), { padding: [40, 40], maxZoom: 15 });
+  } else {
+    map.setView([55.1307426882109, -6.670391302401356], 12);
+  }
 
   // --- Connector filter ---
   var filterBtns = document.querySelectorAll('.filter-btn');

@@ -426,7 +426,7 @@
   function esc(s) { return String(s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
 
   // --- Map ---
-  var map = L.map('map').setView([52.326362384999996, -0.1441111875], 12);
+  var map = L.map('map');
   L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
     subdomains: 'abcd',
@@ -442,7 +442,14 @@
     });
   }
 
-  var markers = L.markerClusterGroup();
+  // Cluster only when markers genuinely overlap, and stop clustering once
+  // zoomed in so a town's handful of chargers show as individual pins.
+  var markers = L.markerClusterGroup({
+    maxClusterRadius: 40,
+    disableClusteringAtZoom: 14,
+    spiderfyOnMaxZoom: true,
+    showCoverageOnHover: false,
+  });
   var chargerData = [{"lat": 52.32655, "lng": -0.176122, "title": "Bridge Place", "address": "West Side Common", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 52.3290338, "lng": -0.1830933, "title": "Princes Street Car Park", "address": "Huntingdon", "connectors": ["Type 2 (Socket Only) · 3kW", "Type 2 (Socket Only) · 3kW"], "speed": "slow"}, {"lat": 52.3313407, "lng": -0.1800607, "title": "Huntingdon Multi Storey Car Park", "address": "Hartford Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 52.32758958, "lng": -0.1836305, "title": "Mill Common Car Park", "address": "Huntingdon", "connectors": ["Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 52.334522, "lng": -0.187338, "title": "45 Great Northern Street", "address": "45 Great Northern Street", "connectors": ["Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 52.327498, "lng": 0.183631, "title": "Mill Common Car Park", "address": "Huntingdon", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 52.291168, "lng": -0.255644, "title": "Shell Buckden", "address": "Great North Rd", "connectors": ["CHAdeMO · 100kW", "Type 2 (Tethered Connector)  · 175kW", "CHAdeMO · 100kW", "Type 2 (Tethered Connector)  · 175kW", "CHAdeMO · 100kW", "Type 2 (Tethered Connector)  · 175kW", "CHAdeMO · 100kW", "Type 2 (Tethered Connector)  · 175kW"], "speed": "rapid"}, {"lat": 52.343197, "lng": -0.170632, "title": "Coneygear Centre", "address": "Buttsgrove Way", "connectors": ["Type 2 (Socket Only) · 7kW"], "speed": "fast"}];
 
   chargerData.forEach(function (c) {
@@ -460,6 +467,14 @@
     markers.addLayer(marker);
   });
   map.addLayer(markers);
+
+  // Frame the map to the actual chargers so a town's points are visible
+  // immediately (and small towns land past the de-clustering zoom).
+  if (chargerData.length) {
+    map.fitBounds(markers.getBounds(), { padding: [40, 40], maxZoom: 15 });
+  } else {
+    map.setView([52.326362384999996, -0.1441111875], 12);
+  }
 
   // --- Connector filter ---
   var filterBtns = document.querySelectorAll('.filter-btn');

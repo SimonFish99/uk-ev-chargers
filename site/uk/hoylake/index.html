@@ -487,7 +487,7 @@
   function esc(s) { return String(s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
 
   // --- Map ---
-  var map = L.map('map').setView([53.39450209090909, -3.1758658181818187], 12);
+  var map = L.map('map');
   L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
     subdomains: 'abcd',
@@ -503,7 +503,14 @@
     });
   }
 
-  var markers = L.markerClusterGroup();
+  // Cluster only when markers genuinely overlap, and stop clustering once
+  // zoomed in so a town's handful of chargers show as individual pins.
+  var markers = L.markerClusterGroup({
+    maxClusterRadius: 40,
+    disableClusteringAtZoom: 14,
+    spiderfyOnMaxZoom: true,
+    showCoverageOnHover: false,
+  });
   var chargerData = [{"lat": 53.391704, "lng": -3.183582, "title": "The Kings Gap (Opp Green Lodge Hotel)", "address": "The Kings Gap (Opp Green Lodge", "connectors": ["Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 53.391232, "lng": -3.182109, "title": "Holiday Inn Express Hoylake", "address": "The Kings Gap", "connectors": ["CHAdeMO · 50kW", "CHAdeMO · 50kW"], "speed": "rapid"}, {"lat": 53.390853, "lng": -3.182448, "title": "o/s Gables End 1a, The Kings Gap", "address": "o/s Gables End 1a,", "connectors": ["Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 53.397394, "lng": -3.171374, "title": "Opp house 2A in Sandringham Avenue, Hoylake", "address": "Opp house 2A", "connectors": ["Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 53.397219, "lng": -3.174596, "title": "o/s house 28 Chaple Road, Hoylake", "address": "o/s house 28", "connectors": ["Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 53.396861, "lng": -3.17051, "title": "o/s house 17 Sandringham Avenue, Hoylake", "address": "o/s house 17", "connectors": ["Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 53.396126, "lng": -3.169668, "title": "o/s house 32 Sandringham Avenue, Hoylake", "address": "o/s house 32", "connectors": ["Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 53.395952, "lng": -3.168379, "title": "o/s house 49 Sandringham Avenue, Hoylake", "address": "o/s house 49", "connectors": ["Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 53.39503, "lng": -3.173127, "title": "o/s house 22 Waverley Road, Hoylake", "address": "o/s house 22", "connectors": ["Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 53.393892, "lng": -3.173314, "title": "o/s house 30 Elm Grove, Hoylake", "address": "o/s house 30", "connectors": ["Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 53.39326, "lng": -3.185417, "title": "o/s 2 Kings Court, The Kings Gap", "address": "o/s 2 Kings Court,", "connectors": ["Type 2 (Socket Only) · 7kW"], "speed": "fast"}];
 
   chargerData.forEach(function (c) {
@@ -521,6 +528,14 @@
     markers.addLayer(marker);
   });
   map.addLayer(markers);
+
+  // Frame the map to the actual chargers so a town's points are visible
+  // immediately (and small towns land past the de-clustering zoom).
+  if (chargerData.length) {
+    map.fitBounds(markers.getBounds(), { padding: [40, 40], maxZoom: 15 });
+  } else {
+    map.setView([53.39450209090909, -3.1758658181818187], 12);
+  }
 
   // --- Connector filter ---
   var filterBtns = document.querySelectorAll('.filter-btn');

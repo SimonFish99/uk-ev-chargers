@@ -426,7 +426,7 @@
   function esc(s) { return String(s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
 
   // --- Map ---
-  var map = L.map('map').setView([51.6130711125, -3.2219694875], 12);
+  var map = L.map('map');
   L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
     subdomains: 'abcd',
@@ -442,7 +442,14 @@
     });
   }
 
-  var markers = L.markerClusterGroup();
+  // Cluster only when markers genuinely overlap, and stop clustering once
+  // zoomed in so a town's handful of chargers show as individual pins.
+  var markers = L.markerClusterGroup({
+    maxClusterRadius: 40,
+    disableClusteringAtZoom: 14,
+    spiderfyOnMaxZoom: true,
+    showCoverageOnHover: false,
+  });
   var chargerData = [{"lat": 51.771105, "lng": -3.2913, "title": "Ael- Y-Bryn", "address": "Ael- Y-Bryn", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 51.634834, "lng": -3.236433, "title": "Centre of Sporting Excellence, Ystrad Mynach", "address": "Centre of Sporting Excellence", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 51.595006, "lng": -3.142358, "title": "The Crescent, Machen", "address": "The Crescent Car Park, Machen", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 51.589753, "lng": -3.21213, "title": "Tesco Superstore - Caerphilly", "address": "Parc Pontypandy Crossways Retail Park", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.5713, "lng": -3.2447787, "title": "Red Kite Pub & Restaurant", "address": "Nantgarw Road", "connectors": ["CHAdeMO · 50kW", "CCS (Type 2) · 50kW", "Type 2 (Socket Only) · 11kW", "CCS (Type 2) · 50kW", "CHAdeMO · 47kW", "Type 2 (Socket Only) · 22kW"], "speed": "rapid"}, {"lat": 51.574885, "lng": -3.21807, "title": "The Twyn Car Park, Caerphilly", "address": "Castle Street", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 51.57727, "lng": -3.215604, "title": "Morrisons Caerphilly", "address": "44 Castle St", "connectors": ["Type 2 (Socket Only) · 22kW", "CHAdeMO · 50kW", "CCS (Type 2) · 50kW"], "speed": "rapid"}, {"lat": 51.5904159, "lng": -3.2150822, "title": "Gallagher Retail Park", "address": "Parc Pontypandy", "connectors": ["CHAdeMO · 50kW", "CCS (Type 2) · 62kW"], "speed": "rapid"}];
 
   chargerData.forEach(function (c) {
@@ -460,6 +467,14 @@
     markers.addLayer(marker);
   });
   map.addLayer(markers);
+
+  // Frame the map to the actual chargers so a town's points are visible
+  // immediately (and small towns land past the de-clustering zoom).
+  if (chargerData.length) {
+    map.fitBounds(markers.getBounds(), { padding: [40, 40], maxZoom: 15 });
+  } else {
+    map.setView([51.6130711125, -3.2219694875], 12);
+  }
 
   // --- Connector filter ---
   var filterBtns = document.querySelectorAll('.filter-btn');

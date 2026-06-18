@@ -519,7 +519,7 @@
   function esc(s) { return String(s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
 
   // --- Map ---
-  var map = L.map('map').setView([51.095884680333725, -0.20771695168851786], 12);
+  var map = L.map('map');
   L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
     subdomains: 'abcd',
@@ -535,7 +535,14 @@
     });
   }
 
-  var markers = L.markerClusterGroup();
+  // Cluster only when markers genuinely overlap, and stop clustering once
+  // zoomed in so a town's handful of chargers show as individual pins.
+  var markers = L.markerClusterGroup({
+    maxClusterRadius: 40,
+    disableClusteringAtZoom: 14,
+    spiderfyOnMaxZoom: true,
+    showCoverageOnHover: false,
+  });
   var chargerData = [{"lat": 50.81782445, "lng": -0.499072567, "title": "Rustington Retail Park ", "address": "New Road", "connectors": ["CCS (Type 2) · 75kW"], "speed": "rapid"}, {"lat": 51.15634645333729, "lng": -0.15355294988517879, "title": "Tesla - Gridserve Electric Forecourt", "address": "Ring Road South", "connectors": ["CCS (Type 2) · 250kW"], "speed": "rapid"}, {"lat": 51.122265, "lng": -0.215686, "title": "Parham Road 1", "address": "Parham Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.083599, "lng": -0.199856, "title": "Moto Pease Pottage Services", "address": "11 Brighton Road\tMotorway, A23, Pease Pottage, M23", "connectors": ["CCS (Type 2) · 50kW", "CHAdeMO · 50kW", "CCS (Type 2) · 50kW", "CCS (Type 2) · 50kW", "CCS (Type 2) · 350kW", "CCS (Type 2) · 350kW", "CCS (Type 2) · 350kW", "Type 2 (Socket Only) · 11kW", "CCS (Type 2) · 350kW", "CCS (Type 2) · 350kW", "CCS (Type 2) · 350kW", "CCS (Type 2) · 350kW", "CCS (Type 2) · 350kW", "CCS (Type 2) · 350kW", "CCS (Type 2) · 350kW", "CCS (Type 2) · 350kW", "CCS (Type 2) · 350kW"], "speed": "rapid"}, {"lat": 51.118907, "lng": -0.161893, "title": "RAW GREENE KING SNOOTY FOX 1", "address": "Snooty Fox Haslett Avenue East", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 51.11314, "lng": -0.185599, "title": "COUNTY MALL COUNTY MALL 3", "address": "County Mall", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 51.154451, "lng": -0.13707, "title": "GATWICK HOUSE GATWICKHOUSE3", "address": "Peeks Brook Lane", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 51.1306019, "lng": -0.169302, "title": "Motorline Crawley", "address": "1 Gatwick Road", "connectors": ["Type 2 (Socket Only) · 3kW"], "speed": "slow"}, {"lat": 51.133614, "lng": -0.185475, "title": "Elekta", "address": "Fleming Way", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 51.128098, "lng": -0.169663, "title": "Mercedes-Benz of Gatwick", "address": "78 Gatwick Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}];
 
   chargerData.forEach(function (c) {
@@ -553,6 +560,14 @@
     markers.addLayer(marker);
   });
   map.addLayer(markers);
+
+  // Frame the map to the actual chargers so a town's points are visible
+  // immediately (and small towns land past the de-clustering zoom).
+  if (chargerData.length) {
+    map.fitBounds(markers.getBounds(), { padding: [40, 40], maxZoom: 15 });
+  } else {
+    map.setView([51.095884680333725, -0.20771695168851786], 12);
+  }
 
   // --- Connector filter ---
   var filterBtns = document.querySelectorAll('.filter-btn');

@@ -744,7 +744,7 @@
   function esc(s) { return String(s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
 
   // --- Map ---
-  var map = L.map('map').setView([51.01877088367928, -3.103171200631021], 12);
+  var map = L.map('map');
   L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
     subdomains: 'abcd',
@@ -760,7 +760,14 @@
     });
   }
 
-  var markers = L.markerClusterGroup();
+  // Cluster only when markers genuinely overlap, and stop clustering once
+  // zoomed in so a town's handful of chargers show as individual pins.
+  var markers = L.markerClusterGroup({
+    maxClusterRadius: 40,
+    disableClusteringAtZoom: 14,
+    spiderfyOnMaxZoom: true,
+    showCoverageOnHover: false,
+  });
   var chargerData = [{"lat": 51.021006, "lng": -3.091672, "title": "Priory Fields", "address": "Priory Fields", "connectors": ["CCS (Type 2) · 180kW", "CCS (Type 2) · 180kW", "CCS (Type 2) · 180kW", "CHAdeMO · 80kW", "CCS (Type 2) · 180kW", "CHAdeMO · 80kW", "CCS (Type 2) · 180kW", "CCS (Type 2) · 180kW"], "speed": "rapid"}, {"lat": 51.01765239817604, "lng": -3.0660507039348204, "title": "MFG Taunton Deane Service Station", "address": "Black Brook Park Avenue", "connectors": ["CHAdeMO · 50kW", "CCS (Type 2) · 150kW"], "speed": "rapid"}, {"lat": 51.0137, "lng": -3.10478, "title": "Crescent Car Pak", "address": "Crescent Car Park", "connectors": ["Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 51.0137, "lng": -3.44221, "title": "The Crescent Car Park", "address": "Crescent car park", "connectors": ["Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 51.02079, "lng": -3.107233, "title": "Belvedere Road car park", "address": "Belvedere Road car park", "connectors": ["Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 51.019451, "lng": -3.105177, "title": "Morrisons Taunton", "address": "Wm Morrison Supermarkets PLC", "connectors": ["Type 2 (Socket Only) · 22kW", "CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 50kW"], "speed": "rapid"}, {"lat": 51.018024, "lng": -3.058323, "title": "Premier Inn Taunton Ruishton (M5, J25)", "address": "Ruishton", "connectors": ["Type 2 (Tethered Connector)  · 50kW", "CHAdeMO · 50kW", "Type 2 (Socket Only) · 22kW"], "speed": "rapid"}, {"lat": 51.0105998, "lng": -3.0716142, "title": "Blackbrook Leisure Centre", "address": "Blackbrook Leisure Centre", "connectors": ["CCS (Type 2) · 50kW", "CHAdeMO · 50kW"], "speed": "rapid"}, {"lat": 51.0241529, "lng": -3.0670894, "title": "McDonald's Heron Gate", "address": "Heron Gate", "connectors": ["CCS (Type 2) · 120kW", "CHAdeMO · 50kW"], "speed": "rapid"}, {"lat": 51.0183, "lng": -3.10618, "title": "Wood Street car park", "address": "Wood Street", "connectors": ["Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 51.015382, "lng": -3.107971, "title": "Castle Street car park", "address": "Castle Street", "connectors": ["Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 51.013141, "lng": -3.068797, "title": "Junction 25", "address": "Blackbrook Park Avenue", "connectors": ["CHAdeMO · 75kW", "CCS (Type 2) · 75kW"], "speed": "rapid"}, {"lat": 51.021170787885, "lng": -3.10595216030237, "title": "The Deane House", "address": "Belvedere Road", "connectors": ["CCS (Type 2) · 120kW", "CHAdeMO · 50kW"], "speed": "rapid"}, {"lat": 51.041721, "lng": -2.930608, "title": "Dark Lane", "address": "Dark Lane", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.01966213648669, "lng": -3.1039019464901685, "title": "Morrisons Taunton", "address": "1 Black Horse Lane", "connectors": ["CHAdeMO · 50kW", "CCS (Type 2) · 50kW", "Type 2 (Tethered Connector)  · 43kW"], "speed": "rapid"}, {"lat": 51.015426, "lng": -3.104144, "title": "The Castle Hotel", "address": "Castle Green", "connectors": ["Tesla (Model S/X) · 6kW"], "speed": "slow"}, {"lat": 51.015226, "lng": -3.112207, "title": "Tesco Superstore-Taunton", "address": "Wellington Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}];
 
   chargerData.forEach(function (c) {
@@ -778,6 +785,14 @@
     markers.addLayer(marker);
   });
   map.addLayer(markers);
+
+  // Frame the map to the actual chargers so a town's points are visible
+  // immediately (and small towns land past the de-clustering zoom).
+  if (chargerData.length) {
+    map.fitBounds(markers.getBounds(), { padding: [40, 40], maxZoom: 15 });
+  } else {
+    map.setView([51.01877088367928, -3.103171200631021], 12);
+  }
 
   // --- Connector filter ---
   var filterBtns = document.querySelectorAll('.filter-btn');

@@ -425,7 +425,7 @@
   function esc(s) { return String(s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
 
   // --- Map ---
-  var map = L.map('map').setView([51.21855306297138, 0.5423576889485413], 12);
+  var map = L.map('map');
   L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
     subdomains: 'abcd',
@@ -441,7 +441,14 @@
     });
   }
 
-  var markers = L.markerClusterGroup();
+  // Cluster only when markers genuinely overlap, and stop clustering once
+  // zoomed in so a town's handful of chargers show as individual pins.
+  var markers = L.markerClusterGroup({
+    maxClusterRadius: 40,
+    disableClusteringAtZoom: 14,
+    spiderfyOnMaxZoom: true,
+    showCoverageOnHover: false,
+  });
   var chargerData = [{"lat": 51.162758, "lng": 0.871362, "title": "Dobbies Ashford", "address": "Rutherford Road", "connectors": ["CCS (Type 2) · 180kW", "CCS (Type 2) · 180kW", "CCS (Type 2) · 180kW", "CCS (Type 2) · 180kW", "CCS (Type 2) · 180kW", "CHAdeMO · 80kW"], "speed": "rapid"}, {"lat": 51.42818372672818, "lng": -0.46958454100854397, "title": "Fordbridge Road", "address": "Fordbridge Road", "connectors": ["CCS (Type 2) · 150kW"], "speed": "rapid"}, {"lat": 51.148438, "lng": 0.874604, "title": "Customers must display a valid pay and display ticket whilst parked and charging", "address": "Vicarage Lane", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 51.148312, "lng": 0.874712, "title": "Vicarage Lane Car Park", "address": "Vicarage Lane", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 51.143166777042914, "lng": 0.8725360525968742, "title": "EVC Hampton by Hilton Ashford", "address": "Hampton by Hilton Ashford, Victoria Road", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 51.431971, "lng": -0.458354, "title": "SUCC St Matthews Church 1", "address": "St Matthews Church", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 51.157799, "lng": 0.879426, "title": "Bybrook Barn Ashford", "address": "Canterbury Road", "connectors": ["CHAdeMO · 50kW", "CCS (Type 2) · 50kW", "Type 2 (Tethered Connector)  · 43kW"], "speed": "rapid"}, {"lat": 51.127796, "lng": 0.89416, "title": "Mercedes-Benz of Ashford", "address": "Willesborough", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}];
 
   chargerData.forEach(function (c) {
@@ -459,6 +466,14 @@
     markers.addLayer(marker);
   });
   map.addLayer(markers);
+
+  // Frame the map to the actual chargers so a town's points are visible
+  // immediately (and small towns land past the de-clustering zoom).
+  if (chargerData.length) {
+    map.fitBounds(markers.getBounds(), { padding: [40, 40], maxZoom: 15 });
+  } else {
+    map.setView([51.21855306297138, 0.5423576889485413], 12);
+  }
 
   // --- Connector filter ---
   var filterBtns = document.querySelectorAll('.filter-btn');

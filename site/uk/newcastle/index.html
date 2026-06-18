@@ -335,7 +335,7 @@
   function esc(s) { return String(s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
 
   // --- Map ---
-  var map = L.map('map').setView([54.44659514490085, -2.600858027774478], 12);
+  var map = L.map('map');
   L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
     subdomains: 'abcd',
@@ -351,7 +351,14 @@
     });
   }
 
-  var markers = L.markerClusterGroup();
+  // Cluster only when markers genuinely overlap, and stop clustering once
+  // zoomed in so a town's handful of chargers show as individual pins.
+  var markers = L.markerClusterGroup({
+    maxClusterRadius: 40,
+    disableClusteringAtZoom: 14,
+    spiderfyOnMaxZoom: true,
+    showCoverageOnHover: false,
+  });
   var chargerData = [{"lat": 53.02875, "lng": -2.208628, "title": "Wolstanton Retail Park", "address": "Queensway Wolstanton Retail Parkk", "connectors": ["CCS (Type 2) · 170kW", "CCS (Type 2) · 170kW", "CCS (Type 2) · 170kW", "CHAdeMO · 80kW", "CCS (Type 2) · 170kW", "CCS (Type 2) · 170kW", "CCS (Type 2) · 170kW", "CCS (Type 2) · 170kW", "CCS (Type 2) · 170kW", "CCS (Type 2) · 170kW", "CCS (Type 2) · 170kW", "CHAdeMO · 80kW"], "speed": "rapid"}, {"lat": 54.209902724504246, "lng": -5.89033413887239, "title": "Newcastle Centre", "address": "Central Promenade", "connectors": ["CHAdeMO · 50kW", "CCS (Type 2) · 50kW"], "speed": "rapid"}, {"lat": 54.981209, "lng": -1.613098, "title": "Devonshire Building Newcastle University", "address": "Devonshire Building, Devonshire Terrace, Newcatle University, Kings Road", "connectors": ["BS1363 3 Pin 13 Amp · 3.7kW", "BS1363 3 Pin 13 Amp · 3.7kW"], "speed": "slow"}, {"lat": 55.03432, "lng": -1.648391, "title": "CYC Sage UK Limited", "address": "Sage (UK) Limited, North Park", "connectors": ["BS1363 3 Pin 13 Amp · 3.7kW", "BS1363 3 Pin 13 Amp · 3.7kW"], "speed": "slow"}, {"lat": 54.978794, "lng": -1.643839, "title": "Newcastle General Hospital", "address": "Newcastle General Hospital, Biomedical Research Centre, Nuns Moor Rd", "connectors": ["Type 2 (Socket Only) · 7kW", "BS1363 3 Pin 13 Amp · 3.7kW"], "speed": "fast"}];
 
   chargerData.forEach(function (c) {
@@ -369,6 +376,14 @@
     markers.addLayer(marker);
   });
   map.addLayer(markers);
+
+  // Frame the map to the actual chargers so a town's points are visible
+  // immediately (and small towns land past the de-clustering zoom).
+  if (chargerData.length) {
+    map.fitBounds(markers.getBounds(), { padding: [40, 40], maxZoom: 15 });
+  } else {
+    map.setView([54.44659514490085, -2.600858027774478], 12);
+  }
 
   // --- Connector filter ---
   var filterBtns = document.querySelectorAll('.filter-btn');

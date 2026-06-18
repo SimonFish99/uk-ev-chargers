@@ -419,7 +419,7 @@
   function esc(s) { return String(s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
 
   // --- Map ---
-  var map = L.map('map').setView([53.32094733333333, -1.1107541333333333], 12);
+  var map = L.map('map');
   L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
     subdomains: 'abcd',
@@ -435,7 +435,14 @@
     });
   }
 
-  var markers = L.markerClusterGroup();
+  // Cluster only when markers genuinely overlap, and stop clustering once
+  // zoomed in so a town's handful of chargers show as individual pins.
+  var markers = L.markerClusterGroup({
+    maxClusterRadius: 40,
+    disableClusteringAtZoom: 14,
+    spiderfyOnMaxZoom: true,
+    showCoverageOnHover: false,
+  });
   var chargerData = [{"lat": 53.315544, "lng": -1.132055, "title": "Tesco Superstore - Worksop Gateford Road", "address": "Gateford Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 53.38705, "lng": -1.05962, "title": "Moto Blyth Services", "address": "A1 (M)", "connectors": ["CCS (Type 2) · 40kW", "CHAdeMO · 40kW", "Type 2 (Socket Only) · 11kW", "CCS (Type 2) · 350kW", "CCS (Type 2) · 350kW", "CCS (Type 2) · 350kW", "CCS (Type 2) · 350kW", "CCS (Type 2) · 350kW", "CCS (Type 2) · 350kW", "Type 2 (Socket Only) · 22kW", "CCS (Type 2) · 360kW", "CCS (Type 2) · 360kW", "CCS (Type 2) · 360kW", "CCS (Type 2) · 360kW", "CCS (Type 2) · 360kW", "CCS (Type 2) · 360kW", "CCS (Type 2) · 360kW", "CCS (Type 2) · 360kW", "CCS (Type 2) · 350kW", "CHAdeMO · 100kW", "CCS (Type 2) · 350kW", "CCS (Type 2) · 350kW", "CCS (Type 2) · 350kW", "CHAdeMO · 100kW", "CHAdeMO · 100kW", "CHAdeMO · 100kW"], "speed": "rapid"}, {"lat": 53.302071, "lng": -1.096012, "title": "Restricted access to Toyota customers", "address": "Retford Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 53.300762, "lng": -1.122122, "title": "Newgate Street", "address": "Newgate Street", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 53.307939, "lng": -1.113222, "title": "Morrisons Worksop", "address": "Kilton Road", "connectors": ["Type 2 (Socket Only) · 22kW", "CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 50kW"], "speed": "rapid"}, {"lat": 53.312318, "lng": -1.1414938, "title": "Asda Worksop", "address": "Highgrounds Way", "connectors": ["CHAdeMO · 50kW", "CCS (Type 2) · 50kW", "Type 2 (Socket Only) · 22kW"], "speed": "rapid"}];
 
   chargerData.forEach(function (c) {
@@ -453,6 +460,14 @@
     markers.addLayer(marker);
   });
   map.addLayer(markers);
+
+  // Frame the map to the actual chargers so a town's points are visible
+  // immediately (and small towns land past the de-clustering zoom).
+  if (chargerData.length) {
+    map.fitBounds(markers.getBounds(), { padding: [40, 40], maxZoom: 15 });
+  } else {
+    map.setView([53.32094733333333, -1.1107541333333333], 12);
+  }
 
   // --- Connector filter ---
   var filterBtns = document.querySelectorAll('.filter-btn');

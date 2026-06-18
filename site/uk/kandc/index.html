@@ -817,7 +817,7 @@
   function esc(s) { return String(s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
 
   // --- Map ---
-  var map = L.map('map').setView([51.49949910526316, -0.18990057894736842], 12);
+  var map = L.map('map');
   L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
     subdomains: 'abcd',
@@ -833,7 +833,14 @@
     });
   }
 
-  var markers = L.markerClusterGroup();
+  // Cluster only when markers genuinely overlap, and stop clustering once
+  // zoomed in so a town's handful of chargers show as individual pins.
+  var markers = L.markerClusterGroup({
+    maxClusterRadius: 40,
+    disableClusteringAtZoom: 14,
+    spiderfyOnMaxZoom: true,
+    showCoverageOnHover: false,
+  });
   var chargerData = [{"lat": 51.501323, "lng": -0.199193, "title": "Phillimore Gardens", "address": "Phillimore Gardens", "connectors": ["Type 1 (J1772) · 3kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.520679, "lng": -0.224231, "title": "Latimer Road Site 2", "address": "Latimer Road Site 2", "connectors": ["Type 1 (J1772) · 3kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.51707, "lng": -0.208633, "title": "Lancaster Road", "address": "Lancaster Road", "connectors": ["Type 1 (J1772) · 3kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.512306, "lng": -0.217639, "title": "Bramley Road", "address": "Bramley Road", "connectors": ["Type 1 (J1772) · 3kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.511299, "lng": -0.196465, "title": "Pembridge Square", "address": "Pembridge Square", "connectors": ["Type 1 (J1772) · 3kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.507972, "lng": -0.212924, "title": "Addison Avenue", "address": "Addison Avenue", "connectors": ["Type 1 (J1772) · 3kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.507176, "lng": -0.200865, "title": "Campden Hill Square", "address": "Campden Hill Square", "connectors": ["Type 1 (J1772) · 3kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.497197, "lng": -0.188205, "title": "Cornwall Gardens", "address": "Cornwall Gardens", "connectors": ["Type 1 (J1772) · 3kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.495904, "lng": -0.191224, "title": "Lexham Gardens", "address": "Lexham Gardens", "connectors": ["Type 1 (J1772) · 3kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.493957, "lng": -0.171767, "title": "Thurloe Square", "address": "Thurloe Square", "connectors": ["Type 1 (J1772) · 3kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.490131, "lng": -0.157184, "title": "Turks Row", "address": "Turks Row", "connectors": ["Type 1 (J1772) · 3kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.490023, "lng": -0.19477, "title": "Penywern Road", "address": "Penywern Road", "connectors": ["Type 1 (J1772) · 3kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.485053, "lng": -0.165944, "title": "Chelsea Manor Street", "address": "Chelsea Manor Street", "connectors": ["Type 1 (J1772) · 3kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.484684, "lng": -0.158498, "title": "Embankment Gardens", "address": "Embankment Gardens", "connectors": ["Type 1 (J1772) · 3kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.484093, "lng": -0.162036, "title": "Chelsea Embankment site 2", "address": "Chelsea Embankment site 2", "connectors": ["Type 1 (J1772) · 3kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.526273, "lng": -0.214196, "title": "Kensal Road", "address": "Kensal Road", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 7kW", "Type 1 (J1772) · 3kW"], "speed": "fast"}, {"lat": 51.493909, "lng": -0.184331, "title": "Ashburn Place", "address": "Ashburn Place", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 7kW", "Type 1 (J1772) · 3kW"], "speed": "fast"}, {"lat": 51.489438, "lng": -0.174396, "title": "South Parade (K&C)", "address": "South Parade (K&C)", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 7kW", "Type 1 (J1772) · 3kW"], "speed": "fast"}, {"lat": 51.481996, "lng": -0.18561, "title": "Hortensia Road", "address": "Hortensia Road", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 7kW", "Type 1 (J1772) · 3kW"], "speed": "fast"}];
 
   chargerData.forEach(function (c) {
@@ -851,6 +858,14 @@
     markers.addLayer(marker);
   });
   map.addLayer(markers);
+
+  // Frame the map to the actual chargers so a town's points are visible
+  // immediately (and small towns land past the de-clustering zoom).
+  if (chargerData.length) {
+    map.fitBounds(markers.getBounds(), { padding: [40, 40], maxZoom: 15 });
+  } else {
+    map.setView([51.49949910526316, -0.18990057894736842], 12);
+  }
 
   // --- Connector filter ---
   var filterBtns = document.querySelectorAll('.filter-btn');

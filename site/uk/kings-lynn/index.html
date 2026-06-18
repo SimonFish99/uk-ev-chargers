@@ -479,7 +479,7 @@
   function esc(s) { return String(s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
 
   // --- Map ---
-  var map = L.map('map').setView([52.789819974963656, 0.4766642272028457], 12);
+  var map = L.map('map');
   L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
     subdomains: 'abcd',
@@ -495,7 +495,14 @@
     });
   }
 
-  var markers = L.markerClusterGroup();
+  // Cluster only when markers genuinely overlap, and stop clustering once
+  // zoomed in so a town's handful of chargers show as individual pins.
+  var markers = L.markerClusterGroup({
+    maxClusterRadius: 40,
+    disableClusteringAtZoom: 14,
+    spiderfyOnMaxZoom: true,
+    showCoverageOnHover: false,
+  });
   var chargerData = [{"lat": 52.739363464544965, "lng": 0.41792134738508935, "title": "Sainsbury's Kings Lynn", "address": "Scania Way", "connectors": ["CCS (Type 2) · 150kW"], "speed": "rapid"}, {"lat": 52.947033, "lng": 0.727832, "title": "North Street Car Park, Burnham Market", "address": "Burnham Market", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 52.946882, "lng": 0.727798, "title": "North Street Car Park, Burnham Market", "address": "Burnham Market", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 52.754442, "lng": 0.404868, "title": "Morrisons Kings Lynn", "address": "Coburg Street", "connectors": ["Type 2 (Tethered Connector)  · 43kW", "CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 50kW"], "speed": "rapid"}, {"lat": 52.76376, "lng": 0.41741, "title": "Lynnsport North Car Park", "address": "Lynnsport North Car Park", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 52.757732, "lng": 0.420211, "title": "Gaywood Library Car Park", "address": "Gaywood Library Car Park", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 52.73559279546518, "lng": 0.41405724771050245, "title": "king's Lynn supercharger", "address": "Beveridge Way", "connectors": ["CCS (Type 2) · 250kW"], "speed": "rapid"}, {"lat": 52.753291, "lng": 0.438242, "title": "Fairstead Centre Point Car Park", "address": "Fairstead Centre Point Car Park", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 52.756259, "lng": 0.39626, "title": "The Duke's Head Hotel", "address": "5-6 Tuesday Market Place", "connectors": ["Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 52.7438444896264, "lng": 0.402042676932865, "title": "Kings Lynn Starbucks", "address": "Kellard Place", "connectors": ["CCS (Type 2) · 50kW", "CHAdeMO · 50kW"], "speed": "rapid"}];
 
   chargerData.forEach(function (c) {
@@ -513,6 +520,14 @@
     markers.addLayer(marker);
   });
   map.addLayer(markers);
+
+  // Frame the map to the actual chargers so a town's points are visible
+  // immediately (and small towns land past the de-clustering zoom).
+  if (chargerData.length) {
+    map.fitBounds(markers.getBounds(), { padding: [40, 40], maxZoom: 15 });
+  } else {
+    map.setView([52.789819974963656, 0.4766642272028457], 12);
+  }
 
   // --- Connector filter ---
   var filterBtns = document.querySelectorAll('.filter-btn');

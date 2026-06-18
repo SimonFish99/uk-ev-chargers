@@ -415,7 +415,7 @@
   function esc(s) { return String(s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
 
   // --- Map ---
-  var map = L.map('map').setView([51.82646719081414, -0.8536627226048642], 12);
+  var map = L.map('map');
   L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
     subdomains: 'abcd',
@@ -431,7 +431,14 @@
     });
   }
 
-  var markers = L.markerClusterGroup();
+  // Cluster only when markers genuinely overlap, and stop clustering once
+  // zoomed in so a town's handful of chargers show as individual pins.
+  var markers = L.markerClusterGroup({
+    maxClusterRadius: 40,
+    disableClusteringAtZoom: 14,
+    spiderfyOnMaxZoom: true,
+    showCoverageOnHover: false,
+  });
   var chargerData = [{"lat": 51.815953, "lng": -0.799802, "title": "Tesco Superstore - Aylesbury Tring Road", "address": "Tring Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.814450526513156, "lng": -0.8166447808389137, "title": "Morrisons Aylesbury", "address": "WM Morrison Supermarkets PLC", "connectors": ["CCS (Type 2) · 50kW", "CHAdeMO · 50kW", "Type 2 (Socket Only) · 22kW"], "speed": "rapid"}, {"lat": 51.821918, "lng": -0.827367, "title": "Aylesbury Vale District Council", "address": "Gatehouse Road", "connectors": ["BS1363 3 Pin 13 Amp · 3kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 51.81919, "lng": -0.81408, "title": "Coopers Yard Car Park, Aylesbury", "address": "Buckingham Street", "connectors": ["Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.815, "lng": -0.81054, "title": "Waterside North Car Park, Aylesbury", "address": "Exchange Street", "connectors": ["Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.83179, "lng": -0.85928, "title": "Sir Henry Lee Crescent", "address": "Sir Henry Lee Crescent", "connectors": ["CCS (Type 2) · 50kW", "CHAdeMO · 50kW"], "speed": "rapid"}, {"lat": 51.850746, "lng": -0.964356, "title": "Westcott Venture Park Car Park", "address": "Westcott", "connectors": ["Type 2 (Tethered Connector)  · 43kW", "CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 50kW"], "speed": "rapid"}, {"lat": 51.84269, "lng": -0.937232, "title": "MK5", "address": "National Trust , Waddesdon Manor", "connectors": ["BS1363 3 Pin 13 Amp · 3kW", "BS1363 3 Pin 13 Amp · 3kW"], "speed": "slow"}];
 
   chargerData.forEach(function (c) {
@@ -449,6 +456,14 @@
     markers.addLayer(marker);
   });
   map.addLayer(markers);
+
+  // Frame the map to the actual chargers so a town's points are visible
+  // immediately (and small towns land past the de-clustering zoom).
+  if (chargerData.length) {
+    map.fitBounds(markers.getBounds(), { padding: [40, 40], maxZoom: 15 });
+  } else {
+    map.setView([51.82646719081414, -0.8536627226048642], 12);
+  }
 
   // --- Connector filter ---
   var filterBtns = document.querySelectorAll('.filter-btn');

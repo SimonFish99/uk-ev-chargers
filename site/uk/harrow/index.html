@@ -963,7 +963,7 @@
   function esc(s) { return String(s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
 
   // --- Map ---
-  var map = L.map('map').setView([51.580812524, -0.34613940800000004], 12);
+  var map = L.map('map');
   L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
     subdomains: 'abcd',
@@ -979,7 +979,14 @@
     });
   }
 
-  var markers = L.markerClusterGroup();
+  // Cluster only when markers genuinely overlap, and stop clustering once
+  // zoomed in so a town's handful of chargers show as individual pins.
+  var markers = L.markerClusterGroup({
+    maxClusterRadius: 40,
+    disableClusteringAtZoom: 14,
+    spiderfyOnMaxZoom: true,
+    showCoverageOnHover: false,
+  });
   var chargerData = [{"lat": 51.581089, "lng": -0.297473, "title": "87 Vista Way", "address": "87 Vista Way", "connectors": ["Type 2 (Socket Only) · 5kW"], "speed": "slow"}, {"lat": 51.6054, "lng": -0.339283, "title": "Waitrose", "address": "350 High Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 51.5676, "lng": -0.351734, "title": "Waitrose", "address": "140 Northolt Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 51.5726159, "lng": -0.3533546, "title": "McDonald's Shaftesbury", "address": "19 Porlock Avenue", "connectors": ["CCS (Type 2) · 62.5kW", "CHAdeMO · 50kW"], "speed": "rapid"}, {"lat": 51.5836155, "lng": -0.3499291, "title": "55-57 Rutland Road", "address": "55 - 57 Rutland Road", "connectors": ["Type 2 (Socket Only) · 5.1kW"], "speed": "slow"}, {"lat": 51.5845102, "lng": -0.351788, "title": "86-88 Sussex Road", "address": "86 - 88 Sussex Road", "connectors": ["Type 2 (Socket Only) · 5.1kW"], "speed": "slow"}, {"lat": 51.5833405, "lng": -0.3502601, "title": "42-44 Rutland Road", "address": "42 - 44 Rutland Road", "connectors": ["Type 2 (Socket Only) · 5.1kW"], "speed": "slow"}, {"lat": 51.5839177, "lng": -0.3509823, "title": "53-55 Bedford Road", "address": "53 - 55 Bedford Road", "connectors": ["Type 2 (Socket Only) · 5.1kW"], "speed": "slow"}, {"lat": 51.5711221, "lng": -0.3657072, "title": "83-95 Clitheroe Avenue", "address": "83 - 95 Clitheroe Avenue", "connectors": ["Type 2 (Socket Only) · 4.6kW"], "speed": "slow"}, {"lat": 51.5847461, "lng": -0.353403, "title": "122-124 Sussex Road", "address": "122 - 124 Sussex Road", "connectors": ["Type 2 (Socket Only) · 5.1kW"], "speed": "slow"}, {"lat": 51.578405, "lng": -0.3518688, "title": "14-16 Drury Road", "address": "14 - 16 Drury Road", "connectors": ["Type 2 (Socket Only) · 5.1kW"], "speed": "slow"}, {"lat": 51.577064, "lng": -0.3493739, "title": "5-7 Merivale Road", "address": "5 - 7 Merivale Road", "connectors": ["Type 2 (Socket Only) · 5.1kW"], "speed": "slow"}, {"lat": 51.5787596, "lng": -0.3515546, "title": "3-5 Drury Road", "address": "3 - 5 Drury Road", "connectors": ["Type 2 (Socket Only) · 5.1kW"], "speed": "slow"}, {"lat": 51.5776592, "lng": -0.3489688, "title": "45-47 Bowen Road", "address": "45 - 47 Bowen Road", "connectors": ["Type 2 (Socket Only) · 5.1kW"], "speed": "slow"}, {"lat": 51.5765421, "lng": -0.3497228, "title": "25-27 Merivale Road", "address": "25 - 27 Merivale Road", "connectors": ["Type 2 (Socket Only) · 5.1kW"], "speed": "slow"}, {"lat": 51.5830625, "lng": -0.3490107, "title": "38-40 Oxford Road", "address": "38 - 40 Oxford Road", "connectors": ["Type 2 (Socket Only) · 5.1kW"], "speed": "slow"}, {"lat": 51.5838109, "lng": -0.3485194, "title": "12-14 Sussex Road", "address": "12 - 14 Sussex Road", "connectors": ["Type 2 (Socket Only) · 5.1kW"], "speed": "slow"}, {"lat": 51.595868, "lng": -0.3317292, "title": "60-62 Grant Road", "address": "60 - 62 Grant Road", "connectors": ["Type 2 (Socket Only) · 5.1kW"], "speed": "slow"}, {"lat": 51.5959364, "lng": -0.3327752, "title": "38-40 Grant Road", "address": "38 - 40 Grant Road", "connectors": ["Type 2 (Socket Only) · 4.8kW"], "speed": "slow"}, {"lat": 51.5825192, "lng": -0.3494158, "title": "18-20 Oxford Road", "address": "18 - 20 Oxford Road", "connectors": ["Type 2 (Socket Only) · 5.1kW"], "speed": "slow"}, {"lat": 51.5710382, "lng": -0.3661257, "title": "80-82 Clitheroe Avenue", "address": "80 - 82 Clitheroe Avenue", "connectors": ["Type 2 (Socket Only) · 5.1kW"], "speed": "slow"}, {"lat": 51.572985, "lng": -0.341118, "title": "87 West Street", "address": "87 West Street", "connectors": ["Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.585842, "lng": -0.333703, "title": "Tesco Superstore-Harrow Station Road", "address": "Station Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.57842, "lng": -0.334269, "title": "Harrow-On-The-Hill LU Station Car Park, Station Approach, Harrow", "address": "Harrow-On-The-Hill LU Station Car Park, Station Approach, Harrow", "connectors": ["CHAdeMO · 50kW", "CCS (Type 2) · 50kW"], "speed": "rapid"}, {"lat": 51.564444, "lng": -0.351416, "title": "South Harrow LU Station Car Park", "address": "South Harrow LU Station Car Park, South Hill Avenue, Harrow", "connectors": ["CHAdeMO · 50kW"], "speed": "rapid"}];
 
   chargerData.forEach(function (c) {
@@ -997,6 +1004,14 @@
     markers.addLayer(marker);
   });
   map.addLayer(markers);
+
+  // Frame the map to the actual chargers so a town's points are visible
+  // immediately (and small towns land past the de-clustering zoom).
+  if (chargerData.length) {
+    map.fitBounds(markers.getBounds(), { padding: [40, 40], maxZoom: 15 });
+  } else {
+    map.setView([51.580812524, -0.34613940800000004], 12);
+  }
 
   // --- Connector filter ---
   var filterBtns = document.querySelectorAll('.filter-btn');

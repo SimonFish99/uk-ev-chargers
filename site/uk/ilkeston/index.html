@@ -335,7 +335,7 @@
   function esc(s) { return String(s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
 
   // --- Map ---
-  var map = L.map('map').setView([52.96416356098714, -1.3017872345010468], 12);
+  var map = L.map('map');
   L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
     subdomains: 'abcd',
@@ -351,7 +351,14 @@
     });
   }
 
-  var markers = L.markerClusterGroup();
+  // Cluster only when markers genuinely overlap, and stop clustering once
+  // zoomed in so a town's handful of chargers show as individual pins.
+  var markers = L.markerClusterGroup({
+    maxClusterRadius: 40,
+    disableClusteringAtZoom: 14,
+    spiderfyOnMaxZoom: true,
+    showCoverageOnHover: false,
+  });
   var chargerData = [{"lat": 52.93811338, "lng": -1.290862548, "title": "EVC Erewash Valley Golf Club", "address": "Golf Club Rd", "connectors": ["Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 52.93982837, "lng": -1.290477531, "title": "EVC Driving Range, Erewash Valley Golf Club", "address": "Golf Club Rd", "connectors": ["Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 52.977643, "lng": -1.306799, "title": "Tesco Extra - Ilkeston Chalons Way", "address": "Rutland Street", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 52.979819, "lng": -1.303894, "title": "Milltek Sport", "address": "1-3 Belfield Industrial Estate", "connectors": ["Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 52.9777876159228, "lng": -1.30756032800628, "title": "Tesco Extra Ilkeston", "address": "49-54 Critchley St", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 52.97179, "lng": -1.31113, "title": "Pimlico Car Park", "address": "Pimlico Car Park", "connectors": ["CCS (Type 2) · 50kW", "CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 43kW"], "speed": "rapid"}];
 
   chargerData.forEach(function (c) {
@@ -369,6 +376,14 @@
     markers.addLayer(marker);
   });
   map.addLayer(markers);
+
+  // Frame the map to the actual chargers so a town's points are visible
+  // immediately (and small towns land past the de-clustering zoom).
+  if (chargerData.length) {
+    map.fitBounds(markers.getBounds(), { padding: [40, 40], maxZoom: 15 });
+  } else {
+    map.setView([52.96416356098714, -1.3017872345010468], 12);
+  }
 
   // --- Connector filter ---
   var filterBtns = document.querySelectorAll('.filter-btn');

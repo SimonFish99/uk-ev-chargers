@@ -455,7 +455,7 @@
   function esc(s) { return String(s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
 
   // --- Map ---
-  var map = L.map('map').setView([52.39719089836186, -4.076459065743452], 12);
+  var map = L.map('map');
   L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
     subdomains: 'abcd',
@@ -471,7 +471,14 @@
     });
   }
 
-  var markers = L.markerClusterGroup();
+  // Cluster only when markers genuinely overlap, and stop clustering once
+  // zoomed in so a town's handful of chargers show as individual pins.
+  var markers = L.markerClusterGroup({
+    maxClusterRadius: 40,
+    disableClusteringAtZoom: 14,
+    spiderfyOnMaxZoom: true,
+    showCoverageOnHover: false,
+  });
   var chargerData = [{"lat": 52.41389653553031, "lng": -4.0802230644970905, "title": "Lidl Aberystwyth", "address": "Rheidol Retail Park", "connectors": ["Type 2 (Socket Only) · 22kW", "CCS (Type 2) · 50kW", "CHAdeMO · 50kW"], "speed": "rapid"}, {"lat": 52.3884005497265, "lng": -4.02813752719398, "title": "Plas Nanteos Mansion", "address": "Rhydyfelin", "connectors": ["Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 52.419323, "lng": -4.0828, "title": "North Road Car Park", "address": "North Road", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 52.410796, "lng": -4.068487, "title": "Plascrug Leisure Centre, Aberystwyth", "address": "Llanbadarn Road", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 52.410036, "lng": -4.077214, "title": "Lower Park Avenue, Aberystwyth", "address": "Boulevard De Saint Brieuc", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 52.40497, "lng": -4.068602, "title": "Morrisons Aberystwyth Parc Y Llyn", "address": "Llanbadarn Fawr", "connectors": ["CHAdeMO · 50kW", "Type 2 (Socket Only) · 22kW", "Type 2 (Tethered Connector)  · 50kW"], "speed": "rapid"}, {"lat": 52.304601, "lng": -4.132841, "title": "Llanrhystud", "address": "Llanrhystud", "connectors": ["Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 52.412246, "lng": -4.083691, "title": "Tesco Superstore-Aberystwyth", "address": "Park Avenue", "connectors": ["Type 2 (Socket Only) · 22kW", "CHAdeMO · 50kW", "Type 2 (Socket Only) · 7kW", "CCS (Type 2) · 50kW"], "speed": "rapid"}, {"lat": 52.410449, "lng": -4.066136, "title": "Anthony Motors Ltd", "address": "Llanbadarn Road", "connectors": ["CCS (Type 2) · 22kW", "CHAdeMO · 22kW"], "speed": "fast"}];
 
   chargerData.forEach(function (c) {
@@ -489,6 +496,14 @@
     markers.addLayer(marker);
   });
   map.addLayer(markers);
+
+  // Frame the map to the actual chargers so a town's points are visible
+  // immediately (and small towns land past the de-clustering zoom).
+  if (chargerData.length) {
+    map.fitBounds(markers.getBounds(), { padding: [40, 40], maxZoom: 15 });
+  } else {
+    map.setView([52.39719089836186, -4.076459065743452], 12);
+  }
 
   // --- Connector filter ---
   var filterBtns = document.querySelectorAll('.filter-btn');

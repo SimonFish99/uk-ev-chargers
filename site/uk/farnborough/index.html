@@ -386,7 +386,7 @@
   function esc(s) { return String(s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
 
   // --- Map ---
-  var map = L.map('map').setView([51.29267715267266, -0.7602369105988546], 12);
+  var map = L.map('map');
   L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
     subdomains: 'abcd',
@@ -402,7 +402,14 @@
     });
   }
 
-  var markers = L.markerClusterGroup();
+  // Cluster only when markers genuinely overlap, and stop clustering once
+  // zoomed in so a town's handful of chargers show as individual pins.
+  var markers = L.markerClusterGroup({
+    maxClusterRadius: 40,
+    disableClusteringAtZoom: 14,
+    spiderfyOnMaxZoom: true,
+    showCoverageOnHover: false,
+  });
   var chargerData = [{"lat": 51.30811, "lng": -0.74918, "title": "The British Land Company PLC", "address": "Farnborough Gate", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.2810951413601, "lng": -0.737031123753781, "title": "The Squirrel", "address": "125 Park Road", "connectors": ["CCS (Type 2) · 50kW", "CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 43kW"], "speed": "rapid"}, {"lat": 51.285099, "lng": -0.758775, "title": "FARNBOROUGH BUSINESS PARK", "address": "Fowler Avenue", "connectors": ["CCS (Type 2) · 120kW", "CHAdeMO · 50kW"], "speed": "rapid"}, {"lat": 51.292091, "lng": -0.788516, "title": "Morrisons Farnborough Southwood", "address": "Morrisons Farnborough Southwoo", "connectors": ["CHAdeMO · 50kW", "Type 2 (Socket Only) · 22kW", "Type 2 (Tethered Connector)  · 50kW"], "speed": "rapid"}, {"lat": 51.282995927348566, "lng": -0.7701412504382006, "title": "Costa Coffee", "address": "Meadow Gate Avenue", "connectors": ["CCS (Type 2) · 120kW", "CHAdeMO · 60kW"], "speed": "rapid"}, {"lat": 51.284862, "lng": -0.758704, "title": "The Hub", "address": "Farnborough Business Park", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.314487, "lng": -0.759311, "title": "Mercedes-Benz of Farnborough", "address": "Hawley Lane", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}];
 
   chargerData.forEach(function (c) {
@@ -420,6 +427,14 @@
     markers.addLayer(marker);
   });
   map.addLayer(markers);
+
+  // Frame the map to the actual chargers so a town's points are visible
+  // immediately (and small towns land past the de-clustering zoom).
+  if (chargerData.length) {
+    map.fitBounds(markers.getBounds(), { padding: [40, 40], maxZoom: 15 });
+  } else {
+    map.setView([51.29267715267266, -0.7602369105988546], 12);
+  }
 
   // --- Connector filter ---
   var filterBtns = document.querySelectorAll('.filter-btn');

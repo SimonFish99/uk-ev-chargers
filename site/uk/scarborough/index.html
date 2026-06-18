@@ -471,7 +471,7 @@
   function esc(s) { return String(s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
 
   // --- Map ---
-  var map = L.map('map').setView([54.28118281596071, -0.40147589869608247], 12);
+  var map = L.map('map');
   L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
     subdomains: 'abcd',
@@ -487,7 +487,14 @@
     });
   }
 
-  var markers = L.markerClusterGroup();
+  // Cluster only when markers genuinely overlap, and stop clustering once
+  // zoomed in so a town's handful of chargers show as individual pins.
+  var markers = L.markerClusterGroup({
+    maxClusterRadius: 40,
+    disableClusteringAtZoom: 14,
+    spiderfyOnMaxZoom: true,
+    showCoverageOnHover: false,
+  });
   var chargerData = [{"lat": 54.234534, "lng": -0.38051, "title": "The Farrier - B", "address": "89 Main Street", "connectors": ["Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 54.29245560677015, "lng": -0.4113474926500089, "title": "Northstead Lower Car Park", "address": "burniston Road", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 54.28572064520938, "lng": -0.39912327368199385, "title": "North Terrace Car Park", "address": "North Terrace", "connectors": ["Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 54.284881761896116, "lng": -0.3988197947072649, "title": "Friars Way Car Park", "address": "Friar's Way", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 54.28398508955098, "lng": -0.40174584715595074, "title": "North Street Car Park ", "address": "6 North St", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 54.283672804104526, "lng": -0.39958626874079073, "title": "St Thomas Street Car Park ", "address": "19 St Thomas St", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 54.28421828263001, "lng": -0.39303168444828884, "title": "Eastborough Car Park", "address": "Eastborough", "connectors": ["Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 54.27536396944595, "lng": -0.4002586255765266, "title": "Albion Road Car Park", "address": "", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 54.308885, "lng": -0.424241, "title": "Duchy of Lancaster-Scalby Lodge Holiday Cottages", "address": "Burniston", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 54.278111, "lng": -0.406095, "title": "Tesco Superstore-Scarborough", "address": "Westwood", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}];
 
   chargerData.forEach(function (c) {
@@ -505,6 +512,14 @@
     markers.addLayer(marker);
   });
   map.addLayer(markers);
+
+  // Frame the map to the actual chargers so a town's points are visible
+  // immediately (and small towns land past the de-clustering zoom).
+  if (chargerData.length) {
+    map.fitBounds(markers.getBounds(), { padding: [40, 40], maxZoom: 15 });
+  } else {
+    map.setView([54.28118281596071, -0.40147589869608247], 12);
+  }
 
   // --- Connector filter ---
   var filterBtns = document.querySelectorAll('.filter-btn');

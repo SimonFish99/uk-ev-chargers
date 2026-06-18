@@ -345,7 +345,7 @@
   function esc(s) { return String(s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
 
   // --- Map ---
-  var map = L.map('map').setView([54.08451625018166, -0.19385914727631623], 12);
+  var map = L.map('map');
   L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
     subdomains: 'abcd',
@@ -361,7 +361,14 @@
     });
   }
 
-  var markers = L.markerClusterGroup();
+  // Cluster only when markers genuinely overlap, and stop clustering once
+  // zoomed in so a town's handful of chargers show as individual pins.
+  var markers = L.markerClusterGroup({
+    maxClusterRadius: 40,
+    disableClusteringAtZoom: 14,
+    spiderfyOnMaxZoom: true,
+    showCoverageOnHover: false,
+  });
   var chargerData = [{"lat": 54.07958413656689, "lng": -0.19622931158716028, "title": "South Marine Drive", "address": "South Marine Drive", "connectors": ["Type 2 (Socket Only) · 20kW", "Type 2 (Socket Only) · 20kW", "Type 2 (Socket Only) · 20kW"], "speed": "fast"}, {"lat": 54.09109967140057, "lng": -0.17886116528177354, "title": "North Marine Drive", "address": "North Marine Drive", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 54.085108, "lng": -0.190919, "title": "North Street car park, Bridlington, East Yorkshire", "address": "North Street", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 54.084281693122506, "lng": -0.19121240678896356, "title": "North Street Car Park", "address": "North Street", "connectors": ["Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 54.084637, "lng": -0.196647, "title": "Tesco Superstore-Bridlington", "address": "Station Approach", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 54.082387, "lng": -0.209286, "title": "Morrisons Bridlington", "address": "Bessingby Industrial Estate", "connectors": ["Type 2 (Socket Only) · 22kW", "CHAdeMO · 50kW", "CCS (Type 2) · 50kW"], "speed": "rapid"}];
 
   chargerData.forEach(function (c) {
@@ -379,6 +386,14 @@
     markers.addLayer(marker);
   });
   map.addLayer(markers);
+
+  // Frame the map to the actual chargers so a town's points are visible
+  // immediately (and small towns land past the de-clustering zoom).
+  if (chargerData.length) {
+    map.fitBounds(markers.getBounds(), { padding: [40, 40], maxZoom: 15 });
+  } else {
+    map.setView([54.08451625018166, -0.19385914727631623], 12);
+  }
 
   // --- Connector filter ---
   var filterBtns = document.querySelectorAll('.filter-btn');

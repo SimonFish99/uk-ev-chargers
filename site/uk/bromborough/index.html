@@ -294,7 +294,7 @@
   function esc(s) { return String(s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
 
   // --- Map ---
-  var map = L.map('map').setView([53.333657040000006, -2.985338904], 12);
+  var map = L.map('map');
   L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
     subdomains: 'abcd',
@@ -310,7 +310,14 @@
     });
   }
 
-  var markers = L.markerClusterGroup();
+  // Cluster only when markers genuinely overlap, and stop clustering once
+  // zoomed in so a town's handful of chargers show as individual pins.
+  var markers = L.markerClusterGroup({
+    maxClusterRadius: 40,
+    disableClusteringAtZoom: 14,
+    spiderfyOnMaxZoom: true,
+    showCoverageOnHover: false,
+  });
   var chargerData = [{"lat": 53.3368722, "lng": -2.97579152, "title": "Lidl-Bromborough", "address": "Thursby Road", "connectors": ["Type 2 (Socket Only) · 22kW", "CCS (Type 2) · 50kW", "CHAdeMO · 50kW"], "speed": "rapid"}, {"lat": 53.333471, "lng": -2.990069, "title": "o/s house 27 Palantine Road, Bromborough", "address": "o/s house 27 Palantine Road,", "connectors": ["Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 53.332973, "lng": -2.988546, "title": "o/s house 19 Palantine Road, Bromborough", "address": "o/s house 19 Palantine Road,", "connectors": ["Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 53.332585, "lng": -2.986499, "title": "o/s house 40 Palantine Road, Bromborough", "address": "o/s house 40 Palantine Road,", "connectors": ["Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 53.332384, "lng": -2.985789, "title": "o/s house 24 Palantine Road, Bromborough", "address": "o/s house 24 Palantine Road,", "connectors": ["Type 2 (Socket Only) · 7kW"], "speed": "fast"}];
 
   chargerData.forEach(function (c) {
@@ -328,6 +335,14 @@
     markers.addLayer(marker);
   });
   map.addLayer(markers);
+
+  // Frame the map to the actual chargers so a town's points are visible
+  // immediately (and small towns land past the de-clustering zoom).
+  if (chargerData.length) {
+    map.fitBounds(markers.getBounds(), { padding: [40, 40], maxZoom: 15 });
+  } else {
+    map.setView([53.333657040000006, -2.985338904], 12);
+  }
 
   // --- Connector filter ---
   var filterBtns = document.querySelectorAll('.filter-btn');

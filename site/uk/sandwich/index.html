@@ -381,7 +381,7 @@
   function esc(s) { return String(s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
 
   // --- Map ---
-  var map = L.map('map').setView([51.28156538182695, 1.3411731743935462], 12);
+  var map = L.map('map');
   L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
     subdomains: 'abcd',
@@ -397,7 +397,14 @@
     });
   }
 
-  var markers = L.markerClusterGroup();
+  // Cluster only when markers genuinely overlap, and stop clustering once
+  // zoomed in so a town's handful of chargers show as individual pins.
+  var markers = L.markerClusterGroup({
+    maxClusterRadius: 40,
+    disableClusteringAtZoom: 14,
+    spiderfyOnMaxZoom: true,
+    showCoverageOnHover: false,
+  });
   var chargerData = [{"lat": 51.287529, "lng": 1.336774, "title": "EG GROUP EG DISCOVERY", "address": "Montagu Road Starbucks Discovery Park", "connectors": ["CHAdeMO · 75kW", "Type 2 (Tethered Connector)  · 175kW", "CHAdeMO · 75kW", "Type 2 (Tethered Connector)  · 175kW"], "speed": "rapid"}, {"lat": 51.285366, "lng": 1.345632, "title": "Discovery Park", "address": "Innovation Way", "connectors": ["CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 43kW"], "speed": "rapid"}, {"lat": 51.274063, "lng": 1.33988, "title": "32, New Street", "address": "32, New Street", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.28801867278864, "lng": 1.338258220754824, "title": "Spitfire Way", "address": "Spitfire Way", "connectors": ["CCS (Type 2) · 150kW", "CHAdeMO · 50kW"], "speed": "rapid"}, {"lat": 51.275209, "lng": 1.343835, "title": "The Quay Car Park 1", "address": "The Quay Car Park 1", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.273942, "lng": 1.337933, "title": "CT13 9ET", "address": "", "connectors": ["Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.28683, "lng": 1.3459, "title": "Sandwich Discovery Park", "address": "Ramsgate Road", "connectors": ["CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 43kW", "Type 2 (Tethered Connector)  · 50kW"], "speed": "rapid"}];
 
   chargerData.forEach(function (c) {
@@ -415,6 +422,14 @@
     markers.addLayer(marker);
   });
   map.addLayer(markers);
+
+  // Frame the map to the actual chargers so a town's points are visible
+  // immediately (and small towns land past the de-clustering zoom).
+  if (chargerData.length) {
+    map.fitBounds(markers.getBounds(), { padding: [40, 40], maxZoom: 15 });
+  } else {
+    map.setView([51.28156538182695, 1.3411731743935462], 12);
+  }
 
   // --- Connector filter ---
   var filterBtns = document.querySelectorAll('.filter-btn');

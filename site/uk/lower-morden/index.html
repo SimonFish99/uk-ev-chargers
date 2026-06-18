@@ -342,7 +342,7 @@
   function esc(s) { return String(s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
 
   // --- Map ---
-  var map = L.map('map').setView([51.38673885714286, -0.216595], 12);
+  var map = L.map('map');
   L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
     subdomains: 'abcd',
@@ -358,7 +358,14 @@
     });
   }
 
-  var markers = L.markerClusterGroup();
+  // Cluster only when markers genuinely overlap, and stop clustering once
+  // zoomed in so a town's handful of chargers show as individual pins.
+  var markers = L.markerClusterGroup({
+    maxClusterRadius: 40,
+    disableClusteringAtZoom: 14,
+    spiderfyOnMaxZoom: true,
+    showCoverageOnHover: false,
+  });
   var chargerData = [{"lat": 51.38998, "lng": -0.222452, "title": "Opposite 475 Lynmouth Avenue", "address": "Lynmouth Avenue", "connectors": ["Type 2 (Socket Only) · 5kW"], "speed": "slow"}, {"lat": 51.388133, "lng": -0.201643, "title": "53 Holne Chase", "address": "Holne Chase", "connectors": ["Type 2 (Socket Only) · 3.7kW"], "speed": "slow"}, {"lat": 51.388059, "lng": -0.211097, "title": "Cardinal Avenue, adjacent to 14 Wolsey Crescent", "address": "Wolsey Crescent", "connectors": ["Type 2 (Socket Only) · 3.7kW"], "speed": "slow"}, {"lat": 51.386793, "lng": -0.220892, "title": "165 Seymour Avenue", "address": "Seymour Avenue", "connectors": ["Type 2 (Socket Only) · 3.7kW"], "speed": "slow"}, {"lat": 51.386165, "lng": -0.223102, "title": "327 Lynmouth Avenue", "address": "Lynmouth Avenue", "connectors": ["Type 2 (Socket Only) · 5kW"], "speed": "slow"}, {"lat": 51.384312, "lng": -0.217041, "title": "Opposite 94 Aragon Road", "address": "Aragon Road", "connectors": ["Type 2 (Socket Only) · 3.7kW"], "speed": "slow"}, {"lat": 51.38373, "lng": -0.219938, "title": "Salcombe Drive adjacent to 83 Kingsbridge Road", "address": "Salcombe Drive", "connectors": ["Type 2 (Socket Only) · 5kW"], "speed": "slow"}];
 
   chargerData.forEach(function (c) {
@@ -376,6 +383,14 @@
     markers.addLayer(marker);
   });
   map.addLayer(markers);
+
+  // Frame the map to the actual chargers so a town's points are visible
+  // immediately (and small towns land past the de-clustering zoom).
+  if (chargerData.length) {
+    map.fitBounds(markers.getBounds(), { padding: [40, 40], maxZoom: 15 });
+  } else {
+    map.setView([51.38673885714286, -0.216595], 12);
+  }
 
   // --- Connector filter ---
   var filterBtns = document.querySelectorAll('.filter-btn');

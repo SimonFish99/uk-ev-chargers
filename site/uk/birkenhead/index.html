@@ -470,7 +470,7 @@
   function esc(s) { return String(s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
 
   // --- Map ---
-  var map = L.map('map').setView([53.38797604554797, -3.043844832515965], 12);
+  var map = L.map('map');
   L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
     subdomains: 'abcd',
@@ -486,7 +486,14 @@
     });
   }
 
-  var markers = L.markerClusterGroup();
+  // Cluster only when markers genuinely overlap, and stop clustering once
+  // zoomed in so a town's handful of chargers show as individual pins.
+  var markers = L.markerClusterGroup({
+    maxClusterRadius: 40,
+    disableClusteringAtZoom: 14,
+    spiderfyOnMaxZoom: true,
+    showCoverageOnHover: false,
+  });
   var chargerData = [{"lat": 53.385607, "lng": -3.035786, "title": "Lidl-Birkenhead", "address": "115 Oxton Road", "connectors": ["Type 2 (Socket Only) · 22kW", "CCS (Type 2) · 50kW", "CHAdeMO · 50kW"], "speed": "rapid"}, {"lat": 53.39163072348591, "lng": -3.063219495210002, "title": "Wirral Golf Club", "address": "93 Bidston Rd", "connectors": ["Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 53.3840087319938, "lng": -3.03665382994965, "title": "Woodchurch Road", "address": "", "connectors": ["CCS (Type 2) · 75kW"], "speed": "rapid"}, {"lat": 53.408265, "lng": -3.071552, "title": "Tesco Extra - Birkenhead", "address": "Bidston Village Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 53.395389, "lng": -3.016328, "title": "Elgin Way Car Park", "address": "2A Argyle Street", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 53.379533, "lng": -3.027043, "title": "SCHC BIRKENHEAD 1", "address": "Church Road", "connectors": ["Type 2 (Tethered Connector)  · 150kW", "Type 2 (Tethered Connector)  · 150kW"], "speed": "rapid"}, {"lat": 53.397136, "lng": -3.051751, "title": "o/s house 412 Park Road North, Birkenhead", "address": "o/s house 412 Park Road North,", "connectors": ["Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 53.396059, "lng": -3.054112, "title": "o/s house 460 Park Road North, Birkenhead", "address": "o/s house 460 Park Road North,", "connectors": ["Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 53.371569, "lng": -3.041754, "title": "o/s house 6 Elm Road, Prenton", "address": "Prenton", "connectors": ["Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 53.370563, "lng": -3.040249, "title": "Elm Road, Prenton (side of 14 Prenton Lane)", "address": "Prenton", "connectors": ["Type 2 (Socket Only) · 7kW"], "speed": "fast"}];
 
   chargerData.forEach(function (c) {
@@ -504,6 +511,14 @@
     markers.addLayer(marker);
   });
   map.addLayer(markers);
+
+  // Frame the map to the actual chargers so a town's points are visible
+  // immediately (and small towns land past the de-clustering zoom).
+  if (chargerData.length) {
+    map.fitBounds(markers.getBounds(), { padding: [40, 40], maxZoom: 15 });
+  } else {
+    map.setView([53.38797604554797, -3.043844832515965], 12);
+  }
 
   // --- Connector filter ---
   var filterBtns = document.querySelectorAll('.filter-btn');

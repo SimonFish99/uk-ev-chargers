@@ -638,7 +638,7 @@
   function esc(s) { return String(s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
 
   // --- Map ---
-  var map = L.map('map').setView([53.752226091226476, -2.466783109979685], 12);
+  var map = L.map('map');
   L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
     subdomains: 'abcd',
@@ -654,7 +654,14 @@
     });
   }
 
-  var markers = L.markerClusterGroup();
+  // Cluster only when markers genuinely overlap, and stop clustering once
+  // zoomed in so a town's handful of chargers show as individual pins.
+  var markers = L.markerClusterGroup({
+    maxClusterRadius: 40,
+    disableClusteringAtZoom: 14,
+    spiderfyOnMaxZoom: true,
+    showCoverageOnHover: false,
+  });
   var chargerData = [{"lat": 53.744295, "lng": -2.492958, "title": "Lidl-Whalley Banks", "address": "Whalley Banks", "connectors": ["Type 2 (Socket Only) · 22kW", "CCS (Type 2) · 50kW", "CHAdeMO · 50kW"], "speed": "rapid"}, {"lat": 53.750738, "lng": -2.459421, "title": "Tesco Superstore - Blackburn", "address": "Hill Street", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 53.731772, "lng": -2.45692, "title": "EG GROUP WATERSIDE HQ 4", "address": "EG Group Waterside Head Office", "connectors": ["CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 50kW"], "speed": "rapid"}, {"lat": 53.757108, "lng": -2.452515, "title": "CARPARK FB BLACKBURN 1", "address": "Unit 5 Greenbank Business Park Dyneley Road", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 53.75387, "lng": -2.442069, "title": "EG GROUP HILTON 3", "address": "2 Frontier Avenue", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 53.753435, "lng": -2.440533, "title": "EG GROUP FRONTIER PARK", "address": "Frontier Avenue", "connectors": ["CHAdeMO · 75kW", "Type 2 (Tethered Connector)  · 175kW", "CHAdeMO · 75kW", "Type 2 (Tethered Connector)  · 175kW", "CHAdeMO · 75kW", "Type 2 (Tethered Connector)  · 175kW", "CHAdeMO · 75kW", "Type 2 (Tethered Connector)  · 175kW"], "speed": "rapid"}, {"lat": 53.763861, "lng": -2.53984, "title": "EG GROUP STANLEY HOUSE 1", "address": "Stanley House, Further lane", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 53.761124, "lng": -2.452728, "title": "Blackburn Technology Management Centre", "address": "Blackburn Technology Managemen", "connectors": ["Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 53.753989, "lng": -2.446263, "title": "EG GROUP MY LAHORE 2", "address": "98 Whitebirk Road", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 53.748823, "lng": -2.474993, "title": "Eanam Wharf Business Centre", "address": "Eanam Old Road", "connectors": ["Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 53.747812, "lng": -2.48731, "title": "Feilden Street Multi-Storey Car Park", "address": "Feilden Street Multi-Storey Ca", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 53.754427, "lng": -2.475939, "title": "Perry's Nissan Blackburn", "address": "Whalley New Road", "connectors": ["Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 53.75175616310938, "lng": -2.4672746746392704, "title": "1 Appleby Street", "address": "1 Appleby Street", "connectors": ["Type 2 (Socket Only) · 11kW"], "speed": "fast"}, {"lat": 53.758155114061225, "lng": -2.4461998650763235, "title": "The Peel Centre", "address": "Whitebirk Drive", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}];
 
   chargerData.forEach(function (c) {
@@ -672,6 +679,14 @@
     markers.addLayer(marker);
   });
   map.addLayer(markers);
+
+  // Frame the map to the actual chargers so a town's points are visible
+  // immediately (and small towns land past the de-clustering zoom).
+  if (chargerData.length) {
+    map.fitBounds(markers.getBounds(), { padding: [40, 40], maxZoom: 15 });
+  } else {
+    map.setView([53.752226091226476, -2.466783109979685], 12);
+  }
 
   // --- Connector filter ---
   var filterBtns = document.querySelectorAll('.filter-btn');

@@ -905,7 +905,7 @@
   function esc(s) { return String(s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
 
   // --- Map ---
-  var map = L.map('map').setView([54.77580892336682, -1.5685046212600016], 12);
+  var map = L.map('map');
   L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
     subdomains: 'abcd',
@@ -921,7 +921,14 @@
     });
   }
 
-  var markers = L.markerClusterGroup();
+  // Cluster only when markers genuinely overlap, and stop clustering once
+  // zoomed in so a town's handful of chargers show as individual pins.
+  var markers = L.markerClusterGroup({
+    maxClusterRadius: 40,
+    disableClusteringAtZoom: 14,
+    spiderfyOnMaxZoom: true,
+    showCoverageOnHover: false,
+  });
   var chargerData = [{"lat": 54.80750297, "lng": -1.57572954, "title": "Lidl-Dur Pity Me", "address": "Wheatlands Way", "connectors": ["Type 2 (Socket Only) · 22kW", "CCS (Type 2) · 50kW", "CHAdeMO · 50kW"], "speed": "rapid"}, {"lat": 54.86316, "lng": -1.63563, "title": "DCC Grange Villa Community Centre", "address": "Grange Villa Community Centre", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 54.807113, "lng": -1.578984, "title": "Sainsbury's Durham", "address": "Arnison Retail Centre", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 54.795534, "lng": -1.523186, "title": "DCC Belmont Park & Ride 2", "address": "Belmont Park & Ride", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 54.780922, "lng": -1.583194, "title": "DCC Wharton Park 1", "address": "10 Princes Strett", "connectors": ["Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 54.76381, "lng": -1.30865, "title": "DCC Horden Railway Station Car Park 1", "address": "Horden", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 54.63931134406988, "lng": -1.6906151277200365, "title": "Instavolt Bishop Auckland", "address": "A688", "connectors": ["CCS (Type 2) · 120kW", "CHAdeMO · 50kW"], "speed": "rapid"}, {"lat": 54.788611, "lng": -1.585549, "title": "Salvus House", "address": "Salvus House", "connectors": ["BS1363 3 Pin 13 Amp · 3kW"], "speed": "slow"}, {"lat": 54.806, "lng": -1.579, "title": "Sainsbury's Supermarket", "address": "Arnison Retail Centre, Pity Me, Durham", "connectors": ["BS1363 3 Pin 13 Amp · 3kW", "BS1363 3 Pin 13 Amp · 3kW"], "speed": "slow"}, {"lat": 54.785271, "lng": -1.58515, "title": "Durham County Hall", "address": "Framwellgate Peth", "connectors": ["Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 54.781827, "lng": -1.53846, "title": "Appleyard Motors Alma Place", "address": "Appleyard Motors Alma Place", "connectors": ["Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 54.781491, "lng": -1.576179, "title": "DCC Sidegate Car Park 1", "address": "Sidegate Car Park", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 54.777366, "lng": -1.562825, "title": "College of St Hild and St Bede", "address": "College of St Hild and St Bede", "connectors": ["Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 54.702, "lng": -1.57847, "title": "Durham County Council Offices", "address": "Spennymoor", "connectors": ["Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 54.771637, "lng": -1.594739, "title": "DCC Nevilles Cross 2", "address": "Cross View Terrace, Neville’s Cross Complex, Darlington Rd", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 54.805108, "lng": -1.575759, "title": "DCC Abbey Leisure Centre", "address": "Abbey Road- Pity Me", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 54.782452, "lng": -1.572766, "title": "Radisson Blu Hotel Durham", "address": "Frankland Lane", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 54.767429, "lng": -1.58197, "title": "Howlands Park and Ride", "address": "Howlands Park and Ride", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 54.764231, "lng": -1.571311, "title": "Holly Wing", "address": "Mountjoy Centre", "connectors": ["Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 54.76074, "lng": -1.58177, "title": "Howlands Park and Ride", "address": "Howlands Park and Ride", "connectors": ["Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 54.777058, "lng": -1.573946, "title": "Prince Bishops Shopping Centre", "address": "High Street", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 54.759222, "lng": -1.553219, "title": "Poplar Tree Garden Centre", "address": "Poplar Tree Garden Centre", "connectors": ["Type 2 (Socket Only) · 7kW"], "speed": "fast"}];
 
   chargerData.forEach(function (c) {
@@ -939,6 +946,14 @@
     markers.addLayer(marker);
   });
   map.addLayer(markers);
+
+  // Frame the map to the actual chargers so a town's points are visible
+  // immediately (and small towns land past the de-clustering zoom).
+  if (chargerData.length) {
+    map.fitBounds(markers.getBounds(), { padding: [40, 40], maxZoom: 15 });
+  } else {
+    map.setView([54.77580892336682, -1.5685046212600016], 12);
+  }
 
   // --- Connector filter ---
   var filterBtns = document.querySelectorAll('.filter-btn');

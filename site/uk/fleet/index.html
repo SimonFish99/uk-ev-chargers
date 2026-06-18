@@ -389,7 +389,7 @@
   function esc(s) { return String(s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
 
   // --- Map ---
-  var map = L.map('map').setView([51.29215753923519, -0.831700450672498], 12);
+  var map = L.map('map');
   L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
     subdomains: 'abcd',
@@ -405,7 +405,14 @@
     });
   }
 
-  var markers = L.markerClusterGroup();
+  // Cluster only when markers genuinely overlap, and stop clustering once
+  // zoomed in so a town's handful of chargers show as individual pins.
+  var markers = L.markerClusterGroup({
+    maxClusterRadius: 40,
+    disableClusteringAtZoom: 14,
+    spiderfyOnMaxZoom: true,
+    showCoverageOnHover: false,
+  });
   var chargerData = [{"lat": 51.29581363411256, "lng": -0.8545877766398746, "title": "Tesla Fleet Services M3 Southbound", "address": "Fleet Services M3 Southbound", "connectors": ["CCS (Type 2) · 250kW"], "speed": "rapid"}, {"lat": 51.295767613525214, "lng": -0.854885289745539, "title": "AppleGreen Electric Fleet Services M3 Southbound", "address": "Fleet Services M3 Southbound", "connectors": ["CCS (Type 2) · 60kW"], "speed": "rapid"}, {"lat": 51.28286, "lng": -0.84251204, "title": "Church Road Car Park", "address": "Church Road", "connectors": ["CHAdeMO · 50kW", "CCS (Type 2) · 50kW", "CHAdeMO · 50kW", "CCS (Type 2) · 50kW", "Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "rapid"}, {"lat": 51.293629, "lng": -0.805584, "title": "Miller & Carter Fleet", "address": "Cove Road", "connectors": ["CHAdeMO · 50kW", "CHAdeMO · 50kW"], "speed": "rapid"}, {"lat": 51.2934241492763, "lng": -0.803228168487749, "title": "Starbucks", "address": "Cove Services", "connectors": ["CHAdeMO · 50kW", "CCS (Type 2) · 50kW"], "speed": "rapid"}, {"lat": 51.2933313777323, "lng": -0.804391229834323, "title": "Miller & Carter Fleet", "address": "Cove Road", "connectors": ["CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 43kW", "CCS (Type 2) · 50kW"], "speed": "rapid"}, {"lat": 51.290277, "lng": -0.85671465, "title": "Morrisons Elvetham Heath", "address": "The Key", "connectors": ["Type 2 (Tethered Connector)  · 43kW", "CHAdeMO · 50kW", "CCS (Type 2) · 50kW"], "speed": "rapid"}];
 
   chargerData.forEach(function (c) {
@@ -423,6 +430,14 @@
     markers.addLayer(marker);
   });
   map.addLayer(markers);
+
+  // Frame the map to the actual chargers so a town's points are visible
+  // immediately (and small towns land past the de-clustering zoom).
+  if (chargerData.length) {
+    map.fitBounds(markers.getBounds(), { padding: [40, 40], maxZoom: 15 });
+  } else {
+    map.setView([51.29215753923519, -0.831700450672498], 12);
+  }
 
   // --- Connector filter ---
   var filterBtns = document.querySelectorAll('.filter-btn');

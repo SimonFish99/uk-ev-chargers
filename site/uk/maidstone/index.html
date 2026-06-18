@@ -681,7 +681,7 @@
   function esc(s) { return String(s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
 
   // --- Map ---
-  var map = L.map('map').setView([51.26903830837274, 0.5352266913388635], 12);
+  var map = L.map('map');
   L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
     subdomains: 'abcd',
@@ -697,7 +697,14 @@
     });
   }
 
-  var markers = L.markerClusterGroup();
+  // Cluster only when markers genuinely overlap, and stop clustering once
+  // zoomed in so a town's handful of chargers show as individual pins.
+  var markers = L.markerClusterGroup({
+    maxClusterRadius: 40,
+    disableClusteringAtZoom: 14,
+    spiderfyOnMaxZoom: true,
+    showCoverageOnHover: false,
+  });
   var chargerData = [{"lat": 51.27390528, "lng": 0.51563406, "title": "Wickes Maidstone", "address": "St Peters Street", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.27383741170001, "lng": 0.5206227064647675, "title": "Pudding Lane", "address": "Pudding Lane", "connectors": ["CCS (Type 2) · 50kW", "CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 43kW"], "speed": "rapid"}, {"lat": 51.2857985714808, "lng": 0.5430197490062483, "title": "Chiltern Hundreds", "address": "Penenden Heath Road", "connectors": ["CCS (Type 2) · 75kW", "CCS (Type 2) · 75kW", "CHAdeMO · 75kW", "CCS (Type 2) · 75kW"], "speed": "rapid"}, {"lat": 51.229147, "lng": 0.542806, "title": "The Cock Inn", "address": "The Cock Inn", "connectors": ["Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 51.273859, "lng": 0.526436, "title": "King Street Car Park", "address": "King Street", "connectors": ["Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.27906, "lng": 0.52102, "title": "Invicta House", "address": "County Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 51.290635, "lng": 0.48867772, "title": "The Fields At Aylesford", "address": "St Laurence Avenue", "connectors": ["CHAdeMO · 50kW", "CHAdeMO · 50kW", "CCS (Type 2) · 50kW", "CCS (Type 2) · 50kW", "Type 2 (Tethered Connector)  · 43kW", "Type 2 (Tethered Connector)  · 43kW"], "speed": "rapid"}, {"lat": 51.266807, "lng": 0.614396, "title": "Roadchef Maidstone Services", "address": "M20 Motorway, Jct 8, Hollingbourne", "connectors": ["CCS (Type 2) · 50kW", "CHAdeMO · 50kW", "CCS (Type 2) · 50kW", "CCS (Type 2) · 50kW", "Type 2 (Socket Only) · 22kW", "CCS (Type 2) · 237kW", "CCS (Type 2) · 237kW", "CCS (Type 2) · 237kW", "CCS (Type 2) · 237kW", "CCS (Type 2) · 237kW", "CCS (Type 2) · 237kW"], "speed": "rapid"}, {"lat": 51.239922, "lng": 0.56417, "title": "Mercedes-Benz of Maidstone", "address": "Bircholt Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 51.268601, "lng": 0.525373, "title": "Brunswick Street Car Park", "address": "George Street", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.2710098, "lng": 0.5166113, "title": "InstaVolt/McDonald's Hart Street", "address": "2-8 Hart Street", "connectors": ["CCS (Type 2) · 120kW", "CHAdeMO · 50kW"], "speed": "rapid"}, {"lat": 51.2865642540376, "lng": 0.548709143273072, "title": "M&S Maidstone", "address": "Eclipse Park", "connectors": ["CCS (Type 2) · 50kW", "CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 43kW"], "speed": "rapid"}, {"lat": 51.280739, "lng": 0.51924, "title": "Miller & Carter White Rabbit", "address": "Sandling Road", "connectors": ["CCS (Type 2) · 50kW", "CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 43kW"], "speed": "rapid"}, {"lat": 51.246651, "lng": 0.546458, "title": "Wm Morrison Supermarkets PLC St. Saviours Road", "address": "Wm Morrison Supermarkets PLC St. Saviours Road", "connectors": ["Type 2 (Tethered Connector)  · 43kW", "CHAdeMO · 50kW", "CCS (Type 2) · 50kW"], "speed": "rapid"}];
 
   chargerData.forEach(function (c) {
@@ -715,6 +722,14 @@
     markers.addLayer(marker);
   });
   map.addLayer(markers);
+
+  // Frame the map to the actual chargers so a town's points are visible
+  // immediately (and small towns land past the de-clustering zoom).
+  if (chargerData.length) {
+    map.fitBounds(markers.getBounds(), { padding: [40, 40], maxZoom: 15 });
+  } else {
+    map.setView([51.26903830837274, 0.5352266913388635], 12);
+  }
 
   // --- Connector filter ---
   var filterBtns = document.querySelectorAll('.filter-btn');

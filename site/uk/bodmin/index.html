@@ -419,7 +419,7 @@
   function esc(s) { return String(s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
 
   // --- Map ---
-  var map = L.map('map').setView([50.47655935159585, -4.718567159547698], 12);
+  var map = L.map('map');
   L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
     subdomains: 'abcd',
@@ -435,7 +435,14 @@
     });
   }
 
-  var markers = L.markerClusterGroup();
+  // Cluster only when markers genuinely overlap, and stop clustering once
+  // zoomed in so a town's handful of chargers show as individual pins.
+  var markers = L.markerClusterGroup({
+    maxClusterRadius: 40,
+    disableClusteringAtZoom: 14,
+    spiderfyOnMaxZoom: true,
+    showCoverageOnHover: false,
+  });
   var chargerData = [{"lat": 50.471763793775835, "lng": -4.704192031617509, "title": "Ionity Bodmin", "address": "Barnpark Lane", "connectors": ["CCS (Type 2) · 350kW", "CCS (Type 2) · 200kW"], "speed": "rapid"}, {"lat": 50.463848574658186, "lng": -4.712616873621414, "title": "Victoria Square", "address": "Victoria Square", "connectors": ["Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 50.468418, "lng": -4.708999, "title": "Morrisons Bodmin", "address": "Morrisons Bodmin", "connectors": ["Type 2 (Socket Only) · 22kW", "CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 50kW"], "speed": "rapid"}, {"lat": 50.470666191263206, "lng": -4.705038013115768, "title": "Bodmin Retail Park", "address": "Launceston Road", "connectors": ["CCS (Type 2) · 160kW", "CHAdeMO · 50kW"], "speed": "rapid"}, {"lat": 50.4696, "lng": -4.74025, "title": "Chy Trevail", "address": "Chy Trevail, Beacon Technology", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 50.473251, "lng": -4.723145, "title": "Berrycoombe Car Park", "address": "Berrycoombe Road", "connectors": ["Type 2 (Tethered Connector)  · 50kW", "CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 43kW"], "speed": "rapid"}, {"lat": 50.46830025306963, "lng": -4.706374358026892, "title": "Morrisons Bodmin", "address": "Priory Road", "connectors": ["CHAdeMO · 50kW", "CCS (Type 2) · 50kW", "Type 2 (Socket Only) · 22kW"], "speed": "rapid"}, {"lat": 50.526627, "lng": -4.747922, "title": "Saint Mabyn Holiday Park", "address": "St Mabyn", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}];
 
   chargerData.forEach(function (c) {
@@ -453,6 +460,14 @@
     markers.addLayer(marker);
   });
   map.addLayer(markers);
+
+  // Frame the map to the actual chargers so a town's points are visible
+  // immediately (and small towns land past the de-clustering zoom).
+  if (chargerData.length) {
+    map.fitBounds(markers.getBounds(), { padding: [40, 40], maxZoom: 15 });
+  } else {
+    map.setView([50.47655935159585, -4.718567159547698], 12);
+  }
 
   // --- Connector filter ---
   var filterBtns = document.querySelectorAll('.filter-btn');

@@ -473,7 +473,7 @@
   function esc(s) { return String(s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
 
   // --- Map ---
-  var map = L.map('map').setView([53.578132557734705, -0.6382185367195298], 12);
+  var map = L.map('map');
   L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
     subdomains: 'abcd',
@@ -489,7 +489,14 @@
     });
   }
 
-  var markers = L.markerClusterGroup();
+  // Cluster only when markers genuinely overlap, and stop clustering once
+  // zoomed in so a town's handful of chargers show as individual pins.
+  var markers = L.markerClusterGroup({
+    maxClusterRadius: 40,
+    disableClusteringAtZoom: 14,
+    spiderfyOnMaxZoom: true,
+    showCoverageOnHover: false,
+  });
   var chargerData = [{"lat": 53.567404, "lng": -0.623889, "title": "Lidl-Scunthorpe", "address": "Queensway", "connectors": ["Type 2 (Socket Only) · 22kW", "CCS (Type 2) · 50kW", "CHAdeMO · 50kW"], "speed": "rapid"}, {"lat": 53.578407, "lng": -0.655015, "title": "Ashby Road", "address": "Ashby Road", "connectors": ["CCS (Type 2) · 60kW", "CCS (Type 2) · 60kW", "CCS (Type 2) · 60kW", "CCS (Type 2) · 60kW", "CCS (Type 2) · 60kW", "CCS (Type 2) · 60kW", "CCS (Type 2) · 60kW", "CCS (Type 2) · 60kW"], "speed": "rapid"}, {"lat": 53.594045, "lng": -0.643871, "title": "King Street Car Park", "address": "King Street Car Park", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 53.590905, "lng": -0.648071, "title": "Robert Street Car Park", "address": "Robert Street Car Park", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 53.590337, "lng": -0.644487, "title": "Parishes Multi Storey", "address": "Fenton Street", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 53.564266, "lng": -0.615461, "title": "Morrisons Scunthorpe", "address": "Lakeside Parkway", "connectors": ["Type 2 (Tethered Connector)  · 60kW", "CHAdeMO · 50kW", "Type 2 (Socket Only) · 22kW"], "speed": "rapid"}, {"lat": 53.56602916816675, "lng": -0.6462160876021699, "title": "Bottesford Car Park", "address": "Bottesford Road", "connectors": ["Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 53.565072851445564, "lng": -0.6143617428735979, "title": "Morrisons Lakeside Parkway", "address": "Lakeside Pkwy", "connectors": ["Type 2 (Socket Only) · 22kW", "CHAdeMO · 50kW", "CCS (Type 2) · 50kW"], "speed": "rapid"}, {"lat": 53.586727, "lng": -0.652595, "title": "Dealership wall", "address": "Station Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}];
 
   chargerData.forEach(function (c) {
@@ -507,6 +514,14 @@
     markers.addLayer(marker);
   });
   map.addLayer(markers);
+
+  // Frame the map to the actual chargers so a town's points are visible
+  // immediately (and small towns land past the de-clustering zoom).
+  if (chargerData.length) {
+    map.fitBounds(markers.getBounds(), { padding: [40, 40], maxZoom: 15 });
+  } else {
+    map.setView([53.578132557734705, -0.6382185367195298], 12);
+  }
 
   // --- Connector filter ---
   var filterBtns = document.querySelectorAll('.filter-btn');

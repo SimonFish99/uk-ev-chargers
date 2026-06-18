@@ -851,7 +851,7 @@
   function esc(s) { return String(s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
 
   // --- Map ---
-  var map = L.map('map').setView([53.24888709345886, -1.4153754439058785], 12);
+  var map = L.map('map');
   L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
     subdomains: 'abcd',
@@ -867,7 +867,14 @@
     });
   }
 
-  var markers = L.markerClusterGroup();
+  // Cluster only when markers genuinely overlap, and stop clustering once
+  // zoomed in so a town's handful of chargers show as individual pins.
+  var markers = L.markerClusterGroup({
+    maxClusterRadius: 40,
+    disableClusteringAtZoom: 14,
+    spiderfyOnMaxZoom: true,
+    showCoverageOnHover: false,
+  });
   var chargerData = [{"lat": 53.253227, "lng": -1.427212, "title": "Chesterfield Football Club Hub", "address": "Sheffield Road", "connectors": ["CHAdeMO · 50kW", "CCS (Type 2) · 300kW", "CCS (Type 2) · 300kW", "CCS (Type 2) · 300kW", "CCS (Type 2) · 300kW", "CHAdeMO · 50kW", "CCS (Type 2) · 300kW", "CCS (Type 2) · 300kW", "CCS (Type 2) · 300kW", "CCS (Type 2) · 300kW", "CHAdeMO · 50kW", "CCS (Type 2) · 300kW", "CCS (Type 2) · 300kW", "CCS (Type 2) · 300kW", "CCS (Type 2) · 300kW", "CHAdeMO · 50kW", "CHAdeMO · 50kW", "CHAdeMO · 50kW", "CHAdeMO · 50kW", "CHAdeMO · 50kW", "CHAdeMO · 50kW", "CHAdeMO · 50kW", "CHAdeMO · 50kW", "CHAdeMO · 50kW"], "speed": "rapid"}, {"lat": 53.2353558250851, "lng": -1.43574401616115, "title": "McDonald's Chesterfield ", "address": "Markham Road", "connectors": ["CCS (Type 2) · 120kW", "CHAdeMO · 120kW"], "speed": "rapid"}, {"lat": 53.221385, "lng": -1.425217, "title": "Birdholme Working Men's Club Car Park", "address": "-1.425217", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 53.252005, "lng": -1.42454, "title": "Tesco Extra - Chesterfield", "address": "Lockoford Lane", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 53.272046, "lng": -1.439457, "title": "HEN UK STATION 2", "address": "655 Sheffield Rd", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 53.25288, "lng": -1.42872, "title": "The Glass Yard", "address": "Sheffield Road", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 53.29609, "lng": -1.4462, "title": "Littlemoor Shops Car Park", "address": "Littlemoor", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 53.273572, "lng": -1.37611, "title": "Barrowhill Car Park", "address": "Barrowhill", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 53.247344, "lng": -1.424972, "title": "Old Brickworks Lane Car Park", "address": "Old Brickworks Lane", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 53.243847, "lng": -1.457307, "title": "Pennine Way Car Park", "address": "Pennine Way", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 53.223955, "lng": -1.426802, "title": "Derby Road Car Park", "address": "Derby Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 53.251037, "lng": -1.424268, "title": "Casa Hotel", "address": "Lockoford Lane", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 11kW"], "speed": "fast"}, {"lat": 53.267927476786014, "lng": -1.3548129636508293, "title": "Morrisons Chesterfield Staveley", "address": "Barnfield Close", "connectors": ["CHAdeMO · 50kW", "CCS (Type 2) · 50kW", "Type 2 (Tethered Connector)  · 43kW"], "speed": "rapid"}, {"lat": 53.25861, "lng": -1.382465, "title": "Ringwood Hall Hotel & Spa", "address": "Brimington", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 53.245691879717754, "lng": -1.4425923042283557, "title": "The Highfield", "address": "38 Newbold Rd", "connectors": ["CHAdeMO · 50kW", "CCS (Type 2) · 50kW", "Type 2 (Tethered Connector)  · 43kW"], "speed": "rapid"}, {"lat": 53.23209679845172, "lng": -1.4607384044390983, "title": "Glenthorne Close", "address": "Glenthorne Close", "connectors": ["Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 53.2842977022189, "lng": -1.28962930182638, "title": "The Treble Bob", "address": "Tallys End", "connectors": ["CCS (Type 2) · 50kW", "CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 43kW"], "speed": "rapid"}, {"lat": 53.1686, "lng": -1.409971, "title": "Tesco Extra-Clay Cross", "address": "Tesco Extra", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}];
 
   chargerData.forEach(function (c) {
@@ -885,6 +892,14 @@
     markers.addLayer(marker);
   });
   map.addLayer(markers);
+
+  // Frame the map to the actual chargers so a town's points are visible
+  // immediately (and small towns land past the de-clustering zoom).
+  if (chargerData.length) {
+    map.fitBounds(markers.getBounds(), { padding: [40, 40], maxZoom: 15 });
+  } else {
+    map.setView([53.24888709345886, -1.4153754439058785], 12);
+  }
 
   // --- Connector filter ---
   var filterBtns = document.querySelectorAll('.filter-btn');

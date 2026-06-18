@@ -525,7 +525,7 @@
   function esc(s) { return String(s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
 
   // --- Map ---
-  var map = L.map('map').setView([50.638513395388536, -2.4586528994335555], 12);
+  var map = L.map('map');
   L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
     subdomains: 'abcd',
@@ -541,7 +541,14 @@
     });
   }
 
-  var markers = L.markerClusterGroup();
+  // Cluster only when markers genuinely overlap, and stop clustering once
+  // zoomed in so a town's handful of chargers show as individual pins.
+  var markers = L.markerClusterGroup({
+    maxClusterRadius: 40,
+    disableClusteringAtZoom: 14,
+    spiderfyOnMaxZoom: true,
+    showCoverageOnHover: false,
+  });
   var chargerData = [{"lat": 50.638219, "lng": -2.420033, "title": "30 the Stables", "address": "Bowleaze Coveway", "connectors": ["Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 50.638219, "lng": -2.420033, "title": "3 the Stables", "address": "Bowleaze Coveway", "connectors": ["Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 50.638219, "lng": -2.420033, "title": "Waterside Holiday Park & Spa-Bowleaze Coveway", "address": "Bowleaze Coveway", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 50.737424, "lng": -2.901246, "title": "Lower Sea Lane", "address": "St Andrews Drive", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 50.62483, "lng": -2.445745, "title": "Lodmoor Car Park 1", "address": "Greenhill", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 50.607109, "lng": -2.447027, "title": "Nothe Car Park", "address": "Barrack Road", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 50.630892, "lng": -2.462162, "title": "Aldi-Weymouth", "address": "Mercery Road", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 50.6156717, "lng": -2.4569162, "title": "KFC Weymouth", "address": "2B Jubilee Close", "connectors": ["CCS (Type 2) · 120kW", "CHAdeMO · 50kW"], "speed": "rapid"}, {"lat": 50.6374536492739, "lng": -2.46984669376911, "title": "BP Pulse Weymouth SF Connect filling station.", "address": "316 - 318 Dorchester Road", "connectors": ["CCS (Type 2) · 150kW", "CHAdeMO · 100kW", "CCS (Type 2) · 150kW", "CHAdeMO · 100kW"], "speed": "rapid"}, {"lat": 50.6455, "lng": -2.1455, "title": "Sainsbury's Weymouth 3", "address": "Mercery Road, Weymouth, Dorset", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 50.61011, "lng": -2.45664, "title": "Weymouth, Harbourside Car Park", "address": "Commercial Road", "connectors": ["CHAdeMO · 50kW", "CCS (Type 2) · 50kW"], "speed": "rapid"}];
 
   chargerData.forEach(function (c) {
@@ -559,6 +566,14 @@
     markers.addLayer(marker);
   });
   map.addLayer(markers);
+
+  // Frame the map to the actual chargers so a town's points are visible
+  // immediately (and small towns land past the de-clustering zoom).
+  if (chargerData.length) {
+    map.fitBounds(markers.getBounds(), { padding: [40, 40], maxZoom: 15 });
+  } else {
+    map.setView([50.638513395388536, -2.4586528994335555], 12);
+  }
 
   // --- Connector filter ---
   var filterBtns = document.querySelectorAll('.filter-btn');

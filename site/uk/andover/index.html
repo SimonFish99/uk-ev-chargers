@@ -387,7 +387,7 @@
   function esc(s) { return String(s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
 
   // --- Map ---
-  var map = L.map('map').setView([51.21044180876178, -1.4855185489638845], 12);
+  var map = L.map('map');
   L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
     subdomains: 'abcd',
@@ -403,7 +403,14 @@
     });
   }
 
-  var markers = L.markerClusterGroup();
+  // Cluster only when markers genuinely overlap, and stop clustering once
+  // zoomed in so a town's handful of chargers show as individual pins.
+  var markers = L.markerClusterGroup({
+    maxClusterRadius: 40,
+    disableClusteringAtZoom: 14,
+    spiderfyOnMaxZoom: true,
+    showCoverageOnHover: false,
+  });
   var chargerData = [{"lat": 51.211727661332446, "lng": -1.4557245427471912, "title": "Columbus Way", "address": "Columbus Way", "connectors": ["CCS (Type 2) · 100kW", "CHAdeMO · 50kW"], "speed": "rapid"}, {"lat": 51.20992, "lng": -1.5188713, "title": "Chalkhill Blue Pub & Restaurant", "address": "Hawker Siddeley Way", "connectors": ["CHAdeMO · 50kW", "CCS (Type 2) · 50kW", "CCS (Type 2) · 50kW", "CHAdeMO · 50kW", "Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "rapid"}, {"lat": 51.21098, "lng": -1.513828, "title": "Shell Little Waitrose Portway", "address": "280 Weyhill Road", "connectors": ["CCS (Type 2) · 175kW", "CHAdeMO · 70kW", "CCS (Type 2) · 175kW", "CHAdeMO · 70kW"], "speed": "rapid"}, {"lat": 51.212002, "lng": -1.478989, "title": "Shepherds Spring Lane", "address": "Shepherds Spring Lane", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 51.216769, "lng": -1.473453, "title": "Tesco Extra-Andover", "address": "River Way", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.206867, "lng": -1.477911, "title": "George Yard", "address": "George Yard", "connectors": ["Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 51.204827, "lng": -1.479853, "title": "South Street", "address": "South Street", "connectors": ["Type 2 (Socket Only) · 22kW"], "speed": "fast"}];
 
   chargerData.forEach(function (c) {
@@ -421,6 +428,14 @@
     markers.addLayer(marker);
   });
   map.addLayer(markers);
+
+  // Frame the map to the actual chargers so a town's points are visible
+  // immediately (and small towns land past the de-clustering zoom).
+  if (chargerData.length) {
+    map.fitBounds(markers.getBounds(), { padding: [40, 40], maxZoom: 15 });
+  } else {
+    map.setView([51.21044180876178, -1.4855185489638845], 12);
+  }
 
   // --- Connector filter ---
   var filterBtns = document.querySelectorAll('.filter-btn');

@@ -333,7 +333,7 @@
   function esc(s) { return String(s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
 
   // --- Map ---
-  var map = L.map('map').setView([54.3233423291706, -5.704927352232242], 12);
+  var map = L.map('map');
   L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
     subdomains: 'abcd',
@@ -349,7 +349,14 @@
     });
   }
 
-  var markers = L.markerClusterGroup();
+  // Cluster only when markers genuinely overlap, and stop clustering once
+  // zoomed in so a town's handful of chargers show as individual pins.
+  var markers = L.markerClusterGroup({
+    maxClusterRadius: 40,
+    disableClusteringAtZoom: 14,
+    spiderfyOnMaxZoom: true,
+    showCoverageOnHover: false,
+  });
   var chargerData = [{"lat": 54.324311067042004, "lng": -5.708279769951304, "title": "HRL Ardglass Road", "address": "6 Ardglass Rd", "connectors": ["CCS (Type 2) · 150kW"], "speed": "rapid"}, {"lat": 54.32480851813281, "lng": -5.695970825412559, "title": "Downshire Hospital (Staff Car Park 2)", "address": "Ardglass Road", "connectors": ["Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 54.324954711231584, "lng": -5.69629312696776, "title": "Downshire Hospital (Staff Car Park 1)", "address": "Ardglass Road", "connectors": ["Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 54.31701577573108, "lng": -5.711566337065165, "title": "Ballymote Sports & Wellbeing Centre", "address": "96 Glebetown Drive", "connectors": ["CHAdeMO · 50kW", "CCS (Type 2) · 50kW"], "speed": "rapid"}, {"lat": 54.32417949522252, "lng": -5.719126248392797, "title": "Down Leisure Centre", "address": "Ballydugan Road", "connectors": ["CCS (Type 2) · 50kW", "CHAdeMO · 50kW", "CCS (Type 2) · 180kW"], "speed": "rapid"}, {"lat": 54.32478440766363, "lng": -5.698327805603867, "title": "Downshire Civic Centre", "address": "Ardglass Road", "connectors": ["CCS (Type 2) · 50kW", "CHAdeMO · 50kW"], "speed": "rapid"}];
 
   chargerData.forEach(function (c) {
@@ -367,6 +374,14 @@
     markers.addLayer(marker);
   });
   map.addLayer(markers);
+
+  // Frame the map to the actual chargers so a town's points are visible
+  // immediately (and small towns land past the de-clustering zoom).
+  if (chargerData.length) {
+    map.fitBounds(markers.getBounds(), { padding: [40, 40], maxZoom: 15 });
+  } else {
+    map.setView([54.3233423291706, -5.704927352232242], 12);
+  }
 
   // --- Connector filter ---
   var filterBtns = document.querySelectorAll('.filter-btn');

@@ -722,7 +722,7 @@
   function esc(s) { return String(s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
 
   // --- Map ---
-  var map = L.map('map').setView([55.77444984340458, -4.043754937220542], 12);
+  var map = L.map('map');
   L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
     subdomains: 'abcd',
@@ -738,7 +738,14 @@
     });
   }
 
-  var markers = L.markerClusterGroup();
+  // Cluster only when markers genuinely overlap, and stop clustering once
+  // zoomed in so a town's handful of chargers show as individual pins.
+  var markers = L.markerClusterGroup({
+    maxClusterRadius: 40,
+    disableClusteringAtZoom: 14,
+    spiderfyOnMaxZoom: true,
+    showCoverageOnHover: false,
+  });
   var chargerData = [{"lat": 55.7790799, "lng": -4.042087, "title": "Lidl-Hamilton-Muir Street", "address": "Muir Street", "connectors": ["Type 2 (Socket Only) · 22kW", "CCS (Type 2) · 50kW", "CHAdeMO · 50kW"], "speed": "rapid"}, {"lat": 55.765347, "lng": -4.066827, "title": "Nevis Avenue", "address": "Nevis Avenue", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 55.763071, "lng": -4.05481, "title": "Fairhill Avenue", "address": "Fairhill Avenue", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 55.756008, "lng": -4.060464, "title": "Ratho Park", "address": "Ratho Park", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 55.779753, "lng": -4.055297, "title": "Hamilton Shopping Park", "address": "Douglas Park Lane", "connectors": ["CCS (Type 2) · 75kW", "CHAdeMO · 50kW", "CCS (Type 2) · 75kW", "CHAdeMO · 50kW", "Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "rapid"}, {"lat": 55.780129, "lng": -4.047571, "title": "University Of The West Of Scotland", "address": "8 Barrack Street", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 55.775995, "lng": -4.033004, "title": "Keith St Car Park, Keith Street, Hamilton", "address": "6 Keith Street", "connectors": ["CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 50kW", "Type 2 (Tethered Connector)  · 43kW"], "speed": "rapid"}, {"lat": 55.773345, "lng": -4.035081, "title": "Duke Street Car Park, Hamilton (1)", "address": "Duke Street", "connectors": ["Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 55.783013, "lng": -4.054941, "title": "Morrisons", "address": "5 New Park Street", "connectors": ["CHAdeMO · 50kW", "Type 2 (Socket Only) · 22kW", "Type 2 (Tethered Connector)  · 50kW"], "speed": "rapid"}, {"lat": 55.77674159447338, "lng": -4.027982995528674, "title": "Palace Grounds Retail Park", "address": "Motherwell Road", "connectors": ["CCS (Type 2) · 300kW", "CHAdeMO · 50kW"], "speed": "rapid"}, {"lat": 55.779599, "lng": -4.045774, "title": "Storage Vault Hamilton Carpark", "address": "Storage Vault", "connectors": ["Type 2 (Tethered Connector)  · 50kW", "CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 43kW"], "speed": "rapid"}, {"lat": 55.781494, "lng": -4.051545, "title": "Bothwell Street Car Park, Hamilton", "address": "Bothwell Street", "connectors": ["Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 55.77745, "lng": -4.05018, "title": "Montrose Crescent, Hamilton", "address": "Montrose Crescent", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW", "CCS (Type 2) · 50kW", "CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 43kW"], "speed": "rapid"}, {"lat": 55.764858, "lng": -4.005348, "title": "Chatelherault Station, Hamilton", "address": "Leven Road", "connectors": ["Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 55.773005, "lng": -4.034351, "title": "Duke Street Multi Storey Car Park, Hamilton", "address": "Duke Street", "connectors": ["Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 55.782309, "lng": -4.034816, "title": "2 Mote Hill", "address": "2 Mote Hill", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}];
 
   chargerData.forEach(function (c) {
@@ -756,6 +763,14 @@
     markers.addLayer(marker);
   });
   map.addLayer(markers);
+
+  // Frame the map to the actual chargers so a town's points are visible
+  // immediately (and small towns land past the de-clustering zoom).
+  if (chargerData.length) {
+    map.fitBounds(markers.getBounds(), { padding: [40, 40], maxZoom: 15 });
+  } else {
+    map.setView([55.77444984340458, -4.043754937220542], 12);
+  }
 
   // --- Connector filter ---
   var filterBtns = document.querySelectorAll('.filter-btn');

@@ -583,7 +583,7 @@
   function esc(s) { return String(s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
 
   // --- Map ---
-  var map = L.map('map').setView([53.40761165181937, -2.1451272535069568], 12);
+  var map = L.map('map');
   L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
     subdomains: 'abcd',
@@ -599,7 +599,14 @@
     });
   }
 
-  var markers = L.markerClusterGroup();
+  // Cluster only when markers genuinely overlap, and stop clustering once
+  // zoomed in so a town's handful of chargers show as individual pins.
+  var markers = L.markerClusterGroup({
+    maxClusterRadius: 40,
+    disableClusteringAtZoom: 14,
+    spiderfyOnMaxZoom: true,
+    showCoverageOnHover: false,
+  });
   var chargerData = [{"lat": 53.420032, "lng": -2.162461, "title": "Manchester Road Retail Park", "address": "Unnamed Road", "connectors": ["CHAdeMO · 50kW", "CCS (Type 2) · 50kW", "CHAdeMO · 50kW", "CCS (Type 2) · 50kW", "Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW", "CHAdeMO · 50kW", "CCS (Type 2) · 300kW", "CHAdeMO · 50kW", "CHAdeMO · 50kW", "CCS (Type 2) · 300kW", "CHAdeMO · 50kW", "CCS (Type 2) · 300kW", "CHAdeMO · 50kW", "CHAdeMO · 50kW", "CCS (Type 2) · 300kW", "CCS (Type 2) · 300kW", "CCS (Type 2) · 300kW", "CCS (Type 2) · 300kW", "CHAdeMO · 50kW", "CCS (Type 2) · 300kW", "CHAdeMO · 50kW"], "speed": "rapid"}, {"lat": 53.416273, "lng": -2.152592, "title": "Tesco Extra - Stockport", "address": "Tiviot Way", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 53.409611, "lng": -2.16538, "title": "Heaton Lane Multi Storey", "address": "Heaton Lane", "connectors": ["Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 53.406871, "lng": -2.155209, "title": "West Way Stockport", "address": "29 Buxton Street", "connectors": ["BS1363 3 Pin 13 Amp · 3kW", "BS1363 3 Pin 13 Amp · 3kW"], "speed": "slow"}, {"lat": 53.399017, "lng": -2.200828, "title": "Lex Autolease", "address": "Cheadle, Stockport", "connectors": ["BS1363 3 Pin 13 Amp · 3kW", "BS1363 3 Pin 13 Amp · 3kW"], "speed": "slow"}, {"lat": 53.437721, "lng": -2.157338, "title": "Morrisons Stockport Reddish", "address": "Wm Morrison Supermarkets PLC", "connectors": ["CHAdeMO · 50kW", "Type 2 (Socket Only) · 22kW", "Type 2 (Tethered Connector)  · 50kW"], "speed": "rapid"}, {"lat": 53.405998, "lng": -2.15705, "title": "Edward Street", "address": "Edward Street", "connectors": ["Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 53.358669557001235, "lng": -2.0391586204950727, "title": "Disley Community Centre Car Park", "address": "Buxton Old Road", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 53.40313363816341, "lng": -2.094424980949043, "title": "Chadkirk Business Park", "address": "Vale Road", "connectors": ["Type 2 (Tethered Connector)  · 22kW"], "speed": "fast"}, {"lat": 53.4163840726682, "lng": -2.15359305034008, "title": "Tesco Extra Stockport", "address": "Tiviot Way", "connectors": ["CCS (Type 2) · 50kW", "CHAdeMO · 50kW", "Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 7kW"], "speed": "rapid"}, {"lat": 53.41001790218033, "lng": -2.1583651367923267, "title": "St Petersgate", "address": "St Petersgate", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}];
 
   chargerData.forEach(function (c) {
@@ -617,6 +624,14 @@
     markers.addLayer(marker);
   });
   map.addLayer(markers);
+
+  // Frame the map to the actual chargers so a town's points are visible
+  // immediately (and small towns land past the de-clustering zoom).
+  if (chargerData.length) {
+    map.fitBounds(markers.getBounds(), { padding: [40, 40], maxZoom: 15 });
+  } else {
+    map.setView([53.40761165181937, -2.1451272535069568], 12);
+  }
 
   // --- Connector filter ---
   var filterBtns = document.querySelectorAll('.filter-btn');

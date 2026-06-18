@@ -342,7 +342,7 @@
   function esc(s) { return String(s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
 
   // --- Map ---
-  var map = L.map('map').setView([51.487919142857145, -0.27473457142857144], 12);
+  var map = L.map('map');
   L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
     subdomains: 'abcd',
@@ -358,7 +358,14 @@
     });
   }
 
-  var markers = L.markerClusterGroup();
+  // Cluster only when markers genuinely overlap, and stop clustering once
+  // zoomed in so a town's handful of chargers show as individual pins.
+  var markers = L.markerClusterGroup({
+    maxClusterRadius: 40,
+    disableClusteringAtZoom: 14,
+    spiderfyOnMaxZoom: true,
+    showCoverageOnHover: false,
+  });
   var chargerData = [{"lat": 51.490166, "lng": -0.27908, "title": "Asset No 18", "address": "Asset No 18", "connectors": ["Type 2 (Socket Only) · 3.7kW"], "speed": "slow"}, {"lat": 51.490023, "lng": -0.281524, "title": "wellesley road", "address": "wellesley road", "connectors": ["Type 2 (Socket Only) · 3.7kW"], "speed": "slow"}, {"lat": 51.489947, "lng": -0.28072, "title": "W4 3AD", "address": "wellesley road 62", "connectors": ["Type 2 (Socket Only) · 3.7kW"], "speed": "slow"}, {"lat": 51.487445, "lng": -0.276225, "title": "16 Whitehall Gardens", "address": "16 Whitehall Gardens", "connectors": ["Type 2 (Socket Only) · 3.7kW"], "speed": "slow"}, {"lat": 51.486269, "lng": -0.267731, "title": "38 Chesterfield Road", "address": "38 Chesterfield Road", "connectors": ["Type 2 (Socket Only) · 3.7kW"], "speed": "slow"}, {"lat": 51.486102, "lng": -0.26736, "title": "32 Chesterfield Road", "address": "32 Chesterfield Road", "connectors": ["Type 2 (Socket Only) · 3.7kW"], "speed": "slow"}, {"lat": 51.485482, "lng": -0.270502, "title": "Fauconberg Road", "address": "Fauconberg Road", "connectors": ["Type 2 (Socket Only) · 3.7kW"], "speed": "slow"}];
 
   chargerData.forEach(function (c) {
@@ -376,6 +383,14 @@
     markers.addLayer(marker);
   });
   map.addLayer(markers);
+
+  // Frame the map to the actual chargers so a town's points are visible
+  // immediately (and small towns land past the de-clustering zoom).
+  if (chargerData.length) {
+    map.fitBounds(markers.getBounds(), { padding: [40, 40], maxZoom: 15 });
+  } else {
+    map.setView([51.487919142857145, -0.27473457142857144], 12);
+  }
 
   // --- Connector filter ---
   var filterBtns = document.querySelectorAll('.filter-btn');

@@ -378,7 +378,7 @@
   function esc(s) { return String(s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
 
   // --- Map ---
-  var map = L.map('map').setView([52.76707581657366, -1.220694279267525], 12);
+  var map = L.map('map');
   L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
     subdomains: 'abcd',
@@ -394,7 +394,14 @@
     });
   }
 
-  var markers = L.markerClusterGroup();
+  // Cluster only when markers genuinely overlap, and stop clustering once
+  // zoomed in so a town's handful of chargers show as individual pins.
+  var markers = L.markerClusterGroup({
+    maxClusterRadius: 40,
+    disableClusteringAtZoom: 14,
+    spiderfyOnMaxZoom: true,
+    showCoverageOnHover: false,
+  });
   var chargerData = [{"lat": 52.76641425, "lng": -1.230351808, "title": "ECB Performance Centre", "address": " Loughborough University", "connectors": ["Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 52.77938841258842, "lng": -1.211916314853596, "title": "Shell Loughborough", "address": "53 Belton Road", "connectors": ["CHAdeMO · 70kW", "CCS (Type 2) · 150kW"], "speed": "rapid"}, {"lat": 52.764768, "lng": -1.228624, "title": "4003708", "address": "University Road", "connectors": ["Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 52.7583610200954, "lng": -1.20856177458609, "title": "Tesco Extra Loughborough", "address": "Park Rd", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 22kW", "CCS (Type 2) · 50kW", "CHAdeMO · 50kW"], "speed": "rapid"}, {"lat": 52.7592287188229, "lng": -1.20580041888343, "title": "McDonaldÃ¢ÂÂs Loughborough", "address": "Epinal Way", "connectors": ["CCS (Type 2) · 50kW", "CHAdeMO · 50kW"], "speed": "rapid"}, {"lat": 52.7624883145089, "lng": -1.24890663854956, "title": "Harvester Wheatsheaf Loughborough", "address": "New Ashby Road", "connectors": ["CCS (Type 2) · 50kW", "CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 43kW"], "speed": "rapid"}, {"lat": 52.778882, "lng": -1.210699, "title": "Restricted access to Toyota customers", "address": "Belton Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}];
 
   chargerData.forEach(function (c) {
@@ -412,6 +419,14 @@
     markers.addLayer(marker);
   });
   map.addLayer(markers);
+
+  // Frame the map to the actual chargers so a town's points are visible
+  // immediately (and small towns land past the de-clustering zoom).
+  if (chargerData.length) {
+    map.fitBounds(markers.getBounds(), { padding: [40, 40], maxZoom: 15 });
+  } else {
+    map.setView([52.76707581657366, -1.220694279267525], 12);
+  }
 
   // --- Connector filter ---
   var filterBtns = document.querySelectorAll('.filter-btn');

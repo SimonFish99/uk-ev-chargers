@@ -446,7 +446,7 @@
   function esc(s) { return String(s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
 
   // --- Map ---
-  var map = L.map('map').setView([55.76280211383968, -4.192018117921667], 12);
+  var map = L.map('map');
   L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
     subdomains: 'abcd',
@@ -462,7 +462,14 @@
     });
   }
 
-  var markers = L.markerClusterGroup();
+  // Cluster only when markers genuinely overlap, and stop clustering once
+  // zoomed in so a town's handful of chargers show as individual pins.
+  var markers = L.markerClusterGroup({
+    maxClusterRadius: 40,
+    disableClusteringAtZoom: 14,
+    spiderfyOnMaxZoom: true,
+    showCoverageOnHover: false,
+  });
   var chargerData = [{"lat": 55.76339511939403, "lng": -4.21034494579078, "title": "Arnold Clark East Kilbride Motorstore", "address": "1 Brooklands", "connectors": ["CCS (Type 2) · 150kW", "CHAdeMO · 50kW"], "speed": "rapid"}, {"lat": 55.764013, "lng": -4.201723, "title": "Lindores Drive - East Kilbride", "address": "Lindores Drive", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 55.761093, "lng": -4.187378, "title": "Falkland Place", "address": "Falkland Place", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 55.755451, "lng": -4.202606, "title": "Seymour Green", "address": "Seymour Green", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 55.777418, "lng": -4.186191, "title": "East Kilbride - James Hamilton Heritage Loch", "address": "James Hamilton Heritage Loch", "connectors": ["CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 50kW", "Type 2 (Tethered Connector)  · 43kW"], "speed": "rapid"}, {"lat": 55.767323, "lng": -4.223839, "title": "Eureka Solutions", "address": "3 Redwood Place", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Tethered Connector)  · 22kW"], "speed": "fast"}, {"lat": 55.761931, "lng": -4.174658, "title": "Civic Centre Car Park, East Kilbride (1)", "address": "Andrew Street", "connectors": ["Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 55.74823, "lng": -4.168689, "title": "Freescale Semiconductor, Glasgow", "address": "Colvilles Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 55.76636490516307, "lng": -4.172734115504227, "title": "Village Theatre, East Kilbride", "address": "Village Theatre Car Park", "connectors": ["Type 2 (Socket Only) · 7kW"], "speed": "fast"}];
 
   chargerData.forEach(function (c) {
@@ -480,6 +487,14 @@
     markers.addLayer(marker);
   });
   map.addLayer(markers);
+
+  // Frame the map to the actual chargers so a town's points are visible
+  // immediately (and small towns land past the de-clustering zoom).
+  if (chargerData.length) {
+    map.fitBounds(markers.getBounds(), { padding: [40, 40], maxZoom: 15 });
+  } else {
+    map.setView([55.76280211383968, -4.192018117921667], 12);
+  }
 
   // --- Connector filter ---
   var filterBtns = document.querySelectorAll('.filter-btn');

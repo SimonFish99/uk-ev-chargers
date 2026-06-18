@@ -350,7 +350,7 @@
   function esc(s) { return String(s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
 
   // --- Map ---
-  var map = L.map('map').setView([55.655614571428565, -3.053107428571429], 12);
+  var map = L.map('map');
   L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
     subdomains: 'abcd',
@@ -366,7 +366,14 @@
     });
   }
 
-  var markers = L.markerClusterGroup();
+  // Cluster only when markers genuinely overlap, and stop clustering once
+  // zoomed in so a town's handful of chargers show as individual pins.
+  var markers = L.markerClusterGroup({
+    maxClusterRadius: 40,
+    disableClusteringAtZoom: 14,
+    spiderfyOnMaxZoom: true,
+    showCoverageOnHover: false,
+  });
   var chargerData = [{"lat": 55.944028, "lng": -3.048472, "title": "Kerr's Wynd Car Park, Musselburgh", "address": "Kerr's Wynd Car Park", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 55.942023, "lng": -3.061154, "title": "West Holmes Gardens, Musselburgh", "address": "West Holmes Gardens", "connectors": ["Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 55.941834, "lng": -3.061245, "title": "West Holmes Gardens, Musselburgh", "address": "West Holmes Gardens", "connectors": ["Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 55.93923, "lng": -3.055951, "title": "Tesco Extra - Musselburgh", "address": "Olive Bank Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 55.938517, "lng": -3.048957, "title": "Musselburgh Grammar School", "address": "Musselburgh Grammar School", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 55.938472, "lng": -3.038278, "title": "Edenhall Bank, Musselburgh", "address": "Edenhall Bank", "connectors": ["Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 53.945198, "lng": -3.057695, "title": "Gracefield Car Park", "address": "Gracefield Car Park", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}];
 
   chargerData.forEach(function (c) {
@@ -384,6 +391,14 @@
     markers.addLayer(marker);
   });
   map.addLayer(markers);
+
+  // Frame the map to the actual chargers so a town's points are visible
+  // immediately (and small towns land past the de-clustering zoom).
+  if (chargerData.length) {
+    map.fitBounds(markers.getBounds(), { padding: [40, 40], maxZoom: 15 });
+  } else {
+    map.setView([55.655614571428565, -3.053107428571429], 12);
+  }
 
   // --- Connector filter ---
   var filterBtns = document.querySelectorAll('.filter-btn');

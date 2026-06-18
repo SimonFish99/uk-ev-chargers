@@ -356,7 +356,7 @@
   function esc(s) { return String(s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
 
   // --- Map ---
-  var map = L.map('map').setView([51.217186266666666, -0.7789272500000001], 12);
+  var map = L.map('map');
   L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
     subdomains: 'abcd',
@@ -372,7 +372,14 @@
     });
   }
 
-  var markers = L.markerClusterGroup();
+  // Cluster only when markers genuinely overlap, and stop clustering once
+  // zoomed in so a town's handful of chargers show as individual pins.
+  var markers = L.markerClusterGroup({
+    maxClusterRadius: 40,
+    disableClusteringAtZoom: 14,
+    spiderfyOnMaxZoom: true,
+    showCoverageOnHover: false,
+  });
   var chargerData = [{"lat": 51.216776, "lng": -0.79509, "title": "Lidl-Farnham", "address": "East Street", "connectors": ["Type 2 (Socket Only) · 22kW", "CCS (Type 2) · 50kW", "CHAdeMO · 50kW"], "speed": "rapid"}, {"lat": 51.193992, "lng": -0.749226, "title": "Islamabad (Tilford) Public Car Park", "address": "Sheephatch Lane", "connectors": ["Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 51.225876, "lng": -0.726141, "title": "Eurogarages Esso Hog's Back", "address": "A31 ", "connectors": ["CCS (Type 2) · 150kW"], "speed": "rapid"}, {"lat": 51.213886, "lng": -0.798433, "title": "WaverleyBC", "address": "Victoria Rd", "connectors": ["CHAdeMO · 50kW", "Type 2 (Socket Only) · 22kW", "Type 2 (Tethered Connector)  · 50kW"], "speed": "rapid"}, {"lat": 51.235127, "lng": -0.814305, "title": "SHELL RECHARGE LITTLE WAITROSE FOLLY HILL", "address": "Odiham Road", "connectors": ["Type 2 (Tethered Connector)  · 50kW", "CHAdeMO · 50kW", "CHAdeMO · 100kW", "CCS (Type 2) · 120kW"], "speed": "rapid"}, {"lat": 51.2174606, "lng": -0.7903685, "title": "Riverside 3 Car Park", "address": "Mike Hawthorn Drive", "connectors": ["Type 2 (Socket Only) · 22kW", "CHAdeMO · 50kW", "CCS (Type 2) · 50kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "rapid"}];
 
   chargerData.forEach(function (c) {
@@ -390,6 +397,14 @@
     markers.addLayer(marker);
   });
   map.addLayer(markers);
+
+  // Frame the map to the actual chargers so a town's points are visible
+  // immediately (and small towns land past the de-clustering zoom).
+  if (chargerData.length) {
+    map.fitBounds(markers.getBounds(), { padding: [40, 40], maxZoom: 15 });
+  } else {
+    map.setView([51.217186266666666, -0.7789272500000001], 12);
+  }
 
   // --- Connector filter ---
   var filterBtns = document.querySelectorAll('.filter-btn');

@@ -1075,7 +1075,7 @@
   function esc(s) { return String(s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
 
   // --- Map ---
-  var map = L.map('map').setView([52.636708236163756, 1.2858436390617858], 12);
+  var map = L.map('map');
   L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
     subdomains: 'abcd',
@@ -1091,7 +1091,14 @@
     });
   }
 
-  var markers = L.markerClusterGroup();
+  // Cluster only when markers genuinely overlap, and stop clustering once
+  // zoomed in so a town's handful of chargers show as individual pins.
+  var markers = L.markerClusterGroup({
+    maxClusterRadius: 40,
+    disableClusteringAtZoom: 14,
+    spiderfyOnMaxZoom: true,
+    showCoverageOnHover: false,
+  });
   var chargerData = [{"lat": 52.6016845, "lng": 1.2274456, "title": "The Jubilee Centre", "address": "Walpole Crescent", "connectors": ["CCS (Type 2) · 45kW", "CHAdeMO · 45kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 52.6805, "lng": 1.4215, "title": "Acle Recreation Centre", "address": "Acle", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 52.641691, "lng": 1.548347, "title": "Acle Community Centre", "address": "Acle", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 52.6189, "lng": 1.2148, "title": "Ella May", "address": "Rosalind Franklin Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 52.615428, "lng": 1.306942, "title": "County Hall Main Forecourt, Norwich 1", "address": "Martineau Lane", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 52.607931, "lng": 1.25118, "title": "GL162", "address": "Eaton Centre, Church Ln", "connectors": ["Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 52.563, "lng": 1.3438, "title": "SN&B Poringland", "address": "Crafton House", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 52.65629179773882, "lng": 1.2876136816644248, "title": "Tesla Service Superchargers", "address": "Tesla Service Centre", "connectors": ["CCS (Type 2) · 250kW"], "speed": "rapid"}, {"lat": 52.626423, "lng": 1.288438, "title": "zest-jack-king-hand", "address": "Chapel Field E", "connectors": ["Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 52.615184, "lng": 1.308271, "title": "County Hall Pay on Foot Car Park, Norwich 7", "address": "Martineau Lane", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 52.664399, "lng": 1.289379, "title": "COOP Fifers Lane", "address": "Fifers Lane COOP", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 52.632885, "lng": 1.281419, "title": "COOP Dereham Road", "address": "Dereham Road COOP", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 52.629595, "lng": 1.247491, "title": "COOP Earlham Green", "address": "Earlham Green Lane COOP", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 52.65435982, "lng": 1.18173912, "title": "Copper Beech Pub & Restaurant", "address": "Alex Moorhouse Way", "connectors": ["CHAdeMO · 50kW", "CCS (Type 2) · 50kW", "Type 2 (Socket Only) · 22kW"], "speed": "rapid"}, {"lat": 52.6682294, "lng": 1.2721205, "title": "InstaVolt McDonald's Norwich", "address": "Delft Way", "connectors": ["CCS (Type 2) · 120kW", "CHAdeMO · 50kW"], "speed": "rapid"}, {"lat": 52.791303, "lng": 1.253465, "title": "Tesco Superstore - Aylsham", "address": "28 Norwich Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 52.626927, "lng": 1.306493, "title": "Norwich Station Car Park", "address": "Station Approach", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 52.588747, "lng": 1.272659, "title": "Harford Park & Ride 2", "address": "Ipswich Road", "connectors": ["BS1363 3 Pin 13 Amp · 3kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 52.5545, "lng": 1.178917, "title": "Hethel Engineering Centre", "address": "Chapman Way", "connectors": ["BS1363 3 Pin 13 Amp · 3kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 52.7253437155276, "lng": 1.36182188987731, "title": "EVC The Norfolk Mead Hotel", "address": "The Norfolk Mead Hotel", "connectors": ["Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 52.60738458147449, "lng": 1.2498037198931797, "title": "Waitrose Car Park", "address": "Waitrose Car Park", "connectors": ["CCS (Type 2) · 50kW", "CHAdeMO · 50kW", "Type 2 (Socket Only) · 22kW"], "speed": "rapid"}, {"lat": 52.6527247, "lng": 1.3045267, "title": "InstaVolt Starbucks Chartwell", "address": "Chartwell Road", "connectors": ["CCS (Type 2) · 50kW", "CHAdeMO · 50kW"], "speed": "rapid"}, {"lat": 52.62348233647384, "lng": 1.2261899918993322, "title": "Norwich Research Park Car Park 1", "address": "Colney Lane", "connectors": ["Type 2 (Socket Only) · 7.2kW"], "speed": "fast"}, {"lat": 52.61827428904297, "lng": 1.217018412272182, "title": "NRP Public Carpark Customer Charging", "address": "NRP Public Carpark", "connectors": ["Type 2 (Socket Only) · 7.2kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 52.62466, "lng": 1.308538, "title": "Morrisons Norwich Riverside", "address": "4 Albion Way", "connectors": ["Type 2 (Tethered Connector)  · 60kW", "CHAdeMO · 50kW", "Type 2 (Socket Only) · 22kW"], "speed": "rapid"}, {"lat": 52.664566, "lng": 1.282016, "title": "Desira RC", "address": "Volcan Road North", "connectors": ["CHAdeMO · 50kW"], "speed": "rapid"}];
 
   chargerData.forEach(function (c) {
@@ -1109,6 +1116,14 @@
     markers.addLayer(marker);
   });
   map.addLayer(markers);
+
+  // Frame the map to the actual chargers so a town's points are visible
+  // immediately (and small towns land past the de-clustering zoom).
+  if (chargerData.length) {
+    map.fitBounds(markers.getBounds(), { padding: [40, 40], maxZoom: 15 });
+  } else {
+    map.setView([52.636708236163756, 1.2858436390617858], 12);
+  }
 
   // --- Connector filter ---
   var filterBtns = document.querySelectorAll('.filter-btn');

@@ -408,7 +408,7 @@
   function esc(s) { return String(s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
 
   // --- Map ---
-  var map = L.map('map').setView([53.37390855555556, -3.080195444444444], 12);
+  var map = L.map('map');
   L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
     subdomains: 'abcd',
@@ -424,7 +424,14 @@
     });
   }
 
-  var markers = L.markerClusterGroup();
+  // Cluster only when markers genuinely overlap, and stop clustering once
+  // zoomed in so a town's handful of chargers show as individual pins.
+  var markers = L.markerClusterGroup({
+    maxClusterRadius: 40,
+    disableClusteringAtZoom: 14,
+    spiderfyOnMaxZoom: true,
+    showCoverageOnHover: false,
+  });
   var chargerData = [{"lat": 53.375948, "lng": -3.079751, "title": "o/s house 34 Gannys Meadow, Woodchurch", "address": "o/s house 34 Gannys Meadow,", "connectors": ["Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 53.375439, "lng": -3.078807, "title": "Gannys Meadow, Woodchurch (side of house 11)", "address": "Gannys Meadow,  (side of house", "connectors": ["Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 53.374304, "lng": -3.080984, "title": "o/s house 100 Ackers Road, Woodchurch", "address": "o/s house 100 Ackers Road,", "connectors": ["Type 2 (Socket Only) · 11kW"], "speed": "fast"}, {"lat": 53.374012, "lng": -3.083839, "title": "Gannys Meadow, Woodchurch (Opp house 164)", "address": "Gannys Meadow,  (Opp house 16", "connectors": ["Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 53.373782, "lng": -3.080292, "title": "o/s house 82 Ackers Road, Woodchurch", "address": "82 Ackers Road,", "connectors": ["Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 53.373215, "lng": -3.078429, "title": "o/s house 22 Walby Close, Woodchurch", "address": "22 Walby Close,", "connectors": ["Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 53.373202, "lng": -3.083431, "title": "o/s house 99 Gannys Meadow, Woodchurch", "address": "99 Gannys Meadow,", "connectors": ["Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 53.372715, "lng": -3.07913, "title": "o/s house 37 Ackers Road, Woodchurch", "address": "o/s house 37 Ackers Road,", "connectors": ["Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 53.37256, "lng": -3.077096, "title": "o/s house 21 Walby Close, Woodchurch", "address": "o/s house 21 Walby Close,", "connectors": ["Type 2 (Socket Only) · 7kW"], "speed": "fast"}];
 
   chargerData.forEach(function (c) {
@@ -442,6 +449,14 @@
     markers.addLayer(marker);
   });
   map.addLayer(markers);
+
+  // Frame the map to the actual chargers so a town's points are visible
+  // immediately (and small towns land past the de-clustering zoom).
+  if (chargerData.length) {
+    map.fitBounds(markers.getBounds(), { padding: [40, 40], maxZoom: 15 });
+  } else {
+    map.setView([53.37390855555556, -3.080195444444444], 12);
+  }
 
   // --- Connector filter ---
   var filterBtns = document.querySelectorAll('.filter-btn');

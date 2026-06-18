@@ -617,7 +617,7 @@
   function esc(s) { return String(s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
 
   // --- Map ---
-  var map = L.map('map').setView([51.851346976050124, -4.313440548061956], 12);
+  var map = L.map('map');
   L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
     subdomains: 'abcd',
@@ -633,7 +633,14 @@
     });
   }
 
-  var markers = L.markerClusterGroup();
+  // Cluster only when markers genuinely overlap, and stop clustering once
+  // zoomed in so a town's handful of chargers show as individual pins.
+  var markers = L.markerClusterGroup({
+    maxClusterRadius: 40,
+    disableClusteringAtZoom: 14,
+    spiderfyOnMaxZoom: true,
+    showCoverageOnHover: false,
+  });
   var chargerData = [{"lat": 51.845871, "lng": -4.309961, "title": "Carmarthen Garden Centre Hub", "address": "Myrtle Hill", "connectors": ["CHAdeMO · 50kW", "CCS (Type 2) · 300kW", "CHAdeMO · 50kW", "CCS (Type 2) · 300kW", "CHAdeMO · 50kW", "CCS (Type 2) · 300kW", "CHAdeMO · 50kW", "CCS (Type 2) · 300kW", "CHAdeMO · 50kW", "CCS (Type 2) · 300kW", "CHAdeMO · 50kW", "CCS (Type 2) · 300kW", "CHAdeMO · 50kW", "CCS (Type 2) · 300kW", "CHAdeMO · 50kW", "CCS (Type 2) · 300kW"], "speed": "rapid"}, {"lat": 51.860361, "lng": -4.301413, "title": "Priory Street Car Park", "address": "Priory Street Car Park", "connectors": ["Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 51.846806, "lng": -4.352596, "title": "Nant y Ci P & R", "address": "Llysonnen Road", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 51.85345232, "lng": -4.31692096, "title": "Tesco Extra-Carmarthen", "address": "Morfa Lane", "connectors": ["Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 51.84808, "lng": -4.3236, "title": "Xcel Bowl, Llansteffan Road,", "address": "Llansteffan Road", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 51.85835305607105, "lng": -4.311615089085194, "title": "Tesla Carmarthen Supercharger", "address": "Heol y Gŵyddau", "connectors": ["CCS (Type 2) · 250kW"], "speed": "rapid"}, {"lat": 51.845131, "lng": -4.30712, "title": "Morrisons", "address": "Wm Morrison Supermarkets PLC", "connectors": ["CHAdeMO · 50kW", "Type 2 (Socket Only) · 22kW", "Type 2 (Tethered Connector)  · 50kW"], "speed": "rapid"}, {"lat": 51.844162, "lng": -4.304553, "title": "Old Oak Dental Practice", "address": "Parc Pensarn", "connectors": ["Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 51.848680042804915, "lng": -4.323100434076423, "title": "Xcel Bowl", "address": "Old Llansteffan Road", "connectors": ["Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 51.858517, "lng": -4.303042, "title": "St Peter's Street Car Park", "address": "St Peter's Street", "connectors": ["Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 51.858071, "lng": -4.305678, "title": "John Street Car Park", "address": "36-53 Orchard Street", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 51.855833, "lng": -4.310714, "title": "Friars Park Car Park", "address": "Friars Park", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 51.844193269775616, "lng": -4.304413641643805, "title": "Old Oak Dental Practice", "address": "Parc Pensarn", "connectors": ["Type 2 (Tethered Connector)  · 22kW"], "speed": "fast"}];
 
   chargerData.forEach(function (c) {
@@ -651,6 +658,14 @@
     markers.addLayer(marker);
   });
   map.addLayer(markers);
+
+  // Frame the map to the actual chargers so a town's points are visible
+  // immediately (and small towns land past the de-clustering zoom).
+  if (chargerData.length) {
+    map.fitBounds(markers.getBounds(), { padding: [40, 40], maxZoom: 15 });
+  } else {
+    map.setView([51.851346976050124, -4.313440548061956], 12);
+  }
 
   // --- Connector filter ---
   var filterBtns = document.querySelectorAll('.filter-btn');

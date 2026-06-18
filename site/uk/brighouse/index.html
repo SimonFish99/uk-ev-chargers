@@ -302,7 +302,7 @@
   function esc(s) { return String(s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
 
   // --- Map ---
-  var map = L.map('map').setView([53.70610272333897, -1.7678325737380873], 12);
+  var map = L.map('map');
   L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
     subdomains: 'abcd',
@@ -318,7 +318,14 @@
     });
   }
 
-  var markers = L.markerClusterGroup();
+  // Cluster only when markers genuinely overlap, and stop clustering once
+  // zoomed in so a town's handful of chargers show as individual pins.
+  var markers = L.markerClusterGroup({
+    maxClusterRadius: 40,
+    disableClusteringAtZoom: 14,
+    spiderfyOnMaxZoom: true,
+    showCoverageOnHover: false,
+  });
   var chargerData = [{"lat": 53.7119356597463, "lng": -1.7466530393886615, "title": "Hartshead Moor East Supercharger", "address": "M62 Junction 25/26", "connectors": ["NACS / Tesla Supercharger · 150kW"], "speed": "rapid"}, {"lat": 53.71441557983812, "lng": -1.7429971449622599, "title": "Hartshead Moor West Supercharger", "address": "M62 Junction 25/26", "connectors": ["NACS / Tesla Supercharger · 150kW"], "speed": "rapid"}, {"lat": 53.70079230127399, "lng": -1.7862741465937688, "title": "Household Waste Recycling Centre", "address": "Atlas Mill Road", "connectors": ["Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 53.70243954239024, "lng": -1.7831382135070726, "title": "Parsonage Lane Car Park", "address": "20 Church Ln", "connectors": ["CHAdeMO · 50kW", "CCS (Type 2) · 50kW", "Type 2 (Socket Only) · 22kW"], "speed": "rapid"}, {"lat": 53.70093053344618, "lng": -1.7801003242386741, "title": "Bethel Street", "address": "Bethel Street", "connectors": ["CHAdeMO · 50kW", "CCS (Type 2) · 50kW", "Type 2 (Socket Only) · 22kW"], "speed": "rapid"}];
 
   chargerData.forEach(function (c) {
@@ -336,6 +343,14 @@
     markers.addLayer(marker);
   });
   map.addLayer(markers);
+
+  // Frame the map to the actual chargers so a town's points are visible
+  // immediately (and small towns land past the de-clustering zoom).
+  if (chargerData.length) {
+    map.fitBounds(markers.getBounds(), { padding: [40, 40], maxZoom: 15 });
+  } else {
+    map.setView([53.70610272333897, -1.7678325737380873], 12);
+  }
 
   // --- Connector filter ---
   var filterBtns = document.querySelectorAll('.filter-btn');

@@ -394,7 +394,7 @@
   function esc(s) { return String(s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
 
   // --- Map ---
-  var map = L.map('map').setView([52.64817509280605, -0.7101018500448673], 12);
+  var map = L.map('map');
   L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
     subdomains: 'abcd',
@@ -410,7 +410,14 @@
     });
   }
 
-  var markers = L.markerClusterGroup();
+  // Cluster only when markers genuinely overlap, and stop clustering once
+  // zoomed in so a town's handful of chargers show as individual pins.
+  var markers = L.markerClusterGroup({
+    maxClusterRadius: 40,
+    disableClusteringAtZoom: 14,
+    spiderfyOnMaxZoom: true,
+    showCoverageOnHover: false,
+  });
   var chargerData = [{"lat": 52.56415574, "lng": -0.711458422, "title": "Old White Hart Hotel ", "address": "51 Main Street", "connectors": ["Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 52.6918952, "lng": -0.770395252, "title": "Mick Appleby Racing & Breading", "address": "The Homestead", "connectors": ["Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 52.674694, "lng": -0.657411, "title": "Barnsdale Lodge Hotel", "address": "Exton Lane", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 52.589279, "lng": -0.722626, "title": "Sycamore Harley-Davidson", "address": "Uppingham", "connectors": ["Type 2 (Tethered Connector)  · 22kW"], "speed": "fast"}, {"lat": 52.671526, "lng": -0.729489, "title": "Oakham Town Council-Church Street Car Park", "address": "Church Street Car Park", "connectors": ["Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 52.667877, "lng": -0.731603, "title": "Tesco Superstore-Oakham", "address": "96 South Street", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 52.647256802448396, "lng": -0.618427126358938, "title": "Normanton Hall Hotel", "address": "Normanton Park Road", "connectors": ["Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 52.678717, "lng": -0.739405, "title": "Larkfleet Homes Barleythorpe", "address": "Stud Lane", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}];
 
   chargerData.forEach(function (c) {
@@ -428,6 +435,14 @@
     markers.addLayer(marker);
   });
   map.addLayer(markers);
+
+  // Frame the map to the actual chargers so a town's points are visible
+  // immediately (and small towns land past the de-clustering zoom).
+  if (chargerData.length) {
+    map.fitBounds(markers.getBounds(), { padding: [40, 40], maxZoom: 15 });
+  } else {
+    map.setView([52.64817509280605, -0.7101018500448673], 12);
+  }
 
   // --- Connector filter ---
   var filterBtns = document.querySelectorAll('.filter-btn');

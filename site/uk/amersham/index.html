@@ -526,7 +526,7 @@
   function esc(s) { return String(s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
 
   // --- Map ---
-  var map = L.map('map').setView([51.67011022285719, -0.6081775247788718], 12);
+  var map = L.map('map');
   L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
     subdomains: 'abcd',
@@ -542,7 +542,14 @@
     });
   }
 
-  var markers = L.markerClusterGroup();
+  // Cluster only when markers genuinely overlap, and stop clustering once
+  // zoomed in so a town's handful of chargers show as individual pins.
+  var markers = L.markerClusterGroup({
+    maxClusterRadius: 40,
+    disableClusteringAtZoom: 14,
+    spiderfyOnMaxZoom: true,
+    showCoverageOnHover: false,
+  });
   var chargerData = [{"lat": 51.68060416153574, "lng": -0.608239090836463, "title": "Boot & Slipper", "address": "Chesham Road", "connectors": ["CCS (Type 2) · 50kW"], "speed": "rapid"}, {"lat": 51.66414946427466, "lng": -0.6355673527804697, "title": "Shardeloes Farm Equestrian Centre", "address": "Cherry Lane", "connectors": ["CCS (Type 2) · 50kW", "CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 22kW"], "speed": "rapid"}, {"lat": 51.6666582443422, "lng": -0.613322188399394, "title": "Old Town Car Park", "address": "The Broadway", "connectors": ["CCS (Type 2) · 50kW", "CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 43kW", "Type 2 (Socket Only) · 7kW"], "speed": "rapid"}, {"lat": 51.6715023851101, "lng": -0.583793967505471, "title": "BP Chalfonts Way SF Connect", "address": "66 White Lion Road", "connectors": ["CCS (Type 2) · 150kW"], "speed": "rapid"}, {"lat": 51.67413, "lng": -0.606514, "title": "MK18", "address": "King George V Road", "connectors": ["BS1363 3 Pin 13 Amp · 3kW", "BS1363 3 Pin 13 Amp · 3kW"], "speed": "slow"}, {"lat": 51.668205, "lng": -0.6227, "title": "183 High Street", "address": "183 High Street", "connectors": ["Type 2 (Socket Only) · 5.1kW"], "speed": "slow"}, {"lat": 51.667046, "lng": -0.56346, "title": "Chenies Parade", "address": "Little Chalfont", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 51.666342, "lng": -0.616582, "title": "The Crown Inn-Amersham", "address": "16 High Street", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.6789991961664, "lng": -0.607264173045792, "title": "Sycamore Road Car Park", "address": "Sycamore Road", "connectors": ["CCS (Type 2) · 50kW", "CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 43kW"], "speed": "rapid"}, {"lat": 51.665632, "lng": -0.610537, "title": "Tesco Superstore-Amersham", "address": "London Road West", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.667944, "lng": -0.621973, "title": "155 High Street", "address": "155 High Street", "connectors": ["Type 2 (Socket Only) · 5.1kW"], "speed": "slow"}];
 
   chargerData.forEach(function (c) {
@@ -560,6 +567,14 @@
     markers.addLayer(marker);
   });
   map.addLayer(markers);
+
+  // Frame the map to the actual chargers so a town's points are visible
+  // immediately (and small towns land past the de-clustering zoom).
+  if (chargerData.length) {
+    map.fitBounds(markers.getBounds(), { padding: [40, 40], maxZoom: 15 });
+  } else {
+    map.setView([51.67011022285719, -0.6081775247788718], 12);
+  }
 
   // --- Connector filter ---
   var filterBtns = document.querySelectorAll('.filter-btn');

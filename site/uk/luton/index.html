@@ -653,7 +653,7 @@
   function esc(s) { return String(s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
 
   // --- Map ---
-  var map = L.map('map').setView([51.88153351751093, -0.4019361964378997], 12);
+  var map = L.map('map');
   L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
     subdomains: 'abcd',
@@ -669,7 +669,14 @@
     });
   }
 
-  var markers = L.markerClusterGroup();
+  // Cluster only when markers genuinely overlap, and stop clustering once
+  // zoomed in so a town's handful of chargers show as individual pins.
+  var markers = L.markerClusterGroup({
+    maxClusterRadius: 40,
+    disableClusteringAtZoom: 14,
+    spiderfyOnMaxZoom: true,
+    showCoverageOnHover: false,
+  });
   var chargerData = [{"lat": 51.87167566266399, "lng": -0.39699594656849513, "title": "Tesla Luton Gipsy Lane Retail Park", "address": "Gipsy Lane", "connectors": ["CCS (Type 2) · 250kW"], "speed": "rapid"}, {"lat": 51.88223, "lng": -0.41579, "title": "Luton Station", "address": "Midland Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.8879881, "lng": -0.371189, "title": "InstaVolt Wigmore Shopping Centre", "address": "Wigmore Lane", "connectors": ["CCS (Type 2) · 120kW", "CHAdeMO · 50kW"], "speed": "rapid"}, {"lat": 51.911073, "lng": -0.388534, "title": "Basepoint Business Centre", "address": "Great Marlings", "connectors": ["BS1363 3 Pin 13 Amp · 3kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.882306, "lng": -0.400465, "title": "Whitecroft Rd 9", "address": "Whitecroft Rd 9", "connectors": ["Type 2 (Socket Only) · 3.7kW"], "speed": "slow"}, {"lat": 51.879834, "lng": -0.414105, "title": "Central Car Park The Mall", "address": "Silver Street", "connectors": ["BS1363 3 Pin 13 Amp · 3kW", "Type 2 (Socket Only) · 3.7kW"], "speed": "slow"}, {"lat": 51.879738, "lng": -0.419869, "title": "Upper George Street", "address": "Upper George Street", "connectors": ["BS1363 3 Pin 13 Amp · 3kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.87803, "lng": -0.40928, "title": "Luton Campus", "address": "Vicarage Street", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.87415, "lng": -0.40523, "title": "GM Griffin House Park Street Car Park", "address": "Park Street", "connectors": ["BS1363 3 Pin 13 Amp · 3kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.873901, "lng": -0.391388, "title": "GM Plant", "address": "Kimpton Road", "connectors": ["BS1363 3 Pin 13 Amp · 3kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 51.8657, "lng": -0.422652, "title": "Stockwood Park Discovery Centre", "address": "London Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 3.7kW"], "speed": "fast"}, {"lat": 51.873302, "lng": -0.40465, "title": "GM Griffin House", "address": "Osborne Road", "connectors": ["BS1363 3 Pin 13 Amp · 3kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 51.906429, "lng": -0.39294, "title": "Inspire: Luton Sports Village", "address": "Butterfield Green Road", "connectors": ["Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.881459, "lng": -0.401875, "title": "Whitecroft Rd 57", "address": "Whitecroft Rd 57", "connectors": ["Type 2 (Socket Only) · 3.7kW"], "speed": "slow"}, {"lat": 51.875187, "lng": -0.39408, "title": "GM Gate 1 visitors Car Park", "address": "Osbourne Road", "connectors": ["BS1363 3 Pin 13 Amp · 3kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}];
 
   chargerData.forEach(function (c) {
@@ -687,6 +694,14 @@
     markers.addLayer(marker);
   });
   map.addLayer(markers);
+
+  // Frame the map to the actual chargers so a town's points are visible
+  // immediately (and small towns land past the de-clustering zoom).
+  if (chargerData.length) {
+    map.fitBounds(markers.getBounds(), { padding: [40, 40], maxZoom: 15 });
+  } else {
+    map.setView([51.88153351751093, -0.4019361964378997], 12);
+  }
 
   // --- Connector filter ---
   var filterBtns = document.querySelectorAll('.filter-btn');

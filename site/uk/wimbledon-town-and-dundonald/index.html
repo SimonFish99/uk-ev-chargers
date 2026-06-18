@@ -276,7 +276,7 @@
   function esc(s) { return String(s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
 
   // --- Map ---
-  var map = L.map('map').setView([51.4224566, -0.1940734], 12);
+  var map = L.map('map');
   L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
     subdomains: 'abcd',
@@ -292,7 +292,14 @@
     });
   }
 
-  var markers = L.markerClusterGroup();
+  // Cluster only when markers genuinely overlap, and stop clustering once
+  // zoomed in so a town's handful of chargers show as individual pins.
+  var markers = L.markerClusterGroup({
+    maxClusterRadius: 40,
+    disableClusteringAtZoom: 14,
+    spiderfyOnMaxZoom: true,
+    showCoverageOnHover: false,
+  });
   var chargerData = [{"lat": 51.42374, "lng": -0.198954, "title": "Opposite 93 Queens Road", "address": "Queens Road", "connectors": ["Type 2 (Socket Only) · 3.7kW"], "speed": "slow"}, {"lat": 51.423136, "lng": -0.19002, "title": "Birkbeck Road, adjacent 111 Effra Road", "address": "Birkbeck Road", "connectors": ["Type 2 (Socket Only) · 5kW"], "speed": "slow"}, {"lat": 51.422699, "lng": -0.189641, "title": "Edith Road, adjacent to 71 Clarence Road", "address": "Edith Road", "connectors": ["Type 2 (Socket Only) · 5kW"], "speed": "slow"}, {"lat": 51.422116, "lng": -0.189526, "title": "Fernleigh, 20 - 25 Edith Road", "address": "Edith Road", "connectors": ["Type 2 (Socket Only) · 3.7kW"], "speed": "slow"}, {"lat": 51.420592, "lng": -0.202226, "title": "10 South Park Road", "address": "South Park Road", "connectors": ["Type 2 (Socket Only) · 5kW"], "speed": "slow"}];
 
   chargerData.forEach(function (c) {
@@ -310,6 +317,14 @@
     markers.addLayer(marker);
   });
   map.addLayer(markers);
+
+  // Frame the map to the actual chargers so a town's points are visible
+  // immediately (and small towns land past the de-clustering zoom).
+  if (chargerData.length) {
+    map.fitBounds(markers.getBounds(), { padding: [40, 40], maxZoom: 15 });
+  } else {
+    map.setView([51.4224566, -0.1940734], 12);
+  }
 
   // --- Connector filter ---
   var filterBtns = document.querySelectorAll('.filter-btn');

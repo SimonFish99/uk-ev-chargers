@@ -402,7 +402,7 @@
   function esc(s) { return String(s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
 
   // --- Map ---
-  var map = L.map('map').setView([52.244742405431055, -1.1799614154929006], 12);
+  var map = L.map('map');
   L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
     subdomains: 'abcd',
@@ -418,7 +418,14 @@
     });
   }
 
-  var markers = L.markerClusterGroup();
+  // Cluster only when markers genuinely overlap, and stop clustering once
+  // zoomed in so a town's handful of chargers show as individual pins.
+  var markers = L.markerClusterGroup({
+    maxClusterRadius: 40,
+    disableClusteringAtZoom: 14,
+    spiderfyOnMaxZoom: true,
+    showCoverageOnHover: false,
+  });
   var chargerData = [{"lat": 52.256684, "lng": -1.161572, "title": "Bowen Square", "address": "Bowen Square", "connectors": ["CHAdeMO · 50kW", "CHAdeMO · 50kW", "CCS (Type 2) · 75kW", "CCS (Type 2) · 75kW", "CCS (Type 2) · 75kW", "CCS (Type 2) · 75kW"], "speed": "rapid"}, {"lat": 52.256754, "lng": -1.164491, "title": "Newlands Car Park 1", "address": "Newlands Car Park 1", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 52.2585077405669, "lng": -1.15621455614382, "title": "McDonald's Vicar Lane Daventry", "address": "Vicar Lane", "connectors": ["CCS (Type 2) · 120kW", "CHAdeMO · 60kW", "CCS (Type 2) · 120kW", "CHAdeMO · 60kW"], "speed": "rapid"}, {"lat": 52.21733161, "lng": -1.26003686, "title": "Hellidon Lakes Hotel Spa and Golf Resort", "address": "Hellidon", "connectors": ["Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 52.256785, "lng": -1.159434, "title": "Tesco Superstore-Daventry", "address": "15 New Street", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 52.260789487450495, "lng": -1.1777914923064827, "title": "Cummins Ltd - Royal Oak Way South", "address": "Parsons Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 52.206345, "lng": -1.18019, "title": "Fawsley Hall Hotel", "address": "Fawsley", "connectors": ["Type 2 (Socket Only) · 7kW"], "speed": "fast"}];
 
   chargerData.forEach(function (c) {
@@ -436,6 +443,14 @@
     markers.addLayer(marker);
   });
   map.addLayer(markers);
+
+  // Frame the map to the actual chargers so a town's points are visible
+  // immediately (and small towns land past the de-clustering zoom).
+  if (chargerData.length) {
+    map.fitBounds(markers.getBounds(), { padding: [40, 40], maxZoom: 15 });
+  } else {
+    map.setView([52.244742405431055, -1.1799614154929006], 12);
+  }
 
   // --- Connector filter ---
   var filterBtns = document.querySelectorAll('.filter-btn');

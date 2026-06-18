@@ -1052,7 +1052,7 @@
   function esc(s) { return String(s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
 
   // --- Map ---
-  var map = L.map('map').setView([51.69702691725474, -2.584179687216194], 12);
+  var map = L.map('map');
   L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
     subdomains: 'abcd',
@@ -1068,7 +1068,14 @@
     });
   }
 
-  var markers = L.markerClusterGroup();
+  // Cluster only when markers genuinely overlap, and stop clustering once
+  // zoomed in so a town's handful of chargers show as individual pins.
+  var markers = L.markerClusterGroup({
+    maxClusterRadius: 40,
+    disableClusteringAtZoom: 14,
+    spiderfyOnMaxZoom: true,
+    showCoverageOnHover: false,
+  });
   var chargerData = [{"lat": -5.866583099134459e-05, "lng": -2.2496442852570908e-05, "title": "James Street", "address": "James Street", "connectors": ["CHAdeMO"], "speed": "slow"}, {"lat": 53.75750069459906, "lng": -2.6846444235922036, "title": "James Street", "address": "James Street", "connectors": [], "speed": "slow"}, {"lat": 53.76508305, "lng": -2.640782058, "title": "Tickled Trout Hotel", "address": "Preston New Road", "connectors": ["CCS (Type 2) · 100kW", "Type 2 (Socket Only) · 22kW"], "speed": "rapid"}, {"lat": 53.728405, "lng": -2.661709, "title": "Kingsway Car Park, Bamber Bridge 1", "address": "Bamber Bridge", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 53.76508305, "lng": -2.640782058, "title": "EVC Tickled Trout Hotel", "address": "Preston New Road", "connectors": ["Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 53.902379, "lng": -2.772537, "title": "High Street Car Park, Garstang 3", "address": "High Street, Garstang", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 53.718891, "lng": -2.639711, "title": "ICUEVEMINI900134", "address": "Walton Summit Centre", "connectors": ["Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 53.759883, "lng": -2.682831, "title": "SIKA PRESTON 1", "address": "Miller St", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 53.69252, "lng": -2.67483, "title": "MFG", "address": "Wigan Road", "connectors": ["CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 43kW", "Type 2 (Tethered Connector)  · 50kW"], "speed": "rapid"}, {"lat": 53.789643, "lng": -2.704535, "title": "Central Drive, Royal Preston Hospital, Sharoe Green Lane, Fulwood, Preston", "address": "Royal Preston Hospital", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 53.789011, "lng": -2.708097, "title": "Royal Preston Hospital 2", "address": "Sharoe Green Lane", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 53.779391, "lng": -2.69113, "title": "Preston Business Centre", "address": "Fulwood", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 53.748631, "lng": -2.675916, "title": "Capitol Way", "address": "Capitol Way", "connectors": ["Type 2 (Socket Only) · 11kW", "Type 2 (Socket Only) · 11kW", "Type 2 (Socket Only) · 11kW", "Type 2 (Socket Only) · 11kW", "Type 2 (Socket Only) · 11kW"], "speed": "fast"}, {"lat": 53.73296, "lng": -2.71716, "title": "South Ribble - Community Centre CP", "address": "Kingsfold Drive", "connectors": ["Type 2 (Tethered Connector)  · 50kW", "CHAdeMO · 50kW", "Type 2 (Socket Only) · 22kW"], "speed": "rapid"}, {"lat": 53.730537, "lng": -2.65131, "title": "South Ribble - Bamber Bridge CP", "address": "Brindle Road", "connectors": ["Type 2 (Tethered Connector)  · 50kW", "CHAdeMO · 50kW", "Type 2 (Socket Only) · 22kW"], "speed": "rapid"}, {"lat": 53.755276, "lng": -2.6998382, "title": "Frank Whittle Partnership", "address": "Regent Street", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 53.79106533467561, "lng": -2.709543184370659, "title": "Royal Preston Hospital Car Park A", "address": "Sharoe Green Lane", "connectors": ["Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 53.7992039, "lng": -2.7228277, "title": "Lidl-Eastway Retail Hub", "address": "Eastway Retail Hub", "connectors": ["Type 2 (Socket Only) · 22kW", "CHAdeMO · 50kW", "CCS (Type 2) · 50kW"], "speed": "rapid"}, {"lat": 53.760723613821284, "lng": -2.746551038903931, "title": "Lockside Road, Riversway", "address": "Lockside Road, Riversway", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 53.79123587135817, "lng": -2.6534852083113947, "title": "Eurogarages Preston East Starbucks", "address": "Starbucks", "connectors": ["CCS (Type 2) · 175kW", "CHAdeMO · 100kW", "CCS (Type 2) · 175kW", "CHAdeMO · 100kW"], "speed": "rapid"}, {"lat": 53.820627, "lng": -2.655542, "title": "ICUEVE900236", "address": "77 Cumeragh Lane", "connectors": ["Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 53.784958, "lng": -2.752015, "title": "Ancient Oak", "address": "Merry Trees Lane", "connectors": ["CCS (Type 2) · 50kW", "CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 43kW"], "speed": "rapid"}, {"lat": 53.761604, "lng": -2.701257, "title": "Lawson St Parking/Charging", "address": "2-4 Lawson Street", "connectors": ["CHAdeMO · 50kW", "CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 43kW"], "speed": "rapid"}, {"lat": 53.759342, "lng": -2.718506, "title": "ICUEVE900244", "address": "Strand Road", "connectors": ["Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 53.719582, "lng": -2.644137, "title": "ICUEVE900381", "address": "487 Holly Place", "connectors": ["Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 53.719223, "lng": -2.6389725, "title": "Ainsworth & Parkinson LTD (A&p)", "address": "Sceptre Way", "connectors": ["Type 2 (Socket Only) · 7kW"], "speed": "fast"}];
 
   chargerData.forEach(function (c) {
@@ -1086,6 +1093,14 @@
     markers.addLayer(marker);
   });
   map.addLayer(markers);
+
+  // Frame the map to the actual chargers so a town's points are visible
+  // immediately (and small towns land past the de-clustering zoom).
+  if (chargerData.length) {
+    map.fitBounds(markers.getBounds(), { padding: [40, 40], maxZoom: 15 });
+  } else {
+    map.setView([51.69702691725474, -2.584179687216194], 12);
+  }
 
   // --- Connector filter ---
   var filterBtns = document.querySelectorAll('.filter-btn');

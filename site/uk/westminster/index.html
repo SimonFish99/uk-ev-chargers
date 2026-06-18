@@ -749,7 +749,7 @@
   function esc(s) { return String(s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
 
   // --- Map ---
-  var map = L.map('map').setView([51.510468411764705, -0.15788458823529414], 12);
+  var map = L.map('map');
   L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
     subdomains: 'abcd',
@@ -765,7 +765,14 @@
     });
   }
 
-  var markers = L.markerClusterGroup();
+  // Cluster only when markers genuinely overlap, and stop clustering once
+  // zoomed in so a town's handful of chargers show as individual pins.
+  var markers = L.markerClusterGroup({
+    maxClusterRadius: 40,
+    disableClusteringAtZoom: 14,
+    spiderfyOnMaxZoom: true,
+    showCoverageOnHover: false,
+  });
   var chargerData = [{"lat": 51.493336, "lng": -0.141381, "title": "Wilton Road", "address": "105 Wilton Road", "connectors": ["Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 51.531716, "lng": -0.170067, "title": "Wellington Place", "address": "Wellington Place, St. Johns Wood", "connectors": ["CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 50kW"], "speed": "rapid"}, {"lat": 51.525075, "lng": -0.164654, "title": "10-6 Rossmore Road, Westminster", "address": "10-6 Rossmore Road, Westminster, London NW1 6PA, UK", "connectors": ["CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 50kW", "Type 2 (Tethered Connector)  · 43kW"], "speed": "rapid"}, {"lat": 51.52401, "lng": -0.175726, "title": "Edgware Road", "address": "Edgware Road", "connectors": ["CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 50kW", "CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 50kW", "CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 50kW"], "speed": "rapid"}, {"lat": 51.523033, "lng": -0.183562, "title": "Warwick Avenue", "address": "Warwick Avenue (N.Bound @Nr. 27), Little Venice", "connectors": ["CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 50kW"], "speed": "rapid"}, {"lat": 51.52113, "lng": -0.151084, "title": "Devonshire Street", "address": "Devonshire Street", "connectors": ["Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.51881, "lng": -0.19696, "title": "Westbourne Park Road", "address": "Westbourne Park Road", "connectors": ["CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 50kW"], "speed": "rapid"}, {"lat": 51.512536, "lng": -0.172412, "title": "Brook Street, Hyde Park Estate, Westminster", "address": "Brook Street, Hyde Park Estate, Westminster, London W2 2LZ", "connectors": ["CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 50kW", "Type 2 (Tethered Connector)  · 43kW"], "speed": "rapid"}, {"lat": 51.511611, "lng": -0.180296, "title": "Lancaster Gate (Spire House), Bayswater", "address": "Lancaster Gate (Spire House), Bayswater", "connectors": ["CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 50kW"], "speed": "rapid"}, {"lat": 51.511407, "lng": -0.112471, "title": "Temple Place site 2", "address": "Temple Place site 2", "connectors": ["Type 1 (J1772) · 3kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.5017, "lng": -0.18363, "title": "Kensington Road,Kensington", "address": "Kensington Road, Kensington", "connectors": ["CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 50kW"], "speed": "rapid"}, {"lat": 51.500074, "lng": -0.153404, "title": "2 Belgrave Square, Westminster", "address": "2 Belgrave Square, Westminster, London SW1X 8PJ, United Kingdom", "connectors": ["CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 50kW", "Type 2 (Tethered Connector)  · 43kW"], "speed": "rapid"}, {"lat": 51.494868, "lng": -0.132312, "title": "Regency Place, Belgravia", "address": "Regency Place, Belgravia, Westminster, SW1P 2DZ", "connectors": ["CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 50kW", "Type 2 (Tethered Connector)  · 43kW"], "speed": "rapid"}, {"lat": 51.494862, "lng": -0.13817, "title": "Francis Street", "address": "Francis Street", "connectors": ["Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.488705, "lng": -0.134094, "title": "Aylesford Street", "address": "Aylesford Street", "connectors": ["Type 1 (J1772) · 3kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.518613, "lng": -0.170045, "title": "23 Praed Street, Westminster", "address": "23 Praed Street, Westminster, London W2 1PP, UK", "connectors": ["CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 50kW"], "speed": "rapid"}, {"lat": 51.506477, "lng": -0.12377, "title": "Westminster-Whitehall Place", "address": "Whitehall Place", "connectors": ["Type 2 (Socket Only) · 7kW"], "speed": "fast"}];
 
   chargerData.forEach(function (c) {
@@ -783,6 +790,14 @@
     markers.addLayer(marker);
   });
   map.addLayer(markers);
+
+  // Frame the map to the actual chargers so a town's points are visible
+  // immediately (and small towns land past the de-clustering zoom).
+  if (chargerData.length) {
+    map.fitBounds(markers.getBounds(), { padding: [40, 40], maxZoom: 15 });
+  } else {
+    map.setView([51.510468411764705, -0.15788458823529414], 12);
+  }
 
   // --- Connector filter ---
   var filterBtns = document.querySelectorAll('.filter-btn');

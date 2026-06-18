@@ -1003,7 +1003,7 @@
   function esc(s) { return String(s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
 
   // --- Map ---
-  var map = L.map('map').setView([54.56875689472023, -1.3093766401384361], 12);
+  var map = L.map('map');
   L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
     subdomains: 'abcd',
@@ -1019,7 +1019,14 @@
     });
   }
 
-  var markers = L.markerClusterGroup();
+  // Cluster only when markers genuinely overlap, and stop clustering once
+  // zoomed in so a town's handful of chargers show as individual pins.
+  var markers = L.markerClusterGroup({
+    maxClusterRadius: 40,
+    disableClusteringAtZoom: 14,
+    spiderfyOnMaxZoom: true,
+    showCoverageOnHover: false,
+  });
   var chargerData = [{"lat": 54.54907, "lng": -1.331404, "title": "Lidl-Yarm Road", "address": "Yarm Road", "connectors": ["Type 2 (Socket Only) · 22kW", "CCS (Type 2) · 50kW", "CHAdeMO · 50kW"], "speed": "rapid"}, {"lat": 54.560856, "lng": -1.311406, "title": "Lidl-Stockton-on-Tees", "address": "1 Tower Street", "connectors": ["Type 2 (Socket Only) · 22kW", "CCS (Type 2) · 50kW", "CHAdeMO · 50kW"], "speed": "rapid"}, {"lat": 54.548798, "lng": -1.284075, "title": "Littleboy Recreation Ground Car Park 3", "address": "Acklam Road, Thornaby,", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 54.562539, "lng": -1.296173, "title": "Durham University Ebsworth Building", "address": "Infinity Bridge Access Stairway", "connectors": ["BS1363 3 Pin 13 Amp · 3kW"], "speed": "slow"}, {"lat": 54.53545, "lng": -1.34137, "title": "Preston Park, Stockton-on-Tees", "address": "Yarm Road", "connectors": ["Type 2 (Tethered Connector)  · 50kW", "CHAdeMO · 50kW", "Type 2 (Socket Only) · 22kW"], "speed": "rapid"}, {"lat": 54.62189, "lng": -1.25886, "title": "Cowpen Bewley Country Park Car Park, Billingham 1", "address": "Cowpen Bewley Country Park, Billingham", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 54.612319, "lng": -1.377729, "title": "Wynyard Woodlands Park", "address": "Wynyard Road", "connectors": ["BS1363 3 Pin 13 Amp · 3kW"], "speed": "slow"}, {"lat": 54.566662, "lng": -1.310634, "title": "Stockton Municipal Buildings", "address": "Stockton Municipal Buildings", "connectors": ["Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 54.563116, "lng": -1.296596, "title": "Durham University Queens Campus", "address": "Infinity Bridge Access Stairway", "connectors": ["Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 54.562163, "lng": -1.29971, "title": "Stockton Riverside College", "address": "Stockton Riverside College", "connectors": ["BS1363 3 Pin 13 Amp · 3kW"], "speed": "slow"}, {"lat": 54.544331, "lng": -1.318501, "title": "RMB Toyota", "address": "1 Cygnet Drive", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 54.542553, "lng": -1.323233, "title": "Tristar House", "address": "Lockheed Court", "connectors": ["Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 54.592803, "lng": -1.352526, "title": "Tesco Extra-Stockton-on-Tees", "address": "Durham Road", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 7kW", "CHAdeMO · 50kW", "CCS (Type 2) · 50kW"], "speed": "rapid"}, {"lat": 54.56383, "lng": -1.302882, "title": "Razorblue-Admiralty House", "address": "Fudan Way", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 54.6277436975158, "lng": -1.30655169308761, "title": "MFG Wolviston Services", "address": "Coal Lane", "connectors": ["CHAdeMO · 100kW", "CCS (Type 2) · 150kW"], "speed": "rapid"}, {"lat": 54.54879202368886, "lng": -1.319761030247264, "title": "DTN Academy", "address": "1 Wylam Court", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 54.52886940052696, "lng": -1.3588843625440177, "title": "Prestige Motor Services Ltd", "address": "10 Cowton Way", "connectors": ["Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 54.566502, "lng": -1.29953, "title": "Thirteen Housing", "address": "North Shore Road", "connectors": ["Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 54.558939407522786, "lng": -1.277656052418024, "title": "Morrisons Thornaby", "address": "Thornaby", "connectors": ["Type 2 (Socket Only) · 22kW", "CHAdeMO · 50kW", "CCS (Type 2) · 50kW"], "speed": "rapid"}, {"lat": 54.5570854633319, "lng": -1.27525178903352, "title": "Teesside Shopping Park", "address": "Goodwood Square", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 54.607125, "lng": -1.280032, "title": "Tesco Superstore-Billingham", "address": "Leeholme Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 54.6280084806994, "lng": -1.30666943599203, "title": "Wolviston Services", "address": "Wolviston Services", "connectors": ["CHAdeMO · 50kW", "CCS (Type 2) · 50kW"], "speed": "rapid"}, {"lat": 54.567511, "lng": -1.306015, "title": "Simon Bailes Peugeot Stockton", "address": "Simon Bailes Peugeot Stockton", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 54.533209, "lng": -1.289589, "title": "Stirling House", "address": "Stirling House", "connectors": ["Type 2 (Socket Only) · 7kW"], "speed": "fast"}];
 
   chargerData.forEach(function (c) {
@@ -1037,6 +1044,14 @@
     markers.addLayer(marker);
   });
   map.addLayer(markers);
+
+  // Frame the map to the actual chargers so a town's points are visible
+  // immediately (and small towns land past the de-clustering zoom).
+  if (chargerData.length) {
+    map.fitBounds(markers.getBounds(), { padding: [40, 40], maxZoom: 15 });
+  } else {
+    map.setView([54.56875689472023, -1.3093766401384361], 12);
+  }
 
   // --- Connector filter ---
   var filterBtns = document.querySelectorAll('.filter-btn');

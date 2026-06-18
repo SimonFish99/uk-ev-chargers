@@ -632,7 +632,7 @@
   function esc(s) { return String(s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
 
   // --- Map ---
-  var map = L.map('map').setView([55.88919156923077, -3.0840055538461537], 12);
+  var map = L.map('map');
   L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
     subdomains: 'abcd',
@@ -648,7 +648,14 @@
     });
   }
 
-  var markers = L.markerClusterGroup();
+  // Cluster only when markers genuinely overlap, and stop clustering once
+  // zoomed in so a town's handful of chargers show as individual pins.
+  var markers = L.markerClusterGroup({
+    maxClusterRadius: 40,
+    disableClusteringAtZoom: 14,
+    spiderfyOnMaxZoom: true,
+    showCoverageOnHover: false,
+  });
   var chargerData = [{"lat": 55.8934844, "lng": -3.0681182, "title": "Lidl-Dalkeith", "address": "5a Newmilles Road", "connectors": ["Type 2 (Socket Only) · 22kW", "CCS (Type 2) · 50kW", "CHAdeMO · 50kW"], "speed": "rapid"}, {"lat": 55.881446, "lng": -3.086375, "title": "Mcdonalds Car Park", "address": "Bonnyrigg Road", "connectors": ["CCS (Type 2) · 50kW", "CHAdeMO · 50kW", "Type 2 (Socket Only) · 22kW", "CCS (Type 2) · 50kW", "CHAdeMO · 50kW", "Type 2 (Socket Only) · 22kW"], "speed": "rapid"}, {"lat": 55.920016, "lng": -3.078725, "title": "Shawfair Station", "address": "Shawfair Station", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 55.880229, "lng": -3.090126, "title": "Sheriffhall P & R", "address": "2 Sheriffhall Roundabout", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 55.881133, "lng": -3.086771, "title": "Dalkeith Retail Park", "address": "Bonnyrigg Road", "connectors": ["CCS (Type 2) · 75kW", "CCS (Type 2) · 75kW", "CHAdeMO · 50kW", "CHAdeMO · 50kW"], "speed": "rapid"}, {"lat": 55.906862, "lng": -3.101645, "title": "Old Colliery Pub & Restaurant A7", "address": "Danderhall", "connectors": ["CCS (Type 2) · 50kW", "CHAdeMO · 50kW", "Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW", "CCS (Type 2) · 50kW", "CHAdeMO · 50kW"], "speed": "rapid"}, {"lat": 55.88348, "lng": -3.077125, "title": "Edinburgh College, Midlothian Campus", "address": "Dalhousie Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 55.882421, "lng": -3.079255, "title": "Midlothian Campus, Edinburgh", "address": "Midlothian Campus", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 55.881986, "lng": -3.08554, "title": "Eskbank Station", "address": "32 Hardengreen Lane", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 55.864919, "lng": -3.068526, "title": "Newtongrange Station", "address": "37 Murderdean Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 55.901211, "lng": -3.095113, "title": "Sheriffhall Park and Ride", "address": "698 Old Dalkeith Road", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Tethered Connector)  · 22kW", "CHAdeMO · 22kW"], "speed": "fast"}, {"lat": 55.899639, "lng": -3.088976, "title": "Sheriffhall P & R", "address": "2 Sheriffhall Roundabout", "connectors": ["Type 2 (Tethered Connector)  · 43kW", "Type 2 (Tethered Connector)  · 50kW", "CHAdeMO · 50kW"], "speed": "rapid"}, {"lat": 55.882664, "lng": -3.085777, "title": "Tesco Superstore-Dalkeith Hardengreen", "address": "Bonnyrigg Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}];
 
   chargerData.forEach(function (c) {
@@ -666,6 +673,14 @@
     markers.addLayer(marker);
   });
   map.addLayer(markers);
+
+  // Frame the map to the actual chargers so a town's points are visible
+  // immediately (and small towns land past the de-clustering zoom).
+  if (chargerData.length) {
+    map.fitBounds(markers.getBounds(), { padding: [40, 40], maxZoom: 15 });
+  } else {
+    map.setView([55.88919156923077, -3.0840055538461537], 12);
+  }
 
   // --- Connector filter ---
   var filterBtns = document.querySelectorAll('.filter-btn');

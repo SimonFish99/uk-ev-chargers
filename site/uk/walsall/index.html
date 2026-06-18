@@ -302,7 +302,7 @@
   function esc(s) { return String(s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
 
   // --- Map ---
-  var map = L.map('map').setView([52.58937790126028, -1.9965229299339975], 12);
+  var map = L.map('map');
   L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
     subdomains: 'abcd',
@@ -318,7 +318,14 @@
     });
   }
 
-  var markers = L.markerClusterGroup();
+  // Cluster only when markers genuinely overlap, and stop clustering once
+  // zoomed in so a town's handful of chargers show as individual pins.
+  var markers = L.markerClusterGroup({
+    maxClusterRadius: 40,
+    disableClusteringAtZoom: 14,
+    spiderfyOnMaxZoom: true,
+    showCoverageOnHover: false,
+  });
   var chargerData = [{"lat": 52.584415, "lng": -2.012753, "title": "Park Inn Walsall", "address": "Park Inn Birmingham, Walsall", "connectors": ["CCS (Type 2) · 258kW"], "speed": "rapid"}, {"lat": 52.58414125980488, "lng": -2.012602781192328, "title": "Holiday Inn Express Walsall", "address": "Tempus Drive", "connectors": ["CCS (Type 1) · 258kW"], "speed": "rapid"}, {"lat": 52.584415, "lng": -2.012753, "title": "Holiday Inn Express Walsall", "address": "Tempus Drive", "connectors": ["CCS (Type 2) · 258kW"], "speed": "rapid"}, {"lat": 52.58759742, "lng": -1.98286864, "title": "Tesco Extra-Walsall", "address": "Littleton Street West", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 22kW", "CHAdeMO · 50kW", "CCS (Type 2) · 50kW"], "speed": "rapid"}, {"lat": 52.6063208264965, "lng": -1.96163722847766, "title": "McDonald's, ", "address": "Daw End Lane", "connectors": ["CCS (Type 2) · 120kW", "CHAdeMO · 75kW"], "speed": "rapid"}];
 
   chargerData.forEach(function (c) {
@@ -336,6 +343,14 @@
     markers.addLayer(marker);
   });
   map.addLayer(markers);
+
+  // Frame the map to the actual chargers so a town's points are visible
+  // immediately (and small towns land past the de-clustering zoom).
+  if (chargerData.length) {
+    map.fitBounds(markers.getBounds(), { padding: [40, 40], maxZoom: 15 });
+  } else {
+    map.setView([52.58937790126028, -1.9965229299339975], 12);
+  }
 
   // --- Connector filter ---
   var filterBtns = document.querySelectorAll('.filter-btn');

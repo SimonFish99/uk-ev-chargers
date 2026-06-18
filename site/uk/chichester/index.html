@@ -507,7 +507,7 @@
   function esc(s) { return String(s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
 
   // --- Map ---
-  var map = L.map('map').setView([50.85641529988164, -0.7697709542329372], 12);
+  var map = L.map('map');
   L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
     subdomains: 'abcd',
@@ -523,7 +523,14 @@
     });
   }
 
-  var markers = L.markerClusterGroup();
+  // Cluster only when markers genuinely overlap, and stop clustering once
+  // zoomed in so a town's handful of chargers show as individual pins.
+  var markers = L.markerClusterGroup({
+    maxClusterRadius: 40,
+    disableClusteringAtZoom: 14,
+    spiderfyOnMaxZoom: true,
+    showCoverageOnHover: false,
+  });
   var chargerData = [{"lat": 50.8222929988164, "lng": -0.759626542329372, "title": "Chichester Lakeside", "address": "Chichester Lakeside", "connectors": ["Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 50.846468, "lng": -0.759511, "title": "Barnfield Retail Park", "address": "Barnfield Drive", "connectors": ["CHAdeMO · 50kW", "CCS (Type 2) · 50kW", "CCS (Type 2) · 50kW", "CHAdeMO · 50kW", "Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "rapid"}, {"lat": 50.832298, "lng": -0.783929, "title": "Waitrose", "address": "Via Ravenna", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 50.829228, "lng": -0.755806, "title": "LMS Group Holdings Limited-Lakeside House", "address": "Quarry Lane", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 50.867306, "lng": -0.733566, "title": "The Goodwood Hotel", "address": "The Goodwood Hotel", "connectors": ["Type 2 (Socket Only) · 7kW", "CCS (Type 2) · 50kW", "CHAdeMO · 50kW", "Type 2 (Socket Only) · 43kW"], "speed": "rapid"}, {"lat": 50.858337, "lng": -0.754368, "title": "Goodwood Aerodrome/Circuit", "address": "Goodwood Aerodrome", "connectors": ["Type 2 (Socket Only) · 3.6kW", "CCS (Type 2) · 50kW", "CHAdeMO · 50kW", "Type 2 (Socket Only) · 43kW"], "speed": "rapid"}, {"lat": 50.848323, "lng": -0.780186, "title": "Nuffield 6829-30", "address": "78 Broyle Rd", "connectors": ["Type 2 (Socket Only) · 11kW", "Type 2 (Socket Only) · 11kW"], "speed": "fast"}, {"lat": 50.988301, "lng": -0.737074, "title": "North Street Car Park", "address": "North Street", "connectors": ["Type 2 (Socket Only) · 12kW"], "speed": "fast"}, {"lat": 50.841761, "lng": -0.777495, "title": "Northgate Car Park", "address": "Northgate", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 50.829838, "lng": -0.856148, "title": "Bosham", "address": "Bosham", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}];
 
   chargerData.forEach(function (c) {
@@ -541,6 +548,14 @@
     markers.addLayer(marker);
   });
   map.addLayer(markers);
+
+  // Frame the map to the actual chargers so a town's points are visible
+  // immediately (and small towns land past the de-clustering zoom).
+  if (chargerData.length) {
+    map.fitBounds(markers.getBounds(), { padding: [40, 40], maxZoom: 15 });
+  } else {
+    map.setView([50.85641529988164, -0.7697709542329372], 12);
+  }
 
   // --- Connector filter ---
   var filterBtns = document.querySelectorAll('.filter-btn');

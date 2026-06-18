@@ -512,7 +512,7 @@
   function esc(s) { return String(s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
 
   // --- Map ---
-  var map = L.map('map').setView([51.89422056338698, -2.0414168197732483], 12);
+  var map = L.map('map');
   L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
     subdomains: 'abcd',
@@ -528,7 +528,14 @@
     });
   }
 
-  var markers = L.markerClusterGroup();
+  // Cluster only when markers genuinely overlap, and stop clustering once
+  // zoomed in so a town's handful of chargers show as individual pins.
+  var markers = L.markerClusterGroup({
+    maxClusterRadius: 40,
+    disableClusteringAtZoom: 14,
+    spiderfyOnMaxZoom: true,
+    showCoverageOnHover: false,
+  });
   var chargerData = [{"lat": 51.933867, "lng": -1.722396, "title": "Tesco Superstore - Stow-on-the-wold", "address": "Fosse Way", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.91642, "lng": -2.105061, "title": "Premier Inn Cheltenham North West", "address": "Uckington", "connectors": ["CHAdeMO · 50kW", "Type 2 (Socket Only) · 22kW", "Type 2 (Tethered Connector)  · 60kW"], "speed": "rapid"}, {"lat": 51.91969, "lng": -2.06877, "title": "MK21014", "address": "Cheltenham Racecourse", "connectors": ["CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 50kW", "Type 2 (Tethered Connector)  · 43kW"], "speed": "rapid"}, {"lat": 51.893471, "lng": -2.1314, "title": "Arle Court Park & Ride", "address": "Arle Court", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 51.80690500769981, "lng": -1.9250920256532709, "title": "Seven Tuns Inn", "address": "Church Row", "connectors": ["Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.896122, "lng": -2.07975, "title": "SUTTON HOTELS QUEENS HOTEL", "address": "Queens hotel cheltenham The Promenade", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 51.880539, "lng": -2.106792, "title": "Morrisons", "address": "Morrisons Caernarvon Rd", "connectors": ["CHAdeMO · 50kW", "Type 2 (Socket Only) · 22kW", "Type 2 (Tethered Connector)  · 50kW"], "speed": "rapid"}, {"lat": 51.89471462616993, "lng": -2.104613172079212, "title": "Shell Gloucester Road, Cheltenham", "address": "Gloucester Road", "connectors": ["CCS (Type 2) · 175kW", "CHAdeMO · 70kW", "CCS (Type 2) · 175kW", "CHAdeMO · 70kW", "CCS (Type 2) · 175kW", "CHAdeMO · 70kW", "CCS (Type 2) · 175kW", "CHAdeMO · 70kW"], "speed": "rapid"}, {"lat": 51.905567, "lng": -2.087004, "title": "Colletts Drive", "address": "Colletts Drive", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 7kW", "CHAdeMO · 50kW", "CCS (Type 2) · 50kW"], "speed": "rapid"}, {"lat": 51.89491, "lng": -2.08329, "title": "Montpellier Street / Parabola Road", "address": "Montpellier Street / Parabola Road", "connectors": ["Type 2 (Socket Only) · 7kW"], "speed": "fast"}];
 
   chargerData.forEach(function (c) {
@@ -546,6 +553,14 @@
     markers.addLayer(marker);
   });
   map.addLayer(markers);
+
+  // Frame the map to the actual chargers so a town's points are visible
+  // immediately (and small towns land past the de-clustering zoom).
+  if (chargerData.length) {
+    map.fitBounds(markers.getBounds(), { padding: [40, 40], maxZoom: 15 });
+  } else {
+    map.setView([51.89422056338698, -2.0414168197732483], 12);
+  }
 
   // --- Connector filter ---
   var filterBtns = document.querySelectorAll('.filter-btn');

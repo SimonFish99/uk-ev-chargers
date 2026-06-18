@@ -487,7 +487,7 @@
   function esc(s) { return String(s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
 
   // --- Map ---
-  var map = L.map('map').setView([51.51874328437017, -2.576215884077171], 12);
+  var map = L.map('map');
   L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
     subdomains: 'abcd',
@@ -503,7 +503,14 @@
     });
   }
 
-  var markers = L.markerClusterGroup();
+  // Cluster only when markers genuinely overlap, and stop clustering once
+  // zoomed in so a town's handful of chargers show as individual pins.
+  var markers = L.markerClusterGroup({
+    maxClusterRadius: 40,
+    disableClusteringAtZoom: 14,
+    spiderfyOnMaxZoom: true,
+    showCoverageOnHover: false,
+  });
   var chargerData = [{"lat": 51.52514484277822, "lng": -2.575196831409187, "title": "Lidl Patchway", "address": "Hayes Way", "connectors": ["Type 2 (Socket Only) · 22kW", "CCS (Type 2) · 50kW", "CHAdeMO · 50kW"], "speed": "rapid"}, {"lat": 51.533531, "lng": -2.571271, "title": "Coniston Road Car Park", "address": "Coniston Road Car Park", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 51.525502, "lng": -2.570349, "title": "ROLLS_ROYCE BRISTOL AC", "address": "Rolls Royce Gloucester Road", "connectors": ["Type 2 (Tethered Connector)  · 43kW"], "speed": "fast"}, {"lat": 51.52629, "lng": -2.59919, "title": "Centaurus Retail Park", "address": "Cribbs Causeway", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.525213, "lng": -2.594085, "title": "Car Park", "address": "Lysander Road", "connectors": ["CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 50kW", "Type 2 (Socket Only) · 22kW"], "speed": "rapid"}, {"lat": 51.5223920009235, "lng": -2.58831800936252, "title": "MFG Filton Service Station", "address": "First Field Way", "connectors": ["CCS (Type 2) · 150kW", "CHAdeMO · 50kW"], "speed": "rapid"}, {"lat": 51.52614, "lng": -2.6006, "title": "Cribbs Causeway Retail Park", "address": "Lysander Road", "connectors": ["Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.501138, "lng": -2.55421, "title": "Hewlett Packard Bristol Office 3", "address": "Long Down Avenue", "connectors": ["BS1363 3 Pin 13 Amp · 3kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.501078, "lng": -2.554901, "title": "Business Car Park", "address": "Longdown Avenue", "connectors": ["BS1363 3 Pin 13 Amp · 3kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.501004, "lng": -2.554038, "title": "Hewlett Packard Bristol Office 2", "address": "Long Down Avenue", "connectors": ["BS1363 3 Pin 13 Amp · 3kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}];
 
   chargerData.forEach(function (c) {
@@ -521,6 +528,14 @@
     markers.addLayer(marker);
   });
   map.addLayer(markers);
+
+  // Frame the map to the actual chargers so a town's points are visible
+  // immediately (and small towns land past the de-clustering zoom).
+  if (chargerData.length) {
+    map.fitBounds(markers.getBounds(), { padding: [40, 40], maxZoom: 15 });
+  } else {
+    map.setView([51.51874328437017, -2.576215884077171], 12);
+  }
 
   // --- Connector filter ---
   var filterBtns = document.querySelectorAll('.filter-btn');

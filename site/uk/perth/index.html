@@ -518,7 +518,7 @@
   function esc(s) { return String(s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
 
   // --- Map ---
-  var map = L.map('map').setView([56.40480190756297, -3.4491160883793044], 12);
+  var map = L.map('map');
   L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
     subdomains: 'abcd',
@@ -534,7 +534,14 @@
     });
   }
 
-  var markers = L.markerClusterGroup();
+  // Cluster only when markers genuinely overlap, and stop clustering once
+  // zoomed in so a town's handful of chargers show as individual pins.
+  var markers = L.markerClusterGroup({
+    maxClusterRadius: 40,
+    disableClusteringAtZoom: 14,
+    spiderfyOnMaxZoom: true,
+    showCoverageOnHover: false,
+  });
   var chargerData = [{"lat": 56.400476, "lng": -3.412323, "title": "Murray Hospital", "address": "Muirhall Road", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Tethered Connector)  · 22kW"], "speed": "fast"}, {"lat": 56.394097, "lng": -3.428789, "title": "Canal Street Car Park, Perth", "address": "Canal Street", "connectors": ["CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 50kW", "Type 2 (Tethered Connector)  · 50kW"], "speed": "rapid"}, {"lat": 56.390662, "lng": -3.426569, "title": "South Inch Car Park", "address": "Inch Head Terrace", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 56.388004, "lng": -3.481691, "title": "Broxden Park & Ride", "address": "3 Broxden Avenue", "connectors": ["Type 2 (Tethered Connector)  · 43kW", "Type 2 (Tethered Connector)  · 50kW", "CHAdeMO · 50kW"], "speed": "rapid"}, {"lat": 56.399453, "lng": -3.4387713, "title": "St. Catherine's Leisure Park", "address": "St. Catherine's Leisure Park", "connectors": ["CHAdeMO · 75kW", "CCS (Type 2) · 75kW", "CHAdeMO · 75kW", "CCS (Type 2) · 75kW", "CHAdeMO · 75kW", "CCS (Type 2) · 75kW"], "speed": "rapid"}, {"lat": 56.448987, "lng": -3.464977, "title": "Luncarty Inn, Luncarty", "address": "Marshall Way", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 56.381637, "lng": -3.433429, "title": "Tesco Superstore-Edinburgh Road", "address": "Edinburgh Road", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 7kW", "CHAdeMO · 50kW", "CCS (Type 2) · 50kW"], "speed": "rapid"}, {"lat": 56.4172065642953, "lng": -3.46180377231644, "title": "BP, The Triangle", "address": "The Triangle", "connectors": ["CCS (Type 2) · 150kW", "CHAdeMO · 100kW", "CCS (Type 2) · 150kW", "CHAdeMO · 100kW", "CCS (Type 2) · 150kW", "CHAdeMO · 100kW"], "speed": "rapid"}, {"lat": 56.408223, "lng": -3.479582, "title": "Tesco Extra-Perth", "address": "Crieff Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 56.41927351133435, "lng": -3.4632258114766046, "title": "Ionity Perth", "address": "The Triangle", "connectors": ["CCS (Type 2) · 350kW"], "speed": "rapid"}];
 
   chargerData.forEach(function (c) {
@@ -552,6 +559,14 @@
     markers.addLayer(marker);
   });
   map.addLayer(markers);
+
+  // Frame the map to the actual chargers so a town's points are visible
+  // immediately (and small towns land past the de-clustering zoom).
+  if (chargerData.length) {
+    map.fitBounds(markers.getBounds(), { padding: [40, 40], maxZoom: 15 });
+  } else {
+    map.setView([56.40480190756297, -3.4491160883793044], 12);
+  }
 
   // --- Connector filter ---
   var filterBtns = document.querySelectorAll('.filter-btn');

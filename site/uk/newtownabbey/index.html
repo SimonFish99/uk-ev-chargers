@@ -498,7 +498,7 @@
   function esc(s) { return String(s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
 
   // --- Map ---
-  var map = L.map('map').setView([54.683267325807904, -5.964375920319466], 12);
+  var map = L.map('map');
   L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
     subdomains: 'abcd',
@@ -514,7 +514,14 @@
     });
   }
 
-  var markers = L.markerClusterGroup();
+  // Cluster only when markers genuinely overlap, and stop clustering once
+  // zoomed in so a town's handful of chargers show as individual pins.
+  var markers = L.markerClusterGroup({
+    maxClusterRadius: 40,
+    disableClusteringAtZoom: 14,
+    spiderfyOnMaxZoom: true,
+    showCoverageOnHover: false,
+  });
   var chargerData = [{"lat": 54.67121353226352, "lng": -5.981142556497048, "title": "Mallusk Enterprise Park", "address": "Mallusk Drive", "connectors": ["Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 54.698280907855974, "lng": -5.957496468595991, "title": "Antrim & Newtownabbey Crematorium", "address": "582 Doagh Road", "connectors": ["Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 54.69573043145863, "lng": -5.947687591075066, "title": "Mossley Mill Civic Centre", "address": "Carnmoney Road North", "connectors": ["Type 2 (Socket Only) · 7.4kW"], "speed": "fast"}, {"lat": 54.67157400547137, "lng": -5.9573414829069975, "title": "NBAS Chartered Accountants", "address": "17 Carnmoney Rd", "connectors": ["Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 54.677912052828674, "lng": -5.999278929127854, "title": "Hydepark Mallusk", "address": "64 Mallusk Road", "connectors": ["CCS (Type 2) · 120kW"], "speed": "rapid"}, {"lat": 54.69351919368424, "lng": -5.971575404546883, "title": "Corr's Corner Hotel", "address": "315 Ballyclare Rd", "connectors": ["CCS (Type 2) · 24kW", "Type 2 (Socket Only) · 7kW", "CCS (Type 2) · 60kW", "CHAdeMO · 60kW"], "speed": "rapid"}, {"lat": 54.68329891831354, "lng": -5.988855563672644, "title": "Crown & Shamrock", "address": "584 Antrim Road", "connectors": ["CCS (Type 2) · 120kW"], "speed": "rapid"}, {"lat": 54.669815542011, "lng": -5.95703212709165, "title": "HRL Glenwell", "address": "290 Antrim Road", "connectors": ["CCS (Type 2) · 150kW"], "speed": "rapid"}, {"lat": 54.700973, "lng": -5.956038, "title": "Ballyearl Golf Leisure Complex", "address": "Ballyearl Golf Leisure Complex", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 54.695518, "lng": -5.947971, "title": "Mossley Mill", "address": "Mossley Crescent", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 54.658105, "lng": -5.943716, "title": "Belfast Zoo", "address": "Belfast Zoo", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}];
 
   chargerData.forEach(function (c) {
@@ -532,6 +539,14 @@
     markers.addLayer(marker);
   });
   map.addLayer(markers);
+
+  // Frame the map to the actual chargers so a town's points are visible
+  // immediately (and small towns land past the de-clustering zoom).
+  if (chargerData.length) {
+    map.fitBounds(markers.getBounds(), { padding: [40, 40], maxZoom: 15 });
+  } else {
+    map.setView([54.683267325807904, -5.964375920319466], 12);
+  }
 
   // --- Connector filter ---
   var filterBtns = document.querySelectorAll('.filter-btn');

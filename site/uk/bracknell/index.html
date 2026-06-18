@@ -697,7 +697,7 @@
   function esc(s) { return String(s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
 
   // --- Map ---
-  var map = L.map('map').setView([51.404396742984495, -0.7535871418717356], 12);
+  var map = L.map('map');
   L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
     subdomains: 'abcd',
@@ -713,7 +713,14 @@
     });
   }
 
-  var markers = L.markerClusterGroup();
+  // Cluster only when markers genuinely overlap, and stop clustering once
+  // zoomed in so a town's handful of chargers show as individual pins.
+  var markers = L.markerClusterGroup({
+    maxClusterRadius: 40,
+    disableClusteringAtZoom: 14,
+    spiderfyOnMaxZoom: true,
+    showCoverageOnHover: false,
+  });
   var chargerData = [{"lat": 51.39960624560106, "lng": -0.7704283729584631, "title": "Great Hollands Shops", "address": "Great Hollands Square", "connectors": ["CCS (Type 2) · 50kW"], "speed": "rapid"}, {"lat": 51.415381, "lng": -0.759315, "title": "OAS STATION 5", "address": "1 Arlington Square", "connectors": ["Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 51.3982426421509, "lng": -0.744681896989306, "title": "Hornbill SF Connect ", "address": "Bagshot Road", "connectors": ["CCS (Type 2) · 150kW", "CCS (Type 2) · 150kW"], "speed": "rapid"}, {"lat": 51.393882, "lng": -0.765235, "title": "Bywood", "address": "Bywood car park", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 51.407383, "lng": -0.762721, "title": "Wildridings", "address": "Wildridings", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 51.390917, "lng": -0.752001, "title": "Birch Hill Shops", "address": "Birch Hill Shops", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 51.415798, "lng": -0.7525, "title": "High Street Car Park", "address": "The Ring", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 51.414597, "lng": -0.751616, "title": "Braccan Walk Car Park", "address": "The Ring", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 51.421143, "lng": -0.763886, "title": "BFC Priestwood Community", "address": "Priestwood Community Car Park", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 51.41693, "lng": -0.724824, "title": "Bracknell Forest GBR024", "address": "Lily Hill Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.416474, "lng": -0.734464, "title": "BFC Bay Road", "address": "Bay Road Car Park", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 51.413057, "lng": -0.728764, "title": "BFC Forest Park", "address": "Horndean Road", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 51.39605, "lng": -0.736925, "title": "BFC Crown Wood 1", "address": "Crown Row", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 51.347167, "lng": -0.795556, "title": "BFC The Broadway", "address": "The Broadway, Sandhurst,", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 51.41533, "lng": -0.78868, "title": "Coppid Beech Hotel", "address": "John Nike Way", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.40839, "lng": -0.725797, "title": "Tesco Superstore-Bracknell", "address": "Whitton Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}];
 
   chargerData.forEach(function (c) {
@@ -731,6 +738,14 @@
     markers.addLayer(marker);
   });
   map.addLayer(markers);
+
+  // Frame the map to the actual chargers so a town's points are visible
+  // immediately (and small towns land past the de-clustering zoom).
+  if (chargerData.length) {
+    map.fitBounds(markers.getBounds(), { padding: [40, 40], maxZoom: 15 });
+  } else {
+    map.setView([51.404396742984495, -0.7535871418717356], 12);
+  }
 
   // --- Connector filter ---
   var filterBtns = document.querySelectorAll('.filter-btn');

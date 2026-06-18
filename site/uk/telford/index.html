@@ -443,7 +443,7 @@
   function esc(s) { return String(s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
 
   // --- Map ---
-  var map = L.map('map').setView([52.67351708513613, -2.4561753068255254], 12);
+  var map = L.map('map');
   L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
     subdomains: 'abcd',
@@ -459,7 +459,14 @@
     });
   }
 
-  var markers = L.markerClusterGroup();
+  // Cluster only when markers genuinely overlap, and stop clustering once
+  // zoomed in so a town's handful of chargers show as individual pins.
+  var markers = L.markerClusterGroup({
+    maxClusterRadius: 40,
+    disableClusteringAtZoom: 14,
+    spiderfyOnMaxZoom: true,
+    showCoverageOnHover: false,
+  });
   var chargerData = [{"lat": 52.6238498662252, "lng": -2.44882876142973, "title": "EVC Telford Hotel, Spa & Golf Resort", "address": "Great Hay Drive", "connectors": ["Type 2 (Socket Only) · 22kW", "CCS (Type 2) · 100kW"], "speed": "rapid"}, {"lat": 52.6810099, "lng": -2.440741, "title": "Saba UK-Telford Central", "address": "Telford Central", "connectors": ["Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 52.685913, "lng": -2.4435, "title": "ST James House, Telford", "address": "St James House", "connectors": ["Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 52.675552, "lng": -2.451066, "title": "Asda", "address": "Malinsgate", "connectors": ["Type 2 (Socket Only) · 3.7kW", "Type 2 (Socket Only) · 3.7kW"], "speed": "slow"}, {"lat": 52.702351, "lng": -2.522811, "title": "Morrisons Telford Wellington", "address": "Springhill, Wellington", "connectors": ["Type 2 (Socket Only) · 22kW", "CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 50kW"], "speed": "rapid"}, {"lat": 52.636733, "lng": -2.431792, "title": "EAC Telford Ltd", "address": "Unit A", "connectors": ["Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 52.698429, "lng": -2.498364, "title": "Wellington Fire Station - Shropshire FRS", "address": "Fire Station", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 52.679556, "lng": -2.433975, "title": "Restricted access to Toyota customers", "address": "Stafford Park 1", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 52.67826, "lng": -2.4345, "title": "Nissan customer parking next to rapid service area", "address": "1", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}];
 
   chargerData.forEach(function (c) {
@@ -477,6 +484,14 @@
     markers.addLayer(marker);
   });
   map.addLayer(markers);
+
+  // Frame the map to the actual chargers so a town's points are visible
+  // immediately (and small towns land past the de-clustering zoom).
+  if (chargerData.length) {
+    map.fitBounds(markers.getBounds(), { padding: [40, 40], maxZoom: 15 });
+  } else {
+    map.setView([52.67351708513613, -2.4561753068255254], 12);
+  }
 
   // --- Connector filter ---
   var filterBtns = document.querySelectorAll('.filter-btn');

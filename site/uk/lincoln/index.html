@@ -1112,7 +1112,7 @@
   function esc(s) { return String(s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
 
   // --- Map ---
-  var map = L.map('map').setView([53.23158161236124, -0.5569990498727607], 12);
+  var map = L.map('map');
   L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
     subdomains: 'abcd',
@@ -1128,7 +1128,14 @@
     });
   }
 
-  var markers = L.markerClusterGroup();
+  // Cluster only when markers genuinely overlap, and stop clustering once
+  // zoomed in so a town's handful of chargers show as individual pins.
+  var markers = L.markerClusterGroup({
+    maxClusterRadius: 40,
+    disableClusteringAtZoom: 14,
+    spiderfyOnMaxZoom: true,
+    showCoverageOnHover: false,
+  });
   var chargerData = [{"lat": 53.19848850604828, "lng": -0.6131963892264594, "title": "Tesla Lincoln", "address": "1 Turnstone Road", "connectors": ["CCS (Type 2) · 250kW"], "speed": "rapid"}, {"lat": 53.290393993414796, "lng": -0.5425868061870176, "title": "McDonald's Lincolnshire Showground", "address": "Horncastle Lane", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 53.20645123841692, "lng": -0.6113765298878207, "title": "Dynex Semiconductor", "address": "Doddington Road", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 53.23173, "lng": -0.54124, "title": "Motherby Car Park 1", "address": "Motherby Car Park", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 53.228362, "lng": -0.526659, "title": "Shuttleworth House Car Park 1", "address": "Shuttleworth House Car Park", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 53.202909, "lng": -0.582676, "title": "Moorland Centre Lincoln", "address": "Moorland Way", "connectors": ["CCS (Type 2) · 180kW", "CHAdeMO · 80kW", "CCS (Type 2) · 180kW", "CCS (Type 2) · 180kW", "CCS (Type 2) · 180kW", "CCS (Type 2) · 180kW", "CCS (Type 2) · 180kW", "CHAdeMO · 80kW", "CCS (Type 2) · 180kW", "CCS (Type 2) · 180kW", "CCS (Type 2) · 180kW", "CCS (Type 2) · 180kW"], "speed": "rapid"}, {"lat": 53.23412, "lng": -0.54589, "title": "53-67 Yarborough Road (Rma)", "address": "53-67 Yarborough Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 53.24959, "lng": -0.54063, "title": "Ruckland Court Care Home", "address": "Ruckland Ave", "connectors": ["Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 53.22435, "lng": -0.555485, "title": "Morrisons Lincoln Triton Rd", "address": "Morrisons Lincoln Triton Rd", "connectors": ["CHAdeMO · 50kW", "Type 2 (Socket Only) · 22kW", "Type 2 (Tethered Connector)  · 50kW"], "speed": "rapid"}, {"lat": 53.239606, "lng": -0.516249, "title": "Tesco Extra - Lincoln", "address": "186 Wragby Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 53.231461, "lng": -0.54318, "title": "Orchard Street Car Park", "address": "Orchard Street", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 53.231035, "lng": -0.543842, "title": "Lincoln City Hall", "address": "Beamont Fee", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 53.230369, "lng": -0.547528, "title": "The Horse & Groom", "address": "The Horse & Groom Carholme Road", "connectors": ["Type 2 (Tethered Connector)  · 36kW", "CHAdeMO · 22kW"], "speed": "fast"}, {"lat": 53.227215, "lng": -0.536983, "title": "Lincoln Transport Hub", "address": "Multi-Storey Car Park Next to Bus Station Melville Street", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 53.226883, "lng": -0.537522, "title": "Lincoln Transport Hub", "address": "Melville Street", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 53.22435, "lng": -0.53854, "title": "Wyvern House", "address": "Kesteven Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 53.224895, "lng": -0.544969, "title": "SM LOWER CP1 ST MARKS EV 2", "address": "1 St Mark's Square", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 53.223161, "lng": -0.542633, "title": "Chaplin Street Car Park, Lincoln", "address": "Chaplin Street", "connectors": ["Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 53.227818, "lng": -0.557656, "title": "Lincoln Science & Innovation Park", "address": "Beevor Street", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 53.22477203085333, "lng": -0.5543411764812163, "title": "Morrison ", "address": "Shop parking", "connectors": ["CCS (Type 2)", "CHAdeMO", "Type 2 (Socket Only)"], "speed": "slow"}, {"lat": 53.223023, "lng": -0.5320423, "title": "Tesco Canwick Rd", "address": "Canwick Rd Trading Estate", "connectors": ["Type 2 (Socket Only) · 22kW", "CCS (Type 2) · 50kW", "CHAdeMO · 50kW", "Type 2 (Socket Only) · 7kW"], "speed": "rapid"}, {"lat": 53.2268871526589, "lng": -0.551120094909265, "title": "Instavolt, Mc Donalds", "address": "Ruston Way", "connectors": ["CCS (Type 2) · 50kW", "CHAdeMO · 50kW"], "speed": "rapid"}, {"lat": 53.29343, "lng": -0.744065, "title": "Torksey", "address": "Torksey", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 53.233624, "lng": -0.557418, "title": "Co-op - Winning Post", "address": "Carholme Road", "connectors": ["CHAdeMO · 50kW", "CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 22kW"], "speed": "rapid"}, {"lat": 53.236806, "lng": -0.538357, "title": "The Duke William Hotel", "address": "44 Bailgate", "connectors": ["Type 2 (Tethered Connector)  · 22kW", "CHAdeMO · 22kW"], "speed": "fast"}, {"lat": 53.229392, "lng": -0.53579, "title": "Lincoln Broadgate Car Park", "address": "Saint Rumbold's Street", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}];
 
   chargerData.forEach(function (c) {
@@ -1146,6 +1153,14 @@
     markers.addLayer(marker);
   });
   map.addLayer(markers);
+
+  // Frame the map to the actual chargers so a town's points are visible
+  // immediately (and small towns land past the de-clustering zoom).
+  if (chargerData.length) {
+    map.fitBounds(markers.getBounds(), { padding: [40, 40], maxZoom: 15 });
+  } else {
+    map.setView([53.23158161236124, -0.5569990498727607], 12);
+  }
 
   // --- Connector filter ---
   var filterBtns = document.querySelectorAll('.filter-btn');

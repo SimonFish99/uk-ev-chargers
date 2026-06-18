@@ -466,7 +466,7 @@
   function esc(s) { return String(s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
 
   // --- Map ---
-  var map = L.map('map').setView([51.45218639161481, -0.0229726758924493], 12);
+  var map = L.map('map');
   L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
     subdomains: 'abcd',
@@ -482,7 +482,14 @@
     });
   }
 
-  var markers = L.markerClusterGroup();
+  // Cluster only when markers genuinely overlap, and stop clustering once
+  // zoomed in so a town's handful of chargers show as individual pins.
+  var markers = L.markerClusterGroup({
+    maxClusterRadius: 40,
+    disableClusteringAtZoom: 14,
+    spiderfyOnMaxZoom: true,
+    showCoverageOnHover: false,
+  });
   var chargerData = [{"lat": 51.4520275245333, "lng": -0.0164200830320437, "title": "MFG Lewisham", "address": "357-361 Lewisham High Street", "connectors": ["CCS (Type 2) · 150kW", "CHAdeMO · 50kW"], "speed": "rapid"}, {"lat": 51.460786, "lng": -0.008033, "title": "Clarendon Rise Car Park", "address": "Clarendon Rise Car Park", "connectors": ["Type 1 (J1772) · 3kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.4467, "lng": -0.0215, "title": "Holbeach Car Park", "address": "Holbeach Road, Catford", "connectors": ["BS1363 3 Pin 13 Amp · 3.7kW", "BS1363 3 Pin 13 Amp · 3.7kW"], "speed": "slow"}, {"lat": 51.446687, "lng": -0.022448, "title": "Holbeach Road", "address": "Holbeach Road", "connectors": ["Type 1 (J1772) · 3kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.4407, "lng": -0.0536, "title": "Pearcefield Avenue Car Park - Lewisham", "address": "Forest Hill, Lewisham", "connectors": ["BS1363 3 Pin 13 Amp · 3.7kW", "BS1363 3 Pin 13 Amp · 3.7kW"], "speed": "slow"}, {"lat": 51.437799, "lng": -0.018902, "title": "Bromley Road Retail Park", "address": "Bromley Road,Catford", "connectors": ["Type 2 (Socket Only) · 3.7kW"], "speed": "slow"}, {"lat": 51.436945, "lng": -0.020383, "title": "Bromley Road Retail Park", "address": "Bromley Road Retail Park", "connectors": ["Type 2 (Socket Only) · 11kW", "Type 2 (Socket Only) · 11kW", "Type 2 (Socket Only) · 11kW", "Type 2 (Socket Only) · 11kW", "Type 2 (Socket Only) · 11kW", "Type 2 (Socket Only) · 11kW", "Type 2 (Socket Only) · 3.7kW"], "speed": "fast"}, {"lat": 51.459996, "lng": -0.005262, "title": "Lidl-Lewisham", "address": "104 - 120 Lee High Road", "connectors": ["Type 2 (Socket Only) · 22kW", "CHAdeMO · 50kW", "CCS (Type 2) · 50kW"], "speed": "rapid"}, {"lat": 51.488037, "lng": -0.040206, "title": "Hicks Street", "address": "Hicks Street", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 1 (J1772) · 3kW"], "speed": "fast"}];
 
   chargerData.forEach(function (c) {
@@ -500,6 +507,14 @@
     markers.addLayer(marker);
   });
   map.addLayer(markers);
+
+  // Frame the map to the actual chargers so a town's points are visible
+  // immediately (and small towns land past the de-clustering zoom).
+  if (chargerData.length) {
+    map.fitBounds(markers.getBounds(), { padding: [40, 40], maxZoom: 15 });
+  } else {
+    map.setView([51.45218639161481, -0.0229726758924493], 12);
+  }
 
   // --- Connector filter ---
   var filterBtns = document.querySelectorAll('.filter-btn');

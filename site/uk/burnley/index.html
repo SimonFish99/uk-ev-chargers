@@ -611,7 +611,7 @@
   function esc(s) { return String(s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
 
   // --- Map ---
-  var map = L.map('map').setView([53.79245544550551, -2.2440583711527764], 12);
+  var map = L.map('map');
   L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
     subdomains: 'abcd',
@@ -627,7 +627,14 @@
     });
   }
 
-  var markers = L.markerClusterGroup();
+  // Cluster only when markers genuinely overlap, and stop clustering once
+  // zoomed in so a town's handful of chargers show as individual pins.
+  var markers = L.markerClusterGroup({
+    maxClusterRadius: 40,
+    disableClusteringAtZoom: 14,
+    spiderfyOnMaxZoom: true,
+    showCoverageOnHover: false,
+  });
   var chargerData = [{"lat": 53.801135, "lng": -2.242902, "title": "Elm Street Car Park, Burnley 1", "address": "Elm Street Car Park", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 53.792596, "lng": -2.241437, "title": "Bank Parade Car Park, Burnley 3", "address": "Bank Parade Car Park", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 53.791536, "lng": -2.245252, "title": "Pioneer Place Car Park, Burnley 2", "address": "Pioneer Place Car Park", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 53.79054, "lng": -2.253634, "title": "Westgate Car Park, Burnley 1", "address": "Westgate Car Park", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 53.788581, "lng": -2.247854, "title": "Sutcliffe Street Car Park, Burnley 3", "address": "Sutcliffe Street Car Park", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 53.777799, "lng": -2.214943, "title": "Towneley Garden Centre", "address": "Deer Park Road", "connectors": ["CCS (Type 2) · 60kW", "CHAdeMO · 50kW", "CHAdeMO · 50kW", "CHAdeMO · 50kW", "CCS (Type 2) · 60kW", "CCS (Type 2) · 60kW"], "speed": "rapid"}, {"lat": 53.787269, "lng": -2.239261, "title": "Burnley - Centenary Way CP 1", "address": "Centenary Way Car Park", "connectors": ["Type 2 (Tethered Connector)  · 50kW", "CHAdeMO · 50kW", "Type 2 (Socket Only) · 22kW"], "speed": "rapid"}, {"lat": 53.810436, "lng": -2.22788, "title": "TRANSPORT BURNLEY 1", "address": "Casterton Ave", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 53.788053, "lng": -2.248758, "title": "Burnley - Kings St CP 2", "address": "Kings Street", "connectors": ["Type 2 (Tethered Connector)  · 50kW", "CHAdeMO · 50kW", "Type 2 (Socket Only) · 22kW"], "speed": "rapid"}, {"lat": 53.78858563864611, "lng": -2.2616677106595944, "title": "Eurogarages Barracks Road", "address": "Barracks Road", "connectors": ["CCS (Type 2) · 175kW", "CHAdeMO · 100kW"], "speed": "rapid"}, {"lat": 53.7860861529255, "lng": -2.2403411143265, "title": "Tesco Extra", "address": "Centenary Way", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 53.789608, "lng": -2.274234, "title": "150- 160 Gannow Lane", "address": "Gannow Lane", "connectors": ["Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 53.809696, "lng": -2.234595, "title": "The Prairie", "address": "Keswick Road", "connectors": ["CCS (Type 2) · 50kW", "CHAdeMO · 50kW", "Type 2 (Socket Only) · 43kW"], "speed": "rapid"}];
 
   chargerData.forEach(function (c) {
@@ -645,6 +652,14 @@
     markers.addLayer(marker);
   });
   map.addLayer(markers);
+
+  // Frame the map to the actual chargers so a town's points are visible
+  // immediately (and small towns land past the de-clustering zoom).
+  if (chargerData.length) {
+    map.fitBounds(markers.getBounds(), { padding: [40, 40], maxZoom: 15 });
+  } else {
+    map.setView([53.79245544550551, -2.2440583711527764], 12);
+  }
 
   // --- Connector filter ---
   var filterBtns = document.querySelectorAll('.filter-btn');

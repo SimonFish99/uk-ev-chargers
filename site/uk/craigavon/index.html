@@ -403,7 +403,7 @@
   function esc(s) { return String(s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
 
   // --- Map ---
-  var map = L.map('map').setView([54.432290698804394, -6.406967714510474], 12);
+  var map = L.map('map');
   L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
     subdomains: 'abcd',
@@ -419,7 +419,14 @@
     });
   }
 
-  var markers = L.markerClusterGroup();
+  // Cluster only when markers genuinely overlap, and stop clustering once
+  // zoomed in so a town's handful of chargers show as individual pins.
+  var markers = L.markerClusterGroup({
+    maxClusterRadius: 40,
+    disableClusteringAtZoom: 14,
+    spiderfyOnMaxZoom: true,
+    showCoverageOnHover: false,
+  });
   var chargerData = [{"lat": 54.444585406353156, "lng": -6.393026163231298, "title": "TrustFord Craigavon", "address": "Mandeville Rd", "connectors": ["Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 54.43568919930152, "lng": -6.411356752430379, "title": "Craigavon Area Hospital", "address": "Lurgan Rd", "connectors": ["Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 54.44957495688237, "lng": -6.382718654523188, "title": "South Lake Leisure Centre", "address": "Lake Road", "connectors": ["Type 2 (Socket Only) · 11kW", "Type 2 (Socket Only) · 11kW"], "speed": "fast"}, {"lat": 54.45144993564904, "lng": -6.393551584239958, "title": "Rushmere Shopping Centre (1)", "address": "Central Way", "connectors": ["CCS (Type 2) · 24kW", "Type 2 (Socket Only) · 11kW"], "speed": "fast"}, {"lat": 54.450213772833166, "lng": -6.392763764270171, "title": "Rushmere Shopping Centre (2)", "address": "4 - 7 Central Way", "connectors": ["CCS (Type 2) · 24kW", "Type 2 (Socket Only) · 11kW"], "speed": "fast"}, {"lat": 54.393902, "lng": -6.4411, "title": "Shelbourne Motor Group - Nissan Dealership", "address": "Shelbourne Motor Group, 334 Tanragee Road, Portadown, Armagh", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 54.3869752124409, "lng": -6.44658350079339, "title": "Shelbourne Motor Group - Renault Dealership", "address": "Shelbourne Motor Group, 334 Tanragee Road, Portadown, Armagh", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 54.445935106975014, "lng": -6.39464129659541, "title": "Tesco Extra-Craigavon", "address": "2 Marlborough Retail Park", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}];
 
   chargerData.forEach(function (c) {
@@ -437,6 +444,14 @@
     markers.addLayer(marker);
   });
   map.addLayer(markers);
+
+  // Frame the map to the actual chargers so a town's points are visible
+  // immediately (and small towns land past the de-clustering zoom).
+  if (chargerData.length) {
+    map.fitBounds(markers.getBounds(), { padding: [40, 40], maxZoom: 15 });
+  } else {
+    map.setView([54.432290698804394, -6.406967714510474], 12);
+  }
 
   // --- Connector filter ---
   var filterBtns = document.querySelectorAll('.filter-btn');

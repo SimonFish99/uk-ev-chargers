@@ -449,7 +449,7 @@
   function esc(s) { return String(s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
 
   // --- Map ---
-  var map = L.map('map').setView([51.58848871888889, 0.2041006388888889], 12);
+  var map = L.map('map');
   L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
     subdomains: 'abcd',
@@ -465,7 +465,14 @@
     });
   }
 
-  var markers = L.markerClusterGroup();
+  // Cluster only when markers genuinely overlap, and stop clustering once
+  // zoomed in so a town's handful of chargers show as individual pins.
+  var markers = L.markerClusterGroup({
+    maxClusterRadius: 40,
+    disableClusteringAtZoom: 14,
+    spiderfyOnMaxZoom: true,
+    showCoverageOnHover: false,
+  });
   var chargerData = [{"lat": 51.5915099, "lng": 0.2152482, "title": "InstaVolt Romford", "address": "Gallows Corner", "connectors": ["CCS (Type 2) · 120kW", "CHAdeMO · 50kW"], "speed": "rapid"}, {"lat": 51.577596, "lng": 0.184788, "title": "Tesla Romford Supercharger", "address": "The Liberty Shopping Centre", "connectors": ["CCS (Type 2) · 250kW"], "speed": "rapid"}, {"lat": 51.59333157, "lng": 0.21925355, "title": "Tesco Extra-Romford Gallows Corner", "address": "Bryant Ave", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 7kW", "CCS (Type 2) · 50kW", "CHAdeMO · 50kW"], "speed": "rapid"}, {"lat": 51.596039, "lng": 0.221719, "title": "Sytner BMW", "address": "A12 Colchester Road", "connectors": ["CHAdeMO · 50kW", "CHAdeMO · 50kW"], "speed": "rapid"}, {"lat": 51.591832, "lng": 0.215242, "title": "In Front Autos LTD", "address": "8 Avenue Industrial Estate", "connectors": ["Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 51.591386, "lng": 0.179195, "title": "SHELL RECHARGE RISE PARK", "address": "Eastern Avenue", "connectors": ["Type 2 (Tethered Connector)  · 50kW", "CHAdeMO · 50kW"], "speed": "rapid"}, {"lat": 51.574697, "lng": 0.169778, "title": "Tony Levoi Vauxhall-Romford", "address": "144 London Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.598294, "lng": 0.224255, "title": "Units 7-9 Falcon Business Centre Ashton Road", "address": "Units 7-9 Falcon Business Centre Ashton Road", "connectors": ["Type 2 (Socket Only) · 3.7kW", "Type 2 (Socket Only) · 3.7kW"], "speed": "slow"}, {"lat": 51.581713, "lng": 0.207427, "title": "Gidea Park Station Car Park", "address": "", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}];
 
   chargerData.forEach(function (c) {
@@ -483,6 +490,14 @@
     markers.addLayer(marker);
   });
   map.addLayer(markers);
+
+  // Frame the map to the actual chargers so a town's points are visible
+  // immediately (and small towns land past the de-clustering zoom).
+  if (chargerData.length) {
+    map.fitBounds(markers.getBounds(), { padding: [40, 40], maxZoom: 15 });
+  } else {
+    map.setView([51.58848871888889, 0.2041006388888889], 12);
+  }
 
   // --- Connector filter ---
   var filterBtns = document.querySelectorAll('.filter-btn');

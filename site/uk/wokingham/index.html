@@ -1130,7 +1130,7 @@
   function esc(s) { return String(s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
 
   // --- Map ---
-  var map = L.map('map').setView([51.42804919114689, -0.8619765481685355], 12);
+  var map = L.map('map');
   L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
     subdomains: 'abcd',
@@ -1146,7 +1146,14 @@
     });
   }
 
-  var markers = L.markerClusterGroup();
+  // Cluster only when markers genuinely overlap, and stop clustering once
+  // zoomed in so a town's handful of chargers show as individual pins.
+  var markers = L.markerClusterGroup({
+    maxClusterRadius: 40,
+    disableClusteringAtZoom: 14,
+    spiderfyOnMaxZoom: true,
+    showCoverageOnHover: false,
+  });
   var chargerData = [{"lat": 51.499836, "lng": -0.864803, "title": "Braybrooke Road", "address": "Braybrooke Road", "connectors": ["Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.476811, "lng": -0.868195, "title": "Polehampton Close Car Park", "address": "Polehampton Close Car Park", "connectors": ["Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 51.475812, "lng": -0.863541, "title": "Station Road", "address": "Station Road", "connectors": ["Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.457468, "lng": -0.89249, "title": "Pitford Road", "address": "Pitford Road", "connectors": ["Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 51.455309, "lng": -0.910216, "title": "Wheble Dr", "address": "Wheble Dr", "connectors": ["Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.453609, "lng": -0.904293, "title": "Headley Road Car Park", "address": "Headley Road Car Park", "connectors": ["Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 51.451715, "lng": -0.905095, "title": "Crockhamwell Road Car Park", "address": "Crockhamwell Road Car Park", "connectors": ["Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 51.440776, "lng": -0.918132, "title": "Station Road Car Park", "address": "Station Road Car Park", "connectors": ["Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 51.428999, "lng": -0.914757, "title": "Maiden Place", "address": "Maiden Place", "connectors": ["Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.426892, "lng": -0.920886, "title": "Westminster Way", "address": "Westminster Way", "connectors": ["Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.421342, "lng": -0.822973, "title": "Pigott Road", "address": "Pigott Road", "connectors": ["Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.413602, "lng": -0.846707, "title": "St Pauls Gate", "address": "St Pauls Gate", "connectors": ["Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.411551, "lng": -0.831991, "title": "Rose St Car Park", "address": "Rose St Car Park", "connectors": ["Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 51.410047, "lng": -0.808195, "title": "William Heelas Way", "address": "William Heelas Way", "connectors": ["Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.409336, "lng": -0.832074, "title": "Cockpit Path Car Park", "address": "Cockpit Path Car Park", "connectors": ["Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 51.407978, "lng": -0.835011, "title": "Denmark Street Car Park", "address": "Denmark Street Car Park", "connectors": ["Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 51.4031, "lng": -0.837827, "title": "Tesco Superstore - Wokingham", "address": "78 Finchampstead Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.385617, "lng": -0.90266, "title": "Bramshill Close", "address": "Bramshill Close", "connectors": ["Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.384029, "lng": -0.860037, "title": "Roycroft Ln", "address": "Roycroft Ln", "connectors": ["Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.40528045, "lng": -0.84643092, "title": "Surestore-Wokingham Unit", "address": "Molly Millars Lane", "connectors": ["Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.405100702932, "lng": -0.837373953721766, "title": "BP Wokingham SF Connect", "address": "70 Finchampstead Road", "connectors": ["CCS (Type 2) · 150kW"], "speed": "rapid"}, {"lat": 51.41292516, "lng": -0.8022349601, "title": "The Oakingham Belle", "address": "Oak Avenue", "connectors": ["CHAdeMO · 50kW", "CHAdeMO · 50kW", "CCS (Type 2) · 50kW", "CCS (Type 2) · 50kW", "Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 11kW"], "speed": "rapid"}, {"lat": 51.408119, "lng": -0.839477, "title": "Carnival Pool", "address": "Wellington Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 51.40712, "lng": -0.839377, "title": "Carnival Pool", "address": "Wellington Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 51.474965, "lng": -0.889823, "title": "RAW GREENE KING WEE WAIF 2", "address": "Wee Waif Old Bath Road", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 51.423036, "lng": -0.862208, "title": "70621", "address": "Old Forest Road", "connectors": ["CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 43kW", "Type 2 (Tethered Connector)  · 50kW"], "speed": "rapid"}, {"lat": 51.421010780110976, "lng": -0.8382185831972038, "title": "Cantley Park Cafe", "address": "Twyford Lane", "connectors": ["Type 2 (Socket Only) · 11kW", "Type 2 (Socket Only) · 11kW"], "speed": "fast"}, {"lat": 51.41435262132953, "lng": -0.8546695745221768, "title": "Morrisons Wokingham Woosehill", "address": "Woosehill Court", "connectors": ["Type 2 (Socket Only) · 22kW", "CHAdeMO · 50kW", "CCS (Type 2) · 50kW"], "speed": "rapid"}, {"lat": 51.427687828887485, "lng": -0.8476239053463814, "title": "Toutley Depot", "address": "Old Forest Road", "connectors": ["CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 43kW", "CCS (Type 2) · 50kW"], "speed": "rapid"}];
 
   chargerData.forEach(function (c) {
@@ -1164,6 +1171,14 @@
     markers.addLayer(marker);
   });
   map.addLayer(markers);
+
+  // Frame the map to the actual chargers so a town's points are visible
+  // immediately (and small towns land past the de-clustering zoom).
+  if (chargerData.length) {
+    map.fitBounds(markers.getBounds(), { padding: [40, 40], maxZoom: 15 });
+  } else {
+    map.setView([51.42804919114689, -0.8619765481685355], 12);
+  }
 
   // --- Connector filter ---
   var filterBtns = document.querySelectorAll('.filter-btn');

@@ -706,7 +706,7 @@
   function esc(s) { return String(s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
 
   // --- Map ---
-  var map = L.map('map').setView([57.47048180346443, -4.2086436926341975], 12);
+  var map = L.map('map');
   L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
     subdomains: 'abcd',
@@ -722,7 +722,14 @@
     });
   }
 
-  var markers = L.markerClusterGroup();
+  // Cluster only when markers genuinely overlap, and stop clustering once
+  // zoomed in so a town's handful of chargers show as individual pins.
+  var markers = L.markerClusterGroup({
+    maxClusterRadius: 40,
+    disableClusteringAtZoom: 14,
+    spiderfyOnMaxZoom: true,
+    showCoverageOnHover: false,
+  });
   var chargerData = [{"lat": 57.482498, "lng": -4.18724, "title": "Inverness (Howdens)", "address": "Howdens Garden Centre", "connectors": ["CCS (Type 2) · 360kW", "CCS (Type 2) · 360kW", "CCS (Type 2) · 360kW", "CCS (Type 2) · 360kW", "CCS (Type 2) · 360kW", "CCS (Type 2) · 360kW"], "speed": "rapid"}, {"lat": 57.472840967700336, "lng": -4.1805656052525535, "title": "UHI Reception", "address": "Inverness Campus", "connectors": ["CCS (Type 2) · 50kW", "CHAdeMO · 50kW", "Type 2 (Socket Only) · 22kW"], "speed": "rapid"}, {"lat": 57.4772838674067, "lng": -4.091461422697989, "title": "Culloden Battlefield Visiter Centre", "address": "Culloden Battlefield", "connectors": ["Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 57.533563456324146, "lng": -4.055889816463036, "title": "Inverness Airport Railway Station", "address": "Inverness Airport", "connectors": ["Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 57.47710113, "lng": -4.18203619, "title": "Highlands & Islands Enterprise", "address": "10 Inverness Campus", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 57.474894, "lng": -4.231315, "title": "Inverness, Cathedral Car Park", "address": "14A Ardross Street", "connectors": ["Type 2 (Tethered Connector)  · 43kW", "CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 50kW"], "speed": "rapid"}, {"lat": 57.336135, "lng": -4.480535, "title": "Drumnadrochit, Tourist Information Centre", "address": "Tourist Information Centre", "connectors": ["Type 2 (Tethered Connector)  · 43kW", "CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 50kW"], "speed": "rapid"}, {"lat": 57.47196466898595, "lng": -4.209366012525265, "title": "Kingsmills Hotel", "address": "Culcabock Road", "connectors": ["Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 57.481079, "lng": -4.21757, "title": "Morrisons", "address": "Milburn Road", "connectors": ["CHAdeMO · 50kW", "Type 2 (Socket Only) · 22kW", "Type 2 (Tethered Connector)  · 50kW"], "speed": "rapid"}, {"lat": 57.485143, "lng": -4.22183, "title": "Inverness College", "address": "5 Longman Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 57.45230169, "lng": -4.25046828, "title": "Tesco Superstore-Inverness Ness Side", "address": "Dores Road", "connectors": ["Type 2 (Socket Only) · 7kW", "CCS (Type 2) · 50kW", "CHAdeMO · 50kW", "Type 2 (Socket Only) · 22kW"], "speed": "rapid"}, {"lat": 57.470101, "lng": -4.188712, "title": "Tesco Extra-Inverness Inshes", "address": "Milton of Inshes", "connectors": ["Type 2 (Socket Only) · 7kW", "CHAdeMO · 50kW", "CCS (Type 2) · 50kW", "Type 2 (Socket Only) · 22kW"], "speed": "rapid"}, {"lat": 57.483566, "lng": -4.176726, "title": "Tesco Extra-Inverness", "address": "1a Eastfield Way", "connectors": ["Type 2 (Socket Only) · 7kW", "CCS (Type 2) · 50kW", "CHAdeMO · 50kW", "Type 2 (Socket Only) · 22kW"], "speed": "rapid"}, {"lat": 57.477049, "lng": -4.230606, "title": "Tesco Superstore-Iverness", "address": "8-10 Tomnahurich Street", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 57.4817062715494, "lng": -4.22533406257412, "title": "Inverness Supercharger", "address": "Old Town Rose Street Multi Storey Car Park", "connectors": ["NACS / Tesla Supercharger · 150kW"], "speed": "rapid"}];
 
   chargerData.forEach(function (c) {
@@ -740,6 +747,14 @@
     markers.addLayer(marker);
   });
   map.addLayer(markers);
+
+  // Frame the map to the actual chargers so a town's points are visible
+  // immediately (and small towns land past the de-clustering zoom).
+  if (chargerData.length) {
+    map.fitBounds(markers.getBounds(), { padding: [40, 40], maxZoom: 15 });
+  } else {
+    map.setView([57.47048180346443, -4.2086436926341975], 12);
+  }
 
   // --- Connector filter ---
   var filterBtns = document.querySelectorAll('.filter-btn');

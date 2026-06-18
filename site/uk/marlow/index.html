@@ -332,7 +332,7 @@
   function esc(s) { return String(s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
 
   // --- Map ---
-  var map = L.map('map').setView([51.57171682621035, -0.7718217193931342], 12);
+  var map = L.map('map');
   L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
     subdomains: 'abcd',
@@ -348,7 +348,14 @@
     });
   }
 
-  var markers = L.markerClusterGroup();
+  // Cluster only when markers genuinely overlap, and stop clustering once
+  // zoomed in so a town's handful of chargers show as individual pins.
+  var markers = L.markerClusterGroup({
+    maxClusterRadius: 40,
+    disableClusteringAtZoom: 14,
+    spiderfyOnMaxZoom: true,
+    showCoverageOnHover: false,
+  });
   var chargerData = [{"lat": 51.573581, "lng": -0.761387, "title": "Globe Park Marlow 1", "address": "Regus Marlow  Globe Park", "connectors": ["Type 2 (Tethered Connector)  · 22kW"], "speed": "fast"}, {"lat": 51.5751601, "lng": -0.771447, "title": "45-48 Foxes Piece", "address": "45 - 48 Foxes Piece", "connectors": ["Type 2 (Socket Only) · 5.1kW"], "speed": "slow"}, {"lat": 51.5687728572621, "lng": -0.777131316358805, "title": "Court Garden Car Park", "address": "Pound Lane", "connectors": ["CCS (Type 2) · 50kW", "CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 43kW", "Type 2 (Socket Only) · 7kW"], "speed": "rapid"}, {"lat": 51.570972, "lng": -0.770386, "title": "61 Station Road", "address": "61 Station Road", "connectors": ["Type 2 (Socket Only) · 4.8kW"], "speed": "slow"}, {"lat": 51.570921, "lng": -0.778976, "title": "3 Oxford Road", "address": "3 Oxford Road", "connectors": ["Type 2 (Socket Only) · 3.5kW"], "speed": "slow"}, {"lat": 51.570894, "lng": -0.771603, "title": "1 Station Rise", "address": "1 Station Rise", "connectors": ["Type 2 (Socket Only) · 4.8kW"], "speed": "slow"}];
 
   chargerData.forEach(function (c) {
@@ -366,6 +373,14 @@
     markers.addLayer(marker);
   });
   map.addLayer(markers);
+
+  // Frame the map to the actual chargers so a town's points are visible
+  // immediately (and small towns land past the de-clustering zoom).
+  if (chargerData.length) {
+    map.fitBounds(markers.getBounds(), { padding: [40, 40], maxZoom: 15 });
+  } else {
+    map.setView([51.57171682621035, -0.7718217193931342], 12);
+  }
 
   // --- Connector filter ---
   var filterBtns = document.querySelectorAll('.filter-btn');

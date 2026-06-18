@@ -417,7 +417,7 @@
   function esc(s) { return String(s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
 
   // --- Map ---
-  var map = L.map('map').setView([51.756059757848824, -0.4491072053806495], 12);
+  var map = L.map('map');
   L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
     subdomains: 'abcd',
@@ -433,7 +433,14 @@
     });
   }
 
-  var markers = L.markerClusterGroup();
+  // Cluster only when markers genuinely overlap, and stop clustering once
+  // zoomed in so a town's handful of chargers show as individual pins.
+  var markers = L.markerClusterGroup({
+    maxClusterRadius: 40,
+    disableClusteringAtZoom: 14,
+    spiderfyOnMaxZoom: true,
+    showCoverageOnHover: false,
+  });
   var chargerData = [{"lat": 51.7597006903178, "lng": -0.440070337905325, "title": "Wood Lane Car Park", "address": "Wood Lane End", "connectors": ["CCS (Type 2) · 60kW", "CHAdeMO · 60kW", "CCS (Type 2) · 60kW", "CHAdeMO · 50kW", "CCS (Type 2) · 60kW", "CHAdeMO · 50kW", "CHAdeMO · 50kW", "CCS (Type 2) · 60kW"], "speed": "rapid"}, {"lat": 51.74809, "lng": -0.432141, "title": "Leverstock Green Shopping Parade", "address": "Leverstock Green Road", "connectors": ["CCS (Type 2) · 60kW", "CHAdeMO · 50kW", "CCS (Type 2) · 60kW", "CHAdeMO · 50kW", "CCS (Type 2) · 60kW", "CHAdeMO · 50kW", "CCS (Type 2) · 60kW", "CHAdeMO · 50kW"], "speed": "rapid"}, {"lat": 51.760677, "lng": -0.473739, "title": "High Street Car Park", "address": "High Street", "connectors": ["CCS (Type 2) · 60kW", "CHAdeMO · 50kW", "CCS (Type 2) · 60kW", "CHAdeMO · 50kW", "CCS (Type 2) · 60kW", "CHAdeMO · 50kW"], "speed": "rapid"}, {"lat": 51.75634402255682, "lng": -0.4283684082864738, "title": "Shell Recharge Hemel Hempstead", "address": "Breakspear Way", "connectors": ["CCS (Type 2) · 300kW"], "speed": "rapid"}, {"lat": 51.74883653, "lng": -0.45828112, "title": "Tesco Extra-Hemel Hempstead", "address": "Jarman Way", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.76754806206716, "lng": -0.43630957147274785, "title": "Swarco UK Ltd", "address": "Unit 1, Maxted Corner", "connectors": ["Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.751222, "lng": -0.474841, "title": "Wood Lane End", "address": "Duxons Turn Ind Est", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}];
 
   chargerData.forEach(function (c) {
@@ -451,6 +458,14 @@
     markers.addLayer(marker);
   });
   map.addLayer(markers);
+
+  // Frame the map to the actual chargers so a town's points are visible
+  // immediately (and small towns land past the de-clustering zoom).
+  if (chargerData.length) {
+    map.fitBounds(markers.getBounds(), { padding: [40, 40], maxZoom: 15 });
+  } else {
+    map.setView([51.756059757848824, -0.4491072053806495], 12);
+  }
 
   // --- Connector filter ---
   var filterBtns = document.querySelectorAll('.filter-btn');

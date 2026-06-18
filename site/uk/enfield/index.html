@@ -515,7 +515,7 @@
   function esc(s) { return String(s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
 
   // --- Map ---
-  var map = L.map('map').setView([51.65190163636364, -0.06658481818181818], 12);
+  var map = L.map('map');
   L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
     subdomains: 'abcd',
@@ -531,7 +531,14 @@
     });
   }
 
-  var markers = L.markerClusterGroup();
+  // Cluster only when markers genuinely overlap, and stop clustering once
+  // zoomed in so a town's handful of chargers show as individual pins.
+  var markers = L.markerClusterGroup({
+    maxClusterRadius: 40,
+    disableClusteringAtZoom: 14,
+    spiderfyOnMaxZoom: true,
+    showCoverageOnHover: false,
+  });
   var chargerData = [{"lat": 51.642232, "lng": -0.057567, "title": "SEGRO AREAS CAMBRIDGE EST 3", "address": "Cambridge Industrial Estate Great Cambridge R", "connectors": ["Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 51.64191, "lng": -0.056613, "title": "SEGRO AREAS CAMBRIDGE EST 4", "address": "Cambridge Industrial Estate Great Cambridge R", "connectors": ["Type 2 (Tethered Connector)  · 43kW"], "speed": "fast"}, {"lat": 51.645048, "lng": -0.067072, "title": "Shell Recharge/Ubitricity", "address": "null", "connectors": ["Type 2 (Socket Only) · 5kW"], "speed": "slow"}, {"lat": 51.680289, "lng": -0.049476, "title": "SHELL RECHARGE BUDGENS BULLSMOOR", "address": "233 Bullsmoor Lane", "connectors": ["Type 2 (Tethered Connector)  · 50kW", "CHAdeMO · 50kW"], "speed": "rapid"}, {"lat": 51.651646, "lng": -0.084142, "title": "Palace Gardens Shop Centre", "address": "Palace Gardens Shop Centre", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 51.648499, "lng": -0.05599, "title": "Morrisons Enfield", "address": "Morrisons Enfield", "connectors": ["Type 2 (Tethered Connector)  · 60kW", "CHAdeMO · 50kW", "Type 2 (Socket Only) · 22kW"], "speed": "rapid"}, {"lat": 51.666267, "lng": -0.083295, "title": "opp. 82 Glenville Avenue", "address": "opp. 82 Glenville Avenue", "connectors": ["Type 2 (Socket Only) · 5kW"], "speed": "slow"}, {"lat": 51.660568, "lng": -0.083947, "title": "Shell Recharge/Ubitricity", "address": "null", "connectors": ["Type 2 (Socket Only) · 5kW"], "speed": "slow"}, {"lat": 51.649109, "lng": -0.030325, "title": "Tooled Up", "address": "78 Suez Road", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 51.6717, "lng": -0.0404, "title": "Lidl-Enfield Wash", "address": "654-658 Hertford Road", "connectors": ["Type 2 (Socket Only) · 22kW", "CCS (Type 2) · 50kW", "CHAdeMO · 50kW"], "speed": "rapid"}, {"lat": 51.61365, "lng": -0.123606, "title": "Bowes Road (on North Circular Rd - A406)", "address": "Bowes Road (on North Circular Rd - A406), Arnos Grove", "connectors": ["CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 50kW", "Type 2 (Tethered Connector)  · 43kW"], "speed": "rapid"}];
 
   chargerData.forEach(function (c) {
@@ -549,6 +556,14 @@
     markers.addLayer(marker);
   });
   map.addLayer(markers);
+
+  // Frame the map to the actual chargers so a town's points are visible
+  // immediately (and small towns land past the de-clustering zoom).
+  if (chargerData.length) {
+    map.fitBounds(markers.getBounds(), { padding: [40, 40], maxZoom: 15 });
+  } else {
+    map.setView([51.65190163636364, -0.06658481818181818], 12);
+  }
 
   // --- Connector filter ---
   var filterBtns = document.querySelectorAll('.filter-btn');

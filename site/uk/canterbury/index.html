@@ -477,7 +477,7 @@
   function esc(s) { return String(s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
 
   // --- Map ---
-  var map = L.map('map').setView([51.270885704702685, 1.1016714617342689], 12);
+  var map = L.map('map');
   L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
     subdomains: 'abcd',
@@ -493,7 +493,14 @@
     });
   }
 
-  var markers = L.markerClusterGroup();
+  // Cluster only when markers genuinely overlap, and stop clustering once
+  // zoomed in so a town's handful of chargers show as individual pins.
+  var markers = L.markerClusterGroup({
+    maxClusterRadius: 40,
+    disableClusteringAtZoom: 14,
+    spiderfyOnMaxZoom: true,
+    showCoverageOnHover: false,
+  });
   var chargerData = [{"lat": 51.27630953482898, "lng": 1.0809356848135394, "title": "(e-Taxis Only) St George's Lane", "address": "St Georges Lane", "connectors": ["CCS (Type 2) · 50kW", "CHAdeMO · 50kW"], "speed": "rapid"}, {"lat": 51.27636805391066, "lng": 1.079648659585473, "title": "Ev Dot Watling Street Car Park", "address": "Watling Street", "connectors": ["Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 51.275299601011284, "lng": 1.0759109027325735, "title": "Castle Row Car Park", "address": "Castle Street", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 51.2906505280916, "lng": 1.10038147113888, "title": "MFG Lakeside", "address": "Sturry Road", "connectors": ["CCS (Type 2) · 150kW", "CHAdeMO · 50kW"], "speed": "rapid"}, {"lat": 51.190871416622905, "lng": 1.1758473153787783, "title": "EVC Broome Park", "address": "Broome Park Hotel", "connectors": ["Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 51.279886, "lng": 1.280559, "title": "Ash Parish Hall", "address": "Ash", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.255799, "lng": 1.01909, "title": "CT4 7HZ", "address": "", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.28359, "lng": 1.074741, "title": "Multi-Storey Car Park", "address": "Station Road West", "connectors": ["Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 51.27143005525622, "lng": 1.0626519240046264, "title": "Morrisons Canterbury", "address": "Ten Perch Road", "connectors": ["CHAdeMO · 50kW", "CCS (Type 2) · 50kW", "Type 2 (Socket Only) · 22kW"], "speed": "rapid"}, {"lat": 51.30865285730525, "lng": 1.0669486596888191, "title": "Sunnymead", "address": "Sunnymead", "connectors": ["Type 2 (Tethered Connector)  · 7kW", "Type 2 (Tethered Connector)  · 7kW"], "speed": "fast"}];
 
   chargerData.forEach(function (c) {
@@ -511,6 +518,14 @@
     markers.addLayer(marker);
   });
   map.addLayer(markers);
+
+  // Frame the map to the actual chargers so a town's points are visible
+  // immediately (and small towns land past the de-clustering zoom).
+  if (chargerData.length) {
+    map.fitBounds(markers.getBounds(), { padding: [40, 40], maxZoom: 15 });
+  } else {
+    map.setView([51.270885704702685, 1.1016714617342689], 12);
+  }
 
   // --- Connector filter ---
   var filterBtns = document.querySelectorAll('.filter-btn');

@@ -1281,7 +1281,7 @@
   function esc(s) { return String(s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
 
   // --- Map ---
-  var map = L.map('map').setView([51.06974489602032, -1.313790339930696], 12);
+  var map = L.map('map');
   L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
     subdomains: 'abcd',
@@ -1297,7 +1297,14 @@
     });
   }
 
-  var markers = L.markerClusterGroup();
+  // Cluster only when markers genuinely overlap, and stop clustering once
+  // zoomed in so a town's handful of chargers show as individual pins.
+  var markers = L.markerClusterGroup({
+    maxClusterRadius: 40,
+    disableClusteringAtZoom: 14,
+    spiderfyOnMaxZoom: true,
+    showCoverageOnHover: false,
+  });
   var chargerData = [{"lat": 51.156913, "lng": -1.346844, "title": "GS10229A", "address": "A34 By-Pass, Sutton Scotney", "connectors": ["Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 51.094155, "lng": -1.293446, "title": "Lovedon Fields", "address": "Lovedon Lane", "connectors": ["Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 51.071112, "lng": -1.31978, "title": "RAW GREENE KING JOLLY FARMER 1", "address": "Boscobel Road", "connectors": ["Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 51.066415, "lng": -1.30255, "title": "ETB WINCHESTER", "address": "ETB Autocentres - Winchester Unit 1 Easton La", "connectors": ["Type 2 (Tethered Connector)  · 43kW"], "speed": "fast"}, {"lat": 51.05461, "lng": -1.307292, "title": "WCC Vaultex MSCP 1", "address": "Barfield Close", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 51.06941200360873, "lng": -1.3162851700797091, "title": "Winchester City Council  : Coach Park Car Park", "address": "Worthy Lane", "connectors": ["CCS (Type 2) · 50kW", "CHAdeMO · 50kW"], "speed": "rapid"}, {"lat": 51.082394, "lng": -1.371325, "title": "RAWOWNED LAINSTONHOUSE 2", "address": "Lainston House", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 51.064804, "lng": -1.308361, "title": "Durngate 2", "address": "North Walls", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 51.115446, "lng": -1.255064, "title": "Moto Winchester Southbound Services", "address": "Moto Winchester Southbound Services", "connectors": ["CCS (Type 2) · 50kW", "CHAdeMO · 50kW", "CCS (Type 2) · 50kW", "CCS (Type 2) · 50kW", "Type 2 (Socket Only) · 11kW", "CCS (Type 2) · 237kW", "CCS (Type 2) · 237kW", "CCS (Type 2) · 237kW", "CCS (Type 2) · 237kW", "CCS (Type 2) · 237kW", "CCS (Type 2) · 237kW"], "speed": "rapid"}, {"lat": 51.071, "lng": -1.3138, "title": "Arthur Road - Lighting Column 3", "address": "30-32 Arthur Road", "connectors": ["Type 2 (Socket Only) · 3.7kW"], "speed": "slow"}, {"lat": 51.0709, "lng": -1.3127, "title": "Arthur Road - Lighting Column 5", "address": "10 Arthur Road", "connectors": ["Type 2 (Socket Only) · 3.7kW"], "speed": "slow"}, {"lat": 51.0705, "lng": -1.3127, "title": "Saxon Road - Lighting Column 2", "address": "20 Saxon Road", "connectors": ["Type 2 (Socket Only) · 3.7kW"], "speed": "slow"}, {"lat": 51.0703, "lng": -1.3117, "title": "Nuns Road - Lighting Column 2", "address": "16-18 Nuns Road", "connectors": ["Type 2 (Socket Only) · 3.7kW"], "speed": "slow"}, {"lat": 51.069955, "lng": -1.317748, "title": "WIN HOTELSPA", "address": "26 Athelstan Rd", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 51.0697, "lng": -1.3141, "title": "Egbert Road - Lighting Column 2", "address": "4-6 Egbert Road", "connectors": ["Type 2 (Socket Only) · 3.7kW"], "speed": "slow"}, {"lat": 51.0694, "lng": -1.3123, "title": "Monks Road - Lighting Column 2", "address": "18-20 Monks Road", "connectors": ["Type 2 (Socket Only) · 3.7kW"], "speed": "slow"}, {"lat": 51.0693, "lng": -1.3112, "title": "Monks Road - Lighting Column 4", "address": "48 Monks Road", "connectors": ["Type 2 (Socket Only) · 3.7kW"], "speed": "slow"}, {"lat": 51.0678, "lng": -1.3129, "title": "King Alfred Terrace - Lighting Column 2", "address": "7-8 King Alfred Terrace", "connectors": ["Type 2 (Socket Only) · 3.7kW"], "speed": "slow"}, {"lat": 51.0677, "lng": -1.3124, "title": "King Alfred Terrace - Lighting Column 1", "address": "16-17 King Alfred Terrace", "connectors": ["Type 2 (Socket Only) · 3.7kW"], "speed": "slow"}, {"lat": 51.0669, "lng": -1.3135, "title": "Hyde Abbey Road - Lighting Column 5", "address": "20-21 Hyde Abbey Road", "connectors": ["Type 2 (Socket Only) · 3.7kW"], "speed": "slow"}, {"lat": 51.0655, "lng": -1.3103, "title": "Park Avenue - Lighting Column 3", "address": "Park Avenue", "connectors": ["Type 2 (Socket Only) · 3.7kW"], "speed": "slow"}, {"lat": 51.065464, "lng": -1.312139, "title": "WCC St Peters Car Park", "address": "Gordon Road", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 51.06267, "lng": -1.317215, "title": "ICUEVE900606", "address": "Southgate Street", "connectors": ["Type 2 (Socket Only) · 11kW"], "speed": "fast"}, {"lat": 51.054167, "lng": -1.307521, "title": "Barfield Park and Ride 1", "address": "Barfield Close", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 51.046366, "lng": -1.339979, "title": "Sainsbury's Badger Farm", "address": "Badger Farm Road", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 51.008183, "lng": -1.342844, "title": "Williams Garage", "address": "Otterbourne", "connectors": ["CHAdeMO · 50kW", "CHAdeMO · 50kW"], "speed": "rapid"}, {"lat": 51.05062, "lng": -1.30572, "title": "East Winchester Park and Ride 1", "address": "Garnier Road", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 51.0691425650617, "lng": -1.29309904763326, "title": "Tesco Extra - Winchester", "address": "Easton Lane", "connectors": ["CHAdeMO · 50kW", "CCS (Type 2) · 50kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 22kW"], "speed": "rapid"}, {"lat": 51.0703, "lng": -1.3141, "title": "Egbert Road - Lighting Column 3", "address": "27-29 Egbert Road", "connectors": ["Type 2 (Socket Only) · 3.7kW"], "speed": "slow"}, {"lat": 51.0701, "lng": -1.3107, "title": "Nuns Road - Lighting Column 4", "address": "44-46 Nuns Road", "connectors": ["Type 2 (Socket Only) · 3.7kW"], "speed": "slow"}, {"lat": 51.0685, "lng": -1.3127, "title": "6 Alswitha Terrace, King Alfred Pl", "address": "6 Alswitha Terrace, King Alfred Pl", "connectors": ["Type 2 (Socket Only) · 3.7kW"], "speed": "slow"}, {"lat": 51.0663, "lng": -1.3138, "title": "Hyde Abbey Road - Lighting Column 3", "address": "49 Hyde Abbey Road", "connectors": ["Type 2 (Socket Only) · 3.7kW"], "speed": "slow"}, {"lat": 51.065553, "lng": -1.308969, "title": "Park Avenue", "address": "Park Avenue", "connectors": ["Type 2 (Socket Only) · 22kW"], "speed": "fast"}];
 
   chargerData.forEach(function (c) {
@@ -1315,6 +1322,14 @@
     markers.addLayer(marker);
   });
   map.addLayer(markers);
+
+  // Frame the map to the actual chargers so a town's points are visible
+  // immediately (and small towns land past the de-clustering zoom).
+  if (chargerData.length) {
+    map.fitBounds(markers.getBounds(), { padding: [40, 40], maxZoom: 15 });
+  } else {
+    map.setView([51.06974489602032, -1.313790339930696], 12);
+  }
 
   // --- Connector filter ---
   var filterBtns = document.querySelectorAll('.filter-btn');

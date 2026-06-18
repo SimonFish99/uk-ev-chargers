@@ -438,7 +438,7 @@
   function esc(s) { return String(s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
 
   // --- Map ---
-  var map = L.map('map').setView([54.73059188006693, -6.238474675299164], 12);
+  var map = L.map('map');
   L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
     subdomains: 'abcd',
@@ -454,7 +454,14 @@
     });
   }
 
-  var markers = L.markerClusterGroup();
+  // Cluster only when markers genuinely overlap, and stop clustering once
+  // zoomed in so a town's handful of chargers show as individual pins.
+  var markers = L.markerClusterGroup({
+    maxClusterRadius: 40,
+    disableClusteringAtZoom: 14,
+    spiderfyOnMaxZoom: true,
+    showCoverageOnHover: false,
+  });
   var chargerData = [{"lat": 54.728554505939, "lng": -6.227776093458829, "title": "Tim Hortons", "address": "The Junction", "connectors": ["CCS (Type 2) · 200kW"], "speed": "rapid"}, {"lat": 54.72609849035433, "lng": -6.247357275620459, "title": "Allen Park Leisure Centre", "address": "45 Castle Rd", "connectors": ["Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 54.717896942749064, "lng": -6.225961501865157, "title": "Clotworthy Arts & Heritage Centre", "address": "Randalstown Rd", "connectors": ["Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 54.73033331866765, "lng": -6.228527105819097, "title": "The Junction", "address": "Ballymena Road", "connectors": ["CCS (Type 2) · 400kW", "CHAdeMO · 50kW"], "speed": "rapid"}, {"lat": 54.727440590689696, "lng": -6.227710389999459, "title": "Lidl", "address": "Ballymena Road", "connectors": ["Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 54.742893690717835, "lng": -6.233568569504655, "title": "Dunsilly Hotel", "address": "20 Dunsilly Road", "connectors": ["CCS (Type 2) · 24kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW", "CCS (Type 2) · 120kW"], "speed": "rapid"}, {"lat": 54.72137838148478, "lng": -6.220870141424825, "title": "Maxol Service Station", "address": "15 Ballymena Rd", "connectors": ["CCS (Type 2) · 40kW", "CHAdeMO · 40kW"], "speed": "fast"}, {"lat": 54.753928, "lng": -6.326239, "title": "Portglenone Road, Randalstown", "address": "67 Portglenon Road", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 54.726803, "lng": -6.208262, "title": "Antrim Civic Centre", "address": "50 Stiles Way", "connectors": ["Type 2 (Socket Only) · 7.4kW"], "speed": "fast"}];
 
   chargerData.forEach(function (c) {
@@ -472,6 +479,14 @@
     markers.addLayer(marker);
   });
   map.addLayer(markers);
+
+  // Frame the map to the actual chargers so a town's points are visible
+  // immediately (and small towns land past the de-clustering zoom).
+  if (chargerData.length) {
+    map.fitBounds(markers.getBounds(), { padding: [40, 40], maxZoom: 15 });
+  } else {
+    map.setView([54.73059188006693, -6.238474675299164], 12);
+  }
 
   // --- Connector filter ---
   var filterBtns = document.querySelectorAll('.filter-btn');

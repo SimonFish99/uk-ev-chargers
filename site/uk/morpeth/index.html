@@ -602,7 +602,7 @@
   function esc(s) { return String(s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
 
   // --- Map ---
-  var map = L.map('map').setView([55.199212401936094, -1.7111808717784358], 12);
+  var map = L.map('map');
   L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
     subdomains: 'abcd',
@@ -618,7 +618,14 @@
     });
   }
 
-  var markers = L.markerClusterGroup();
+  // Cluster only when markers genuinely overlap, and stop clustering once
+  // zoomed in so a town's handful of chargers show as individual pins.
+  var markers = L.markerClusterGroup({
+    maxClusterRadius: 40,
+    disableClusteringAtZoom: 14,
+    spiderfyOnMaxZoom: true,
+    showCoverageOnHover: false,
+  });
   var chargerData = [{"lat": 55.170553787542616, "lng": -1.6919061054688882, "title": "St James Carpark", "address": "Well Way", "connectors": ["Type 2 (Socket Only) · 7.4kW", "Type 2 (Socket Only) · 7.4kW", "Type 2 (Socket Only) · 7.4kW", "Type 2 (Socket Only) · 7.4kW"], "speed": "fast"}, {"lat": 55.170024, "lng": -1.69018, "title": "St James", "address": "Wellway", "connectors": ["Type 2 (Tethered Connector)  · 22kW"], "speed": "fast"}, {"lat": 55.166432, "lng": -1.690391, "title": "Newmarket Car Park", "address": "Newmarket East", "connectors": ["Type 2 (Tethered Connector)  · 22kW"], "speed": "fast"}, {"lat": 55.165686437626576, "lng": -1.6857642276507758, "title": "Goose Hill Car Park", "address": "Goose Hill", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 55.315155, "lng": -1.885767, "title": "Cragside Hall", "address": "Cragside Hall", "connectors": ["Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 55.162166, "lng": -1.682229, "title": "Coopies Lane Morpeth", "address": "Coopie's Lane", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 55.326762, "lng": -1.582318, "title": "Morrisons Amble", "address": "Amble", "connectors": ["Type 2 (Socket Only) · 22kW", "CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 50kW"], "speed": "rapid"}, {"lat": 55.169552, "lng": -1.685545, "title": "Morrisons Morpeth", "address": "Wm Morrison Supermarkets PLC", "connectors": ["Type 2 (Tethered Connector)  · 43kW", "CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 50kW"], "speed": "rapid"}, {"lat": 55.162623, "lng": -1.67997, "title": "Morpeth Railway Station (South) Car Park", "address": "Coopies Lane", "connectors": ["Type 2 (Socket Only) · 3.6kW", "Type 2 (Socket Only) · 3.6kW"], "speed": "slow"}, {"lat": 55.152933, "lng": -1.683965, "title": "County Hall Morpeth", "address": "County Hall", "connectors": ["Type 2 (Tethered Connector)  · 43kW", "CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 50kW"], "speed": "rapid"}, {"lat": 55.306628, "lng": -1.914088, "title": "Rothbury Community Hospital", "address": "Whitton Bank Road", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 55.168136, "lng": -1.686938, "title": "Stanley Terrace", "address": "Stanley Terrace", "connectors": ["Type 2 (Tethered Connector)  · 43kW", "CHAdeMO · 50kW", "CCS (Type 2) · 50kW"], "speed": "rapid"}, {"lat": 55.15311, "lng": -1.68629, "title": "Northgate Hospital", "address": "Northgate Hospital", "connectors": ["Type 2 (Socket Only) · 7kW"], "speed": "fast"}];
 
   chargerData.forEach(function (c) {
@@ -636,6 +643,14 @@
     markers.addLayer(marker);
   });
   map.addLayer(markers);
+
+  // Frame the map to the actual chargers so a town's points are visible
+  // immediately (and small towns land past the de-clustering zoom).
+  if (chargerData.length) {
+    map.fitBounds(markers.getBounds(), { padding: [40, 40], maxZoom: 15 });
+  } else {
+    map.setView([55.199212401936094, -1.7111808717784358], 12);
+  }
 
   // --- Connector filter ---
   var filterBtns = document.querySelectorAll('.filter-btn');

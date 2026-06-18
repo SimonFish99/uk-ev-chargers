@@ -1000,7 +1000,7 @@
   function esc(s) { return String(s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
 
   // --- Map ---
-  var map = L.map('map').setView([51.7992229792196, -0.19445985083378584], 12);
+  var map = L.map('map');
   L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
     subdomains: 'abcd',
@@ -1016,7 +1016,14 @@
     });
   }
 
-  var markers = L.markerClusterGroup();
+  // Cluster only when markers genuinely overlap, and stop clustering once
+  // zoomed in so a town's handful of chargers show as individual pins.
+  var markers = L.markerClusterGroup({
+    maxClusterRadius: 40,
+    disableClusteringAtZoom: 14,
+    spiderfyOnMaxZoom: true,
+    showCoverageOnHover: false,
+  });
   var chargerData = [{"lat": 51.795999, "lng": -0.175048, "title": "Thundridge Close 1", "address": "Thundridge Close 1", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.795599, "lng": -0.20251, "title": "Althestan Walk North 3", "address": "Althestan Walk North 3", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.795333, "lng": -0.200753, "title": "The Spinney 3", "address": "The Spinney 3", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.79443, "lng": -0.203995, "title": "Althestan Walk South 3", "address": "Althestan Walk South 3", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.794286, "lng": -0.202307, "title": "Peartree Court Car Park 1", "address": "Peartree Court Car Park 1", "connectors": ["Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.794111, "lng": -0.205337, "title": "By the Mount Car Park 2", "address": "By the Mount Car Park 2", "connectors": ["Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.79409, "lng": -0.205249, "title": "By the Mount Car Park 1", "address": "By the Mount Car Park 1", "connectors": ["Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.798221, "lng": -0.176255, "title": "Aldbury Grove, Welwyn Garden City 3", "address": "10-37 Aldbury Grove", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.796999, "lng": -0.203118, "title": "Broadwater Crescent, Welwyn Garden City 1", "address": "Broadwater Crescent, Welwyn Ga", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 51.796745, "lng": -0.16628, "title": "Russett House, Welwyn Garden City 5", "address": "Russett Wood", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.805188, "lng": -0.209245, "title": "Campus West Car Park, Welwyn Garden City 6", "address": "Campus West, The Campus", "connectors": ["Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.805157, "lng": -0.209342, "title": "Campus West Car Park, Welwyn Garden City 10", "address": "Campus West, The Campus", "connectors": ["Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.802252, "lng": -0.19733039, "title": "The Bakehouse Pub & Restaurant", "address": "Bessemer Road", "connectors": ["CCS (Type 2) · 300kW", "CCS (Type 2) · 300kW", "CCS (Type 2) · 300kW", "CHAdeMO · 50kW", "CHAdeMO · 50kW", "CCS (Type 2) · 300kW", "CHAdeMO · 50kW", "CHAdeMO · 50kW", "CHAdeMO · 50kW", "CHAdeMO · 50kW", "CCS (Type 2) · 300kW", "CCS (Type 2) · 300kW", "CCS (Type 2) · 300kW", "CHAdeMO · 50kW", "CCS (Type 2) · 300kW", "CHAdeMO · 50kW", "CCS (Type 2) · 50kW", "CHAdeMO · 50kW", "CCS (Type 2) · 50kW", "Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW", "CHAdeMO · 50kW"], "speed": "rapid"}, {"lat": 51.79889252205086, "lng": -0.20568217917707443, "title": "Osborn Way Long Stay", "address": "4 Church Road", "connectors": ["Type 2 (Socket Only) · 12kW"], "speed": "fast"}, {"lat": 51.804528, "lng": -0.203676, "title": "Oaklands College", "address": "6 Digswell Road", "connectors": ["BS1363 3 Pin 13 Amp · 3kW", "BS1363 3 Pin 13 Amp · 3kW"], "speed": "slow"}, {"lat": 51.801406, "lng": -0.186577, "title": "SIKA WGC 1", "address": "Watchmead", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 51.815478, "lng": -0.2027, "title": "Shoplands Car Park 2", "address": "The Hedgehog", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.812892, "lng": -0.189832, "title": "Haldens Car Park 2", "address": "Haldens", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.804087, "lng": -0.185861, "title": "Westfield Car Park 2", "address": "Westfield", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.801356, "lng": -0.172662, "title": "Moors Walk Car Park 2", "address": "Moors Walk", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.791757, "lng": -0.19355, "title": "Wood Hall Car Park 1", "address": "Cole Green Lane", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.784529, "lng": -0.196096, "title": "Hollybush Car Park 1", "address": "Hollybush Lane", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.798793, "lng": -0.179171, "title": "Morrisons Welwyn Garden City", "address": "40 Black Fan Road", "connectors": ["Type 2 (Tethered Connector)  · 43kW", "CHAdeMO · 50kW", "CCS (Type 2) · 50kW"], "speed": "rapid"}];
 
   chargerData.forEach(function (c) {
@@ -1034,6 +1041,14 @@
     markers.addLayer(marker);
   });
   map.addLayer(markers);
+
+  // Frame the map to the actual chargers so a town's points are visible
+  // immediately (and small towns land past the de-clustering zoom).
+  if (chargerData.length) {
+    map.fitBounds(markers.getBounds(), { padding: [40, 40], maxZoom: 15 });
+  } else {
+    map.setView([51.7992229792196, -0.19445985083378584], 12);
+  }
 
   // --- Connector filter ---
   var filterBtns = document.querySelectorAll('.filter-btn');

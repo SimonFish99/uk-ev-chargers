@@ -428,7 +428,7 @@
   function esc(s) { return String(s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
 
   // --- Map ---
-  var map = L.map('map').setView([52.18677463529737, -1.5477597208789728], 12);
+  var map = L.map('map');
   L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
     subdomains: 'abcd',
@@ -444,7 +444,14 @@
     });
   }
 
-  var markers = L.markerClusterGroup();
+  // Cluster only when markers genuinely overlap, and stop clustering once
+  // zoomed in so a town's handful of chargers show as individual pins.
+  var markers = L.markerClusterGroup({
+    maxClusterRadius: 40,
+    disableClusteringAtZoom: 14,
+    spiderfyOnMaxZoom: true,
+    showCoverageOnHover: false,
+  });
   var chargerData = [{"lat": 52.25281, "lng": -1.320645, "title": "The Kings Head", "address": "Southam Road", "connectors": ["CCS (Type 2) · 60kW", "CHAdeMO · 50kW", "CCS (Type 2) · 60kW", "CHAdeMO · 50kW", "CCS (Type 2) · 60kW", "CHAdeMO · 50kW"], "speed": "rapid"}, {"lat": 52.189736, "lng": -1.479031, "title": "British Motor Museum", "address": "Banbury Rd", "connectors": ["Type 2 (Socket Only) · 3.7kW", "Type 2 (Socket Only) · 11kW", "Type 2 (Socket Only) · 3.7kW", "Type 2 (Socket Only) · 11kW"], "speed": "fast"}, {"lat": 52.198376, "lng": -1.724596, "title": "Masons Road", "address": "Masons Road", "connectors": ["Type 2 (Socket Only) · 11kW", "Type 2 (Socket Only) · 11kW"], "speed": "fast"}, {"lat": 52.189874, "lng": -1.487799, "title": "JLR West Car Park Row A G7", "address": "JLR West Car Park Row A G7/2Banbury Road", "connectors": ["Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 52.202208, "lng": -1.715103, "title": "Tesco Superstore-Stratford Upon Avon", "address": "Tesco", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 52.19009615169199, "lng": -1.69831055789939, "title": "Shell Recharge Bridgetown", "address": "Shipston Road", "connectors": ["CCS (Type 2) · 150kW", "CHAdeMO · 50kW"], "speed": "rapid"}, {"lat": 52.02571078912217, "lng": -1.5659744500850366, "title": "The Cotswolds Distillery ", "address": "Philips Field, Whichford Road", "connectors": ["Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 52.24538614156478, "lng": -1.3906187590473564, "title": "Gardeners Way", "address": "Gardeners Way", "connectors": ["Type 2 (Tethered Connector)  · 43kW", "CCS (Type 2) · 50kW", "CHAdeMO · 50kW"], "speed": "rapid"}];
 
   chargerData.forEach(function (c) {
@@ -462,6 +469,14 @@
     markers.addLayer(marker);
   });
   map.addLayer(markers);
+
+  // Frame the map to the actual chargers so a town's points are visible
+  // immediately (and small towns land past the de-clustering zoom).
+  if (chargerData.length) {
+    map.fitBounds(markers.getBounds(), { padding: [40, 40], maxZoom: 15 });
+  } else {
+    map.setView([52.18677463529737, -1.5477597208789728], 12);
+  }
 
   // --- Connector filter ---
   var filterBtns = document.querySelectorAll('.filter-btn');

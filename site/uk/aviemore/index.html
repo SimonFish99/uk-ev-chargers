@@ -350,7 +350,7 @@
   function esc(s) { return String(s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
 
   // --- Map ---
-  var map = L.map('map').setView([57.18749911054615, -3.831105815869453], 12);
+  var map = L.map('map');
   L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
     subdomains: 'abcd',
@@ -366,7 +366,14 @@
     });
   }
 
-  var markers = L.markerClusterGroup();
+  // Cluster only when markers genuinely overlap, and stop clustering once
+  // zoomed in so a town's handful of chargers show as individual pins.
+  var markers = L.markerClusterGroup({
+    maxClusterRadius: 40,
+    disableClusteringAtZoom: 14,
+    spiderfyOnMaxZoom: true,
+    showCoverageOnHover: false,
+  });
   var chargerData = [{"lat": 57.19912759, "lng": -3.810615591, "title": "Macdonald Spey Valley Golf Club", "address": "Dalfaber Drive", "connectors": ["Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 57.19847303, "lng": -3.81596389, "title": "Macdonald Spey Valley Resort", "address": "Dalfaber Drive", "connectors": ["Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 57.18248709135551, "lng": -3.8326396030986416, "title": "Premier Inn Aviemore", "address": "Grampian Road", "connectors": ["CCS (Type 2) · 50kW", "CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 22kW", "CCS (Type 2) · 50kW", "CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 22kW"], "speed": "rapid"}, {"lat": 57.191884, "lng": -3.834385, "title": "Aviemore", "address": "10 Grampian Road", "connectors": ["Type 2 (Tethered Connector)  · 43kW", "Type 2 (Tethered Connector)  · 50kW", "CHAdeMO · 50kW"], "speed": "rapid"}, {"lat": 57.162242, "lng": -3.864457, "title": "Rowan Tree County Hotel", "address": "Loch Alvie", "connectors": ["Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 57.19078095192137, "lng": -3.8285738111180763, "title": "10 Grampian Road", "address": "10 Grampian Road", "connectors": ["Type 2 (Tethered Connector)  · 43kW", "CCS (Type 2) · 50kW", "CHAdeMO · 50kW"], "speed": "rapid"}];
 
   chargerData.forEach(function (c) {
@@ -384,6 +391,14 @@
     markers.addLayer(marker);
   });
   map.addLayer(markers);
+
+  // Frame the map to the actual chargers so a town's points are visible
+  // immediately (and small towns land past the de-clustering zoom).
+  if (chargerData.length) {
+    map.fitBounds(markers.getBounds(), { padding: [40, 40], maxZoom: 15 });
+  } else {
+    map.setView([57.18749911054615, -3.831105815869453], 12);
+  }
 
   // --- Connector filter ---
   var filterBtns = document.querySelectorAll('.filter-btn');

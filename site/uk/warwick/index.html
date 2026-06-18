@@ -779,7 +779,7 @@
   function esc(s) { return String(s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
 
   // --- Map ---
-  var map = L.map('map').setView([52.267726458354694, -1.5634272178000357], 12);
+  var map = L.map('map');
   L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
     subdomains: 'abcd',
@@ -795,7 +795,14 @@
     });
   }
 
-  var markers = L.markerClusterGroup();
+  // Cluster only when markers genuinely overlap, and stop clustering once
+  // zoomed in so a town's handful of chargers show as individual pins.
+  var markers = L.markerClusterGroup({
+    maxClusterRadius: 40,
+    disableClusteringAtZoom: 14,
+    spiderfyOnMaxZoom: true,
+    showCoverageOnHover: false,
+  });
   var chargerData = [{"lat": 52.278488713994506, "lng": -1.6101435312403112, "title": "Warwick Bypass", "address": "Warwick Bypass", "connectors": ["CCS (Type 2) · 150kW"], "speed": "rapid"}, {"lat": 52.292705375994785, "lng": -1.5767257848056886, "title": "Guyscliffe SF Connect", "address": "Coventry Road", "connectors": ["CCS (Type 2) · 150kW"], "speed": "rapid"}, {"lat": 52.31275649644447, "lng": -1.5796320095021115, "title": "EVC The Warwickshire", "address": "Leek Wootton", "connectors": ["Type 2 (Tethered Connector)  · 22kW"], "speed": "fast"}, {"lat": 52.219129, "lng": -1.502991, "title": "Welcome Break Warwick Southbound Services", "address": "M40 Motorway Southbound", "connectors": ["CCS (Type 2) · 45kW", "CHAdeMO · 50kW", "CCS (Type 2) · 45kW", "CHAdeMO · 50kW", "Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "rapid"}, {"lat": 52.216453921147234, "lng": -1.5052927416228385, "title": "Welcome Break Warwick Northbound Services", "address": "M40", "connectors": ["CCS (Type 2) · 50kW", "CHAdeMO · 50kW", "CCS (Type 2) · 50kW", "CCS (Type 2) · 50kW", "Type 2 (Socket Only) · 22kW"], "speed": "rapid"}, {"lat": 52.283396, "lng": -1.592207, "title": "West Rock Car Park, Warwick", "address": "Commainge Close", "connectors": ["Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 52.276844, "lng": -1.546546, "title": "For Nissan EV owners only. Please call first", "address": "Tachbrook Park Drive", "connectors": ["CHAdeMO · 50kW"], "speed": "rapid"}, {"lat": 52.154969, "lng": -1.501723, "title": "Gilks' Garage Café", "address": "Banbury Road", "connectors": ["Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 52.26919, "lng": -1.536935, "title": "RAW GREENE KING ROYAL HORSE 3", "address": "30 Heathcote Ln", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 52.286155, "lng": -1.564236, "title": "Tesco Superstore-Warwick", "address": "Emscote Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 22kW", "CHAdeMO · 50kW", "CCS (Type 2) · 50kW"], "speed": "rapid"}, {"lat": 52.282062, "lng": -1.590836, "title": "Market Square Car Park", "address": "Market Place", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 52.276249, "lng": -1.599964, "title": "St Mary's Area 2, Hampton Road, Warwick", "address": "Hampton Road", "connectors": ["Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 52.2603227906544, "lng": -1.61051771241034, "title": "McDonald's - Warwick Statford Road", "address": "A429", "connectors": ["CCS (Type 2) · 120kW", "CHAdeMO · 75kW"], "speed": "rapid"}, {"lat": 52.285722, "lng": -1.571641, "title": "Lidl-Warwick", "address": "Emscote Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 52.275135, "lng": -1.564241, "title": "Warwick Innovation Centre", "address": "Gallows Hill", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 52.270857452149016, "lng": -1.5353603408193521, "title": "Presto Music", "address": "Unit 5 ", "connectors": ["Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 52.291997, "lng": -1.58955, "title": "Ecofix", "address": "Millers Road", "connectors": ["CCS (Type 2) · 22kW", "CHAdeMO · 22kW"], "speed": "fast"}, {"lat": 52.2866435, "lng": -1.5631478, "title": "Mcdonald's-Warwick", "address": "Emscote Road", "connectors": ["Type 2 (Socket Only) · 3kW", "Type 2 (Socket Only) · 3kW", "Type 2 (Socket Only) · 3kW"], "speed": "slow"}];
 
   chargerData.forEach(function (c) {
@@ -813,6 +820,14 @@
     markers.addLayer(marker);
   });
   map.addLayer(markers);
+
+  // Frame the map to the actual chargers so a town's points are visible
+  // immediately (and small towns land past the de-clustering zoom).
+  if (chargerData.length) {
+    map.fitBounds(markers.getBounds(), { padding: [40, 40], maxZoom: 15 });
+  } else {
+    map.setView([52.267726458354694, -1.5634272178000357], 12);
+  }
 
   // --- Connector filter ---
   var filterBtns = document.querySelectorAll('.filter-btn');

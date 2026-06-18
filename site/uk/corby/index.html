@@ -866,7 +866,7 @@
   function esc(s) { return String(s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
 
   // --- Map ---
-  var map = L.map('map').setView([52.49457204483614, -0.6885955384060158], 12);
+  var map = L.map('map');
   L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
     subdomains: 'abcd',
@@ -882,7 +882,14 @@
     });
   }
 
-  var markers = L.markerClusterGroup();
+  // Cluster only when markers genuinely overlap, and stop clustering once
+  // zoomed in so a town's handful of chargers show as individual pins.
+  var markers = L.markerClusterGroup({
+    maxClusterRadius: 40,
+    disableClusteringAtZoom: 14,
+    spiderfyOnMaxZoom: true,
+    showCoverageOnHover: false,
+  });
   var chargerData = [{"lat": 52.508001896722675, "lng": -0.7067387681203172, "title": "Evology Charging - Hampton by Hilton Corby/Kettering", "address": " Rockingham Leisure Park", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 52.5072, "lng": -0.6413, "title": "SNRG", "address": "Priors Hall Park", "connectors": ["Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 52.50463, "lng": -0.69636, "title": "Corby", "address": "Earlstrees Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 52.507237, "lng": -0.704825, "title": "RAW GREENE KING CHQD FLAG 2", "address": "Chequered Flag Causeway Road", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 52.48206, "lng": -0.694166, "title": "Burghley Drive", "address": "Burghley Drive", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 52.512779, "lng": -0.66444, "title": "Rockingham Speedway", "address": "Mitchell Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 52.50761, "lng": -0.71695, "title": "Corby Town Football Club", "address": "Rockingham Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 52.46366, "lng": -0.732158, "title": "Spread Eagle", "address": "Oakley Road", "connectors": ["CCS (Type 2) · 75kW", "CCS (Type 2) · 75kW", "CCS (Type 2) · 75kW", "CHAdeMO · 50kW", "CHAdeMO · 50kW", "CHAdeMO · 50kW"], "speed": "rapid"}, {"lat": 52.514716, "lng": -0.660535, "title": "Rockingham Race Track 4", "address": "Mitchell Road", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 52.505127, "lng": -0.64213, "title": "Access for staff and visitors", "address": "Gretton Road", "connectors": ["Type 2 (Socket Only) · 7kW", "BS1363 3 Pin 13 Amp · 3kW"], "speed": "fast"}, {"lat": 52.502975, "lng": -0.644723, "title": "Access for visitors and staff only", "address": "Lammas Road", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 52.488934, "lng": -0.686095, "title": "Station Road", "address": "Station Road", "connectors": ["Type 2 (Socket Only) · 3.7kW", "Type 2 (Socket Only) · 3.7kW"], "speed": "slow"}, {"lat": 52.487286, "lng": -0.704472, "title": "The Qube", "address": "Westcott way", "connectors": ["CHAdeMO · 50kW", "CHAdeMO · 50kW"], "speed": "rapid"}, {"lat": 52.487057, "lng": -0.70524, "title": "The Qube Underground Car Park", "address": "Parkland Gateway", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 52.50234, "lng": -0.69792, "title": "DRAX00139", "address": "Rockingham Road", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 52.472019, "lng": -0.719904, "title": "Morrisons Corby Snatch Hill", "address": "Oakley Road", "connectors": ["CHAdeMO · 50kW", "Type 2 (Socket Only) · 22kW", "Type 2 (Tethered Connector)  · 50kW"], "speed": "rapid"}, {"lat": 52.485409, "lng": -0.686899, "title": "Tesco Extra-Corby Oakley Road", "address": "Oakley Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 52.511037, "lng": -0.673157, "title": "Behind and to LHS of the gatehouse", "address": "Mitchell Road", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 52.482572, "lng": -0.658863, "title": "RHS of reception entrance", "address": "Geddington Road", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 52.458791, "lng": -0.735035, "title": "This is a potential PAYG site. Please use CYC App or RFID card", "address": "", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}];
 
   chargerData.forEach(function (c) {
@@ -900,6 +907,14 @@
     markers.addLayer(marker);
   });
   map.addLayer(markers);
+
+  // Frame the map to the actual chargers so a town's points are visible
+  // immediately (and small towns land past the de-clustering zoom).
+  if (chargerData.length) {
+    map.fitBounds(markers.getBounds(), { padding: [40, 40], maxZoom: 15 });
+  } else {
+    map.setView([52.49457204483614, -0.6885955384060158], 12);
+  }
 
   // --- Connector filter ---
   var filterBtns = document.querySelectorAll('.filter-btn');

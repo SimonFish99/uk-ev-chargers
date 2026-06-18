@@ -456,7 +456,7 @@
   function esc(s) { return String(s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
 
   // --- Map ---
-  var map = L.map('map').setView([51.450112000000004, -0.3326953], 12);
+  var map = L.map('map');
   L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
     subdomains: 'abcd',
@@ -472,7 +472,14 @@
     });
   }
 
-  var markers = L.markerClusterGroup();
+  // Cluster only when markers genuinely overlap, and stop clustering once
+  // zoomed in so a town's handful of chargers show as individual pins.
+  var markers = L.markerClusterGroup({
+    maxClusterRadius: 40,
+    disableClusteringAtZoom: 14,
+    spiderfyOnMaxZoom: true,
+    showCoverageOnHover: false,
+  });
   var chargerData = [{"lat": 51.441182, "lng": -0.334449, "title": "Holmes Rd 32", "address": "Holmes Rd 32", "connectors": ["Type 2 (Socket Only) · 3.7kW"], "speed": "slow"}, {"lat": 51.459356, "lng": -0.323819, "title": "13 Ailsa Avenue", "address": "13 Ailsa Avenue", "connectors": ["Type 2 (Socket Only) · 3.7kW"], "speed": "slow"}, {"lat": 51.459133, "lng": -0.325174, "title": "47 Ailsa Avenue", "address": "47 Ailsa Avenue", "connectors": ["Type 2 (Socket Only) · 3.7kW"], "speed": "slow"}, {"lat": 51.454811, "lng": -0.357222, "title": "Prospect Cres 39", "address": "Prospect Cres 39", "connectors": ["Type 2 (Socket Only) · 3.7kW"], "speed": "slow"}, {"lat": 51.449233, "lng": -0.324431, "title": "Strafford Rd 2", "address": "Strafford Rd 2", "connectors": ["Type 2 (Socket Only) · 3.7kW"], "speed": "slow"}, {"lat": 51.448807, "lng": -0.325399, "title": "Oak Lane 9", "address": "Oak Lane 9", "connectors": ["Type 2 (Socket Only) · 3.7kW"], "speed": "slow"}, {"lat": 51.448699, "lng": -0.324758, "title": "SHELL RECHARGE OAK LANE", "address": "Richmond Road", "connectors": ["Type 2 (Tethered Connector)  · 50kW", "CHAdeMO · 50kW"], "speed": "rapid"}, {"lat": 51.44762, "lng": -0.336762, "title": "Albert Rd 12", "address": "Albert Rd 12", "connectors": ["Type 2 (Socket Only) · 3.7kW"], "speed": "slow"}, {"lat": 51.44646, "lng": -0.332751, "title": "31 Copthall Gardens", "address": "31 Copthall Gardens", "connectors": ["Type 2 (Socket Only) · 3.7kW"], "speed": "slow"}, {"lat": 51.445819, "lng": -0.342188, "title": "Colne Rd 102", "address": "Colne Rd 102", "connectors": ["Type 2 (Socket Only) · 3.7kW"], "speed": "slow"}];
 
   chargerData.forEach(function (c) {
@@ -490,6 +497,14 @@
     markers.addLayer(marker);
   });
   map.addLayer(markers);
+
+  // Frame the map to the actual chargers so a town's points are visible
+  // immediately (and small towns land past the de-clustering zoom).
+  if (chargerData.length) {
+    map.fitBounds(markers.getBounds(), { padding: [40, 40], maxZoom: 15 });
+  } else {
+    map.setView([51.450112000000004, -0.3326953], 12);
+  }
 
   // --- Connector filter ---
   var filterBtns = document.querySelectorAll('.filter-btn');

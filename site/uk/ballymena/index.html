@@ -363,7 +363,7 @@ Ballymena</h2>
   function esc(s) { return String(s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
 
   // --- Map ---
-  var map = L.map('map').setView([54.895879907179584, -6.252631748124469], 12);
+  var map = L.map('map');
   L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
     subdomains: 'abcd',
@@ -379,7 +379,14 @@ Ballymena</h2>
     });
   }
 
-  var markers = L.markerClusterGroup();
+  // Cluster only when markers genuinely overlap, and stop clustering once
+  // zoomed in so a town's handful of chargers show as individual pins.
+  var markers = L.markerClusterGroup({
+    maxClusterRadius: 40,
+    disableClusteringAtZoom: 14,
+    spiderfyOnMaxZoom: true,
+    showCoverageOnHover: false,
+  });
   var chargerData = [{"lat": 54.861838829150145, "lng": -6.274998227633546, "title": "The Range", "address": "Braidwater Retail Park", "connectors": ["CCS (Type 2) · 120kW"], "speed": "rapid"}, {"lat": 54.862921998265904, "lng": -6.277080906933804, "title": "Dreams", "address": "Larne Road Link, Ballymena BT43 5EP", "connectors": ["CCS (Type 2) · 120kW"], "speed": "rapid"}, {"lat": 54.89376587678461, "lng": -6.319926530105931, "title": "Dogs Trust - Ballymena", "address": "60 Teeshan Road", "connectors": ["Type 2 (Socket Only) · 11kW", "Type 2 (Socket Only) · 3.6kW"], "speed": "fast"}, {"lat": 54.865893345043446, "lng": -6.278688822400511, "title": "Adair Arms Hotel", "address": "1-7 Ballymoney Road", "connectors": ["Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 54.86598130101302, "lng": -6.281511749797488, "title": "Maxol Braid River", "address": "North Road", "connectors": ["CCS (Type 2) · 200kW"], "speed": "rapid"}, {"lat": 55.07611, "lng": -6.06261, "title": "Havelock Place Car Park", "address": "Carnlough", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 54.844648, "lng": -6.273606, "title": "Ballee Road Park & Share\r\nSeven Towers Roundabout\r\nBallymena", "address": "Ballee Road Park and Share", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}];
 
   chargerData.forEach(function (c) {
@@ -397,6 +404,14 @@ Ballymena</h2>
     markers.addLayer(marker);
   });
   map.addLayer(markers);
+
+  // Frame the map to the actual chargers so a town's points are visible
+  // immediately (and small towns land past the de-clustering zoom).
+  if (chargerData.length) {
+    map.fitBounds(markers.getBounds(), { padding: [40, 40], maxZoom: 15 });
+  } else {
+    map.setView([54.895879907179584, -6.252631748124469], 12);
+  }
 
   // --- Connector filter ---
   var filterBtns = document.querySelectorAll('.filter-btn');

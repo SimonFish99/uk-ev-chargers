@@ -329,7 +329,7 @@
   function esc(s) { return String(s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
 
   // --- Map ---
-  var map = L.map('map').setView([52.202069916666666, -1.7029941068333334], 12);
+  var map = L.map('map');
   L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
     subdomains: 'abcd',
@@ -345,7 +345,14 @@
     });
   }
 
-  var markers = L.markerClusterGroup();
+  // Cluster only when markers genuinely overlap, and stop clustering once
+  // zoomed in so a town's handful of chargers show as individual pins.
+  var markers = L.markerClusterGroup({
+    maxClusterRadius: 40,
+    disableClusteringAtZoom: 14,
+    spiderfyOnMaxZoom: true,
+    showCoverageOnHover: false,
+  });
   var chargerData = [{"lat": 52.19096475, "lng": -1.697778651, "title": "EVC Macdonald Alveston Manor Hotel", "address": "Clopton Brg", "connectors": ["Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 52.19440924, "lng": -1.71340284, "title": "EVC DoubleTree by Hilton Stratford-upon-Avon", "address": "Arden Street", "connectors": ["CCS (Type 2) · 100kW", "Type 2 (Socket Only) · 22kW"], "speed": "rapid"}, {"lat": 52.22620251, "lng": -1.66413915, "title": "EVC Stratford Manor", "address": "Warwick Road", "connectors": ["CCS (Type 2) · 100kW", "Type 2 (Socket Only) · 22kW"], "speed": "rapid"}, {"lat": 52.19017, "lng": -1.70357, "title": "Stratford Church Street Car Park", "address": "Church Street", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 52.195135, "lng": -1.711553, "title": "Arden Street Car Park, Stratford-upon Avon", "address": "Arden Street", "connectors": ["Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 52.215538, "lng": -1.727521, "title": "Rybrook Stratford MINI", "address": "Birmingham Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}];
 
   chargerData.forEach(function (c) {
@@ -363,6 +370,14 @@
     markers.addLayer(marker);
   });
   map.addLayer(markers);
+
+  // Frame the map to the actual chargers so a town's points are visible
+  // immediately (and small towns land past the de-clustering zoom).
+  if (chargerData.length) {
+    map.fitBounds(markers.getBounds(), { padding: [40, 40], maxZoom: 15 });
+  } else {
+    map.setView([52.202069916666666, -1.7029941068333334], 12);
+  }
 
   // --- Connector filter ---
   var filterBtns = document.querySelectorAll('.filter-btn');

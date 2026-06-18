@@ -635,7 +635,7 @@
   function esc(s) { return String(s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
 
   // --- Map ---
-  var map = L.map('map').setView([52.17848019250774, -2.22099042688342], 12);
+  var map = L.map('map');
   L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
     subdomains: 'abcd',
@@ -651,7 +651,14 @@
     });
   }
 
-  var markers = L.markerClusterGroup();
+  // Cluster only when markers genuinely overlap, and stop clustering once
+  // zoomed in so a town's handful of chargers show as individual pins.
+  var markers = L.markerClusterGroup({
+    maxClusterRadius: 40,
+    disableClusteringAtZoom: 14,
+    spiderfyOnMaxZoom: true,
+    showCoverageOnHover: false,
+  });
   var chargerData = [{"lat": 52.171523021183, "lng": -2.44546698282117, "title": "Malvern View Holiday Homes", "address": "Stanford Bishop", "connectors": ["Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 52.057379, "lng": -2.140795, "title": "Roadchef Strensham Southbound Services", "address": "Junction 8 M5", "connectors": ["CCS (Type 2) · 100kW", "CCS (Type 2) · 100kW", "CCS (Type 2) · 100kW", "CHAdeMO · 80kW", "Type 2 (Socket Only) · 22kW", "CCS (Type 2) · 360kW", "CCS (Type 2) · 360kW", "CCS (Type 2) · 360kW", "CCS (Type 2) · 360kW", "CCS (Type 2) · 360kW", "CCS (Type 2) · 360kW"], "speed": "rapid"}, {"lat": 52.170837, "lng": -2.20462, "title": "Tesco Superstore - Worcester", "address": "St Peters Drive", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 52.213147, "lng": -2.1980712, "title": "Blackpole Inn Pub & Restaurant", "address": "Blackpole Road", "connectors": ["CHAdeMO · 50kW", "CHAdeMO · 50kW", "CCS (Type 2) · 50kW", "CCS (Type 2) · 50kW", "Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "rapid"}, {"lat": 52.193115, "lng": -2.223942, "title": "Crowngate 1", "address": "Crowngate Shopping Centre Car park", "connectors": ["CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 43kW", "Type 2 (Tethered Connector)  · 50kW"], "speed": "rapid"}, {"lat": 52.192879, "lng": -2.225538, "title": "Crowngate Shopping Centre", "address": "Friary Walk", "connectors": ["CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 43kW"], "speed": "rapid"}, {"lat": 52.191664, "lng": -2.216371, "title": "St Martins Gate", "address": "Spring Gardens", "connectors": ["CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 43kW", "Type 2 (Tethered Connector)  · 50kW"], "speed": "rapid"}, {"lat": 52.185554, "lng": -2.182539, "title": "WCC County Hall", "address": "County Hall Spetchley Road", "connectors": ["CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 50kW", "Type 2 (Tethered Connector)  · 50kW"], "speed": "rapid"}, {"lat": 52.189475, "lng": -2.262663, "title": "Redrow Homes Group-Kensington Gate", "address": "Bromyard Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 52.1884935470461, "lng": -2.17251287777776, "title": "MFG Nunnery Park", "address": "Nunnery Park", "connectors": ["CCS (Type 2) · 150kW", "CHAdeMO · 50kW"], "speed": "rapid"}, {"lat": 52.222271, "lng": -2.193829, "title": "Mercedes-Benz of Worcester", "address": "Hindlip Lane Blackpole Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 52.15689993437161, "lng": -2.158879488885532, "title": "Worcestershire Parkway Railway Station", "address": "Whittington Road", "connectors": ["Type 2 (Tethered Connector)  · 22kW"], "speed": "fast"}, {"lat": 52.187005, "lng": -2.247648, "title": "Restricted access to Nissan and Renault customers", "address": "", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}];
 
   chargerData.forEach(function (c) {
@@ -669,6 +676,14 @@
     markers.addLayer(marker);
   });
   map.addLayer(markers);
+
+  // Frame the map to the actual chargers so a town's points are visible
+  // immediately (and small towns land past the de-clustering zoom).
+  if (chargerData.length) {
+    map.fitBounds(markers.getBounds(), { padding: [40, 40], maxZoom: 15 });
+  } else {
+    map.setView([52.17848019250774, -2.22099042688342], 12);
+  }
 
   // --- Connector filter ---
   var filterBtns = document.querySelectorAll('.filter-btn');

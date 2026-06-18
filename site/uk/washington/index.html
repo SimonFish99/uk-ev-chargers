@@ -553,7 +553,7 @@
   function esc(s) { return String(s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
 
   // --- Map ---
-  var map = L.map('map').setView([54.90179156296163, -1.512148990035781], 12);
+  var map = L.map('map');
   L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
     subdomains: 'abcd',
@@ -569,7 +569,14 @@
     });
   }
 
-  var markers = L.markerClusterGroup();
+  // Cluster only when markers genuinely overlap, and stop clustering once
+  // zoomed in so a town's handful of chargers show as individual pins.
+  var markers = L.markerClusterGroup({
+    maxClusterRadius: 40,
+    disableClusteringAtZoom: 14,
+    spiderfyOnMaxZoom: true,
+    showCoverageOnHover: false,
+  });
   var chargerData = [{"lat": 54.883812, "lng": -1.547135, "title": "ROLLS_ROYCE WASHINGTON 2", "address": "Radial Park Rd", "connectors": ["Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 54.912041, "lng": -1.54244, "title": "Parsons House", "address": "Parsons House", "connectors": ["Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 54.900282, "lng": -1.533078, "title": "Galleries Shopping Centre", "address": "Galleries", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 54.894206, "lng": -1.36523, "title": "Parsons Road", "address": "14-15 Parsons Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 54.90925534033937, "lng": -1.5395082664367084, "title": "FastNed Parsons Road", "address": "19 Parsons Road", "connectors": ["CCS (Type 2) · 300kW", "CHAdeMO · 50kW"], "speed": "rapid"}, {"lat": 54.91217776572299, "lng": -1.5209999239866647, "title": "Spout Lane", "address": "Spout Lane", "connectors": ["CCS (Type 2) · 50kW", "CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 22kW"], "speed": "rapid"}, {"lat": 54.90125669, "lng": -1.53209105, "title": "Galleries Shopping Centre", "address": "Galleries", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 54.89912195947721, "lng": -1.5343446400059975, "title": "Galleries Shopping Centre", "address": " Galleries", "connectors": ["Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 54.904289, "lng": -1.48778, "title": "Fergusons Transport Haulage", "address": "Barmstone Lane", "connectors": ["Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 54.885955, "lng": -1.519224, "title": "Washington", "address": "Biddick Arts Centre", "connectors": ["BS1363 3 Pin 13 Amp · 3kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 54.912154, "lng": -1.520853, "title": "Speculation Place Car Park", "address": "Speculation Place Car Park", "connectors": ["Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 54.906948, "lng": -1.503104, "title": "The Peel Centre Washington", "address": "The Peel Centre", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}];
 
   chargerData.forEach(function (c) {
@@ -587,6 +594,14 @@
     markers.addLayer(marker);
   });
   map.addLayer(markers);
+
+  // Frame the map to the actual chargers so a town's points are visible
+  // immediately (and small towns land past the de-clustering zoom).
+  if (chargerData.length) {
+    map.fitBounds(markers.getBounds(), { padding: [40, 40], maxZoom: 15 });
+  } else {
+    map.setView([54.90179156296163, -1.512148990035781], 12);
+  }
 
   // --- Connector filter ---
   var filterBtns = document.querySelectorAll('.filter-btn');

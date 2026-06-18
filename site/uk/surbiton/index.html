@@ -744,7 +744,7 @@
   function esc(s) { return String(s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
 
   // --- Map ---
-  var map = L.map('map').setView([51.392718736842106, -0.29492878947368417], 12);
+  var map = L.map('map');
   L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
     subdomains: 'abcd',
@@ -760,7 +760,14 @@
     });
   }
 
-  var markers = L.markerClusterGroup();
+  // Cluster only when markers genuinely overlap, and stop clustering once
+  // zoomed in so a town's handful of chargers show as individual pins.
+  var markers = L.markerClusterGroup({
+    maxClusterRadius: 40,
+    disableClusteringAtZoom: 14,
+    spiderfyOnMaxZoom: true,
+    showCoverageOnHover: false,
+  });
   var chargerData = [{"lat": 51.412551, "lng": -0.285458, "title": "Norbiton Avenue", "address": "Norbiton Avenue", "connectors": ["Type 2 (Socket Only) · 4.8kW"], "speed": "slow"}, {"lat": 51.411674, "lng": -0.284758, "title": "Norbiton Avenue", "address": "Norbiton Avenue", "connectors": ["Type 2 (Socket Only) · 4.8kW"], "speed": "slow"}, {"lat": 51.41137, "lng": -0.285112, "title": "Norbition Avenue", "address": "Norbition Avenue", "connectors": ["Type 2 (Socket Only) · 4.8kW"], "speed": "slow"}, {"lat": 51.409825, "lng": -0.292306, "title": "Victoria Road", "address": "Victoria Road", "connectors": ["Type 2 (Socket Only) · 4.8kW"], "speed": "slow"}, {"lat": 51.399155, "lng": -0.300034, "title": "Crane Park Avenue", "address": "Crane Park Avenue", "connectors": ["Type 2 (Socket Only) · 4.8kW"], "speed": "slow"}, {"lat": 51.398645, "lng": -0.298846, "title": "Cranes Park", "address": "Cranes Park", "connectors": ["Type 2 (Socket Only) · 4.8kW"], "speed": "slow"}, {"lat": 51.397943, "lng": -0.301621, "title": "Elmers Avenue", "address": "Elmers Avenue", "connectors": ["Type 2 (Socket Only) · 4.8kW"], "speed": "slow"}, {"lat": 51.395424, "lng": -0.294, "title": "Surbiton Hill Park", "address": "Surbiton Hill Park", "connectors": ["Type 2 (Socket Only) · 4.8kW"], "speed": "slow"}, {"lat": 51.395096, "lng": -0.294784, "title": "Surbiton Hill Park", "address": "Surbiton Hill Park", "connectors": ["Type 2 (Socket Only) · 4.8kW"], "speed": "slow"}, {"lat": 51.394217, "lng": -0.293762, "title": "Parklands", "address": "Parklands", "connectors": ["Type 2 (Socket Only) · 4.8kW"], "speed": "slow"}, {"lat": 51.392146, "lng": -0.294307, "title": "King Charles Road", "address": "King Charles Road", "connectors": ["Type 2 (Socket Only) · 4.8kW"], "speed": "slow"}, {"lat": 51.390919, "lng": -0.30378, "title": "Glenbuck Road", "address": "Glenbuck Road", "connectors": ["Type 2 (Socket Only) · 4.8kW"], "speed": "slow"}, {"lat": 51.387603, "lng": -0.310595, "title": "Lovelace Gardens", "address": "Lovelace Gardens", "connectors": ["Type 2 (Socket Only) · 4.8kW"], "speed": "slow"}, {"lat": 51.385546, "lng": -0.293171, "title": "Gordon Road", "address": "Gordon Road", "connectors": ["Type 2 (Socket Only) · 4.8kW"], "speed": "slow"}, {"lat": 51.384652, "lng": -0.292321, "title": "Broomfield Road", "address": "Broomfield Road", "connectors": ["Type 2 (Socket Only) · 4.8kW"], "speed": "slow"}, {"lat": 51.38085, "lng": -0.29422, "title": "Douglas Road", "address": "Douglas Road", "connectors": ["Type 2 (Socket Only) · 4.8kW"], "speed": "slow"}, {"lat": 51.35864, "lng": -0.301749, "title": "Bransby Road", "address": "Bransby Road", "connectors": ["Type 2 (Socket Only) · 4.8kW"], "speed": "slow"}, {"lat": 51.3797, "lng": -0.289223, "title": "Tolworth Hospital", "address": "Red Lion Road", "connectors": ["Type 2 (Socket Only) · 3.7kW", "Type 2 (Socket Only) · 3.7kW"], "speed": "slow"}, {"lat": 51.3757, "lng": -0.2936, "title": "Community Motors CIC", "address": "Unit 22 Red Lion Business Park", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}];
 
   chargerData.forEach(function (c) {
@@ -778,6 +785,14 @@
     markers.addLayer(marker);
   });
   map.addLayer(markers);
+
+  // Frame the map to the actual chargers so a town's points are visible
+  // immediately (and small towns land past the de-clustering zoom).
+  if (chargerData.length) {
+    map.fitBounds(markers.getBounds(), { padding: [40, 40], maxZoom: 15 });
+  } else {
+    map.setView([51.392718736842106, -0.29492878947368417], 12);
+  }
 
   // --- Connector filter ---
   var filterBtns = document.querySelectorAll('.filter-btn');

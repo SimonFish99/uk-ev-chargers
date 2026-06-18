@@ -519,7 +519,7 @@
   function esc(s) { return String(s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
 
   // --- Map ---
-  var map = L.map('map').setView([51.74674820391995, -2.2472197330210912], 12);
+  var map = L.map('map');
   L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
     subdomains: 'abcd',
@@ -535,7 +535,14 @@
     });
   }
 
-  var markers = L.markerClusterGroup();
+  // Cluster only when markers genuinely overlap, and stop clustering once
+  // zoomed in so a town's handful of chargers show as individual pins.
+  var markers = L.markerClusterGroup({
+    maxClusterRadius: 40,
+    disableClusteringAtZoom: 14,
+    spiderfyOnMaxZoom: true,
+    showCoverageOnHover: false,
+  });
   var chargerData = [{"lat": 51.81993284759437, "lng": -2.227388845641542, "title": "Tesla Public Supercharger Gloucester Northbound", "address": "M5 Northbound", "connectors": ["CCS (Type 2) · 250kW"], "speed": "rapid"}, {"lat": 51.81986568263676, "lng": -2.2271542650632625, "title": "Westmorland Gloucester Northbound", "address": "M5 Northbound", "connectors": ["CCS (Type 2) · 300kW", "CCS (Type 2) · 300kW", "CCS (Type 2) · 300kW", "CCS (Type 2) · 300kW", "CCS (Type 2) · 300kW", "CCS (Type 2) · 300kW", "CCS (Type 2) · 300kW"], "speed": "rapid"}, {"lat": 51.81858250896832, "lng": -2.2245752195061073, "title": "Westmorland Gloucester Services Southbound", "address": "M5 Southbound", "connectors": ["CCS (Type 2) · 300kW", "CCS (Type 2) · 300kW", "CCS (Type 2) · 300kW", "CCS (Type 2) · 300kW", "CCS (Type 2) · 300kW", "CCS (Type 2) · 300kW"], "speed": "rapid"}, {"lat": 51.747464, "lng": -2.223792, "title": "Tesco Superstore - Stroud", "address": "Stratford Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.707752, "lng": -2.228269, "title": "WOODCHESTER WV20", "address": "Bath Rd South Woodchester", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 51.706703, "lng": -2.226992, "title": "WOODCHESTER W7", "address": "Bath Rd South Woodchester", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 51.705894, "lng": -2.226987, "title": "WOODCHESTER W17", "address": "Bath Rd South Woodchester", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 51.656938, "lng": -2.427534, "title": "Welcome Break Michaelwood Southbound Services", "address": "M5 Southbound", "connectors": ["CCS (Type 2) · 50kW", "CHAdeMO · 50kW", "CCS (Type 2) · 45kW", "CHAdeMO · 50kW", "Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "rapid"}, {"lat": 51.741476, "lng": -2.240454, "title": "OLYMPIC ONE DEMOCHARGEPOINT", "address": "The Wharf Dudbridge Road", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 51.742874, "lng": -2.219051, "title": "JOHN STAYTE JOHN STAYTE 1", "address": "Doctor Newton's Way Fromeside Industrial Esta", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}];
 
   chargerData.forEach(function (c) {
@@ -553,6 +560,14 @@
     markers.addLayer(marker);
   });
   map.addLayer(markers);
+
+  // Frame the map to the actual chargers so a town's points are visible
+  // immediately (and small towns land past the de-clustering zoom).
+  if (chargerData.length) {
+    map.fitBounds(markers.getBounds(), { padding: [40, 40], maxZoom: 15 });
+  } else {
+    map.setView([51.74674820391995, -2.2472197330210912], 12);
+  }
 
   // --- Connector filter ---
   var filterBtns = document.querySelectorAll('.filter-btn');

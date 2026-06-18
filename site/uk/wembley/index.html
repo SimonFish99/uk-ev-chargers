@@ -787,7 +787,7 @@
   function esc(s) { return String(s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
 
   // --- Map ---
-  var map = L.map('map').setView([51.555576370000004, -0.300254655], 12);
+  var map = L.map('map');
   L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
     subdomains: 'abcd',
@@ -803,7 +803,14 @@
     });
   }
 
-  var markers = L.markerClusterGroup();
+  // Cluster only when markers genuinely overlap, and stop clustering once
+  // zoomed in so a town's handful of chargers show as individual pins.
+  var markers = L.markerClusterGroup({
+    maxClusterRadius: 40,
+    disableClusteringAtZoom: 14,
+    spiderfyOnMaxZoom: true,
+    showCoverageOnHover: false,
+  });
   var chargerData = [{"lat": 51.56545, "lng": -0.297275, "title": "42 Edison Drive", "address": "42 Edison Drive", "connectors": ["Type 2 (Socket Only) · 5kW"], "speed": "slow"}, {"lat": 51.560698, "lng": -0.322792, "title": "6 Saint Andrews Avenue", "address": "6 Saint Andrews Avenue", "connectors": ["Type 2 (Socket Only) · 5kW"], "speed": "slow"}, {"lat": 51.560023, "lng": -0.324003, "title": "31 Saint Andrews Avenue", "address": "31 Saint Andrews Avenue", "connectors": ["Type 2 (Socket Only) · 5kW"], "speed": "slow"}, {"lat": 51.557521, "lng": -0.334231, "title": "17 Rosebank Avenue", "address": "17 Rosebank Avenue", "connectors": ["Type 2 (Socket Only) · 5kW"], "speed": "slow"}, {"lat": 51.556208, "lng": -0.331393, "title": "96 Fernbank Avenue", "address": "96 Fernbank Avenue", "connectors": ["Type 2 (Socket Only) · 5kW"], "speed": "slow"}, {"lat": 51.555554, "lng": -0.311479, "title": "31 Charterhouse Avenue", "address": "31 Charterhouse Avenue", "connectors": ["Type 2 (Socket Only) · 5kW"], "speed": "slow"}, {"lat": 51.552422, "lng": -0.293092, "title": "36 Beatrice Avenue", "address": "36 Beatrice Avenue", "connectors": ["Type 2 (Socket Only) · 5kW"], "speed": "slow"}, {"lat": 51.552402, "lng": -0.291654, "title": "1 Beatrice Avenue", "address": "1 Beatrice Avenue", "connectors": ["Type 2 (Socket Only) · 5kW"], "speed": "slow"}, {"lat": 51.550648, "lng": -0.302543, "title": "1 Fairview Avenue", "address": "1 Fairview Avenue", "connectors": ["Type 2 (Socket Only) · 5kW"], "speed": "slow"}, {"lat": 51.550462, "lng": -0.302417, "title": "30 Talbot Road", "address": "30 Talbot Road", "connectors": ["Type 2 (Socket Only) · 5kW"], "speed": "slow"}, {"lat": 51.54889, "lng": -0.301635, "title": "12 Thurlby Road", "address": "12 Thurlby Road", "connectors": ["Type 2 (Socket Only) · 5kW"], "speed": "slow"}, {"lat": 51.540901, "lng": -0.299448, "title": "Alperton Community School", "address": "Ealing Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 51.564899, "lng": -0.27582, "title": "Asda", "address": "Forty Lane", "connectors": ["BS1363 3 Pin 13 Amp · 3kW", "BS1363 3 Pin 13 Amp · 3kW"], "speed": "slow"}, {"lat": 51.5562216, "lng": -0.2870868, "title": "7 Dagmar Avenue", "address": "7 Dagmar Avenue", "connectors": ["Type 2 (Socket Only) · 5.1kW"], "speed": "slow"}, {"lat": 51.5570942, "lng": -0.2905947, "title": "83 Dagmar Avenue", "address": "83 Dagmar Avenue", "connectors": ["Type 2 (Socket Only) · 3.7kW"], "speed": "slow"}, {"lat": 51.5568893, "lng": -0.28929, "title": "58 Dagmar Avenue", "address": "58 Dagmar Avenue", "connectors": ["Type 2 (Socket Only) · 5.1kW"], "speed": "slow"}, {"lat": 51.5562796, "lng": -0.2875031, "title": "17 Dagmar Avenue", "address": "17 Dagmar Avenue", "connectors": ["Type 2 (Socket Only) · 5.1kW"], "speed": "slow"}, {"lat": 51.5564464, "lng": -0.2883369, "title": "37 Dagmar Avenue", "address": "37 Dagmar Avenue", "connectors": ["Type 2 (Socket Only) · 5.1kW"], "speed": "slow"}, {"lat": 51.5563331, "lng": -0.2878457, "title": "27 Dagmar Avenue", "address": "27 Dagmar Avenue", "connectors": ["Type 2 (Socket Only) · 5.1kW"], "speed": "slow"}, {"lat": 51.5561852, "lng": -0.2866539, "title": "1 Dagmar Avenue", "address": "1 Dagmar Avenue", "connectors": ["Type 2 (Socket Only) · 5.1kW"], "speed": "slow"}];
 
   chargerData.forEach(function (c) {
@@ -821,6 +828,14 @@
     markers.addLayer(marker);
   });
   map.addLayer(markers);
+
+  // Frame the map to the actual chargers so a town's points are visible
+  // immediately (and small towns land past the de-clustering zoom).
+  if (chargerData.length) {
+    map.fitBounds(markers.getBounds(), { padding: [40, 40], maxZoom: 15 });
+  } else {
+    map.setView([51.555576370000004, -0.300254655], 12);
+  }
 
   // --- Connector filter ---
   var filterBtns = document.querySelectorAll('.filter-btn');

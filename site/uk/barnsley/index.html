@@ -842,7 +842,7 @@
   function esc(s) { return String(s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
 
   // --- Map ---
-  var map = L.map('map').setView([53.54298305032978, -1.4644286292430275], 12);
+  var map = L.map('map');
   L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
     subdomains: 'abcd',
@@ -858,7 +858,14 @@
     });
   }
 
-  var markers = L.markerClusterGroup();
+  // Cluster only when markers genuinely overlap, and stop clustering once
+  // zoomed in so a town's handful of chargers show as individual pins.
+  var markers = L.markerClusterGroup({
+    maxClusterRadius: 40,
+    disableClusteringAtZoom: 14,
+    spiderfyOnMaxZoom: true,
+    showCoverageOnHover: false,
+  });
   var chargerData = [{"lat": 53.586385, "lng": -1.5312, "title": "Church Street Car Park, Darton 1", "address": "Darton", "connectors": ["Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 53.555437, "lng": -1.5039, "title": "West Road Pay and Display Car Park, Barnsley 1", "address": "West Road", "connectors": ["Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 53.541294, "lng": -1.435568, "title": "Tesco Extra - Barnsley", "address": "Wombwell Lane", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 53.506038, "lng": -1.442547, "title": "Tesco Superstore - Hoyland", "address": "Wombwell Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 53.550253, "lng": -1.485245, "title": "Mark Street Commuter Car Park, Barnsley 3", "address": "Mark Street", "connectors": ["Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 53.550199, "lng": -1.485178, "title": "Mark Street Commuter Car Park, Barnsley 1", "address": "Mark Street", "connectors": ["Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 53.555038, "lng": -1.48701, "title": "Churchfields 1", "address": "Sackville Street", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 53.552444, "lng": -1.475808, "title": "Market Gate Shopper Car Park, Barnsley 7", "address": "Kendray Street", "connectors": ["Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 53.553934, "lng": -1.486465, "title": "Sackville Street 1", "address": "Sackville Street", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 53.549591, "lng": -1.480648, "title": "Morrisons Barnsley Westway", "address": "Morrisons Barnsley Westway", "connectors": ["Type 2 (Tethered Connector)  · 60kW", "CHAdeMO · 50kW", "Type 2 (Socket Only) · 22kW"], "speed": "rapid"}, {"lat": 53.52637, "lng": -1.6283, "title": "Shrewsbury Road 1", "address": "Shrewsbury Road", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 53.50166, "lng": -1.44058, "title": "Duke Street 1", "address": "Duke Street", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 53.57617, "lng": -1.42134, "title": "Bank Street 1", "address": "Bloemfontein Street", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 53.558262, "lng": -1.469985, "title": "Starbucks Barnsley", "address": "Harbourgh Hill Road", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 53.53553, "lng": -1.30388, "title": "Queen Street 1", "address": "Queen Street", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 53.47782, "lng": -1.3189, "title": "Elsecar Heritage Centre 1", "address": "Wentworth Road", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 53.558012, "lng": -1.499145, "title": "Barnsley Hospital Nhs Foundation Trust", "address": "Gawber Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 53.56780568977217, "lng": -1.5195702083575497, "title": "ALDI - Claycliffe Road", "address": "Whaley Road", "connectors": ["Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 53.50754631682338, "lng": -1.3909673765029993, "title": "Morrisons Brampton Corton Wood", "address": "Brampton Bierlow", "connectors": ["CHAdeMO · 50kW", "CCS (Type 2) · 50kW", "Type 2 (Socket Only) · 22kW"], "speed": "rapid"}, {"lat": 53.549872, "lng": -1.482336, "title": "Morrisons Barnsley", "address": "Lower Thomas Street", "connectors": ["Type 2 (Socket Only) · 22kW", "CHAdeMO · 50kW", "CCS (Type 2) · 50kW"], "speed": "rapid"}];
 
   chargerData.forEach(function (c) {
@@ -876,6 +883,14 @@
     markers.addLayer(marker);
   });
   map.addLayer(markers);
+
+  // Frame the map to the actual chargers so a town's points are visible
+  // immediately (and small towns land past the de-clustering zoom).
+  if (chargerData.length) {
+    map.fitBounds(markers.getBounds(), { padding: [40, 40], maxZoom: 15 });
+  } else {
+    map.setView([53.54298305032978, -1.4644286292430275], 12);
+  }
 
   // --- Connector filter ---
   var filterBtns = document.querySelectorAll('.filter-btn');

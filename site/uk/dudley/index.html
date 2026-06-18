@@ -628,7 +628,7 @@
   function esc(s) { return String(s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
 
   // --- Map ---
-  var map = L.map('map').setView([52.489621585467944, -2.1070021115667705], 12);
+  var map = L.map('map');
   L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
     subdomains: 'abcd',
@@ -644,7 +644,14 @@
     });
   }
 
-  var markers = L.markerClusterGroup();
+  // Cluster only when markers genuinely overlap, and stop clustering once
+  // zoomed in so a town's handful of chargers show as individual pins.
+  var markers = L.markerClusterGroup({
+    maxClusterRadius: 40,
+    disableClusteringAtZoom: 14,
+    spiderfyOnMaxZoom: true,
+    showCoverageOnHover: false,
+  });
   var chargerData = [{"lat": 52.4768075, "lng": -2.10752216, "title": "Lidl-Merry Hill", "address": "Merry Hill", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 22kW", "CCS (Type 2) · 50kW", "CHAdeMO · 50kW"], "speed": "rapid"}, {"lat": 52.488700768554935, "lng": -2.118998195292363, "title": "Dudley Road", "address": "Dudley Road", "connectors": ["CCS (Type 2) · 150kW"], "speed": "rapid"}, {"lat": 52.489289461932685, "lng": -2.1192106192881965, "title": "Oak Park", "address": "Oak Park", "connectors": ["CCS (Type 2) · 120kW"], "speed": "rapid"}, {"lat": 52.48350143059566, "lng": -2.1134302957874556, "title": "Merry Hill Supercharger", "address": "Central Way", "connectors": ["CCS (Type 2) · 250kW"], "speed": "rapid"}, {"lat": 52.482322, "lng": -2.108308, "title": "zest-pair-city-tour", "address": "Brierley Hill", "connectors": ["Type 2 (Tethered Connector)  · 75kW"], "speed": "rapid"}, {"lat": 52.484481, "lng": -2.108136, "title": "Starbucks Pedmore Rd", "address": "Brierley Hill,", "connectors": ["CHAdeMO · 75kW", "Type 2 (Tethered Connector)  · 75kW"], "speed": "rapid"}, {"lat": 52.483775, "lng": -2.109767, "title": "zest-step-year-bill", "address": "Central Way", "connectors": ["Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 52.48301, "lng": -2.111897, "title": "zest-gold-type-plan", "address": "The Embankment", "connectors": ["Type 2 (Tethered Connector)  · 75kW"], "speed": "rapid"}, {"lat": 52.482, "lng": -2.11, "title": "Best Buy Dudley", "address": "Unit B Phase 1 Merry Hill Centre, Brierley Hill", "connectors": ["BS1363 3 Pin 13 Amp · 3.7kW", "BS1363 3 Pin 13 Amp · 3.7kW"], "speed": "slow"}, {"lat": 52.481116, "lng": -2.10723, "title": "zest-case-food-need", "address": "Pedmore road", "connectors": ["Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 52.4804349, "lng": -2.1130154, "title": "Merry Hill Car Park P6", "address": "Central Way", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 52.52035255, "lng": -2.07467278, "title": "Black Country Living Museum", "address": "Tipton Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 52.52929, "lng": -2.08884, "title": "Stafford Street Dudley", "address": "Stafford Street Dudley", "connectors": ["CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 50kW", "Type 2 (Tethered Connector)  · 43kW"], "speed": "rapid"}];
 
   chargerData.forEach(function (c) {
@@ -662,6 +669,14 @@
     markers.addLayer(marker);
   });
   map.addLayer(markers);
+
+  // Frame the map to the actual chargers so a town's points are visible
+  // immediately (and small towns land past the de-clustering zoom).
+  if (chargerData.length) {
+    map.fitBounds(markers.getBounds(), { padding: [40, 40], maxZoom: 15 });
+  } else {
+    map.setView([52.489621585467944, -2.1070021115667705], 12);
+  }
 
   // --- Connector filter ---
   var filterBtns = document.querySelectorAll('.filter-btn');

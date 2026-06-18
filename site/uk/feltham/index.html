@@ -458,7 +458,7 @@
   function esc(s) { return String(s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
 
   // --- Map ---
-  var map = L.map('map').setView([51.44494745555556, -0.4086351111111111], 12);
+  var map = L.map('map');
   L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
     subdomains: 'abcd',
@@ -474,7 +474,14 @@
     });
   }
 
-  var markers = L.markerClusterGroup();
+  // Cluster only when markers genuinely overlap, and stop clustering once
+  // zoomed in so a town's handful of chargers show as individual pins.
+  var markers = L.markerClusterGroup({
+    maxClusterRadius: 40,
+    disableClusteringAtZoom: 14,
+    spiderfyOnMaxZoom: true,
+    showCoverageOnHover: false,
+  });
   var chargerData = [{"lat": 51.4474491, "lng": -0.4102182, "title": "McDonalds Feltham", "address": "2 Bedfont Lane", "connectors": ["CCS (Type 2) · 160kW", "CHAdeMO · 60kW"], "speed": "rapid"}, {"lat": 51.430852, "lng": -0.398863, "title": "Power League Sunbury-on-Thames", "address": "Nallhead Road", "connectors": ["Type 2 (Socket Only) · 3.7kW", "Type 2 (Socket Only) · 3.7kW"], "speed": "slow"}, {"lat": 51.436752, "lng": -0.3777978, "title": "McDonald's Hanworth", "address": "Twickenham Road", "connectors": ["CCS (Type 2) · 62.5kW", "CHAdeMO · 50kW"], "speed": "rapid"}, {"lat": 51.443383, "lng": -0.413574, "title": "Tesco Superstore-Feltham", "address": "98 High Street", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.4538, "lng": -0.428724, "title": "Bethany Waye Car Park", "address": "East Bedfont", "connectors": ["CHAdeMO · 50kW", "CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 43kW"], "speed": "rapid"}, {"lat": 51.446255, "lng": -0.446335, "title": "Birdseye Ltd", "address": "1 New Square", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 51.445683, "lng": -0.399848, "title": "JK Off Licence", "address": "220 Uxbridge Road", "connectors": ["CHAdeMO · 50kW", "CCS (Type 2) · 50kW", "Type 2 (Tethered Connector)  · 43kW"], "speed": "rapid"}, {"lat": 51.440491, "lng": -0.387877, "title": "7 Market Parade", "address": "Hampton Road W", "connectors": ["CHAdeMO · 50kW", "CCS (Type 2) · 50kW", "Type 2 (Tethered Connector)  · 43kW"], "speed": "rapid"}, {"lat": 51.459862, "lng": -0.414479, "title": "Tesco Superstore-Feltham Dukes Green", "address": "Dukes Green Avenue", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}];
 
   chargerData.forEach(function (c) {
@@ -492,6 +499,14 @@
     markers.addLayer(marker);
   });
   map.addLayer(markers);
+
+  // Frame the map to the actual chargers so a town's points are visible
+  // immediately (and small towns land past the de-clustering zoom).
+  if (chargerData.length) {
+    map.fitBounds(markers.getBounds(), { padding: [40, 40], maxZoom: 15 });
+  } else {
+    map.setView([51.44494745555556, -0.4086351111111111], 12);
+  }
 
   // --- Connector filter ---
   var filterBtns = document.querySelectorAll('.filter-btn');

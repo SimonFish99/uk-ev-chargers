@@ -1136,7 +1136,7 @@
   function esc(s) { return String(s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
 
   // --- Map ---
-  var map = L.map('map').setView([53.579069904308426, -1.1129891916368724], 12);
+  var map = L.map('map');
   L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
     subdomains: 'abcd',
@@ -1152,7 +1152,14 @@
     });
   }
 
-  var markers = L.markerClusterGroup();
+  // Cluster only when markers genuinely overlap, and stop clustering once
+  // zoomed in so a town's handful of chargers show as individual pins.
+  var markers = L.markerClusterGroup({
+    maxClusterRadius: 40,
+    disableClusteringAtZoom: 14,
+    spiderfyOnMaxZoom: true,
+    showCoverageOnHover: false,
+  });
   var chargerData = [{"lat": 53.525689, "lng": -0.819822, "title": "Church Street Car Park", "address": "Epworth", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 53.551067, "lng": -1.147305, "title": "Lidl - Askern Road", "address": "Askern Road", "connectors": ["Type 2 (Tethered Connector)  · 43kW", "CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 50kW"], "speed": "rapid"}, {"lat": 53.533149, "lng": -1.150342, "title": "Morrisons Doncaster", "address": "Morrisons Doncaster", "connectors": ["Type 2 (Tethered Connector)  · 60kW", "CHAdeMO · 50kW", "Type 2 (Socket Only) · 22kW"], "speed": "rapid"}, {"lat": 53.610075, "lng": -0.960058, "title": "Bridge Street Car Park, Doncaster 2", "address": "Bridge Street", "connectors": ["Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 53.526072, "lng": -1.131618, "title": "Wool Market Car Park, Doncaster 1", "address": "Church Way", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 53.574668, "lng": -1.007809, "title": "Hatfields Pub & Restaurant", "address": "Ash Hill RD", "connectors": ["CCS (Type 2) · 50kW", "CHAdeMO · 50kW", "CCS (Type 2) · 50kW", "CHAdeMO · 50kW", "Type 2 (Socket Only) · 11kW", "Type 2 (Socket Only) · 22kW"], "speed": "rapid"}, {"lat": 53.537018, "lng": -1.164544, "title": "Sun", "address": "York Road", "connectors": ["CCS (Type 2) · 50kW", "CHAdeMO · 50kW", "CHAdeMO · 50kW", "CCS (Type 2) · 50kW", "Type 2 (Socket Only) · 11kW", "Type 2 (Socket Only) · 22kW"], "speed": "rapid"}, {"lat": 53.515344, "lng": -1.128546, "title": "White Rose Retail Centre", "address": "White Rose Way", "connectors": ["CHAdeMO · 50kW", "CCS (Type 2) · 50kW", "CHAdeMO · 50kW", "CCS (Type 2) · 50kW", "Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "rapid"}, {"lat": 53.51379866, "lng": -1.131119341, "title": "EVC Prime Lodge Doncaster", "address": "Ten Pound Walk", "connectors": ["Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 53.591535, "lng": -0.992522, "title": "Moto Doncaster North Services", "address": "Unity Way", "connectors": ["CCS (Type 2) · 50kW", "CHAdeMO · 50kW", "Type 2 (Socket Only) · 11kW", "Type 2 (Socket Only) · 11kW"], "speed": "rapid"}, {"lat": 53.619711, "lng": -1.167821, "title": "Askern Leisure Centre, Doncaster 1", "address": "Church Field Rd, Campsall", "connectors": ["Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 53.572424, "lng": -1.179955, "title": "Adwick Station Park and Ride 1", "address": "Church Lane, Adwick le Street", "connectors": ["Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 53.55138, "lng": -1.176426, "title": "Doncaster North Park and Ride 1", "address": "Great North Road", "connectors": ["Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 53.525118, "lng": -1.131221, "title": "Doncaster Wool Market", "address": "Market Place", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 53.520141, "lng": -1.134334, "title": "Civic Quarter Car Park, Doncaster 1", "address": "College Road", "connectors": ["Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 53.515927, "lng": -1.099351, "title": "The Dome Leisure Centre, Doncaster", "address": "Doncaster Lakeside, Bawtry Rd", "connectors": ["Type 2 (Tethered Connector)  · 50kW", "CHAdeMO · 50kW", "Type 2 (Socket Only) · 22kW"], "speed": "rapid"}, {"lat": 53.507416, "lng": -1.147151, "title": "Lidl - Doncaster", "address": "Sandford Road", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Tethered Connector)  · 50kW", "CHAdeMO · 50kW"], "speed": "rapid"}, {"lat": 53.486999, "lng": -1.053022, "title": "Doncaster South - Parrot’s Corner Park & Ride 1", "address": "Bawtry Road, Rossington", "connectors": ["Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 53.4911353961771, "lng": -1.13989828221361, "title": "Instavolt Plantation Road", "address": "Plantation Road", "connectors": ["CCS (Type 2) · 120kW", "CHAdeMO · 120kW"], "speed": "rapid"}, {"lat": 53.49624999297748, "lng": -1.1450241122554417, "title": "Opal Centre", "address": "St Catherines House", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 53.49734194305856, "lng": -1.1481369444300071, "title": "Tickhill Road Hospital", "address": "Tickhill Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 53.4911637815582, "lng": -1.1374796650814, "title": "Tesco Car Park", "address": "Woodfield Plantation", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 53.5065726594128, "lng": -1.1474477674145191, "title": "Lidl", "address": "4 Sandford Rd", "connectors": ["CCS (Type 2) · 50kW", "CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 22kW"], "speed": "rapid"}, {"lat": 53.484316983143316, "lng": -1.0134810618005758, "title": "Avro Park", "address": "Doncaster Sheffield Airport", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 53.535561, "lng": -1.056663, "title": "Morrisons Armthorpe", "address": "Armthorpe", "connectors": ["Type 2 (Socket Only) · 22kW", "CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 50kW"], "speed": "rapid"}, {"lat": 53.579918, "lng": -0.969151, "title": "Green Tree Inn", "address": "Hatfield", "connectors": ["CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 43kW", "CCS (Type 2) · 50kW"], "speed": "rapid"}, {"lat": 54.775096, "lng": -1.57046, "title": "Old Elvet", "address": "Old Elvet", "connectors": ["Type 2 (Socket Only) · 7kW"], "speed": "fast"}];
 
   chargerData.forEach(function (c) {
@@ -1170,6 +1177,14 @@
     markers.addLayer(marker);
   });
   map.addLayer(markers);
+
+  // Frame the map to the actual chargers so a town's points are visible
+  // immediately (and small towns land past the de-clustering zoom).
+  if (chargerData.length) {
+    map.fitBounds(markers.getBounds(), { padding: [40, 40], maxZoom: 15 });
+  } else {
+    map.setView([53.579069904308426, -1.1129891916368724], 12);
+  }
 
   // --- Connector filter ---
   var filterBtns = document.querySelectorAll('.filter-btn');

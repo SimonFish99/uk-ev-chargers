@@ -569,7 +569,7 @@
   function esc(s) { return String(s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
 
   // --- Map ---
-  var map = L.map('map').setView([54.00184607908122, -1.5327251427481545], 12);
+  var map = L.map('map');
   L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
     subdomains: 'abcd',
@@ -585,7 +585,14 @@
     });
   }
 
-  var markers = L.markerClusterGroup();
+  // Cluster only when markers genuinely overlap, and stop clustering once
+  // zoomed in so a town's handful of chargers show as individual pins.
+  var markers = L.markerClusterGroup({
+    maxClusterRadius: 40,
+    disableClusteringAtZoom: 14,
+    spiderfyOnMaxZoom: true,
+    showCoverageOnHover: false,
+  });
   var chargerData = [{"lat": 53.99645768, "lng": -1.50940341, "title": "Lidl-Knaresborough Road", "address": "Knaresborough Road", "connectors": ["Type 2 (Socket Only) · 22kW", "CCS (Type 2) · 50kW", "CHAdeMO · 50kW"], "speed": "rapid"}, {"lat": 53.997756, "lng": -1.534607, "title": "Dragon Road 1", "address": "Dragon Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 53.994101, "lng": -1.535584, "title": "Park View Car Park 1", "address": "Park view car park Harrogate,", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 53.993593, "lng": -1.537133, "title": "Victoria MSCP 1", "address": "Victoria MSCP", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 53.992605, "lng": -1.534237, "title": "Odeon Car Park 1", "address": "Odeon car park Harrogate,", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 53.989374, "lng": -1.539631, "title": "West Park Car Park 1", "address": "West Park Car Park", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 53.980312, "lng": -1.527066, "title": "Hornbeam Park 1", "address": "Hornbeam Park", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 53.98473, "lng": -1.49817, "title": "Sainsbury's Harrogate", "address": "Wetherby Road", "connectors": ["CHAdeMO · 50kW", "CCS (Type 2) · 150kW"], "speed": "rapid"}, {"lat": 53.997501, "lng": -1.5413, "title": "Crowne Plaza", "address": "King's Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 53.988064, "lng": -1.505075, "title": "EG GROUP HARROGATE LEON1", "address": "Wetherby Road", "connectors": ["CHAdeMO · 50kW", "CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 150kW", "Type 2 (Tethered Connector)  · 150kW"], "speed": "rapid"}, {"lat": 54.113412268974656, "lng": -1.5830613029778533, "title": "National Trust Fountains Abbey Car Park B", "address": "Fountains Lane", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 53.994247, "lng": -1.547434, "title": "Studley Hotel & Orchid Restaurant", "address": "28 Swan Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}];
 
   chargerData.forEach(function (c) {
@@ -603,6 +610,14 @@
     markers.addLayer(marker);
   });
   map.addLayer(markers);
+
+  // Frame the map to the actual chargers so a town's points are visible
+  // immediately (and small towns land past the de-clustering zoom).
+  if (chargerData.length) {
+    map.fitBounds(markers.getBounds(), { padding: [40, 40], maxZoom: 15 });
+  } else {
+    map.setView([54.00184607908122, -1.5327251427481545], 12);
+  }
 
   // --- Connector filter ---
   var filterBtns = document.querySelectorAll('.filter-btn');

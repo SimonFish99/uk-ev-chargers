@@ -917,7 +917,7 @@
   function esc(s) { return String(s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
 
   // --- Map ---
-  var map = L.map('map').setView([51.84277625643121, -2.2291553047159374], 12);
+  var map = L.map('map');
   L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
     subdomains: 'abcd',
@@ -933,7 +933,14 @@
     });
   }
 
-  var markers = L.markerClusterGroup();
+  // Cluster only when markers genuinely overlap, and stop clustering once
+  // zoomed in so a town's handful of chargers show as individual pins.
+  var markers = L.markerClusterGroup({
+    maxClusterRadius: 40,
+    disableClusteringAtZoom: 14,
+    spiderfyOnMaxZoom: true,
+    showCoverageOnHover: false,
+  });
   var chargerData = [{"lat": 51.81888984230943, "lng": -2.2243323892222406, "title": "Westmorland Gloucester Services Southbound", "address": "M5 Southbound", "connectors": ["CCS (Type 2) · 250kW"], "speed": "rapid"}, {"lat": 51.794371, "lng": -2.288868, "title": "Dobbies Gloucester", "address": "Bath Road", "connectors": ["CCS (Type 2) · 180kW", "CHAdeMO · 80kW", "Type 2 (Socket Only) · 22kW", "CCS (Type 2) · 180kW", "CHAdeMO · 80kW", "Type 2 (Socket Only) · 22kW", "CCS (Type 2) · 350kW", "CCS (Type 2) · 350kW"], "speed": "rapid"}, {"lat": 51.886573, "lng": -2.188334, "title": "Tesco Superstore - Churchdown", "address": "Cheltenham Road East", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.848407, "lng": -2.172519, "title": "Tesco Extra - Gloucester Brockworth", "address": "Gloucester Business Park", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.827333, "lng": -2.278748, "title": "Tesco Extra - Gloucester Quedgeley", "address": "Bristol Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.8668923, "lng": -2.206875946, "title": "EVC Barnwood Point Business Park", "address": "Corinium Ave", "connectors": ["Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 51.757094, "lng": -2.29463, "title": "Redrow Homes- Great Oldbury-the Alders", "address": "De Lisle Bush Way", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.85591167, "lng": -2.22201257, "title": "Custodian Capital Limited-Farmfoods", "address": "108 Eastern Avenue", "connectors": ["CHAdeMO · 75kW", "CCS (Type 2) · 75kW", "CHAdeMO · 75kW", "CCS (Type 2) · 75kW"], "speed": "rapid"}, {"lat": 51.83979, "lng": -2.139585, "title": "Premier inn Gloucester (Little Witcombe)", "address": "Little Witcombe", "connectors": ["CCS (Type 2) · 60kW", "CHAdeMO · 60kW", "Type 2 (Socket Only) · 22kW"], "speed": "rapid"}, {"lat": 51.875801, "lng": -2.270267, "title": "The Lock Keepers", "address": "The Lock Keepers", "connectors": ["CHAdeMO · 50kW", "CCS (Type 2) · 50kW", "Type 2 (Tethered Connector)  · 43kW"], "speed": "rapid"}, {"lat": 51.871153, "lng": -2.248832, "title": "Tesco Superstore - Gloucester", "address": "St Oswalds Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.822121, "lng": -2.275357, "title": "Asda", "address": "Kingsway", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 51.859529564820036, "lng": -2.252497881911495, "title": "Gloucester Quays MSCP", "address": "St Ann Way", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 51.86001290207332, "lng": -2.252027104547551, "title": "Gloucester Quays MSCP - Staff parking", "address": "Baker Street", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 51.78443568, "lng": -2.19340595, "title": "The Painswick Kemps Lane", "address": "Painswick", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.86864692135953, "lng": -2.2332687801106204, "title": "The Edward Hotel", "address": "88-92 London Road", "connectors": ["Type 2 (Tethered Connector)  · 7kW"], "speed": "fast"}, {"lat": 51.844482, "lng": -2.173463, "title": "Plot 4100 Hurricane Road", "address": "Plot 4100 Hurricane Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.8612592480618, "lng": -2.21645347252684, "title": "Instavolt [Southbrook Retail Park Gloucester]", "address": "Eastern Avenue", "connectors": ["CCS (Type 2) · 120kW", "CHAdeMO · 100kW"], "speed": "rapid"}, {"lat": 51.897385, "lng": -2.173807, "title": "Safran Landing Systems", "address": "Cheltenham Road E", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 51.815437, "lng": -2.277822, "title": "Phoenix House", "address": "Edison Close", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}];
 
   chargerData.forEach(function (c) {
@@ -951,6 +958,14 @@
     markers.addLayer(marker);
   });
   map.addLayer(markers);
+
+  // Frame the map to the actual chargers so a town's points are visible
+  // immediately (and small towns land past the de-clustering zoom).
+  if (chargerData.length) {
+    map.fitBounds(markers.getBounds(), { padding: [40, 40], maxZoom: 15 });
+  } else {
+    map.setView([51.84277625643121, -2.2291553047159374], 12);
+  }
 
   // --- Connector filter ---
   var filterBtns = document.querySelectorAll('.filter-btn');

@@ -611,7 +611,7 @@
   function esc(s) { return String(s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
 
   // --- Map ---
-  var map = L.map('map').setView([53.189881457260825, -2.871404474815716], 12);
+  var map = L.map('map');
   L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
     subdomains: 'abcd',
@@ -627,7 +627,14 @@
     });
   }
 
-  var markers = L.markerClusterGroup();
+  // Cluster only when markers genuinely overlap, and stop clustering once
+  // zoomed in so a town's handful of chargers show as individual pins.
+  var markers = L.markerClusterGroup({
+    maxClusterRadius: 40,
+    disableClusteringAtZoom: 14,
+    spiderfyOnMaxZoom: true,
+    showCoverageOnHover: false,
+  });
   var chargerData = [{"lat": 53.205213, "lng": -2.899858, "title": "Little Owl", "address": "Little Owl", "connectors": ["CCS (Type 2) · 60kW", "CHAdeMO · 50kW", "CCS (Type 2) · 60kW", "CHAdeMO · 50kW"], "speed": "rapid"}, {"lat": 53.192919, "lng": -2.876628, "title": "GL144", "address": "71 boughton", "connectors": ["Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 53.2684939443907, "lng": -2.80240117260431, "title": "Hu-Roadchef Chester-Patrons-Archived", "address": "M56 Junction 14", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW", "CCS (Type 2) · 350kW"], "speed": "rapid"}, {"lat": 53.26854, "lng": -2.802434, "title": "Hu-Roadchef Chester-Patrons", "address": "M56 Junction 14", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 53.07416, "lng": -2.806342, "title": "CARDEN PARK RIGHT SIDE", "address": "Carden Park Hotel", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 53.21336, "lng": -2.897043, "title": "RAW GREENE KING OAK TREE 1", "address": "8 Upton Grange", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 53.160393, "lng": -2.903341, "title": "Regus Chester 1", "address": "Regus Chester  Herons way", "connectors": ["Type 2 (Tethered Connector)  · 22kW"], "speed": "fast"}, {"lat": 53.199551, "lng": -2.875352, "title": "Bishop Street", "address": "Bishop Street", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 53.196419, "lng": -2.885996, "title": "St Anne Street", "address": "St Anne Street", "connectors": ["Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 53.181, "lng": -2.9236, "title": "Viscount House", "address": "Viscount House", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 53.125696, "lng": -2.868225, "title": "Lily's Coffee Shop", "address": "Green Lake Lane, Aldford", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 53.192895, "lng": -2.887347, "title": "Tesco Superstore-Chester", "address": "Frodsham Square", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 53.189819, "lng": -2.899691, "title": "Holiday Inn Express Chester Racecourse", "address": "New Crane Street", "connectors": ["CHAdeMO · 50kW", "CCS (Type 2) · 50kW", "Type 2 (Tethered Connector)  · 43kW"], "speed": "rapid"}];
 
   chargerData.forEach(function (c) {
@@ -645,6 +652,14 @@
     markers.addLayer(marker);
   });
   map.addLayer(markers);
+
+  // Frame the map to the actual chargers so a town's points are visible
+  // immediately (and small towns land past the de-clustering zoom).
+  if (chargerData.length) {
+    map.fitBounds(markers.getBounds(), { padding: [40, 40], maxZoom: 15 });
+  } else {
+    map.setView([53.189881457260825, -2.871404474815716], 12);
+  }
 
   // --- Connector filter ---
   var filterBtns = document.querySelectorAll('.filter-btn');

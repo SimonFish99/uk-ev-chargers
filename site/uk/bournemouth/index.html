@@ -944,7 +944,7 @@
   function esc(s) { return String(s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
 
   // --- Map ---
-  var map = L.map('map').setView([50.73048981923597, -1.8648476345330756], 12);
+  var map = L.map('map');
   L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
     subdomains: 'abcd',
@@ -960,7 +960,14 @@
     });
   }
 
-  var markers = L.markerClusterGroup();
+  // Cluster only when markers genuinely overlap, and stop clustering once
+  // zoomed in so a town's handful of chargers show as individual pins.
+  var markers = L.markerClusterGroup({
+    maxClusterRadius: 40,
+    disableClusteringAtZoom: 14,
+    spiderfyOnMaxZoom: true,
+    showCoverageOnHover: false,
+  });
   var chargerData = [{"lat": 50.745007, "lng": -1.816991, "title": "Tesco Extra - Bournemouth", "address": "Riverside Avenue", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 50.740801, "lng": -1.880169, "title": "Leslie Road 2", "address": "4 Leslie Road, Talbot Drive", "connectors": ["Type 2 (Tethered Connector)  · 75kW", "Type 2 (Tethered Connector)  · 75kW"], "speed": "rapid"}, {"lat": 50.736578, "lng": -1.865857, "title": "RAW GREENE KING RICHMOND ARMS 1", "address": "Charminster Road 153", "connectors": ["Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 50.734122, "lng": -1.839037, "title": "Kings Park 3", "address": "Kings Park, King's Park Drive, Throop", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 50.723824, "lng": -1.911355, "title": "Milburn Road", "address": "1 Milburn Road, Talbot Village", "connectors": ["Type 2 (Tethered Connector)  · 150kW", "Type 2 (Tethered Connector)  · 150kW"], "speed": "rapid"}, {"lat": 50.723215, "lng": -1.878566, "title": "Richmond Hill", "address": "Richmond Hill", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 50.721642, "lng": -1.87259, "title": "Glen Fern", "address": "7 Glen Fern Road", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 50.720533, "lng": -1.842287, "title": "Overstrand 1", "address": "Overstrand, Honeycomb Chine", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 50.71984, "lng": -1.794087, "title": "Warren Edge 2", "address": "Southbourne Coast Road, Wick", "connectors": ["Type 2 (Tethered Connector)  · 75kW", "Type 2 (Tethered Connector)  · 75kW"], "speed": "rapid"}, {"lat": 50.719466, "lng": -1.77935, "title": "Hengistbury Head 1", "address": "Hengistbury Head, 200 Broadway, Wick", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 50.717335, "lng": -1.873117, "title": "Bath Road South 2", "address": "1 Bath Road", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 50.713954, "lng": -1.889985, "title": "Durley Chine 2", "address": "West Overcliff Drive", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 50.749653, "lng": -1.82254, "title": "Staff Access Only Multi-storey Car Park.", "address": "Castle Lane East", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 50.724484, "lng": -1.858726, "title": "RAWOWNED PINES 1", "address": "16 Knyveton Rd", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 50.722599, "lng": -1.8786, "title": "Nationwide Richmond Hill", "address": "21 Richmond Hill", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 50.721314293457, "lng": -1.8732071812813729, "title": "Glen Fern Car Park", "address": "7 Glen Fern Road", "connectors": ["Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 50.714214, "lng": -2.024531, "title": "BCPC Lake Pier", "address": "Lake Drive", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 50.784992, "lng": -1.984093, "title": "Merley Court Holiday Park", "address": "Merley House Lane", "connectors": ["Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 50.717053780586525, "lng": -1.8818197100262068, "title": "Hotel Collingwood", "address": "11 Priory Rd", "connectors": ["Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 50.7282567683837, "lng": -1.83878170295316, "title": "Sovereign Retail Park ", "address": "600 Christchurch Road", "connectors": ["CCS (Type 2) · 50kW", "CHAdeMO · 50kW"], "speed": "rapid"}, {"lat": 50.74797, "lng": -1.819632, "title": "Adjacent Energy Centre", "address": "Castle Lane East", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 3.7kW"], "speed": "fast"}, {"lat": 50.72646, "lng": -1.83689, "title": "Boscombe, Hawkwood Road Car Park", "address": "Boscombe, Hawkwood Road Car Park", "connectors": ["CHAdeMO · 50kW", "CCS (Type 2) · 50kW"], "speed": "rapid"}, {"lat": 50.747952, "lng": -1.829284, "title": "The Cooper Dean", "address": "700 Castle Lane West", "connectors": ["CCS (Type 2) · 50kW", "CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 43kW"], "speed": "rapid"}];
 
   chargerData.forEach(function (c) {
@@ -978,6 +985,14 @@
     markers.addLayer(marker);
   });
   map.addLayer(markers);
+
+  // Frame the map to the actual chargers so a town's points are visible
+  // immediately (and small towns land past the de-clustering zoom).
+  if (chargerData.length) {
+    map.fitBounds(markers.getBounds(), { padding: [40, 40], maxZoom: 15 });
+  } else {
+    map.setView([50.73048981923597, -1.8648476345330756], 12);
+  }
 
   // --- Connector filter ---
   var filterBtns = document.querySelectorAll('.filter-btn');

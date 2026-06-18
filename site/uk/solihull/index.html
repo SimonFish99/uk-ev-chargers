@@ -1069,7 +1069,7 @@
   function esc(s) { return String(s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
 
   // --- Map ---
-  var map = L.map('map').setView([52.43040732104331, -1.7702317364530797], 12);
+  var map = L.map('map');
   L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
     subdomains: 'abcd',
@@ -1085,7 +1085,14 @@
     });
   }
 
-  var markers = L.markerClusterGroup();
+  // Cluster only when markers genuinely overlap, and stop clustering once
+  // zoomed in so a town's handful of chargers show as individual pins.
+  var markers = L.markerClusterGroup({
+    maxClusterRadius: 40,
+    disableClusteringAtZoom: 14,
+    spiderfyOnMaxZoom: true,
+    showCoverageOnHover: false,
+  });
   var chargerData = [{"lat": 52.4259647178086, "lng": -1.7057146156606, "title": "Hampton Manor", "address": "Shadowbrook Lane", "connectors": ["Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 52.502143, "lng": -1.749091, "title": "Pembroke House", "address": "Barle Grove", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 52.489314, "lng": -1.756177, "title": "Digby House", "address": "Kingshurst", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 52.485972, "lng": -1.738864, "title": "Westham House", "address": "Forth Drive", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 52.482091, "lng": -1.728591, "title": "Mansfield House", "address": "Woodlands Way", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 52.479962, "lng": -1.753874, "title": "Crabtree Hall", "address": "Kingshurst", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 52.477752, "lng": -1.725934, "title": "Dunster Road", "address": "Chelmsley Wood", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 52.45132462931761, "lng": -1.7123735321194715, "title": "BP Pulse Charging Hub", "address": "East Car Park Road", "connectors": ["CCS (Type 2) · 150kW", "CHAdeMO · 120kW"], "speed": "rapid"}, {"lat": 52.386021, "lng": -1.800132, "title": "Premier Inn Solihull South (M42)", "address": "Stratford Road, Shirley", "connectors": ["CHAdeMO · 50kW", "Type 2 (Socket Only) · 22kW", "Type 2 (Tethered Connector)  · 60kW"], "speed": "rapid"}, {"lat": 52.358471, "lng": -1.780429, "title": "Premier Inn Solihull Hockley Heath", "address": "Hockley Heath", "connectors": ["CHAdeMO · 50kW", "Type 2 (Socket Only) · 22kW", "Type 2 (Tethered Connector)  · 60kW"], "speed": "rapid"}, {"lat": 52.452319, "lng": -1.731253, "title": "Birmingham International Airport", "address": "Drop and Go", "connectors": ["CCS (Type 2) · 35kW", "CHAdeMO · 60kW", "CCS (Type 2) · 35kW", "CCS (Type 2) · 35kW", "Type 2 (Socket Only) · 22kW"], "speed": "rapid"}, {"lat": 52.412998, "lng": -1.82881, "title": "Asda", "address": "Shirley", "connectors": ["Type 2 (Socket Only) · 3.7kW", "Type 2 (Socket Only) · 3.7kW"], "speed": "slow"}, {"lat": 52.441852, "lng": -1.771401, "title": "Tanhouse Farm Road", "address": "Tanhouse Farm Road", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 52.440131, "lng": -1.806586, "title": "Masons Way", "address": "Masons Way", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 52.438983, "lng": -1.787567, "title": "Redfern Close", "address": "Redfern Close", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 52.436029, "lng": -1.781964, "title": "Lode Ln 35", "address": "Lode Ln 35", "connectors": ["Type 2 (Socket Only) · 11kW"], "speed": "fast"}, {"lat": 52.427053, "lng": -1.769338, "title": "Draycote Close", "address": "Draycote Close", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 52.42601, "lng": -1.766515, "title": "Walsgrave Rd", "address": "Walsgrave Rd", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 52.424857, "lng": -1.771805, "title": "Wharf Lane", "address": "Wharf Lane", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 52.404565, "lng": -1.843456, "title": "Haslucks Green Road", "address": "Haslucks Green Road", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 52.402216, "lng": -1.822242, "title": "Falstaff Rd", "address": "Falstaff Rd", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 52.388288, "lng": -1.736306, "title": "Village Hall Car Park Knowle", "address": "St Johns Close", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 52.375599, "lng": -1.79792, "title": "Arup Campus", "address": "Blythe Valley Park", "connectors": ["BS1363 3 Pin 13 Amp · 3kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 52.414558, "lng": -1.78143, "title": "Lode Lane", "address": "Lode Lane", "connectors": ["Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 52.384201, "lng": -1.789985, "title": "Tesco Extra-Solihull", "address": "Stratford Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 52.381916, "lng": -1.788267, "title": "IM Properties (Longton) Ltd", "address": "Huskisson Way", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}];
 
   chargerData.forEach(function (c) {
@@ -1103,6 +1110,14 @@
     markers.addLayer(marker);
   });
   map.addLayer(markers);
+
+  // Frame the map to the actual chargers so a town's points are visible
+  // immediately (and small towns land past the de-clustering zoom).
+  if (chargerData.length) {
+    map.fitBounds(markers.getBounds(), { padding: [40, 40], maxZoom: 15 });
+  } else {
+    map.setView([52.43040732104331, -1.7702317364530797], 12);
+  }
 
   // --- Connector filter ---
   var filterBtns = document.querySelectorAll('.filter-btn');

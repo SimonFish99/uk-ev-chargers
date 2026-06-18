@@ -488,7 +488,7 @@
   function esc(s) { return String(s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
 
   // --- Map ---
-  var map = L.map('map').setView([56.002883845128665, -3.778696426660363], 12);
+  var map = L.map('map');
   L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
     subdomains: 'abcd',
@@ -504,7 +504,14 @@
     });
   }
 
-  var markers = L.markerClusterGroup();
+  // Cluster only when markers genuinely overlap, and stop clustering once
+  // zoomed in so a town's handful of chargers show as individual pins.
+  var markers = L.markerClusterGroup({
+    maxClusterRadius: 40,
+    disableClusteringAtZoom: 14,
+    spiderfyOnMaxZoom: true,
+    showCoverageOnHover: false,
+  });
   var chargerData = [{"lat": 55.9976165, "lng": -3.7781469, "title": "Lidl-Falkirk", "address": "1 Arnott Street", "connectors": ["Type 2 (Socket Only) · 22kW", "CCS (Type 2) · 50kW", "CHAdeMO · 50kW"], "speed": "rapid"}, {"lat": 55.9974523716489, "lng": -3.71059727846298, "title": "Macdonald Inchyra Hotel & Spa", "address": "Grange Rd", "connectors": ["Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 56.007768, "lng": -3.765992, "title": "4 Middlefield Road", "address": "4 Middlefield Road", "connectors": ["Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 56.005459, "lng": -3.75387, "title": "Falkirk Stadium", "address": "4 Stadium Way", "connectors": ["Type 2 (Tethered Connector)  · 43kW", "Type 2 (Tethered Connector)  · 50kW", "CHAdeMO · 50kW"], "speed": "rapid"}, {"lat": 56.0032, "lng": -3.786629, "title": "Meeks Road, Falkirk", "address": "16 Meeks Road", "connectors": ["Type 2 (Tethered Connector)  · 43kW", "Type 2 (Tethered Connector)  · 50kW", "CHAdeMO · 50kW"], "speed": "rapid"}, {"lat": 55.9991, "lng": -3.834532, "title": "Scottish Canals - Falkirk Wheel", "address": "Lime Road", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Tethered Connector)  · 22kW"], "speed": "fast"}, {"lat": 56.005637, "lng": -3.82226, "title": "Tesco Superstore-Falkirk", "address": "Glasgow Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 55.9848235796378, "lng": -3.73666608814065, "title": "Tesco Superstore - Falkirk Redding Road", "address": "Colliery Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 56.02313, "lng": -3.83135, "title": "Foundry Loan", "address": "24 Foundry Loan", "connectors": ["Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 56.004652, "lng": -3.766921, "title": "Forth Valley College, Grangemouth Road, Falkirk", "address": "35 Grangemouth Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}];
 
   chargerData.forEach(function (c) {
@@ -522,6 +529,14 @@
     markers.addLayer(marker);
   });
   map.addLayer(markers);
+
+  // Frame the map to the actual chargers so a town's points are visible
+  // immediately (and small towns land past the de-clustering zoom).
+  if (chargerData.length) {
+    map.fitBounds(markers.getBounds(), { padding: [40, 40], maxZoom: 15 });
+  } else {
+    map.setView([56.002883845128665, -3.778696426660363], 12);
+  }
 
   // --- Connector filter ---
   var filterBtns = document.querySelectorAll('.filter-btn');

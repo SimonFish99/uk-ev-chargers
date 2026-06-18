@@ -634,7 +634,7 @@
   function esc(s) { return String(s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
 
   // --- Map ---
-  var map = L.map('map').setView([53.13780490350081, -1.1812597581552475], 12);
+  var map = L.map('map');
   L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
     subdomains: 'abcd',
@@ -650,7 +650,14 @@
     });
   }
 
-  var markers = L.markerClusterGroup();
+  // Cluster only when markers genuinely overlap, and stop clustering once
+  // zoomed in so a town's handful of chargers show as individual pins.
+  var markers = L.markerClusterGroup({
+    maxClusterRadius: 40,
+    disableClusteringAtZoom: 14,
+    spiderfyOnMaxZoom: true,
+    showCoverageOnHover: false,
+  });
   var chargerData = [{"lat": 53.149376, "lng": -1.202301, "title": "Tesco Extra-Mansfield Chesterfield", "address": "Chesterfield Road South", "connectors": ["Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 53.135572, "lng": -1.197134, "title": "Sainsburys Mansfield", "address": "Nottingham Road, Mansfield", "connectors": ["BS1363 3 Pin 13 Amp · 3kW", "BS1363 3 Pin 13 Amp · 3kW"], "speed": "slow"}, {"lat": 53.130944, "lng": -1.158902, "title": "Evans Halshaw Mansfield", "address": "264 Southwell Road West", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 53.14099, "lng": -1.209753, "title": "RAW GREENE KING BOLD FORESTER 1", "address": "Bold forester Botany avenue", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 53.130207, "lng": -1.142553, "title": "Ransom Wood Business Park", "address": "Southwell Road West", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 53.1261148063064, "lng": -1.14659558780113, "title": "McDonald's Mansfield", "address": "Oakleaf Close", "connectors": ["CCS (Type 2) · 50kW", "CHAdeMO · 50kW"], "speed": "rapid"}, {"lat": 53.134298, "lng": -1.198228, "title": "Sainsbury's Mansfield", "address": "Nottingham Road", "connectors": ["Type 2 (Socket Only) · 3kW"], "speed": "slow"}, {"lat": 53.1309064259888, "lng": -1.1421290854538, "title": "Ransom Wood Business Park", "address": "Southwell Road West", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 53.1347398601924, "lng": -1.22596766685308, "title": "Costa Coffee Instavolt ", "address": "4 Kings Mill Lane", "connectors": ["CCS (Type 2) · 50kW", "CHAdeMO · 50kW"], "speed": "rapid"}, {"lat": 53.135291035291374, "lng": -1.2286906728767235, "title": "Morrisons Mansfield", "address": "Sutton Rd", "connectors": ["CCS (Type 2) · 50kW", "CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 43kW"], "speed": "rapid"}, {"lat": 53.187424, "lng": -1.180454, "title": "S&L Office", "address": "Leeming Lane North Leeming Lane North", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 53.1029, "lng": -1.1121, "title": "Blidworth", "address": "Blidworth", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 53.1454055212323, "lng": -1.19884860118873, "title": "Four Seasons Multi-Storey Car Park", "address": "Four Seasons Multi-Storey Car Park", "connectors": ["Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 53.1451, "lng": -1.19398, "title": "Toothill Lane Car Park - Mansfield", "address": "Toot Hill Lane Car Park", "connectors": ["CCS (Type 2) · 50kW", "CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 43kW"], "speed": "rapid"}];
 
   chargerData.forEach(function (c) {
@@ -668,6 +675,14 @@
     markers.addLayer(marker);
   });
   map.addLayer(markers);
+
+  // Frame the map to the actual chargers so a town's points are visible
+  // immediately (and small towns land past the de-clustering zoom).
+  if (chargerData.length) {
+    map.fitBounds(markers.getBounds(), { padding: [40, 40], maxZoom: 15 });
+  } else {
+    map.setView([53.13780490350081, -1.1812597581552475], 12);
+  }
 
   // --- Connector filter ---
   var filterBtns = document.querySelectorAll('.filter-btn');

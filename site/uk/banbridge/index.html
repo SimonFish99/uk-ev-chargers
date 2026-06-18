@@ -375,7 +375,7 @@
   function esc(s) { return String(s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
 
   // --- Map ---
-  var map = L.map('map').setView([54.343312648693164, -6.265674624394562], 12);
+  var map = L.map('map');
   L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
     subdomains: 'abcd',
@@ -391,7 +391,14 @@
     });
   }
 
-  var markers = L.markerClusterGroup();
+  // Cluster only when markers genuinely overlap, and stop clustering once
+  // zoomed in so a town's handful of chargers show as individual pins.
+  var markers = L.markerClusterGroup({
+    maxClusterRadius: 40,
+    disableClusteringAtZoom: 14,
+    spiderfyOnMaxZoom: true,
+    showCoverageOnHover: false,
+  });
   var chargerData = [{"lat": 54.33322342055695, "lng": -6.27747601830572, "title": "McDonald's", "address": "Bridgetwater Park", "connectors": ["CCS (Type 2) · 47kW"], "speed": "fast"}, {"lat": 54.33107298193403, "lng": -6.28055872042296, "title": "Banbridge The Boulevard", "address": "Cascum Link", "connectors": ["CCS (Type 2) · 400kW", "CHAdeMO · 50kW"], "speed": "rapid"}, {"lat": 54.34408329709541, "lng": -6.272890178153602, "title": "Maxol", "address": "Newry Road", "connectors": ["CCS (Type 2) · 150kW"], "speed": "rapid"}, {"lat": 54.34652316400653, "lng": -6.272488458459975, "title": "Downshire Arms", "address": "Newry Street", "connectors": ["CCS (Type 2) · 24kW"], "speed": "fast"}, {"lat": 54.368550347799186, "lng": -6.217935696077632, "title": "Barbican Centra A1, Banbridge", "address": "Dromore Rd", "connectors": ["Type 2 (Socket Only) · 22kW", "CHAdeMO · 50kW", "CCS (Type 2) · 50kW", "CCS (Type 2) · 47kW", "CCS (Type 2) · 150kW"], "speed": "rapid"}, {"lat": 54.333447039460054, "lng": -6.27394951934204, "title": "Tesco Extra-Bridgewater", "address": "Bridgewater Retail Park", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 54.34628829, "lng": -6.26442378, "title": "Tesco Superstore-Banbridge", "address": "25a Castlewellan Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}];
 
   chargerData.forEach(function (c) {
@@ -409,6 +416,14 @@
     markers.addLayer(marker);
   });
   map.addLayer(markers);
+
+  // Frame the map to the actual chargers so a town's points are visible
+  // immediately (and small towns land past the de-clustering zoom).
+  if (chargerData.length) {
+    map.fitBounds(markers.getBounds(), { padding: [40, 40], maxZoom: 15 });
+  } else {
+    map.setView([54.343312648693164, -6.265674624394562], 12);
+  }
 
   // --- Connector filter ---
   var filterBtns = document.querySelectorAll('.filter-btn');

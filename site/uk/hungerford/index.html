@@ -633,7 +633,7 @@
   function esc(s) { return String(s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
 
   // --- Map ---
-  var map = L.map('map').setView([51.418717277748904, -1.5193409169119414], 12);
+  var map = L.map('map');
   L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
     subdomains: 'abcd',
@@ -649,7 +649,14 @@
     });
   }
 
-  var markers = L.markerClusterGroup();
+  // Cluster only when markers genuinely overlap, and stop clustering once
+  // zoomed in so a town's handful of chargers show as individual pins.
+  var markers = L.markerClusterGroup({
+    maxClusterRadius: 40,
+    disableClusteringAtZoom: 14,
+    spiderfyOnMaxZoom: true,
+    showCoverageOnHover: false,
+  });
   var chargerData = [{"lat": 51.4781406313864, "lng": -1.55327402795323, "title": "Tap Zap Go - Membury Services at Lambourn Woodlands", "address": "Aerial Business Park", "connectors": ["CCS (Type 2) · 120kW"], "speed": "rapid"}, {"lat": 51.39780957681057, "lng": -1.4456307242497815, "title": "2 Gainsborough Avenue, RG17 9XJ", "address": "Gainsborough Avenue", "connectors": ["Type 2 (Socket Only) · 5kW"], "speed": "slow"}, {"lat": 51.40733165666228, "lng": -1.5174894713754838, "title": "64 Priory Road", "address": "64 Priory Road", "connectors": ["Type 2 (Socket Only) · 5kW"], "speed": "slow"}, {"lat": 51.41512377800123, "lng": -1.5166753927945251, "title": "Church Street Short Stay Car Park", "address": "Church Street", "connectors": ["CCS (Type 2) · 50kW", "CHAdeMO · 50kW", "Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "rapid"}, {"lat": 51.41475408989817, "lng": -1.541757894815163, "title": "Cobbs Farm Shop (Instavolt)", "address": "Bath Road", "connectors": ["CCS (Type 2) · 160kW", "CHAdeMO · 60kW"], "speed": "rapid"}, {"lat": 51.43071, "lng": -1.56018, "title": "Littlecote House Hotel", "address": "Littlecote House", "connectors": ["Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.413148, "lng": -1.516248, "title": "High Street", "address": "40 High Street", "connectors": ["Type 2 (Socket Only) · 3.7kW"], "speed": "slow"}, {"lat": 51.41404134213977, "lng": -1.5098242534650126, "title": "Unit 1, Station Yard", "address": "Station Road", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 51.41430383584583, "lng": -1.5156340501904424, "title": "High Street", "address": "High Street", "connectors": ["Type 2 (Socket Only) · 5kW"], "speed": "slow"}, {"lat": 51.41855565973373, "lng": -1.5144986020649185, "title": "34 Charnham Street", "address": "34 Charnham Street", "connectors": ["Type 2 (Socket Only) · 3.7kW"], "speed": "slow"}, {"lat": 51.41848259575565, "lng": -1.5138593367705653, "title": "27 Charnham Street", "address": "27 Charnham Street", "connectors": ["Type 2 (Socket Only) · 3.7kW"], "speed": "slow"}, {"lat": 51.4148, "lng": -1.5419, "title": "Cobbs Farm Company LTD-Hungerford", "address": "Bath Road", "connectors": ["Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.416992, "lng": -1.514723, "title": "Bridge Street", "address": "Bridge Street", "connectors": ["Type 2 (Socket Only) · 3.7kW"], "speed": "slow"}, {"lat": 51.413895, "lng": -1.512, "title": "30 Park Street", "address": "30 Park Street", "connectors": ["Type 2 (Socket Only) · 3.7kW"], "speed": "slow"}, {"lat": 51.412671, "lng": -1.516419, "title": "40 High Street", "address": "40 High Street", "connectors": ["Type 2 (Socket Only) · 5kW"], "speed": "slow"}];
 
   chargerData.forEach(function (c) {
@@ -667,6 +674,14 @@
     markers.addLayer(marker);
   });
   map.addLayer(markers);
+
+  // Frame the map to the actual chargers so a town's points are visible
+  // immediately (and small towns land past the de-clustering zoom).
+  if (chargerData.length) {
+    map.fitBounds(markers.getBounds(), { padding: [40, 40], maxZoom: 15 });
+  } else {
+    map.setView([51.418717277748904, -1.5193409169119414], 12);
+  }
 
   // --- Connector filter ---
   var filterBtns = document.querySelectorAll('.filter-btn');

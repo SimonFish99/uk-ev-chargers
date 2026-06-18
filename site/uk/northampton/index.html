@@ -1090,7 +1090,7 @@
   function esc(s) { return String(s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
 
   // --- Map ---
-  var map = L.map('map').setView([52.252251454979614, -0.8721346379645182], 12);
+  var map = L.map('map');
   L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
     subdomains: 'abcd',
@@ -1106,7 +1106,14 @@
     });
   }
 
-  var markers = L.markerClusterGroup();
+  // Cluster only when markers genuinely overlap, and stop clustering once
+  // zoomed in so a town's handful of chargers show as individual pins.
+  var markers = L.markerClusterGroup({
+    maxClusterRadius: 40,
+    disableClusteringAtZoom: 14,
+    spiderfyOnMaxZoom: true,
+    showCoverageOnHover: false,
+  });
   var chargerData = [{"lat": 52.24549337288799, "lng": -0.812294031050069, "title": "The Quays", "address": "Crow Lane", "connectors": ["CCS (Type 2) · 75kW", "CCS (Type 2) · 75kW", "CCS (Type 2) · 75kW", "CHAdeMO · 75kW"], "speed": "rapid"}, {"lat": 52.24258845658197, "lng": -0.8342945560274015, "title": "Tesla ", "address": "Carousel Way", "connectors": ["CCS (Type 2) · 250kW"], "speed": "rapid"}, {"lat": 52.253345, "lng": -0.876198, "title": "Oakwood Road", "address": "Oakwood Road", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 52.247624, "lng": -0.900267, "title": "Semilong Road", "address": "Semilong Road", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 52.244001, "lng": -0.86909, "title": "Ardington Road", "address": "Ardington Road", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 52.242517, "lng": -0.917393, "title": "Vicarage Road", "address": "Vicarage Road", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 52.239516, "lng": -0.910608, "title": "St James Park Road", "address": "St James' Park Road", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 52.239377, "lng": -0.872254, "title": "Barry Road", "address": "Barry Road", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 52.238713, "lng": -0.876164, "title": "GB-LCL-A0100", "address": "Upper Thrift Street", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 52.351669, "lng": -1.148878, "title": "Holiday Inn Rugby-Northampton", "address": "M1 Junction18 A428", "connectors": ["CHAdeMO · 50kW", "CHAdeMO · 50kW"], "speed": "rapid"}, {"lat": 52.273869, "lng": -0.875469, "title": "Nationwide Adminsitration Centre", "address": "Moulten Park Industrial Estate", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 52.272926, "lng": -0.744971, "title": "Crystal HQ", "address": "4 Titlet Bawk Avenue", "connectors": ["Type 2 (Socket Only) · 22kW", "CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 50kW"], "speed": "rapid"}, {"lat": 52.244692, "lng": -0.833783, "title": "Restricted access to Vauxhall customers", "address": "Carousel Way", "connectors": ["Type 1 (J1772) · 3.7kW"], "speed": "slow"}, {"lat": 52.243466, "lng": -0.83466, "title": "Restricted access to Toyota customers", "address": "Ferris Row", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 52.23397, "lng": -0.893858, "title": "Morrisons Northampton", "address": "Wm Morrison Supermarkets Plc", "connectors": ["Type 2 (Tethered Connector)  · 60kW", "CHAdeMO · 50kW", "Type 2 (Socket Only) · 22kW"], "speed": "rapid"}, {"lat": 52.186321, "lng": -0.891303, "title": "Harvester Grange Park", "address": "Loake Close", "connectors": ["CHAdeMO · 50kW", "CHAdeMO · 50kW"], "speed": "rapid"}, {"lat": 52.259491, "lng": -0.872798, "title": "Morrisons", "address": "Kettering Road", "connectors": ["CHAdeMO · 50kW", "Type 2 (Socket Only) · 22kW", "Type 2 (Tethered Connector)  · 50kW"], "speed": "rapid"}, {"lat": 52.234957, "lng": -0.900784, "title": "Northampton, Commercial Street", "address": "Commercial Street", "connectors": ["CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 43kW", "Type 2 (Tethered Connector)  · 50kW"], "speed": "rapid"}, {"lat": 52.410021, "lng": -0.740299, "title": "Linnell Way", "address": "Linnnell Way", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 52.241422, "lng": -0.894584, "title": "Northampton, Upper Mounts", "address": "1 Victoria St", "connectors": ["CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 50kW", "Type 2 (Tethered Connector)  · 43kW"], "speed": "rapid"}, {"lat": 52.240202, "lng": -0.896219, "title": "Northampton, Newlands", "address": "Newland", "connectors": ["CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 50kW", "Type 2 (Tethered Connector)  · 43kW"], "speed": "rapid"}, {"lat": 52.239498, "lng": -0.892761, "title": "Northampton, Wellington Street", "address": "28-34 Wellington St", "connectors": ["CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 50kW", "Type 2 (Tethered Connector)  · 43kW"], "speed": "rapid"}, {"lat": 52.215136, "lng": -0.912466, "title": "Tesco Extra-Northampton South", "address": "Clannell Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 52.25675, "lng": -0.83712, "title": "LCP Weston Favell", "address": "LCP Weston Favell", "connectors": ["CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 50kW", "Type 2 (Tethered Connector)  · 43kW"], "speed": "rapid"}, {"lat": 52.227479, "lng": -0.742344, "title": "The Falcon", "address": "Castle Ashby", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 52.233494, "lng": -0.894641, "title": "Morrisons Northampton", "address": "Wm Morrison Supermarkets PLC, 26 Victoria Promenade", "connectors": ["Type 2 (Socket Only) · 22kW", "CHAdeMO · 50kW", "CCS (Type 2) · 50kW"], "speed": "rapid"}];
 
   chargerData.forEach(function (c) {
@@ -1124,6 +1131,14 @@
     markers.addLayer(marker);
   });
   map.addLayer(markers);
+
+  // Frame the map to the actual chargers so a town's points are visible
+  // immediately (and small towns land past the de-clustering zoom).
+  if (chargerData.length) {
+    map.fitBounds(markers.getBounds(), { padding: [40, 40], maxZoom: 15 });
+  } else {
+    map.setView([52.252251454979614, -0.8721346379645182], 12);
+  }
 
   // --- Connector filter ---
   var filterBtns = document.querySelectorAll('.filter-btn');

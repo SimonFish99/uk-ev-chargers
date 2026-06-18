@@ -484,7 +484,7 @@
   function esc(s) { return String(s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
 
   // --- Map ---
-  var map = L.map('map').setView([51.487978, -0.21054370000000003], 12);
+  var map = L.map('map');
   L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
     subdomains: 'abcd',
@@ -500,7 +500,14 @@
     });
   }
 
-  var markers = L.markerClusterGroup();
+  // Cluster only when markers genuinely overlap, and stop clustering once
+  // zoomed in so a town's handful of chargers show as individual pins.
+  var markers = L.markerClusterGroup({
+    maxClusterRadius: 40,
+    disableClusteringAtZoom: 14,
+    spiderfyOnMaxZoom: true,
+    showCoverageOnHover: false,
+  });
   var chargerData = [{"lat": 51.50114, "lng": -0.228492, "title": "Hammersmith Grove 2", "address": "Hammersmith Grove 2", "connectors": ["Type 1 (J1772) · 3kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.496547, "lng": -0.223916, "title": "Shepherds Bush Road", "address": "Shepherds Bush Road", "connectors": ["Type 1 (J1772) · 3kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.494427, "lng": -0.215715, "title": "Brook Green Site 2", "address": "Brook Green Site 2", "connectors": ["Type 1 (J1772) · 3kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.484226, "lng": -0.19497, "title": "Seagrave Road - Site 2", "address": "Seagrave Road - Site 2", "connectors": ["Type 1 (J1772) · 3kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.480029, "lng": -0.19335, "title": "Waterford Road", "address": "Waterford Road", "connectors": ["Type 1 (J1772) · 3kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.477518, "lng": -0.202017, "title": "Kelvedon Road Site 2", "address": "Kelvedon Road Site 2", "connectors": ["Type 1 (J1772) · 3kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.470875, "lng": -0.195151, "title": "Clancarty Road Site charge point re-position", "address": "Clancarty Road Site charge point re-position", "connectors": ["Type 1 (J1772) · 3kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.467487, "lng": -0.194119, "title": "Peterborough Road", "address": "Peterborough Road", "connectors": ["Type 1 (J1772) · 3kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.496979, "lng": -0.214448, "title": "Blythe Road Site 2", "address": "Blythe Road Site 2", "connectors": ["Type 1 (J1772) · 3kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.510552, "lng": -0.243259, "title": "Steventon Road", "address": "Steventon Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}];
 
   chargerData.forEach(function (c) {
@@ -518,6 +525,14 @@
     markers.addLayer(marker);
   });
   map.addLayer(markers);
+
+  // Frame the map to the actual chargers so a town's points are visible
+  // immediately (and small towns land past the de-clustering zoom).
+  if (chargerData.length) {
+    map.fitBounds(markers.getBounds(), { padding: [40, 40], maxZoom: 15 });
+  } else {
+    map.setView([51.487978, -0.21054370000000003], 12);
+  }
 
   // --- Connector filter ---
   var filterBtns = document.querySelectorAll('.filter-btn');

@@ -409,7 +409,7 @@
   function esc(s) { return String(s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
 
   // --- Map ---
-  var map = L.map('map').setView([51.86368028, 0.5333074360000001], 12);
+  var map = L.map('map');
   L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
     subdomains: 'abcd',
@@ -425,7 +425,14 @@
     });
   }
 
-  var markers = L.markerClusterGroup();
+  // Cluster only when markers genuinely overlap, and stop clustering once
+  // zoomed in so a town's handful of chargers show as individual pins.
+  var markers = L.markerClusterGroup({
+    maxClusterRadius: 40,
+    disableClusteringAtZoom: 14,
+    spiderfyOnMaxZoom: true,
+    showCoverageOnHover: false,
+  });
   var chargerData = [{"lat": 51.857605, "lng": 0.521807, "title": "Tesco Superstore - Braintree Great Notley", "address": "1 The Square", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.877405, "lng": 0.552103, "title": "Tesco Superstore-Braintree Town Centre", "address": "Market Place", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.852568, "lng": 0.522422, "title": "Braintree Supercharger", "address": "Blackley Lane", "connectors": ["NACS / Tesla Supercharger · 120kW"], "speed": "rapid"}, {"lat": 51.8524064, "lng": 0.52128118, "title": "Gridserve Electric Forecourt - Braintree", "address": "Edison Way ", "connectors": ["CCS (Type 2) · 350kW", "CCS (Type 2) · 360kW", "CCS (Type 2) · 350kW", "CCS (Type 2) · 350kW", "CCS (Type 2) · 350kW", "CCS (Type 2) · 350kW", "CCS (Type 2) · 360kW", "CCS (Type 2) · 350kW", "CCS (Type 2) · 350kW", "CCS (Type 2) · 350kW", "CCS (Type 2) · 90kW", "CCS (Type 2) · 350kW", "CCS (Type 2) · 350kW", "CCS (Type 2) · 350kW", "Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW", "CCS (Type 2) · 90kW", "CCS (Type 2) · 90kW", "CHAdeMO · 90kW", "CHAdeMO · 90kW", "CHAdeMO · 90kW", "CHAdeMO · 90kW", "CCS (Type 2) · 90kW", "CCS (Type 2) · 90kW", "CCS (Type 2) · 90kW", "CCS (Type 2) · 90kW", "CCS (Type 2) · 350kW", "CCS (Type 2) · 90kW", "CCS (Type 2) · 90kW", "CCS (Type 2) · 90kW", "CCS (Type 2) · 90kW", "CCS (Type 2) · 90kW"], "speed": "rapid"}, {"lat": 51.878417, "lng": 0.548924, "title": "George Yard Car Park", "address": "Pierrefitte Way", "connectors": ["CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 43kW", "Type 2 (Tethered Connector)  · 50kW"], "speed": "rapid"}];
 
   chargerData.forEach(function (c) {
@@ -443,6 +450,14 @@
     markers.addLayer(marker);
   });
   map.addLayer(markers);
+
+  // Frame the map to the actual chargers so a town's points are visible
+  // immediately (and small towns land past the de-clustering zoom).
+  if (chargerData.length) {
+    map.fitBounds(markers.getBounds(), { padding: [40, 40], maxZoom: 15 });
+  } else {
+    map.setView([51.86368028, 0.5333074360000001], 12);
+  }
 
   // --- Connector filter ---
   var filterBtns = document.querySelectorAll('.filter-btn');

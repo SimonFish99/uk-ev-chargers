@@ -552,7 +552,7 @@
   function esc(s) { return String(s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
 
   // --- Map ---
-  var map = L.map('map').setView([50.96729530028115, -2.6136294932177506], 12);
+  var map = L.map('map');
   L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
     subdomains: 'abcd',
@@ -568,7 +568,14 @@
     });
   }
 
-  var markers = L.markerClusterGroup();
+  // Cluster only when markers genuinely overlap, and stop clustering once
+  // zoomed in so a town's handful of chargers show as individual pins.
+  var markers = L.markerClusterGroup({
+    maxClusterRadius: 40,
+    disableClusteringAtZoom: 14,
+    spiderfyOnMaxZoom: true,
+    showCoverageOnHover: false,
+  });
   var chargerData = [{"lat": 51.034865, "lng": -2.532039, "title": "Teals Farm Shop Somerset", "address": "1 Orchard Lane", "connectors": ["CHAdeMO · 80kW", "Type 2 (Socket Only) · 22kW", "CCS (Type 2) · 148kW", "CCS (Type 2) · 148kW", "CCS (Type 2) · 148kW", "CHAdeMO · 80kW", "Type 2 (Socket Only) · 22kW", "CCS (Type 2) · 148kW", "CCS (Type 2) · 148kW", "CCS (Type 2) · 148kW", "CCS (Type 2) · 148kW", "CCS (Type 2) · 148kW"], "speed": "rapid"}, {"lat": 50.95392, "lng": -2.63713, "title": "Yeovil Recreation Centre", "address": "Mudford Road", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 50.94512, "lng": -2.62752, "title": "Goldcroft Car Parks", "address": "Goldcroft. Yeovil", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 50.942093, "lng": -2.636283, "title": "Tesco Extra - Yeovil", "address": "Queensway", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 50.94044, "lng": -2.6273, "title": "Stars Lane Car Park", "address": "Stars Lane", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 51.0294788050455, "lng": -2.57285207880523, "title": "McDonald's Sparkford", "address": "Wakes Garage, A303", "connectors": ["CCS (Type 2) · 120kW", "CHAdeMO · 50kW"], "speed": "rapid"}, {"lat": 50.94072, "lng": -2.607508, "title": "Yeovil Retail Park", "address": "Babylon Hill", "connectors": ["CHAdeMO · 75kW", "CCS (Type 2) · 75kW"], "speed": "rapid"}, {"lat": 50.935500500011734, "lng": -2.666818773100363, "title": "South Somerset District Council Offices ", "address": "Brympton Way", "connectors": ["Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 50.94078199803542, "lng": -2.638490573489662, "title": "Fairfield Car Park SSDC", "address": "Salthouse Lane", "connectors": ["Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 51.04192, "lng": -2.557702, "title": "Haynes International Motor Museum", "address": "Sparkford", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 50.935409, "lng": -2.646281, "title": "Morrisons Yeovil", "address": "Lysander Road", "connectors": ["Type 2 (Socket Only) · 22kW", "CHAdeMO · 50kW", "CCS (Type 2) · 50kW"], "speed": "rapid"}];
 
   chargerData.forEach(function (c) {
@@ -586,6 +593,14 @@
     markers.addLayer(marker);
   });
   map.addLayer(markers);
+
+  // Frame the map to the actual chargers so a town's points are visible
+  // immediately (and small towns land past the de-clustering zoom).
+  if (chargerData.length) {
+    map.fitBounds(markers.getBounds(), { padding: [40, 40], maxZoom: 15 });
+  } else {
+    map.setView([50.96729530028115, -2.6136294932177506], 12);
+  }
 
   // --- Connector filter ---
   var filterBtns = document.querySelectorAll('.filter-btn');

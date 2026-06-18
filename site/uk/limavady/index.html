@@ -289,7 +289,7 @@
   function esc(s) { return String(s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
 
   // --- Map ---
-  var map = L.map('map').setView([55.08667074517066, -6.930646841052031], 12);
+  var map = L.map('map');
   L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
     subdomains: 'abcd',
@@ -305,7 +305,14 @@
     });
   }
 
-  var markers = L.markerClusterGroup();
+  // Cluster only when markers genuinely overlap, and stop clustering once
+  // zoomed in so a town's handful of chargers show as individual pins.
+  var markers = L.markerClusterGroup({
+    maxClusterRadius: 40,
+    disableClusteringAtZoom: 14,
+    spiderfyOnMaxZoom: true,
+    showCoverageOnHover: false,
+  });
   var chargerData = [{"lat": 55.14073670739418, "lng": -6.944193817977748, "title": "George Canning Spar Bellarena", "address": "436 Seacoast Rd", "connectors": ["CCS (Type 2) · 47kW"], "speed": "fast"}, {"lat": 55.05198290371186, "lng": -6.9492822369352325, "title": "Lidl", "address": " 4 Connell Street", "connectors": ["Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 55.163873356746194, "lng": -6.871422767314044, "title": "Benone Tourist Complex", "address": "53 Benone Ave", "connectors": ["Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 55.05273446, "lng": -6.94852001, "title": "Tesco Superstore-Limavady", "address": "Main Street", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 55.024026298001075, "lng": -6.939815373033127, "title": "Roe Valley Country Park", "address": "41 Dogleap Road", "connectors": ["Type 2 (Socket Only) · 11kW"], "speed": "fast"}];
 
   chargerData.forEach(function (c) {
@@ -323,6 +330,14 @@
     markers.addLayer(marker);
   });
   map.addLayer(markers);
+
+  // Frame the map to the actual chargers so a town's points are visible
+  // immediately (and small towns land past the de-clustering zoom).
+  if (chargerData.length) {
+    map.fitBounds(markers.getBounds(), { padding: [40, 40], maxZoom: 15 });
+  } else {
+    map.setView([55.08667074517066, -6.930646841052031], 12);
+  }
 
   // --- Connector filter ---
   var filterBtns = document.querySelectorAll('.filter-btn');

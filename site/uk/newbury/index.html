@@ -1073,7 +1073,7 @@
   function esc(s) { return String(s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
 
   // --- Map ---
-  var map = L.map('map').setView([51.38963967086666, -1.3330551704248699], 12);
+  var map = L.map('map');
   L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
     subdomains: 'abcd',
@@ -1089,7 +1089,14 @@
     });
   }
 
-  var markers = L.markerClusterGroup();
+  // Cluster only when markers genuinely overlap, and stop clustering once
+  // zoomed in so a town's handful of chargers show as individual pins.
+  var markers = L.markerClusterGroup({
+    maxClusterRadius: 40,
+    disableClusteringAtZoom: 14,
+    spiderfyOnMaxZoom: true,
+    showCoverageOnHover: false,
+  });
   var chargerData = [{"lat": 51.397529274910596, "lng": -1.4454382832871886, "title": "5 Kennet Road", "address": "Kennet Road", "connectors": ["Type 2 (Socket Only) · 5kW", "Type 2 (Socket Only) · 5kW"], "speed": "slow"}, {"lat": 51.41152, "lng": -1.31589, "title": "Shaw House Car Park", "address": "Shaw House", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.3987824, "lng": -1.3261711, "title": "Station Road Car Park, Newbury", "address": "Station Road", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 51.38264619, "lng": -1.33961760851292, "title": "The Old Bell Public House", "address": "215 Andover Road", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 7.4kW"], "speed": "fast"}, {"lat": 51.386918, "lng": -1.407002, "title": "Dogs Trust Newbury", "address": "Plumb Farm", "connectors": ["Type 2 (Socket Only) · 3.6kW", "Type 2 (Socket Only) · 3.6kW", "Type 2 (Socket Only) · 3.6kW", "Type 2 (Socket Only) · 3.6kW"], "speed": "slow"}, {"lat": 51.401084715088274, "lng": -1.3097906313440149, "title": "Podium Place", "address": "31 Bone Lane", "connectors": ["CCS (Type 2) · 50kW", "CCS (Type 2) · 50kW"], "speed": "rapid"}, {"lat": 51.394885, "lng": -1.323632, "title": "Chesterfield Road", "address": "Chesterfield Road", "connectors": ["Type 2 (Socket Only) · 3.7kW"], "speed": "slow"}, {"lat": 51.394119, "lng": -1.323402, "title": "RG14 7QB", "address": "Chesterfield Rd 9C", "connectors": ["Type 2 (Socket Only) · 3.7kW"], "speed": "slow"}, {"lat": 51.383661, "lng": -1.3220693, "title": "Two Watermills Pub & Restaurant", "address": "Newtown Road", "connectors": ["CCS (Type 2) · 50kW", "CHAdeMO · 50kW", "CHAdeMO · 50kW", "CCS (Type 2) · 50kW", "Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 11kW"], "speed": "rapid"}, {"lat": 51.396558, "lng": -1.316837, "title": "RG14 7NJ", "address": "York Rd 53", "connectors": ["Type 2 (Socket Only) · 3.7kW"], "speed": "slow"}, {"lat": 51.395905, "lng": -1.316038, "title": "York Rd 76", "address": "York Rd 76", "connectors": ["Type 2 (Socket Only) · 3.7kW"], "speed": "slow"}, {"lat": 51.392787, "lng": -1.315347, "title": "Greenham Rd 103", "address": "Greenham Rd 103", "connectors": ["Type 2 (Socket Only) · 3.7kW"], "speed": "slow"}, {"lat": 51.381109, "lng": -1.334296, "title": "David Lloyd - Newbury", "address": "Monks Lane", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.347622, "lng": -1.341771, "title": "Shell Tothill", "address": "A34 Newbury Bypass", "connectors": ["CHAdeMO · 100kW", "Type 2 (Tethered Connector)  · 175kW", "CHAdeMO · 100kW", "Type 2 (Tethered Connector)  · 175kW", "CHAdeMO · 100kW", "Type 2 (Tethered Connector)  · 175kW", "CHAdeMO · 100kW", "Type 2 (Tethered Connector)  · 175kW"], "speed": "rapid"}, {"lat": 51.37890191721729, "lng": -1.3525767267854576, "title": "Falkland Cricket Club", "address": "Enborne Street", "connectors": ["Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 51.383322, "lng": -1.31793, "title": "Tesco Extra-Newbury", "address": "Pinchington Lane", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 22kW", "CHAdeMO · 50kW", "CCS (Type 2) · 50kW"], "speed": "rapid"}, {"lat": 51.403334, "lng": -1.307562, "title": "Lidl-Newbury", "address": "Unit 2 London Road Retail Park", "connectors": ["Type 2 (Socket Only) · 22kW", "CCS (Type 2) · 50kW", "CHAdeMO · 50kW"], "speed": "rapid"}, {"lat": 51.396999, "lng": -1.32025, "title": "BMO Newbury 1", "address": "Unit 1- Greenham Road Retail Park", "connectors": ["CCS (Type 2) · 150kW", "CHAdeMO · 50kW"], "speed": "rapid"}, {"lat": 51.403591, "lng": -1.332684, "title": "Northcroft Lane Leisure Centre", "address": "Northcroft Lane", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 51.406600109736104, "lng": -1.3263883695192362, "title": "Regus Newbury", "address": "Oxford House, Pelican Lane", "connectors": ["CCS (Type 2) · 25kW"], "speed": "fast"}, {"lat": 51.3486928108458, "lng": -1.34144577297403, "title": "McDonald's Tot Hill Services", "address": "McDonald's Tot Hill Services", "connectors": ["CCS (Type 2) · 120kW", "CHAdeMO · 100kW"], "speed": "rapid"}, {"lat": 51.40062931293983, "lng": -1.321103282428794, "title": "Newbury Central Car Park", "address": "Wharf Road", "connectors": ["CCS (Type 2) · 50kW", "CHAdeMO · 50kW"], "speed": "rapid"}, {"lat": 51.40170888347484, "lng": -1.320987483987551, "title": "Newbury Library Car Park", "address": "Wharf Road", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 51.34807935745371, "lng": -1.342086801782557, "title": "Shell Recharge Tot Hill Services", "address": "Tot Hill Services", "connectors": ["CHAdeMO · 74kW", "CCS (Type 2) · 180kW", "CHAdeMO · 74kW", "CHAdeMO · 74kW", "CHAdeMO · 74kW", "CCS (Type 2) · 180kW", "CCS (Type 2) · 180kW", "CCS (Type 2) · 180kW"], "speed": "rapid"}, {"lat": 51.4040068, "lng": -1.3060629, "title": "BP London Road Newbury", "address": "London Road", "connectors": ["CCS (Type 2) · 150kW", "CHAdeMO · 100kW"], "speed": "rapid"}];
 
   chargerData.forEach(function (c) {
@@ -1107,6 +1114,14 @@
     markers.addLayer(marker);
   });
   map.addLayer(markers);
+
+  // Frame the map to the actual chargers so a town's points are visible
+  // immediately (and small towns land past the de-clustering zoom).
+  if (chargerData.length) {
+    map.fitBounds(markers.getBounds(), { padding: [40, 40], maxZoom: 15 });
+  } else {
+    map.setView([51.38963967086666, -1.3330551704248699], 12);
+  }
 
   // --- Connector filter ---
   var filterBtns = document.querySelectorAll('.filter-btn');

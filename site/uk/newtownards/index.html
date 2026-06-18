@@ -364,7 +364,7 @@
   function esc(s) { return String(s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
 
   // --- Map ---
-  var map = L.map('map').setView([54.585658735837924, -5.682197704004524], 12);
+  var map = L.map('map');
   L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
     subdomains: 'abcd',
@@ -380,7 +380,14 @@
     });
   }
 
-  var markers = L.markerClusterGroup();
+  // Cluster only when markers genuinely overlap, and stop clustering once
+  // zoomed in so a town's handful of chargers show as individual pins.
+  var markers = L.markerClusterGroup({
+    maxClusterRadius: 40,
+    disableClusteringAtZoom: 14,
+    spiderfyOnMaxZoom: true,
+    showCoverageOnHover: false,
+  });
   var chargerData = [{"lat": 54.593880533261114, "lng": -5.704262424906801, "title": "Ards Hospital", "address": "24 - 32 Frederick Street", "connectors": ["Type 2 (Socket Only) · 11kW"], "speed": "fast"}, {"lat": 54.593669162385055, "lng": -5.703586580034624, "title": "Ards Hospital", "address": "24- 32 Frederick Street", "connectors": ["Type 2 (Socket Only) · 11kW"], "speed": "fast"}, {"lat": 54.58649325263494, "lng": -5.69415647768659, "title": "Lidl", "address": "Castlebawn Roundabout", "connectors": ["Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 54.590857557338495, "lng": -5.699722982347879, "title": "Ards Blair Mayne Wellbeing & Leisure Complex", "address": "Dairy Hall Lane", "connectors": ["CCS (Type 2) · 50kW", "CCS (Type 2) · 75kW", "CHAdeMO · 75kW"], "speed": "rapid"}, {"lat": 54.58768369437877, "lng": -5.684606135060363, "title": "Londonderry Park", "address": "Portaferry Road", "connectors": ["CCS (Type 2) · 50kW", "CHAdeMO · 50kW"], "speed": "rapid"}, {"lat": 54.5954569508671, "lng": -5.68686432799541, "title": "bp Rosevale", "address": "37 Bangor Road", "connectors": ["CCS (Type 2) · 150kW"], "speed": "rapid"}, {"lat": 54.55157, "lng": -5.602185, "title": "Mount Stewart Car Park Newtownards", "address": "Mount Stewart Car Park", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}];
 
   chargerData.forEach(function (c) {
@@ -398,6 +405,14 @@
     markers.addLayer(marker);
   });
   map.addLayer(markers);
+
+  // Frame the map to the actual chargers so a town's points are visible
+  // immediately (and small towns land past the de-clustering zoom).
+  if (chargerData.length) {
+    map.fitBounds(markers.getBounds(), { padding: [40, 40], maxZoom: 15 });
+  } else {
+    map.setView([54.585658735837924, -5.682197704004524], 12);
+  }
 
   // --- Connector filter ---
   var filterBtns = document.querySelectorAll('.filter-btn');

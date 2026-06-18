@@ -749,7 +749,7 @@
   function esc(s) { return String(s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
 
   // --- Map ---
-  var map = L.map('map').setView([53.67176460774803, -1.5103063174487623], 12);
+  var map = L.map('map');
   L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
     subdomains: 'abcd',
@@ -765,7 +765,14 @@
     });
   }
 
-  var markers = L.markerClusterGroup();
+  // Cluster only when markers genuinely overlap, and stop clustering once
+  // zoomed in so a town's handful of chargers show as individual pins.
+  var markers = L.markerClusterGroup({
+    maxClusterRadius: 40,
+    disableClusteringAtZoom: 14,
+    spiderfyOnMaxZoom: true,
+    showCoverageOnHover: false,
+  });
   var chargerData = [{"lat": 53.687166, "lng": -1.500564, "title": "The College", "address": "138 Northgate", "connectors": ["CHAdeMO · 50kW", "CCS (Type 2) · 75kW", "CHAdeMO · 50kW", "CCS (Type 2) · 75kW", "CHAdeMO · 50kW", "CCS (Type 2) · 75kW"], "speed": "rapid"}, {"lat": 53.622022, "lng": -1.550189, "title": "Moto Woolley Edge Northbound Services", "address": "Motorway Northbound, Jct 38/39, West Bretton", "connectors": ["CCS (Type 2) · 50kW", "CHAdeMO · 50kW", "Type 2 (Socket Only) · 11kW", "Type 2 (Socket Only) · 11kW", "CCS (Type 2) · 200kW", "CCS (Type 2) · 200kW", "CCS (Type 2) · 200kW", "CCS (Type 2) · 200kW", "CCS (Type 2) · 200kW", "CCS (Type 2) · 200kW", "CCS (Type 2) · 200kW", "CCS (Type 2) · 200kW", "CCS (Type 2) · 200kW", "CCS (Type 2) · 200kW", "CCS (Type 2) · 200kW", "CCS (Type 2) · 200kW"], "speed": "rapid"}, {"lat": 53.696173, "lng": -1.504228, "title": "Starbucks Snowhill", "address": "Starbucks Snowhill", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 53.664398, "lng": -1.5072, "title": "Denby Dale Rd", "address": "Denby Dale Road", "connectors": ["CHAdeMO · 50kW", "CHAdeMO · 50kW"], "speed": "rapid"}, {"lat": 53.659805, "lng": -1.556793, "title": "Genie", "address": "High street Car Park", "connectors": ["Type 2 (Socket Only) · 22kW", "CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 50kW"], "speed": "rapid"}, {"lat": 53.649189, "lng": -1.502141, "title": "Asda Wakefield", "address": "Asdale Road", "connectors": ["Type 2 (Socket Only) · 22kW", "CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 50kW"], "speed": "rapid"}, {"lat": 53.678471, "lng": -1.517573, "title": "Asda Wakefield Dewsbury Road", "address": "105 Dewsbury Road", "connectors": ["Type 2 (Socket Only) · 22kW", "CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 50kW"], "speed": "rapid"}, {"lat": 53.68101285541155, "lng": -1.4976969186553788, "title": "Rodney Yard", "address": "George Street", "connectors": ["CHAdeMO · 50kW", "CCS (Type 2) · 50kW", "Type 2 (Socket Only) · 22kW"], "speed": "rapid"}, {"lat": 53.682812, "lng": -1.501122, "title": "Cheapside Car Park", "address": "Cheapside", "connectors": ["Type 2 (Socket Only) · 22kW", "CHAdeMO · 50kW", "CCS (Type 2) · 50kW"], "speed": "rapid"}, {"lat": 53.681671, "lng": -1.491544, "title": "Turton Street Car Park", "address": "Turton Street", "connectors": ["Type 2 (Socket Only) · 22kW", "CHAdeMO · 50kW", "CCS (Type 2) · 50kW"], "speed": "rapid"}, {"lat": 53.681306, "lng": -1.501969, "title": "Unity House", "address": "Smyth Street", "connectors": ["Type 2 (Socket Only) · 22kW", "CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 50kW"], "speed": "rapid"}, {"lat": 53.6641950396785, "lng": -1.50651852700673, "title": "Toby Carvery Wakefield", "address": "Calder Island", "connectors": ["CHAdeMO · 50kW", "CCS (Type 2) · 50kW", "Type 2 (Tethered Connector)  · 43kW"], "speed": "rapid"}, {"lat": 53.642548, "lng": -1.451184, "title": "Waterton Park Hotel", "address": "Walton", "connectors": ["CHAdeMO · 50kW", "CCS (Type 2) · 50kW", "Type 2 (Tethered Connector)  · 43kW"], "speed": "rapid"}, {"lat": 53.678884221130374, "lng": -1.5814933160693272, "title": "Ossett Ventnor Way Car Park", "address": "Ventnor Way", "connectors": ["CHAdeMO · 50kW", "CCS (Type 2) · 50kW", "Type 2 (Socket Only) · 22kW"], "speed": "rapid"}, {"lat": 53.706816, "lng": -1.484379, "title": "Normanton Golf Club", "address": "Stanley", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}];
 
   chargerData.forEach(function (c) {
@@ -783,6 +790,14 @@
     markers.addLayer(marker);
   });
   map.addLayer(markers);
+
+  // Frame the map to the actual chargers so a town's points are visible
+  // immediately (and small towns land past the de-clustering zoom).
+  if (chargerData.length) {
+    map.fitBounds(markers.getBounds(), { padding: [40, 40], maxZoom: 15 });
+  } else {
+    map.setView([53.67176460774803, -1.5103063174487623], 12);
+  }
 
   // --- Connector filter ---
   var filterBtns = document.querySelectorAll('.filter-btn');

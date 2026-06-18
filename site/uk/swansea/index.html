@@ -1072,7 +1072,7 @@
   function esc(s) { return String(s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
 
   // --- Map ---
-  var map = L.map('map').setView([51.64240955628878, -3.958358592864225], 12);
+  var map = L.map('map');
   L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
     subdomains: 'abcd',
@@ -1088,7 +1088,14 @@
     });
   }
 
-  var markers = L.markerClusterGroup();
+  // Cluster only when markers genuinely overlap, and stop clustering once
+  // zoomed in so a town's handful of chargers show as individual pins.
+  var markers = L.markerClusterGroup({
+    maxClusterRadius: 40,
+    disableClusteringAtZoom: 14,
+    spiderfyOnMaxZoom: true,
+    showCoverageOnHover: false,
+  });
   var chargerData = [{"lat": 51.658672, "lng": -3.901234, "title": "Tesco Extra - Llansamlet", "address": "Nantyffin Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.648968, "lng": -3.919454, "title": "BEMIS-SWAN STATION 1", "address": "Siemens Way Enterprise Park", "connectors": ["Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 51.61982557450335, "lng": -3.8753238213055283, "title": "Swansea University - Active Buildings", "address": "Bay Campus", "connectors": ["Type 2 (Tethered Connector) "], "speed": "slow"}, {"lat": 51.619952, "lng": -3.939262, "title": "The Strand Car Park", "address": "The Strand", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 51.599391, "lng": -3.994256, "title": "Blackpill Car Park", "address": "Derwen Fawr Road", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 51.678688, "lng": -3.99368, "title": "Moto Swansea Services", "address": "M4 47", "connectors": ["CCS (Type 2) · 40kW", "CHAdeMO · 40kW", "CCS (Type 2) · 40kW", "CHAdeMO · 40kW", "CCS (Type 2) · 40kW", "CCS (Type 2) · 40kW", "CCS (Type 2) · 350kW", "CCS (Type 2) · 350kW", "CCS (Type 2) · 350kW", "Type 2 (Socket Only) · 11kW", "Type 2 (Socket Only) · 11kW", "CHAdeMO · 100kW", "CCS (Type 2) · 350kW", "CHAdeMO · 100kW", "CCS (Type 2) · 350kW", "CCS (Type 2) · 350kW"], "speed": "rapid"}, {"lat": 51.760616, "lng": -3.791097, "title": "Asda", "address": "Godrergraig", "connectors": ["BS1363 3 Pin 13 Amp · 3kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 51.620953, "lng": -3.946566, "title": "Pell Street Car Park", "address": "Pell Street", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 51.579438307620734, "lng": -4.035179911888235, "title": " Down to Earth Project (Murton Site)", "address": "72a Manselfield Road", "connectors": ["Type 2 (Tethered Connector)  · 43kW", "CHAdeMO · 50kW", "CCS (Type 2) · 50kW", "Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "rapid"}, {"lat": 51.657556, "lng": -3.925563, "title": "Bassetts Nissan", "address": "Neath Road, Morriston, Swansea", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.64349, "lng": -3.926646, "title": "Pentrechwyth", "address": "Pentrechwyth", "connectors": ["Type 2 (Socket Only) · 22kW", "CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 50kW"], "speed": "rapid"}, {"lat": 51.62143, "lng": -3.946135, "title": "Uwtsd-Dynefor", "address": "University of Wales Trinity Saint David", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.71596, "lng": -4.041841, "title": "Pontarddulais Car Park", "address": "Water Street", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 51.696842, "lng": -3.892164, "title": "Clydach Car Park", "address": "Vardre Road", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 51.667815, "lng": -4.040865, "title": "Goreseinon Car Park", "address": "Lime Street", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 51.666508, "lng": -3.926733, "title": "Morriston Car Park", "address": "Treharne Road", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 51.648485, "lng": -4.037119, "title": "Gowerton Car Park", "address": "Gorwydd Road", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 51.639351, "lng": -3.934725, "title": "Landore Park and Ride Car Park", "address": "Plasmarl", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 51.621895, "lng": -3.910315, "title": "Fabian Way Park and Ride Car Park", "address": "Fabian Way", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 51.618206, "lng": -3.934674, "title": "East Burrows Car Park", "address": "East Burrows Road", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 51.61444, "lng": -3.930318, "title": "Swansea Point Car Park", "address": "Trawler Road", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 51.614245, "lng": -3.941645, "title": "Trawler Road Car Park", "address": "Trawler Road", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 51.6125, "lng": -3.960844, "title": "Baths Car Park", "address": "St Helens Road", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 51.601662025095436, "lng": -4.239874088411852, "title": "Kennexstone Camping & Touring Park", "address": "Llangennith", "connectors": ["Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.63335, "lng": -3.973451, "title": "BT Swansea Fleet Garage", "address": "Townhill", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}];
 
   chargerData.forEach(function (c) {
@@ -1106,6 +1113,14 @@
     markers.addLayer(marker);
   });
   map.addLayer(markers);
+
+  // Frame the map to the actual chargers so a town's points are visible
+  // immediately (and small towns land past the de-clustering zoom).
+  if (chargerData.length) {
+    map.fitBounds(markers.getBounds(), { padding: [40, 40], maxZoom: 15 });
+  } else {
+    map.setView([51.64240955628878, -3.958358592864225], 12);
+  }
 
   // --- Connector filter ---
   var filterBtns = document.querySelectorAll('.filter-btn');

@@ -771,7 +771,7 @@
   function esc(s) { return String(s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
 
   // --- Map ---
-  var map = L.map('map').setView([51.40597394444445, -3.2690254444444444], 12);
+  var map = L.map('map');
   L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
     subdomains: 'abcd',
@@ -787,7 +787,14 @@
     });
   }
 
-  var markers = L.markerClusterGroup();
+  // Cluster only when markers genuinely overlap, and stop clustering once
+  // zoomed in so a town's handful of chargers show as individual pins.
+  var markers = L.markerClusterGroup({
+    maxClusterRadius: 40,
+    disableClusteringAtZoom: 14,
+    spiderfyOnMaxZoom: true,
+    showCoverageOnHover: false,
+  });
   var chargerData = [{"lat": 51.44093, "lng": -3.176069, "title": "Arcott Street, Barry", "address": "Arcott Street", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 51.439078, "lng": -3.173322, "title": "Albert Road, Barry", "address": "Albert Road, Vale of Glamorgan", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.418548, "lng": -3.267057, "title": "Gibbinsdown & Treharne Community Centre", "address": "Gibbinsdown and Treharne Community Centre", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 51.414496, "lng": -3.255916, "title": "Victoria Park Community Centre, Barry", "address": "Victoria Park Community Centre", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 51.411935, "lng": -3.242214, "title": "Cadoxton Moors Community Centre, Barry", "address": "Cadoxton Moors Community Centre", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 51.40736, "lng": -3.26647, "title": "Barry Library, Barry", "address": "Barry Library Car Park", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 51.40487, "lng": -3.270489, "title": "Thompson Street, Barry", "address": "Thompson Street Car Park, Vale of Glamorgan", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 51.404091, "lng": -3.27213, "title": "Kendrick Road, Barry", "address": "Kendrick Road Car Park, Vale of Glamorgan", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 51.401858, "lng": -3.277924, "title": "Broad Street, Barry", "address": "Broad Street, Vale Of Glamorgan", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 51.393979, "lng": -3.315205, "title": "Porthkerry Park, Barry", "address": "Porthkerry Park Car Park, Vale Of Glamorgan", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.392784, "lng": -3.278988, "title": "Harbour Road, Barry", "address": "Harbour Road Car Park", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.392234, "lng": -3.292299, "title": "Bron Y Mor, Barry", "address": "Bron Y Mor Car Park, Vale of Glamorgan", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.391034, "lng": -3.270785, "title": "Nell?s Point, Barry", "address": "Nell?s Point Car Park", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 51.390169, "lng": -3.296315, "title": "Knap Terrace, Barry", "address": "Knap Terrace Car Park, Vale of Glamorgan", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 51.400511, "lng": -3.27942, "title": "BSC2 Carpark", "address": "BSC2 Carpark", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.401489, "lng": -3.271728, "title": "Morrisons", "address": "Penny Way", "connectors": ["CHAdeMO · 50kW", "Type 2 (Socket Only) · 22kW", "Type 2 (Tethered Connector)  · 50kW"], "speed": "rapid"}, {"lat": 51.386694, "lng": -3.34864, "title": "Rhoose Interchange Park & Ride Car Park 1", "address": "Rhoose Interchange Park & Ride Car Park 1", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.415471, "lng": -3.287487, "title": "Port Road West", "address": "Port Road West", "connectors": ["Type 2 (Socket Only) · 7kW"], "speed": "fast"}];
 
   chargerData.forEach(function (c) {
@@ -805,6 +812,14 @@
     markers.addLayer(marker);
   });
   map.addLayer(markers);
+
+  // Frame the map to the actual chargers so a town's points are visible
+  // immediately (and small towns land past the de-clustering zoom).
+  if (chargerData.length) {
+    map.fitBounds(markers.getBounds(), { padding: [40, 40], maxZoom: 15 });
+  } else {
+    map.setView([51.40597394444445, -3.2690254444444444], 12);
+  }
 
   // --- Connector filter ---
   var filterBtns = document.querySelectorAll('.filter-btn');

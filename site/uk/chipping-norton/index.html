@@ -326,7 +326,7 @@
   function esc(s) { return String(s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
 
   // --- Map ---
-  var map = L.map('map').setView([51.9447319909288, -1.5408108185371288], 12);
+  var map = L.map('map');
   L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
     subdomains: 'abcd',
@@ -342,7 +342,14 @@
     });
   }
 
-  var markers = L.markerClusterGroup();
+  // Cluster only when markers genuinely overlap, and stop clustering once
+  // zoomed in so a town's handful of chargers show as individual pins.
+  var markers = L.markerClusterGroup({
+    maxClusterRadius: 40,
+    disableClusteringAtZoom: 14,
+    spiderfyOnMaxZoom: true,
+    showCoverageOnHover: false,
+  });
   var chargerData = [{"lat": 51.945835366185435, "lng": -1.5379239015763915, "title": "ALDI Chipping Norton", "address": "Banbury Road", "connectors": ["Type 2 (Socket Only) · 11kW", "Type 2 (Socket Only) · 11kW", "Type 2 (Socket Only) · 11kW", "Type 2 (Socket Only) · 11kW"], "speed": "fast"}, {"lat": 51.95121, "lng": -1.525395, "title": "SHELL RECHARGE LITTLE WAITROSE HOLYWELL", "address": "Chapel Cross Roads", "connectors": ["CHAdeMO · 60kW", "CCS (Type 2) · 180kW"], "speed": "rapid"}, {"lat": 51.944583, "lng": -1.535028, "title": "Willow Gardens", "address": "Russell Way", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.940587588458584, "lng": -1.547606191109253, "title": "New Street Carpark", "address": "New Street", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Tethered Connector)  · 22kW", "Type 2 (Tethered Connector)  · 22kW", "Type 2 (Tethered Connector)  · 22kW", "Type 2 (Tethered Connector)  · 22kW", "Type 2 (Tethered Connector)  · 22kW"], "speed": "fast"}, {"lat": 51.941444, "lng": -1.558101, "title": "Owen Mumford Ltd", "address": "Primsdown Industrial Estate", "connectors": ["Type 2 (Socket Only) · 7kW"], "speed": "fast"}];
 
   chargerData.forEach(function (c) {
@@ -360,6 +367,14 @@
     markers.addLayer(marker);
   });
   map.addLayer(markers);
+
+  // Frame the map to the actual chargers so a town's points are visible
+  // immediately (and small towns land past the de-clustering zoom).
+  if (chargerData.length) {
+    map.fitBounds(markers.getBounds(), { padding: [40, 40], maxZoom: 15 });
+  } else {
+    map.setView([51.9447319909288, -1.5408108185371288], 12);
+  }
 
   // --- Connector filter ---
   var filterBtns = document.querySelectorAll('.filter-btn');

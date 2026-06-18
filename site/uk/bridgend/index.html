@@ -675,7 +675,7 @@
   function esc(s) { return String(s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
 
   // --- Map ---
-  var map = L.map('map').setView([51.52197662933334, -3.5885646106666664], 12);
+  var map = L.map('map');
   L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
     subdomains: 'abcd',
@@ -691,7 +691,14 @@
     });
   }
 
-  var markers = L.markerClusterGroup();
+  // Cluster only when markers genuinely overlap, and stop clustering once
+  // zoomed in so a town's handful of chargers show as individual pins.
+  var markers = L.markerClusterGroup({
+    maxClusterRadius: 40,
+    disableClusteringAtZoom: 14,
+    spiderfyOnMaxZoom: true,
+    showCoverageOnHover: false,
+  });
   var chargerData = [{"lat": 51.607596, "lng": -3.582483, "title": "Oxford Street, Garw Valley", "address": "Oxford Street, Garw Valley", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 51.541208, "lng": -3.597007, "title": "Heol Y Llyfrau, Aberkenfig", "address": "Heol Y Llyfrau Car Park", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 51.540521, "lng": -3.59531, "title": "Hope Street, Aberkenfig", "address": "Hope Street Carpark", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 51.509468, "lng": -3.579754, "title": "Tesco Superstore - Bridgend", "address": "Brewery Lane", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.501499, "lng": -3.575692, "title": "Five Bells", "address": "Five Bells Car Park", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 51.497821, "lng": -3.567577, "title": "Tesco Extra - Bridgend", "address": "Cowbridge Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.477045, "lng": -3.702915, "title": "Hillsboro Place, Porthcawl", "address": "Hillsboro Place Car Park", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.531813, "lng": -3.574285, "title": "RAWOWNED BRIDGEND 1", "address": "Wales Designer Outlet Village", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 51.50103, "lng": -3.601504, "title": "Llangewydd Arms", "address": "Gentle Way", "connectors": ["CCS (Type 2) · 75kW", "CHAdeMO · 50kW", "CCS (Type 2) · 75kW", "CCS (Type 2) · 75kW", "CHAdeMO · 50kW", "CHAdeMO · 50kW"], "speed": "rapid"}, {"lat": 51.509176, "lng": -3.5823, "title": "Tondu Road Car Park, Bridgend", "address": "Tondu Road Car Park", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.538303, "lng": -3.590164, "title": "Sarn Station Park & Ride 1", "address": "Sarn Station Park & Ride", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.524716, "lng": -3.50209, "title": "Pencoed Railway Station Park & Ride 1", "address": "Pencoed Railway Station Park & Ride", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.508831, "lng": -3.575783, "title": "Tremains Road Car Park, Bridgend", "address": "Tremains Road Car Park", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 51.5348815, "lng": -3.5775889, "title": "Applegreen Electric Sarn Park", "address": "Sarn Park Services", "connectors": ["CCS (Type 2) · 180kW", "CCS (Type 2) · 180kW", "CCS (Type 2) · 180kW"], "speed": "rapid"}, {"lat": 51.50574094, "lng": -3.62401626, "title": "El Prado", "address": "High Street Lalestone", "connectors": ["Type 2 (Socket Only) · 3kW"], "speed": "slow"}];
 
   chargerData.forEach(function (c) {
@@ -709,6 +716,14 @@
     markers.addLayer(marker);
   });
   map.addLayer(markers);
+
+  // Frame the map to the actual chargers so a town's points are visible
+  // immediately (and small towns land past the de-clustering zoom).
+  if (chargerData.length) {
+    map.fitBounds(markers.getBounds(), { padding: [40, 40], maxZoom: 15 });
+  } else {
+    map.setView([51.52197662933334, -3.5885646106666664], 12);
+  }
 
   // --- Connector filter ---
   var filterBtns = document.querySelectorAll('.filter-btn');

@@ -626,7 +626,7 @@
   function esc(s) { return String(s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
 
   // --- Map ---
-  var map = L.map('map').setView([53.48291526744681, -2.2928545827864872], 12);
+  var map = L.map('map');
   L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
     subdomains: 'abcd',
@@ -642,7 +642,14 @@
     });
   }
 
-  var markers = L.markerClusterGroup();
+  // Cluster only when markers genuinely overlap, and stop clustering once
+  // zoomed in so a town's handful of chargers show as individual pins.
+  var markers = L.markerClusterGroup({
+    maxClusterRadius: 40,
+    disableClusteringAtZoom: 14,
+    spiderfyOnMaxZoom: true,
+    showCoverageOnHover: false,
+  });
   var chargerData = [{"lat": 53.48681522, "lng": -2.29036205, "title": "Lidl-Salford", "address": "68 Fitzwarren Street", "connectors": ["Type 2 (Socket Only) · 22kW", "CCS (Type 2) · 50kW", "CHAdeMO · 50kW"], "speed": "rapid"}, {"lat": 53.469189, "lng": -2.28258, "title": "EG GROUP SALFORD 3", "address": "Salford Quays Services", "connectors": ["Type 2 (Tethered Connector)  · 350kW"], "speed": "rapid"}, {"lat": 53.4892513, "lng": -2.28977409, "title": "Tesco Extra-Salford", "address": "Pendleton Way", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 53.489167, "lng": -2.278991, "title": "GMEV PAYG Charge Point", "address": "Frederick Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 53.486559, "lng": -2.322166, "title": "GMEV PAYG Charge Point", "address": "Stott Lane", "connectors": ["Type 2 (Tethered Connector)  · 50kW", "CHAdeMO · 50kW", "CHAdeMO · 50kW"], "speed": "rapid"}, {"lat": 53.474102, "lng": -2.297635, "title": "GMEV PAYG Charge Point", "address": "Broadway", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 53.469931, "lng": -2.286684, "title": "GMEV PAYG Charge Point", "address": "Merchants Quay", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 53.4733134436058, "lng": -2.28261960055772, "title": "MFG EVPower Salford", "address": "Trafford Road", "connectors": ["CCS (Type 2) · 150kW", "CHAdeMO · 50kW"], "speed": "rapid"}, {"lat": 53.4698175059501, "lng": -2.28241275378991, "title": "AC Hotel by Marriott", "address": "Quays,  17-19 Trafford Road", "connectors": ["CCS (Type 2) · 50kW", "CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 43kW", "Type 2 (Socket Only) · 7kW"], "speed": "rapid"}, {"lat": 53.51133769707519, "lng": -2.3378554977606427, "title": "Wellington Road", "address": "Wellington Road", "connectors": ["CCS (Type 2) · 50kW", "CHAdeMO · 50kW", "Type 2 (Socket Only) · 22kW"], "speed": "rapid"}, {"lat": 53.47964231017741, "lng": -2.2967755841160624, "title": "Sandyx Systems", "address": "Carolina Way", "connectors": ["Type 2 (Tethered Connector) "], "speed": "slow"}, {"lat": 53.504843, "lng": -2.25871, "title": "GMEV PAYG Charge Point", "address": "Rigby Street", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 53.47393, "lng": -2.300544, "title": "Media City UK MSCP", "address": "Media City UK", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}];
 
   chargerData.forEach(function (c) {
@@ -660,6 +667,14 @@
     markers.addLayer(marker);
   });
   map.addLayer(markers);
+
+  // Frame the map to the actual chargers so a town's points are visible
+  // immediately (and small towns land past the de-clustering zoom).
+  if (chargerData.length) {
+    map.fitBounds(markers.getBounds(), { padding: [40, 40], maxZoom: 15 });
+  } else {
+    map.setView([53.48291526744681, -2.2928545827864872], 12);
+  }
 
   // --- Connector filter ---
   var filterBtns = document.querySelectorAll('.filter-btn');

@@ -386,7 +386,7 @@
   function esc(s) { return String(s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
 
   // --- Map ---
-  var map = L.map('map').setView([51.50306856601889, -0.5695121234505338], 12);
+  var map = L.map('map');
   L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
     subdomains: 'abcd',
@@ -402,7 +402,14 @@
     });
   }
 
-  var markers = L.markerClusterGroup();
+  // Cluster only when markers genuinely overlap, and stop clustering once
+  // zoomed in so a town's handful of chargers show as individual pins.
+  var markers = L.markerClusterGroup({
+    maxClusterRadius: 40,
+    disableClusteringAtZoom: 14,
+    spiderfyOnMaxZoom: true,
+    showCoverageOnHover: false,
+  });
   var chargerData = [{"lat": 51.510536, "lng": -0.590054, "title": "Tesco Extra - Slough", "address": "Brunel Way", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Tethered Connector)  · 50kW", "CHAdeMO · 50kW"], "speed": "rapid"}, {"lat": 51.51782474, "lng": -0.63013126875, "title": "Westgate Retail Park", "address": "Westgate Retail Park", "connectors": ["CHAdeMO · 50kW", "CCS (Type 2) · 150kW", "Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "rapid"}, {"lat": 51.51433, "lng": -0.628871, "title": "Westgate School", "address": "Cippenham Lane", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.488857, "lng": -0.536222, "title": "Holiday Inn London Heathrow", "address": "London Road", "connectors": ["CHAdeMO · 50kW", "CHAdeMO · 50kW"], "speed": "rapid"}, {"lat": 51.48062, "lng": -0.434364, "title": "Bath Road Retail park", "address": "Bath Road Retail park", "connectors": ["Type 2 (Socket Only) · 3.7kW", "Type 2 (Socket Only) · 3.7kW", "Type 2 (Socket Only) · 3.7kW", "Type 2 (Socket Only) · 3.7kW", "Type 2 (Socket Only) · 3.7kW", "Type 2 (Socket Only) · 11kW", "Type 2 (Socket Only) · 3.7kW", "Type 2 (Socket Only) · 3.7kW"], "speed": "fast"}, {"lat": 51.5062436561133, "lng": -0.5974304719532029, "title": "RAW Charging Yard, The Urban Building", "address": "Albert Street", "connectors": ["Type 2 (Tethered Connector)  · 22kW", "Type 2 (Socket Only) · 22kW", "CCS (Type 2) · 350kW", "CCS (Type 2) · 350kW", "CHAdeMO · 100kW", "CCS (Type 2) · 150kW", "CHAdeMO · 100kW", "CCS (Type 2) · 150kW"], "speed": "rapid"}];
 
   chargerData.forEach(function (c) {
@@ -420,6 +427,14 @@
     markers.addLayer(marker);
   });
   map.addLayer(markers);
+
+  // Frame the map to the actual chargers so a town's points are visible
+  // immediately (and small towns land past the de-clustering zoom).
+  if (chargerData.length) {
+    map.fitBounds(markers.getBounds(), { padding: [40, 40], maxZoom: 15 });
+  } else {
+    map.setView([51.50306856601889, -0.5695121234505338], 12);
+  }
 
   // --- Connector filter ---
   var filterBtns = document.querySelectorAll('.filter-btn');

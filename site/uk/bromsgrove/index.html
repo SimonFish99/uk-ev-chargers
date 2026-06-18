@@ -742,7 +742,7 @@
   function esc(s) { return String(s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
 
   // --- Map ---
-  var map = L.map('map').setView([52.34141163824026, -2.0463678018744718], 12);
+  var map = L.map('map');
   L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
     subdomains: 'abcd',
@@ -758,7 +758,14 @@
     });
   }
 
-  var markers = L.markerClusterGroup();
+  // Cluster only when markers genuinely overlap, and stop clustering once
+  // zoomed in so a town's handful of chargers show as individual pins.
+  var markers = L.markerClusterGroup({
+    maxClusterRadius: 40,
+    disableClusteringAtZoom: 14,
+    spiderfyOnMaxZoom: true,
+    showCoverageOnHover: false,
+  });
   var chargerData = [{"lat": 52.362911998173416, "lng": -1.945476533566648, "title": "Hopwood Park Interchange", "address": "Hopwood Park Interchange", "connectors": ["CCS (Type 2) · 150kW"], "speed": "rapid"}, {"lat": 52.3292916, "lng": -2.0608635, "title": "Bromsgrove School", "address": "Worcester Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 52.363614, "lng": -1.94635, "title": "Welcome Break Hopwood Park Services", "address": "Welcome Break Hopwood Park Services", "connectors": ["CCS (Type 2) · 50kW", "CHAdeMO · 50kW", "CCS (Type 2) · 50kW", "CCS (Type 2) · 50kW", "Type 2 (Socket Only) · 22kW"], "speed": "rapid"}, {"lat": 52.337003, "lng": -2.056129, "title": "Bromsgrove Leisure Centre", "address": "School Drive", "connectors": ["CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 50kW", "Type 2 (Tethered Connector)  · 43kW"], "speed": "rapid"}, {"lat": 52.322372, "lng": -2.047654, "title": "Aston Fields", "address": "St. Godwalds Road", "connectors": ["CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 50kW", "Type 2 (Tethered Connector)  · 43kW"], "speed": "rapid"}, {"lat": 52.314819, "lng": -2.068057, "title": "Restricted access to Nissan customers", "address": "Buntsford Drive", "connectors": ["CHAdeMO · 50kW"], "speed": "rapid"}, {"lat": 52.343795, "lng": -2.056527, "title": "Princess of Wales (POW) Community Hospital", "address": "Elm Grove", "connectors": ["CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 50kW", "Type 2 (Tethered Connector)  · 43kW"], "speed": "rapid"}, {"lat": 52.335033, "lng": -2.069452, "title": "Sanders Park Car Park", "address": "28-20 Kidderminster Road", "connectors": ["CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 50kW", "Type 2 (Tethered Connector)  · 43kW"], "speed": "rapid"}, {"lat": 52.367682, "lng": -2.199741, "title": "Hogarths Stone Manor LTD", "address": "Kidderminster", "connectors": ["Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 52.3528677950954, "lng": -1.96099144073679, "title": "Red Lion", "address": "Red Lion Street", "connectors": ["CCS (Type 2) · 50kW", "CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 43kW"], "speed": "rapid"}, {"lat": 52.36407, "lng": -2.059197, "title": "Golden Cross Car Park", "address": "Catshill", "connectors": ["CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 50kW", "Type 2 (Tethered Connector)  · 43kW"], "speed": "rapid"}, {"lat": 52.33728565945839, "lng": -2.0549327967755744, "title": "Bromsgrove Sports & Leisure Centre ", "address": "School Drive", "connectors": ["Blue Commando (2P+E)"], "speed": "slow"}, {"lat": 52.33725724471026, "lng": -2.054744000088931, "title": "Bromsgrove Sport and Leisure centre", "address": "School Drive", "connectors": ["Type 2 (Tethered Connector)  · 43kW", "CHAdeMO · 50kW", "CCS (Type 2) · 50kW"], "speed": "rapid"}, {"lat": 52.33725724471026, "lng": -2.054744000088931, "title": "Bromsgrove Sport and Leisure centre", "address": "School Drive", "connectors": ["Type 2 (Tethered Connector)  · 43kW", "CHAdeMO · 50kW", "CCS (Type 2) · 50kW"], "speed": "rapid"}, {"lat": 52.33456662465247, "lng": -2.059857567272047, "title": "Windsor Street Car Park", "address": "1 Windsor Gardens", "connectors": ["Type 2 (Tethered Connector)  · 43kW", "CHAdeMO · 50kW", "CCS (Type 2) · 50kW"], "speed": "rapid"}, {"lat": 52.32276004504399, "lng": -2.0471679914626293, "title": "Aston Fields St. ", "address": "Godwalds Road", "connectors": ["Type 2 (Tethered Connector)  · 43kW", "CHAdeMO · 50kW", "CCS (Type 2) · 50kW"], "speed": "rapid"}];
 
   chargerData.forEach(function (c) {
@@ -776,6 +783,14 @@
     markers.addLayer(marker);
   });
   map.addLayer(markers);
+
+  // Frame the map to the actual chargers so a town's points are visible
+  // immediately (and small towns land past the de-clustering zoom).
+  if (chargerData.length) {
+    map.fitBounds(markers.getBounds(), { padding: [40, 40], maxZoom: 15 });
+  } else {
+    map.setView([52.34141163824026, -2.0463678018744718], 12);
+  }
 
   // --- Connector filter ---
   var filterBtns = document.querySelectorAll('.filter-btn');

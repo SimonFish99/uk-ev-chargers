@@ -1163,7 +1163,7 @@
   function esc(s) { return String(s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
 
   // --- Map ---
-  var map = L.map('map').setView([51.54344447717969, -0.1547603015204078], 12);
+  var map = L.map('map');
   L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
     subdomains: 'abcd',
@@ -1179,7 +1179,14 @@
     });
   }
 
-  var markers = L.markerClusterGroup();
+  // Cluster only when markers genuinely overlap, and stop clustering once
+  // zoomed in so a town's handful of chargers show as individual pins.
+  var markers = L.markerClusterGroup({
+    maxClusterRadius: 40,
+    disableClusteringAtZoom: 14,
+    spiderfyOnMaxZoom: true,
+    showCoverageOnHover: false,
+  });
   var chargerData = [{"lat": 51.555027, "lng": -0.13816, "title": "Raveley Street", "address": "20 Raveley Street", "connectors": ["Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 51.552586, "lng": -0.15792, "title": "Southampton Road", "address": "Southampton Road", "connectors": ["Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 51.551712, "lng": -0.190655, "title": "Honeybourne Road", "address": "42 Honeybourne Road", "connectors": ["Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 51.550797, "lng": -0.161281, "title": "Lawn Road", "address": "10 Lawn Road", "connectors": ["Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 51.55023, "lng": -0.185536, "title": "Lymington Road", "address": "Lymington Road nr Spode Walk", "connectors": ["Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 51.55, "lng": -0.163304, "title": "Downside Crescent", "address": "2 Downside Crescent", "connectors": ["Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 51.54971, "lng": -0.19271, "title": "Kingdon Road", "address": "2 Kingdon Road", "connectors": ["Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 51.54941, "lng": -0.191944, "title": "Sandwell Crescent", "address": "10 Sandwell Crescent", "connectors": ["Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 51.54795, "lng": -0.150838, "title": "Bassett Street", "address": "3 Bassett Street", "connectors": ["Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 51.54597, "lng": -0.183456, "title": "Compayne Gardens", "address": "26 Compayne Gardens", "connectors": ["Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 51.542465, "lng": -0.179413, "title": "Fairfax Road", "address": "73 Fairfax Road", "connectors": ["Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 51.54137, "lng": -0.165915, "title": "Lower Merton Rise", "address": "2 Lower Merton Rise", "connectors": ["Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 51.531612, "lng": -0.134805, "title": "Aldenham Street", "address": "1 Aldenham Street", "connectors": ["Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 51.52737, "lng": -0.122061, "title": "Harrison Street", "address": "23 Harrison Street", "connectors": ["Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 51.555465, "lng": -0.166561, "title": "South End Road E", "address": "South End Road E", "connectors": ["Type 1 (J1772) · 3kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.548076, "lng": -0.146132, "title": "Ryland Road", "address": "Ryland Road", "connectors": ["Type 1 (J1772) · 3kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.547834, "lng": -0.145089, "title": "Inkerman Road", "address": "Inkerman Road", "connectors": ["Type 1 (J1772) · 3kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.546495, "lng": -0.128687, "title": "South Villas", "address": "South Villas", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 51.544006, "lng": -0.136707, "title": "Rochester Road", "address": "Rochester Road", "connectors": ["Type 1 (J1772) · 3kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.540136, "lng": -0.157602, "title": "Regents Park Road E", "address": "Regents Park Road E", "connectors": ["Type 1 (J1772) · 3kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.540027, "lng": -0.157505, "title": "Regents Park Road", "address": "Regents Park Road", "connectors": ["Type 1 (J1772) · 3kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.524472, "lng": -0.144152, "title": "Albany Street, Camden", "address": "Albany Street, Camden, London NW1 4DF, UK", "connectors": ["CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 50kW", "Type 2 (Tethered Connector)  · 43kW"], "speed": "rapid"}, {"lat": 51.519887, "lng": -0.116387, "title": "Princeton Street", "address": "Princeton Street", "connectors": ["Type 1 (J1772) · 3kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.5175, "lng": -0.115606, "title": "Newmans Row", "address": "Newmans Row", "connectors": ["Type 1 (J1772) · 3kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.554316315390594, "lng": -0.19576504561223373, "title": "Burrard Road", "address": "Burrard Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 1 (J1772) · 3kW"], "speed": "fast"}, {"lat": 51.546806, "lng": -0.183379, "title": "Broadhurst Gardens Site 3", "address": "Broadhurst Gardens Site 3", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 1 (J1772) · 3kW"], "speed": "fast"}, {"lat": 51.546041, "lng": -0.134085, "title": "Sandall Road", "address": "Sandall Road", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 51.541052, "lng": -0.130828, "title": "Brecknock Road", "address": "Brecknock Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 1 (J1772) · 3kW"], "speed": "fast"}, {"lat": 51.534712, "lng": -0.133626, "title": "Charrington Street", "address": "Charrington Street", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 51.5503, "lng": -0.1327, "title": "59 Torriano Avenue", "address": "59 Torriano Avenue", "connectors": ["Type 2 (Socket Only) · 3.7kW"], "speed": "slow"}];
 
   chargerData.forEach(function (c) {
@@ -1197,6 +1204,14 @@
     markers.addLayer(marker);
   });
   map.addLayer(markers);
+
+  // Frame the map to the actual chargers so a town's points are visible
+  // immediately (and small towns land past the de-clustering zoom).
+  if (chargerData.length) {
+    map.fitBounds(markers.getBounds(), { padding: [40, 40], maxZoom: 15 });
+  } else {
+    map.setView([51.54344447717969, -0.1547603015204078], 12);
+  }
 
   // --- Connector filter ---
   var filterBtns = document.querySelectorAll('.filter-btn');

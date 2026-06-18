@@ -444,7 +444,7 @@
   function esc(s) { return String(s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
 
   // --- Map ---
-  var map = L.map('map').setView([51.58005878888889, 0.0840684], 12);
+  var map = L.map('map');
   L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
     subdomains: 'abcd',
@@ -460,7 +460,14 @@
     });
   }
 
-  var markers = L.markerClusterGroup();
+  // Cluster only when markers genuinely overlap, and stop clustering once
+  // zoomed in so a town's handful of chargers show as individual pins.
+  var markers = L.markerClusterGroup({
+    maxClusterRadius: 40,
+    disableClusteringAtZoom: 14,
+    spiderfyOnMaxZoom: true,
+    showCoverageOnHover: false,
+  });
   var chargerData = [{"lat": 51.580582, "lng": 0.109684, "title": "King George Hospital", "address": "Barley Lane", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 51.580547, "lng": 0.109639, "title": "King George Hospital", "address": "Barley Lane", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 51.56233, "lng": 0.09255, "title": "Osric Bollard Herbert Road", "address": "Osric Bollard Herbert Road", "connectors": ["Type 2 (Socket Only) · 3.5kW"], "speed": "slow"}, {"lat": 51.56994, "lng": 0.06388, "title": "2 Cowley Road", "address": "2 Cowley Road", "connectors": ["Type 2 (Socket Only) · 3.5kW"], "speed": "slow"}, {"lat": 51.5915161, "lng": 0.0692856, "title": "Osric Bollard Berkeley Ave", "address": "Osric Bollard Berkeley Ave", "connectors": ["Type 2 (Socket Only) · 3.7kW"], "speed": "slow"}, {"lat": 51.591545, "lng": 0.04701, "title": "Toby Carvery Woodford", "address": "Woodford", "connectors": ["CHAdeMO · 50kW", "CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 43kW"], "speed": "rapid"}, {"lat": 51.586868, "lng": 0.087291, "title": "Barkingside Station Car Park", "address": "Barkingside Station Car Park", "connectors": ["CHAdeMO · 50kW", "CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 43kW"], "speed": "rapid"}, {"lat": 51.576656, "lng": 0.065169, "title": "Outside 347 - 353 Eastern Avenue", "address": "Outside 347 - 353 Eastern Avenue", "connectors": ["CHAdeMO · 50kW", "CHAdeMO · 50kW"], "speed": "rapid"}, {"lat": 51.580545, "lng": 0.112107, "title": "Eastern Avenue", "address": "Eastern Avenue", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}];
 
   chargerData.forEach(function (c) {
@@ -478,6 +485,14 @@
     markers.addLayer(marker);
   });
   map.addLayer(markers);
+
+  // Frame the map to the actual chargers so a town's points are visible
+  // immediately (and small towns land past the de-clustering zoom).
+  if (chargerData.length) {
+    map.fitBounds(markers.getBounds(), { padding: [40, 40], maxZoom: 15 });
+  } else {
+    map.setView([51.58005878888889, 0.0840684], 12);
+  }
 
   // --- Connector filter ---
   var filterBtns = document.querySelectorAll('.filter-btn');

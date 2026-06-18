@@ -487,7 +487,7 @@
   function esc(s) { return String(s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
 
   // --- Map ---
-  var map = L.map('map').setView([51.489225818740294, -2.1123012244045416], 12);
+  var map = L.map('map');
   L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
     subdomains: 'abcd',
@@ -503,7 +503,14 @@
     });
   }
 
-  var markers = L.markerClusterGroup();
+  // Cluster only when markers genuinely overlap, and stop clustering once
+  // zoomed in so a town's handful of chargers show as individual pins.
+  var markers = L.markerClusterGroup({
+    maxClusterRadius: 40,
+    disableClusteringAtZoom: 14,
+    spiderfyOnMaxZoom: true,
+    showCoverageOnHover: false,
+  });
   var chargerData = [{"lat": 51.5100942737801, "lng": -2.15815354224788, "title": "GS10075B", "address": "M4 Motorway Westbound, Jct 17/18", "connectors": ["Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 51.509924, "lng": -2.158175, "title": "Moto Leigh Delamere Westbound", "address": "M4 Westbound Between Junction 17 and 18", "connectors": ["CCS (Type 2) · 40kW", "CHAdeMO · 40kW", "CCS (Type 2) · 350kW", "CCS (Type 2) · 350kW", "CCS (Type 2) · 350kW", "Type 2 (Socket Only) · 11kW", "Type 2 (Socket Only) · 11kW", "CCS (Type 2) · 350kW", "CCS (Type 2) · 350kW", "CCS (Type 2) · 350kW", "CCS (Type 2) · 350kW", "CCS (Type 2) · 350kW", "CCS (Type 2) · 350kW", "CHAdeMO · 100kW", "CHAdeMO · 100kW", "CHAdeMO · 100kW"], "speed": "rapid"}, {"lat": 51.461548, "lng": -2.112661, "title": "Monkton Park Car Park", "address": "Sadlers Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.46157997139275, "lng": -2.1203753839638466, "title": "HPH Limited, Bewley House Car Park", "address": "Dallas Road", "connectors": ["Type 2 (Socket Only) · 13kW"], "speed": "fast"}, {"lat": 51.47692096755807, "lng": -2.131558213502217, "title": "Morrisons Chippenham", "address": "Stainers Way", "connectors": ["Type 2 (Socket Only) · 22kW", "CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 50kW"], "speed": "rapid"}, {"lat": 51.45481448964097, "lng": -2.1322517850213103, "title": "McDonald's Chippenham", "address": "Bath Road", "connectors": ["CCS (Type 2) · 120kW", "CHAdeMO · 75kW"], "speed": "rapid"}, {"lat": 51.5243082355591, "lng": -2.12287385074634, "title": "MFG Stanton St Quintin Service Station", "address": "A429", "connectors": ["CCS (Type 2) · 150kW", "CHAdeMO · 50kW"], "speed": "rapid"}, {"lat": 51.563463430731645, "lng": -1.9990662441592804, "title": "Newleaze Cottages", "address": "3 Newleaze Cottages", "connectors": ["Blue Commando (2P+E) · 7kW"], "speed": "fast"}, {"lat": 51.440379, "lng": -2.075596, "title": "Pewsham Garages", "address": "London Road", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}];
 
   chargerData.forEach(function (c) {
@@ -521,6 +528,14 @@
     markers.addLayer(marker);
   });
   map.addLayer(markers);
+
+  // Frame the map to the actual chargers so a town's points are visible
+  // immediately (and small towns land past the de-clustering zoom).
+  if (chargerData.length) {
+    map.fitBounds(markers.getBounds(), { padding: [40, 40], maxZoom: 15 });
+  } else {
+    map.setView([51.489225818740294, -2.1123012244045416], 12);
+  }
 
   // --- Connector filter ---
   var filterBtns = document.querySelectorAll('.filter-btn');

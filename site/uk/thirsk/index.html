@@ -380,7 +380,7 @@
   function esc(s) { return String(s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
 
   // --- Map ---
-  var map = L.map('map').setView([54.22591084606976, -1.3375317289225612], 12);
+  var map = L.map('map');
   L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
     subdomains: 'abcd',
@@ -396,7 +396,14 @@
     });
   }
 
-  var markers = L.markerClusterGroup();
+  // Cluster only when markers genuinely overlap, and stop clustering once
+  // zoomed in so a town's handful of chargers show as individual pins.
+  var markers = L.markerClusterGroup({
+    maxClusterRadius: 40,
+    disableClusteringAtZoom: 14,
+    spiderfyOnMaxZoom: true,
+    showCoverageOnHover: false,
+  });
   var chargerData = [{"lat": 54.24097, "lng": -1.20893, "title": "North York Moors National Park Authority", "address": "Sutton Bank National Park Centre", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 54.2284145885184, "lng": -1.32831669419841, "title": "MFG Thirsk (Coming Soon) ", "address": "York Road A170", "connectors": ["CHAdeMO · 100kW", "CCS (Type 2) · 150kW"], "speed": "rapid"}, {"lat": 54.21701192824952, "lng": -1.4284655289421835, "title": "Hambleton Crematorium ", "address": "Maple Park Skipton Bridge", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 54.231046, "lng": -1.34766, "title": "Tesco Superstore-Thirsk", "address": "Station Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 54.2344198105917, "lng": -1.3431449561580848, "title": "Millgate Car Park", "address": "Marage Road", "connectors": ["Type 2 (Socket Only) · 5kW"], "speed": "slow"}, {"lat": 54.1951752250879, "lng": -1.36333726084331, "title": "Starbucks, Topcliffe, A168", "address": "Malthurst Thirsk Petrol Station", "connectors": ["CCS (Type 2) · 50kW", "CHAdeMO · 50kW"], "speed": "rapid"}, {"lat": 54.2343383700408, "lng": -1.34286766231594, "title": "Millgate Car Park", "address": "Marage Road", "connectors": ["CCS (Type 2) · 50kW", "Type 2 (Tethered Connector)  · 43kW", "CHAdeMO · 50kW"], "speed": "rapid"}];
 
   chargerData.forEach(function (c) {
@@ -414,6 +421,14 @@
     markers.addLayer(marker);
   });
   map.addLayer(markers);
+
+  // Frame the map to the actual chargers so a town's points are visible
+  // immediately (and small towns land past the de-clustering zoom).
+  if (chargerData.length) {
+    map.fitBounds(markers.getBounds(), { padding: [40, 40], maxZoom: 15 });
+  } else {
+    map.setView([54.22591084606976, -1.3375317289225612], 12);
+  }
 
   // --- Connector filter ---
   var filterBtns = document.querySelectorAll('.filter-btn');

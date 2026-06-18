@@ -350,7 +350,7 @@
   function esc(s) { return String(s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
 
   // --- Map ---
-  var map = L.map('map').setView([53.65734590103634, -2.633414340605737], 12);
+  var map = L.map('map');
   L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
     subdomains: 'abcd',
@@ -366,7 +366,14 @@
     });
   }
 
-  var markers = L.markerClusterGroup();
+  // Cluster only when markers genuinely overlap, and stop clustering once
+  // zoomed in so a town's handful of chargers show as individual pins.
+  var markers = L.markerClusterGroup({
+    maxClusterRadius: 40,
+    disableClusteringAtZoom: 14,
+    spiderfyOnMaxZoom: true,
+    showCoverageOnHover: false,
+  });
   var chargerData = [{"lat": 53.66194, "lng": -2.63116, "title": "EG GROUP CHORLEY SBX", "address": "Starbucks", "connectors": ["Type 2 (Tethered Connector)  · 150kW"], "speed": "rapid"}, {"lat": 53.599601406218, "lng": -2.574300043634423, "title": "Rivington Services Northbound (evPoint)", "address": "M61", "connectors": ["CHAdeMO · 60kW", "CCS (Type 2) · 60kW"], "speed": "rapid"}, {"lat": 53.631581, "lng": -2.691614, "title": "Welcome Break Charnock Richard North Services", "address": "M6 Motorway Northbound", "connectors": ["CCS (Type 2) · 50kW", "CHAdeMO · 50kW", "CCS (Type 2) · 50kW", "CCS (Type 2) · 50kW", "Type 2 (Socket Only) · 22kW"], "speed": "rapid"}, {"lat": 53.665275, "lng": -2.636207, "title": "Chorley & South Ribble 1", "address": "Preston Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 53.674716, "lng": -2.659579, "title": "Tesco Superstore-Chorley Buckshaw", "address": "Buckshaw Village", "connectors": ["Type 2 (Socket Only) · 7kW", "CCS (Type 2) · 50kW", "CHAdeMO · 50kW", "Type 2 (Socket Only) · 22kW"], "speed": "rapid"}, {"lat": 53.710962, "lng": -2.607626, "title": "Water Street", "address": "Water Street", "connectors": ["Type 2 (Socket Only) · 11kW"], "speed": "fast"}];
 
   chargerData.forEach(function (c) {
@@ -384,6 +391,14 @@
     markers.addLayer(marker);
   });
   map.addLayer(markers);
+
+  // Frame the map to the actual chargers so a town's points are visible
+  // immediately (and small towns land past the de-clustering zoom).
+  if (chargerData.length) {
+    map.fitBounds(markers.getBounds(), { padding: [40, 40], maxZoom: 15 });
+  } else {
+    map.setView([53.65734590103634, -2.633414340605737], 12);
+  }
 
   // --- Connector filter ---
   var filterBtns = document.querySelectorAll('.filter-btn');

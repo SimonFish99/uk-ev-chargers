@@ -380,7 +380,7 @@
   function esc(s) { return String(s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
 
   // --- Map ---
-  var map = L.map('map').setView([50.79680465475104, -1.887712502389944], 12);
+  var map = L.map('map');
   L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
     subdomains: 'abcd',
@@ -396,7 +396,14 @@
     });
   }
 
-  var markers = L.markerClusterGroup();
+  // Cluster only when markers genuinely overlap, and stop clustering once
+  // zoomed in so a town's handful of chargers show as individual pins.
+  var markers = L.markerClusterGroup({
+    maxClusterRadius: 40,
+    disableClusteringAtZoom: 14,
+    spiderfyOnMaxZoom: true,
+    showCoverageOnHover: false,
+  });
   var chargerData = [{"lat": 50.81155997610645, "lng": -1.8770046245410867, "title": "Smart Charge", "address": "597 Ringwood Rd", "connectors": ["CHAdeMO · 50kW", "CCS (Type 2) · 150kW"], "speed": "rapid"}, {"lat": 50.78082208984111, "lng": -1.8794095693718873, "title": "Lidl West Parley", "address": "Christchurch Road", "connectors": ["Type 2 (Socket Only) · 22kW", "CCS (Type 2) · 50kW", "CHAdeMO · 50kW"], "speed": "rapid"}, {"lat": 50.811748512315205, "lng": -1.8718092733686547, "title": "Lidl Ferndown", "address": "Ringwood Road", "connectors": ["Type 2 (Socket Only) · 22kW", "CCS (Type 2) · 60kW", "CCS (Type 2) · 60kW"], "speed": "rapid"}, {"lat": 50.802347, "lng": -1.891852, "title": "DRC Penny's Lodge Car Park", "address": "Library Road", "connectors": ["CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 50kW"], "speed": "rapid"}, {"lat": 50.793123, "lng": -1.8925903, "title": "InstaVolt Glenmoor Road", "address": "35A Glenmoor Road", "connectors": ["CCS (Type 2) · 120kW", "CHAdeMO · 50kW"], "speed": "rapid"}, {"lat": 50.776902004994554, "lng": -1.9081817494479787, "title": "EVC The Bridge House Hotel", "address": "The Bridge House Hotel, 2 Ringwood Road", "connectors": ["Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 50.80113, "lng": -1.89314, "title": "Tesco Superstore-Ferndown", "address": "Pennys Walk", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}];
 
   chargerData.forEach(function (c) {
@@ -414,6 +421,14 @@
     markers.addLayer(marker);
   });
   map.addLayer(markers);
+
+  // Frame the map to the actual chargers so a town's points are visible
+  // immediately (and small towns land past the de-clustering zoom).
+  if (chargerData.length) {
+    map.fitBounds(markers.getBounds(), { padding: [40, 40], maxZoom: 15 });
+  } else {
+    map.setView([50.79680465475104, -1.887712502389944], 12);
+  }
 
   // --- Connector filter ---
   var filterBtns = document.querySelectorAll('.filter-btn');

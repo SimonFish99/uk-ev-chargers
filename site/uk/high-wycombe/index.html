@@ -425,7 +425,7 @@
   function esc(s) { return String(s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
 
   // --- Map ---
-  var map = L.map('map').setView([51.63289901781357, -0.758895221477307], 12);
+  var map = L.map('map');
   L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
     subdomains: 'abcd',
@@ -441,7 +441,14 @@
     });
   }
 
-  var markers = L.markerClusterGroup();
+  // Cluster only when markers genuinely overlap, and stop clustering once
+  // zoomed in so a town's handful of chargers show as individual pins.
+  var markers = L.markerClusterGroup({
+    maxClusterRadius: 40,
+    disableClusteringAtZoom: 14,
+    spiderfyOnMaxZoom: true,
+    showCoverageOnHover: false,
+  });
   var chargerData = [{"lat": 51.678430775448476, "lng": -0.7940361983160074, "title": "Home Charger", "address": "14 New Road", "connectors": ["Type 2 (Tethered Connector) "], "speed": "slow"}, {"lat": 51.62513327435548, "lng": -0.776409880134679, "title": "Basepoint Business Centre", "address": "Chairborough Road", "connectors": ["CCS (Type 2) · 60kW"], "speed": "rapid"}, {"lat": 51.62271981, "lng": -0.7286150442, "title": "Lidl At 300 London Road", "address": "300 London Road", "connectors": ["CHAdeMO · 50kW", "CCS (Type 2) · 50kW", "CHAdeMO · 50kW", "CCS (Type 2) · 50kW", "CCS (Type 2) · 50kW", "CHAdeMO · 50kW", "Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "rapid"}, {"lat": 51.61348974, "lng": -0.764641464, "title": "EVC Hampton by Hilton High Wycombe", "address": "Hampton by Hilton High Wycombe", "connectors": ["Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 51.641223, "lng": -0.739014, "title": "RGS High Wycombe", "address": "Amersham Road", "connectors": ["Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.618498, "lng": -0.764984, "title": "Marlow Road", "address": "Marlow Road", "connectors": ["CCS (Type 2) · 120kW", "CHAdeMO · 100kW"], "speed": "rapid"}, {"lat": 51.628414, "lng": -0.750396, "title": "Swan MSCP", "address": "Saint Mary street", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 51.6352835427046, "lng": -0.7530651851677703, "title": "Morrison High Wycombe", "address": "Wm Morrison Supermarkets PLC", "connectors": ["Type 2 (Socket Only) · 22kW", "CHAdeMO · 50kW", "CCS (Type 2) · 50kW"], "speed": "rapid"}];
 
   chargerData.forEach(function (c) {
@@ -459,6 +466,14 @@
     markers.addLayer(marker);
   });
   map.addLayer(markers);
+
+  // Frame the map to the actual chargers so a town's points are visible
+  // immediately (and small towns land past the de-clustering zoom).
+  if (chargerData.length) {
+    map.fitBounds(markers.getBounds(), { padding: [40, 40], maxZoom: 15 });
+  } else {
+    map.setView([51.63289901781357, -0.758895221477307], 12);
+  }
 
   // --- Connector filter ---
   var filterBtns = document.querySelectorAll('.filter-btn');

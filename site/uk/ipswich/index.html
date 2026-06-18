@@ -1199,7 +1199,7 @@
   function esc(s) { return String(s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
 
   // --- Map ---
-  var map = L.map('map').setView([52.056866488542205, 1.1495512091766826], 12);
+  var map = L.map('map');
   L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
     subdomains: 'abcd',
@@ -1215,7 +1215,14 @@
     });
   }
 
-  var markers = L.markerClusterGroup();
+  // Cluster only when markers genuinely overlap, and stop clustering once
+  // zoomed in so a town's handful of chargers show as individual pins.
+  var markers = L.markerClusterGroup({
+    maxClusterRadius: 40,
+    disableClusteringAtZoom: 14,
+    spiderfyOnMaxZoom: true,
+    showCoverageOnHover: false,
+  });
   var chargerData = [{"lat": 52.08400694103537, "lng": 1.1175951538476738, "title": "Anglia Parkway South", "address": "Anglia Parkway South", "connectors": ["CCS (Type 2) · 250kW"], "speed": "rapid"}, {"lat": 52.030925, "lng": 1.200001, "title": "Ipswich Greenways", "address": "Hening Ave 32", "connectors": ["CCS (Type 2) · 360kW", "CCS (Type 2) · 360kW", "CCS (Type 2) · 360kW", "CCS (Type 2) · 360kW", "CCS (Type 2) · 360kW", "CCS (Type 2) · 360kW", "CCS (Type 2) · 360kW", "CCS (Type 2) · 360kW"], "speed": "rapid"}, {"lat": 52.03349756803294, "lng": 1.2044277489325168, "title": "SSE Euro Retail Park", "address": "James Bennett Avenue ", "connectors": ["CCS (Type 2) · 150kW"], "speed": "rapid"}, {"lat": 52.034336393020624, "lng": 1.2073457116023292, "title": "Euro Retail Park", "address": "West Road", "connectors": ["CCS (Type 2) · 150kW"], "speed": "rapid"}, {"lat": 52.0838, "lng": 1.1134, "title": "SCC Phoenix House", "address": "3 Goddard Road", "connectors": ["Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 52.0801, "lng": 1.1118, "title": "Landmark", "address": "Egerton Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 52.064176, "lng": 1.119581, "title": "Morrisons Ipswich", "address": "Morrisons Ipswich", "connectors": ["Type 2 (Tethered Connector)  · 43kW", "CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 50kW"], "speed": "rapid"}, {"lat": 52.0586, "lng": 1.1292, "title": "SCC Saxon House", "address": "Hadleigh Road Ind Est", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 52.0538, "lng": 1.1432, "title": "Endeavour House", "address": "Russell Road", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 52.034329, "lng": 1.203293, "title": "Waitrose Ipswich 1", "address": "Crane Boulevard", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 52.033378, "lng": 1.224189, "title": "Trinity Park", "address": "Felixstowe Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 52.062568, "lng": 1.122051, "title": "Rackhams Auto Body Centre", "address": "47 Boss Hall Road", "connectors": ["Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 52.00349, "lng": 1.057531, "title": "Capelgate North", "address": "A12 Northbound", "connectors": ["CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 43kW", "Type 2 (Tethered Connector)  · 50kW"], "speed": "rapid"}, {"lat": 52.00335, "lng": 1.059199, "title": "EG Capel St Mary Starbucks", "address": "A12 Southbound", "connectors": ["CHAdeMO · 50kW", "Type 2 (Socket Only) · 22kW", "CCS (Type 2) · 50kW"], "speed": "rapid"}, {"lat": 52.053581736975275, "lng": 1.1639862721569898, "title": "The Hold Car Park", "address": "Fore Street", "connectors": ["Type 2 (Socket Only)"], "speed": "slow"}, {"lat": 52.05599521823464, "lng": 1.1593312074037385, "title": "Upper Orwell Street North Car Park", "address": "Upper Barclay Street", "connectors": ["Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 52.053765408985754, "lng": 1.1649273767668546, "title": "University of Suffolk Car Park", "address": "Long Street", "connectors": ["Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 52.155818, "lng": 1.046987, "title": "COOP Needham Market", "address": "Horsepond Place COOP", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 52.0408104072853, "lng": 1.09684546625817, "title": "Ipswich Park & Ride Hub", "address": "London Road", "connectors": ["CHAdeMO · 50kW", "CHAdeMO · 50kW", "CHAdeMO · 50kW", "CHAdeMO · 50kW", "CHAdeMO · 50kW", "CHAdeMO · 50kW", "CCS (Type 2) · 150kW", "CCS (Type 2) · 150kW", "CCS (Type 2) · 150kW", "CCS (Type 2) · 150kW", "CCS (Type 2) · 150kW", "CCS (Type 2) · 150kW"], "speed": "rapid"}, {"lat": 52.07005126158464, "lng": 1.267750418598439, "title": "Fastned Charging Station", "address": "Park & Ride Martlesham Heath", "connectors": ["CCS (Type 2) · 175kW", "CHAdeMO · 50kW"], "speed": "rapid"}, {"lat": 52.059025, "lng": 1.280566, "title": "BT Advanced Communiction Technology", "address": "Central Adastral Park", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 52.055832, "lng": 1.201333, "title": "Ipswich Hospital Staff Car Park", "address": "Car Park U Heath Road", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 52.040309166818, "lng": 1.09884210449366, "title": "Tesco Extra - Ipswich", "address": "Copdock Interchange", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 52.148237322918675, "lng": 1.1190464331498902, "title": "Coddenham Centre ", "address": "Mary Day Close", "connectors": ["Type 2 (Socket Only) · 7.2kW"], "speed": "fast"}, {"lat": 52.02767021077747, "lng": 1.2189236111710215, "title": " Clip 'n Climb Ipswich", "address": "2 Berwick Road", "connectors": ["Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 52.05679688575091, "lng": 1.2790437167459459, "title": "Adastral park", "address": "Car park X", "connectors": ["Type 2 (Socket Only) · 3kW"], "speed": "slow"}, {"lat": 52.050422, "lng": 0.954732, "title": "Morrisons Hadleigh", "address": "Wm Morrison Supermarkets PLC", "connectors": ["Type 2 (Tethered Connector)  · 60kW", "CHAdeMO · 50kW", "Type 2 (Socket Only) · 22kW"], "speed": "rapid"}, {"lat": 52.063590157762206, "lng": 1.1223056358198846, "title": "Morrisons - Sproughton Road", "address": "Sproughton Road", "connectors": ["Type 2 (Socket Only) · 22kW", "CHAdeMO · 50kW", "CCS (Type 2) · 50kW"], "speed": "rapid"}];
 
   chargerData.forEach(function (c) {
@@ -1233,6 +1240,14 @@
     markers.addLayer(marker);
   });
   map.addLayer(markers);
+
+  // Frame the map to the actual chargers so a town's points are visible
+  // immediately (and small towns land past the de-clustering zoom).
+  if (chargerData.length) {
+    map.fitBounds(markers.getBounds(), { padding: [40, 40], maxZoom: 15 });
+  } else {
+    map.setView([52.056866488542205, 1.1495512091766826], 12);
+  }
 
   // --- Connector filter ---
   var filterBtns = document.querySelectorAll('.filter-btn');

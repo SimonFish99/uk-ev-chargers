@@ -482,7 +482,7 @@
   function esc(s) { return String(s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
 
   // --- Map ---
-  var map = L.map('map').setView([53.764215335465785, -0.2936757390553666], 12);
+  var map = L.map('map');
   L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
     subdomains: 'abcd',
@@ -498,7 +498,14 @@
     });
   }
 
-  var markers = L.markerClusterGroup();
+  // Cluster only when markers genuinely overlap, and stop clustering once
+  // zoomed in so a town's handful of chargers show as individual pins.
+  var markers = L.markerClusterGroup({
+    maxClusterRadius: 40,
+    disableClusteringAtZoom: 14,
+    spiderfyOnMaxZoom: true,
+    showCoverageOnHover: false,
+  });
   var chargerData = [{"lat": 53.73315911, "lng": -0.37681738, "title": "Lidl-Brighton Street", "address": "Brighton Street", "connectors": ["Type 2 (Socket Only) · 22kW", "CCS (Type 2) · 50kW", "CHAdeMO · 50kW"], "speed": "rapid"}, {"lat": 53.74125, "lng": -0.218073, "title": "RAW GREENE KING KINGSTOWN 4", "address": "Kingstown Hotel Pub Hull Road", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 53.74944, "lng": -0.283412, "title": "EG GROUP HULL 2", "address": "24 Littlefair Rd Shell Garage", "connectors": ["Type 2 (Tethered Connector)  · 150kW", "CHAdeMO · 100kW", "Type 2 (Tethered Connector)  · 150kW", "CHAdeMO · 100kW"], "speed": "rapid"}, {"lat": 53.745441, "lng": -0.347555, "title": "St Stephen's Shopping Centre", "address": "110 Ferensway", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 53.749096, "lng": -0.284237, "title": "EG GROUP HULL 1", "address": "Shell garage, Littlefair Road", "connectors": ["CHAdeMO · 100kW", "CHAdeMO · 100kW", "Type 2 (Tethered Connector)  · 150kW", "Type 2 (Tethered Connector)  · 150kW"], "speed": "rapid"}, {"lat": 53.7534378, "lng": -0.3137668, "title": "Kingston Shopping Centre", "address": "Holderness Road", "connectors": ["CCS (Type 2) · 120kW", "CHAdeMO · 100kW"], "speed": "rapid"}, {"lat": 53.86875455, "lng": -0.13203046, "title": "Cowden Holiday Park", "address": "Cowden", "connectors": ["Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 53.7885163, "lng": -0.3637755, "title": "Tesco Superstore Hull", "address": "Hall Rd", "connectors": ["Type 2 (Socket Only) · 7kW", "CCS (Type 2) · 50kW", "Type 2 (Socket Only) · 22kW", "CHAdeMO · 50kW"], "speed": "rapid"}, {"lat": 53.748843259192085, "lng": -0.32341451149829936, "title": "Jordans & Co. Hull Workshop", "address": "45-52 Witham", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}];
 
   chargerData.forEach(function (c) {
@@ -516,6 +523,14 @@
     markers.addLayer(marker);
   });
   map.addLayer(markers);
+
+  // Frame the map to the actual chargers so a town's points are visible
+  // immediately (and small towns land past the de-clustering zoom).
+  if (chargerData.length) {
+    map.fitBounds(markers.getBounds(), { padding: [40, 40], maxZoom: 15 });
+  } else {
+    map.setView([53.764215335465785, -0.2936757390553666], 12);
+  }
 
   // --- Connector filter ---
   var filterBtns = document.querySelectorAll('.filter-btn');

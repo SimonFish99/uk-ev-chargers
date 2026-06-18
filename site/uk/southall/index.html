@@ -888,7 +888,7 @@
   function esc(s) { return String(s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
 
   // --- Map ---
-  var map = L.map('map').setView([51.50565714545455, -0.3607429590909091], 12);
+  var map = L.map('map');
   L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
     subdomains: 'abcd',
@@ -904,7 +904,14 @@
     });
   }
 
-  var markers = L.markerClusterGroup();
+  // Cluster only when markers genuinely overlap, and stop clustering once
+  // zoomed in so a town's handful of chargers show as individual pins.
+  var markers = L.markerClusterGroup({
+    maxClusterRadius: 40,
+    disableClusteringAtZoom: 14,
+    spiderfyOnMaxZoom: true,
+    showCoverageOnHover: false,
+  });
   var chargerData = [{"lat": 51.50694, "lng": -0.383816, "title": "Grange Road", "address": "Grange Road", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 51.507801, "lng": -0.34587, "title": "St Bernard's Hospital", "address": "Uxbridge Road", "connectors": ["Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.507702, "lng": -0.34587, "title": "St Bernard's Hospital", "address": "Uxbridge Road", "connectors": ["Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.507599, "lng": -0.34587, "title": "St Bernard's Hospital", "address": "Uxbridge Road", "connectors": ["Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.507401, "lng": -0.34587, "title": "St Bernard's Hospital", "address": "Uxbridge Road", "connectors": ["Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.507301, "lng": -0.34587, "title": "St Bernard's Hospital", "address": "Uxbridge Road", "connectors": ["Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.507198, "lng": -0.34587, "title": "St Bernard's Hospital", "address": "Uxbridge Road", "connectors": ["Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.507, "lng": -0.34587, "title": "St Bernard's Hospital", "address": "Uxbridge Road", "connectors": ["Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.506494, "lng": -0.347069, "title": "St Bernards 6767 - 8", "address": "Uxbridge Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.506452, "lng": -0.347077, "title": "St Bernards 6765 - 6", "address": "Uxbridge Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.5064, "lng": -0.347086, "title": "St Bernards 6763 - 4", "address": "Uxbridge Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.506345, "lng": -0.347088, "title": "St Bernards 6761 - 2", "address": "Uxbridge Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.506299, "lng": -0.347091, "title": "St Bernards 6759 - 60", "address": "Uxbridge Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.506127, "lng": -0.347177, "title": "St Bernards 6757 - 8", "address": "Uxbridge Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.5095432, "lng": -0.3550181, "title": "McDonald's Hanwell", "address": "Uxbridge Road", "connectors": ["CCS (Type 2) · 120kW", "CHAdeMO · 50kW"], "speed": "rapid"}, {"lat": 51.517008, "lng": -0.375768, "title": "Evelyn Grove", "address": "Evelyn Grove", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 51.497077, "lng": -0.385014, "title": "George Street", "address": "George Street", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 51.498681, "lng": -0.406995, "title": "Tesco Extra-Bulls Bridge", "address": "Bulls Bridge Industrial Estate", "connectors": ["Type 2 (Socket Only) · 22kW", "CHAdeMO · 50kW", "CCS (Type 2) · 50kW", "Type 2 (Socket Only) · 7kW"], "speed": "rapid"}, {"lat": 51.501828, "lng": -0.386149, "title": "Featherstone Rd 81", "address": "Featherstone Rd 81", "connectors": ["Type 2 (Socket Only) · 3.7kW"], "speed": "slow"}, {"lat": 51.501249, "lng": -0.386654, "title": "Featherstone Rd 105", "address": "Featherstone Rd 105", "connectors": ["Type 2 (Socket Only) · 3.7kW"], "speed": "slow"}, {"lat": 51.501032, "lng": -0.376701, "title": "Church Rd 23", "address": "Church Rd 23", "connectors": ["Type 2 (Socket Only) · 3.7kW"], "speed": "slow"}, {"lat": 51.50098, "lng": -0.376552, "title": "Church Rd 33", "address": "Church Rd 33", "connectors": ["Type 2 (Socket Only) · 3.7kW"], "speed": "slow"}];
 
   chargerData.forEach(function (c) {
@@ -922,6 +929,14 @@
     markers.addLayer(marker);
   });
   map.addLayer(markers);
+
+  // Frame the map to the actual chargers so a town's points are visible
+  // immediately (and small towns land past the de-clustering zoom).
+  if (chargerData.length) {
+    map.fitBounds(markers.getBounds(), { padding: [40, 40], maxZoom: 15 });
+  } else {
+    map.setView([51.50565714545455, -0.3607429590909091], 12);
+  }
 
   // --- Connector filter ---
   var filterBtns = document.querySelectorAll('.filter-btn');

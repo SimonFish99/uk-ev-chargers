@@ -536,7 +536,7 @@
   function esc(s) { return String(s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
 
   // --- Map ---
-  var map = L.map('map').setView([54.62471629002437, -2.745638333794567], 12);
+  var map = L.map('map');
   L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
     subdomains: 'abcd',
@@ -552,7 +552,14 @@
     });
   }
 
-  var markers = L.markerClusterGroup();
+  // Cluster only when markers genuinely overlap, and stop clustering once
+  // zoomed in so a town's handful of chargers show as individual pins.
+  var markers = L.markerClusterGroup({
+    maxClusterRadius: 40,
+    disableClusteringAtZoom: 14,
+    spiderfyOnMaxZoom: true,
+    showCoverageOnHover: false,
+  });
   var chargerData = [{"lat": 54.529137, "lng": -2.67602, "title": "Shap Village Hall", "address": "Shap Village Hall", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 54.64700167, "lng": -2.78151868, "title": "Westmorland Rheged Centre Services", "address": "Redhills Lane", "connectors": ["CCS (Type 2) · 60kW", "CHAdeMO · 60kW", "CCS (Type 2) · 60kW", "CCS (Type 2) · 60kW", "Type 2 (Socket Only) · 22kW"], "speed": "rapid"}, {"lat": 54.663616, "lng": -2.756512, "title": "Morrisons Penrith", "address": "Wm Morrison Supermarkets PLC", "connectors": ["Type 2 (Tethered Connector)  · 43kW", "CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 50kW"], "speed": "rapid"}, {"lat": 54.545391, "lng": -2.949612, "title": "The Inn on the Lake", "address": "Glenridding", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 54.6412, "lng": -2.6568, "title": "Center Parcs-Whinfell Forest (for Center Parcs Guests Only)", "address": "Whinfell Forest", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 54.6570998167212, "lng": -2.76092322140357, "title": "Ullswater Rd Garage", "address": "10 Ullswater Rd,", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 54.60790424640109, "lng": -2.7376993333158453, "title": "Lowther Castle and Gardens", "address": "Lowther Castle", "connectors": ["Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 54.658288431027245, "lng": -2.745184138733805, "title": "Eden Housing Association CMS", "address": "Blain House ", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 54.593685, "lng": -2.624575, "title": "Morland and Newby Village Hall", "address": "Morland and Newby Village Hall", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 54.6647076752547, "lng": -2.75753887957899, "title": "Booths Penrith", "address": "Booths Car Park", "connectors": ["CHAdeMO · 50kW", "CCS (Type 2) · 50kW"], "speed": "rapid"}, {"lat": 54.66384835086379, "lng": -2.755638418708031, "title": "Morrisons Penrith", "address": "Brunswick Road", "connectors": ["Type 2 (Tethered Connector)  · 22kW", "CHAdeMO · 50kW", "CCS (Type 2) · 50kW"], "speed": "rapid"}];
 
   chargerData.forEach(function (c) {
@@ -570,6 +577,14 @@
     markers.addLayer(marker);
   });
   map.addLayer(markers);
+
+  // Frame the map to the actual chargers so a town's points are visible
+  // immediately (and small towns land past the de-clustering zoom).
+  if (chargerData.length) {
+    map.fitBounds(markers.getBounds(), { padding: [40, 40], maxZoom: 15 });
+  } else {
+    map.setView([54.62471629002437, -2.745638333794567], 12);
+  }
 
   // --- Connector filter ---
   var filterBtns = document.querySelectorAll('.filter-btn');

@@ -901,7 +901,7 @@
   function esc(s) { return String(s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
 
   // --- Map ---
-  var map = L.map('map').setView([54.94913698118706, -1.6242975395372141], 12);
+  var map = L.map('map');
   L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
     subdomains: 'abcd',
@@ -917,7 +917,14 @@
     });
   }
 
-  var markers = L.markerClusterGroup();
+  // Cluster only when markers genuinely overlap, and stop clustering once
+  // zoomed in so a town's handful of chargers show as individual pins.
+  var markers = L.markerClusterGroup({
+    maxClusterRadius: 40,
+    disableClusteringAtZoom: 14,
+    spiderfyOnMaxZoom: true,
+    showCoverageOnHover: false,
+  });
   var chargerData = [{"lat": 54.92692, "lng": -1.57492, "title": "Lidl-Gateshead Wrekenton", "address": "Durham Road", "connectors": ["Type 2 (Socket Only) · 22kW", "CCS (Type 2) · 50kW", "CHAdeMO · 50kW"], "speed": "rapid"}, {"lat": 54.93291, "lng": -1.612619, "title": "Gateshead College Autoskills Centre", "address": "Gateshead College Autoskills Centre", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 54.965666, "lng": -1.59742, "title": "Gateshead College Baltic Campus", "address": "Baltic Campus, Quarryfield Street", "connectors": ["BS1363 3 Pin 13 Amp · 3.7kW", "BS1363 3 Pin 13 Amp · 3.7kW"], "speed": "slow"}, {"lat": 54.960277, "lng": -1.580953, "title": "Gateshead International Stadium", "address": "Gateshead International Stadium", "connectors": ["CHAdeMO · 50kW", "Type 2 (Socket Only) · 7kW"], "speed": "rapid"}, {"lat": 54.959505, "lng": -1.670352, "title": "zest-year-rock-size", "address": "St. Michaels Way", "connectors": ["Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 54.958653, "lng": -1.674237, "title": "Gateshead, Metro Centre 1", "address": "Gateshead Leisure Centre,", "connectors": ["CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 50kW", "Type 2 (Tethered Connector)  · 43kW"], "speed": "rapid"}, {"lat": 54.958313, "lng": -1.671397, "title": "Metrocentre Yellow Car Park", "address": "Metrocentre Yellow Car Park", "connectors": ["Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 54.958069, "lng": -1.540813, "title": "Bill Quay Farm", "address": "Bill Quay Farm", "connectors": ["Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 54.952284, "lng": -1.601777, "title": "Gateshead Leisure Centre 2", "address": "Prince Consort Road Car Park, Prince Consort Road", "connectors": ["Type 2 (Tethered Connector)  · 50kW", "CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 43kW"], "speed": "rapid"}, {"lat": 54.951862, "lng": -1.602898, "title": "Gateshead Library Leisure", "address": "Gateshead", "connectors": ["Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 54.947144, "lng": -1.650786, "title": "Dunston Leisure Centre", "address": "Dunston", "connectors": ["Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 54.942993, "lng": -1.624498, "title": "Maingate Kingsway", "address": "Maingate Kingsway", "connectors": ["Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 54.933672, "lng": -1.615441, "title": "Gateshead Housing Keelman House", "address": "5th Avenue", "connectors": ["Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 54.97935845256316, "lng": -1.7920743425963792, "title": "Clara Vale Village Hall", "address": "South View", "connectors": ["Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 54.963717, "lng": -1.603064, "title": "Tesco Extra-Gateshead Trinity Square", "address": "1 Trinity Square", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 22kW", "CHAdeMO · 50kW", "CCS (Type 2) · 50kW"], "speed": "rapid"}, {"lat": 54.91543513355222, "lng": -1.5889915272223334, "title": "Angel of the North", "address": "Durham Road", "connectors": ["CCS (Type 2) · 175kW", "CHAdeMO · 100kW"], "speed": "rapid"}, {"lat": 54.9613, "lng": -1.5886, "title": "Evans Halshaw Vauxhall", "address": "Felling", "connectors": ["Type 2 (Socket Only) · 3.7kW", "Type 2 (Socket Only) · 3.7kW"], "speed": "slow"}, {"lat": 54.946105, "lng": -1.548331, "title": "Heworth Leisure Centre High Lanes", "address": "Heworth Leisure Centre High Lanes", "connectors": ["Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 54.953704, "lng": -1.558154, "title": "Gateshead", "address": "Benfield Motors", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 54.967298, "lng": -1.601517, "title": "The Sage Gateshead", "address": "The Sage Gateshead", "connectors": ["Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 54.940335, "lng": -1.620068, "title": "UK Land Estates", "address": "UK Land Estates", "connectors": ["Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 54.905493, "lng": -1.815635, "title": "Blackhall Mill Community Centre", "address": "Blackhall Mill", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}];
 
   chargerData.forEach(function (c) {
@@ -935,6 +942,14 @@
     markers.addLayer(marker);
   });
   map.addLayer(markers);
+
+  // Frame the map to the actual chargers so a town's points are visible
+  // immediately (and small towns land past the de-clustering zoom).
+  if (chargerData.length) {
+    map.fitBounds(markers.getBounds(), { padding: [40, 40], maxZoom: 15 });
+  } else {
+    map.setView([54.94913698118706, -1.6242975395372141], 12);
+  }
 
   // --- Connector filter ---
   var filterBtns = document.querySelectorAll('.filter-btn');

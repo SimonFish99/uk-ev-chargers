@@ -514,7 +514,7 @@
   function esc(s) { return String(s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
 
   // --- Map ---
-  var map = L.map('map').setView([51.50719945727273, -0.4172111756363636], 12);
+  var map = L.map('map');
   L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
     subdomains: 'abcd',
@@ -530,7 +530,14 @@
     });
   }
 
-  var markers = L.markerClusterGroup();
+  // Cluster only when markers genuinely overlap, and stop clustering once
+  // zoomed in so a town's handful of chargers show as individual pins.
+  var markers = L.markerClusterGroup({
+    maxClusterRadius: 40,
+    disableClusteringAtZoom: 14,
+    spiderfyOnMaxZoom: true,
+    showCoverageOnHover: false,
+  });
   var chargerData = [{"lat": 51.516147, "lng": -0.403127, "title": "9000310", "address": "Lombardy Retail Park, Coldharbour Lane", "connectors": ["Type 2 (Socket Only) · 11kW"], "speed": "fast"}, {"lat": 51.516021, "lng": -0.403364, "title": "8001378", "address": "Lombardy Retail Park , Coldharbour Lane", "connectors": ["Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 51.515974, "lng": -0.403098, "title": "8000787", "address": "Lombardy Retail Park, Coldharbour Lane", "connectors": ["Type 2 (Socket Only) · 11kW"], "speed": "fast"}, {"lat": 51.501141, "lng": -0.424914, "title": "Asda Hayes 21", "address": "Millington Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 51.501057, "lng": -0.424543, "title": "Asda Hayes 9", "address": "Millington Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 51.500706, "lng": -0.424671, "title": "Asda Hayes 17", "address": "Millington Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 51.495796, "lng": -0.445836, "title": "EG GROUP HEATHROW NORTH3", "address": "4b Shepiston Ln", "connectors": ["CHAdeMO · 100kW", "CHAdeMO · 100kW", "Type 2 (Tethered Connector)  · 150kW", "Type 2 (Tethered Connector)  · 150kW"], "speed": "rapid"}, {"lat": 51.48167903, "lng": -0.448418932, "title": "EVC ibis Styles Heathrow Airport", "address": "ibis Styles Heathrow Airport", "connectors": ["Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 51.519228, "lng": -0.409331, "title": "Lidl-Uxbridge Road", "address": "482 Uxbridge Road", "connectors": ["Type 2 (Socket Only) · 22kW", "CCS (Type 2) · 50kW", "CHAdeMO · 50kW"], "speed": "rapid"}, {"lat": 51.506821, "lng": -0.416031, "title": "Pump Lane Car Park", "address": "Pump Lane", "connectors": ["BS1363 3 Pin 13 Amp · 3kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 51.524624, "lng": -0.385989, "title": "Tesco Extra-Hayes Yeading", "address": "Glencoe Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}];
 
   chargerData.forEach(function (c) {
@@ -548,6 +555,14 @@
     markers.addLayer(marker);
   });
   map.addLayer(markers);
+
+  // Frame the map to the actual chargers so a town's points are visible
+  // immediately (and small towns land past the de-clustering zoom).
+  if (chargerData.length) {
+    map.fitBounds(markers.getBounds(), { padding: [40, 40], maxZoom: 15 });
+  } else {
+    map.setView([51.50719945727273, -0.4172111756363636], 12);
+  }
 
   // --- Connector filter ---
   var filterBtns = document.querySelectorAll('.filter-btn');

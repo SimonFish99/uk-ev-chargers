@@ -292,7 +292,7 @@
   function esc(s) { return String(s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
 
   // --- Map ---
-  var map = L.map('map').setView([54.84620790465597, -5.830848824751882], 12);
+  var map = L.map('map');
   L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
     subdomains: 'abcd',
@@ -308,7 +308,14 @@
     });
   }
 
-  var markers = L.markerClusterGroup();
+  // Cluster only when markers genuinely overlap, and stop clustering once
+  // zoomed in so a town's handful of chargers show as individual pins.
+  var markers = L.markerClusterGroup({
+    maxClusterRadius: 40,
+    disableClusteringAtZoom: 14,
+    spiderfyOnMaxZoom: true,
+    showCoverageOnHover: false,
+  });
   var chargerData = [{"lat": 54.849495098269415, "lng": -5.81761193636666, "title": "Circular Road West Car Park", "address": "Circular Rd", "connectors": ["CCS (Type 2) · 200kW"], "speed": "rapid"}, {"lat": 54.84572274826334, "lng": -5.808342725044753, "title": "Curran Court Hotel", "address": "6 Redlands Road", "connectors": ["Type 2 (Socket Only) · 7.4kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 54.850706103127436, "lng": -5.840601686824584, "title": "Linn Road Service Station", "address": "16 Linn Road", "connectors": ["CCS (Type 2) · 150kW"], "speed": "rapid"}, {"lat": 54.83476557361965, "lng": -5.867127775523414, "title": "HRL Kilwaughter", "address": "44 Belfast Road", "connectors": ["CCS (Type 2) · 150kW"], "speed": "rapid"}, {"lat": 54.85035, "lng": -5.82056, "title": "Narrow Gauge", "address": "Circular Road", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}];
 
   chargerData.forEach(function (c) {
@@ -326,6 +333,14 @@
     markers.addLayer(marker);
   });
   map.addLayer(markers);
+
+  // Frame the map to the actual chargers so a town's points are visible
+  // immediately (and small towns land past the de-clustering zoom).
+  if (chargerData.length) {
+    map.fitBounds(markers.getBounds(), { padding: [40, 40], maxZoom: 15 });
+  } else {
+    map.setView([54.84620790465597, -5.830848824751882], 12);
+  }
 
   // --- Connector filter ---
   var filterBtns = document.querySelectorAll('.filter-btn');

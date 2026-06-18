@@ -638,7 +638,7 @@
   function esc(s) { return String(s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
 
   // --- Map ---
-  var map = L.map('map').setView([50.82054447904395, -0.38418927905128925], 12);
+  var map = L.map('map');
   L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
     subdomains: 'abcd',
@@ -654,7 +654,14 @@
     });
   }
 
-  var markers = L.markerClusterGroup();
+  // Cluster only when markers genuinely overlap, and stop clustering once
+  // zoomed in so a town's handful of chargers show as individual pins.
+  var markers = L.markerClusterGroup({
+    maxClusterRadius: 40,
+    disableClusteringAtZoom: 14,
+    spiderfyOnMaxZoom: true,
+    showCoverageOnHover: false,
+  });
   var chargerData = [{"lat": 50.827307009118186, "lng": -0.3949751332281437, "title": "Pelham Road", "address": "Pelham Road", "connectors": ["Type 2 (Socket Only) · 6kW", "Type 2 (Socket Only) · 6kW", "Type 2 (Socket Only) · 6kW", "Type 2 (Socket Only) · 6kW"], "speed": "slow"}, {"lat": 50.824083, "lng": -0.426392, "title": "SWEV STATION 4", "address": "Southern House Yeoman Road", "connectors": ["Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 50.827471, "lng": -0.31948, "title": "Freshbrook Road 1", "address": "Lancing", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 50.819359, "lng": -0.395769, "title": "Canterbury Road 1", "address": "Canterbury Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 50.81909, "lng": -0.36405, "title": "Chesswood Road, Broadwater 1", "address": "Broadwater", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 50.815525, "lng": -0.376887, "title": "Victoria Road, Broadwater 1", "address": "Broadwater", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 50.814711, "lng": -0.356744, "title": "Church Walk 1", "address": "Church Walk", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 50.809872, "lng": -0.385523, "title": "Rowlands Road, West Worthing 1", "address": "Rowlands Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 50.807285, "lng": -0.388768, "title": "West Parade 1", "address": "West Parade", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 50.806369, "lng": -0.400508, "title": "Roberts Marine 1", "address": "West Parade", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 50.813249713391116, "lng": -0.43245180900476043, "title": "The Bulls Head", "address": "Goring Street", "connectors": ["CCS (Type 2) · 50kW", "CCS (Type 2) · 50kW"], "speed": "rapid"}, {"lat": 50.8501126675625, "lng": -0.398871585708434, "title": "BP Petrol Forecourt", "address": "183 Findon Road", "connectors": ["CCS (Type 2) · 150kW", "CCS (Type 2) · 150kW"], "speed": "rapid"}, {"lat": 50.818506, "lng": -0.370578, "title": "Morrisons Worthing", "address": "Wm Morrison Supermarkets PLC", "connectors": ["Type 2 (Tethered Connector)  · 43kW", "CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 50kW"], "speed": "rapid"}, {"lat": 50.8346823165435, "lng": -0.367652378776711, "title": "Toby Carvery Worthing ", "address": "Upper Brighton Road", "connectors": ["CHAdeMO · 50kW", "CCS (Type 2) · 50kW", "Type 2 (Tethered Connector)  · 41kW"], "speed": "rapid"}];
 
   chargerData.forEach(function (c) {
@@ -672,6 +679,14 @@
     markers.addLayer(marker);
   });
   map.addLayer(markers);
+
+  // Frame the map to the actual chargers so a town's points are visible
+  // immediately (and small towns land past the de-clustering zoom).
+  if (chargerData.length) {
+    map.fitBounds(markers.getBounds(), { padding: [40, 40], maxZoom: 15 });
+  } else {
+    map.setView([50.82054447904395, -0.38418927905128925], 12);
+  }
 
   // --- Connector filter ---
   var filterBtns = document.querySelectorAll('.filter-btn');

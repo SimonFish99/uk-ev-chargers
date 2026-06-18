@@ -1085,7 +1085,7 @@
   function esc(s) { return String(s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
 
   // --- Map ---
-  var map = L.map('map').setView([53.97966317876579, -1.0748094289280692], 12);
+  var map = L.map('map');
   L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
     subdomains: 'abcd',
@@ -1101,7 +1101,14 @@
     });
   }
 
-  var markers = L.markerClusterGroup();
+  // Cluster only when markers genuinely overlap, and stop clustering once
+  // zoomed in so a town's handful of chargers show as individual pins.
+  var markers = L.markerClusterGroup({
+    maxClusterRadius: 40,
+    disableClusteringAtZoom: 14,
+    spiderfyOnMaxZoom: true,
+    showCoverageOnHover: false,
+  });
   var chargerData = [{"lat": 53.991428, "lng": -1.104439, "title": "Clifton Moor Car Park", "address": "Clifton Moor Shopping Center", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 54.27694463, "lng": -0.939034818, "title": "Kirkbymoorside Golf Club", "address": "Manor Vale Lane", "connectors": ["Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 53.973049, "lng": -1.14924, "title": "Poppleton Bar Park and Ride", "address": "A59", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 53.952729, "lng": -1.073347, "title": "Q-Park Barbican, York 4", "address": "Kent Street", "connectors": ["Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 53.984154, "lng": -1.095365, "title": "ALDI Clifton", "address": "ALDI Clifton", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 53.972918, "lng": -1.150518, "title": "Poppleton Bar rapid charger", "address": "Poppleton Park&Ride", "connectors": ["CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 50kW", "Type 2 (Tethered Connector)  · 43kW"], "speed": "rapid"}, {"lat": 53.963699, "lng": -1.08633, "title": "Bootham Row Car Park", "address": "Bootham Row", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 53.959499, "lng": -1.071522, "title": "Morrisons York", "address": "Layerthorpe", "connectors": ["Type 2 (Tethered Connector)  · 60kW", "CHAdeMO · 50kW", "Type 2 (Socket Only) · 22kW"], "speed": "rapid"}, {"lat": 53.958319, "lng": -1.076517, "title": "Q Parks Shambles, York 1", "address": "Garden Place", "connectors": ["Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 53.95228, "lng": -1.0772, "title": "DRAX00217", "address": "Novotel York", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 53.96837, "lng": -1.15186, "title": "Poppleton Bar layby lane", "address": "North Field Lane", "connectors": ["CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 50kW", "Type 2 (Tethered Connector)  · 43kW"], "speed": "rapid"}, {"lat": 53.9603301, "lng": -1.08705565, "title": "Lendal Tower", "address": "Lendal Bridge", "connectors": ["Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 53.98162514046794, "lng": -1.051295474945391, "title": "Monks Cross Park & Ride", "address": "Martello Way", "connectors": ["Type 2 (Socket Only) · 7.2kW"], "speed": "fast"}, {"lat": 53.98535313253842, "lng": -1.0530792107546176, "title": "York Community Stadium North Car Park ( Near Leisure Centre ) ", "address": "Kathryn Avenue", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 54.115294, "lng": -1.184086, "title": "Coxwold House 1", "address": "Coxwold House", "connectors": ["Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 53.929404, "lng": -0.781537, "title": "West Green Car Park", "address": "West Green", "connectors": ["Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 53.927547, "lng": -1.118227, "title": "Askham Bar Park and Ride", "address": "A64", "connectors": ["CHAdeMO · 50kW", "CHAdeMO · 50kW"], "speed": "rapid"}, {"lat": 53.94822294295494, "lng": -1.1196872883554079, "title": "The Beehive", "address": "22 Ascot Way", "connectors": ["Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 53.9606668218004, "lng": -1.0704838023195862, "title": "Morrisons York Foss Islands", "address": "Foss Islands Rd", "connectors": ["CHAdeMO · 50kW", "CCS (Type 2) · 50kW", "Type 2 (Tethered Connector)  · 43kW"], "speed": "rapid"}, {"lat": 53.990463, "lng": -1.047362, "title": "Travelodge Monks Cross", "address": "Monks Cross Dr", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 53.987102779385964, "lng": -1.0471735107370819, "title": "Monks Cross Car Park F ( Near Pizza Hut )", "address": "Huntington", "connectors": ["Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 53.921558, "lng": -1.078186, "title": "Fulford", "address": "Fulford", "connectors": ["Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 53.954136, "lng": -1.087322, "title": "Nunnery Lane car park", "address": "43 Nunnery Lane", "connectors": ["CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 50kW", "Type 2 (Tethered Connector)  · 43kW"], "speed": "rapid"}, {"lat": 53.92973335244082, "lng": -1.117952620167216, "title": "Askham Bar Park & Ride", "address": "Askham Bar Park & Ride", "connectors": ["CHAdeMO · 50kW", "CCS (Type 2) · 50kW", "Type 2 (Tethered Connector)  · 43kW", "Type 2 (Socket Only) · 7kW"], "speed": "rapid"}, {"lat": 53.9637, "lng": -1.08533, "title": "Bootham Row Car Park", "address": "Bootham Row Car Park", "connectors": ["Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 53.983190927087776, "lng": -1.0522592057785687, "title": "Cineworld Car Park", "address": "Martello Way", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 53.959189, "lng": -1.063445, "title": "This point is reserved for council pool vehicles and visitors to the Eco Depot", "address": "1 Hazel Court", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}];
 
   chargerData.forEach(function (c) {
@@ -1119,6 +1126,14 @@
     markers.addLayer(marker);
   });
   map.addLayer(markers);
+
+  // Frame the map to the actual chargers so a town's points are visible
+  // immediately (and small towns land past the de-clustering zoom).
+  if (chargerData.length) {
+    map.fitBounds(markers.getBounds(), { padding: [40, 40], maxZoom: 15 });
+  } else {
+    map.setView([53.97966317876579, -1.0748094289280692], 12);
+  }
 
   // --- Connector filter ---
   var filterBtns = document.querySelectorAll('.filter-btn');

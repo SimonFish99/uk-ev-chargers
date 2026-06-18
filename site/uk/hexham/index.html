@@ -727,7 +727,7 @@
   function esc(s) { return String(s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
 
   // --- Map ---
-  var map = L.map('map').setView([55.009894220846, -2.170783798026819], 12);
+  var map = L.map('map');
   L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
     subdomains: 'abcd',
@@ -743,7 +743,14 @@
     });
   }
 
-  var markers = L.markerClusterGroup();
+  // Cluster only when markers genuinely overlap, and stop clustering once
+  // zoomed in so a town's handful of chargers show as individual pins.
+  var markers = L.markerClusterGroup({
+    maxClusterRadius: 40,
+    disableClusteringAtZoom: 14,
+    spiderfyOnMaxZoom: true,
+    showCoverageOnHover: false,
+  });
   var chargerData = [{"lat": 54.97240138870322, "lng": -2.0942799107863266, "title": "Tyne Valley Retail Park", "address": "Station Road", "connectors": ["CCS (Type 2) · 150kW", "Type 2 (Socket Only) · 22kW", "CCS (Type 2) · 50kW", "CHAdeMO · 50kW", "CCS (Type 2) · 150kW"], "speed": "rapid"}, {"lat": 54.973358, "lng": -2.10438, "title": "Gilesgate Car Park", "address": "Gilesgate", "connectors": ["Type 2 (Tethered Connector)  · 22kW"], "speed": "fast"}, {"lat": 54.97516, "lng": -2.105351, "title": "Wylam Garage", "address": "Wylam Garage", "connectors": ["Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 54.974666, "lng": -2.093695, "title": "Tyne Mills Industrial Estate", "address": "Tyne Mills Industrial Estate", "connectors": ["Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 55.00559771874762, "lng": -2.197584216162909, "title": "Red Lion Inn", "address": "Stanegate", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 55.144777, "lng": -2.25389, "title": "Bellingham Centre 1", "address": "Bellingham Centre 1", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 55.143994, "lng": -2.252662, "title": "Station Road", "address": "Station Road", "connectors": ["Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 54.97299, "lng": -2.09722, "title": "Hexham, Wentworth Leisure Centre 3 (ABB)", "address": "Wentworth Leisure Centre", "connectors": ["CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 50kW", "Type 2 (Tethered Connector)  · 43kW"], "speed": "rapid"}, {"lat": 54.969433, "lng": -2.092356, "title": "Hexham General Hospital", "address": "Corbridge Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 54.969334, "lng": -2.092356, "title": "Hexham General Hospital", "address": "Corbridge Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 54.969234, "lng": -2.092356, "title": "Hexham General Hospital", "address": "Corbridge Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 54.97253664693119, "lng": -2.097276439506686, "title": "Wentworth Leisure Centre", "address": "Alemouth Road", "connectors": ["CHAdeMO · 50kW", "CCS (Type 2) · 50kW", "Type 2 (Tethered Connector) "], "speed": "rapid"}, {"lat": 55.009783, "lng": -2.323909, "title": "Housesteads Car Park", "address": "Housesteads Car Park", "connectors": ["BS1363 3 Pin 13 Amp · 3kW"], "speed": "slow"}, {"lat": 55.172878, "lng": -2.437382, "title": "The Pheasant Inn", "address": "The Pheasant Inn", "connectors": ["Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 54.995676, "lng": -2.387882, "title": "Once Brewed Visitor Centre", "address": "Once Brewed Visitor Centre", "connectors": ["BS1363 3 Pin 13 Amp · 3kW"], "speed": "slow"}, {"lat": 54.980117, "lng": -2.082049, "title": "Border House", "address": "Beaufront Park", "connectors": ["BS1363 3 Pin 13 Amp · 3kW"], "speed": "slow"}, {"lat": 54.966266, "lng": -2.098696, "title": "Northumberland National Park Offices", "address": "Northumberland National Park Offices", "connectors": ["Type 2 (Socket Only) · 7kW"], "speed": "fast"}];
 
   chargerData.forEach(function (c) {
@@ -761,6 +768,14 @@
     markers.addLayer(marker);
   });
   map.addLayer(markers);
+
+  // Frame the map to the actual chargers so a town's points are visible
+  // immediately (and small towns land past the de-clustering zoom).
+  if (chargerData.length) {
+    map.fitBounds(markers.getBounds(), { padding: [40, 40], maxZoom: 15 });
+  } else {
+    map.setView([55.009894220846, -2.170783798026819], 12);
+  }
 
   // --- Connector filter ---
   var filterBtns = document.querySelectorAll('.filter-btn');

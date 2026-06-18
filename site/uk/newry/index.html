@@ -567,7 +567,7 @@
   function esc(s) { return String(s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
 
   // --- Map ---
-  var map = L.map('map').setView([54.16645709647582, -6.325144015585371], 12);
+  var map = L.map('map');
   L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
     subdomains: 'abcd',
@@ -583,7 +583,14 @@
     });
   }
 
-  var markers = L.markerClusterGroup();
+  // Cluster only when markers genuinely overlap, and stop clustering once
+  // zoomed in so a town's handful of chargers show as individual pins.
+  var markers = L.markerClusterGroup({
+    maxClusterRadius: 40,
+    disableClusteringAtZoom: 14,
+    spiderfyOnMaxZoom: true,
+    showCoverageOnHover: false,
+  });
   var chargerData = [{"lat": 54.030441212589324, "lng": -6.068342975481869, "title": "Chestnutt Holiday Park", "address": "3 Grange Road", "connectors": ["Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 54.171282869883726, "lng": -6.341730082759312, "title": "Buttercrane Shopping Centre", "address": "Bridge Street", "connectors": ["Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 54.19663261000278, "lng": -6.342957837246502, "title": "Norbrook Laboratories", "address": "Carnbane East Industrial Estate", "connectors": ["Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 54.19359374522645, "lng": -6.354705439595136, "title": "Norbrook Laboratories", "address": "Armagh Road", "connectors": ["Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 54.18015490699156, "lng": -6.345129648580922, "title": "Newry Leisure Centre", "address": "Cecil Street", "connectors": ["CHAdeMO · 50kW", "CCS (Type 2) · 50kW"], "speed": "rapid"}, {"lat": 54.145517219079636, "lng": -6.356718127434675, "title": "Claire's Coffee", "address": "Forkhill Rd", "connectors": ["CCS (Type 2) · 24kW"], "speed": "fast"}, {"lat": 54.18866782815138, "lng": -6.363186823286014, "title": "Norbrook Laboratories", "address": "Station Rd", "connectors": ["Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 54.19133770551889, "lng": -6.348560856273139, "title": "Damolly Retail Park", "address": "Armagh Road", "connectors": ["CCS (Type 2) · 60kW", "CHAdeMO · 60kW", "Type 2 (Socket Only) · 11kW"], "speed": "rapid"}, {"lat": 54.176446359863604, "lng": -6.3421095379494545, "title": "Monaghan Street Car Park", "address": "Monaghan Street", "connectors": ["Type 2 (Socket Only) · 22kW", "CCS (Type 2)"], "speed": "fast"}, {"lat": 54.17600161019362, "lng": -6.341547619244125, "title": "Canal Court Hotel", "address": "Merchants Quay", "connectors": ["Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 54.175294491790055, "lng": -6.337922024620326, "title": "Hill Street", "address": "Hill Street", "connectors": ["Type 2 (Socket Only) · 22kW", "CCS (Type 2) · 100kW"], "speed": "rapid"}, {"lat": 54.17025269489454, "lng": -6.341441230138344, "title": "Bridge Street Car Park", "address": "Bridge Street", "connectors": ["Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 54.168319, "lng": -6.34252, "title": "The Quays Shopping Centre", "address": "20 The Quays", "connectors": ["Type 2 (Socket Only) · 7kW"], "speed": "fast"}];
 
   chargerData.forEach(function (c) {
@@ -601,6 +608,14 @@
     markers.addLayer(marker);
   });
   map.addLayer(markers);
+
+  // Frame the map to the actual chargers so a town's points are visible
+  // immediately (and small towns land past the de-clustering zoom).
+  if (chargerData.length) {
+    map.fitBounds(markers.getBounds(), { padding: [40, 40], maxZoom: 15 });
+  } else {
+    map.setView([54.16645709647582, -6.325144015585371], 12);
+  }
 
   // --- Connector filter ---
   var filterBtns = document.querySelectorAll('.filter-btn');

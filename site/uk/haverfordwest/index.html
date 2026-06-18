@@ -479,7 +479,7 @@
   function esc(s) { return String(s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
 
   // --- Map ---
-  var map = L.map('map').setView([51.80592318192813, -4.968557932674718], 12);
+  var map = L.map('map');
   L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
     subdomains: 'abcd',
@@ -495,7 +495,14 @@
     });
   }
 
-  var markers = L.markerClusterGroup();
+  // Cluster only when markers genuinely overlap, and stop clustering once
+  // zoomed in so a town's handful of chargers show as individual pins.
+  var markers = L.markerClusterGroup({
+    maxClusterRadius: 40,
+    disableClusteringAtZoom: 14,
+    spiderfyOnMaxZoom: true,
+    showCoverageOnHover: false,
+  });
   var chargerData = [{"lat": 51.8070825, "lng": -4.967699, "title": "Bridge Meadow Retail Park", "address": "Bridge Meadow", "connectors": ["CCS (Type 2) · 160kW", "CHAdeMO · 60kW"], "speed": "rapid"}, {"lat": 51.82293478735315, "lng": -4.9665808077817815, "title": "MFG Haverfordwest Service Station", "address": "Fishguard Road", "connectors": ["CCS (Type 2) · 150kW", "CHAdeMO · 50kW"], "speed": "rapid"}, {"lat": 51.817214, "lng": -4.963493, "title": "The Lost Coins", "address": "Fishguard Road", "connectors": ["CHAdeMO · 50kW", "CHAdeMO · 50kW", "CHAdeMO · 50kW", "CCS (Type 2) · 75kW", "CCS (Type 2) · 75kW", "CCS (Type 2) · 50kW", "Type 2 (Socket Only) · 16kW", "Type 2 (Socket Only) · 16kW", "Type 2 (Socket Only) · 11kW"], "speed": "rapid"}, {"lat": 51.7919963, "lng": -4.9791729, "title": "InstaVolt McDonald's Haverfordwest", "address": "Caradocs Well Road", "connectors": ["CCS (Type 2) · 120kW", "CHAdeMO · 50kW"], "speed": "rapid"}, {"lat": 51.8033, "lng": -4.96681, "title": "Riverside Multi-storey Carpark", "address": "Cartlett Road", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 51.79749605, "lng": -4.97807909, "title": "Tesco Extra-Haverfordwest", "address": "Fenton Trading Estate", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.800952, "lng": -4.965811596290678, "title": "County Hall Car Park, Haverfordwest", "address": "Freemens Way", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW", "CHAdeMO · 50kW", "CCS (Type 2) · 50kW"], "speed": "rapid"}, {"lat": 51.800709, "lng": -4.96587, "title": "County Hall Car Park", "address": "County Hall", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 51.811624, "lng": -4.963505, "title": "Withybush Retail Park", "address": "Withybush Retail Park", "connectors": ["Type 2 (Tethered Connector)  · 43kW", "CHAdeMO · 50kW", "CCS (Type 2) · 50kW"], "speed": "rapid"}];
 
   chargerData.forEach(function (c) {
@@ -513,6 +520,14 @@
     markers.addLayer(marker);
   });
   map.addLayer(markers);
+
+  // Frame the map to the actual chargers so a town's points are visible
+  // immediately (and small towns land past the de-clustering zoom).
+  if (chargerData.length) {
+    map.fitBounds(markers.getBounds(), { padding: [40, 40], maxZoom: 15 });
+  } else {
+    map.setView([51.80592318192813, -4.968557932674718], 12);
+  }
 
   // --- Connector filter ---
   var filterBtns = document.querySelectorAll('.filter-btn');

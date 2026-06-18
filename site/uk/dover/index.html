@@ -614,7 +614,7 @@
   function esc(s) { return String(s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
 
   // --- Map ---
-  var map = L.map('map').setView([51.153138731346225, 1.312086725810785], 12);
+  var map = L.map('map');
   L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
     subdomains: 'abcd',
@@ -630,7 +630,14 @@
     });
   }
 
-  var markers = L.markerClusterGroup();
+  // Cluster only when markers genuinely overlap, and stop clustering once
+  // zoomed in so a town's handful of chargers show as individual pins.
+  var markers = L.markerClusterGroup({
+    maxClusterRadius: 40,
+    disableClusteringAtZoom: 14,
+    spiderfyOnMaxZoom: true,
+    showCoverageOnHover: false,
+  });
   var chargerData = [{"lat": 51.124371, "lng": 1.294852, "title": "Charger only available to members of the public at evenings and weekends", "address": "Vale View Road", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 51.1540720789193, "lng": 1.29939767103181, "title": "Tesco Extra Dover", "address": "Honeywood Parkway", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.11281, "lng": 1.31552, "title": "St James Retail and Leisure Park", "address": "St James Street", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.128985169899416, "lng": 1.3096731170586375, "title": "Dover Police Station", "address": "6 Park Place", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.12281, "lng": 1.31552, "title": "Waterloo Crescent", "address": "13 Waterloo Crescent", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.1180228584967, "lng": 1.3071460292129, "title": "MFG Dover Forecourt", "address": "Limekiln Street", "connectors": ["CCS (Type 2) · 150kW", "CHAdeMO · 100kW"], "speed": "rapid"}, {"lat": 51.278282, "lng": 1.33839, "title": "GAZEN SALTS CAR PARK 1", "address": "Sandwich", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.14401804691737, "lng": 1.273850390409955, "title": "169 Lewisham Road (Car Park)", "address": "169 Lewisham Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.12871449364174, "lng": 1.311413747254271, "title": "Maison Dieu Car Park", "address": "Maison Dieu Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.12503890395585, "lng": 1.3048697877249624, "title": "81 Folkestone Road", "address": "81 Folkestone Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.12361904389009, "lng": 1.3115949512182132, "title": "Albany Place Car Park", "address": "Albany Place", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.145237620318916, "lng": 1.3293921819208443, "title": "Shell Guston Road", "address": "Guston Road", "connectors": ["CCS (Type 2) · 175kW", "CHAdeMO · 70kW", "CCS (Type 2) · 175kW", "CHAdeMO · 70kW"], "speed": "rapid"}, {"lat": 51.2848222914615, "lng": 1.34550755970861, "title": "Discovery Park Sandwich", "address": "Ramsgate Road", "connectors": ["CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 43kW", "CCS (Type 2) · 50kW"], "speed": "rapid"}];
 
   chargerData.forEach(function (c) {
@@ -648,6 +655,14 @@
     markers.addLayer(marker);
   });
   map.addLayer(markers);
+
+  // Frame the map to the actual chargers so a town's points are visible
+  // immediately (and small towns land past the de-clustering zoom).
+  if (chargerData.length) {
+    map.fitBounds(markers.getBounds(), { padding: [40, 40], maxZoom: 15 });
+  } else {
+    map.setView([51.153138731346225, 1.312086725810785], 12);
+  }
 
   // --- Connector filter ---
   var filterBtns = document.querySelectorAll('.filter-btn');

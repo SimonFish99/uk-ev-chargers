@@ -953,7 +953,7 @@
   function esc(s) { return String(s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
 
   // --- Map ---
-  var map = L.map('map').setView([52.12525186539856, -0.47685245303971746], 12);
+  var map = L.map('map');
   L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
     subdomains: 'abcd',
@@ -969,7 +969,14 @@
     });
   }
 
-  var markers = L.markerClusterGroup();
+  // Cluster only when markers genuinely overlap, and stop clustering once
+  // zoomed in so a town's handful of chargers show as individual pins.
+  var markers = L.markerClusterGroup({
+    maxClusterRadius: 40,
+    disableClusteringAtZoom: 14,
+    spiderfyOnMaxZoom: true,
+    showCoverageOnHover: false,
+  });
   var chargerData = [{"lat": 52.129725, "lng": -0.463278, "title": "Starbucks St Johns Retail Park", "address": "Starbucks St Johns Retail Park", "connectors": ["CCS (Type 2) · 60kW", "CHAdeMO · 50kW", "CCS (Type 2) · 60kW", "CHAdeMO · 50kW", "CCS (Type 2) · 60kW", "CHAdeMO · 50kW"], "speed": "rapid"}, {"lat": 52.13868919874014, "lng": -0.4435837143638821, "title": "BP", "address": "Newnham Avenue", "connectors": ["CCS (Type 2) · 150kW"], "speed": "rapid"}, {"lat": 52.14623012487246, "lng": -0.487979415807132, "title": "McDonalds", "address": "Fairhill", "connectors": ["CCS (Type 2) · 150kW"], "speed": "rapid"}, {"lat": 52.2310481, "lng": -0.57030869, "title": "EVC Colworth Science Park - Car Park 3", "address": "Sharnbrook", "connectors": ["Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 52.23240523, "lng": -0.566040642, "title": "EVC Colworth Science Park - Car Park 2", "address": "Sharnbrook", "connectors": ["Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 52.14445215169953, "lng": -0.41944486192132296, "title": "Waitrose Car Park", "address": "Goldington Road", "connectors": ["CCS (Type 2) · 120kW"], "speed": "rapid"}, {"lat": 52.027967, "lng": -0.449265, "title": "Maulden", "address": "Maulden Rise", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 52.03198, "lng": -0.4686, "title": "The Brache", "address": "The Brache", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 52.010369, "lng": -0.382704, "title": "Recreation Rise", "address": "Recreation Rise", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 52.129275, "lng": -0.451735, "title": "Tesco Extra-Bedford", "address": "Cardington RD", "connectors": ["Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 52.139025, "lng": -0.486158, "title": "Cutcliffe Grove 1", "address": "Cutcliffe Grove", "connectors": ["Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 52.1433418873239, "lng": -0.426522312494171, "title": "Toby Carvery Goldington", "address": "403 Goldington Road", "connectors": ["CCS (Type 2) · 50kW", "CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 43kW"], "speed": "rapid"}, {"lat": 52.146874, "lng": -0.487909, "title": "Brewpoint", "address": "Cut Throat Lane", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 52.05048, "lng": -0.5292, "title": "Millbrook Proving Ground", "address": "Millbrook Proving Ground", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 52.12813563685225, "lng": -0.4723968808622203, "title": "Bedfordshire Hospitals NHS Foundation Trust", "address": "Kempston Road", "connectors": ["Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 52.13830387146308, "lng": -0.48540663491507985, "title": "Cutcliffe Grove", "address": "Cutcliffe Grove", "connectors": ["Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 52.1433408299296, "lng": -0.4731700714876297, "title": "Park Road West", "address": "Park Road West", "connectors": ["Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 52.1438469320764, "lng": -0.45854590574913345, "title": "Oaklands Road", "address": "Oaklands Road", "connectors": ["Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 52.135861330333086, "lng": -0.4517061683382053, "title": "Russell Avenue", "address": "Russell Avenue", "connectors": ["Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 52.125927610876374, "lng": -0.4714511219747237, "title": "Victoria Road", "address": "Victoria Road", "connectors": ["Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 52.142921, "lng": -0.424404, "title": "Tesco Superstore-Bedford Riverfield Drive", "address": "Riverfield Drive", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 52.146854, "lng": -0.469889, "title": "Foster Hill Road Car Park", "address": "Foster Hill Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 52.07374, "lng": -0.627908, "title": "Cranfield University", "address": "Central avenue", "connectors": ["CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 43kW", "Type 2 (Tethered Connector)  · 50kW"], "speed": "rapid"}];
 
   chargerData.forEach(function (c) {
@@ -987,6 +994,14 @@
     markers.addLayer(marker);
   });
   map.addLayer(markers);
+
+  // Frame the map to the actual chargers so a town's points are visible
+  // immediately (and small towns land past the de-clustering zoom).
+  if (chargerData.length) {
+    map.fitBounds(markers.getBounds(), { padding: [40, 40], maxZoom: 15 });
+  } else {
+    map.setView([52.12525186539856, -0.47685245303971746], 12);
+  }
 
   // --- Connector filter ---
   var filterBtns = document.querySelectorAll('.filter-btn');

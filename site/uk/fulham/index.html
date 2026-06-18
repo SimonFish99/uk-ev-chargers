@@ -807,7 +807,7 @@
   function esc(s) { return String(s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
 
   // --- Map ---
-  var map = L.map('map').setView([51.477044049999996, -0.16491899999999998], 12);
+  var map = L.map('map');
   L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
     subdomains: 'abcd',
@@ -823,7 +823,14 @@
     });
   }
 
-  var markers = L.markerClusterGroup();
+  // Cluster only when markers genuinely overlap, and stop clustering once
+  // zoomed in so a town's handful of chargers show as individual pins.
+  var markers = L.markerClusterGroup({
+    maxClusterRadius: 40,
+    disableClusteringAtZoom: 14,
+    spiderfyOnMaxZoom: true,
+    showCoverageOnHover: false,
+  });
   var chargerData = [{"lat": 51.48266, "lng": -0.209305, "title": "Delaford Street", "address": "Delaford Street", "connectors": ["Type 2 (Socket Only) · 4.8kW"], "speed": "slow"}, {"lat": 51.48186, "lng": -0.20832, "title": "Prothero Road", "address": "Tadmor Street", "connectors": ["Type 2 (Socket Only) · 4.8kW"], "speed": "slow"}, {"lat": 51.48015, "lng": 0.18889, "title": "Holmead Road", "address": "Rosebury Road", "connectors": ["Type 2 (Socket Only) · 4.8kW"], "speed": "slow"}, {"lat": 51.47986, "lng": 0.18844, "title": "Holmead Road", "address": "Holmead Road", "connectors": ["Type 2 (Socket Only) · 4.8kW"], "speed": "slow"}, {"lat": 51.478312, "lng": -0.21682, "title": "Atalanta Street", "address": "Atalanta Street", "connectors": ["Type 2 (Socket Only) · 4.8kW"], "speed": "slow"}, {"lat": 51.477773, "lng": -0.205549, "title": "Lilyville Road", "address": "Lilyville Road", "connectors": ["Type 2 (Socket Only) · 4.8kW"], "speed": "slow"}, {"lat": 51.47759, "lng": -0.212606, "title": "Danehurst Street", "address": "Elbe Street", "connectors": ["Type 2 (Socket Only) · 4.8kW"], "speed": "slow"}, {"lat": 51.477504, "lng": -0.212951, "title": "Danehurst Street", "address": "Colehill Lane", "connectors": ["Type 2 (Socket Only) · 4.8kW"], "speed": "slow"}, {"lat": 51.476702, "lng": -0.214516, "title": "Lambrook Terrace", "address": "Lambrook Terrace", "connectors": ["Type 2 (Socket Only) · 4.8kW"], "speed": "slow"}, {"lat": 51.474904, "lng": -0.207278, "title": "Felden Street", "address": "Felden Street", "connectors": ["Type 2 (Socket Only) · 4.8kW"], "speed": "slow"}, {"lat": 51.474087, "lng": -0.187627, "title": "Bagleys Lane", "address": "Bagleys Lane", "connectors": ["Type 2 (Socket Only) · 4.8kW"], "speed": "slow"}, {"lat": 51.473813, "lng": -0.186923, "title": "Bagleys Lane", "address": "Bagleys Lane", "connectors": ["Type 2 (Socket Only) · 4.8kW"], "speed": "slow"}, {"lat": 51.479045, "lng": -0.193506, "title": "Cedarne Road", "address": "Cedarne Road", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 51.474341, "lng": -0.21129, "title": "Burnfoot Road", "address": "Burnfoot Avenue", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 51.484246, "lng": -0.197095, "title": "Halford Road", "address": "Halford Road", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 51.479811, "lng": -0.211292, "title": "Sherbrooke Road", "address": "Sherbrooke Road", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 51.47253, "lng": -0.209087, "title": "Shell Fulham", "address": "Fulham Road 923-931", "connectors": ["CHAdeMO · 50kW", "CCS (Type 2) · 150kW"], "speed": "rapid"}, {"lat": 51.470693, "lng": -0.209307, "title": "24 Buer Road", "address": "24 Buer Road", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 51.469195, "lng": -0.191129, "title": "Woolneigh Street", "address": "Woolneigh Street", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 51.475805, "lng": -0.191109, "title": "Cresford Road", "address": "Cresford Road", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}];
 
   chargerData.forEach(function (c) {
@@ -841,6 +848,14 @@
     markers.addLayer(marker);
   });
   map.addLayer(markers);
+
+  // Frame the map to the actual chargers so a town's points are visible
+  // immediately (and small towns land past the de-clustering zoom).
+  if (chargerData.length) {
+    map.fitBounds(markers.getBounds(), { padding: [40, 40], maxZoom: 15 });
+  } else {
+    map.setView([51.477044049999996, -0.16491899999999998], 12);
+  }
 
   // --- Connector filter ---
   var filterBtns = document.querySelectorAll('.filter-btn');

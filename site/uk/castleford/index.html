@@ -452,7 +452,7 @@
   function esc(s) { return String(s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
 
   // --- Map ---
-  var map = L.map('map').setView([53.71619757419287, -1.3571410923752592], 12);
+  var map = L.map('map');
   L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
     subdomains: 'abcd',
@@ -468,7 +468,14 @@
     });
   }
 
-  var markers = L.markerClusterGroup();
+  // Cluster only when markers genuinely overlap, and stop clustering once
+  // zoomed in so a town's handful of chargers show as individual pins.
+  var markers = L.markerClusterGroup({
+    maxClusterRadius: 40,
+    disableClusteringAtZoom: 14,
+    spiderfyOnMaxZoom: true,
+    showCoverageOnHover: false,
+  });
   var chargerData = [{"lat": 53.715887, "lng": -1.382661, "title": "Tap Zap Go - Castleford", "address": "Willowbridge Lane", "connectors": ["CCS (Type 2) · 120kW"], "speed": "rapid"}, {"lat": 53.7147377781576, "lng": -1.3491883557226174, "title": "Birchwood Farm", "address": "Colorado Way", "connectors": ["CCS (Type 2) · 75kW", "CCS (Type 2) · 73kW", "CHAdeMO · 75kW", "CCS (Type 2) · 75kW"], "speed": "rapid"}, {"lat": 53.71784391, "lng": -1.394816071, "title": "EVC Whitwood Golf Course", "address": "Altofts Ln, Whitwood Ln", "connectors": ["Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 53.726627, "lng": -1.363725, "title": "PETER AMBROSE CARPARK 1", "address": "5 Methley Rd", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 53.70986178, "lng": -1.3399258, "title": "Xscape Yorkshire", "address": "Colorado Way", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 53.714512, "lng": -1.351551, "title": "Asda Glasshoughton", "address": "Glasshoughton", "connectors": ["Type 2 (Socket Only) · 22kW", "CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 50kW"], "speed": "rapid"}, {"lat": 53.71185838443719, "lng": -1.3408038229654267, "title": "Junction 32 Retail Outlet : Blue Car Park", "address": "Tomahawk Trail", "connectors": ["Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 53.709185315141, "lng": -1.33570178168929, "title": "McDonald's Glasshoughton", "address": "Colorado Way", "connectors": ["CCS (Type 2) · 50kW", "CHAdeMO · 50kW"], "speed": "rapid"}, {"lat": 53.725265, "lng": -1.355897, "title": "Welbeck Street", "address": "Welbeck Street", "connectors": ["Type 2 (Socket Only) · 22kW", "CHAdeMO · 50kW", "CCS (Type 2) · 50kW"], "speed": "rapid"}];
 
   chargerData.forEach(function (c) {
@@ -486,6 +493,14 @@
     markers.addLayer(marker);
   });
   map.addLayer(markers);
+
+  // Frame the map to the actual chargers so a town's points are visible
+  // immediately (and small towns land past the de-clustering zoom).
+  if (chargerData.length) {
+    map.fitBounds(markers.getBounds(), { padding: [40, 40], maxZoom: 15 });
+  } else {
+    map.setView([53.71619757419287, -1.3571410923752592], 12);
+  }
 
   // --- Connector filter ---
   var filterBtns = document.querySelectorAll('.filter-btn');

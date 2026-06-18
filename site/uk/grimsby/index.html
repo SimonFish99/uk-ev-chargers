@@ -460,7 +460,7 @@
   function esc(s) { return String(s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
 
   // --- Map ---
-  var map = L.map('map').setView([53.563244321740555, -0.10078665739297624], 12);
+  var map = L.map('map');
   L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
     subdomains: 'abcd',
@@ -476,7 +476,14 @@
     });
   }
 
-  var markers = L.markerClusterGroup();
+  // Cluster only when markers genuinely overlap, and stop clustering once
+  // zoomed in so a town's handful of chargers show as individual pins.
+  var markers = L.markerClusterGroup({
+    maxClusterRadius: 40,
+    disableClusteringAtZoom: 14,
+    spiderfyOnMaxZoom: true,
+    showCoverageOnHover: false,
+  });
   var chargerData = [{"lat": 53.56527, "lng": -0.103091, "title": "Lidl-Cromwell Road", "address": "Cromwell Road", "connectors": ["Type 2 (Socket Only) · 22kW", "CCS (Type 2) · 50kW", "CHAdeMO · 50kW"], "speed": "rapid"}, {"lat": 53.567737, "lng": -0.073629, "title": "Wellington Street", "address": "Wellington Street", "connectors": ["Unknown · 7kW"], "speed": "fast"}, {"lat": 53.58307258800943, "lng": -0.11843275923069996, "title": "Woad Lane", "address": "Woad Lane", "connectors": ["CCS (Type 2) · 50kW"], "speed": "rapid"}, {"lat": 53.57006542, "lng": -0.07985169, "title": "Tesco Extra-Grimsby", "address": "Market Street", "connectors": ["Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 53.55024, "lng": -0.137955, "title": "Morrisons Cleethorpes", "address": "Hilmore Road, Laceby", "connectors": ["Type 2 (Socket Only) · 22kW", "CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 50kW"], "speed": "rapid"}, {"lat": 53.55081204751349, "lng": -0.14022371374528575, "title": "Morrisons Grimsby", "address": "Hilmore Rd", "connectors": ["Type 2 (Socket Only) · 22kW", "CHAdeMO · 50kW", "CCS (Type 2) · 50kW"], "speed": "rapid"}, {"lat": 53.5538262788832, "lng": -0.0740418635042488, "title": "Miller & Carter Grimsby", "address": "Weelsby Road", "connectors": ["CCS (Type 2) · 50kW", "CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 43kW"], "speed": "rapid"}, {"lat": 53.5569665612589, "lng": -0.0906788900565516, "title": "Millfields Hotel", "address": "53 Bargate", "connectors": ["Type 2 (Socket Only) · 7kW", "CCS (Type 2) · 50kW", "Type 2 (Tethered Connector)  · 43kW", "CHAdeMO · 50kW"], "speed": "rapid"}, {"lat": 53.571209, "lng": -0.089176, "title": "Side of Nissan showroom", "address": "Corporation Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}];
 
   chargerData.forEach(function (c) {
@@ -494,6 +501,14 @@
     markers.addLayer(marker);
   });
   map.addLayer(markers);
+
+  // Frame the map to the actual chargers so a town's points are visible
+  // immediately (and small towns land past the de-clustering zoom).
+  if (chargerData.length) {
+    map.fitBounds(markers.getBounds(), { padding: [40, 40], maxZoom: 15 });
+  } else {
+    map.setView([53.563244321740555, -0.10078665739297624], 12);
+  }
 
   // --- Connector filter ---
   var filterBtns = document.querySelectorAll('.filter-btn');

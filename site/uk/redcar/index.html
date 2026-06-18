@@ -616,7 +616,7 @@
   function esc(s) { return String(s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
 
   // --- Map ---
-  var map = L.map('map').setView([54.60541538965998, -1.0750052984816667], 12);
+  var map = L.map('map');
   L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
     subdomains: 'abcd',
@@ -632,7 +632,14 @@
     });
   }
 
-  var markers = L.markerClusterGroup();
+  // Cluster only when markers genuinely overlap, and stop clustering once
+  // zoomed in so a town's handful of chargers show as individual pins.
+  var markers = L.markerClusterGroup({
+    maxClusterRadius: 40,
+    disableClusteringAtZoom: 14,
+    spiderfyOnMaxZoom: true,
+    showCoverageOnHover: false,
+  });
   var chargerData = [{"lat": 54.617907, "lng": -1.060863, "title": "Graffenburg Street Car Park, Redcar 1", "address": "7 Graffenburg Street", "connectors": ["Type 2 (Tethered Connector)  · 50kW", "CHAdeMO · 50kW", "Type 2 (Socket Only) · 22kW"], "speed": "rapid"}, {"lat": 54.57611288096236, "lng": -1.099406020486193, "title": "EVC Wilton Centre", "address": "Wilton", "connectors": ["Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 54.61609, "lng": -1.056821, "title": "Fishermans Square Car Park, Redcar 6", "address": "Lord Street", "connectors": ["Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 54.615598, "lng": -1.068503, "title": "Redcar Central Rail Station Car Park 2", "address": "West Dyke Road", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 54.593118, "lng": -1.051787, "title": "J. Murphy and Sons-Redcar", "address": "Acacia Court", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 54.6144741, "lng": -1.0661131, "title": "McDonald's Redcar Retail Park", "address": "Redcar Retail Park", "connectors": ["CCS (Type 2) · 120kW", "CHAdeMO · 100kW"], "speed": "rapid"}, {"lat": 54.613524, "lng": -1.066035, "title": "Tesco Superstore-Redcar", "address": "West Dyke Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 54.617108457239226, "lng": -1.0669979850952132, "title": "Morrisons Redcar", "address": "Lord Street", "connectors": ["CCS (Type 2) · 50kW", "CHAdeMO · 50kW", "Type 2 (Socket Only) · 22kW"], "speed": "rapid"}, {"lat": 54.61304384157674, "lng": -1.0861671068339547, "title": "Drive Vauxhall", "address": "Trunk Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW", "CCS (Type 2) · 50kW"], "speed": "rapid"}, {"lat": 54.59227300803525, "lng": -1.0881980071761745, "title": "Geocore Site Investigations", "address": "Tralee Close", "connectors": ["Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 54.59392150874953, "lng": -1.08818854695528, "title": "The Innovation Centre", "address": "Vienna Court", "connectors": ["Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 54.61724184113868, "lng": -1.0718268616482192, "title": "Coatham Surgery", "address": "Coatham Health Village", "connectors": [], "speed": "slow"}, {"lat": 54.60850318420691, "lng": -1.09819421843099, "title": "Beyond Housing", "address": "14 Ennis Square", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 54.58689963333106, "lng": -1.0809733321173098, "title": "Kirkleatham Walled Garden", "address": "Plantation Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}];
 
   chargerData.forEach(function (c) {
@@ -650,6 +657,14 @@
     markers.addLayer(marker);
   });
   map.addLayer(markers);
+
+  // Frame the map to the actual chargers so a town's points are visible
+  // immediately (and small towns land past the de-clustering zoom).
+  if (chargerData.length) {
+    map.fitBounds(markers.getBounds(), { padding: [40, 40], maxZoom: 15 });
+  } else {
+    map.setView([54.60541538965998, -1.0750052984816667], 12);
+  }
 
   // --- Connector filter ---
   var filterBtns = document.querySelectorAll('.filter-btn');

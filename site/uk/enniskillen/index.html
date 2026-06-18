@@ -435,7 +435,7 @@
   function esc(s) { return String(s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
 
   // --- Map ---
-  var map = L.map('map').setView([54.334754380198646, -7.606628253868276], 12);
+  var map = L.map('map');
   L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
     subdomains: 'abcd',
@@ -451,7 +451,14 @@
     });
   }
 
-  var markers = L.markerClusterGroup();
+  // Cluster only when markers genuinely overlap, and stop clustering once
+  // zoomed in so a town's handful of chargers show as individual pins.
+  var markers = L.markerClusterGroup({
+    maxClusterRadius: 40,
+    disableClusteringAtZoom: 14,
+    spiderfyOnMaxZoom: true,
+    showCoverageOnHover: false,
+  });
   var chargerData = [{"lat": 54.34652290846017, "lng": -7.631129910708296, "title": "Enniskilleen Hotel", "address": "72 Forthill Street", "connectors": ["Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 54.37133243503982, "lng": -7.628692760453788, "title": "College of Agriculture Food and Rural Enterprise (CAFRE)", "address": "Mullaghmeen Road", "connectors": ["CCS (Type 2) · 24kW", "CHAdeMO · 24kW"], "speed": "fast"}, {"lat": 54.35549599710342, "lng": -7.596646961625424, "title": "Enniskillen Business Centre", "address": "21 Lackaghboy Road", "connectors": ["CCS (Type 2) · 24kW", "Type 2 (Socket Only) · 11kW"], "speed": "fast"}, {"lat": 54.334207223883396, "lng": -7.62040987791238, "title": "Killyhevlin Business Centre", "address": "3 Black Stick Road", "connectors": ["CCS (Type 2) · 24kW", "Type 2 (Socket Only) · 11kW"], "speed": "fast"}, {"lat": 54.32887774155765, "lng": -7.618484042835689, "title": "Killyhevlin Lakeside Hotel & Lodges", "address": "Dublin Road", "connectors": ["CCS (Type 2) · 60kW", "Type 2 (Socket Only) · 11kW"], "speed": "rapid"}, {"lat": 54.470137, "lng": -7.640219, "title": "Bawnacre Centre Irvinestown", "address": "85 Marble Arch Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 54.29431211574337, "lng": -7.464007731278912, "title": "DRD Car Park, Main St, Maguiresbridge", "address": "36 Main Street", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 54.258321, "lng": -7.813347, "title": "Marble Arch Caves Florencecourt", "address": "Marble Arch Caves", "connectors": ["Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 54.253583, "lng": -7.446717, "title": "Castle Park Leisure Centre", "address": "Castle Park Leisure Centre", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}];
 
   chargerData.forEach(function (c) {
@@ -469,6 +476,14 @@
     markers.addLayer(marker);
   });
   map.addLayer(markers);
+
+  // Frame the map to the actual chargers so a town's points are visible
+  // immediately (and small towns land past the de-clustering zoom).
+  if (chargerData.length) {
+    map.fitBounds(markers.getBounds(), { padding: [40, 40], maxZoom: 15 });
+  } else {
+    map.setView([54.334754380198646, -7.606628253868276], 12);
+  }
 
   // --- Connector filter ---
   var filterBtns = document.querySelectorAll('.filter-btn');

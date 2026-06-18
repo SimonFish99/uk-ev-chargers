@@ -433,7 +433,7 @@
   function esc(s) { return String(s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
 
   // --- Map ---
-  var map = L.map('map').setView([51.63033446523784, -0.18240356109365685], 12);
+  var map = L.map('map');
   L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
     subdomains: 'abcd',
@@ -449,7 +449,14 @@
     });
   }
 
-  var markers = L.markerClusterGroup();
+  // Cluster only when markers genuinely overlap, and stop clustering once
+  // zoomed in so a town's handful of chargers show as individual pins.
+  var markers = L.markerClusterGroup({
+    maxClusterRadius: 40,
+    disableClusteringAtZoom: 14,
+    spiderfyOnMaxZoom: true,
+    showCoverageOnHover: false,
+  });
   var chargerData = [{"lat": 51.625239, "lng": -0.176234, "title": "1085 HIGH ROAD", "address": "1085 High Road", "connectors": ["CHAdeMO · 22kW", "Type 2 (Tethered Connector)  · 25kW"], "speed": "fast"}, {"lat": 51.619396, "lng": -0.176522, "title": "886-902 HIGH ROAD", "address": "886-902 HIGH ROAD", "connectors": ["CHAdeMO · 22kW", "Type 2 (Tethered Connector)  · 25kW"], "speed": "fast"}, {"lat": 51.615878, "lng": -0.176644, "title": "780-782 High Street", "address": "780-782 High Street", "connectors": ["Type 2 (Tethered Connector)  · 25kW", "CHAdeMO · 22kW"], "speed": "fast"}, {"lat": 51.612017, "lng": -0.17809, "title": "326 BALLARDS LANE", "address": "326 Ballards Lane", "connectors": ["CHAdeMO · 22kW", "Type 2 (Tethered Connector)  · 25kW"], "speed": "fast"}, {"lat": 51.646574556698, "lng": -0.19199881904356175, "title": "Ark Pioneeer Academy", "address": "Westcombe Drive", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.656358, "lng": -0.20339, "title": "Stapylton Road", "address": "Stapylton Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.587401, "lng": -0.164633, "title": "East Finchley LU Station Car Park", "address": "East Finchley LU Station Car Park, High Road", "connectors": ["CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 50kW"], "speed": "rapid"}, {"lat": 51.65353, "lng": -0.169714, "title": "New Barnet Leisure Centre", "address": "Lawton Road", "connectors": ["Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.6566166304425, "lng": -0.20440623079935, "title": "Stapylton Road Car Park", "address": "Stapylton Road", "connectors": ["Type 2 (Socket Only) · 7kW"], "speed": "fast"}];
 
   chargerData.forEach(function (c) {
@@ -467,6 +474,14 @@
     markers.addLayer(marker);
   });
   map.addLayer(markers);
+
+  // Frame the map to the actual chargers so a town's points are visible
+  // immediately (and small towns land past the de-clustering zoom).
+  if (chargerData.length) {
+    map.fitBounds(markers.getBounds(), { padding: [40, 40], maxZoom: 15 });
+  } else {
+    map.setView([51.63033446523784, -0.18240356109365685], 12);
+  }
 
   // --- Connector filter ---
   var filterBtns = document.querySelectorAll('.filter-btn');

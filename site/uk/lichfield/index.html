@@ -515,7 +515,7 @@
   function esc(s) { return String(s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
 
   // --- Map ---
-  var map = L.map('map').setView([52.67231941281706, -1.8194989994175796], 12);
+  var map = L.map('map');
   L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
     subdomains: 'abcd',
@@ -531,7 +531,14 @@
     });
   }
 
-  var markers = L.markerClusterGroup();
+  // Cluster only when markers genuinely overlap, and stop clustering once
+  // zoomed in so a town's handful of chargers show as individual pins.
+  var markers = L.markerClusterGroup({
+    maxClusterRadius: 40,
+    disableClusteringAtZoom: 14,
+    spiderfyOnMaxZoom: true,
+    showCoverageOnHover: false,
+  });
   var chargerData = [{"lat": 52.683399, "lng": -1.823414, "title": "Three Spires Car Park", "address": "Backcester Lane", "connectors": ["CCS (Type 2) · 200kW", "CCS (Type 2) · 200kW", "CCS (Type 2) · 200kW", "CCS (Type 2) · 200kW", "CCS (Type 2) · 200kW", "CCS (Type 2) · 200kW", "CCS (Type 2) · 200kW", "CCS (Type 2) · 200kW", "CCS (Type 2) · 200kW", "CCS (Type 2) · 200kW", "CCS (Type 2) · 200kW", "CCS (Type 2) · 200kW"], "speed": "rapid"}, {"lat": 52.6812532781834, "lng": -1.83472083700336, "title": "Central Co-op Alexandra House", "address": "Central Co-op Support Centre", "connectors": ["CCS (Type 2) · 47kW"], "speed": "fast"}, {"lat": 52.68096232504838, "lng": -1.804712961470833, "title": "Central Co-op", "address": "Boley Park Centre", "connectors": ["Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 52.688599, "lng": -1.839918, "title": "Morrisons Lichfield", "address": "Morrisons Lichfield", "connectors": ["Type 2 (Tethered Connector)  · 60kW", "CHAdeMO · 50kW", "Type 2 (Socket Only) · 22kW"], "speed": "rapid"}, {"lat": 52.684916, "lng": -1.821656, "title": "Tesco Extra - Lichfield", "address": "Church Street", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 52.674047, "lng": -1.841626, "title": "Inkwell At Lichfield", "address": "Stonneyland Drive", "connectors": ["CHAdeMO · 50kW", "CHAdeMO · 50kW", "CHAdeMO · 50kW", "CCS (Type 2) · 75kW", "CCS (Type 2) · 75kW", "CCS (Type 2) · 75kW"], "speed": "rapid"}, {"lat": 52.71745652493879, "lng": -1.850660195701602, "title": "EVC Lichfield Golf & Country Club", "address": "Seedy Mill Lane", "connectors": ["Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 52.686801, "lng": -1.800669, "title": "Saba UK-Lichfield Trent Valley", "address": "Lichfield Trent Valley (station Side)", "connectors": ["Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 52.68986, "lng": -1.808133, "title": "SureStore - Self Storage Lichfield", "address": "Industrial Estate, Trent Valley Road", "connectors": ["Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 52.5359, "lng": -1.76948, "title": "Waitrose Lichfield", "address": "Stonnyland Drive", "connectors": ["CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 43kW"], "speed": "rapid"}];
 
   chargerData.forEach(function (c) {
@@ -549,6 +556,14 @@
     markers.addLayer(marker);
   });
   map.addLayer(markers);
+
+  // Frame the map to the actual chargers so a town's points are visible
+  // immediately (and small towns land past the de-clustering zoom).
+  if (chargerData.length) {
+    map.fitBounds(markers.getBounds(), { padding: [40, 40], maxZoom: 15 });
+  } else {
+    map.setView([52.67231941281706, -1.8194989994175796], 12);
+  }
 
   // --- Connector filter ---
   var filterBtns = document.querySelectorAll('.filter-btn');

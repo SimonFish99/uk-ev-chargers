@@ -507,7 +507,7 @@
   function esc(s) { return String(s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
 
   // --- Map ---
-  var map = L.map('map').setView([51.49776816666667, -0.18107683333333333], 12);
+  var map = L.map('map');
   L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
     subdomains: 'abcd',
@@ -523,7 +523,14 @@
     });
   }
 
-  var markers = L.markerClusterGroup();
+  // Cluster only when markers genuinely overlap, and stop clustering once
+  // zoomed in so a town's handful of chargers show as individual pins.
+  var markers = L.markerClusterGroup({
+    maxClusterRadius: 40,
+    disableClusteringAtZoom: 14,
+    spiderfyOnMaxZoom: true,
+    showCoverageOnHover: false,
+  });
   var chargerData = [{"lat": 51.519292, "lng": -0.208941, "title": "Oxford Gardens, flank of no. 19", "address": "Oxford Gardens, flank of no. 19", "connectors": ["Type 2 (Socket Only) · 3.7kW"], "speed": "slow"}, {"lat": 51.498069, "lng": -0.164226, "title": "12 Beaufort Gardens", "address": "12 Beaufort Gardens", "connectors": ["Type 2 (Socket Only) · 4.8kW"], "speed": "slow"}, {"lat": 51.492006, "lng": -0.161397, "title": "Blacklands Terrace near junct. Draycott Place", "address": "Blacklands Terrace near junct. Draycott Place", "connectors": ["Type 2 (Socket Only) · 3.7kW"], "speed": "slow"}, {"lat": 51.491215, "lng": -0.160658, "title": "Blacklands Terrace near junction with Kings Road", "address": "Blacklands Terrace near junction with Kings Road", "connectors": ["Type 2 (Socket Only) · 3.7kW"], "speed": "slow"}, {"lat": 51.512997, "lng": -0.207873, "title": "94 Lansdowne Rd", "address": "94 Lansdowne Rd", "connectors": ["Type 2 (Socket Only) · 3.7kW"], "speed": "slow"}, {"lat": 51.512957, "lng": -0.208076, "title": "97 Lansdowne Rd", "address": "97 Lansdowne Rd", "connectors": ["Type 2 (Socket Only) · 3.7kW"], "speed": "slow"}, {"lat": 51.500328, "lng": -0.19789, "title": "14 Phillimore Gardens", "address": "14 Phillimore Gardens", "connectors": ["Type 2 (Socket Only) · 3.7kW"], "speed": "slow"}, {"lat": 51.493007, "lng": -0.169686, "title": "Fulham Rd 105-109", "address": "Fulham Rd 105-109", "connectors": ["Type 2 (Socket Only) · 3.7kW"], "speed": "slow"}, {"lat": 51.492759, "lng": -0.170213, "title": "Fulham Road, opposite no.s 117-135", "address": "Fulham Road, opposite no.s 117-135", "connectors": ["Type 2 (Socket Only) · 3.7kW"], "speed": "slow"}, {"lat": 51.488903, "lng": -0.166479, "title": "Burnsall St 9-13", "address": "Burnsall St 9-13", "connectors": ["Type 2 (Socket Only) · 3.7kW"], "speed": "slow"}, {"lat": 51.486632, "lng": -0.18256, "title": "Redcliffe Rd 47A", "address": "Redcliffe Rd 47A", "connectors": ["Type 2 (Socket Only) · 3.7kW"], "speed": "slow"}, {"lat": 51.485053, "lng": -0.174923, "title": "The Vale", "address": "The Vale", "connectors": ["Type 2 (Socket Only) · 3.7kW"], "speed": "slow"}];
 
   chargerData.forEach(function (c) {
@@ -541,6 +548,14 @@
     markers.addLayer(marker);
   });
   map.addLayer(markers);
+
+  // Frame the map to the actual chargers so a town's points are visible
+  // immediately (and small towns land past the de-clustering zoom).
+  if (chargerData.length) {
+    map.fitBounds(markers.getBounds(), { padding: [40, 40], maxZoom: 15 });
+  } else {
+    map.setView([51.49776816666667, -0.18107683333333333], 12);
+  }
 
   // --- Connector filter ---
   var filterBtns = document.querySelectorAll('.filter-btn');

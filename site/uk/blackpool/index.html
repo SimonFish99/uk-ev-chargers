@@ -553,7 +553,7 @@
   function esc(s) { return String(s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
 
   // --- Map ---
-  var map = L.map('map').setView([53.814359365349674, -3.0294960774003954], 12);
+  var map = L.map('map');
   L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
     subdomains: 'abcd',
@@ -569,7 +569,14 @@
     });
   }
 
-  var markers = L.markerClusterGroup();
+  // Cluster only when markers genuinely overlap, and stop clustering once
+  // zoomed in so a town's handful of chargers show as individual pins.
+  var markers = L.markerClusterGroup({
+    maxClusterRadius: 40,
+    disableClusteringAtZoom: 14,
+    spiderfyOnMaxZoom: true,
+    showCoverageOnHover: false,
+  });
   var chargerData = [{"lat": 53.823825, "lng": -3.038869, "title": "Lidl-Devonshire Road", "address": "127 Devonshire Road", "connectors": ["Type 2 (Socket Only) · 22kW", "CCS (Type 2) · 50kW", "CHAdeMO · 50kW"], "speed": "rapid"}, {"lat": 53.852277, "lng": -3.039395, "title": "Red Bank Road, Bispham, Blackpool", "address": "Bispham", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 53.829313, "lng": -3.017734, "title": "The Grange, Blackpool", "address": "The Grange, Blackpool", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 53.800716, "lng": -2.990341, "title": "ICUEVE900237", "address": "7 Winster Place", "connectors": ["Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 53.796564, "lng": -3.019958, "title": "Intelligent Charging Systems", "address": "Sandersons Way", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 53.813596, "lng": -3.053276, "title": "Blackpool Council 1", "address": "Central Car park", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 53.817999853880195, "lng": -3.0544371675977118, "title": "West Street Car Park", "address": "West Street", "connectors": ["Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 53.815930421184106, "lng": -3.053972008130245, "title": "Houndshill Shopping Centre Multistorey", "address": "27/29 Victoria Street", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 53.79946766603926, "lng": -3.0554995139956036, "title": "ApartHotel421 By Seafront Collection", "address": "421 Promenade", "connectors": ["Tesla (Model S/X) · 22kW", "BS1363 3 Pin 13 Amp · 3kW"], "speed": "fast"}, {"lat": 53.8015269703755, "lng": -2.9932002944181, "title": "Toby Carvery Blackpool ", "address": "4 Oakleaf Way", "connectors": ["CCS (Type 2) · 50kW", "CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 43kW"], "speed": "rapid"}, {"lat": 53.800237, "lng": -2.989691, "title": "The Harbour", "address": "10 Winster Place", "connectors": ["Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 53.820859472717075, "lng": -3.0475799446630845, "title": "Sainsbury's", "address": "New Larkhill Street", "connectors": ["Type 2 (Socket Only) · 3.6kW"], "speed": "slow"}];
 
   chargerData.forEach(function (c) {
@@ -587,6 +594,14 @@
     markers.addLayer(marker);
   });
   map.addLayer(markers);
+
+  // Frame the map to the actual chargers so a town's points are visible
+  // immediately (and small towns land past the de-clustering zoom).
+  if (chargerData.length) {
+    map.fitBounds(markers.getBounds(), { padding: [40, 40], maxZoom: 15 });
+  } else {
+    map.setView([53.814359365349674, -3.0294960774003954], 12);
+  }
 
   // --- Connector filter ---
   var filterBtns = document.querySelectorAll('.filter-btn');

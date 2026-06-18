@@ -826,7 +826,7 @@
   function esc(s) { return String(s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
 
   // --- Map ---
-  var map = L.map('map').setView([51.266649261429706, -1.090500031075988], 12);
+  var map = L.map('map');
   L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
     subdomains: 'abcd',
@@ -842,7 +842,14 @@
     });
   }
 
-  var markers = L.markerClusterGroup();
+  // Cluster only when markers genuinely overlap, and stop clustering once
+  // zoomed in so a town's handful of chargers show as individual pins.
+  var markers = L.markerClusterGroup({
+    maxClusterRadius: 40,
+    disableClusteringAtZoom: 14,
+    spiderfyOnMaxZoom: true,
+    showCoverageOnHover: false,
+  });
   var chargerData = [{"lat": 51.2679182902956, "lng": -1.08682692117344, "title": "HCC Basingstoke Railway Station Car Park", "address": "Clifton Terrace", "connectors": ["CHAdeMO · 100kW", "CCS (Type 2) · 50kW"], "speed": "rapid"}, {"lat": 51.251013542592, "lng": -1.08692293796619, "title": "BP Grove Road SF Connect", "address": "Grove Road", "connectors": ["CCS (Type 2) · 150kW"], "speed": "rapid"}, {"lat": 51.284532, "lng": -1.0717583, "title": "The Dragonfly Pub & Restaurant", "address": "Maldive Road", "connectors": ["CHAdeMO · 50kW", "CCS (Type 2) · 50kW", "Type 2 (Socket Only) · 22kW", "CHAdeMO · 50kW", "CCS (Type 2) · 75kW", "CCS (Type 2) · 75kW", "CHAdeMO · 50kW"], "speed": "rapid"}, {"lat": 51.2836, "lng": -1.05748, "title": "Hampshire Court Hotel", "address": "Chineham", "connectors": ["BS1363 3 Pin 13 Amp · 3kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 51.266402, "lng": -1.090874, "title": "Churchill Way Car Park, Basingstoke", "address": "Churchill Way East", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.264706, "lng": -1.086677, "title": "Festival place", "address": "Shopping Centre", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 51.263929, "lng": -1.105611, "title": "Morrisons Basingstoke", "address": "Wm Morrison Supermarkets PLC", "connectors": ["Type 2 (Socket Only) · 22kW", "CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 50kW"], "speed": "rapid"}, {"lat": 51.262953, "lng": -1.085863, "title": "Feathers Yard 1", "address": "Red Lion Lane", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 51.262798, "lng": -1.082982, "title": "Eastlands Car Park 1", "address": "London Road", "connectors": ["Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.262665, "lng": -1.085169, "title": "Central Car Park", "address": "Red Lion Lane", "connectors": ["Type 2 (Tethered Connector)  · 43kW", "CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 50kW"], "speed": "rapid"}, {"lat": 51.274542331336534, "lng": -1.102684008288179, "title": "Taran Microsystems Ltd", "address": "Tempus Business Centre 61-62 Kingsclere Road", "connectors": ["Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 51.271152, "lng": -1.055658, "title": "Redrow Homes-Southern Counties-Cromwell Court", "address": "Basing Road", "connectors": ["Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.26391852277632, "lng": -1.1035326924247784, "title": "Morrisons Basingstoke", "address": "Worting Road", "connectors": ["CHAdeMO · 50kW", "CCS (Type 2) · 50kW", "Type 2 (Socket Only) · 22kW"], "speed": "rapid"}, {"lat": 51.282018, "lng": -1.118853, "title": "ICUEVE900605", "address": "23-31 Park Prewett Road", "connectors": ["Type 2 (Socket Only) · 11kW"], "speed": "fast"}, {"lat": 51.273521, "lng": -1.113354, "title": "Aldi", "address": "Winklebury Way", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 51.249313, "lng": -1.11468, "title": "Harvester The Stag and Hounds", "address": "Winchester Road", "connectors": ["CHAdeMO · 50kW", "CCS (Type 2) · 50kW", "Type 2 (Tethered Connector)  · 43kW"], "speed": "rapid"}, {"lat": 51.262089, "lng": -1.081899, "title": "Parklands Upper Car Park 1", "address": "White Hart Lane", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.250129280163975, "lng": -1.114282730591185, "title": "Shell Pied Piper", "address": "Winchester Road", "connectors": ["Type 2 (Tethered Connector)  · 43kW", "CCS (Type 2) · 50kW", "CHAdeMO · 50kW"], "speed": "rapid"}, {"lat": 51.269136, "lng": -1.074393, "title": "Village Hotels", "address": "Basing View", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}];
 
   chargerData.forEach(function (c) {
@@ -860,6 +867,14 @@
     markers.addLayer(marker);
   });
   map.addLayer(markers);
+
+  // Frame the map to the actual chargers so a town's points are visible
+  // immediately (and small towns land past the de-clustering zoom).
+  if (chargerData.length) {
+    map.fitBounds(markers.getBounds(), { padding: [40, 40], maxZoom: 15 });
+  } else {
+    map.setView([51.266649261429706, -1.090500031075988], 12);
+  }
 
   // --- Connector filter ---
   var filterBtns = document.querySelectorAll('.filter-btn');

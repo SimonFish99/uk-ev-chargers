@@ -506,7 +506,7 @@
   function esc(s) { return String(s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
 
   // --- Map ---
-  var map = L.map('map').setView([51.661512122152246, -1.2974611307141568], 12);
+  var map = L.map('map');
   L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
     subdomains: 'abcd',
@@ -522,7 +522,14 @@
     });
   }
 
-  var markers = L.markerClusterGroup();
+  // Cluster only when markers genuinely overlap, and stop clustering once
+  // zoomed in so a town's handful of chargers show as individual pins.
+  var markers = L.markerClusterGroup({
+    maxClusterRadius: 40,
+    disableClusteringAtZoom: 14,
+    spiderfyOnMaxZoom: true,
+    showCoverageOnHover: false,
+  });
   var chargerData = [{"lat": 51.68214008816619, "lng": -1.2729919778185774, "title": "Boundary House", "address": "Oxford Road", "connectors": ["CCS (Type 2) · 50kW"], "speed": "rapid"}, {"lat": 51.668223, "lng": -1.305213, "title": "Hilton Garden Inn Carpark", "address": "Hilton Garden Inn Carpark", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.67234, "lng": -1.278497, "title": "Waitrose", "address": "2 Quakers Court", "connectors": ["CHAdeMO · 50kW", "CHAdeMO · 50kW"], "speed": "rapid"}, {"lat": 51.621179, "lng": -1.299475, "title": "Milton Park Business Centre", "address": "Milton Park, Milton, Abingdon, Oxfordshire", "connectors": ["BS1363 3 Pin 13 Amp · 3kW", "BS1363 3 Pin 13 Amp · 3kW"], "speed": "slow"}, {"lat": 51.619999, "lng": -1.3001, "title": "Harvester Didcot", "address": "Milton", "connectors": ["CHAdeMO · 50kW", "CHAdeMO · 50kW"], "speed": "rapid"}, {"lat": 51.673044, "lng": -1.262489, "title": "SOPHOS ABINGDON 1", "address": "Barton Ln", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 51.671752848987495, "lng": -1.2795957194133507, "title": "Waitrose Abingdon", "address": "Abbey Close", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW", "CCS (Type 2) · 50kW", "CHAdeMO · 50kW", "CCS (Type 2) · 50kW", "CHAdeMO · 50kW"], "speed": "rapid"}, {"lat": 51.6698068376683, "lng": -1.30584025223936, "title": "Fairacres Retail Park, Abingdon", "address": "Fairacres", "connectors": ["CCS (Type 2) · 50kW", "CHAdeMO · 50kW"], "speed": "rapid"}, {"lat": 51.6697854467005, "lng": -1.36194135767028, "title": "InstaVolt Marcham Road", "address": "68 Marcham Road", "connectors": ["CHAdeMO · 100kW", "CCS (Type 2) · 125kW"], "speed": "rapid"}, {"lat": 51.666851, "lng": -1.308468, "title": "Tesco Extra-Abingdon", "address": "Marcham Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}];
 
   chargerData.forEach(function (c) {
@@ -540,6 +547,14 @@
     markers.addLayer(marker);
   });
   map.addLayer(markers);
+
+  // Frame the map to the actual chargers so a town's points are visible
+  // immediately (and small towns land past the de-clustering zoom).
+  if (chargerData.length) {
+    map.fitBounds(markers.getBounds(), { padding: [40, 40], maxZoom: 15 });
+  } else {
+    map.setView([51.661512122152246, -1.2974611307141568], 12);
+  }
 
   // --- Connector filter ---
   var filterBtns = document.querySelectorAll('.filter-btn');

@@ -604,7 +604,7 @@
   function esc(s) { return String(s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
 
   // --- Map ---
-  var map = L.map('map').setView([51.36546738386207, -0.20051477654792269], 12);
+  var map = L.map('map');
   L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
     subdomains: 'abcd',
@@ -620,7 +620,14 @@
     });
   }
 
-  var markers = L.markerClusterGroup();
+  // Cluster only when markers genuinely overlap, and stop clustering once
+  // zoomed in so a town's handful of chargers show as individual pins.
+  var markers = L.markerClusterGroup({
+    maxClusterRadius: 40,
+    disableClusteringAtZoom: 14,
+    spiderfyOnMaxZoom: true,
+    showCoverageOnHover: false,
+  });
   var chargerData = [{"lat": 51.3575529902069, "lng": -0.191653095122995, "title": "MFG Sutton Court", "address": "Brighton Road", "connectors": ["CCS (Type 2) · 150kW", "CHAdeMO · 50kW"], "speed": "rapid"}, {"lat": 51.380474, "lng": -0.184104, "title": "Saint Helier Hospital", "address": "Carshalton", "connectors": ["Type 2 (Socket Only) · 3.7kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 51.362125, "lng": -0.1967, "title": "Gibson Road Car Park", "address": "Gibson Road Car Park", "connectors": ["Type 1 (J1772) · 3kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.361435, "lng": -0.197464, "title": "SHELL RECHARGE LITTLE WAITROSE SUTTON", "address": "56-58 Cheam Road", "connectors": ["CHAdeMO · 50kW", "CCS (Type 2) · 150kW"], "speed": "rapid"}, {"lat": 51.36079, "lng": -0.194311, "title": "Morrisons Sutton", "address": "31 High Street", "connectors": ["Type 2 (Socket Only) · 22kW", "CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 50kW"], "speed": "rapid"}, {"lat": 51.358314, "lng": -0.151261, "title": "Wallington Library (Shotfield)", "address": "Wallington Library (Shotfield)", "connectors": ["Type 1 (J1772) · 3kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.35691, "lng": -0.217904, "title": "Kingsway Road Car Park (site 2)", "address": "Kingsway Road Car Park (site 2)", "connectors": ["Type 1 (J1772) · 3kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.372056, "lng": -0.223934, "title": "Sainsbury's North Cheam", "address": "566 London Road", "connectors": ["Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.361651, "lng": -0.200196, "title": "Cheam Road 56-58", "address": "Cheam Road 56-58", "connectors": ["CHAdeMO · 50kW", "CCS (Type 2) · 175kW", "CHAdeMO · 50kW", "CCS (Type 2) · 175kW"], "speed": "rapid"}, {"lat": 51.372056, "lng": -0.223934, "title": "Sainsbury's North Cheam", "address": "566 London Road", "connectors": ["Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.376366, "lng": -0.222026, "title": "716-702 London Road", "address": "716-702 London Road", "connectors": ["CHAdeMO · 50kW", "CCS (Type 2) · 50kW", "Type 2 (Tethered Connector)  · 43kW"], "speed": "rapid"}, {"lat": 51.371315, "lng": -0.209089, "title": "St Dunstan's Hill Parking/Charging", "address": "2 Saint Dunstan's Hill", "connectors": ["CHAdeMO · 50kW", "CCS (Type 2) · 50kW", "Type 2 (Tethered Connector)  · 43kW"], "speed": "rapid"}, {"lat": 51.360031, "lng": -0.194116, "title": "A232 High Street", "address": "62 Grove Road", "connectors": ["CHAdeMO · 50kW", "CHAdeMO · 50kW"], "speed": "rapid"}];
 
   chargerData.forEach(function (c) {
@@ -638,6 +645,14 @@
     markers.addLayer(marker);
   });
   map.addLayer(markers);
+
+  // Frame the map to the actual chargers so a town's points are visible
+  // immediately (and small towns land past the de-clustering zoom).
+  if (chargerData.length) {
+    map.fitBounds(markers.getBounds(), { padding: [40, 40], maxZoom: 15 });
+  } else {
+    map.setView([51.36546738386207, -0.20051477654792269], 12);
+  }
 
   // --- Connector filter ---
   var filterBtns = document.querySelectorAll('.filter-btn');

@@ -731,7 +731,7 @@
   function esc(s) { return String(s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
 
   // --- Map ---
-  var map = L.map('map').setView([52.40189266794181, -0.7146762091075534], 12);
+  var map = L.map('map');
   L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
     subdomains: 'abcd',
@@ -747,7 +747,14 @@
     });
   }
 
-  var markers = L.markerClusterGroup();
+  // Cluster only when markers genuinely overlap, and stop clustering once
+  // zoomed in so a town's handful of chargers show as individual pins.
+  var markers = L.markerClusterGroup({
+    maxClusterRadius: 40,
+    disableClusteringAtZoom: 14,
+    spiderfyOnMaxZoom: true,
+    showCoverageOnHover: false,
+  });
   var chargerData = [{"lat": 52.40580277089836, "lng": -0.736182560138559, "title": "Stanier Close", "address": "Stanier Close", "connectors": ["CCS (Type 2) · 80kW", "CCS (Type 2) · 80kW", "CCS (Type 2) · 160kW", "CCS (Type 2) · 160kW", "CCS (Type 2) · 160kW", "CCS (Type 2) · 160kW", "CCS (Type 2) · 160kW", "CCS (Type 2) · 80kW", "CCS (Type 2) · 80kW", "CCS (Type 2) · 80kW", "CCS (Type 2) · 160kW", "CHAdeMO · 62kW", "CCS (Type 2) · 160kW", "CHAdeMO · 62kW"], "speed": "rapid"}, {"lat": 52.403179, "lng": -0.713666, "title": "RAW GREENE KING THE WARREN 2", "address": "Stamford Road", "connectors": ["Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 52.406807, "lng": -0.743834, "title": "Telford Way", "address": "Telford Way", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 52.405438, "lng": -0.726867, "title": "Rockingham Road", "address": "Rockingham Road", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 52.402023, "lng": -0.720648, "title": "Montagu Street", "address": "Montagu Street", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 52.399592, "lng": -0.527857, "title": "Highfield Road", "address": "Highfield Road", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 52.407406, "lng": -0.7509, "title": "Premier Inn Kettering", "address": "Rothwell Road", "connectors": ["Type 2 (Tethered Connector)  · 50kW", "CHAdeMO · 50kW", "Type 2 (Socket Only) · 22kW"], "speed": "rapid"}, {"lat": 52.40122456985338, "lng": -0.7312911972333325, "title": "Morrisons Kettering", "address": "Lower Street", "connectors": ["CCS (Type 2) · 50kW"], "speed": "rapid"}, {"lat": 52.4008, "lng": -0.7245, "title": "School Lane 1", "address": "School Lane", "connectors": ["Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 52.408702, "lng": -0.724496, "title": "Pollard Street", "address": "Pollard Street", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 52.411962, "lng": -0.729519, "title": "Kingsley Avenue", "address": "Kingsley Avenue", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 52.40072111361772, "lng": -0.7325443892962085, "title": "Morrison’s Kettering", "address": "53 Lower Street", "connectors": ["Type 2 (Socket Only) · 22kW", "CHAdeMO · 50kW", "CCS (Type 2) · 50kW"], "speed": "rapid"}, {"lat": 52.398854, "lng": -0.730077, "title": "Commercial Road Car Park", "address": "Commercial Road", "connectors": ["Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 52.39612, "lng": -0.725449, "title": "Kettering Swimming Pool", "address": "London Road", "connectors": ["Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 52.3733874677851, "lng": -0.683091358679917, "title": "McDonald's Instavolt", "address": "Sergo Park", "connectors": ["CHAdeMO · 50kW", "CCS (Type 2) · 50kW"], "speed": "rapid"}, {"lat": 52.4082637649144, "lng": -0.733896840372836, "title": "Bee Cool ACS", "address": "11 Cunliffe Drive ", "connectors": ["CCS (Type 2) · 50kW", "CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 43kW"], "speed": "rapid"}];
 
   chargerData.forEach(function (c) {
@@ -765,6 +772,14 @@
     markers.addLayer(marker);
   });
   map.addLayer(markers);
+
+  // Frame the map to the actual chargers so a town's points are visible
+  // immediately (and small towns land past the de-clustering zoom).
+  if (chargerData.length) {
+    map.fitBounds(markers.getBounds(), { padding: [40, 40], maxZoom: 15 });
+  } else {
+    map.setView([52.40189266794181, -0.7146762091075534], 12);
+  }
 
   // --- Connector filter ---
   var filterBtns = document.querySelectorAll('.filter-btn');

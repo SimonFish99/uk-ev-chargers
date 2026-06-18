@@ -641,7 +641,7 @@
   function esc(s) { return String(s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
 
   // --- Map ---
-  var map = L.map('map').setView([50.72649022054454, -1.9514305864216526], 12);
+  var map = L.map('map');
   L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
     subdomains: 'abcd',
@@ -657,7 +657,14 @@
     });
   }
 
-  var markers = L.markerClusterGroup();
+  // Cluster only when markers genuinely overlap, and stop clustering once
+  // zoomed in so a town's handful of chargers show as individual pins.
+  var markers = L.markerClusterGroup({
+    maxClusterRadius: 40,
+    disableClusteringAtZoom: 14,
+    spiderfyOnMaxZoom: true,
+    showCoverageOnHover: false,
+  });
   var chargerData = [{"lat": 50.762856, "lng": -1.995645, "title": "Station Approach", "address": "Station Approach", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 50.7401, "lng": -1.988875, "title": "Tesco Extra - Waterloo Road", "address": "Waterloo Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 50.722363, "lng": -1.96198, "title": "Municipal Road", "address": "Municipal Road", "connectors": ["Type 2 (Tethered Connector)  · 75kW", "Type 2 (Tethered Connector)  · 75kW"], "speed": "rapid"}, {"lat": 50.719081, "lng": -1.98206, "title": "Serpentine Lane & Serpentine Lane Disabled", "address": "Serpentine Lane", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 50.706826, "lng": -1.909386, "title": "West Hill", "address": "Pinecliff Road", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 50.688644, "lng": -1.939355, "title": "Sandbanks 2", "address": "Banks Road", "connectors": ["Type 2 (Tethered Connector)  · 75kW", "Type 2 (Tethered Connector)  · 75kW"], "speed": "rapid"}, {"lat": 50.71315, "lng": -1.98531, "title": "Old Orchard", "address": "Old Orchard", "connectors": ["CHAdeMO · 50kW", "CHAdeMO · 50kW"], "speed": "rapid"}, {"lat": 50.74272773359465, "lng": -1.897947456601969, "title": "Bournemouth University", "address": "Fern Barrow", "connectors": ["CCS (Type 2) · 50kW", "CHAdeMO · 50kW"], "speed": "rapid"}, {"lat": 50.729843, "lng": -1.936863, "title": "BCPC Jubilee Road Car Park", "address": "Jubilee Road", "connectors": ["CHAdeMO · 50kW", "CHAdeMO · 50kW"], "speed": "rapid"}, {"lat": 50.7384126, "lng": -1.9162732, "title": "McDonald's Poole", "address": "180 Alder Road", "connectors": ["CCS (Type 2) · 120kW", "CHAdeMO · 75kW"], "speed": "rapid"}, {"lat": 50.73630698239131, "lng": -1.9953161280851361, "title": "MFG Creekmoor", "address": "Safety Drive", "connectors": ["CCS (Type 2) · 150kW", "CHAdeMO · 100kW"], "speed": "rapid"}, {"lat": 50.7293409716377, "lng": -1.92125402521603, "title": "Poole Retail Park", "address": "Redlands", "connectors": ["CCS (Type 2) · 50kW", "CHAdeMO · 50kW"], "speed": "rapid"}, {"lat": 50.725021, "lng": -1.91432, "title": "Tesco Superstore-Poole Branksome", "address": "Poole Road", "connectors": ["Type 2 (Socket Only) · 7kW", "CCS (Type 2) · 50kW", "Type 2 (Socket Only) · 22kW", "CHAdeMO · 50kW"], "speed": "rapid"}, {"lat": 50.7161908, "lng": -1.9754434, "title": "Holiday Inn Express Poole,", "address": "Walking Field Lane", "connectors": ["CCS (Type 2) · 50kW", "CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 43kW", "Type 2 (Socket Only) · 7kW"], "speed": "rapid"}];
 
   chargerData.forEach(function (c) {
@@ -675,6 +682,14 @@
     markers.addLayer(marker);
   });
   map.addLayer(markers);
+
+  // Frame the map to the actual chargers so a town's points are visible
+  // immediately (and small towns land past the de-clustering zoom).
+  if (chargerData.length) {
+    map.fitBounds(markers.getBounds(), { padding: [40, 40], maxZoom: 15 });
+  } else {
+    map.setView([50.72649022054454, -1.9514305864216526], 12);
+  }
 
   // --- Connector filter ---
   var filterBtns = document.querySelectorAll('.filter-btn');

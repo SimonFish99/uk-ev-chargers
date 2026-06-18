@@ -1184,7 +1184,7 @@
   function esc(s) { return String(s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
 
   // --- Map ---
-  var map = L.map('map').setView([57.14379029195183, -2.1426791790188084], 12);
+  var map = L.map('map');
   L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
     subdomains: 'abcd',
@@ -1200,7 +1200,14 @@
     });
   }
 
-  var markers = L.markerClusterGroup();
+  // Cluster only when markers genuinely overlap, and stop clustering once
+  // zoomed in so a town's handful of chargers show as individual pins.
+  var markers = L.markerClusterGroup({
+    maxClusterRadius: 40,
+    disableClusteringAtZoom: 14,
+    spiderfyOnMaxZoom: true,
+    showCoverageOnHover: false,
+  });
   var chargerData = [{"lat": 57.126629969528636, "lng": -2.091638890640752, "title": "Arnold Clark Charge", "address": "Craigshaw Road", "connectors": ["CCS (Type 2) · 150kW", "CHAdeMO · 50kW"], "speed": "rapid"}, {"lat": 57.127538, "lng": -2.089599, "title": "Lidl-Torry", "address": "Greenwell Road", "connectors": ["Type 2 (Socket Only) · 22kW", "CCS (Type 2) · 50kW", "CHAdeMO · 50kW"], "speed": "rapid"}, {"lat": 57.11751069, "lng": -2.152199556, "title": "Norwood Hall Hotel ", "address": "Garthdee Road", "connectors": ["Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 57.17249672852712, "lng": -2.1459793207116853, "title": "MFG Esso North Anderson Drive", "address": "565 North Anderson Drive", "connectors": ["CCS (Type 2) · 150kW", "CHAdeMO · 50kW"], "speed": "rapid"}, {"lat": 57.148065238857725, "lng": -2.2669869982480577, "title": "Greggs Westhill (ESB)", "address": "Venture Way", "connectors": ["CCS (Type 2) · 300kW", "CCS (Type 2) · 300kW", "CCS (Type 2) · 300kW", "CCS (Type 2) · 300kW", "CCS (Type 2) · 300kW", "CCS (Type 2) · 300kW"], "speed": "rapid"}, {"lat": 57.19916046990414, "lng": -2.1840013646865373, "title": "MFG Dyce", "address": "Wellheads Road", "connectors": ["CCS (Type 2) · 150kW", "CHAdeMO · 50kW", "CCS (Type 2) · 300kW"], "speed": "rapid"}, {"lat": 57.064709, "lng": -2.142978, "title": "Premier inn Aberdeen South (Portlethen)", "address": "Portlethen", "connectors": ["CHAdeMO · 50kW", "Type 2 (Socket Only) · 22kW", "Type 2 (Tethered Connector)  · 60kW"], "speed": "rapid"}, {"lat": 57.136898138881804, "lng": -2.0969132730382114, "title": "MFG Esplanade - MFG EV Power", "address": "MFG Esplanade Service Station", "connectors": ["CCS (Type 2) · 150kW", "CCS (Type 2) · 300kW", "CHAdeMO · 50kW"], "speed": "rapid"}, {"lat": 57.19604589544957, "lng": -2.2036862242110544, "title": "Dyce Farm", "address": "1A International Avenue", "connectors": ["CCS (Type 2) · 75kW"], "speed": "rapid"}, {"lat": 57.186084, "lng": -2.087764, "title": "Aberdeen Exhibition and Conference Centre", "address": "4 Exhibition Avenue", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 57.186036, "lng": -2.088934, "title": "Aberdeen Exhibition & Conference Centre", "address": "Bridge Of Don, Aberdeen City", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 57.182626, "lng": -2.136902, "title": "Danestone Car Park", "address": "9 Fairview Street", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 57.15665, "lng": -2.164577, "title": "Mastrick Housing Office", "address": "43 Spey Road", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 57.156367, "lng": -2.129746, "title": "Aberdeen Royal (Trusty Teds)", "address": "76 Cornhill Road", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 57.153428, "lng": -2.131306, "title": "Aberdeen Royal Eye Clinic Car Park", "address": "24 Foresterhill Court", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 57.14977, "lng": -2.223608, "title": "Kingswells Park & Ride", "address": "1 Edmond Gardens", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 57.149761, "lng": -2.095642, "title": "Marischal College, Aberdeen (1)", "address": "Broad Street", "connectors": ["Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 57.133347, "lng": -2.158328, "title": "James Hutton Institute", "address": "77 Macaulay Drive", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 57.120828, "lng": -2.10409, "title": "Kincorth Library", "address": "247A Kincorth Circle", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 57.121661, "lng": -2.126124, "title": "Aberdeen Snowsports Centre", "address": "77 Garthdee Road", "connectors": ["CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 43kW", "Type 2 (Tethered Connector)  · 50kW"], "speed": "rapid"}, {"lat": 57.118823518154386, "lng": -2.147645511697874, "title": "Grays School of Art", "address": "Robert Gordon University", "connectors": ["Type 2 (Socket Only) · 7.7kW", "Type 2 (Socket Only) · 7.7kW"], "speed": "fast"}, {"lat": 57.11908669277719, "lng": -2.1394774261586917, "title": "Riverside Building", "address": "Robert Gordon University", "connectors": ["Type 2 (Socket Only) · 7.7kW"], "speed": "fast"}, {"lat": 57.11932312452251, "lng": -2.1368276261525807, "title": "Ishbel Gordon Building", "address": "Robert Gordon University", "connectors": ["Type 2 (Socket Only) · 7.7kW"], "speed": "fast"}, {"lat": 57.14961, "lng": -2.171054, "title": "Tesco Superstore-Aberdeen Woodend", "address": "Woodend Hospital", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 22kW", "CHAdeMO · 50kW", "CCS (Type 2) · 50kW"], "speed": "rapid"}, {"lat": 57.139239, "lng": -2.178726, "title": "Hazlehead Park", "address": "Hazlehead Park", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 57.110318, "lng": -2.092522, "title": "Aberdeen Supercharger", "address": "Wellington Circle Aberdeen", "connectors": ["CCS (Type 2) · 120kW"], "speed": "rapid"}, {"lat": 57.145359, "lng": -2.28621, "title": "Prospect Road", "address": "Westhill", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 57.129276, "lng": -2.079503, "title": "Subsea 7", "address": "Greenwell Base", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 57.153271, "lng": -2.084727, "title": "Satrosphere Car Park, Aberdeen", "address": "179 Constitution Street", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}];
 
   chargerData.forEach(function (c) {
@@ -1218,6 +1225,14 @@
     markers.addLayer(marker);
   });
   map.addLayer(markers);
+
+  // Frame the map to the actual chargers so a town's points are visible
+  // immediately (and small towns land past the de-clustering zoom).
+  if (chargerData.length) {
+    map.fitBounds(markers.getBounds(), { padding: [40, 40], maxZoom: 15 });
+  } else {
+    map.setView([57.14379029195183, -2.1426791790188084], 12);
+  }
 
   // --- Connector filter ---
   var filterBtns = document.querySelectorAll('.filter-btn');

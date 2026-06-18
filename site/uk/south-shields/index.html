@@ -817,7 +817,7 @@
   function esc(s) { return String(s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
 
   // --- Map ---
-  var map = L.map('map').setView([54.98649257894737, -1.4298455263157894], 12);
+  var map = L.map('map');
   L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
     subdomains: 'abcd',
@@ -833,7 +833,14 @@
     });
   }
 
-  var markers = L.markerClusterGroup();
+  // Cluster only when markers genuinely overlap, and stop clustering once
+  // zoomed in so a town's handful of chargers show as individual pins.
+  var markers = L.markerClusterGroup({
+    maxClusterRadius: 40,
+    disableClusteringAtZoom: 14,
+    spiderfyOnMaxZoom: true,
+    showCoverageOnHover: false,
+  });
   var chargerData = [{"lat": 55.000364, "lng": -1.415722, "title": "Pier Parade Car Park", "address": "Pier Parade Car Park", "connectors": ["CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 50kW", "Type 2 (Tethered Connector)  · 43kW"], "speed": "rapid"}, {"lat": 54.963967, "lng": -1.434874, "title": "Whiteleas Way", "address": "Public Car Park", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 55.001398, "lng": -1.420283, "title": "Pier Parade Car Park", "address": "Pier Parade Car Park", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 54.996968, "lng": -1.409898, "title": "South Promenade South", "address": "South Promenade South Car Park", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 54.996343, "lng": -1.434204, "title": "Oyston Street Car Park", "address": "Oyston Street Car Park", "connectors": ["BS1363 3 Pin 13 Amp · 3kW"], "speed": "slow"}, {"lat": 54.995454, "lng": -1.434896, "title": "Charlotte Street", "address": "Charlotte Street Car Park", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 54.995361, "lng": -1.427354, "title": "Broughton Road", "address": "Broughton Road", "connectors": ["Type 2 (Socket Only) · 3.7kW", "Type 2 (Socket Only) · 3.7kW"], "speed": "slow"}, {"lat": 54.988141, "lng": -1.436849, "title": "New George Street 1", "address": "New George Street", "connectors": ["CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 50kW", "Type 2 (Tethered Connector)  · 43kW"], "speed": "rapid"}, {"lat": 54.965591, "lng": -1.451401, "title": "Simonside Outdoor Adventure", "address": "Simonside Outdoor Adventure", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 54.987329, "lng": -1.426248, "title": "Wawn Street", "address": "Wawn Street Car Park", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 54.980705, "lng": -1.397774, "title": "Horsely Hill Square 2", "address": "Horsely Hill Square", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 55.005656, "lng": -1.43069, "title": "Beacon Street", "address": "Beacon Street", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 54.999786, "lng": -1.425712, "title": "Ocean Road 1", "address": "Ocean Road Car Park", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 54.996513, "lng": -1.439123, "title": "The Word", "address": "The Word", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 54.987623, "lng": -1.437171, "title": "New George Street", "address": "New George Street ", "connectors": ["CHAdeMO · 50kW", "CCS (Type 2) · 50kW", "Type 2 (Tethered Connector)  · 22kW"], "speed": "rapid"}, {"lat": 54.973673, "lng": -1.439381, "title": "N/A", "address": "N/A", "connectors": ["CCS (Type 2) · 50kW", "Type 2 (Socket Only) · 22kW", "CHAdeMO · 50kW"], "speed": "rapid"}, {"lat": 54.96866, "lng": -1.409061, "title": "Quarry Lane", "address": "Car Park", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 54.961355, "lng": -1.448126, "title": "Galsworthy Road", "address": "Galsworthy Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 54.978472, "lng": -1.448298, "title": "Maritime House", "address": "Maritime House", "connectors": ["BS1363 3 Pin 13 Amp · 3kW"], "speed": "slow"}];
 
   chargerData.forEach(function (c) {
@@ -851,6 +858,14 @@
     markers.addLayer(marker);
   });
   map.addLayer(markers);
+
+  // Frame the map to the actual chargers so a town's points are visible
+  // immediately (and small towns land past the de-clustering zoom).
+  if (chargerData.length) {
+    map.fitBounds(markers.getBounds(), { padding: [40, 40], maxZoom: 15 });
+  } else {
+    map.setView([54.98649257894737, -1.4298455263157894], 12);
+  }
 
   // --- Connector filter ---
   var filterBtns = document.querySelectorAll('.filter-btn');

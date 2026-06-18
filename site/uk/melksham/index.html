@@ -375,7 +375,7 @@ Must be a member of BMW Chargenow or a Polar custom..</h2>
   function esc(s) { return String(s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
 
   // --- Map ---
-  var map = L.map('map').setView([51.37076903165528, -2.1384430783049373], 12);
+  var map = L.map('map');
   L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
     subdomains: 'abcd',
@@ -391,7 +391,14 @@ Must be a member of BMW Chargenow or a Polar custom..</h2>
     });
   }
 
-  var markers = L.markerClusterGroup();
+  // Cluster only when markers genuinely overlap, and stop clustering once
+  // zoomed in so a town's handful of chargers show as individual pins.
+  var markers = L.markerClusterGroup({
+    maxClusterRadius: 40,
+    disableClusteringAtZoom: 14,
+    spiderfyOnMaxZoom: true,
+    showCoverageOnHover: false,
+  });
   var chargerData = [{"lat": 51.370791, "lng": -2.14115, "title": "Melksham Campus", "address": "Market Place", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 51.3702, "lng": -2.13743, "title": "Free to use\r\nMust be a member of BMW Chargenow or a Polar custom..", "address": "King Street", "connectors": ["CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 50kW", "Type 2 (Tethered Connector)  · 43kW"], "speed": "rapid"}, {"lat": 51.368646, "lng": -2.131612, "title": "SSEHUB034", "address": "61 Spa Road", "connectors": ["Type 2 (Tethered Connector)  · 150kW", "Type 2 (Tethered Connector)  · 150kW"], "speed": "rapid"}, {"lat": 51.36811141163335, "lng": -2.1303683740732993, "title": "SSE Charging EV Hub Melksham", "address": "Spa Road", "connectors": ["CCS (Type 2) · 150kW"], "speed": "rapid"}, {"lat": 51.3558012553363, "lng": -2.1405714228963006, "title": "Travelodge Melksham", "address": "Commerce Way", "connectors": ["CCS (Type 2) · 300kW", "CHAdeMO · 50kW"], "speed": "rapid"}, {"lat": 51.3816775546173, "lng": -2.14345875116496, "title": "McDonald's Melksham", "address": "GEC Industrial Estate", "connectors": ["CCS (Type 2) · 120kW", "CHAdeMO · 75kW"], "speed": "rapid"}, {"lat": 51.380156, "lng": -2.144511, "title": "Melksham Hub", "address": "Melksham Hub", "connectors": ["Type 2 (Socket Only) · 7kW"], "speed": "fast"}];
 
   chargerData.forEach(function (c) {
@@ -409,6 +416,14 @@ Must be a member of BMW Chargenow or a Polar custom..</h2>
     markers.addLayer(marker);
   });
   map.addLayer(markers);
+
+  // Frame the map to the actual chargers so a town's points are visible
+  // immediately (and small towns land past the de-clustering zoom).
+  if (chargerData.length) {
+    map.fitBounds(markers.getBounds(), { padding: [40, 40], maxZoom: 15 });
+  } else {
+    map.setView([51.37076903165528, -2.1384430783049373], 12);
+  }
 
   // --- Connector filter ---
   var filterBtns = document.querySelectorAll('.filter-btn');

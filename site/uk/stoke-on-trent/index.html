@@ -590,7 +590,7 @@
   function esc(s) { return String(s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
 
   // --- Map ---
-  var map = L.map('map').setView([53.016046622849096, -2.170164725261685], 12);
+  var map = L.map('map');
   L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
     subdomains: 'abcd',
@@ -606,7 +606,14 @@
     });
   }
 
-  var markers = L.markerClusterGroup();
+  // Cluster only when markers genuinely overlap, and stop clustering once
+  // zoomed in so a town's handful of chargers show as individual pins.
+  var markers = L.markerClusterGroup({
+    maxClusterRadius: 40,
+    disableClusteringAtZoom: 14,
+    spiderfyOnMaxZoom: true,
+    showCoverageOnHover: false,
+  });
   var chargerData = [{"lat": 53.09878, "lng": -2.181571, "title": "Sov - Type 2 - Charger 2", "address": "Brown Lees Ind Est,", "connectors": ["Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 52.9793652123602, "lng": -2.1694858469362064, "title": "Longton Rugby Club", "address": "Eastern Rise", "connectors": ["Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 52.96302, "lng": -2.196439, "title": "Trentham", "address": "Stone Road", "connectors": ["CCS (Type 2) · 250kW"], "speed": "rapid"}, {"lat": 53.069533, "lng": -2.205343, "title": "RAW GREENE KING CHATTERLY 2", "address": "Carsington Drive", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 52.971201, "lng": -2.087267, "title": "RAW GREENE KING WEATHERVANE 1", "address": "Weathervane Lysander Rd", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 53.027982, "lng": -2.175819, "title": "intu Potteries Shopping Centre Car Park 2", "address": "Quadrant Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 53.024924, "lng": -2.154908, "title": "Nissan Holdcroft Stoke-On-Trent", "address": "929 Leek Road", "connectors": ["BS1363 3 Pin 13 Amp · 3kW", "BS1363 3 Pin 13 Amp · 3kW"], "speed": "slow"}, {"lat": 52.987582, "lng": -2.173256, "title": "Restricted access to Toyota customers", "address": "Stanley Matthews Way", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 53.048576, "lng": -2.192185, "title": "Port Vale Football Club", "address": "Hamil Road", "connectors": ["CHAdeMO · 50kW", "CHAdeMO · 50kW"], "speed": "rapid"}, {"lat": 52.9578681473584, "lng": -2.10623915946735, "title": "The Windmill", "address": "Mill House", "connectors": ["CCS (Type 2) · 50kW", "CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 43kW"], "speed": "rapid"}, {"lat": 53.0235537373196, "lng": -2.18147742199835, "title": "Tesco", "address": "Tesco", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 53.030422, "lng": -2.193681, "title": "Morrisons Stoke", "address": " Festival Park", "connectors": ["Type 2 (Socket Only) · 22kW", "CHAdeMO · 50kW", "CCS (Type 2) · 50kW"], "speed": "rapid"}, {"lat": 53.025799, "lng": -2.19447, "title": "This is a PAYG site. Please use Polar Instant App or RFID card", "address": "Commerce House", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}];
 
   chargerData.forEach(function (c) {
@@ -624,6 +631,14 @@
     markers.addLayer(marker);
   });
   map.addLayer(markers);
+
+  // Frame the map to the actual chargers so a town's points are visible
+  // immediately (and small towns land past the de-clustering zoom).
+  if (chargerData.length) {
+    map.fitBounds(markers.getBounds(), { padding: [40, 40], maxZoom: 15 });
+  } else {
+    map.setView([53.016046622849096, -2.170164725261685], 12);
+  }
 
   // --- Connector filter ---
   var filterBtns = document.querySelectorAll('.filter-btn');

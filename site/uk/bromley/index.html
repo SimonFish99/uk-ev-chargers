@@ -690,7 +690,7 @@
   function esc(s) { return String(s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
 
   // --- Map ---
-  var map = L.map('map').setView([51.4063446875, -0.0051569375], 12);
+  var map = L.map('map');
   L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
     subdomains: 'abcd',
@@ -706,7 +706,14 @@
     });
   }
 
-  var markers = L.markerClusterGroup();
+  // Cluster only when markers genuinely overlap, and stop clustering once
+  // zoomed in so a town's handful of chargers show as individual pins.
+  var markers = L.markerClusterGroup({
+    maxClusterRadius: 40,
+    disableClusteringAtZoom: 14,
+    spiderfyOnMaxZoom: true,
+    showCoverageOnHover: false,
+  });
   var chargerData = [{"lat": 51.40365, "lng": -0.040681, "title": "Hampden Road", "address": "53 Hampden Road", "connectors": ["Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.39924, "lng": -0.043673, "title": "St James Avenue", "address": "2 St James Avenue", "connectors": ["Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.427379, "lng": -0.003627, "title": "Shell Recharge/Ubitricity", "address": "null", "connectors": ["Type 2 (Socket Only) · 4.8kW"], "speed": "slow"}, {"lat": 51.4221, "lng": 0.022362, "title": "Jemca Toyota Bromley", "address": "146-150 Burnt Ash Lane", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 51.419299, "lng": -0.054912, "title": "Penge East Station (site 2)", "address": "Penge East Station (site 2)", "connectors": ["Type 1 (J1772) · 3kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.410999, "lng": 0.026223, "title": "Nissan Ancaster Bromley", "address": "88 Plaistow Lane", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 51.40959, "lng": -0.023402, "title": "St Georges Road car park", "address": "St Georges Road car park", "connectors": ["Type 1 (J1772) · 3kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.408651, "lng": -0.038727, "title": "The Spa Car Park Site 2", "address": "The Spa Car Park Site 2", "connectors": ["Type 1 (J1772) · 3kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.404468, "lng": 0.020115, "title": "Civic Centre Car Park (Stockwell Close)", "address": "Civic Centre Car Park (Stockwell Close)", "connectors": ["Type 1 (J1772) · 3kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.4025, "lng": 0.017469, "title": "NCP Bromley", "address": "Elmfield Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 51.376774, "lng": -0.019622, "title": "97 West Wickham", "address": "High Street", "connectors": ["CHAdeMO · 50kW", "CHAdeMO · 50kW"], "speed": "rapid"}, {"lat": 51.376592, "lng": 0.010597, "title": "Hayes Station Car Park", "address": "Hayes Station Car Park", "connectors": ["Type 1 (J1772) · 3kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.399995, "lng": 0.032592, "title": "Tesco Superstore-Bromley", "address": "Homesdale Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.406462, "lng": 0.010857, "title": "Hill Car Park(Site 2)", "address": "Hill Car Park(Site 2)", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 1 (J1772) · 3kW"], "speed": "fast"}, {"lat": 51.417217, "lng": -0.000418, "title": "Matlida house", "address": "Hillbrow Road", "connectors": ["Type 2 (Socket Only) · 3.7kW", "Type 2 (Socket Only) · 3.7kW"], "speed": "slow"}, {"lat": 51.416599, "lng": 0.002336, "title": "Bromley Court Hotel", "address": "Bromley Hill", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}];
 
   chargerData.forEach(function (c) {
@@ -724,6 +731,14 @@
     markers.addLayer(marker);
   });
   map.addLayer(markers);
+
+  // Frame the map to the actual chargers so a town's points are visible
+  // immediately (and small towns land past the de-clustering zoom).
+  if (chargerData.length) {
+    map.fitBounds(markers.getBounds(), { padding: [40, 40], maxZoom: 15 });
+  } else {
+    map.setView([51.4063446875, -0.0051569375], 12);
+  }
 
   // --- Connector filter ---
   var filterBtns = document.querySelectorAll('.filter-btn');

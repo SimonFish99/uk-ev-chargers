@@ -1233,7 +1233,7 @@
   function esc(s) { return String(s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
 
   // --- Map ---
-  var map = L.map('map').setView([51.50212479411765, -0.19278938235294119], 12);
+  var map = L.map('map');
   L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
     subdomains: 'abcd',
@@ -1249,7 +1249,14 @@
     });
   }
 
-  var markers = L.markerClusterGroup();
+  // Cluster only when markers genuinely overlap, and stop clustering once
+  // zoomed in so a town's handful of chargers show as individual pins.
+  var markers = L.markerClusterGroup({
+    maxClusterRadius: 40,
+    disableClusteringAtZoom: 14,
+    spiderfyOnMaxZoom: true,
+    showCoverageOnHover: false,
+  });
   var chargerData = [{"lat": 51.520866, "lng": -0.207633, "title": "Bevington Road", "address": "2 Bevington Road", "connectors": ["Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 51.515476, "lng": -0.211995, "title": "St Marks Road", "address": "St Marks Road", "connectors": ["Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 51.509518, "lng": -0.200613, "title": "Ladbroke Road", "address": "65 Ladbroke Road", "connectors": ["Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 51.508636, "lng": -0.21049, "title": "Penzance Street", "address": "10 Penzance Street", "connectors": ["Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 51.49893, "lng": -0.180067, "title": "Queens Gate Terrace", "address": "2 Queens Gate Terrace", "connectors": ["Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 51.48294, "lng": -0.170579, "title": "Cheyne Walk", "address": "63 Cheyne Walk", "connectors": ["Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 51.524414, "lng": -0.205519, "title": "Kensal Road Site 2", "address": "Kensal Road corner with Golborne Road", "connectors": ["Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.523605, "lng": -0.213883, "title": "Treverton Street", "address": "4 Treverton Street", "connectors": ["Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 51.52142, "lng": -0.227359, "title": "Brewster Gardens", "address": "55 Brewster Gardens", "connectors": ["Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.518314, "lng": -0.216511, "title": "Bassett Road", "address": "9 Bassett Road", "connectors": ["Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 51.517982, "lng": -0.224336, "title": "Latimer Road", "address": "8 Latimer Road (Site 2)", "connectors": ["Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 51.515106, "lng": -0.217976, "title": "Darfield Way", "address": "Darfield Way", "connectors": ["Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 51.512295, "lng": -0.197464, "title": "Dawson Place", "address": "Opposite 29 Dawson Place", "connectors": ["Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 51.511406, "lng": -0.205756, "title": "Ladbroke Grove", "address": "44 Ladbroke Grove", "connectors": ["Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 51.510826, "lng": -0.20503, "title": "Kensington Park Gardens", "address": "24 Kensington Park Gardens", "connectors": ["Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 51.506786, "lng": -0.207667, "title": "Portland Road", "address": "Opposite 1 Portland Road", "connectors": ["Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 51.504715, "lng": -0.212878, "title": "Upper Addison Gardens", "address": "1 Upper Addison Gardens", "connectors": ["Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 51.50444, "lng": -0.198941, "title": "Campden Hill", "address": "3 Campden Hill", "connectors": ["Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 51.498894, "lng": -0.185025, "title": "Launceston Place", "address": "4 Launceston Place", "connectors": ["Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 51.49774, "lng": -0.204968, "title": "Holland Park Road", "address": "60 Holland Park Road", "connectors": ["Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 51.496284, "lng": -0.184999, "title": "Grenville Place", "address": "18 Grenville Place", "connectors": ["Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 51.496258, "lng": -0.164831, "title": "Walton Street", "address": "54 Walton Street", "connectors": ["Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 51.49606, "lng": -0.18315, "title": "Gloucester Road", "address": "108 Gloucester Road", "connectors": ["Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 51.49522, "lng": -0.16908, "title": "Brompton Road", "address": "273 Brompton Road", "connectors": ["Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 51.4932, "lng": -0.19015, "title": "Courtfield Gardens", "address": "25 Courtfield Gardens", "connectors": ["Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 51.492344, "lng": -0.168619, "title": "Elystan Street", "address": "28 Elystan Street", "connectors": ["Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 51.490368, "lng": -0.186646, "title": "Old Brompton Road", "address": "Old Brompton Road junction with Bolton Gardens", "connectors": ["Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.489815, "lng": -0.173114, "title": "South Parade Site 2", "address": "South Parade junction Dovehouse Street", "connectors": ["Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 51.488888, "lng": -0.161065, "title": "St Leonard's Terrace", "address": "15 St Leonard's Terrace", "connectors": ["Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.487503, "lng": -0.177714, "title": "Elm Park Gardens", "address": "31 Elm Park Gardens", "connectors": ["Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 51.486137, "lng": -0.173275, "title": "Old Church Street", "address": "Opposite 62 Old Church Street", "connectors": ["Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 51.48551, "lng": -0.173516, "title": "Kings Road", "address": "279 Kings Road", "connectors": ["Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 51.485237, "lng": -0.164971, "title": "St Loo Avenue", "address": "St Loo Avenue", "connectors": ["Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 51.48511, "lng": -0.179019, "title": "Park Walk", "address": "Opposite 43 Park Walk", "connectors": ["Type 2 (Socket Only) · 22kW"], "speed": "fast"}];
 
   chargerData.forEach(function (c) {
@@ -1267,6 +1274,14 @@
     markers.addLayer(marker);
   });
   map.addLayer(markers);
+
+  // Frame the map to the actual chargers so a town's points are visible
+  // immediately (and small towns land past the de-clustering zoom).
+  if (chargerData.length) {
+    map.fitBounds(markers.getBounds(), { padding: [40, 40], maxZoom: 15 });
+  } else {
+    map.setView([51.50212479411765, -0.19278938235294119], 12);
+  }
 
   // --- Connector filter ---
   var filterBtns = document.querySelectorAll('.filter-btn');

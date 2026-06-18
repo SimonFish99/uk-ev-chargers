@@ -493,7 +493,7 @@
   function esc(s) { return String(s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
 
   // --- Map ---
-  var map = L.map('map').setView([54.679490337000004, -1.2097626670000001], 12);
+  var map = L.map('map');
   L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
     subdomains: 'abcd',
@@ -509,7 +509,14 @@
     });
   }
 
-  var markers = L.markerClusterGroup();
+  // Cluster only when markers genuinely overlap, and stop clustering once
+  // zoomed in so a town's handful of chargers show as individual pins.
+  var markers = L.markerClusterGroup({
+    maxClusterRadius: 40,
+    disableClusteringAtZoom: 14,
+    spiderfyOnMaxZoom: true,
+    showCoverageOnHover: false,
+  });
   var chargerData = [{"lat": 54.68996, "lng": -1.20855, "title": "Royal Navy Museum", "address": "Maritime Avenue", "connectors": ["Type 2 (Tethered Connector)  · 50kW", "CHAdeMO · 50kW", "Type 2 (Socket Only) · 22kW"], "speed": "rapid"}, {"lat": 54.665278, "lng": -1.208947, "title": "Teesbay Retail Park 1", "address": "16 Brenda Road", "connectors": ["CCS (Type 2) · 300kW", "CHAdeMO · 60kW", "CCS (Type 2) · 300kW"], "speed": "rapid"}, {"lat": 54.684182, "lng": -1.215038, "title": "Middleton Grange Shopping Centre", "address": "Middleton Grange Shopping Centre", "connectors": ["BS1363 3 Pin 13 Amp · 3kW"], "speed": "slow"}, {"lat": 54.685975, "lng": -1.214915, "title": "Hartlepool Civic Centre", "address": "Hartlepool Civic Centre", "connectors": ["Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 54.684408, "lng": -1.215985, "title": "West Side Car Park 3", "address": "Villiers Street", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 54.682808, "lng": -1.214883, "title": "Walden Street Car Park 3", "address": "Villers Street", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 54.680323, "lng": -1.213973, "title": "Housing Hartlepool Front Car Park", "address": "Greenbank", "connectors": ["Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 54.65634, "lng": -1.18464, "title": "Seaton Carew Coach Park 6", "address": "Tees Road, Seaton Carew", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 54.67755037, "lng": -1.20881267, "title": "Tesco Extra-Hartlepool", "address": "Belle Vue Way", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 7kW", "CHAdeMO · 50kW", "CCS (Type 2) · 50kW"], "speed": "rapid"}, {"lat": 54.688079, "lng": -1.211883, "title": "Morrisons Hartlepool", "address": "Clarence Road", "connectors": ["Type 2 (Socket Only) · 22kW", "CHAdeMO · 50kW", "CCS (Type 2) · 50kW"], "speed": "rapid"}];
 
   chargerData.forEach(function (c) {
@@ -527,6 +534,14 @@
     markers.addLayer(marker);
   });
   map.addLayer(markers);
+
+  // Frame the map to the actual chargers so a town's points are visible
+  // immediately (and small towns land past the de-clustering zoom).
+  if (chargerData.length) {
+    map.fitBounds(markers.getBounds(), { padding: [40, 40], maxZoom: 15 });
+  } else {
+    map.setView([54.679490337000004, -1.2097626670000001], 12);
+  }
 
   // --- Connector filter ---
   var filterBtns = document.querySelectorAll('.filter-btn');

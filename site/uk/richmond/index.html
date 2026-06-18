@@ -1074,7 +1074,7 @@
   function esc(s) { return String(s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
 
   // --- Map ---
-  var map = L.map('map').setView([51.58281648148148, -0.3361862222222222], 12);
+  var map = L.map('map');
   L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
     subdomains: 'abcd',
@@ -1090,7 +1090,14 @@
     });
   }
 
-  var markers = L.markerClusterGroup();
+  // Cluster only when markers genuinely overlap, and stop clustering once
+  // zoomed in so a town's handful of chargers show as individual pins.
+  var markers = L.markerClusterGroup({
+    maxClusterRadius: 40,
+    disableClusteringAtZoom: 14,
+    spiderfyOnMaxZoom: true,
+    showCoverageOnHover: false,
+  });
   var chargerData = [{"lat": 51.455762, "lng": -0.310703, "title": "Lidl-Richmond Road", "address": "383-393 Richmond Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.467139, "lng": -0.286563, "title": "Sainsbury's Richmond", "address": "Lower Richmond Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.466457, "lng": -0.287409, "title": "Ultra Rapid EV Charging - Sainsbury's Richmond", "address": "Sainsbury's", "connectors": ["CHAdeMO · 50kW", "CCS (Type 2) · 150kW", "CCS (Type 2) · 150kW", "CCS (Type 2) · 150kW", "CCS (Type 2) · 150kW", "CCS (Type 2) · 150kW", "CCS (Type 2) · 150kW", "CCS (Type 2) · 150kW", "CCS (Type 2) · 150kW", "CCS (Type 2) · 150kW"], "speed": "rapid"}, {"lat": 54.44381, "lng": -1.66722, "title": "MO Scotch Corner", "address": "Scotch Corner", "connectors": ["CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 43kW"], "speed": "rapid"}, {"lat": 51.476527, "lng": -0.283145, "title": "22 West Park Road", "address": "22 West Park Road", "connectors": ["Type 2 (Socket Only) · 3.7kW"], "speed": "slow"}, {"lat": 51.476797, "lng": -0.284099, "title": "Burlington Avenue", "address": "Burlington Avenue", "connectors": ["Type 1 (J1772) · 3kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.476673, "lng": -0.286711, "title": "Sandycombe Rd 369", "address": "Sandycombe Rd 369", "connectors": ["Type 2 (Socket Only) · 3.7kW"], "speed": "slow"}, {"lat": 51.476527, "lng": -0.283145, "title": "22 West Park Road", "address": "22 West Park Road", "connectors": ["Type 2 (Socket Only) · 3.7kW"], "speed": "slow"}, {"lat": 51.476437, "lng": -0.286748, "title": "Sandycombe Rd 302", "address": "Sandycombe Rd 302", "connectors": ["Type 2 (Socket Only) · 3.7kW"], "speed": "slow"}, {"lat": 51.475548, "lng": -0.282442, "title": "High Park Rd 4", "address": "High Park Rd 4", "connectors": ["Type 2 (Socket Only) · 3.7kW"], "speed": "slow"}, {"lat": 51.474142, "lng": -0.291974, "title": "The Avenue (Richmond)", "address": "The Avenue (Richmond)", "connectors": ["Type 1 (J1772) · 3kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.465807, "lng": -0.286541, "title": "Manor Grove 64", "address": "Manor Grove 64", "connectors": ["Type 2 (Socket Only) · 3.7kW"], "speed": "slow"}, {"lat": 51.465556, "lng": -0.292927, "title": "Sheendale Rd 7", "address": "Sheendale Rd 7", "connectors": ["Type 2 (Socket Only) · 3.7kW"], "speed": "slow"}, {"lat": 51.465251, "lng": -0.292523, "title": "Sheendale Rd", "address": "Sheendale Rd", "connectors": ["Type 2 (Socket Only) · 3.7kW"], "speed": "slow"}, {"lat": 51.462754, "lng": -0.2711, "title": "Palmerston Rd 18", "address": "Palmerston Rd 18", "connectors": ["Type 2 (Socket Only) · 3.7kW"], "speed": "slow"}, {"lat": 51.462399, "lng": -0.302488, "title": "Richmond Station", "address": "Kew Road", "connectors": ["BS1363 3 Pin 13 Amp · 3kW", "BS1363 3 Pin 13 Amp · 3kW"], "speed": "slow"}, {"lat": 51.46568, "lng": -0.248654, "title": "Westwood Road", "address": "Westwood Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 1 (J1772) · 3kW"], "speed": "fast"}, {"lat": 51.479725, "lng": -0.280986, "title": "Defoe Ave 29", "address": "Defoe Ave 29", "connectors": ["Type 2 (Socket Only) · 3.7kW"], "speed": "slow"}, {"lat": 51.479543, "lng": -0.284508, "title": "Leyborne Park 54", "address": "Leyborne Park 54", "connectors": ["Type 2 (Socket Only) · 3.7kW"], "speed": "slow"}, {"lat": 51.479483, "lng": -0.280669, "title": "Defoe Ave 46", "address": "Defoe Ave 46", "connectors": ["Type 2 (Socket Only) · 3.7kW"], "speed": "slow"}, {"lat": 51.479282, "lng": -0.285025, "title": "TW9 3HB", "address": "Leyborne Park 17", "connectors": ["Type 2 (Socket Only) · 3.7kW"], "speed": "slow"}, {"lat": 51.479219, "lng": -0.280474, "title": "Defoe Ave 57", "address": "Defoe Ave 57", "connectors": ["Type 2 (Socket Only) · 3.7kW"], "speed": "slow"}, {"lat": 51.479047, "lng": -0.285131, "title": "Leyborne Park 34", "address": "Leyborne Park 34", "connectors": ["Type 2 (Socket Only) · 3.7kW"], "speed": "slow"}, {"lat": 51.478042, "lng": -0.28275, "title": "Beechwood Ave 24", "address": "Beechwood Ave 24", "connectors": ["Type 2 (Socket Only) · 3.7kW"], "speed": "slow"}, {"lat": 51.477698, "lng": -0.282814, "title": "Beechwood Ave 27", "address": "Beechwood Ave 27", "connectors": ["Type 2 (Socket Only) · 3.7kW"], "speed": "slow"}, {"lat": 51.475528, "lng": -0.289296, "title": "Ennerdale Rd 30", "address": "Ennerdale Rd 30", "connectors": ["Type 2 (Socket Only) · 3.7kW"], "speed": "slow"}, {"lat": 51.475212, "lng": -0.280983, "title": "High Park Rd 15", "address": "High Park Rd 15", "connectors": ["Type 2 (Socket Only) · 3.7kW"], "speed": "slow"}];
 
   chargerData.forEach(function (c) {
@@ -1108,6 +1115,14 @@
     markers.addLayer(marker);
   });
   map.addLayer(markers);
+
+  // Frame the map to the actual chargers so a town's points are visible
+  // immediately (and small towns land past the de-clustering zoom).
+  if (chargerData.length) {
+    map.fitBounds(markers.getBounds(), { padding: [40, 40], maxZoom: 15 });
+  } else {
+    map.setView([51.58281648148148, -0.3361862222222222], 12);
+  }
 
   // --- Connector filter ---
   var filterBtns = document.querySelectorAll('.filter-btn');

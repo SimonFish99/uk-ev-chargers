@@ -858,7 +858,7 @@
   function esc(s) { return String(s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
 
   // --- Map ---
-  var map = L.map('map').setView([51.075506021656665, -1.799556415756371], 12);
+  var map = L.map('map');
   L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
     subdomains: 'abcd',
@@ -874,7 +874,14 @@
     });
   }
 
-  var markers = L.markerClusterGroup();
+  // Cluster only when markers genuinely overlap, and stop clustering once
+  // zoomed in so a town's handful of chargers show as individual pins.
+  var markers = L.markerClusterGroup({
+    maxClusterRadius: 40,
+    disableClusteringAtZoom: 14,
+    spiderfyOnMaxZoom: true,
+    showCoverageOnHover: false,
+  });
   var chargerData = [{"lat": 51.06723516594158, "lng": -1.7947619425035555, "title": "Old George Mall Car Park", "address": "New Street", "connectors": ["CCS (Type 2) · 150kW", "CCS (Type 2) · 150kW"], "speed": "rapid"}, {"lat": 51.0712897295312, "lng": -1.798526923124541, "title": "Salisbury Council Fleet chargers", "address": "Avon Approach", "connectors": ["Type 2 (Socket Only)", "Type 2 (Socket Only)", "Type 2 (Socket Only)", "Type 2 (Socket Only)", "Type 2 (Socket Only)", "Type 2 (Socket Only)"], "speed": "slow"}, {"lat": 51.07399958668455, "lng": -1.8167666670625806, "title": "Shell Wilton Road", "address": "133 Wilton Road", "connectors": ["CCS (Type 2) · 175kW", "CHAdeMO · 70kW"], "speed": "rapid"}, {"lat": 51.05684579803449, "lng": -1.7929700274374056, "title": "BP Pulse Salisbury SF Connect", "address": "Salisbury SF Connect", "connectors": ["CCS (Type 2) · 150kW"], "speed": "rapid"}, {"lat": 51.078536, "lng": -1.803527, "title": "Five Rivers Leisure Centre 1", "address": "88 Hulse Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.078026, "lng": -1.803645, "title": "Five Rivers (Campus)", "address": "Hulse Road", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 51.072337, "lng": -1.79105, "title": "Bourne Hill", "address": "Bourne Hill", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.067167, "lng": -2.085186, "title": "Tisbury Community Campus", "address": "Weaveland Road", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 51.062444, "lng": -1.773421, "title": "Tesco Extra - Salisbury", "address": "Bourne Centre", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.06257816045908, "lng": -1.7715930116473828, "title": "Petersfinger (Park and Ride)", "address": "A36 Southampton Road", "connectors": ["Type 2 (Socket Only) · 7.4kW", "Type 2 (Socket Only) · 7.4kW"], "speed": "fast"}, {"lat": 51.049436, "lng": -1.777814, "title": "Britford", "address": "3 High Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.07837650464111, "lng": -1.8019259231576825, "title": "Five Rivers Leisure Centre", "address": "Hulse Road", "connectors": ["Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 51.07838059048842, "lng": -1.8022965480145388, "title": "Five Rivers Leisure Centre", "address": "Hulse Road", "connectors": ["Type 2 (Socket Only) · 7.4kW", "Type 2 (Socket Only) · 7.4kW", "Type 2 (Socket Only) · 7.4kW", "Type 2 (Socket Only) · 7.4kW"], "speed": "fast"}, {"lat": 51.04424174140581, "lng": -1.7876382528814645, "title": "Salisbury District Hospital", "address": "Odstock Road", "connectors": ["Type 2 (Socket Only) · 3.6kW", "Type 2 (Socket Only) · 7.4kW", "Type 2 (Socket Only) · 7.4kW", "Type 2 (Socket Only) · 7.4kW"], "speed": "fast"}, {"lat": 51.19135722554175, "lng": -1.6678794663969492, "title": "EVC Gray Manor Hotel", "address": "Parkhouse Cross", "connectors": ["Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 51.0846187, "lng": -1.776408, "title": "London Road Car Park", "address": "London Road", "connectors": ["Type 2 (Socket Only) · 7.4kW", "Type 2 (Socket Only) · 7.4kW"], "speed": "fast"}, {"lat": 51.09954104333491, "lng": -1.7956213215868502, "title": "Beehive Park and Ride", "address": "The Portway", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.063851, "lng": -1.778708, "title": "Dolphin Retail Park Salisbury", "address": "Southampton Road Retail Park", "connectors": ["Type 2 (Socket Only) · 3.7kW", "Type 2 (Socket Only) · 3.7kW"], "speed": "slow"}, {"lat": 51.0624636560095, "lng": -1.77847520159301, "title": "Bourne Retail Park", "address": "Southampton Road", "connectors": ["CHAdeMO · 120kW", "CCS (Type 2) · 100kW"], "speed": "rapid"}, {"lat": 51.06739553106078, "lng": -1.7929140297214587, "title": "Brown Street (West) Car Park", "address": "Brown Street", "connectors": ["CCS (Type 2) · 50kW", "CHAdeMO · 50kW"], "speed": "rapid"}];
 
   chargerData.forEach(function (c) {
@@ -892,6 +899,14 @@
     markers.addLayer(marker);
   });
   map.addLayer(markers);
+
+  // Frame the map to the actual chargers so a town's points are visible
+  // immediately (and small towns land past the de-clustering zoom).
+  if (chargerData.length) {
+    map.fitBounds(markers.getBounds(), { padding: [40, 40], maxZoom: 15 });
+  } else {
+    map.setView([51.075506021656665, -1.799556415756371], 12);
+  }
 
   // --- Connector filter ---
   var filterBtns = document.querySelectorAll('.filter-btn');

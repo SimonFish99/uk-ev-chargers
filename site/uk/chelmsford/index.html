@@ -922,7 +922,7 @@
   function esc(s) { return String(s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
 
   // --- Map ---
-  var map = L.map('map').setView([51.71128129884415, 0.46450463772274575], 12);
+  var map = L.map('map');
   L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
     subdomains: 'abcd',
@@ -938,7 +938,14 @@
     });
   }
 
-  var markers = L.markerClusterGroup();
+  // Cluster only when markers genuinely overlap, and stop clustering once
+  // zoomed in so a town's handful of chargers show as individual pins.
+  var markers = L.markerClusterGroup({
+    maxClusterRadius: 40,
+    disableClusteringAtZoom: 14,
+    spiderfyOnMaxZoom: true,
+    showCoverageOnHover: false,
+  });
   var chargerData = [{"lat": 51.76179999153885, "lng": 0.4741487516387224, "title": "Broomfield Village Hall", "address": "158 Main Road", "connectors": ["Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 51.7372928773778, "lng": 0.463197970352546, "title": "The County Hotel", "address": "29 Rainsford Road", "connectors": ["Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 51.60041, "lng": 0.29877, "title": "Morrisons Chelmsford", "address": "Little Waltham", "connectors": ["Type 2 (Socket Only) · 11kW", "Type 2 (Socket Only) · 11kW"], "speed": "fast"}, {"lat": 51.730417, "lng": 0.476495, "title": "Q-Park Meadows, Chelmsford 8", "address": "Baddow Road", "connectors": ["Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.738668, "lng": 0.466308, "title": "BMM-CP-000501", "address": "Broomsfield Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.736878, "lng": 0.465201, "title": "BMM-CP-000502", "address": "Coval Lane", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.73499, "lng": 0.474859, "title": "BMM-CP-000500", "address": "Waterloo Lane", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.65478, "lng": 0.604315, "title": "Sainsbury's Chelmsford", "address": "Burnham Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.507351, "lng": -0.127758, "title": "BMM-CP-000504", "address": "Rainsford Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.720713, "lng": 0.461182, "title": "Tesco Superstore-Chelmsford Princes Road", "address": "Princes Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 22kW", "CHAdeMO · 50kW", "CCS (Type 2) · 50kW"], "speed": "rapid"}, {"lat": 51.736955, "lng": 0.470651, "title": "BMM-CP-000499", "address": "Victoria Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.7342, "lng": 0.477223, "title": "Tesco Superstore-Springfield Road", "address": "47-53 Springfield Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.7501215, "lng": 0.5106861, "title": "London-Chelmsford", "address": "1 White Hart LN", "connectors": ["NACS / Tesla Supercharger · 120kW"], "speed": "rapid"}, {"lat": 51.755241, "lng": 0.519567, "title": "BP Garage", "address": "Colchester Road", "connectors": ["CHAdeMO · 100kW", "CCS (Type 2) · 150kW"], "speed": "rapid"}, {"lat": 51.7400552056548, "lng": 0.498734207909138, "title": "Toby Carvery Chelmsford", "address": "Dukes Lane", "connectors": ["CHAdeMO · 50kW", "CCS (Type 2) · 50kW", "Type 2 (Tethered Connector)  · 43kW"], "speed": "rapid"}, {"lat": 51.731209, "lng": 0.477467, "title": "Meadows Surface car park", "address": "7 Can Bridge Way", "connectors": ["CCS (Type 2) · 50kW", "CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 43kW"], "speed": "rapid"}, {"lat": 51.728275, "lng": 0.468474, "title": "Moulsham Street car park", "address": "Moulsham Street", "connectors": ["CCS (Type 2) · 50kW", "CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 43kW"], "speed": "rapid"}, {"lat": 51.653401, "lng": 0.604963, "title": "Sainsbury's-Chelmsford", "address": "Burnham Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.778376, "lng": 0.489732, "title": "Chelmer Valley P&R 2", "address": "Little Waltham", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.74663, "lng": 0.512441, "title": "Visteon 2", "address": "Chelmsford Business Park  1 Springfield Lyons Approach, Chelmsford, Essex", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.72087, "lng": 0.52592, "title": "Sandon P&R 1", "address": "Maldon Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.649555, "lng": 0.606525, "title": "Woodham Ferrers Station Car Aprk", "address": "", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}];
 
   chargerData.forEach(function (c) {
@@ -956,6 +963,14 @@
     markers.addLayer(marker);
   });
   map.addLayer(markers);
+
+  // Frame the map to the actual chargers so a town's points are visible
+  // immediately (and small towns land past the de-clustering zoom).
+  if (chargerData.length) {
+    map.fitBounds(markers.getBounds(), { padding: [40, 40], maxZoom: 15 });
+  } else {
+    map.setView([51.71128129884415, 0.46450463772274575], 12);
+  }
 
   // --- Connector filter ---
   var filterBtns = document.querySelectorAll('.filter-btn');

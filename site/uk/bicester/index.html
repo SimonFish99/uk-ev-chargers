@@ -667,7 +667,7 @@
   function esc(s) { return String(s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
 
   // --- Map ---
-  var map = L.map('map').setView([51.896618474148134, -1.1728177789885639], 12);
+  var map = L.map('map');
   L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
     subdomains: 'abcd',
@@ -683,7 +683,14 @@
     });
   }
 
-  var markers = L.markerClusterGroup();
+  // Cluster only when markers genuinely overlap, and stop clustering once
+  // zoomed in so a town's handful of chargers show as individual pins.
+  var markers = L.markerClusterGroup({
+    maxClusterRadius: 40,
+    disableClusteringAtZoom: 14,
+    spiderfyOnMaxZoom: true,
+    showCoverageOnHover: false,
+  });
   var chargerData = [{"lat": 51.949654, "lng": -1.198057, "title": "GS10043", "address": "M40 Motorway, Jct 10, Northampton Road, Ardley", "connectors": ["Type 2 (Tethered Connector)  · 60kW", "CHAdeMO · 50kW"], "speed": "rapid"}, {"lat": 51.891133, "lng": -1.159868, "title": "Tesco Superstore-Bicester (75KW)", "address": "Lakeview Drive", "connectors": ["CCS (Type 2) · 75kW"], "speed": "rapid"}, {"lat": 51.852018, "lng": -1.224851, "title": "Shell Layby", "address": "A34", "connectors": ["CCS (Type 2) · 175kW", "CHAdeMO · 70kW", "CCS (Type 2) · 175kW", "CCS (Type 2) · 300kW", "CCS (Type 2) · 175kW", "CHAdeMO · 70kW", "CHAdeMO · 70kW", "CHAdeMO · 70kW"], "speed": "rapid"}, {"lat": 51.898695, "lng": -1.153264, "title": "Sainsbury's Bicester", "address": "Bure Place", "connectors": ["Type 2 (Socket Only) · 3.7kW", "Type 2 (Socket Only) · 3.7kW"], "speed": "slow"}, {"lat": 51.8936, "lng": -1.16269, "title": "Little Chef", "address": "Oxford Road", "connectors": ["BS1363 3 Pin 13 Amp · 3kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 51.849998, "lng": -1.2295, "title": "Little Chef A34 North", "address": "Little Chef A34 North", "connectors": ["BS1363 3 Pin 13 Amp · 3kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 51.9190497362585, "lng": -1.15942217453471, "title": "Pippin Close", "address": "Elmsbrook", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.89324306010596, "lng": -1.150558940325709, "title": "Bicester Shopping Village Car Park", "address": "Station Approach", "connectors": ["Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.89328630760849, "lng": -1.1608701227904703, "title": "Bicester Shopping Village", "address": "144a Pingle Drive", "connectors": ["Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.9591047079117, "lng": -1.20252694943372, "title": "McDonald's Baynards Green", "address": "Baynards Green Roundabout", "connectors": ["CCS (Type 2) · 120kW", "CHAdeMO · 100kW"], "speed": "rapid"}, {"lat": 51.882091, "lng": -1.150491, "title": "Bicester", "address": "Wendlebury Road, Bicester Gateway", "connectors": ["Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.89875229553789, "lng": -1.1478156583920054, "title": "Cattle Market Car Park", "address": "Victoria Road", "connectors": ["Type 2 (Tethered Connector)  · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 51.89125, "lng": -1.164444, "title": "Bicester Gateway", "address": "Bicester Gateway", "connectors": ["Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.886296004799476, "lng": -1.1681428393518445, "title": "Holiday Inn Express Bicester", "address": "Gateway Business Park", "connectors": ["Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.891106, "lng": -1.159765, "title": "Tesco Superstore-Bicester", "address": "Lakeview Drive", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}];
 
   chargerData.forEach(function (c) {
@@ -701,6 +708,14 @@
     markers.addLayer(marker);
   });
   map.addLayer(markers);
+
+  // Frame the map to the actual chargers so a town's points are visible
+  // immediately (and small towns land past the de-clustering zoom).
+  if (chargerData.length) {
+    map.fitBounds(markers.getBounds(), { padding: [40, 40], maxZoom: 15 });
+  } else {
+    map.setView([51.896618474148134, -1.1728177789885639], 12);
+  }
 
   // --- Connector filter ---
   var filterBtns = document.querySelectorAll('.filter-btn');

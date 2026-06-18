@@ -961,7 +961,7 @@
   function esc(s) { return String(s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
 
   // --- Map ---
-  var map = L.map('map').setView([53.428767932645066, -1.306638608885808], 12);
+  var map = L.map('map');
   L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
     subdomains: 'abcd',
@@ -977,7 +977,14 @@
     });
   }
 
-  var markers = L.markerClusterGroup();
+  // Cluster only when markers genuinely overlap, and stop clustering once
+  // zoomed in so a town's handful of chargers show as individual pins.
+  var markers = L.markerClusterGroup({
+    maxClusterRadius: 40,
+    disableClusteringAtZoom: 14,
+    spiderfyOnMaxZoom: true,
+    showCoverageOnHover: false,
+  });
   var chargerData = [{"lat": 53.31614044589014, "lng": -1.2814129367635019, "title": "M1 Woodall Southbound Services", "address": "M1", "connectors": ["CCS (Type 2) · 180kW"], "speed": "rapid"}, {"lat": 53.434517, "lng": -1.352677, "title": "Tesco Extra - Rotherham", "address": "Drummond Street", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 53.420085, "lng": -1.193762, "title": "Aldi - Maltby", "address": "Muglet Lane, Maltby", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 53.4227, "lng": -1.25567, "title": "DRAX00234", "address": "Moorhead Way", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 53.45937, "lng": -1.287399, "title": "Thrybergh Country Park (83448R024)", "address": "Doncaster Road, Thrybergh", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 53.423382, "lng": -1.255981, "title": "Morrison Rotherham Bramley", "address": "Bramley", "connectors": ["Type 2 (Tethered Connector)  · 60kW", "CHAdeMO · 50kW", "Type 2 (Socket Only) · 22kW"], "speed": "rapid"}, {"lat": 53.340021, "lng": -1.320378, "title": "Rother Valley Country Park-Visitor Centre", "address": "Rother Valley Country Park-Visitor Centre", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 53.44359, "lng": -1.31551, "title": "Lidl-Doncaster Road", "address": "Doncaster Road", "connectors": ["Type 2 (Socket Only) · 22kW", "CCS (Type 2) · 50kW", "CHAdeMO · 50kW"], "speed": "rapid"}, {"lat": 53.413502, "lng": -1.345689, "title": "Rotherham General Hospital-Public Carpark", "address": "Moorgate Road", "connectors": ["Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 53.4428044, "lng": -1.3210055, "title": "McDonald's, Aldwarke Lane", "address": "Aldwarke Lane", "connectors": ["CCS (Type 2) · 120kW", "CHAdeMO · 100kW"], "speed": "rapid"}, {"lat": 53.441891680996, "lng": -1.34885812214083, "title": "McDonald's Rotherham", "address": "Parkgate", "connectors": ["CCS (Type 2) · 120kW", "CHAdeMO · 75kW"], "speed": "rapid"}, {"lat": 53.389975, "lng": -1.372662, "title": "Morrisons Rotherham Catcliffe", "address": "Poplar Way, Catcliffe", "connectors": ["Type 2 (Socket Only) · 22kW", "CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 50kW"], "speed": "rapid"}, {"lat": 53.5044518239504, "lng": -1.34485494546925, "title": "Tesco Extra - Rotherham Wath-upon-Dearne", "address": "Biscay Way", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 53.3705601, "lng": -1.2110165, "title": "Tesco Superstore", "address": "Tesco Superstore", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 53.4, "lng": -1.19, "title": "Grange Wood", "address": "Grange Wood", "connectors": ["Unknown · 7.4kW"], "speed": "fast"}, {"lat": 53.502878, "lng": -1.344798, "title": "Montgomery Road", "address": "Montgomery Road/Wath Bus Station 1", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 53.488097, "lng": -1.302033, "title": "Walker Street", "address": "Walker Street", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 53.459054, "lng": -1.28827, "title": "Doncaster Road/Thrybergh Country Park", "address": "Doncaster Road/Thrybergh Country Park", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 53.456675, "lng": -1.338076, "title": "Barbers Avenue", "address": "Barbers Avenue", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 53.432117, "lng": -1.358381, "title": "4 Corporation Street", "address": "4 Corporation Street", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 53.4291, "lng": -1.346627, "title": "Clifton Park & Museum", "address": "49 Clifton Lane", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 53.428835, "lng": -1.353408, "title": "Wellgate Car Park", "address": "Wellgate Car Park", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 53.441916, "lng": -1.324219, "title": "Sycamore Road", "address": "Sycamore Road", "connectors": ["CHAdeMO · 50kW", "CCS (Type 2) · 50kW", "CCS (Type 2) · 50kW", "CHAdeMO · 50kW"], "speed": "rapid"}];
 
   chargerData.forEach(function (c) {
@@ -995,6 +1002,14 @@
     markers.addLayer(marker);
   });
   map.addLayer(markers);
+
+  // Frame the map to the actual chargers so a town's points are visible
+  // immediately (and small towns land past the de-clustering zoom).
+  if (chargerData.length) {
+    map.fitBounds(markers.getBounds(), { padding: [40, 40], maxZoom: 15 });
+  } else {
+    map.setView([53.428767932645066, -1.306638608885808], 12);
+  }
 
   // --- Connector filter ---
   var filterBtns = document.querySelectorAll('.filter-btn');

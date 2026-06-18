@@ -388,7 +388,7 @@
   function esc(s) { return String(s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
 
   // --- Map ---
-  var map = L.map('map').setView([54.71883184931083, -5.656777979308096], 12);
+  var map = L.map('map');
   L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
     subdomains: 'abcd',
@@ -404,7 +404,14 @@
     });
   }
 
-  var markers = L.markerClusterGroup();
+  // Cluster only when markers genuinely overlap, and stop clustering once
+  // zoomed in so a town's handful of chargers show as individual pins.
+  var markers = L.markerClusterGroup({
+    maxClusterRadius: 40,
+    disableClusteringAtZoom: 14,
+    spiderfyOnMaxZoom: true,
+    showCoverageOnHover: false,
+  });
   var chargerData = [{"lat": 54.59664925618725, "lng": -5.815424114233224, "title": "Ulster Hospital (Homes 1 -3)", "address": "Upper Newtownards Road", "connectors": ["Type 2 (Socket Only) · 11kW"], "speed": "fast"}, {"lat": 54.59619587896347, "lng": -5.814191182801977, "title": "Ulster Hospital (Graham-Bam Healthcare Partnership)", "address": "Upper Newtownards Road", "connectors": ["Type 2 (Socket Only) · 11kW"], "speed": "fast"}, {"lat": 54.59625401252359, "lng": -5.808580354321492, "title": "Ulster Hospital (Tor Bank)", "address": "Tor Bank", "connectors": ["Type 2 (Socket Only) · 11kW"], "speed": "fast"}, {"lat": 54.59696499199171, "lng": -5.807831167700186, "title": "Ulster Hospital", "address": "Upper Newtownards Road", "connectors": ["Type 2 (Socket Only) · 11kW"], "speed": "fast"}, {"lat": 54.59838342564484, "lng": -5.80803161291098, "title": "Ulster Hospital (Car Park F)", "address": "Car Park F", "connectors": ["Type 2 (Socket Only) · 11kW"], "speed": "fast"}, {"lat": 54.59735952797129, "lng": -5.781471693348919, "title": "Inspire Business Centre", "address": "Carrowreagh Rd", "connectors": ["Type 2 (Socket Only) · 22kW"], "speed": "fast"}, {"lat": 54.588337351951765, "lng": -5.825495694824639, "title": "HRL Hanwood", "address": "200 Old Dundonald Road", "connectors": ["CCS (Type 2) · 150kW"], "speed": "rapid"}, {"lat": 55.58051034925276, "lng": -4.593198014323349, "title": "Dundonald Activity Centre", "address": "35 Castle Drive", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}];
 
   chargerData.forEach(function (c) {
@@ -422,6 +429,14 @@
     markers.addLayer(marker);
   });
   map.addLayer(markers);
+
+  // Frame the map to the actual chargers so a town's points are visible
+  // immediately (and small towns land past the de-clustering zoom).
+  if (chargerData.length) {
+    map.fitBounds(markers.getBounds(), { padding: [40, 40], maxZoom: 15 });
+  } else {
+    map.setView([54.71883184931083, -5.656777979308096], 12);
+  }
 
   // --- Connector filter ---
   var filterBtns = document.querySelectorAll('.filter-btn');

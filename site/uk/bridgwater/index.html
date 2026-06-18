@@ -347,7 +347,7 @@
   function esc(s) { return String(s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
 
   // --- Map ---
-  var map = L.map('map').setView([51.136185474375814, -2.9944689656658032], 12);
+  var map = L.map('map');
   L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
     subdomains: 'abcd',
@@ -363,7 +363,14 @@
     });
   }
 
-  var markers = L.markerClusterGroup();
+  // Cluster only when markers genuinely overlap, and stop clustering once
+  // zoomed in so a town's handful of chargers show as individual pins.
+  var markers = L.markerClusterGroup({
+    maxClusterRadius: 40,
+    disableClusteringAtZoom: 14,
+    spiderfyOnMaxZoom: true,
+    showCoverageOnHover: false,
+  });
   var chargerData = [{"lat": 51.105418, "lng": -2.995967, "title": "MOTO Bridgwater Services", "address": "Huntworth Business Park M5", "connectors": ["CCS (Type 2) · 60kW", "CHAdeMO · 60kW"], "speed": "rapid"}, {"lat": 51.163692, "lng": -2.9894093, "title": "McDonald's Bridgwater", "address": "Bridgwater Business Park", "connectors": ["CCS (Type 2) · 120kW", "CHAdeMO · 50kW"], "speed": "rapid"}, {"lat": 51.131901, "lng": -2.985827, "title": "Bridgwater Colleges 6915-6", "address": "Bath Road Campus", "connectors": ["Type 2 (Socket Only) · 11kW"], "speed": "fast"}, {"lat": 51.1647358462549, "lng": -2.99034849399482, "title": "MFG Dunball Service Station", "address": "Old Works Road", "connectors": ["CCS (Type 2) · 150kW", "CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 7kW"], "speed": "rapid"}, {"lat": 51.125683, "lng": -3.002631, "title": "Wm Morrison Supermarkets PLC", "address": "Wm Morrison Supermarkets PLC", "connectors": ["Type 2 (Socket Only) · 22kW", "CHAdeMO · 50kW", "CCS (Type 2) · 50kW"], "speed": "rapid"}, {"lat": 51.125683, "lng": -3.002631, "title": "Morrisons Bridgwater the Broadway", "address": "Wm Morrison Supermarkets PLC", "connectors": ["Type 2 (Socket Only) · 22kW", "CHAdeMO · 50kW", "CCS (Type 2) · 50kW"], "speed": "rapid"}];
 
   chargerData.forEach(function (c) {
@@ -381,6 +388,14 @@
     markers.addLayer(marker);
   });
   map.addLayer(markers);
+
+  // Frame the map to the actual chargers so a town's points are visible
+  // immediately (and small towns land past the de-clustering zoom).
+  if (chargerData.length) {
+    map.fitBounds(markers.getBounds(), { padding: [40, 40], maxZoom: 15 });
+  } else {
+    map.setView([51.136185474375814, -2.9944689656658032], 12);
+  }
 
   // --- Connector filter ---
   var filterBtns = document.querySelectorAll('.filter-btn');
