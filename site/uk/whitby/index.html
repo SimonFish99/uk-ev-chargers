@@ -17,7 +17,10 @@
 
 <header>
 <div class="container">
-<a href="/" class="logo">PlugMap <span class="tagline">UK EV Charger Locator</span></a>
+<a href="/" class="logo">
+  <svg class="logo-bolt" viewBox="0 0 24 24" fill="currentColor" width="22" height="22" aria-hidden="true"><path d="M13 2L4.5 13.5H11L10 22L19.5 10.5H13Z"/></svg>
+  PlugMap <span class="tagline">UK EV Charger Locator</span>
+</a>
 </div>
 </header>
 
@@ -28,16 +31,39 @@
 </nav>
 
 <h1>EV Chargers in Whitby</h1>
-<p class="page-intro">7 public charging stations found in Whitby.</p>
+
+<div class="stats-bar">
+  <span class="stat-pill stat-total">7 stations</span>
+  <span class="stat-pill stat-rapid">1 rapid (50kW+)</span>
+  <span class="stat-pill stat-fast">6 fast (7–50kW)</span>
+  
+</div>
 
 <div id="map"></div>
 
-<ul class="charger-list">
+
+<div class="connector-filter">
+  <span class="filter-label">Filter:</span>
+  <button class="filter-btn active" data-filter="all">All</button>
+  
+  <button class="filter-btn" data-filter="CCS (Type 2)">CCS (Type 2)</button>
+  
+  <button class="filter-btn" data-filter="CHAdeMO">CHAdeMO</button>
+  
+  <button class="filter-btn" data-filter="Type 2 (Socket Only)">Type 2 (Socket Only)</button>
+  
+</div>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Marina Back Car Park</h2>
-  <p class="charger-address">Langborne Road YO21 1DN
+<ul class="charger-list" id="charger-list">
+
+
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Marina Back Car Park</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Langborne Road <button class="copy-btn" data-copy="YO21 1DN">YO21 1DN</button>
   </p>
   
   <div class="charger-connections">
@@ -59,9 +85,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">West Cliff Car Park </h2>
-  <p class="charger-address">West Cliff O21 3EG
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">West Cliff Car Park </h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">West Cliff <button class="copy-btn" data-copy="O21 3EG">O21 3EG</button>
   </p>
   
   <div class="charger-connections">
@@ -92,9 +121,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Church Street Carpark</h2>
-  <p class="charger-address">58 Church St YO22 4AS
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Church Street Carpark</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">58 Church St <button class="copy-btn" data-copy="YO22 4AS">YO22 4AS</button>
   </p>
   
   <div class="charger-connections">
@@ -116,9 +148,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">The Stables</h2>
-  <p class="charger-address">Guisborough Road YO21 1TL
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">The Stables</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Guisborough Road <button class="copy-btn" data-copy="YO21 1TL">YO21 1TL</button>
   </p>
   
   <div class="charger-connections">
@@ -137,9 +172,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Aldi - Whitby</h2>
-  <p class="charger-address">Fairfield Way YO22 4PU
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Aldi - Whitby</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Fairfield Way <button class="copy-btn" data-copy="YO22 4PU">YO22 4PU</button>
   </p>
   
   <div class="charger-connections">
@@ -161,9 +199,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Lidl-Whitby</h2>
-  <p class="charger-address">Stakesby Road YO21 1HS
+<li class="charger-item charger-item--rapid" data-connectors="Type 2 (Socket Only),CCS (Type 2),CHAdeMO">
+  <div class="charger-header">
+    <h2 class="charger-name">Lidl-Whitby</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Stakesby Road <button class="copy-btn" data-copy="YO21 1HS">YO21 1HS</button>
   </p>
   
   <div class="charger-connections">
@@ -188,9 +230,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">St Hilda&#39;s Business Centre</h2>
-  <p class="charger-address">The Ropery YO22 4ET
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">St Hilda&#39;s Business Centre</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">The Ropery <button class="copy-btn" data-copy="YO22 4ET">YO22 4ET</button>
   </p>
   
   <div class="charger-connections">
@@ -215,6 +260,23 @@
 
 <p><a href="/" class="back-link">← All UK towns</a></p>
 
+
+<div class="nearby-towns">
+  <h2 class="nearby-heading">Nearby towns</h2>
+  <ul class="nearby-list">
+  
+    <li><a href="/uk/scarborough/">Scarborough</a></li>
+  
+    <li><a href="/uk/redcar/">Redcar</a></li>
+  
+    <li><a href="/uk/bridlington/">Bridlington</a></li>
+  
+    <li><a href="/uk/middlesbrough/">Middlesbrough</a></li>
+  
+  </ul>
+</div>
+
+
 </div>
 
 <footer>
@@ -227,26 +289,61 @@
 <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 <script>
 (function () {
+  // --- Map ---
   var map = L.map('map').setView([54.482409278154684, -0.619441554050478], 12);
-
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
   }).addTo(map);
 
   var markers = L.markerClusterGroup();
-  var chargerData = [{"lat": 54.481902387939215, "lng": -0.6130653706909186, "title": "Marina Back Car Park", "address": "Langborne Road"}, {"lat": 54.48942199951, "lng": -0.6210446787727051, "title": "West Cliff Car Park ", "address": "West Cliff"}, {"lat": 54.48626287810376, "lng": -0.6111390454956336, "title": "Church Street Carpark", "address": "58 Church St"}, {"lat": 54.479217, "lng": -0.650451, "title": "The Stables", "address": "Guisborough Road"}, {"lat": 54.471659, "lng": -0.59589, "title": "Aldi - Whitby", "address": "Fairfield Way"}, {"lat": 54.48594928, "lng": -0.63608472, "title": "Lidl-Whitby", "address": "Stakesby Road"}, {"lat": 54.48245240152977, "lng": -0.6084160633940883, "title": "St Hilda's Business Centre", "address": "The Ropery"}];
+  var chargerData = [{"lat": 54.481902387939215, "lng": -0.6130653706909186, "title": "Marina Back Car Park", "address": "Langborne Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 54.48942199951, "lng": -0.6210446787727051, "title": "West Cliff Car Park ", "address": "West Cliff", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 54.48626287810376, "lng": -0.6111390454956336, "title": "Church Street Carpark", "address": "58 Church St", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 54.479217, "lng": -0.650451, "title": "The Stables", "address": "Guisborough Road", "connectors": ["Type 2 (Socket Only) · 7kW"]}, {"lat": 54.471659, "lng": -0.59589, "title": "Aldi - Whitby", "address": "Fairfield Way", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 54.48594928, "lng": -0.63608472, "title": "Lidl-Whitby", "address": "Stakesby Road", "connectors": ["Type 2 (Socket Only) · 22kW", "CCS (Type 2) · 50kW", "CHAdeMO · 50kW"]}, {"lat": 54.48245240152977, "lng": -0.6084160633940883, "title": "St Hilda's Business Centre", "address": "The Ropery", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}];
 
   chargerData.forEach(function (c) {
+    var connHtml = c.connectors.length
+      ? '<div style="margin-top:6px;font-size:12px;color:#475569">' + c.connectors.join(' &middot; ') + '</div>'
+      : '';
     var marker = L.marker([c.lat, c.lng]);
     marker.bindPopup(
-      '<b>' + c.title + '</b><br>' + c.address + '<br><br>' +
+      '<b>' + c.title + '</b>' +
+      '<div style="color:#64748b;font-size:13px">' + c.address + '</div>' +
+      connHtml +
       '<a href="https://www.google.com/maps/dir/?api=1&destination=' + c.lat + ',' + c.lng +
-      '" target="_blank" rel="noopener">Get directions</a>'
+      '" target="_blank" rel="noopener" style="display:inline-block;margin-top:8px;padding:4px 10px;background:#2563eb;color:white;border-radius:4px;text-decoration:none;font-size:12px">Get directions</a>'
     );
     markers.addLayer(marker);
   });
-
   map.addLayer(markers);
+
+  // --- Connector filter ---
+  var filterBtns = document.querySelectorAll('.filter-btn');
+  var chargerItems = document.querySelectorAll('.charger-item');
+
+  filterBtns.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      filterBtns.forEach(function (b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      var f = btn.dataset.filter;
+      chargerItems.forEach(function (item) {
+        var connList = item.dataset.connectors ? item.dataset.connectors.split(',') : [];
+        item.style.display = (f === 'all' || connList.indexOf(f) !== -1) ? '' : 'none';
+      });
+    });
+  });
+
+  // --- Copy postcode ---
+  document.querySelectorAll('.copy-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var original = btn.textContent;
+      navigator.clipboard.writeText(btn.dataset.copy).then(function () {
+        btn.textContent = 'Copied!';
+        btn.classList.add('copy-btn--success');
+        setTimeout(function () {
+          btn.textContent = original;
+          btn.classList.remove('copy-btn--success');
+        }, 1500);
+      });
+    });
+  });
 }());
 </script>
 

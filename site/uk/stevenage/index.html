@@ -17,7 +17,10 @@
 
 <header>
 <div class="container">
-<a href="/" class="logo">PlugMap <span class="tagline">UK EV Charger Locator</span></a>
+<a href="/" class="logo">
+  <svg class="logo-bolt" viewBox="0 0 24 24" fill="currentColor" width="22" height="22" aria-hidden="true"><path d="M13 2L4.5 13.5H11L10 22L19.5 10.5H13Z"/></svg>
+  PlugMap <span class="tagline">UK EV Charger Locator</span>
+</a>
 </div>
 </header>
 
@@ -28,16 +31,42 @@
 </nav>
 
 <h1>EV Chargers in Stevenage</h1>
-<p class="page-intro">18 public charging stations found in Stevenage.</p>
+
+<div class="stats-bar">
+  <span class="stat-pill stat-total">18 stations</span>
+  <span class="stat-pill stat-rapid">8 rapid (50kW+)</span>
+  <span class="stat-pill stat-fast">10 fast (7–50kW)</span>
+  
+</div>
 
 <div id="map"></div>
 
-<ul class="charger-list">
+
+<div class="connector-filter">
+  <span class="filter-label">Filter:</span>
+  <button class="filter-btn active" data-filter="all">All</button>
+  
+  <button class="filter-btn" data-filter="CCS (Type 2)">CCS (Type 2)</button>
+  
+  <button class="filter-btn" data-filter="CHAdeMO">CHAdeMO</button>
+  
+  <button class="filter-btn" data-filter="Type 2 (Socket Only)">Type 2 (Socket Only)</button>
+  
+  <button class="filter-btn" data-filter="Type 2 (Tethered Connector) ">Type 2 (Tethered Connector) </button>
+  
+</div>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Monkswood Retail Park</h2>
-  <p class="charger-address">Elder Way SG1 1TL
+<ul class="charger-list" id="charger-list">
+
+
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2),CHAdeMO">
+  <div class="charger-header">
+    <h2 class="charger-name">Monkswood Retail Park</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Elder Way <button class="copy-btn" data-copy="SG1 1TL">SG1 1TL</button>
   </p>
   
   <div class="charger-connections">
@@ -80,9 +109,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Stevenage Electric Forecourt</h2>
-  <p class="charger-address">Knebworth Park SG1 2AX
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2),CHAdeMO,Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Stevenage Electric Forecourt</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Knebworth Park <button class="copy-btn" data-copy="SG1 2AX">SG1 2AX</button>
   </p>
   
   <div class="charger-connections">
@@ -188,9 +221,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Solnet EV GB-SOL001001</h2>
-  <p class="charger-address">4 Modular Business Park SG1 2FZ
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2)">
+  <div class="charger-header">
+    <h2 class="charger-name">Solnet EV GB-SOL001001</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">4 Modular Business Park <button class="copy-btn" data-copy="SG1 2FZ">SG1 2FZ</button>
   </p>
   
   <div class="charger-connections">
@@ -209,9 +246,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">LISTER HOSPITAL HSP STATION 1</h2>
-  <p class="charger-address">Coreys Mill Lane SG1 4AB
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">LISTER HOSPITAL HSP STATION 1</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Coreys Mill Lane <button class="copy-btn" data-copy="SG1 4AB">SG1 4AB</button>
   </p>
   
   <div class="charger-connections">
@@ -233,9 +273,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Lytton Way MSCP, Stevenage 7</h2>
-  <p class="charger-address">Lytton Way SG1 1LZ
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Lytton Way MSCP, Stevenage 7</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Lytton Way <button class="copy-btn" data-copy="SG1 1LZ">SG1 1LZ</button>
   </p>
   
   <div class="charger-connections">
@@ -254,9 +297,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Marshgate Car Park, Stevenage 2</h2>
-  <p class="charger-address">Marshgate Car Park, Stevenage SG1 1EA
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Marshgate Car Park, Stevenage 2</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Marshgate Car Park, Stevenage <button class="copy-btn" data-copy="SG1 1EA">SG1 1EA</button>
   </p>
   
   <div class="charger-connections">
@@ -278,9 +324,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">The Cromwell</h2>
-  <p class="charger-address">High Street SG1 3AR
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2)">
+  <div class="charger-header">
+    <h2 class="charger-name">The Cromwell</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">High Street <button class="copy-btn" data-copy="SG1 3AR">SG1 3AR</button>
   </p>
   
   <div class="charger-connections">
@@ -299,9 +349,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Hotel Cromwell Stevenage</h2>
-  <p class="charger-address">High Street SG1 3AZ
+<li class="charger-item charger-item--rapid" data-connectors="CHAdeMO,CCS (Type 2),Type 2 (Tethered Connector) ,Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Hotel Cromwell Stevenage</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">High Street <button class="copy-btn" data-copy="SG1 3AZ">SG1 3AZ</button>
   </p>
   
   <div class="charger-connections">
@@ -329,9 +383,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Lytton Way MSCP, Stevenage 12</h2>
-  <p class="charger-address">Lytton Way SG1 1LZ
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Lytton Way MSCP, Stevenage 12</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Lytton Way <button class="copy-btn" data-copy="SG1 1LZ">SG1 1LZ</button>
   </p>
   
   <div class="charger-connections">
@@ -350,9 +407,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">St Georges Way MSCP  North Level Four 2</h2>
-  <p class="charger-address">St Georges Way Multi Storey Ca SG1 1EP
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">St Georges Way MSCP  North Level Four 2</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">St Georges Way Multi Storey Ca <button class="copy-btn" data-copy="SG1 1EP">SG1 1EP</button>
   </p>
   
   <div class="charger-connections">
@@ -374,9 +434,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">St Georges Way MSCP South Level Four 1</h2>
-  <p class="charger-address">St Georges Way Multi Storey Ca SG1 1EP
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">St Georges Way MSCP South Level Four 1</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">St Georges Way Multi Storey Ca <button class="copy-btn" data-copy="SG1 1EP">SG1 1EP</button>
   </p>
   
   <div class="charger-connections">
@@ -398,9 +461,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Starbucks Stevenage </h2>
-  <p class="charger-address">Whittle Way SG1 2BE
+<li class="charger-item charger-item--rapid" data-connectors="CHAdeMO,CCS (Type 2)">
+  <div class="charger-header">
+    <h2 class="charger-name">Starbucks Stevenage </h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Whittle Way <button class="copy-btn" data-copy="SG1 2BE">SG1 2BE</button>
   </p>
   
   <div class="charger-connections">
@@ -428,9 +495,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Tesco Extra-Stevenage</h2>
-  <p class="charger-address">The Forum SG1 1ES
+<li class="charger-item charger-item--rapid" data-connectors="Type 2 (Socket Only),CCS (Type 2),CHAdeMO">
+  <div class="charger-header">
+    <h2 class="charger-name">Tesco Extra-Stevenage</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">The Forum <button class="copy-btn" data-copy="SG1 1ES">SG1 1ES</button>
   </p>
   
   <div class="charger-connections">
@@ -458,9 +529,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">North Hertfordshire College</h2>
-  <p class="charger-address">Monkswood Way SG1 1LA
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">North Hertfordshire College</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Monkswood Way <button class="copy-btn" data-copy="SG1 1LA">SG1 1LA</button>
   </p>
   
   <div class="charger-connections">
@@ -479,9 +553,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Swingate, Stevenage 02</h2>
-  <p class="charger-address">Swingate 2 SG1 1RU
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Swingate, Stevenage 02</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Swingate 2 <button class="copy-btn" data-copy="SG1 1RU">SG1 1RU</button>
   </p>
   
   <div class="charger-connections">
@@ -503,9 +580,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Tesco Superstore - Stevenage Broadwater</h2>
-  <p class="charger-address">Broadwater Retail Park SG2 8DT
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Tesco Superstore - Stevenage Broadwater</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Broadwater Retail Park <button class="copy-btn" data-copy="SG2 8DT">SG2 8DT</button>
   </p>
   
   <div class="charger-connections">
@@ -527,9 +607,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Asda Stevenage Supercentre</h2>
-  <p class="charger-address">Monkswood Way SG1 1LA
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2),CHAdeMO">
+  <div class="charger-header">
+    <h2 class="charger-name">Asda Stevenage Supercentre</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Monkswood Way <button class="copy-btn" data-copy="SG1 1LA">SG1 1LA</button>
   </p>
   
   <div class="charger-connections">
@@ -551,9 +635,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">North Herts College</h2>
-  <p class="charger-address">Monkswood Way SG1 1LA
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">North Herts College</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Monkswood Way <button class="copy-btn" data-copy="SG1 1LA">SG1 1LA</button>
   </p>
   
   <div class="charger-connections">
@@ -578,6 +665,23 @@
 
 <p><a href="/" class="back-link">← All UK towns</a></p>
 
+
+<div class="nearby-towns">
+  <h2 class="nearby-heading">Nearby towns</h2>
+  <ul class="nearby-list">
+  
+    <li><a href="/uk/hitchin/">Hitchin</a></li>
+  
+    <li><a href="/uk/welwyn-garden-city/">Welwyn Garden City</a></li>
+  
+    <li><a href="/uk/hatfield/">Hatfield</a></li>
+  
+    <li><a href="/uk/luton/">Luton</a></li>
+  
+  </ul>
+</div>
+
+
 </div>
 
 <footer>
@@ -590,26 +694,61 @@
 <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 <script>
 (function () {
+  // --- Map ---
   var map = L.map('map').setView([51.90086963638164, -0.2035479985790929], 12);
-
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
   }).addTo(map);
 
   var markers = L.markerClusterGroup();
-  var chargerData = [{"lat": 51.894597, "lng": -0.197934, "title": "Monkswood Retail Park", "address": "Elder Way"}, {"lat": 51.8874546188176, "lng": -0.20868292990852, "title": "Stevenage Electric Forecourt", "address": "Knebworth Park"}, {"lat": 51.896624, "lng": -0.205349, "title": "Solnet EV GB-SOL001001", "address": "4 Modular Business Park"}, {"lat": 51.924161, "lng": -0.21189, "title": "LISTER HOSPITAL HSP STATION 1", "address": "Coreys Mill Lane"}, {"lat": 51.903842, "lng": -0.207833, "title": "Lytton Way MSCP, Stevenage 7", "address": "Lytton Way"}, {"lat": 51.903801, "lng": -0.200861, "title": "Marshgate Car Park, Stevenage 2", "address": "Marshgate Car Park, Stevenage"}, {"lat": 51.9128267949099, "lng": -0.207212473166123, "title": "The Cromwell", "address": "High Street"}, {"lat": 51.9130548182216, "lng": -0.207666282569903, "title": "Hotel Cromwell Stevenage", "address": "High Street"}, {"lat": 51.903033, "lng": -0.207476, "title": "Lytton Way MSCP, Stevenage 12", "address": "Lytton Way"}, {"lat": 51.902039, "lng": -0.200497, "title": "St Georges Way MSCP  North Level Four 2", "address": "St Georges Way Multi Storey Ca"}, {"lat": 51.901597, "lng": -0.200173, "title": "St Georges Way MSCP South Level Four 1", "address": "St Georges Way Multi Storey Ca"}, {"lat": 51.889107, "lng": -0.203434, "title": "Starbucks Stevenage ", "address": "Whittle Way"}, {"lat": 51.903927, "lng": -0.205601, "title": "Tesco Extra-Stevenage", "address": "The Forum"}, {"lat": 51.896491, "lng": -0.200618, "title": "North Hertfordshire College", "address": "Monkswood Way"}, {"lat": 51.902807, "lng": -0.204896, "title": "Swingate, Stevenage 02", "address": "Swingate 2"}, {"lat": 51.884673, "lng": -0.193675, "title": "Tesco Superstore - Stevenage Broadwater", "address": "Broadwater Retail Park"}, {"lat": 51.898281222920474, "lng": -0.20073628877912597, "title": "Asda Stevenage Supercentre", "address": "Monkswood Way"}, {"lat": 51.897337, "lng": -0.199329, "title": "North Herts College", "address": "Monkswood Way"}];
+  var chargerData = [{"lat": 51.894597, "lng": -0.197934, "title": "Monkswood Retail Park", "address": "Elder Way", "connectors": ["CCS (Type 2) · 180kW", "CCS (Type 2) · 180kW", "CCS (Type 2) · 180kW", "CCS (Type 2) · 180kW", "CCS (Type 2) · 180kW", "CCS (Type 2) · 180kW", "CCS (Type 2) · 180kW", "CCS (Type 2) · 180kW", "CHAdeMO · 80kW"]}, {"lat": 51.8874546188176, "lng": -0.20868292990852, "title": "Stevenage Electric Forecourt", "address": "Knebworth Park", "connectors": ["CCS (Type 2) · 360kW", "CCS (Type 2) · 360kW", "CCS (Type 2) · 360kW", "CCS (Type 2) · 360kW", "CCS (Type 2) · 360kW", "CCS (Type 2) · 360kW", "CHAdeMO · 24kW", "CCS (Type 2) · 360kW", "Type 2 (Socket Only) · 22kW", "CCS (Type 2) · 360kW", "CCS (Type 2) · 360kW", "CCS (Type 2) · 360kW", "CCS (Type 2) · 360kW", "CCS (Type 2) · 360kW", "CCS (Type 2) · 360kW", "Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW", "CCS (Type 2) · 360kW", "CCS (Type 2) · 360kW", "Type 2 (Socket Only) · 22kW", "CCS (Type 2) · 360kW", "CCS (Type 2) · 360kW", "CCS (Type 2) · 360kW", "CCS (Type 2) · 360kW", "CCS (Type 2) · 360kW", "CCS (Type 2) · 360kW", "CCS (Type 2) · 360kW", "CCS (Type 2) · 360kW", "CHAdeMO · 24kW", "CCS (Type 2) · 360kW"]}, {"lat": 51.896624, "lng": -0.205349, "title": "Solnet EV GB-SOL001001", "address": "4 Modular Business Park", "connectors": ["CCS (Type 2) · 160kW"]}, {"lat": 51.924161, "lng": -0.21189, "title": "LISTER HOSPITAL HSP STATION 1", "address": "Coreys Mill Lane", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 51.903842, "lng": -0.207833, "title": "Lytton Way MSCP, Stevenage 7", "address": "Lytton Way", "connectors": ["Type 2 (Socket Only) · 7kW"]}, {"lat": 51.903801, "lng": -0.200861, "title": "Marshgate Car Park, Stevenage 2", "address": "Marshgate Car Park, Stevenage", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 51.9128267949099, "lng": -0.207212473166123, "title": "The Cromwell", "address": "High Street", "connectors": ["CCS (Type 2) · 50kW"]}, {"lat": 51.9130548182216, "lng": -0.207666282569903, "title": "Hotel Cromwell Stevenage", "address": "High Street", "connectors": ["CHAdeMO · 50kW", "CCS (Type 2) · 50kW", "Type 2 (Tethered Connector)  · 43kW", "Type 2 (Socket Only) · 7.2kW"]}, {"lat": 51.903033, "lng": -0.207476, "title": "Lytton Way MSCP, Stevenage 12", "address": "Lytton Way", "connectors": ["Type 2 (Socket Only) · 7kW"]}, {"lat": 51.902039, "lng": -0.200497, "title": "St Georges Way MSCP  North Level Four 2", "address": "St Georges Way Multi Storey Ca", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 51.901597, "lng": -0.200173, "title": "St Georges Way MSCP South Level Four 1", "address": "St Georges Way Multi Storey Ca", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 51.889107, "lng": -0.203434, "title": "Starbucks Stevenage ", "address": "Whittle Way", "connectors": ["CHAdeMO · 100kW", "CHAdeMO · 100kW", "CCS (Type 2) · 150kW", "CCS (Type 2) · 150kW"]}, {"lat": 51.903927, "lng": -0.205601, "title": "Tesco Extra-Stevenage", "address": "The Forum", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 7kW", "CCS (Type 2) · 50kW", "CHAdeMO · 50kW"]}, {"lat": 51.896491, "lng": -0.200618, "title": "North Hertfordshire College", "address": "Monkswood Way", "connectors": ["Type 2 (Socket Only) · 7kW"]}, {"lat": 51.902807, "lng": -0.204896, "title": "Swingate, Stevenage 02", "address": "Swingate 2", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 51.884673, "lng": -0.193675, "title": "Tesco Superstore - Stevenage Broadwater", "address": "Broadwater Retail Park", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 51.898281222920474, "lng": -0.20073628877912597, "title": "Asda Stevenage Supercentre", "address": "Monkswood Way", "connectors": ["CCS (Type 2) · 50kW", "CHAdeMO · 50kW"]}, {"lat": 51.897337, "lng": -0.199329, "title": "North Herts College", "address": "Monkswood Way", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}];
 
   chargerData.forEach(function (c) {
+    var connHtml = c.connectors.length
+      ? '<div style="margin-top:6px;font-size:12px;color:#475569">' + c.connectors.join(' &middot; ') + '</div>'
+      : '';
     var marker = L.marker([c.lat, c.lng]);
     marker.bindPopup(
-      '<b>' + c.title + '</b><br>' + c.address + '<br><br>' +
+      '<b>' + c.title + '</b>' +
+      '<div style="color:#64748b;font-size:13px">' + c.address + '</div>' +
+      connHtml +
       '<a href="https://www.google.com/maps/dir/?api=1&destination=' + c.lat + ',' + c.lng +
-      '" target="_blank" rel="noopener">Get directions</a>'
+      '" target="_blank" rel="noopener" style="display:inline-block;margin-top:8px;padding:4px 10px;background:#2563eb;color:white;border-radius:4px;text-decoration:none;font-size:12px">Get directions</a>'
     );
     markers.addLayer(marker);
   });
-
   map.addLayer(markers);
+
+  // --- Connector filter ---
+  var filterBtns = document.querySelectorAll('.filter-btn');
+  var chargerItems = document.querySelectorAll('.charger-item');
+
+  filterBtns.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      filterBtns.forEach(function (b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      var f = btn.dataset.filter;
+      chargerItems.forEach(function (item) {
+        var connList = item.dataset.connectors ? item.dataset.connectors.split(',') : [];
+        item.style.display = (f === 'all' || connList.indexOf(f) !== -1) ? '' : 'none';
+      });
+    });
+  });
+
+  // --- Copy postcode ---
+  document.querySelectorAll('.copy-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var original = btn.textContent;
+      navigator.clipboard.writeText(btn.dataset.copy).then(function () {
+        btn.textContent = 'Copied!';
+        btn.classList.add('copy-btn--success');
+        setTimeout(function () {
+          btn.textContent = original;
+          btn.classList.remove('copy-btn--success');
+        }, 1500);
+      });
+    });
+  });
 }());
 </script>
 

@@ -17,7 +17,10 @@
 
 <header>
 <div class="container">
-<a href="/" class="logo">PlugMap <span class="tagline">UK EV Charger Locator</span></a>
+<a href="/" class="logo">
+  <svg class="logo-bolt" viewBox="0 0 24 24" fill="currentColor" width="22" height="22" aria-hidden="true"><path d="M13 2L4.5 13.5H11L10 22L19.5 10.5H13Z"/></svg>
+  PlugMap <span class="tagline">UK EV Charger Locator</span>
+</a>
 </div>
 </header>
 
@@ -28,16 +31,42 @@
 </nav>
 
 <h1>EV Chargers in Dewsbury</h1>
-<p class="page-intro">6 public charging stations found in Dewsbury.</p>
+
+<div class="stats-bar">
+  <span class="stat-pill stat-total">6 stations</span>
+  <span class="stat-pill stat-rapid">5 rapid (50kW+)</span>
+  <span class="stat-pill stat-fast">1 fast (7–50kW)</span>
+  
+</div>
 
 <div id="map"></div>
 
-<ul class="charger-list">
+
+<div class="connector-filter">
+  <span class="filter-label">Filter:</span>
+  <button class="filter-btn active" data-filter="all">All</button>
+  
+  <button class="filter-btn" data-filter="CCS (Type 2)">CCS (Type 2)</button>
+  
+  <button class="filter-btn" data-filter="CHAdeMO">CHAdeMO</button>
+  
+  <button class="filter-btn" data-filter="Type 2 (Socket Only)">Type 2 (Socket Only)</button>
+  
+  <button class="filter-btn" data-filter="Type 2 (Tethered Connector) ">Type 2 (Tethered Connector) </button>
+  
+</div>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Lidl-Dewsbury</h2>
-  <p class="charger-address">Commercial Road WF13 2BD
+<ul class="charger-list" id="charger-list">
+
+
+<li class="charger-item charger-item--rapid" data-connectors="Type 2 (Socket Only),CCS (Type 2),CHAdeMO">
+  <div class="charger-header">
+    <h2 class="charger-name">Lidl-Dewsbury</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Commercial Road <button class="copy-btn" data-copy="WF13 2BD">WF13 2BD</button>
   </p>
   
   <div class="charger-connections">
@@ -62,9 +91,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Morrisons</h2>
-  <p class="charger-address">Dewsbury Road WF2 9BY
+<li class="charger-item charger-item--rapid" data-connectors="CHAdeMO,Type 2 (Socket Only),Type 2 (Tethered Connector) ">
+  <div class="charger-header">
+    <h2 class="charger-name">Morrisons</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Dewsbury Road <button class="copy-btn" data-copy="WF2 9BY">WF2 9BY</button>
   </p>
   
   <div class="charger-connections">
@@ -89,9 +122,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">EVC Rishworth Centre</h2>
-  <p class="charger-address">Railway Street WF12 8EQ
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">EVC Rishworth Centre</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Railway Street <button class="copy-btn" data-copy="WF12 8EQ">WF12 8EQ</button>
   </p>
   
   <div class="charger-connections">
@@ -110,9 +146,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Dewsbury Railway Station</h2>
-  <p class="charger-address">Wellington Road WF13 2NJ
+<li class="charger-item charger-item--rapid" data-connectors="Type 2 (Socket Only),CHAdeMO,Type 2 (Tethered Connector) ">
+  <div class="charger-header">
+    <h2 class="charger-name">Dewsbury Railway Station</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Wellington Road <button class="copy-btn" data-copy="WF13 2NJ">WF13 2NJ</button>
   </p>
   
   <div class="charger-connections">
@@ -137,9 +177,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">South Street</h2>
-  <p class="charger-address">South Street WF13 1JS
+<li class="charger-item charger-item--rapid" data-connectors="Type 2 (Socket Only),CHAdeMO,CCS (Type 2)">
+  <div class="charger-header">
+    <h2 class="charger-name">South Street</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">South Street <button class="copy-btn" data-copy="WF13 1JS">WF13 1JS</button>
   </p>
   
   <div class="charger-connections">
@@ -164,9 +208,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Ravensthorpe Retail Park</h2>
-  <p class="charger-address">Huddersfield Rd WF13 3HN
+<li class="charger-item charger-item--rapid" data-connectors="Type 2 (Tethered Connector) ,CCS (Type 2),CHAdeMO">
+  <div class="charger-header">
+    <h2 class="charger-name">Ravensthorpe Retail Park</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Huddersfield Rd <button class="copy-btn" data-copy="WF13 3HN">WF13 3HN</button>
   </p>
   
   <div class="charger-connections">
@@ -194,6 +242,23 @@
 
 <p><a href="/" class="back-link">← All UK towns</a></p>
 
+
+<div class="nearby-towns">
+  <h2 class="nearby-heading">Nearby towns</h2>
+  <ul class="nearby-list">
+  
+    <li><a href="/uk/wakefield/">Wakefield</a></li>
+  
+    <li><a href="/uk/leeds/">Leeds</a></li>
+  
+    <li><a href="/uk/brighouse/">Brighouse</a></li>
+  
+    <li><a href="/uk/huddersfield/">Huddersfield</a></li>
+  
+  </ul>
+</div>
+
+
 </div>
 
 <footer>
@@ -206,26 +271,61 @@
 <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 <script>
 (function () {
+  // --- Map ---
   var map = L.map('map').setView([53.68777771, -1.6182759315000002], 12);
-
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
   }).addTo(map);
 
   var markers = L.markerClusterGroup();
-  var chargerData = [{"lat": 53.694972, "lng": -1.631997, "title": "Lidl-Dewsbury", "address": "Commercial Road"}, {"lat": 53.678371, "lng": -1.525453, "title": "Morrisons", "address": "Dewsbury Road"}, {"lat": 53.69043326, "lng": -1.624600589, "title": "EVC Rishworth Centre", "address": "Railway Street"}, {"lat": 53.692112, "lng": -1.632379, "title": "Dewsbury Railway Station", "address": "Wellington Road"}, {"lat": 53.690243, "lng": -1.632613, "title": "South Street", "address": "South Street"}, {"lat": 53.680535, "lng": -1.662613, "title": "Ravensthorpe Retail Park", "address": "Huddersfield Rd"}];
+  var chargerData = [{"lat": 53.694972, "lng": -1.631997, "title": "Lidl-Dewsbury", "address": "Commercial Road", "connectors": ["Type 2 (Socket Only) · 22kW", "CCS (Type 2) · 50kW", "CHAdeMO · 50kW"]}, {"lat": 53.678371, "lng": -1.525453, "title": "Morrisons", "address": "Dewsbury Road", "connectors": ["CHAdeMO · 50kW", "Type 2 (Socket Only) · 22kW", "Type 2 (Tethered Connector)  · 50kW"]}, {"lat": 53.69043326, "lng": -1.624600589, "title": "EVC Rishworth Centre", "address": "Railway Street", "connectors": ["Type 2 (Socket Only) · 22kW"]}, {"lat": 53.692112, "lng": -1.632379, "title": "Dewsbury Railway Station", "address": "Wellington Road", "connectors": ["Type 2 (Socket Only) · 22kW", "CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 50kW"]}, {"lat": 53.690243, "lng": -1.632613, "title": "South Street", "address": "South Street", "connectors": ["Type 2 (Socket Only) · 22kW", "CHAdeMO · 50kW", "CCS (Type 2) · 50kW"]}, {"lat": 53.680535, "lng": -1.662613, "title": "Ravensthorpe Retail Park", "address": "Huddersfield Rd", "connectors": ["Type 2 (Tethered Connector)  · 43kW", "CCS (Type 2) · 50kW", "CHAdeMO · 50kW"]}];
 
   chargerData.forEach(function (c) {
+    var connHtml = c.connectors.length
+      ? '<div style="margin-top:6px;font-size:12px;color:#475569">' + c.connectors.join(' &middot; ') + '</div>'
+      : '';
     var marker = L.marker([c.lat, c.lng]);
     marker.bindPopup(
-      '<b>' + c.title + '</b><br>' + c.address + '<br><br>' +
+      '<b>' + c.title + '</b>' +
+      '<div style="color:#64748b;font-size:13px">' + c.address + '</div>' +
+      connHtml +
       '<a href="https://www.google.com/maps/dir/?api=1&destination=' + c.lat + ',' + c.lng +
-      '" target="_blank" rel="noopener">Get directions</a>'
+      '" target="_blank" rel="noopener" style="display:inline-block;margin-top:8px;padding:4px 10px;background:#2563eb;color:white;border-radius:4px;text-decoration:none;font-size:12px">Get directions</a>'
     );
     markers.addLayer(marker);
   });
-
   map.addLayer(markers);
+
+  // --- Connector filter ---
+  var filterBtns = document.querySelectorAll('.filter-btn');
+  var chargerItems = document.querySelectorAll('.charger-item');
+
+  filterBtns.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      filterBtns.forEach(function (b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      var f = btn.dataset.filter;
+      chargerItems.forEach(function (item) {
+        var connList = item.dataset.connectors ? item.dataset.connectors.split(',') : [];
+        item.style.display = (f === 'all' || connList.indexOf(f) !== -1) ? '' : 'none';
+      });
+    });
+  });
+
+  // --- Copy postcode ---
+  document.querySelectorAll('.copy-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var original = btn.textContent;
+      navigator.clipboard.writeText(btn.dataset.copy).then(function () {
+        btn.textContent = 'Copied!';
+        btn.classList.add('copy-btn--success');
+        setTimeout(function () {
+          btn.textContent = original;
+          btn.classList.remove('copy-btn--success');
+        }, 1500);
+      });
+    });
+  });
 }());
 </script>
 

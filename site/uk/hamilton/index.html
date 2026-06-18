@@ -17,7 +17,10 @@
 
 <header>
 <div class="container">
-<a href="/" class="logo">PlugMap <span class="tagline">UK EV Charger Locator</span></a>
+<a href="/" class="logo">
+  <svg class="logo-bolt" viewBox="0 0 24 24" fill="currentColor" width="22" height="22" aria-hidden="true"><path d="M13 2L4.5 13.5H11L10 22L19.5 10.5H13Z"/></svg>
+  PlugMap <span class="tagline">UK EV Charger Locator</span>
+</a>
 </div>
 </header>
 
@@ -28,16 +31,42 @@
 </nav>
 
 <h1>EV Chargers in Hamilton</h1>
-<p class="page-intro">16 public charging stations found in Hamilton.</p>
+
+<div class="stats-bar">
+  <span class="stat-pill stat-total">16 stations</span>
+  <span class="stat-pill stat-rapid">7 rapid (50kW+)</span>
+  <span class="stat-pill stat-fast">9 fast (7–50kW)</span>
+  
+</div>
 
 <div id="map"></div>
 
-<ul class="charger-list">
+
+<div class="connector-filter">
+  <span class="filter-label">Filter:</span>
+  <button class="filter-btn active" data-filter="all">All</button>
+  
+  <button class="filter-btn" data-filter="CCS (Type 2)">CCS (Type 2)</button>
+  
+  <button class="filter-btn" data-filter="CHAdeMO">CHAdeMO</button>
+  
+  <button class="filter-btn" data-filter="Type 2 (Socket Only)">Type 2 (Socket Only)</button>
+  
+  <button class="filter-btn" data-filter="Type 2 (Tethered Connector) ">Type 2 (Tethered Connector) </button>
+  
+</div>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Lidl-Hamilton-Muir Street</h2>
-  <p class="charger-address">Muir Street ML3 6BJ
+<ul class="charger-list" id="charger-list">
+
+
+<li class="charger-item charger-item--rapid" data-connectors="Type 2 (Socket Only),CCS (Type 2),CHAdeMO">
+  <div class="charger-header">
+    <h2 class="charger-name">Lidl-Hamilton-Muir Street</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Muir Street <button class="copy-btn" data-copy="ML3 6BJ">ML3 6BJ</button>
   </p>
   
   <div class="charger-connections">
@@ -62,9 +91,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Nevis Avenue</h2>
-  <p class="charger-address">Nevis Avenue ML3 8UB
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Nevis Avenue</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Nevis Avenue <button class="copy-btn" data-copy="ML3 8UB">ML3 8UB</button>
   </p>
   
   <div class="charger-connections">
@@ -86,9 +118,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Fairhill Avenue</h2>
-  <p class="charger-address">Fairhill Avenue ML3 8JS
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Fairhill Avenue</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Fairhill Avenue <button class="copy-btn" data-copy="ML3 8JS">ML3 8JS</button>
   </p>
   
   <div class="charger-connections">
@@ -110,9 +145,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Ratho Park</h2>
-  <p class="charger-address">Ratho Park ML3 8BT
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Ratho Park</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Ratho Park <button class="copy-btn" data-copy="ML3 8BT">ML3 8BT</button>
   </p>
   
   <div class="charger-connections">
@@ -134,9 +172,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Hamilton Shopping Park</h2>
-  <p class="charger-address">Douglas Park Lane ML3 0DF
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2),CHAdeMO,Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Hamilton Shopping Park</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Douglas Park Lane <button class="copy-btn" data-copy="ML3 0DF">ML3 0DF</button>
   </p>
   
   <div class="charger-connections">
@@ -170,9 +212,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">University Of The West Of Scotland</h2>
-  <p class="charger-address">8 Barrack Street ML3 0JB
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">University Of The West Of Scotland</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">8 Barrack Street <button class="copy-btn" data-copy="ML3 0JB">ML3 0JB</button>
   </p>
   
   <div class="charger-connections">
@@ -194,9 +239,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Keith St Car Park, Keith Street, Hamilton</h2>
-  <p class="charger-address">6 Keith Street ML3 7BL
+<li class="charger-item charger-item--rapid" data-connectors="CHAdeMO,Type 2 (Tethered Connector) ">
+  <div class="charger-header">
+    <h2 class="charger-name">Keith St Car Park, Keith Street, Hamilton</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">6 Keith Street <button class="copy-btn" data-copy="ML3 7BL">ML3 7BL</button>
   </p>
   
   <div class="charger-connections">
@@ -221,9 +270,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Duke Street Car Park, Hamilton (1)</h2>
-  <p class="charger-address">Duke Street ML3 7DT
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Duke Street Car Park, Hamilton (1)</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Duke Street <button class="copy-btn" data-copy="ML3 7DT">ML3 7DT</button>
   </p>
   
   <div class="charger-connections">
@@ -242,9 +294,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Morrisons</h2>
-  <p class="charger-address">5 New Park Street ML3 0BN
+<li class="charger-item charger-item--rapid" data-connectors="CHAdeMO,Type 2 (Socket Only),Type 2 (Tethered Connector) ">
+  <div class="charger-header">
+    <h2 class="charger-name">Morrisons</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">5 New Park Street <button class="copy-btn" data-copy="ML3 0BN">ML3 0BN</button>
   </p>
   
   <div class="charger-connections">
@@ -269,9 +325,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Palace Grounds Retail Park</h2>
-  <p class="charger-address">Motherwell Road ML3 6AD
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2),CHAdeMO">
+  <div class="charger-header">
+    <h2 class="charger-name">Palace Grounds Retail Park</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Motherwell Road <button class="copy-btn" data-copy="ML3 6AD">ML3 6AD</button>
   </p>
   
   <div class="charger-connections">
@@ -293,9 +353,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Storage Vault Hamilton Carpark</h2>
-  <p class="charger-address">Storage Vault ML3 0DG
+<li class="charger-item charger-item--rapid" data-connectors="Type 2 (Tethered Connector) ,CHAdeMO">
+  <div class="charger-header">
+    <h2 class="charger-name">Storage Vault Hamilton Carpark</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Storage Vault <button class="copy-btn" data-copy="ML3 0DG">ML3 0DG</button>
   </p>
   
   <div class="charger-connections">
@@ -320,9 +384,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Bothwell Street Car Park, Hamilton</h2>
-  <p class="charger-address">Bothwell Street ML3 0BS
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Bothwell Street Car Park, Hamilton</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Bothwell Street <button class="copy-btn" data-copy="ML3 0BS">ML3 0BS</button>
   </p>
   
   <div class="charger-connections">
@@ -341,9 +408,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Montrose Crescent, Hamilton</h2>
-  <p class="charger-address">Montrose Crescent ML3 6LB
+<li class="charger-item charger-item--rapid" data-connectors="Type 2 (Socket Only),CCS (Type 2),CHAdeMO,Type 2 (Tethered Connector) ">
+  <div class="charger-header">
+    <h2 class="charger-name">Montrose Crescent, Hamilton</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Montrose Crescent <button class="copy-btn" data-copy="ML3 6LB">ML3 6LB</button>
   </p>
   
   <div class="charger-connections">
@@ -374,9 +445,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Chatelherault Station, Hamilton</h2>
-  <p class="charger-address">Leven Road ML3 7UD
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Chatelherault Station, Hamilton</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Leven Road <button class="copy-btn" data-copy="ML3 7UD">ML3 7UD</button>
   </p>
   
   <div class="charger-connections">
@@ -395,9 +469,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Duke Street Multi Storey Car Park, Hamilton</h2>
-  <p class="charger-address">Duke Street ML3 7DT
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Duke Street Multi Storey Car Park, Hamilton</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Duke Street <button class="copy-btn" data-copy="ML3 7DT">ML3 7DT</button>
   </p>
   
   <div class="charger-connections">
@@ -416,9 +493,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">2 Mote Hill</h2>
-  <p class="charger-address">2 Mote Hill ML3 6BY
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">2 Mote Hill</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">2 Mote Hill <button class="copy-btn" data-copy="ML3 6BY">ML3 6BY</button>
   </p>
   
   <div class="charger-connections">
@@ -443,6 +523,23 @@
 
 <p><a href="/" class="back-link">← All UK towns</a></p>
 
+
+<div class="nearby-towns">
+  <h2 class="nearby-heading">Nearby towns</h2>
+  <ul class="nearby-list">
+  
+    <li><a href="/uk/east-kilbride/">East Kilbride</a></li>
+  
+    <li><a href="/uk/glasgow/">Glasgow</a></li>
+  
+    <li><a href="/uk/bellshill/">Bellshill</a></li>
+  
+    <li><a href="/uk/falkirk/">Falkirk</a></li>
+  
+  </ul>
+</div>
+
+
 </div>
 
 <footer>
@@ -455,26 +552,61 @@
 <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 <script>
 (function () {
+  // --- Map ---
   var map = L.map('map').setView([55.77444984340458, -4.043754937220542], 12);
-
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
   }).addTo(map);
 
   var markers = L.markerClusterGroup();
-  var chargerData = [{"lat": 55.7790799, "lng": -4.042087, "title": "Lidl-Hamilton-Muir Street", "address": "Muir Street"}, {"lat": 55.765347, "lng": -4.066827, "title": "Nevis Avenue", "address": "Nevis Avenue"}, {"lat": 55.763071, "lng": -4.05481, "title": "Fairhill Avenue", "address": "Fairhill Avenue"}, {"lat": 55.756008, "lng": -4.060464, "title": "Ratho Park", "address": "Ratho Park"}, {"lat": 55.779753, "lng": -4.055297, "title": "Hamilton Shopping Park", "address": "Douglas Park Lane"}, {"lat": 55.780129, "lng": -4.047571, "title": "University Of The West Of Scotland", "address": "8 Barrack Street"}, {"lat": 55.775995, "lng": -4.033004, "title": "Keith St Car Park, Keith Street, Hamilton", "address": "6 Keith Street"}, {"lat": 55.773345, "lng": -4.035081, "title": "Duke Street Car Park, Hamilton (1)", "address": "Duke Street"}, {"lat": 55.783013, "lng": -4.054941, "title": "Morrisons", "address": "5 New Park Street"}, {"lat": 55.77674159447338, "lng": -4.027982995528674, "title": "Palace Grounds Retail Park", "address": "Motherwell Road"}, {"lat": 55.779599, "lng": -4.045774, "title": "Storage Vault Hamilton Carpark", "address": "Storage Vault"}, {"lat": 55.781494, "lng": -4.051545, "title": "Bothwell Street Car Park, Hamilton", "address": "Bothwell Street"}, {"lat": 55.77745, "lng": -4.05018, "title": "Montrose Crescent, Hamilton", "address": "Montrose Crescent"}, {"lat": 55.764858, "lng": -4.005348, "title": "Chatelherault Station, Hamilton", "address": "Leven Road"}, {"lat": 55.773005, "lng": -4.034351, "title": "Duke Street Multi Storey Car Park, Hamilton", "address": "Duke Street"}, {"lat": 55.782309, "lng": -4.034816, "title": "2 Mote Hill", "address": "2 Mote Hill"}];
+  var chargerData = [{"lat": 55.7790799, "lng": -4.042087, "title": "Lidl-Hamilton-Muir Street", "address": "Muir Street", "connectors": ["Type 2 (Socket Only) · 22kW", "CCS (Type 2) · 50kW", "CHAdeMO · 50kW"]}, {"lat": 55.765347, "lng": -4.066827, "title": "Nevis Avenue", "address": "Nevis Avenue", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 55.763071, "lng": -4.05481, "title": "Fairhill Avenue", "address": "Fairhill Avenue", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 55.756008, "lng": -4.060464, "title": "Ratho Park", "address": "Ratho Park", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 55.779753, "lng": -4.055297, "title": "Hamilton Shopping Park", "address": "Douglas Park Lane", "connectors": ["CCS (Type 2) · 75kW", "CHAdeMO · 50kW", "CCS (Type 2) · 75kW", "CHAdeMO · 50kW", "Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 55.780129, "lng": -4.047571, "title": "University Of The West Of Scotland", "address": "8 Barrack Street", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 55.775995, "lng": -4.033004, "title": "Keith St Car Park, Keith Street, Hamilton", "address": "6 Keith Street", "connectors": ["CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 50kW", "Type 2 (Tethered Connector)  · 43kW"]}, {"lat": 55.773345, "lng": -4.035081, "title": "Duke Street Car Park, Hamilton (1)", "address": "Duke Street", "connectors": ["Type 2 (Socket Only) · 7kW"]}, {"lat": 55.783013, "lng": -4.054941, "title": "Morrisons", "address": "5 New Park Street", "connectors": ["CHAdeMO · 50kW", "Type 2 (Socket Only) · 22kW", "Type 2 (Tethered Connector)  · 50kW"]}, {"lat": 55.77674159447338, "lng": -4.027982995528674, "title": "Palace Grounds Retail Park", "address": "Motherwell Road", "connectors": ["CCS (Type 2) · 300kW", "CHAdeMO · 50kW"]}, {"lat": 55.779599, "lng": -4.045774, "title": "Storage Vault Hamilton Carpark", "address": "Storage Vault", "connectors": ["Type 2 (Tethered Connector)  · 50kW", "CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 43kW"]}, {"lat": 55.781494, "lng": -4.051545, "title": "Bothwell Street Car Park, Hamilton", "address": "Bothwell Street", "connectors": ["Type 2 (Socket Only) · 7kW"]}, {"lat": 55.77745, "lng": -4.05018, "title": "Montrose Crescent, Hamilton", "address": "Montrose Crescent", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW", "CCS (Type 2) · 50kW", "CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 43kW"]}, {"lat": 55.764858, "lng": -4.005348, "title": "Chatelherault Station, Hamilton", "address": "Leven Road", "connectors": ["Type 2 (Socket Only) · 7kW"]}, {"lat": 55.773005, "lng": -4.034351, "title": "Duke Street Multi Storey Car Park, Hamilton", "address": "Duke Street", "connectors": ["Type 2 (Socket Only) · 7kW"]}, {"lat": 55.782309, "lng": -4.034816, "title": "2 Mote Hill", "address": "2 Mote Hill", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}];
 
   chargerData.forEach(function (c) {
+    var connHtml = c.connectors.length
+      ? '<div style="margin-top:6px;font-size:12px;color:#475569">' + c.connectors.join(' &middot; ') + '</div>'
+      : '';
     var marker = L.marker([c.lat, c.lng]);
     marker.bindPopup(
-      '<b>' + c.title + '</b><br>' + c.address + '<br><br>' +
+      '<b>' + c.title + '</b>' +
+      '<div style="color:#64748b;font-size:13px">' + c.address + '</div>' +
+      connHtml +
       '<a href="https://www.google.com/maps/dir/?api=1&destination=' + c.lat + ',' + c.lng +
-      '" target="_blank" rel="noopener">Get directions</a>'
+      '" target="_blank" rel="noopener" style="display:inline-block;margin-top:8px;padding:4px 10px;background:#2563eb;color:white;border-radius:4px;text-decoration:none;font-size:12px">Get directions</a>'
     );
     markers.addLayer(marker);
   });
-
   map.addLayer(markers);
+
+  // --- Connector filter ---
+  var filterBtns = document.querySelectorAll('.filter-btn');
+  var chargerItems = document.querySelectorAll('.charger-item');
+
+  filterBtns.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      filterBtns.forEach(function (b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      var f = btn.dataset.filter;
+      chargerItems.forEach(function (item) {
+        var connList = item.dataset.connectors ? item.dataset.connectors.split(',') : [];
+        item.style.display = (f === 'all' || connList.indexOf(f) !== -1) ? '' : 'none';
+      });
+    });
+  });
+
+  // --- Copy postcode ---
+  document.querySelectorAll('.copy-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var original = btn.textContent;
+      navigator.clipboard.writeText(btn.dataset.copy).then(function () {
+        btn.textContent = 'Copied!';
+        btn.classList.add('copy-btn--success');
+        setTimeout(function () {
+          btn.textContent = original;
+          btn.classList.remove('copy-btn--success');
+        }, 1500);
+      });
+    });
+  });
 }());
 </script>
 

@@ -17,7 +17,10 @@
 
 <header>
 <div class="container">
-<a href="/" class="logo">PlugMap <span class="tagline">UK EV Charger Locator</span></a>
+<a href="/" class="logo">
+  <svg class="logo-bolt" viewBox="0 0 24 24" fill="currentColor" width="22" height="22" aria-hidden="true"><path d="M13 2L4.5 13.5H11L10 22L19.5 10.5H13Z"/></svg>
+  PlugMap <span class="tagline">UK EV Charger Locator</span>
+</a>
 </div>
 </header>
 
@@ -28,16 +31,42 @@
 </nav>
 
 <h1>EV Chargers in Carlisle</h1>
-<p class="page-intro">21 public charging stations found in Carlisle.</p>
+
+<div class="stats-bar">
+  <span class="stat-pill stat-total">21 stations</span>
+  <span class="stat-pill stat-rapid">5 rapid (50kW+)</span>
+  <span class="stat-pill stat-fast">16 fast (7–50kW)</span>
+  
+</div>
 
 <div id="map"></div>
 
-<ul class="charger-list">
+
+<div class="connector-filter">
+  <span class="filter-label">Filter:</span>
+  <button class="filter-btn active" data-filter="all">All</button>
+  
+  <button class="filter-btn" data-filter="CCS (Type 2)">CCS (Type 2)</button>
+  
+  <button class="filter-btn" data-filter="CHAdeMO">CHAdeMO</button>
+  
+  <button class="filter-btn" data-filter="Type 2 (Socket Only)">Type 2 (Socket Only)</button>
+  
+  <button class="filter-btn" data-filter="Type 2 (Tethered Connector) ">Type 2 (Tethered Connector) </button>
+  
+</div>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Todhills Southbound</h2>
-  <p class="charger-address">Southbound M6 CA6 4HA
+<ul class="charger-list" id="charger-list">
+
+
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2)">
+  <div class="charger-header">
+    <h2 class="charger-name">Todhills Southbound</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Southbound M6 <button class="copy-btn" data-copy="CA6 4HA">CA6 4HA</button>
   </p>
   
   <div class="charger-connections">
@@ -56,9 +85,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Arnold Clark Carlisle Hyundai Motorstore</h2>
-  <p class="charger-address">Wakefield Road CA3 0HE
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2),CHAdeMO">
+  <div class="charger-header">
+    <h2 class="charger-name">Arnold Clark Carlisle Hyundai Motorstore</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Wakefield Road <button class="copy-btn" data-copy="CA3 0HE">CA3 0HE</button>
   </p>
   
   <div class="charger-connections">
@@ -80,9 +113,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Evology Charging - Mary Street Car Park</h2>
-  <p class="charger-address">Mary St CA1 1QP
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Evology Charging - Mary Street Car Park</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Mary St <button class="copy-btn" data-copy="CA1 1QP">CA1 1QP</button>
   </p>
   
   <div class="charger-connections">
@@ -101,9 +137,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">MO Todhills Northbound</h2>
-  <p class="charger-address">Todhills Service Area CA6 4HA
+<li class="charger-item charger-item--rapid" data-connectors="CHAdeMO,Type 2 (Tethered Connector) ">
+  <div class="charger-header">
+    <h2 class="charger-name">MO Todhills Northbound</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Todhills Service Area <button class="copy-btn" data-copy="CA6 4HA">CA6 4HA</button>
   </p>
   
   <div class="charger-connections">
@@ -128,9 +168,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Moto Southwaite Northbound Services</h2>
-  <p class="charger-address">Broadfield Road Motorway Northbound, Jct 41/42 CA4 0NT
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2),CHAdeMO,Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Moto Southwaite Northbound Services</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Broadfield Road Motorway Northbound, Jct 41/42 <button class="copy-btn" data-copy="CA4 0NT">CA4 0NT</button>
   </p>
   
   <div class="charger-connections">
@@ -179,9 +223,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Workstone Ltd</h2>
-  <p class="charger-address">Managing Suite CA1 1RP
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Workstone Ltd</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Managing Suite <button class="copy-btn" data-copy="CA1 1RP">CA1 1RP</button>
   </p>
   
   <div class="charger-connections">
@@ -203,9 +250,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">EVC The Sally</h2>
-  <p class="charger-address">The Sally CA6 4NJ
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">EVC The Sally</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">The Sally <button class="copy-btn" data-copy="CA6 4NJ">CA6 4NJ</button>
   </p>
   
   <div class="charger-connections">
@@ -224,9 +274,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Cumbria House-Cecil St Car Park</h2>
-  <p class="charger-address">12 Aglionby St CA1 1PA
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Cumbria House-Cecil St Car Park</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">12 Aglionby St <button class="copy-btn" data-copy="CA1 1PA">CA1 1PA</button>
   </p>
   
   <div class="charger-connections">
@@ -251,9 +304,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Cumbria House</h2>
-  <p class="charger-address">117 Botchergate CA1 1RD
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Cumbria House</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">117 Botchergate <button class="copy-btn" data-copy="CA1 1RD">CA1 1RD</button>
   </p>
   
   <div class="charger-connections">
@@ -278,9 +334,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Union Lane Car Park Brampton</h2>
-  <p class="charger-address">Union Lane Car Park CA8 1BX
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Union Lane Car Park Brampton</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Union Lane Car Park <button class="copy-btn" data-copy="CA8 1BX">CA8 1BX</button>
   </p>
   
   <div class="charger-connections">
@@ -302,9 +361,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Stanwix Car Park Carlisle</h2>
-  <p class="charger-address">Stanwix Cark Park CA3 9DJ
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Stanwix Car Park Carlisle</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Stanwix Cark Park <button class="copy-btn" data-copy="CA3 9DJ">CA3 9DJ</button>
   </p>
   
   <div class="charger-connections">
@@ -326,9 +388,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">The Sands Centre Car Park</h2>
-  <p class="charger-address">The Sands Centre CA1 1LS
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">The Sands Centre Car Park</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">The Sands Centre <button class="copy-btn" data-copy="CA1 1LS">CA1 1LS</button>
   </p>
   
   <div class="charger-connections">
@@ -350,9 +415,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Paddys Market Car Park</h2>
-  <p class="charger-address">Paddy&#39;s Market Car Park CA2 5TR
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Paddys Market Car Park</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Paddy&#39;s Market Car Park <button class="copy-btn" data-copy="CA2 5TR">CA2 5TR</button>
   </p>
   
   <div class="charger-connections">
@@ -374,9 +442,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Milbourne Street</h2>
-  <p class="charger-address">Milbourne Street Car Park CA2 5XD
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Milbourne Street</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Milbourne Street Car Park <button class="copy-btn" data-copy="CA2 5XD">CA2 5XD</button>
   </p>
   
   <div class="charger-connections">
@@ -398,9 +469,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Wigton Road</h2>
-  <p class="charger-address">11 Wigton Road CA2 5UT
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Wigton Road</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">11 Wigton Road <button class="copy-btn" data-copy="CA2 5UT">CA2 5UT</button>
   </p>
   
   <div class="charger-connections">
@@ -422,9 +496,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Linton Tweeds</h2>
-  <p class="charger-address">Linton Tweeds CA2 5TZ
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Linton Tweeds</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Linton Tweeds <button class="copy-btn" data-copy="CA2 5TZ">CA2 5TZ</button>
   </p>
   
   <div class="charger-connections">
@@ -446,9 +523,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Shady Grove Road, Carlisle</h2>
-  <p class="charger-address">Shadygrove Road Car Park CA2 7LD
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Shady Grove Road, Carlisle</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Shadygrove Road Car Park <button class="copy-btn" data-copy="CA2 7LD">CA2 7LD</button>
   </p>
   
   <div class="charger-connections">
@@ -470,9 +550,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Westmorland Street Car Park</h2>
-  <p class="charger-address">Westmorland Street Car Park CA2 5HH
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Westmorland Street Car Park</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Westmorland Street Car Park <button class="copy-btn" data-copy="CA2 5HH">CA2 5HH</button>
   </p>
   
   <div class="charger-connections">
@@ -494,9 +577,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Dalston Kingsway car park</h2>
-  <p class="charger-address">Dalston CA5 7PH
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Dalston Kingsway car park</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Dalston <button class="copy-btn" data-copy="CA5 7PH">CA5 7PH</button>
   </p>
   
   <div class="charger-connections">
@@ -518,9 +604,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">St Nicholas Retail Park</h2>
-  <p class="charger-address">London Road CA1 2EA
+<li class="charger-item charger-item--rapid" data-connectors="CHAdeMO,CCS (Type 2)">
+  <div class="charger-header">
+    <h2 class="charger-name">St Nicholas Retail Park</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">London Road <button class="copy-btn" data-copy="CA1 2EA">CA1 2EA</button>
   </p>
   
   <div class="charger-connections">
@@ -542,9 +632,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Tesco Superstore-Carlisle Warwick Road</h2>
-  <p class="charger-address">Warwick Road CA1 2SB
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Tesco Superstore-Carlisle Warwick Road</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Warwick Road <button class="copy-btn" data-copy="CA1 2SB">CA1 2SB</button>
   </p>
   
   <div class="charger-connections">
@@ -569,6 +662,23 @@
 
 <p><a href="/" class="back-link">← All UK towns</a></p>
 
+
+<div class="nearby-towns">
+  <h2 class="nearby-heading">Nearby towns</h2>
+  <ul class="nearby-list">
+  
+    <li><a href="/uk/penrith/">Penrith</a></li>
+  
+    <li><a href="/uk/newcastle/">Newcastle</a></li>
+  
+    <li><a href="/uk/kendal/">Kendal</a></li>
+  
+    <li><a href="/uk/dumfries/">Dumfries</a></li>
+  
+  </ul>
+</div>
+
+
 </div>
 
 <footer>
@@ -581,26 +691,61 @@
 <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 <script>
 (function () {
+  // --- Map ---
   var map = L.map('map').setView([54.89789457921506, -2.9227300397448537], 12);
-
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
   }).addTo(map);
 
   var markers = L.markerClusterGroup();
-  var chargerData = [{"lat": 54.95182593342193, "lng": -2.9774759619713222, "title": "Todhills Southbound", "address": "Southbound M6"}, {"lat": 54.92240868066597, "lng": -2.946593443944778, "title": "Arnold Clark Carlisle Hyundai Motorstore", "address": "Wakefield Road"}, {"lat": 54.8921905737748, "lng": -2.931949273115663, "title": "Evology Charging - Mary Street Car Park", "address": "Mary St"}, {"lat": 54.950079, "lng": -2.979377, "title": "MO Todhills Northbound", "address": "Todhills Service Area"}, {"lat": 54.797792, "lng": -2.871333, "title": "Moto Southwaite Northbound Services", "address": "Broadfield Road Motorway Northbound, Jct 41/42"}, {"lat": 54.891376, "lng": -2.929162, "title": "Workstone Ltd", "address": "Managing Suite"}, {"lat": 54.945577460100246, "lng": -2.7866541616608664, "title": "EVC The Sally", "address": "The Sally"}, {"lat": 54.890915, "lng": -2.927619, "title": "Cumbria House-Cecil St Car Park", "address": "12 Aglionby St"}, {"lat": 54.890664, "lng": -2.928696, "title": "Cumbria House", "address": "117 Botchergate"}, {"lat": 54.943764, "lng": -2.734706, "title": "Union Lane Car Park Brampton", "address": "Union Lane Car Park"}, {"lat": 54.904438, "lng": -2.936945, "title": "Stanwix Car Park Carlisle", "address": "Stanwix Cark Park"}, {"lat": 54.899391, "lng": -2.932818, "title": "The Sands Centre Car Park", "address": "The Sands Centre"}, {"lat": 54.89472, "lng": -2.94525, "title": "Paddys Market Car Park", "address": "Paddy's Market Car Park"}, {"lat": 54.892963, "lng": -2.942869, "title": "Milbourne Street", "address": "Milbourne Street Car Park"}, {"lat": 54.89294, "lng": -2.94988, "title": "Wigton Road", "address": "11 Wigton Road"}, {"lat": 54.892559, "lng": -2.944617, "title": "Linton Tweeds", "address": "Linton Tweeds"}, {"lat": 54.890739, "lng": -2.967174, "title": "Shady Grove Road, Carlisle", "address": "Shadygrove Road Car Park"}, {"lat": 54.8867, "lng": -2.942726, "title": "Westmorland Street Car Park", "address": "Westmorland Street Car Park"}, {"lat": 54.84094, "lng": -2.9839, "title": "Dalston Kingsway car park", "address": "Dalston"}, {"lat": 54.8870925155533, "lng": -2.9234289939493, "title": "St Nicholas Retail Park", "address": "London Road"}, {"lat": 54.896711, "lng": -2.894157, "title": "Tesco Superstore-Carlisle Warwick Road", "address": "Warwick Road"}];
+  var chargerData = [{"lat": 54.95182593342193, "lng": -2.9774759619713222, "title": "Todhills Southbound", "address": "Southbound M6", "connectors": ["CCS (Type 2) · 250kW"]}, {"lat": 54.92240868066597, "lng": -2.946593443944778, "title": "Arnold Clark Carlisle Hyundai Motorstore", "address": "Wakefield Road", "connectors": ["CCS (Type 2) · 150kW", "CHAdeMO · 50kW"]}, {"lat": 54.8921905737748, "lng": -2.931949273115663, "title": "Evology Charging - Mary Street Car Park", "address": "Mary St", "connectors": ["Type 2 (Socket Only) · 7kW"]}, {"lat": 54.950079, "lng": -2.979377, "title": "MO Todhills Northbound", "address": "Todhills Service Area", "connectors": ["CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 43kW", "Type 2 (Tethered Connector)  · 50kW"]}, {"lat": 54.797792, "lng": -2.871333, "title": "Moto Southwaite Northbound Services", "address": "Broadfield Road Motorway Northbound, Jct 41/42", "connectors": ["CCS (Type 2) · 50kW", "CHAdeMO · 50kW", "CCS (Type 2) · 50kW", "CCS (Type 2) · 50kW", "Type 2 (Socket Only) · 11kW", "CCS (Type 2) · 142kW", "CCS (Type 2) · 142kW", "CCS (Type 2) · 142kW", "CCS (Type 2) · 142kW", "CCS (Type 2) · 142kW", "CCS (Type 2) · 142kW"]}, {"lat": 54.891376, "lng": -2.929162, "title": "Workstone Ltd", "address": "Managing Suite", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 54.945577460100246, "lng": -2.7866541616608664, "title": "EVC The Sally", "address": "The Sally", "connectors": ["Type 2 (Socket Only) · 22kW"]}, {"lat": 54.890915, "lng": -2.927619, "title": "Cumbria House-Cecil St Car Park", "address": "12 Aglionby St", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 54.890664, "lng": -2.928696, "title": "Cumbria House", "address": "117 Botchergate", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 54.943764, "lng": -2.734706, "title": "Union Lane Car Park Brampton", "address": "Union Lane Car Park", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 54.904438, "lng": -2.936945, "title": "Stanwix Car Park Carlisle", "address": "Stanwix Cark Park", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 54.899391, "lng": -2.932818, "title": "The Sands Centre Car Park", "address": "The Sands Centre", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 54.89472, "lng": -2.94525, "title": "Paddys Market Car Park", "address": "Paddy's Market Car Park", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 54.892963, "lng": -2.942869, "title": "Milbourne Street", "address": "Milbourne Street Car Park", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 54.89294, "lng": -2.94988, "title": "Wigton Road", "address": "11 Wigton Road", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 54.892559, "lng": -2.944617, "title": "Linton Tweeds", "address": "Linton Tweeds", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 54.890739, "lng": -2.967174, "title": "Shady Grove Road, Carlisle", "address": "Shadygrove Road Car Park", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 54.8867, "lng": -2.942726, "title": "Westmorland Street Car Park", "address": "Westmorland Street Car Park", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 54.84094, "lng": -2.9839, "title": "Dalston Kingsway car park", "address": "Dalston", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 54.8870925155533, "lng": -2.9234289939493, "title": "St Nicholas Retail Park", "address": "London Road", "connectors": ["CHAdeMO · 50kW", "CCS (Type 2) · 50kW"]}, {"lat": 54.896711, "lng": -2.894157, "title": "Tesco Superstore-Carlisle Warwick Road", "address": "Warwick Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}];
 
   chargerData.forEach(function (c) {
+    var connHtml = c.connectors.length
+      ? '<div style="margin-top:6px;font-size:12px;color:#475569">' + c.connectors.join(' &middot; ') + '</div>'
+      : '';
     var marker = L.marker([c.lat, c.lng]);
     marker.bindPopup(
-      '<b>' + c.title + '</b><br>' + c.address + '<br><br>' +
+      '<b>' + c.title + '</b>' +
+      '<div style="color:#64748b;font-size:13px">' + c.address + '</div>' +
+      connHtml +
       '<a href="https://www.google.com/maps/dir/?api=1&destination=' + c.lat + ',' + c.lng +
-      '" target="_blank" rel="noopener">Get directions</a>'
+      '" target="_blank" rel="noopener" style="display:inline-block;margin-top:8px;padding:4px 10px;background:#2563eb;color:white;border-radius:4px;text-decoration:none;font-size:12px">Get directions</a>'
     );
     markers.addLayer(marker);
   });
-
   map.addLayer(markers);
+
+  // --- Connector filter ---
+  var filterBtns = document.querySelectorAll('.filter-btn');
+  var chargerItems = document.querySelectorAll('.charger-item');
+
+  filterBtns.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      filterBtns.forEach(function (b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      var f = btn.dataset.filter;
+      chargerItems.forEach(function (item) {
+        var connList = item.dataset.connectors ? item.dataset.connectors.split(',') : [];
+        item.style.display = (f === 'all' || connList.indexOf(f) !== -1) ? '' : 'none';
+      });
+    });
+  });
+
+  // --- Copy postcode ---
+  document.querySelectorAll('.copy-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var original = btn.textContent;
+      navigator.clipboard.writeText(btn.dataset.copy).then(function () {
+        btn.textContent = 'Copied!';
+        btn.classList.add('copy-btn--success');
+        setTimeout(function () {
+          btn.textContent = original;
+          btn.classList.remove('copy-btn--success');
+        }, 1500);
+      });
+    });
+  });
 }());
 </script>
 

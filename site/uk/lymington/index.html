@@ -17,7 +17,10 @@
 
 <header>
 <div class="container">
-<a href="/" class="logo">PlugMap <span class="tagline">UK EV Charger Locator</span></a>
+<a href="/" class="logo">
+  <svg class="logo-bolt" viewBox="0 0 24 24" fill="currentColor" width="22" height="22" aria-hidden="true"><path d="M13 2L4.5 13.5H11L10 22L19.5 10.5H13Z"/></svg>
+  PlugMap <span class="tagline">UK EV Charger Locator</span>
+</a>
 </div>
 </header>
 
@@ -28,16 +31,42 @@
 </nav>
 
 <h1>EV Chargers in Lymington</h1>
-<p class="page-intro">6 public charging stations found in Lymington.</p>
+
+<div class="stats-bar">
+  <span class="stat-pill stat-total">6 stations</span>
+  <span class="stat-pill stat-rapid">2 rapid (50kW+)</span>
+  <span class="stat-pill stat-fast">4 fast (7–50kW)</span>
+  
+</div>
 
 <div id="map"></div>
 
-<ul class="charger-list">
+
+<div class="connector-filter">
+  <span class="filter-label">Filter:</span>
+  <button class="filter-btn active" data-filter="all">All</button>
+  
+  <button class="filter-btn" data-filter="CCS (Type 2)">CCS (Type 2)</button>
+  
+  <button class="filter-btn" data-filter="CHAdeMO">CHAdeMO</button>
+  
+  <button class="filter-btn" data-filter="Type 2 (Socket Only)">Type 2 (Socket Only)</button>
+  
+  <button class="filter-btn" data-filter="Type 2 (Tethered Connector) ">Type 2 (Tethered Connector) </button>
+  
+</div>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Genie</h2>
-  <p class="charger-address">EVT Warehouse SO41 6AE
+<ul class="charger-list" id="charger-list">
+
+
+<li class="charger-item charger-item--rapid" data-connectors="Type 2 (Socket Only),CHAdeMO,Type 2 (Tethered Connector) ">
+  <div class="charger-header">
+    <h2 class="charger-name">Genie</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">EVT Warehouse <button class="copy-btn" data-copy="SO41 6AE">SO41 6AE</button>
   </p>
   
   <div class="charger-connections">
@@ -62,9 +91,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Shell Lymington</h2>
-  <p class="charger-address">33 Milford Road SO41 8DH
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2),CHAdeMO">
+  <div class="charger-header">
+    <h2 class="charger-name">Shell Lymington</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">33 Milford Road <button class="copy-btn" data-copy="SO41 8DH">SO41 8DH</button>
   </p>
   
   <div class="charger-connections">
@@ -86,9 +119,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Bath Road 1</h2>
-  <p class="charger-address">Bath Road Car Park SO41 3SE
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Bath Road 1</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Bath Road Car Park <button class="copy-btn" data-copy="SO41 3SE">SO41 3SE</button>
   </p>
   
   <div class="charger-connections">
@@ -110,9 +146,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">EVC Macdonald Elmers Court Hotel &amp; Resort</h2>
-  <p class="charger-address">S Baddesley Rd SO41 5ZB
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">EVC Macdonald Elmers Court Hotel &amp; Resort</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">S Baddesley Rd <button class="copy-btn" data-copy="SO41 5ZB">SO41 5ZB</button>
   </p>
   
   <div class="charger-connections">
@@ -131,9 +170,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Barfields 2</h2>
-  <p class="charger-address">Barfields Car Park SO41 9BL
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Barfields 2</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Barfields Car Park <button class="copy-btn" data-copy="SO41 9BL">SO41 9BL</button>
   </p>
   
   <div class="charger-connections">
@@ -155,9 +197,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Bath Road Car Park</h2>
-  <p class="charger-address">Bath Road Car Park SO41 3SE
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only),CCS (Type 2)">
+  <div class="charger-header">
+    <h2 class="charger-name">Bath Road Car Park</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Bath Road Car Park <button class="copy-btn" data-copy="SO41 3SE">SO41 3SE</button>
   </p>
   
   <div class="charger-connections">
@@ -185,6 +230,23 @@
 
 <p><a href="/" class="back-link">← All UK towns</a></p>
 
+
+<div class="nearby-towns">
+  <h2 class="nearby-heading">Nearby towns</h2>
+  <ul class="nearby-list">
+  
+    <li><a href="/uk/ryde/">Ryde</a></li>
+  
+    <li><a href="/uk/eastbourne/">Eastbourne</a></li>
+  
+    <li><a href="/uk/worthing/">Worthing</a></li>
+  
+    <li><a href="/uk/portsmouth/">Portsmouth</a></li>
+  
+  </ul>
+</div>
+
+
 </div>
 
 <footer>
@@ -197,26 +259,61 @@
 <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 <script>
 (function () {
+  // --- Map ---
   var map = L.map('map').setView([43.13001764498205, -0.4469025342462228], 12);
-
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
   }).addTo(map);
 
   var markers = L.markerClusterGroup();
-  var chargerData = [{"lat": 5, "lng": 4.999684, "title": "Genie", "address": "EVT Warehouse"}, {"lat": 50.75077984006549, "lng": -1.5534308743415295, "title": "Shell Lymington", "address": "33 Milford Road"}, {"lat": 50.75556, "lng": -1.52932, "title": "Bath Road 1", "address": "Bath Road Car Park"}, {"lat": 50.75909602982677, "lng": -1.5241083311358075, "title": "EVC Macdonald Elmers Court Hotel & Resort", "address": "S Baddesley Rd"}, {"lat": 50.76022, "lng": -1.54506, "title": "Barfields 2", "address": "Barfields Car Park"}, {"lat": 50.75445, "lng": -1.52918, "title": "Bath Road Car Park", "address": "Bath Road Car Park"}];
+  var chargerData = [{"lat": 5, "lng": 4.999684, "title": "Genie", "address": "EVT Warehouse", "connectors": ["Type 2 (Socket Only) · 22kW", "CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 50kW"]}, {"lat": 50.75077984006549, "lng": -1.5534308743415295, "title": "Shell Lymington", "address": "33 Milford Road", "connectors": ["CCS (Type 2) · 50kW", "CHAdeMO · 50kW"]}, {"lat": 50.75556, "lng": -1.52932, "title": "Bath Road 1", "address": "Bath Road Car Park", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 50.75909602982677, "lng": -1.5241083311358075, "title": "EVC Macdonald Elmers Court Hotel & Resort", "address": "S Baddesley Rd", "connectors": ["Type 2 (Socket Only) · 22kW"]}, {"lat": 50.76022, "lng": -1.54506, "title": "Barfields 2", "address": "Barfields Car Park", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 50.75445, "lng": -1.52918, "title": "Bath Road Car Park", "address": "Bath Road Car Park", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW", "CCS (Type 2) · 30kW"]}];
 
   chargerData.forEach(function (c) {
+    var connHtml = c.connectors.length
+      ? '<div style="margin-top:6px;font-size:12px;color:#475569">' + c.connectors.join(' &middot; ') + '</div>'
+      : '';
     var marker = L.marker([c.lat, c.lng]);
     marker.bindPopup(
-      '<b>' + c.title + '</b><br>' + c.address + '<br><br>' +
+      '<b>' + c.title + '</b>' +
+      '<div style="color:#64748b;font-size:13px">' + c.address + '</div>' +
+      connHtml +
       '<a href="https://www.google.com/maps/dir/?api=1&destination=' + c.lat + ',' + c.lng +
-      '" target="_blank" rel="noopener">Get directions</a>'
+      '" target="_blank" rel="noopener" style="display:inline-block;margin-top:8px;padding:4px 10px;background:#2563eb;color:white;border-radius:4px;text-decoration:none;font-size:12px">Get directions</a>'
     );
     markers.addLayer(marker);
   });
-
   map.addLayer(markers);
+
+  // --- Connector filter ---
+  var filterBtns = document.querySelectorAll('.filter-btn');
+  var chargerItems = document.querySelectorAll('.charger-item');
+
+  filterBtns.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      filterBtns.forEach(function (b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      var f = btn.dataset.filter;
+      chargerItems.forEach(function (item) {
+        var connList = item.dataset.connectors ? item.dataset.connectors.split(',') : [];
+        item.style.display = (f === 'all' || connList.indexOf(f) !== -1) ? '' : 'none';
+      });
+    });
+  });
+
+  // --- Copy postcode ---
+  document.querySelectorAll('.copy-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var original = btn.textContent;
+      navigator.clipboard.writeText(btn.dataset.copy).then(function () {
+        btn.textContent = 'Copied!';
+        btn.classList.add('copy-btn--success');
+        setTimeout(function () {
+          btn.textContent = original;
+          btn.classList.remove('copy-btn--success');
+        }, 1500);
+      });
+    });
+  });
 }());
 </script>
 

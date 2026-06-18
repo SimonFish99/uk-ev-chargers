@@ -17,7 +17,10 @@
 
 <header>
 <div class="container">
-<a href="/" class="logo">PlugMap <span class="tagline">UK EV Charger Locator</span></a>
+<a href="/" class="logo">
+  <svg class="logo-bolt" viewBox="0 0 24 24" fill="currentColor" width="22" height="22" aria-hidden="true"><path d="M13 2L4.5 13.5H11L10 22L19.5 10.5H13Z"/></svg>
+  PlugMap <span class="tagline">UK EV Charger Locator</span>
+</a>
 </div>
 </header>
 
@@ -28,16 +31,38 @@
 </nav>
 
 <h1>EV Chargers in Bracknell</h1>
-<p class="page-intro">16 public charging stations found in Bracknell.</p>
+
+<div class="stats-bar">
+  <span class="stat-pill stat-total">16 stations</span>
+  <span class="stat-pill stat-rapid">2 rapid (50kW+)</span>
+  <span class="stat-pill stat-fast">14 fast (7–50kW)</span>
+  
+</div>
 
 <div id="map"></div>
 
-<ul class="charger-list">
+
+<div class="connector-filter">
+  <span class="filter-label">Filter:</span>
+  <button class="filter-btn active" data-filter="all">All</button>
+  
+  <button class="filter-btn" data-filter="CCS (Type 2)">CCS (Type 2)</button>
+  
+  <button class="filter-btn" data-filter="Type 2 (Socket Only)">Type 2 (Socket Only)</button>
+  
+</div>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Great Hollands Shops</h2>
-  <p class="charger-address">Great Hollands Square RG12 8UX
+<ul class="charger-list" id="charger-list">
+
+
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2)">
+  <div class="charger-header">
+    <h2 class="charger-name">Great Hollands Shops</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Great Hollands Square <button class="copy-btn" data-copy="RG12 8UX">RG12 8UX</button>
   </p>
   
   <div class="charger-connections">
@@ -56,9 +81,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">OAS STATION 5</h2>
-  <p class="charger-address">1 Arlington Square RG12 1WA
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">OAS STATION 5</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">1 Arlington Square <button class="copy-btn" data-copy="RG12 1WA">RG12 1WA</button>
   </p>
   
   <div class="charger-connections">
@@ -77,9 +105,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Hornbill SF Connect </h2>
-  <p class="charger-address">Bagshot Road RG12 0SH
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2)">
+  <div class="charger-header">
+    <h2 class="charger-name">Hornbill SF Connect </h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Bagshot Road <button class="copy-btn" data-copy="RG12 0SH">RG12 0SH</button>
   </p>
   
   <div class="charger-connections">
@@ -101,9 +133,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Bywood</h2>
-  <p class="charger-address">Bywood car park RG12 7RF
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Bywood</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Bywood car park <button class="copy-btn" data-copy="RG12 7RF">RG12 7RF</button>
   </p>
   
   <div class="charger-connections">
@@ -125,9 +160,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Wildridings</h2>
-  <p class="charger-address">Wildridings RG12 7SJ
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Wildridings</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Wildridings <button class="copy-btn" data-copy="RG12 7SJ">RG12 7SJ</button>
   </p>
   
   <div class="charger-connections">
@@ -149,9 +187,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Birch Hill Shops</h2>
-  <p class="charger-address">Birch Hill Shops RG12 7WW
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Birch Hill Shops</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Birch Hill Shops <button class="copy-btn" data-copy="RG12 7WW">RG12 7WW</button>
   </p>
   
   <div class="charger-connections">
@@ -173,9 +214,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">High Street Car Park</h2>
-  <p class="charger-address">The Ring RG12 1LP
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">High Street Car Park</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">The Ring <button class="copy-btn" data-copy="RG12 1LP">RG12 1LP</button>
   </p>
   
   <div class="charger-connections">
@@ -197,9 +241,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Braccan Walk Car Park</h2>
-  <p class="charger-address">The Ring RG12 1LP
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Braccan Walk Car Park</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">The Ring <button class="copy-btn" data-copy="RG12 1LP">RG12 1LP</button>
   </p>
   
   <div class="charger-connections">
@@ -221,9 +268,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">BFC Priestwood Community</h2>
-  <p class="charger-address">Priestwood Community Car Park RG42 1TU
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">BFC Priestwood Community</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Priestwood Community Car Park <button class="copy-btn" data-copy="RG42 1TU">RG42 1TU</button>
   </p>
   
   <div class="charger-connections">
@@ -245,9 +295,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Bracknell Forest GBR024</h2>
-  <p class="charger-address">Lily Hill Road RG12 2RX
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Bracknell Forest GBR024</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Lily Hill Road <button class="copy-btn" data-copy="RG12 2RX">RG12 2RX</button>
   </p>
   
   <div class="charger-connections">
@@ -269,9 +322,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">BFC Bay Road</h2>
-  <p class="charger-address">Bay Road Car Park RG12 2NR
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">BFC Bay Road</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Bay Road Car Park <button class="copy-btn" data-copy="RG12 2NR">RG12 2NR</button>
   </p>
   
   <div class="charger-connections">
@@ -293,9 +349,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">BFC Forest Park</h2>
-  <p class="charger-address">Horndean Road RG12 0XQ
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">BFC Forest Park</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Horndean Road <button class="copy-btn" data-copy="RG12 0XQ">RG12 0XQ</button>
   </p>
   
   <div class="charger-connections">
@@ -317,9 +376,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">BFC Crown Wood 1</h2>
-  <p class="charger-address">Crown Row RG12 0TH
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">BFC Crown Wood 1</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Crown Row <button class="copy-btn" data-copy="RG12 0TH">RG12 0TH</button>
   </p>
   
   <div class="charger-connections">
@@ -341,9 +403,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">BFC The Broadway</h2>
-  <p class="charger-address">The Broadway, Sandhurst, GU47 9AB
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">BFC The Broadway</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">The Broadway, Sandhurst, <button class="copy-btn" data-copy="GU47 9AB">GU47 9AB</button>
   </p>
   
   <div class="charger-connections">
@@ -365,9 +430,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Coppid Beech Hotel</h2>
-  <p class="charger-address">John Nike Way RG12 8TF
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Coppid Beech Hotel</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">John Nike Way <button class="copy-btn" data-copy="RG12 8TF">RG12 8TF</button>
   </p>
   
   <div class="charger-connections">
@@ -395,9 +463,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Tesco Superstore-Bracknell</h2>
-  <p class="charger-address">Whitton Road RG12 9TZ
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Tesco Superstore-Bracknell</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Whitton Road <button class="copy-btn" data-copy="RG12 9TZ">RG12 9TZ</button>
   </p>
   
   <div class="charger-connections">
@@ -422,6 +493,23 @@
 
 <p><a href="/" class="back-link">← All UK towns</a></p>
 
+
+<div class="nearby-towns">
+  <h2 class="nearby-heading">Nearby towns</h2>
+  <ul class="nearby-list">
+  
+    <li><a href="/uk/wokingham/">Wokingham</a></li>
+  
+    <li><a href="/uk/farnborough/">Farnborough</a></li>
+  
+    <li><a href="/uk/maidenhead/">Maidenhead</a></li>
+  
+    <li><a href="/uk/fleet/">Fleet</a></li>
+  
+  </ul>
+</div>
+
+
 </div>
 
 <footer>
@@ -434,26 +522,61 @@
 <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 <script>
 (function () {
+  // --- Map ---
   var map = L.map('map').setView([51.404396742984495, -0.7535871418717356], 12);
-
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
   }).addTo(map);
 
   var markers = L.markerClusterGroup();
-  var chargerData = [{"lat": 51.39960624560106, "lng": -0.7704283729584631, "title": "Great Hollands Shops", "address": "Great Hollands Square"}, {"lat": 51.415381, "lng": -0.759315, "title": "OAS STATION 5", "address": "1 Arlington Square"}, {"lat": 51.3982426421509, "lng": -0.744681896989306, "title": "Hornbill SF Connect ", "address": "Bagshot Road"}, {"lat": 51.393882, "lng": -0.765235, "title": "Bywood", "address": "Bywood car park"}, {"lat": 51.407383, "lng": -0.762721, "title": "Wildridings", "address": "Wildridings"}, {"lat": 51.390917, "lng": -0.752001, "title": "Birch Hill Shops", "address": "Birch Hill Shops"}, {"lat": 51.415798, "lng": -0.7525, "title": "High Street Car Park", "address": "The Ring"}, {"lat": 51.414597, "lng": -0.751616, "title": "Braccan Walk Car Park", "address": "The Ring"}, {"lat": 51.421143, "lng": -0.763886, "title": "BFC Priestwood Community", "address": "Priestwood Community Car Park"}, {"lat": 51.41693, "lng": -0.724824, "title": "Bracknell Forest GBR024", "address": "Lily Hill Road"}, {"lat": 51.416474, "lng": -0.734464, "title": "BFC Bay Road", "address": "Bay Road Car Park"}, {"lat": 51.413057, "lng": -0.728764, "title": "BFC Forest Park", "address": "Horndean Road"}, {"lat": 51.39605, "lng": -0.736925, "title": "BFC Crown Wood 1", "address": "Crown Row"}, {"lat": 51.347167, "lng": -0.795556, "title": "BFC The Broadway", "address": "The Broadway, Sandhurst,"}, {"lat": 51.41533, "lng": -0.78868, "title": "Coppid Beech Hotel", "address": "John Nike Way"}, {"lat": 51.40839, "lng": -0.725797, "title": "Tesco Superstore-Bracknell", "address": "Whitton Road"}];
+  var chargerData = [{"lat": 51.39960624560106, "lng": -0.7704283729584631, "title": "Great Hollands Shops", "address": "Great Hollands Square", "connectors": ["CCS (Type 2) · 50kW"]}, {"lat": 51.415381, "lng": -0.759315, "title": "OAS STATION 5", "address": "1 Arlington Square", "connectors": ["Type 2 (Socket Only) · 22kW"]}, {"lat": 51.3982426421509, "lng": -0.744681896989306, "title": "Hornbill SF Connect ", "address": "Bagshot Road", "connectors": ["CCS (Type 2) · 150kW", "CCS (Type 2) · 150kW"]}, {"lat": 51.393882, "lng": -0.765235, "title": "Bywood", "address": "Bywood car park", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 51.407383, "lng": -0.762721, "title": "Wildridings", "address": "Wildridings", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 51.390917, "lng": -0.752001, "title": "Birch Hill Shops", "address": "Birch Hill Shops", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 51.415798, "lng": -0.7525, "title": "High Street Car Park", "address": "The Ring", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 51.414597, "lng": -0.751616, "title": "Braccan Walk Car Park", "address": "The Ring", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 51.421143, "lng": -0.763886, "title": "BFC Priestwood Community", "address": "Priestwood Community Car Park", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 51.41693, "lng": -0.724824, "title": "Bracknell Forest GBR024", "address": "Lily Hill Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 51.416474, "lng": -0.734464, "title": "BFC Bay Road", "address": "Bay Road Car Park", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 51.413057, "lng": -0.728764, "title": "BFC Forest Park", "address": "Horndean Road", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 51.39605, "lng": -0.736925, "title": "BFC Crown Wood 1", "address": "Crown Row", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 51.347167, "lng": -0.795556, "title": "BFC The Broadway", "address": "The Broadway, Sandhurst,", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 51.41533, "lng": -0.78868, "title": "Coppid Beech Hotel", "address": "John Nike Way", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 51.40839, "lng": -0.725797, "title": "Tesco Superstore-Bracknell", "address": "Whitton Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}];
 
   chargerData.forEach(function (c) {
+    var connHtml = c.connectors.length
+      ? '<div style="margin-top:6px;font-size:12px;color:#475569">' + c.connectors.join(' &middot; ') + '</div>'
+      : '';
     var marker = L.marker([c.lat, c.lng]);
     marker.bindPopup(
-      '<b>' + c.title + '</b><br>' + c.address + '<br><br>' +
+      '<b>' + c.title + '</b>' +
+      '<div style="color:#64748b;font-size:13px">' + c.address + '</div>' +
+      connHtml +
       '<a href="https://www.google.com/maps/dir/?api=1&destination=' + c.lat + ',' + c.lng +
-      '" target="_blank" rel="noopener">Get directions</a>'
+      '" target="_blank" rel="noopener" style="display:inline-block;margin-top:8px;padding:4px 10px;background:#2563eb;color:white;border-radius:4px;text-decoration:none;font-size:12px">Get directions</a>'
     );
     markers.addLayer(marker);
   });
-
   map.addLayer(markers);
+
+  // --- Connector filter ---
+  var filterBtns = document.querySelectorAll('.filter-btn');
+  var chargerItems = document.querySelectorAll('.charger-item');
+
+  filterBtns.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      filterBtns.forEach(function (b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      var f = btn.dataset.filter;
+      chargerItems.forEach(function (item) {
+        var connList = item.dataset.connectors ? item.dataset.connectors.split(',') : [];
+        item.style.display = (f === 'all' || connList.indexOf(f) !== -1) ? '' : 'none';
+      });
+    });
+  });
+
+  // --- Copy postcode ---
+  document.querySelectorAll('.copy-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var original = btn.textContent;
+      navigator.clipboard.writeText(btn.dataset.copy).then(function () {
+        btn.textContent = 'Copied!';
+        btn.classList.add('copy-btn--success');
+        setTimeout(function () {
+          btn.textContent = original;
+          btn.classList.remove('copy-btn--success');
+        }, 1500);
+      });
+    });
+  });
 }());
 </script>
 

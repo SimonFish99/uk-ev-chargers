@@ -17,7 +17,10 @@
 
 <header>
 <div class="container">
-<a href="/" class="logo">PlugMap <span class="tagline">UK EV Charger Locator</span></a>
+<a href="/" class="logo">
+  <svg class="logo-bolt" viewBox="0 0 24 24" fill="currentColor" width="22" height="22" aria-hidden="true"><path d="M13 2L4.5 13.5H11L10 22L19.5 10.5H13Z"/></svg>
+  PlugMap <span class="tagline">UK EV Charger Locator</span>
+</a>
 </div>
 </header>
 
@@ -28,16 +31,42 @@
 </nav>
 
 <h1>EV Chargers in Stratford-on-Avon</h1>
-<p class="page-intro">8 public charging stations found in Stratford-on-Avon.</p>
+
+<div class="stats-bar">
+  <span class="stat-pill stat-total">8 stations</span>
+  <span class="stat-pill stat-rapid">3 rapid (50kW+)</span>
+  <span class="stat-pill stat-fast">5 fast (7–50kW)</span>
+  
+</div>
 
 <div id="map"></div>
 
-<ul class="charger-list">
+
+<div class="connector-filter">
+  <span class="filter-label">Filter:</span>
+  <button class="filter-btn active" data-filter="all">All</button>
+  
+  <button class="filter-btn" data-filter="CCS (Type 2)">CCS (Type 2)</button>
+  
+  <button class="filter-btn" data-filter="CHAdeMO">CHAdeMO</button>
+  
+  <button class="filter-btn" data-filter="Type 2 (Socket Only)">Type 2 (Socket Only)</button>
+  
+  <button class="filter-btn" data-filter="Type 2 (Tethered Connector) ">Type 2 (Tethered Connector) </button>
+  
+</div>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">The Kings Head</h2>
-  <p class="charger-address">Southam Road CV47 8NG
+<ul class="charger-list" id="charger-list">
+
+
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2),CHAdeMO">
+  <div class="charger-header">
+    <h2 class="charger-name">The Kings Head</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Southam Road <button class="copy-btn" data-copy="CV47 8NG">CV47 8NG</button>
   </p>
   
   <div class="charger-connections">
@@ -71,9 +100,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">British Motor Museum</h2>
-  <p class="charger-address">Banbury Rd CV35 0BJ
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">British Motor Museum</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Banbury Rd <button class="copy-btn" data-copy="CV35 0BJ">CV35 0BJ</button>
   </p>
   
   <div class="charger-connections">
@@ -101,9 +133,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Masons Road</h2>
-  <p class="charger-address">Masons Road CV37 9NF
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Masons Road</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Masons Road <button class="copy-btn" data-copy="CV37 9NF">CV37 9NF</button>
   </p>
   
   <div class="charger-connections">
@@ -125,9 +160,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">JLR West Car Park Row A G7</h2>
-  <p class="charger-address">JLR West Car Park Row A G7/2Banbury Road CV35 0RR
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">JLR West Car Park Row A G7</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">JLR West Car Park Row A G7/2Banbury Road <button class="copy-btn" data-copy="CV35 0RR">CV35 0RR</button>
   </p>
   
   <div class="charger-connections">
@@ -146,9 +184,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Tesco Superstore-Stratford Upon Avon</h2>
-  <p class="charger-address">Tesco CV37 0UA
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Tesco Superstore-Stratford Upon Avon</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Tesco <button class="copy-btn" data-copy="CV37 0UA">CV37 0UA</button>
   </p>
   
   <div class="charger-connections">
@@ -170,9 +211,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Shell Recharge Bridgetown</h2>
-  <p class="charger-address">Shipston Road CV37 7LP
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2),CHAdeMO">
+  <div class="charger-header">
+    <h2 class="charger-name">Shell Recharge Bridgetown</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Shipston Road <button class="copy-btn" data-copy="CV37 7LP">CV37 7LP</button>
   </p>
   
   <div class="charger-connections">
@@ -194,9 +239,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">The Cotswolds Distillery </h2>
-  <p class="charger-address">Philips Field, Whichford Road CV36 5HG
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">The Cotswolds Distillery </h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Philips Field, Whichford Road <button class="copy-btn" data-copy="CV36 5HG">CV36 5HG</button>
   </p>
   
   <div class="charger-connections">
@@ -215,9 +263,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Gardeners Way</h2>
-  <p class="charger-address">Gardeners Way CV47 2BJ
+<li class="charger-item charger-item--rapid" data-connectors="Type 2 (Tethered Connector) ,CCS (Type 2),CHAdeMO">
+  <div class="charger-header">
+    <h2 class="charger-name">Gardeners Way</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Gardeners Way <button class="copy-btn" data-copy="CV47 2BJ">CV47 2BJ</button>
   </p>
   
   <div class="charger-connections">
@@ -245,6 +297,23 @@
 
 <p><a href="/" class="back-link">← All UK towns</a></p>
 
+
+<div class="nearby-towns">
+  <h2 class="nearby-heading">Nearby towns</h2>
+  <ul class="nearby-list">
+  
+    <li><a href="/uk/warwick/">Warwick</a></li>
+  
+    <li><a href="/uk/leamington-spa/">Leamington Spa</a></li>
+  
+    <li><a href="/uk/stratford-upon-avon/">Stratford-upon-Avon</a></li>
+  
+    <li><a href="/uk/coventry/">Coventry</a></li>
+  
+  </ul>
+</div>
+
+
 </div>
 
 <footer>
@@ -257,26 +326,61 @@
 <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 <script>
 (function () {
+  // --- Map ---
   var map = L.map('map').setView([52.18677463529737, -1.5477597208789728], 12);
-
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
   }).addTo(map);
 
   var markers = L.markerClusterGroup();
-  var chargerData = [{"lat": 52.25281, "lng": -1.320645, "title": "The Kings Head", "address": "Southam Road"}, {"lat": 52.189736, "lng": -1.479031, "title": "British Motor Museum", "address": "Banbury Rd"}, {"lat": 52.198376, "lng": -1.724596, "title": "Masons Road", "address": "Masons Road"}, {"lat": 52.189874, "lng": -1.487799, "title": "JLR West Car Park Row A G7", "address": "JLR West Car Park Row A G7/2Banbury Road"}, {"lat": 52.202208, "lng": -1.715103, "title": "Tesco Superstore-Stratford Upon Avon", "address": "Tesco"}, {"lat": 52.19009615169199, "lng": -1.69831055789939, "title": "Shell Recharge Bridgetown", "address": "Shipston Road"}, {"lat": 52.02571078912217, "lng": -1.5659744500850366, "title": "The Cotswolds Distillery ", "address": "Philips Field, Whichford Road"}, {"lat": 52.24538614156478, "lng": -1.3906187590473564, "title": "Gardeners Way", "address": "Gardeners Way"}];
+  var chargerData = [{"lat": 52.25281, "lng": -1.320645, "title": "The Kings Head", "address": "Southam Road", "connectors": ["CCS (Type 2) · 60kW", "CHAdeMO · 50kW", "CCS (Type 2) · 60kW", "CHAdeMO · 50kW", "CCS (Type 2) · 60kW", "CHAdeMO · 50kW"]}, {"lat": 52.189736, "lng": -1.479031, "title": "British Motor Museum", "address": "Banbury Rd", "connectors": ["Type 2 (Socket Only) · 3.7kW", "Type 2 (Socket Only) · 11kW", "Type 2 (Socket Only) · 3.7kW", "Type 2 (Socket Only) · 11kW"]}, {"lat": 52.198376, "lng": -1.724596, "title": "Masons Road", "address": "Masons Road", "connectors": ["Type 2 (Socket Only) · 11kW", "Type 2 (Socket Only) · 11kW"]}, {"lat": 52.189874, "lng": -1.487799, "title": "JLR West Car Park Row A G7", "address": "JLR West Car Park Row A G7/2Banbury Road", "connectors": ["Type 2 (Socket Only) · 22kW"]}, {"lat": 52.202208, "lng": -1.715103, "title": "Tesco Superstore-Stratford Upon Avon", "address": "Tesco", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 52.19009615169199, "lng": -1.69831055789939, "title": "Shell Recharge Bridgetown", "address": "Shipston Road", "connectors": ["CCS (Type 2) · 150kW", "CHAdeMO · 50kW"]}, {"lat": 52.02571078912217, "lng": -1.5659744500850366, "title": "The Cotswolds Distillery ", "address": "Philips Field, Whichford Road", "connectors": ["Type 2 (Socket Only) · 7kW"]}, {"lat": 52.24538614156478, "lng": -1.3906187590473564, "title": "Gardeners Way", "address": "Gardeners Way", "connectors": ["Type 2 (Tethered Connector)  · 43kW", "CCS (Type 2) · 50kW", "CHAdeMO · 50kW"]}];
 
   chargerData.forEach(function (c) {
+    var connHtml = c.connectors.length
+      ? '<div style="margin-top:6px;font-size:12px;color:#475569">' + c.connectors.join(' &middot; ') + '</div>'
+      : '';
     var marker = L.marker([c.lat, c.lng]);
     marker.bindPopup(
-      '<b>' + c.title + '</b><br>' + c.address + '<br><br>' +
+      '<b>' + c.title + '</b>' +
+      '<div style="color:#64748b;font-size:13px">' + c.address + '</div>' +
+      connHtml +
       '<a href="https://www.google.com/maps/dir/?api=1&destination=' + c.lat + ',' + c.lng +
-      '" target="_blank" rel="noopener">Get directions</a>'
+      '" target="_blank" rel="noopener" style="display:inline-block;margin-top:8px;padding:4px 10px;background:#2563eb;color:white;border-radius:4px;text-decoration:none;font-size:12px">Get directions</a>'
     );
     markers.addLayer(marker);
   });
-
   map.addLayer(markers);
+
+  // --- Connector filter ---
+  var filterBtns = document.querySelectorAll('.filter-btn');
+  var chargerItems = document.querySelectorAll('.charger-item');
+
+  filterBtns.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      filterBtns.forEach(function (b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      var f = btn.dataset.filter;
+      chargerItems.forEach(function (item) {
+        var connList = item.dataset.connectors ? item.dataset.connectors.split(',') : [];
+        item.style.display = (f === 'all' || connList.indexOf(f) !== -1) ? '' : 'none';
+      });
+    });
+  });
+
+  // --- Copy postcode ---
+  document.querySelectorAll('.copy-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var original = btn.textContent;
+      navigator.clipboard.writeText(btn.dataset.copy).then(function () {
+        btn.textContent = 'Copied!';
+        btn.classList.add('copy-btn--success');
+        setTimeout(function () {
+          btn.textContent = original;
+          btn.classList.remove('copy-btn--success');
+        }, 1500);
+      });
+    });
+  });
 }());
 </script>
 

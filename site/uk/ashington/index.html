@@ -17,7 +17,10 @@
 
 <header>
 <div class="container">
-<a href="/" class="logo">PlugMap <span class="tagline">UK EV Charger Locator</span></a>
+<a href="/" class="logo">
+  <svg class="logo-bolt" viewBox="0 0 24 24" fill="currentColor" width="22" height="22" aria-hidden="true"><path d="M13 2L4.5 13.5H11L10 22L19.5 10.5H13Z"/></svg>
+  PlugMap <span class="tagline">UK EV Charger Locator</span>
+</a>
 </div>
 </header>
 
@@ -28,16 +31,41 @@
 </nav>
 
 <h1>EV Chargers in Ashington</h1>
-<p class="page-intro">11 public charging stations found in Ashington.</p>
+
+<div class="stats-bar">
+  <span class="stat-pill stat-total">11 stations</span>
+  <span class="stat-pill stat-rapid">2 rapid (50kW+)</span>
+  <span class="stat-pill stat-fast">9 fast (7–50kW)</span>
+  
+</div>
 
 <div id="map"></div>
 
-<ul class="charger-list">
+
+<div class="connector-filter">
+  <span class="filter-label">Filter:</span>
+  <button class="filter-btn active" data-filter="all">All</button>
+  
+  <button class="filter-btn" data-filter="CCS (Type 2)">CCS (Type 2)</button>
+  
+  <button class="filter-btn" data-filter="CHAdeMO">CHAdeMO</button>
+  
+  <button class="filter-btn" data-filter="Type 2 (Socket Only)">Type 2 (Socket Only)</button>
+  
+  <button class="filter-btn" data-filter="Type 2 (Tethered Connector) ">Type 2 (Tethered Connector) </button>
+  
+</div>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Ashington Railway Station Car Park</h2>
-  <p class="charger-address">Kenilworth Road NE63 8AS
+<ul class="charger-list" id="charger-list">
+
+
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Ashington Railway Station Car Park</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Kenilworth Road <button class="copy-btn" data-copy="NE63 8AS">NE63 8AS</button>
   </p>
   
   <div class="charger-connections">
@@ -56,9 +84,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Sixth Av</h2>
-  <p class="charger-address">Sixth Avenue NE63 0PQ
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Tethered Connector) ">
+  <div class="charger-header">
+    <h2 class="charger-name">Sixth Av</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Sixth Avenue <button class="copy-btn" data-copy="NE63 0PQ">NE63 0PQ</button>
   </p>
   
   <div class="charger-connections">
@@ -77,9 +108,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Sixth Av</h2>
-  <p class="charger-address">Sixth Avenue NE63 0PQ
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Tethered Connector) ">
+  <div class="charger-header">
+    <h2 class="charger-name">Sixth Av</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Sixth Avenue <button class="copy-btn" data-copy="NE63 0PQ">NE63 0PQ</button>
   </p>
   
   <div class="charger-connections">
@@ -98,9 +132,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Newbiggin Road</h2>
-  <p class="charger-address">Newbiggin Road NE63 0SZ
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Tethered Connector) ">
+  <div class="charger-header">
+    <h2 class="charger-name">Newbiggin Road</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Newbiggin Road <button class="copy-btn" data-copy="NE63 0SZ">NE63 0SZ</button>
   </p>
   
   <div class="charger-connections">
@@ -119,9 +156,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Woodhorn Museum</h2>
-  <p class="charger-address">Woodhorn Museum NE63 9YF
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Woodhorn Museum</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Woodhorn Museum <button class="copy-btn" data-copy="NE63 9YF">NE63 9YF</button>
   </p>
   
   <div class="charger-connections">
@@ -143,9 +183,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Wansbeck Hospital</h2>
-  <p class="charger-address">Woodhorn Lane NE63 9JJ
+<li class="charger-item charger-item--rapid" data-connectors="Type 2 (Tethered Connector) ,CHAdeMO">
+  <div class="charger-header">
+    <h2 class="charger-name">Wansbeck Hospital</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Woodhorn Lane <button class="copy-btn" data-copy="NE63 9JJ">NE63 9JJ</button>
   </p>
   
   <div class="charger-connections">
@@ -170,9 +214,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">First Avenue 1, Poplar Street</h2>
-  <p class="charger-address">First Avenue 1 NE63 9DY
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">First Avenue 1, Poplar Street</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">First Avenue 1 <button class="copy-btn" data-copy="NE63 9DY">NE63 9DY</button>
   </p>
   
   <div class="charger-connections">
@@ -194,9 +241,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Ashington Workspace</h2>
-  <p class="charger-address">Lintonville Parkway NE63 9JZ
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Ashington Workspace</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Lintonville Parkway <button class="copy-btn" data-copy="NE63 9JZ">NE63 9JZ</button>
   </p>
   
   <div class="charger-connections">
@@ -218,9 +268,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Lintonville Parkway</h2>
-  <p class="charger-address">Lintonville Parkway NE63 9JZ
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Lintonville Parkway</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Lintonville Parkway <button class="copy-btn" data-copy="NE63 9JZ">NE63 9JZ</button>
   </p>
   
   <div class="charger-connections">
@@ -242,9 +295,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Ashington</h2>
-  <p class="charger-address">Polar Krush NE63 8QW
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Ashington</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Polar Krush <button class="copy-btn" data-copy="NE63 8QW">NE63 8QW</button>
   </p>
   
   <div class="charger-connections">
@@ -263,9 +319,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Dairy House Car Park</h2>
-  <p class="charger-address">Kenilworth Road NE63 0SF
+<li class="charger-item charger-item--rapid" data-connectors="Type 2 (Tethered Connector) ,CHAdeMO,CCS (Type 2)">
+  <div class="charger-header">
+    <h2 class="charger-name">Dairy House Car Park</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Kenilworth Road <button class="copy-btn" data-copy="NE63 0SF">NE63 0SF</button>
   </p>
   
   <div class="charger-connections">
@@ -293,6 +353,23 @@
 
 <p><a href="/" class="back-link">← All UK towns</a></p>
 
+
+<div class="nearby-towns">
+  <h2 class="nearby-heading">Nearby towns</h2>
+  <ul class="nearby-list">
+  
+    <li><a href="/uk/blyth/">Blyth</a></li>
+  
+    <li><a href="/uk/cramlington/">Cramlington</a></li>
+  
+    <li><a href="/uk/morpeth/">Morpeth</a></li>
+  
+    <li><a href="/uk/newcastle-upon-tyne/">Newcastle Upon Tyne</a></li>
+  
+  </ul>
+</div>
+
+
 </div>
 
 <footer>
@@ -305,26 +382,61 @@
 <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 <script>
 (function () {
+  // --- Map ---
   var map = L.map('map').setView([55.18180603701506, -1.564231062399712], 12);
-
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
   }).addTo(map);
 
   var markers = L.markerClusterGroup();
-  var chargerData = [{"lat": 55.1816062814151, "lng": -1.573033684981965, "title": "Ashington Railway Station Car Park", "address": "Kenilworth Road"}, {"lat": 55.17469, "lng": -1.562934, "title": "Sixth Av", "address": "Sixth Avenue"}, {"lat": 55.174685, "lng": -1.562934, "title": "Sixth Av", "address": "Sixth Avenue"}, {"lat": 55.170117, "lng": -1.56057, "title": "Newbiggin Road", "address": "Newbiggin Road"}, {"lat": 55.188933, "lng": -1.549573, "title": "Woodhorn Museum", "address": "Woodhorn Museum"}, {"lat": 55.18431, "lng": -1.546602, "title": "Wansbeck Hospital", "address": "Woodhorn Lane"}, {"lat": 55.182018, "lng": -1.565786, "title": "First Avenue 1, Poplar Street", "address": "First Avenue 1"}, {"lat": 55.187111, "lng": -1.56621, "title": "Ashington Workspace", "address": "Lintonville Parkway"}, {"lat": 55.187012, "lng": -1.56621, "title": "Lintonville Parkway", "address": "Lintonville Parkway"}, {"lat": 55.187039, "lng": -1.57917, "title": "Ashington", "address": "Polar Krush"}, {"lat": 55.182345125750544, "lng": -1.5735190014148657, "title": "Dairy House Car Park", "address": "Kenilworth Road"}];
+  var chargerData = [{"lat": 55.1816062814151, "lng": -1.573033684981965, "title": "Ashington Railway Station Car Park", "address": "Kenilworth Road", "connectors": ["Type 2 (Socket Only) · 7kW"]}, {"lat": 55.17469, "lng": -1.562934, "title": "Sixth Av", "address": "Sixth Avenue", "connectors": ["Type 2 (Tethered Connector)  · 22kW"]}, {"lat": 55.174685, "lng": -1.562934, "title": "Sixth Av", "address": "Sixth Avenue", "connectors": ["Type 2 (Tethered Connector)  · 22kW"]}, {"lat": 55.170117, "lng": -1.56057, "title": "Newbiggin Road", "address": "Newbiggin Road", "connectors": ["Type 2 (Tethered Connector)  · 22kW"]}, {"lat": 55.188933, "lng": -1.549573, "title": "Woodhorn Museum", "address": "Woodhorn Museum", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 55.18431, "lng": -1.546602, "title": "Wansbeck Hospital", "address": "Woodhorn Lane", "connectors": ["Type 2 (Tethered Connector)  · 43kW", "CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 50kW"]}, {"lat": 55.182018, "lng": -1.565786, "title": "First Avenue 1, Poplar Street", "address": "First Avenue 1", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 55.187111, "lng": -1.56621, "title": "Ashington Workspace", "address": "Lintonville Parkway", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 55.187012, "lng": -1.56621, "title": "Lintonville Parkway", "address": "Lintonville Parkway", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 55.187039, "lng": -1.57917, "title": "Ashington", "address": "Polar Krush", "connectors": ["Type 2 (Socket Only) · 7kW"]}, {"lat": 55.182345125750544, "lng": -1.5735190014148657, "title": "Dairy House Car Park", "address": "Kenilworth Road", "connectors": ["Type 2 (Tethered Connector)  · 43kW", "CHAdeMO · 50kW", "CCS (Type 2) · 50kW"]}];
 
   chargerData.forEach(function (c) {
+    var connHtml = c.connectors.length
+      ? '<div style="margin-top:6px;font-size:12px;color:#475569">' + c.connectors.join(' &middot; ') + '</div>'
+      : '';
     var marker = L.marker([c.lat, c.lng]);
     marker.bindPopup(
-      '<b>' + c.title + '</b><br>' + c.address + '<br><br>' +
+      '<b>' + c.title + '</b>' +
+      '<div style="color:#64748b;font-size:13px">' + c.address + '</div>' +
+      connHtml +
       '<a href="https://www.google.com/maps/dir/?api=1&destination=' + c.lat + ',' + c.lng +
-      '" target="_blank" rel="noopener">Get directions</a>'
+      '" target="_blank" rel="noopener" style="display:inline-block;margin-top:8px;padding:4px 10px;background:#2563eb;color:white;border-radius:4px;text-decoration:none;font-size:12px">Get directions</a>'
     );
     markers.addLayer(marker);
   });
-
   map.addLayer(markers);
+
+  // --- Connector filter ---
+  var filterBtns = document.querySelectorAll('.filter-btn');
+  var chargerItems = document.querySelectorAll('.charger-item');
+
+  filterBtns.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      filterBtns.forEach(function (b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      var f = btn.dataset.filter;
+      chargerItems.forEach(function (item) {
+        var connList = item.dataset.connectors ? item.dataset.connectors.split(',') : [];
+        item.style.display = (f === 'all' || connList.indexOf(f) !== -1) ? '' : 'none';
+      });
+    });
+  });
+
+  // --- Copy postcode ---
+  document.querySelectorAll('.copy-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var original = btn.textContent;
+      navigator.clipboard.writeText(btn.dataset.copy).then(function () {
+        btn.textContent = 'Copied!';
+        btn.classList.add('copy-btn--success');
+        setTimeout(function () {
+          btn.textContent = original;
+          btn.classList.remove('copy-btn--success');
+        }, 1500);
+      });
+    });
+  });
 }());
 </script>
 

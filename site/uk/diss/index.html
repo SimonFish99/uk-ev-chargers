@@ -17,7 +17,10 @@
 
 <header>
 <div class="container">
-<a href="/" class="logo">PlugMap <span class="tagline">UK EV Charger Locator</span></a>
+<a href="/" class="logo">
+  <svg class="logo-bolt" viewBox="0 0 24 24" fill="currentColor" width="22" height="22" aria-hidden="true"><path d="M13 2L4.5 13.5H11L10 22L19.5 10.5H13Z"/></svg>
+  PlugMap <span class="tagline">UK EV Charger Locator</span>
+</a>
 </div>
 </header>
 
@@ -28,16 +31,39 @@
 </nav>
 
 <h1>EV Chargers in Diss</h1>
-<p class="page-intro">6 public charging stations found in Diss.</p>
+
+<div class="stats-bar">
+  <span class="stat-pill stat-total">6 stations</span>
+  <span class="stat-pill stat-rapid">1 rapid (50kW+)</span>
+  <span class="stat-pill stat-fast">5 fast (7–50kW)</span>
+  
+</div>
 
 <div id="map"></div>
 
-<ul class="charger-list">
+
+<div class="connector-filter">
+  <span class="filter-label">Filter:</span>
+  <button class="filter-btn active" data-filter="all">All</button>
+  
+  <button class="filter-btn" data-filter="CHAdeMO">CHAdeMO</button>
+  
+  <button class="filter-btn" data-filter="Type 2 (Socket Only)">Type 2 (Socket Only)</button>
+  
+  <button class="filter-btn" data-filter="Type 2 (Tethered Connector) ">Type 2 (Tethered Connector) </button>
+  
+</div>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Home Farm</h2>
-  <p class="charger-address">Home Farm, Riddlesworth IP22 2TD
+<ul class="charger-list" id="charger-list">
+
+
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Home Farm</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Home Farm, Riddlesworth <button class="copy-btn" data-copy="IP22 2TD">IP22 2TD</button>
   </p>
   
   <div class="charger-connections">
@@ -56,9 +82,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Dickleburgh</h2>
-  <p class="charger-address">Dickleburgh VH IP21 4NL
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Dickleburgh</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Dickleburgh VH <button class="copy-btn" data-copy="IP21 4NL">IP21 4NL</button>
   </p>
   
   <div class="charger-connections">
@@ -83,9 +112,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">SW Lopham</h2>
-  <p class="charger-address">South Lopham IP22 2HX
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">SW Lopham</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">South Lopham <button class="copy-btn" data-copy="IP22 2HX">IP22 2HX</button>
   </p>
   
   <div class="charger-connections">
@@ -107,9 +139,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Morrisons</h2>
-  <p class="charger-address">Victoria Rd IP22 4XF
+<li class="charger-item charger-item--rapid" data-connectors="Type 2 (Tethered Connector) ,CHAdeMO,Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Morrisons</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Victoria Rd <button class="copy-btn" data-copy="IP22 4XF">IP22 4XF</button>
   </p>
   
   <div class="charger-connections">
@@ -134,9 +170,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Tesco Superstore-Diss</h2>
-  <p class="charger-address">Victoria Road IP22 4JN
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Tesco Superstore-Diss</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Victoria Road <button class="copy-btn" data-copy="IP22 4JN">IP22 4JN</button>
   </p>
   
   <div class="charger-connections">
@@ -158,9 +197,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">English Electric Moto</h2>
-  <p class="charger-address">Church Road IP22 1RJ
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">English Electric Moto</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Church Road <button class="copy-btn" data-copy="IP22 1RJ">IP22 1RJ</button>
   </p>
   
   <div class="charger-connections">
@@ -180,6 +222,23 @@
 
 <p><a href="/" class="back-link">← All UK towns</a></p>
 
+
+<div class="nearby-towns">
+  <h2 class="nearby-heading">Nearby towns</h2>
+  <ul class="nearby-list">
+  
+    <li><a href="/uk/stowmarket/">Stowmarket</a></li>
+  
+    <li><a href="/uk/ipswich/">Ipswich</a></li>
+  
+    <li><a href="/uk/norwich/">Norwich</a></li>
+  
+    <li><a href="/uk/bury-st-edmunds/">Bury St Edmunds</a></li>
+  
+  </ul>
+</div>
+
+
 </div>
 
 <footer>
@@ -192,26 +251,61 @@
 <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 <script>
 (function () {
+  // --- Map ---
   var map = L.map('map').setView([52.38238616666666, 1.0568768333333334], 12);
-
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
   }).addTo(map);
 
   var markers = L.markerClusterGroup();
-  var chargerData = [{"lat": 52.414257, "lng": 0.894631, "title": "Home Farm", "address": "Home Farm, Riddlesworth"}, {"lat": 52.395, "lng": 1.1885, "title": "Dickleburgh", "address": "Dickleburgh VH"}, {"lat": 52.3812, "lng": 1.0134, "title": "SW Lopham", "address": "South Lopham"}, {"lat": 52.37228, "lng": 1.110076, "title": "Morrisons", "address": "Victoria Rd"}, {"lat": 52.371999, "lng": 1.111564, "title": "Tesco Superstore-Diss", "address": "Victoria Road"}, {"lat": 52.359581, "lng": 1.02309, "title": "English Electric Moto", "address": "Church Road"}];
+  var chargerData = [{"lat": 52.414257, "lng": 0.894631, "title": "Home Farm", "address": "Home Farm, Riddlesworth", "connectors": ["Type 2 (Socket Only) · 22kW"]}, {"lat": 52.395, "lng": 1.1885, "title": "Dickleburgh", "address": "Dickleburgh VH", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 52.3812, "lng": 1.0134, "title": "SW Lopham", "address": "South Lopham", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 52.37228, "lng": 1.110076, "title": "Morrisons", "address": "Victoria Rd", "connectors": ["Type 2 (Tethered Connector)  · 60kW", "CHAdeMO · 50kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 52.371999, "lng": 1.111564, "title": "Tesco Superstore-Diss", "address": "Victoria Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 52.359581, "lng": 1.02309, "title": "English Electric Moto", "address": "Church Road", "connectors": ["Type 2 (Socket Only) · 7kW"]}];
 
   chargerData.forEach(function (c) {
+    var connHtml = c.connectors.length
+      ? '<div style="margin-top:6px;font-size:12px;color:#475569">' + c.connectors.join(' &middot; ') + '</div>'
+      : '';
     var marker = L.marker([c.lat, c.lng]);
     marker.bindPopup(
-      '<b>' + c.title + '</b><br>' + c.address + '<br><br>' +
+      '<b>' + c.title + '</b>' +
+      '<div style="color:#64748b;font-size:13px">' + c.address + '</div>' +
+      connHtml +
       '<a href="https://www.google.com/maps/dir/?api=1&destination=' + c.lat + ',' + c.lng +
-      '" target="_blank" rel="noopener">Get directions</a>'
+      '" target="_blank" rel="noopener" style="display:inline-block;margin-top:8px;padding:4px 10px;background:#2563eb;color:white;border-radius:4px;text-decoration:none;font-size:12px">Get directions</a>'
     );
     markers.addLayer(marker);
   });
-
   map.addLayer(markers);
+
+  // --- Connector filter ---
+  var filterBtns = document.querySelectorAll('.filter-btn');
+  var chargerItems = document.querySelectorAll('.charger-item');
+
+  filterBtns.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      filterBtns.forEach(function (b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      var f = btn.dataset.filter;
+      chargerItems.forEach(function (item) {
+        var connList = item.dataset.connectors ? item.dataset.connectors.split(',') : [];
+        item.style.display = (f === 'all' || connList.indexOf(f) !== -1) ? '' : 'none';
+      });
+    });
+  });
+
+  // --- Copy postcode ---
+  document.querySelectorAll('.copy-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var original = btn.textContent;
+      navigator.clipboard.writeText(btn.dataset.copy).then(function () {
+        btn.textContent = 'Copied!';
+        btn.classList.add('copy-btn--success');
+        setTimeout(function () {
+          btn.textContent = original;
+          btn.classList.remove('copy-btn--success');
+        }, 1500);
+      });
+    });
+  });
 }());
 </script>
 

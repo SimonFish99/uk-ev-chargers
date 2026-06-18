@@ -17,7 +17,10 @@
 
 <header>
 <div class="container">
-<a href="/" class="logo">PlugMap <span class="tagline">UK EV Charger Locator</span></a>
+<a href="/" class="logo">
+  <svg class="logo-bolt" viewBox="0 0 24 24" fill="currentColor" width="22" height="22" aria-hidden="true"><path d="M13 2L4.5 13.5H11L10 22L19.5 10.5H13Z"/></svg>
+  PlugMap <span class="tagline">UK EV Charger Locator</span>
+</a>
 </div>
 </header>
 
@@ -28,16 +31,27 @@
 </nav>
 
 <h1>EV Chargers in Seaham</h1>
-<p class="page-intro">5 public charging stations found in Seaham.</p>
+
+<div class="stats-bar">
+  <span class="stat-pill stat-total">5 stations</span>
+  
+  <span class="stat-pill stat-fast">4 fast (7–50kW)</span>
+  <span class="stat-pill stat-slow">1 slow</span>
+</div>
 
 <div id="map"></div>
 
-<ul class="charger-list">
 
 
-<li class="charger-item">
-  <h2 class="charger-name">DCC South Railway Street</h2>
-  <p class="charger-address">South Railway street SR7 7ES
+<ul class="charger-list" id="charger-list">
+
+
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">DCC South Railway Street</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">South Railway street <button class="copy-btn" data-copy="SR7 7ES">SR7 7ES</button>
   </p>
   
   <div class="charger-connections">
@@ -59,9 +73,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">DCC Green Street Car Park</h2>
-  <p class="charger-address">Green Street Car Park SR7 7HA
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">DCC Green Street Car Park</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Green Street Car Park <button class="copy-btn" data-copy="SR7 7HA">SR7 7HA</button>
   </p>
   
   <div class="charger-connections">
@@ -83,9 +100,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Green Street Car Park</h2>
-  <p class="charger-address">Interchange SR7 7HD
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Green Street Car Park</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Interchange <button class="copy-btn" data-copy="SR7 7HD">SR7 7HD</button>
   </p>
   
   <div class="charger-connections">
@@ -104,9 +124,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Dalton Park Outlet</h2>
-  <p class="charger-address">Murton SR7 9HU
+<li class="charger-item charger-item--slow" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Dalton Park Outlet</h2>
+    
+  </div>
+  <p class="charger-address">Murton <button class="copy-btn" data-copy="SR7 9HU">SR7 9HU</button>
   </p>
   
   <div class="charger-connections">
@@ -131,9 +154,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Terrace Green Car Park</h2>
-  <p class="charger-address">Terrace Green  SR7 7EU
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Terrace Green Car Park</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Terrace Green  <button class="copy-btn" data-copy="SR7 7EU">SR7 7EU</button>
   </p>
   
   <div class="charger-connections">
@@ -155,6 +181,23 @@
 
 <p><a href="/" class="back-link">← All UK towns</a></p>
 
+
+<div class="nearby-towns">
+  <h2 class="nearby-heading">Nearby towns</h2>
+  <ul class="nearby-list">
+  
+    <li><a href="/uk/sunderland/">Sunderland</a></li>
+  
+    <li><a href="/uk/south-shields/">South Shields</a></li>
+  
+    <li><a href="/uk/washington/">Washington</a></li>
+  
+    <li><a href="/uk/jarrow/">Jarrow</a></li>
+  
+  </ul>
+</div>
+
+
 </div>
 
 <footer>
@@ -167,26 +210,61 @@
 <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 <script>
 (function () {
+  // --- Map ---
   var map = L.map('map').setView([54.833549044319895, -1.3412188061436274], 12);
-
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
   }).addTo(map);
 
   var markers = L.markerClusterGroup();
-  var chargerData = [{"lat": 54.83796, "lng": -1.333919, "title": "DCC South Railway Street", "address": "South Railway street"}, {"lat": 54.837566, "lng": -1.332179, "title": "DCC Green Street Car Park", "address": "Green Street Car Park"}, {"lat": 54.836919221599516, "lng": -1.3324210307181374, "title": "Green Street Car Park", "address": "Interchange"}, {"lat": 54.815107, "lng": -1.375189, "title": "Dalton Park Outlet", "address": "Murton"}, {"lat": 54.840193, "lng": -1.332386, "title": "Terrace Green Car Park", "address": "Terrace Green "}];
+  var chargerData = [{"lat": 54.83796, "lng": -1.333919, "title": "DCC South Railway Street", "address": "South Railway street", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 54.837566, "lng": -1.332179, "title": "DCC Green Street Car Park", "address": "Green Street Car Park", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 54.836919221599516, "lng": -1.3324210307181374, "title": "Green Street Car Park", "address": "Interchange", "connectors": ["Type 2 (Socket Only) · 7kW"]}, {"lat": 54.815107, "lng": -1.375189, "title": "Dalton Park Outlet", "address": "Murton", "connectors": ["Type 2 (Socket Only) · 3kW", "Type 2 (Socket Only) · 3kW", "Type 2 (Socket Only) · 3kW"]}, {"lat": 54.840193, "lng": -1.332386, "title": "Terrace Green Car Park", "address": "Terrace Green ", "connectors": ["Type 2 (Socket Only) · 22kW"]}];
 
   chargerData.forEach(function (c) {
+    var connHtml = c.connectors.length
+      ? '<div style="margin-top:6px;font-size:12px;color:#475569">' + c.connectors.join(' &middot; ') + '</div>'
+      : '';
     var marker = L.marker([c.lat, c.lng]);
     marker.bindPopup(
-      '<b>' + c.title + '</b><br>' + c.address + '<br><br>' +
+      '<b>' + c.title + '</b>' +
+      '<div style="color:#64748b;font-size:13px">' + c.address + '</div>' +
+      connHtml +
       '<a href="https://www.google.com/maps/dir/?api=1&destination=' + c.lat + ',' + c.lng +
-      '" target="_blank" rel="noopener">Get directions</a>'
+      '" target="_blank" rel="noopener" style="display:inline-block;margin-top:8px;padding:4px 10px;background:#2563eb;color:white;border-radius:4px;text-decoration:none;font-size:12px">Get directions</a>'
     );
     markers.addLayer(marker);
   });
-
   map.addLayer(markers);
+
+  // --- Connector filter ---
+  var filterBtns = document.querySelectorAll('.filter-btn');
+  var chargerItems = document.querySelectorAll('.charger-item');
+
+  filterBtns.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      filterBtns.forEach(function (b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      var f = btn.dataset.filter;
+      chargerItems.forEach(function (item) {
+        var connList = item.dataset.connectors ? item.dataset.connectors.split(',') : [];
+        item.style.display = (f === 'all' || connList.indexOf(f) !== -1) ? '' : 'none';
+      });
+    });
+  });
+
+  // --- Copy postcode ---
+  document.querySelectorAll('.copy-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var original = btn.textContent;
+      navigator.clipboard.writeText(btn.dataset.copy).then(function () {
+        btn.textContent = 'Copied!';
+        btn.classList.add('copy-btn--success');
+        setTimeout(function () {
+          btn.textContent = original;
+          btn.classList.remove('copy-btn--success');
+        }, 1500);
+      });
+    });
+  });
 }());
 </script>
 

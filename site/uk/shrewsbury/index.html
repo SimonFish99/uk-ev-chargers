@@ -17,7 +17,10 @@
 
 <header>
 <div class="container">
-<a href="/" class="logo">PlugMap <span class="tagline">UK EV Charger Locator</span></a>
+<a href="/" class="logo">
+  <svg class="logo-bolt" viewBox="0 0 24 24" fill="currentColor" width="22" height="22" aria-hidden="true"><path d="M13 2L4.5 13.5H11L10 22L19.5 10.5H13Z"/></svg>
+  PlugMap <span class="tagline">UK EV Charger Locator</span>
+</a>
 </div>
 </header>
 
@@ -28,16 +31,37 @@
 </nav>
 
 <h1>EV Chargers in Shrewsbury</h1>
-<p class="page-intro">11 public charging stations found in Shrewsbury.</p>
+
+<div class="stats-bar">
+  <span class="stat-pill stat-total">11 stations</span>
+  <span class="stat-pill stat-rapid">1 rapid (50kW+)</span>
+  <span class="stat-pill stat-fast">10 fast (7–50kW)</span>
+  
+</div>
 
 <div id="map"></div>
 
-<ul class="charger-list">
+
+<div class="connector-filter">
+  <span class="filter-label">Filter:</span>
+  <button class="filter-btn active" data-filter="all">All</button>
+  
+  <button class="filter-btn" data-filter="CCS (Type 2)">CCS (Type 2)</button>
+  
+  <button class="filter-btn" data-filter="Type 2 (Socket Only)">Type 2 (Socket Only)</button>
+  
+</div>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Estates Department</h2>
-  <p class="charger-address">Royal Shrewsbury Hospital  SY3 8XQ
+<ul class="charger-list" id="charger-list">
+
+
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Estates Department</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Royal Shrewsbury Hospital  <button class="copy-btn" data-copy="SY3 8XQ">SY3 8XQ</button>
   </p>
   
   <div class="charger-connections">
@@ -56,9 +80,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Learning Centre </h2>
-  <p class="charger-address">The Royal Shrewsbury Hospital  SY3 8XQ
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Learning Centre </h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">The Royal Shrewsbury Hospital  <button class="copy-btn" data-copy="SY3 8XQ">SY3 8XQ</button>
   </p>
   
   <div class="charger-connections">
@@ -77,9 +104,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Princess House</h2>
-  <p class="charger-address">The Square  SY1 1YA
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Princess House</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">The Square  <button class="copy-btn" data-copy="SY1 1YA">SY1 1YA</button>
   </p>
   
   <div class="charger-connections">
@@ -98,9 +128,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">EG Shrewsbury</h2>
-  <p class="charger-address">Bayston Hill SY3 0DA
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2)">
+  <div class="charger-header">
+    <h2 class="charger-name">EG Shrewsbury</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Bayston Hill <button class="copy-btn" data-copy="SY3 0DA">SY3 0DA</button>
   </p>
   
   <div class="charger-connections">
@@ -134,9 +168,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Frankwell Quay Car Park 1</h2>
-  <p class="charger-address">Frankwell Quay Car Park SY3 8JX
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Frankwell Quay Car Park 1</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Frankwell Quay Car Park <button class="copy-btn" data-copy="SY3 8JX">SY3 8JX</button>
   </p>
   
   <div class="charger-connections">
@@ -155,9 +192,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Longden Depot 1</h2>
-  <p class="charger-address">107 Longden Road SY3 9EL
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Longden Depot 1</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">107 Longden Road <button class="copy-btn" data-copy="SY3 9EL">SY3 9EL</button>
   </p>
   
   <div class="charger-connections">
@@ -179,9 +219,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Shropshire Fire and Rescue Service</h2>
-  <p class="charger-address">Saint Michaelâ€™s Street SY1 2HJ
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Shropshire Fire and Rescue Service</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Saint Michaelâ€™s Street <button class="copy-btn" data-copy="SY1 2HJ">SY1 2HJ</button>
   </p>
   
   <div class="charger-connections">
@@ -203,9 +246,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">RAW GREENE KING OXON PRIORY 2</h2>
-  <p class="charger-address">Welshpool Rd SY3 8DL
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">RAW GREENE KING OXON PRIORY 2</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Welshpool Rd <button class="copy-btn" data-copy="SY3 8DL">SY3 8DL</button>
   </p>
   
   <div class="charger-connections">
@@ -227,9 +273,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">RAW GREENE KING GK RIVERSIDE 1</h2>
-  <p class="charger-address">Riverside Inn SY5 6AF
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">RAW GREENE KING GK RIVERSIDE 1</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Riverside Inn <button class="copy-btn" data-copy="SY5 6AF">SY5 6AF</button>
   </p>
   
   <div class="charger-connections">
@@ -251,9 +300,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Hawkstone Park</h2>
-  <p class="charger-address">Weston-Under-Redcastle SY4 5UY
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Hawkstone Park</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Weston-Under-Redcastle <button class="copy-btn" data-copy="SY4 5UY">SY4 5UY</button>
   </p>
   
   <div class="charger-connections">
@@ -272,9 +324,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">The Redwood Centre</h2>
-  <p class="charger-address">Bicton Heath SY3 8DS
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">The Redwood Centre</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Bicton Heath <button class="copy-btn" data-copy="SY3 8DS">SY3 8DS</button>
   </p>
   
   <div class="charger-connections">
@@ -299,6 +354,23 @@
 
 <p><a href="/" class="back-link">← All UK towns</a></p>
 
+
+<div class="nearby-towns">
+  <h2 class="nearby-heading">Nearby towns</h2>
+  <ul class="nearby-list">
+  
+    <li><a href="/uk/telford/">Telford</a></li>
+  
+    <li><a href="/uk/wrexham/">Wrexham</a></li>
+  
+    <li><a href="/uk/chester/">Chester</a></li>
+  
+    <li><a href="/uk/crewe/">Crewe</a></li>
+  
+  </ul>
+</div>
+
+
 </div>
 
 <footer>
@@ -311,26 +383,61 @@
 <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 <script>
 (function () {
+  // --- Map ---
   var map = L.map('map').setView([52.71380845847347, -2.7640543323054243], 12);
-
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
   }).addTo(map);
 
   var markers = L.markerClusterGroup();
-  var chargerData = [{"lat": 52.70982186397765, "lng": -2.7951151839022828, "title": "Estates Department", "address": "Royal Shrewsbury Hospital "}, {"lat": 52.71064048503413, "lng": -2.791557581887787, "title": "Learning Centre ", "address": "The Royal Shrewsbury Hospital "}, {"lat": 52.7074102941964, "lng": -2.9089991895696, "title": "Princess House", "address": "The Square "}, {"lat": 52.681895, "lng": -2.760908, "title": "EG Shrewsbury", "address": "Bayston Hill"}, {"lat": 52.711207, "lng": -2.758196, "title": "Frankwell Quay Car Park 1", "address": "Frankwell Quay Car Park"}, {"lat": 52.688704, "lng": -2.772419, "title": "Longden Depot 1", "address": "107 Longden Road"}, {"lat": 52.717342, "lng": -2.746871, "title": "Shropshire Fire and Rescue Service", "address": "Saint Michael\u00e2\u20ac\u2122s Street"}, {"lat": 52.714794, "lng": -2.793177, "title": "RAW GREENE KING OXON PRIORY 2", "address": "Welshpool Rd"}, {"lat": 52.64144, "lng": -2.636478, "title": "RAW GREENE KING GK RIVERSIDE 1", "address": "Riverside Inn"}, {"lat": 52.8575214, "lng": -2.6426867, "title": "Hawkstone Park", "address": "Weston-Under-Redcastle"}, {"lat": 52.711117, "lng": -2.79819, "title": "The Redwood Centre", "address": "Bicton Heath"}];
+  var chargerData = [{"lat": 52.70982186397765, "lng": -2.7951151839022828, "title": "Estates Department", "address": "Royal Shrewsbury Hospital ", "connectors": ["Type 2 (Socket Only) · 22kW"]}, {"lat": 52.71064048503413, "lng": -2.791557581887787, "title": "Learning Centre ", "address": "The Royal Shrewsbury Hospital ", "connectors": ["Type 2 (Socket Only) · 22kW"]}, {"lat": 52.7074102941964, "lng": -2.9089991895696, "title": "Princess House", "address": "The Square ", "connectors": ["Type 2 (Socket Only) · 22kW"]}, {"lat": 52.681895, "lng": -2.760908, "title": "EG Shrewsbury", "address": "Bayston Hill", "connectors": ["CCS (Type 2) · 350kW", "CCS (Type 2) · 350kW", "CCS (Type 2) · 350kW", "CCS (Type 2) · 350kW", "CCS (Type 2) · 350kW", "CCS (Type 2) · 359kW"]}, {"lat": 52.711207, "lng": -2.758196, "title": "Frankwell Quay Car Park 1", "address": "Frankwell Quay Car Park", "connectors": ["Type 2 (Socket Only) · 7kW"]}, {"lat": 52.688704, "lng": -2.772419, "title": "Longden Depot 1", "address": "107 Longden Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 52.717342, "lng": -2.746871, "title": "Shropshire Fire and Rescue Service", "address": "Saint Michaelâ€™s Street", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 52.714794, "lng": -2.793177, "title": "RAW GREENE KING OXON PRIORY 2", "address": "Welshpool Rd", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 52.64144, "lng": -2.636478, "title": "RAW GREENE KING GK RIVERSIDE 1", "address": "Riverside Inn", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 52.8575214, "lng": -2.6426867, "title": "Hawkstone Park", "address": "Weston-Under-Redcastle", "connectors": ["Type 2 (Socket Only) · 7kW"]}, {"lat": 52.711117, "lng": -2.79819, "title": "The Redwood Centre", "address": "Bicton Heath", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 22kW"]}];
 
   chargerData.forEach(function (c) {
+    var connHtml = c.connectors.length
+      ? '<div style="margin-top:6px;font-size:12px;color:#475569">' + c.connectors.join(' &middot; ') + '</div>'
+      : '';
     var marker = L.marker([c.lat, c.lng]);
     marker.bindPopup(
-      '<b>' + c.title + '</b><br>' + c.address + '<br><br>' +
+      '<b>' + c.title + '</b>' +
+      '<div style="color:#64748b;font-size:13px">' + c.address + '</div>' +
+      connHtml +
       '<a href="https://www.google.com/maps/dir/?api=1&destination=' + c.lat + ',' + c.lng +
-      '" target="_blank" rel="noopener">Get directions</a>'
+      '" target="_blank" rel="noopener" style="display:inline-block;margin-top:8px;padding:4px 10px;background:#2563eb;color:white;border-radius:4px;text-decoration:none;font-size:12px">Get directions</a>'
     );
     markers.addLayer(marker);
   });
-
   map.addLayer(markers);
+
+  // --- Connector filter ---
+  var filterBtns = document.querySelectorAll('.filter-btn');
+  var chargerItems = document.querySelectorAll('.charger-item');
+
+  filterBtns.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      filterBtns.forEach(function (b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      var f = btn.dataset.filter;
+      chargerItems.forEach(function (item) {
+        var connList = item.dataset.connectors ? item.dataset.connectors.split(',') : [];
+        item.style.display = (f === 'all' || connList.indexOf(f) !== -1) ? '' : 'none';
+      });
+    });
+  });
+
+  // --- Copy postcode ---
+  document.querySelectorAll('.copy-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var original = btn.textContent;
+      navigator.clipboard.writeText(btn.dataset.copy).then(function () {
+        btn.textContent = 'Copied!';
+        btn.classList.add('copy-btn--success');
+        setTimeout(function () {
+          btn.textContent = original;
+          btn.classList.remove('copy-btn--success');
+        }, 1500);
+      });
+    });
+  });
 }());
 </script>
 

@@ -17,7 +17,10 @@
 
 <header>
 <div class="container">
-<a href="/" class="logo">PlugMap <span class="tagline">UK EV Charger Locator</span></a>
+<a href="/" class="logo">
+  <svg class="logo-bolt" viewBox="0 0 24 24" fill="currentColor" width="22" height="22" aria-hidden="true"><path d="M13 2L4.5 13.5H11L10 22L19.5 10.5H13Z"/></svg>
+  PlugMap <span class="tagline">UK EV Charger Locator</span>
+</a>
 </div>
 </header>
 
@@ -28,16 +31,43 @@
 </nav>
 
 <h1>EV Chargers in Mansfield</h1>
-<p class="page-intro">14 public charging stations found in Mansfield.</p>
+
+<div class="stats-bar">
+  <span class="stat-pill stat-total">14 stations</span>
+  <span class="stat-pill stat-rapid">4 rapid (50kW+)</span>
+  <span class="stat-pill stat-fast">8 fast (7–50kW)</span>
+  <span class="stat-pill stat-slow">2 slow</span>
+</div>
 
 <div id="map"></div>
 
-<ul class="charger-list">
+
+<div class="connector-filter">
+  <span class="filter-label">Filter:</span>
+  <button class="filter-btn active" data-filter="all">All</button>
+  
+  <button class="filter-btn" data-filter="BS1363 3 Pin 13 Amp">BS1363 3 Pin 13 Amp</button>
+  
+  <button class="filter-btn" data-filter="CCS (Type 2)">CCS (Type 2)</button>
+  
+  <button class="filter-btn" data-filter="CHAdeMO">CHAdeMO</button>
+  
+  <button class="filter-btn" data-filter="Type 2 (Socket Only)">Type 2 (Socket Only)</button>
+  
+  <button class="filter-btn" data-filter="Type 2 (Tethered Connector) ">Type 2 (Tethered Connector) </button>
+  
+</div>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Tesco Extra-Mansfield Chesterfield</h2>
-  <p class="charger-address">Chesterfield Road South NG19 7TS
+<ul class="charger-list" id="charger-list">
+
+
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Tesco Extra-Mansfield Chesterfield</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Chesterfield Road South <button class="copy-btn" data-copy="NG19 7TS">NG19 7TS</button>
   </p>
   
   <div class="charger-connections">
@@ -56,9 +86,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Sainsburys Mansfield</h2>
-  <p class="charger-address">Nottingham Road, Mansfield NG18 1BW
+<li class="charger-item charger-item--slow" data-connectors="BS1363 3 Pin 13 Amp">
+  <div class="charger-header">
+    <h2 class="charger-name">Sainsburys Mansfield</h2>
+    
+  </div>
+  <p class="charger-address">Nottingham Road, Mansfield <button class="copy-btn" data-copy="NG18 1BW">NG18 1BW</button>
   </p>
   
   <div class="charger-connections">
@@ -80,9 +113,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Evans Halshaw Mansfield</h2>
-  <p class="charger-address">264 Southwell Road West NG18 4TR
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Evans Halshaw Mansfield</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">264 Southwell Road West <button class="copy-btn" data-copy="NG18 4TR">NG18 4TR</button>
   </p>
   
   <div class="charger-connections">
@@ -104,9 +140,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">RAW GREENE KING BOLD FORESTER 1</h2>
-  <p class="charger-address">Bold forester Botany avenue NG18 5NE
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">RAW GREENE KING BOLD FORESTER 1</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Bold forester Botany avenue <button class="copy-btn" data-copy="NG18 5NE">NG18 5NE</button>
   </p>
   
   <div class="charger-connections">
@@ -128,9 +167,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Ransom Wood Business Park</h2>
-  <p class="charger-address">Southwell Road West NG21 0HJ
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Ransom Wood Business Park</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Southwell Road West <button class="copy-btn" data-copy="NG21 0HJ">NG21 0HJ</button>
   </p>
   
   <div class="charger-connections">
@@ -158,9 +200,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">McDonald&#39;s Mansfield</h2>
-  <p class="charger-address">Oakleaf Close NG18 4GF
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2),CHAdeMO">
+  <div class="charger-header">
+    <h2 class="charger-name">McDonald&#39;s Mansfield</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Oakleaf Close <button class="copy-btn" data-copy="NG18 4GF">NG18 4GF</button>
   </p>
   
   <div class="charger-connections">
@@ -182,9 +228,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Sainsbury&#39;s Mansfield</h2>
-  <p class="charger-address">Nottingham Road NG18 1BW
+<li class="charger-item charger-item--slow" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Sainsbury&#39;s Mansfield</h2>
+    
+  </div>
+  <p class="charger-address">Nottingham Road <button class="copy-btn" data-copy="NG18 1BW">NG18 1BW</button>
   </p>
   
   <div class="charger-connections">
@@ -203,9 +252,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Ransom Wood Business Park</h2>
-  <p class="charger-address">Southwell Road West NG21 0HJ
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Ransom Wood Business Park</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Southwell Road West <button class="copy-btn" data-copy="NG21 0HJ">NG21 0HJ</button>
   </p>
   
   <div class="charger-connections">
@@ -227,9 +279,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Costa Coffee Instavolt </h2>
-  <p class="charger-address">4 Kings Mill Lane NG18 5HW
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2),CHAdeMO">
+  <div class="charger-header">
+    <h2 class="charger-name">Costa Coffee Instavolt </h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">4 Kings Mill Lane <button class="copy-btn" data-copy="NG18 5HW">NG18 5HW</button>
   </p>
   
   <div class="charger-connections">
@@ -251,9 +307,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Morrisons Mansfield</h2>
-  <p class="charger-address">Sutton Rd NG18 5HL
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2),CHAdeMO,Type 2 (Tethered Connector) ">
+  <div class="charger-header">
+    <h2 class="charger-name">Morrisons Mansfield</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Sutton Rd <button class="copy-btn" data-copy="NG18 5HL">NG18 5HL</button>
   </p>
   
   <div class="charger-connections">
@@ -278,9 +338,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">S&amp;L Office</h2>
-  <p class="charger-address">Leeming Lane North Leeming Lane North NG19 8LJ
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">S&amp;L Office</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Leeming Lane North Leeming Lane North <button class="copy-btn" data-copy="NG19 8LJ">NG19 8LJ</button>
   </p>
   
   <div class="charger-connections">
@@ -302,9 +365,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Blidworth</h2>
-  <p class="charger-address">Blidworth NG21 0RT
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Blidworth</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Blidworth <button class="copy-btn" data-copy="NG21 0RT">NG21 0RT</button>
   </p>
   
   <div class="charger-connections">
@@ -326,9 +392,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Four Seasons Multi-Storey Car Park</h2>
-  <p class="charger-address">Four Seasons Multi-Storey Car Park NG18 1SU
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Four Seasons Multi-Storey Car Park</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Four Seasons Multi-Storey Car Park <button class="copy-btn" data-copy="NG18 1SU">NG18 1SU</button>
   </p>
   
   <div class="charger-connections">
@@ -347,9 +416,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Toothill Lane Car Park - Mansfield</h2>
-  <p class="charger-address">Toot Hill Lane Car Park NG18 1NN
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2),CHAdeMO,Type 2 (Tethered Connector) ">
+  <div class="charger-header">
+    <h2 class="charger-name">Toothill Lane Car Park - Mansfield</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Toot Hill Lane Car Park <button class="copy-btn" data-copy="NG18 1NN">NG18 1NN</button>
   </p>
   
   <div class="charger-connections">
@@ -377,6 +450,23 @@
 
 <p><a href="/" class="back-link">← All UK towns</a></p>
 
+
+<div class="nearby-towns">
+  <h2 class="nearby-heading">Nearby towns</h2>
+  <ul class="nearby-list">
+  
+    <li><a href="/uk/nottingham/">Nottingham</a></li>
+  
+    <li><a href="/uk/worksop/">Worksop</a></li>
+  
+    <li><a href="/uk/ilkeston/">Ilkeston</a></li>
+  
+    <li><a href="/uk/chesterfield/">Chesterfield</a></li>
+  
+  </ul>
+</div>
+
+
 </div>
 
 <footer>
@@ -389,26 +479,61 @@
 <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 <script>
 (function () {
+  // --- Map ---
   var map = L.map('map').setView([53.13780490350081, -1.1812597581552475], 12);
-
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
   }).addTo(map);
 
   var markers = L.markerClusterGroup();
-  var chargerData = [{"lat": 53.149376, "lng": -1.202301, "title": "Tesco Extra-Mansfield Chesterfield", "address": "Chesterfield Road South"}, {"lat": 53.135572, "lng": -1.197134, "title": "Sainsburys Mansfield", "address": "Nottingham Road, Mansfield"}, {"lat": 53.130944, "lng": -1.158902, "title": "Evans Halshaw Mansfield", "address": "264 Southwell Road West"}, {"lat": 53.14099, "lng": -1.209753, "title": "RAW GREENE KING BOLD FORESTER 1", "address": "Bold forester Botany avenue"}, {"lat": 53.130207, "lng": -1.142553, "title": "Ransom Wood Business Park", "address": "Southwell Road West"}, {"lat": 53.1261148063064, "lng": -1.14659558780113, "title": "McDonald's Mansfield", "address": "Oakleaf Close"}, {"lat": 53.134298, "lng": -1.198228, "title": "Sainsbury's Mansfield", "address": "Nottingham Road"}, {"lat": 53.1309064259888, "lng": -1.1421290854538, "title": "Ransom Wood Business Park", "address": "Southwell Road West"}, {"lat": 53.1347398601924, "lng": -1.22596766685308, "title": "Costa Coffee Instavolt ", "address": "4 Kings Mill Lane"}, {"lat": 53.135291035291374, "lng": -1.2286906728767235, "title": "Morrisons Mansfield", "address": "Sutton Rd"}, {"lat": 53.187424, "lng": -1.180454, "title": "S&L Office", "address": "Leeming Lane North Leeming Lane North"}, {"lat": 53.1029, "lng": -1.1121, "title": "Blidworth", "address": "Blidworth"}, {"lat": 53.1454055212323, "lng": -1.19884860118873, "title": "Four Seasons Multi-Storey Car Park", "address": "Four Seasons Multi-Storey Car Park"}, {"lat": 53.1451, "lng": -1.19398, "title": "Toothill Lane Car Park - Mansfield", "address": "Toot Hill Lane Car Park"}];
+  var chargerData = [{"lat": 53.149376, "lng": -1.202301, "title": "Tesco Extra-Mansfield Chesterfield", "address": "Chesterfield Road South", "connectors": ["Type 2 (Socket Only) · 22kW"]}, {"lat": 53.135572, "lng": -1.197134, "title": "Sainsburys Mansfield", "address": "Nottingham Road, Mansfield", "connectors": ["BS1363 3 Pin 13 Amp · 3kW", "BS1363 3 Pin 13 Amp · 3kW"]}, {"lat": 53.130944, "lng": -1.158902, "title": "Evans Halshaw Mansfield", "address": "264 Southwell Road West", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 53.14099, "lng": -1.209753, "title": "RAW GREENE KING BOLD FORESTER 1", "address": "Bold forester Botany avenue", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 53.130207, "lng": -1.142553, "title": "Ransom Wood Business Park", "address": "Southwell Road West", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 53.1261148063064, "lng": -1.14659558780113, "title": "McDonald's Mansfield", "address": "Oakleaf Close", "connectors": ["CCS (Type 2) · 50kW", "CHAdeMO · 50kW"]}, {"lat": 53.134298, "lng": -1.198228, "title": "Sainsbury's Mansfield", "address": "Nottingham Road", "connectors": ["Type 2 (Socket Only) · 3kW"]}, {"lat": 53.1309064259888, "lng": -1.1421290854538, "title": "Ransom Wood Business Park", "address": "Southwell Road West", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 53.1347398601924, "lng": -1.22596766685308, "title": "Costa Coffee Instavolt ", "address": "4 Kings Mill Lane", "connectors": ["CCS (Type 2) · 50kW", "CHAdeMO · 50kW"]}, {"lat": 53.135291035291374, "lng": -1.2286906728767235, "title": "Morrisons Mansfield", "address": "Sutton Rd", "connectors": ["CCS (Type 2) · 50kW", "CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 43kW"]}, {"lat": 53.187424, "lng": -1.180454, "title": "S&L Office", "address": "Leeming Lane North Leeming Lane North", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 53.1029, "lng": -1.1121, "title": "Blidworth", "address": "Blidworth", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 53.1454055212323, "lng": -1.19884860118873, "title": "Four Seasons Multi-Storey Car Park", "address": "Four Seasons Multi-Storey Car Park", "connectors": ["Type 2 (Socket Only) · 7kW"]}, {"lat": 53.1451, "lng": -1.19398, "title": "Toothill Lane Car Park - Mansfield", "address": "Toot Hill Lane Car Park", "connectors": ["CCS (Type 2) · 50kW", "CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 43kW"]}];
 
   chargerData.forEach(function (c) {
+    var connHtml = c.connectors.length
+      ? '<div style="margin-top:6px;font-size:12px;color:#475569">' + c.connectors.join(' &middot; ') + '</div>'
+      : '';
     var marker = L.marker([c.lat, c.lng]);
     marker.bindPopup(
-      '<b>' + c.title + '</b><br>' + c.address + '<br><br>' +
+      '<b>' + c.title + '</b>' +
+      '<div style="color:#64748b;font-size:13px">' + c.address + '</div>' +
+      connHtml +
       '<a href="https://www.google.com/maps/dir/?api=1&destination=' + c.lat + ',' + c.lng +
-      '" target="_blank" rel="noopener">Get directions</a>'
+      '" target="_blank" rel="noopener" style="display:inline-block;margin-top:8px;padding:4px 10px;background:#2563eb;color:white;border-radius:4px;text-decoration:none;font-size:12px">Get directions</a>'
     );
     markers.addLayer(marker);
   });
-
   map.addLayer(markers);
+
+  // --- Connector filter ---
+  var filterBtns = document.querySelectorAll('.filter-btn');
+  var chargerItems = document.querySelectorAll('.charger-item');
+
+  filterBtns.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      filterBtns.forEach(function (b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      var f = btn.dataset.filter;
+      chargerItems.forEach(function (item) {
+        var connList = item.dataset.connectors ? item.dataset.connectors.split(',') : [];
+        item.style.display = (f === 'all' || connList.indexOf(f) !== -1) ? '' : 'none';
+      });
+    });
+  });
+
+  // --- Copy postcode ---
+  document.querySelectorAll('.copy-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var original = btn.textContent;
+      navigator.clipboard.writeText(btn.dataset.copy).then(function () {
+        btn.textContent = 'Copied!';
+        btn.classList.add('copy-btn--success');
+        setTimeout(function () {
+          btn.textContent = original;
+          btn.classList.remove('copy-btn--success');
+        }, 1500);
+      });
+    });
+  });
 }());
 </script>
 

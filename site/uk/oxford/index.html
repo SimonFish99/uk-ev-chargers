@@ -17,7 +17,10 @@
 
 <header>
 <div class="container">
-<a href="/" class="logo">PlugMap <span class="tagline">UK EV Charger Locator</span></a>
+<a href="/" class="logo">
+  <svg class="logo-bolt" viewBox="0 0 24 24" fill="currentColor" width="22" height="22" aria-hidden="true"><path d="M13 2L4.5 13.5H11L10 22L19.5 10.5H13Z"/></svg>
+  PlugMap <span class="tagline">UK EV Charger Locator</span>
+</a>
 </div>
 </header>
 
@@ -28,16 +31,44 @@
 </nav>
 
 <h1>EV Chargers in Oxford</h1>
-<p class="page-intro">41 public charging stations found in Oxford.</p>
+
+<div class="stats-bar">
+  <span class="stat-pill stat-total">41 stations</span>
+  <span class="stat-pill stat-rapid">8 rapid (50kW+)</span>
+  <span class="stat-pill stat-fast">15 fast (7–50kW)</span>
+  <span class="stat-pill stat-slow">18 slow</span>
+</div>
 
 <div id="map"></div>
 
-<ul class="charger-list">
+
+<div class="connector-filter">
+  <span class="filter-label">Filter:</span>
+  <button class="filter-btn active" data-filter="all">All</button>
+  
+  <button class="filter-btn" data-filter="BS1363 3 Pin 13 Amp">BS1363 3 Pin 13 Amp</button>
+  
+  <button class="filter-btn" data-filter="CCS (Type 2)">CCS (Type 2)</button>
+  
+  <button class="filter-btn" data-filter="CHAdeMO">CHAdeMO</button>
+  
+  <button class="filter-btn" data-filter="Type 2 (Socket Only)">Type 2 (Socket Only)</button>
+  
+  <button class="filter-btn" data-filter="Type 2 (Tethered Connector) ">Type 2 (Tethered Connector) </button>
+  
+</div>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Lidl-Oxford</h2>
-  <p class="charger-address">Watlington Road OX4 6NF
+<ul class="charger-list" id="charger-list">
+
+
+<li class="charger-item charger-item--rapid" data-connectors="Type 2 (Socket Only),CCS (Type 2),CHAdeMO">
+  <div class="charger-header">
+    <h2 class="charger-name">Lidl-Oxford</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Watlington Road <button class="copy-btn" data-copy="OX4 6NF">OX4 6NF</button>
   </p>
   
   <div class="charger-connections">
@@ -62,9 +93,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Oxford Redbridge Park &amp; Ride </h2>
-  <p class="charger-address">Abingdon Road OX1 4XG
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Oxford Redbridge Park &amp; Ride </h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Abingdon Road <button class="copy-btn" data-copy="OX1 4XG">OX1 4XG</button>
   </p>
   
   <div class="charger-connections">
@@ -83,9 +117,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">The Innovation Building (Multi-storey car park), University of Oxford</h2>
-  <p class="charger-address">Old Road OX3 7DQ
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">The Innovation Building (Multi-storey car park), University of Oxford</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Old Road <button class="copy-btn" data-copy="OX3 7DQ">OX3 7DQ</button>
   </p>
   
   <div class="charger-connections">
@@ -104,9 +141,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Keble Road, Oxford 2</h2>
-  <p class="charger-address">Keble Road, Oxford 2 OX1 3PD
+<li class="charger-item charger-item--rapid" data-connectors="Type 2 (Tethered Connector) ,CHAdeMO,Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Keble Road, Oxford 2</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Keble Road, Oxford 2 <button class="copy-btn" data-copy="OX1 3PD">OX1 3PD</button>
   </p>
   
   <div class="charger-connections">
@@ -131,9 +172,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Crowne Plaza Heythrop Park Resort</h2>
-  <p class="charger-address">Chipping Norton OX7 5UF
+<li class="charger-item charger-item--rapid" data-connectors="CHAdeMO">
+  <div class="charger-header">
+    <h2 class="charger-name">Crowne Plaza Heythrop Park Resort</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Chipping Norton <button class="copy-btn" data-copy="OX7 5UF">OX7 5UF</button>
   </p>
   
   <div class="charger-connections">
@@ -155,9 +200,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Pear Tree Park &amp; Ride</h2>
-  <p class="charger-address">Magdalen Street OX2 8JD
+<li class="charger-item charger-item--fast" data-connectors="BS1363 3 Pin 13 Amp,Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Pear Tree Park &amp; Ride</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Magdalen Street <button class="copy-btn" data-copy="OX2 8JD">OX2 8JD</button>
   </p>
   
   <div class="charger-connections">
@@ -179,9 +227,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Summertown Car Park</h2>
-  <p class="charger-address">Diamond Place OX2 7BY
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Summertown Car Park</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Diamond Place <button class="copy-btn" data-copy="OX2 7BY">OX2 7BY</button>
   </p>
   
   <div class="charger-connections">
@@ -203,9 +254,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Farndon Road</h2>
-  <p class="charger-address">Farndon Road OX2 6RT
+<li class="charger-item charger-item--slow" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Farndon Road</h2>
+    
+  </div>
+  <p class="charger-address">Farndon Road <button class="copy-btn" data-copy="OX2 6RT">OX2 6RT</button>
   </p>
   
   <div class="charger-connections">
@@ -224,9 +278,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Farndon Road 18</h2>
-  <p class="charger-address">Farndon Road 18 OX2 6RR
+<li class="charger-item charger-item--slow" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Farndon Road 18</h2>
+    
+  </div>
+  <p class="charger-address">Farndon Road 18 <button class="copy-btn" data-copy="OX2 6RR">OX2 6RR</button>
   </p>
   
   <div class="charger-connections">
@@ -245,9 +302,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Winchester Rd 6</h2>
-  <p class="charger-address">Winchester Rd 6 OX2 6LU
+<li class="charger-item charger-item--slow" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Winchester Rd 6</h2>
+    
+  </div>
+  <p class="charger-address">Winchester Rd 6 <button class="copy-btn" data-copy="OX2 6LU">OX2 6LU</button>
   </p>
   
   <div class="charger-connections">
@@ -266,9 +326,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Shell Recharge/Ubitricity</h2>
-  <p class="charger-address">null OX2 6HZ
+<li class="charger-item charger-item--slow" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Shell Recharge/Ubitricity</h2>
+    
+  </div>
+  <p class="charger-address">null <button class="copy-btn" data-copy="OX2 6HZ">OX2 6HZ</button>
   </p>
   
   <div class="charger-connections">
@@ -287,9 +350,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Winchester Rd 5</h2>
-  <p class="charger-address">Winchester Rd 5 OX2 6LU
+<li class="charger-item charger-item--slow" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Winchester Rd 5</h2>
+    
+  </div>
+  <p class="charger-address">Winchester Rd 5 <button class="copy-btn" data-copy="OX2 6LU">OX2 6LU</button>
   </p>
   
   <div class="charger-connections">
@@ -308,9 +374,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Tackley Place</h2>
-  <p class="charger-address">Tackley Place OX2 6RR
+<li class="charger-item charger-item--slow" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Tackley Place</h2>
+    
+  </div>
+  <p class="charger-address">Tackley Place <button class="copy-btn" data-copy="OX2 6RR">OX2 6RR</button>
   </p>
   
   <div class="charger-connections">
@@ -329,9 +398,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Thornhill Park &amp; Ride</h2>
-  <p class="charger-address">Headington OX3 8DP
+<li class="charger-item charger-item--slow" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Thornhill Park &amp; Ride</h2>
+    
+  </div>
+  <p class="charger-address">Headington <button class="copy-btn" data-copy="OX3 8DP">OX3 8DP</button>
   </p>
   
   <div class="charger-connections">
@@ -353,9 +425,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Rewley Road 2</h2>
-  <p class="charger-address">Rewley Road OX1 2RA
+<li class="charger-item charger-item--rapid" data-connectors="Type 2 (Tethered Connector) ,CHAdeMO,Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Rewley Road 2</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Rewley Road <button class="copy-btn" data-copy="OX1 2RA">OX1 2RA</button>
   </p>
   
   <div class="charger-connections">
@@ -378,9 +454,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Shell Recharge/Ubitricity</h2>
-  <p class="charger-address">null OX2 0DD
+<li class="charger-item charger-item--slow" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Shell Recharge/Ubitricity</h2>
+    
+  </div>
+  <p class="charger-address">null <button class="copy-btn" data-copy="OX2 0DD">OX2 0DD</button>
   </p>
   
   <div class="charger-connections">
@@ -399,9 +478,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Old Greyfriars</h2>
-  <p class="charger-address">Old Greyfriars Street OX1 1PE
+<li class="charger-item charger-item--rapid" data-connectors="Type 2 (Tethered Connector) ,CHAdeMO,Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Old Greyfriars</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Old Greyfriars Street <button class="copy-btn" data-copy="OX1 1PE">OX1 1PE</button>
   </p>
   
   <div class="charger-connections">
@@ -426,9 +509,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Hertford street</h2>
-  <p class="charger-address">Hertford street OX4 3AL
+<li class="charger-item charger-item--slow" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Hertford street</h2>
+    
+  </div>
+  <p class="charger-address">Hertford street <button class="copy-btn" data-copy="OX4 3AL">OX4 3AL</button>
   </p>
   
   <div class="charger-connections">
@@ -447,9 +533,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Between Town Road</h2>
-  <p class="charger-address">Between Town Road OX4 3ET
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Between Town Road</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Between Town Road <button class="copy-btn" data-copy="OX4 3ET">OX4 3ET</button>
   </p>
   
   <div class="charger-connections">
@@ -468,9 +557,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Oxford Science Park - The Bellhouse Building</h2>
-  <p class="charger-address">Sanders Road OX4 4GD
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Oxford Science Park - The Bellhouse Building</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Sanders Road <button class="copy-btn" data-copy="OX4 4GD">OX4 4GD</button>
   </p>
   
   <div class="charger-connections">
@@ -492,9 +584,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">CP QA UK CPHM-C686</h2>
-  <p class="charger-address">10 Queen St test OX1 4AA
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">CP QA UK CPHM-C686</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">10 Queen St test <button class="copy-btn" data-copy="OX1 4AA">OX1 4AA</button>
   </p>
   
   <div class="charger-connections">
@@ -516,9 +611,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">DCCA STATION 1</h2>
-  <p class="charger-address">Dean Court Community Centre Pinnocks Way OX2 9DG
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">DCCA STATION 1</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Dean Court Community Centre Pinnocks Way <button class="copy-btn" data-copy="OX2 9DG">OX2 9DG</button>
   </p>
   
   <div class="charger-connections">
@@ -540,9 +638,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Keble Road</h2>
-  <p class="charger-address">Keble Road OX1 3NP
+<li class="charger-item charger-item--rapid" data-connectors="Type 2 (Tethered Connector) ,CHAdeMO,Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Keble Road</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Keble Road <button class="copy-btn" data-copy="OX1 3NP">OX1 3NP</button>
   </p>
   
   <div class="charger-connections">
@@ -567,9 +669,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Blackbird Leys Leisure Centre</h2>
-  <p class="charger-address">Blackbird Leys Leisure Centre OX4 6JL
+<li class="charger-item charger-item--rapid" data-connectors="Type 2 (Tethered Connector) ,CHAdeMO,Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Blackbird Leys Leisure Centre</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Blackbird Leys Leisure Centre <button class="copy-btn" data-copy="OX4 6JL">OX4 6JL</button>
   </p>
   
   <div class="charger-connections">
@@ -594,9 +700,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Tesco Superstore-Oxford</h2>
-  <p class="charger-address">7 Retail Park OX4 6XJ
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Tesco Superstore-Oxford</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">7 Retail Park <button class="copy-btn" data-copy="OX4 6XJ">OX4 6XJ</button>
   </p>
   
   <div class="charger-connections">
@@ -618,9 +727,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Fastned Redbridge Park and Ride</h2>
-  <p class="charger-address">Redbridge Park and Ride OX1 4XG
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2),CHAdeMO">
+  <div class="charger-header">
+    <h2 class="charger-name">Fastned Redbridge Park and Ride</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Redbridge Park and Ride <button class="copy-btn" data-copy="OX1 4XG">OX1 4XG</button>
   </p>
   
   <div class="charger-connections">
@@ -642,9 +755,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">OCCE001</h2>
-  <p class="charger-address">Frenchay Road OX2 6TG
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">OCCE001</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Frenchay Road <button class="copy-btn" data-copy="OX2 6TG">OX2 6TG</button>
   </p>
   
   <div class="charger-connections">
@@ -663,9 +779,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">OCCE002</h2>
-  <p class="charger-address">Juxon Street OX2 6DR
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">OCCE002</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Juxon Street <button class="copy-btn" data-copy="OX2 6DR">OX2 6DR</button>
   </p>
   
   <div class="charger-connections">
@@ -684,9 +803,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">OCCAPT011</h2>
-  <p class="charger-address">Stockmore Street OX4 1JT
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">OCCAPT011</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Stockmore Street <button class="copy-btn" data-copy="OX4 1JT">OX4 1JT</button>
   </p>
   
   <div class="charger-connections">
@@ -705,9 +827,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">OCCZ001</h2>
-  <p class="charger-address">Bedford Street OX4 1SU
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">OCCZ001</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Bedford Street <button class="copy-btn" data-copy="OX4 1SU">OX4 1SU</button>
   </p>
   
   <div class="charger-connections">
@@ -726,9 +851,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">OCCAPT007</h2>
-  <p class="charger-address">Lake Street OX1 4RR
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">OCCAPT007</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Lake Street <button class="copy-btn" data-copy="OX1 4RR">OX1 4RR</button>
   </p>
   
   <div class="charger-connections">
@@ -747,9 +875,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">OCCE004</h2>
-  <p class="charger-address">Vicarage Close OX4 4PL
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">OCCE004</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Vicarage Close <button class="copy-btn" data-copy="OX4 4PL">OX4 4PL</button>
   </p>
   
   <div class="charger-connections">
@@ -768,9 +899,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name"> Leckford Road</h2>
-  <p class="charger-address"> Leckford Road OX2 6HY
+<li class="charger-item charger-item--slow" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name"> Leckford Road</h2>
+    
+  </div>
+  <p class="charger-address"> Leckford Road <button class="copy-btn" data-copy="OX2 6HY">OX2 6HY</button>
   </p>
   
   <div class="charger-connections">
@@ -789,9 +923,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Leckford Road</h2>
-  <p class="charger-address">Leckford Road OX2 6HY
+<li class="charger-item charger-item--slow" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Leckford Road</h2>
+    
+  </div>
+  <p class="charger-address">Leckford Road <button class="copy-btn" data-copy="OX2 6HY">OX2 6HY</button>
   </p>
   
   <div class="charger-connections">
@@ -810,9 +947,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Hawksmoor road 75</h2>
-  <p class="charger-address">Hawksmoor road 75 OX2 7UG
+<li class="charger-item charger-item--slow" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Hawksmoor road 75</h2>
+    
+  </div>
+  <p class="charger-address">Hawksmoor road 75 <button class="copy-btn" data-copy="OX2 7UG">OX2 7UG</button>
   </p>
   
   <div class="charger-connections">
@@ -831,9 +971,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Hamilton Rd 45</h2>
-  <p class="charger-address">Hamilton Rd 45 OX2 7PY
+<li class="charger-item charger-item--slow" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Hamilton Rd 45</h2>
+    
+  </div>
+  <p class="charger-address">Hamilton Rd 45 <button class="copy-btn" data-copy="OX2 7PY">OX2 7PY</button>
   </p>
   
   <div class="charger-connections">
@@ -852,9 +995,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Farndon Road 12</h2>
-  <p class="charger-address">Farndon Road 12 OX2 6RR
+<li class="charger-item charger-item--slow" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Farndon Road 12</h2>
+    
+  </div>
+  <p class="charger-address">Farndon Road 12 <button class="copy-btn" data-copy="OX2 6RR">OX2 6RR</button>
   </p>
   
   <div class="charger-connections">
@@ -873,9 +1019,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Bevington Rd 10</h2>
-  <p class="charger-address">Bevington Rd 10 OX2 6NB
+<li class="charger-item charger-item--slow" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Bevington Rd 10</h2>
+    
+  </div>
+  <p class="charger-address">Bevington Rd 10 <button class="copy-btn" data-copy="OX2 6NB">OX2 6NB</button>
   </p>
   
   <div class="charger-connections">
@@ -894,9 +1043,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">All saints road</h2>
-  <p class="charger-address">All saints road OX3 7AU
+<li class="charger-item charger-item--slow" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">All saints road</h2>
+    
+  </div>
+  <p class="charger-address">All saints road <button class="copy-btn" data-copy="OX3 7AU">OX3 7AU</button>
   </p>
   
   <div class="charger-connections">
@@ -915,9 +1067,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">OX4 2ED</h2>
-  <p class="charger-address">Temple Road 23 OX4 2ED
+<li class="charger-item charger-item--slow" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">OX4 2ED</h2>
+    
+  </div>
+  <p class="charger-address">Temple Road 23 <button class="copy-btn" data-copy="OX4 2ED">OX4 2ED</button>
   </p>
   
   <div class="charger-connections">
@@ -936,9 +1091,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Ladenham 7A</h2>
-  <p class="charger-address">Bollard in car park near Asset No. 8 OX4 6AZ
+<li class="charger-item charger-item--slow" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Ladenham 7A</h2>
+    
+  </div>
+  <p class="charger-address">Bollard in car park near Asset No. 8 <button class="copy-btn" data-copy="OX4 6AZ">OX4 6AZ</button>
   </p>
   
   <div class="charger-connections">
@@ -960,6 +1118,23 @@
 
 <p><a href="/" class="back-link">← All UK towns</a></p>
 
+
+<div class="nearby-towns">
+  <h2 class="nearby-heading">Nearby towns</h2>
+  <ul class="nearby-list">
+  
+    <li><a href="/uk/abingdon/">Abingdon</a></li>
+  
+    <li><a href="/uk/bicester/">Bicester</a></li>
+  
+    <li><a href="/uk/cherwell/">Cherwell</a></li>
+  
+    <li><a href="/uk/banbury/">Banbury</a></li>
+  
+  </ul>
+</div>
+
+
 </div>
 
 <footer>
@@ -972,26 +1147,61 @@
 <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 <script>
 (function () {
+  // --- Map ---
   var map = L.map('map').setView([51.75696206702035, -1.2532889835951524], 12);
-
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
   }).addTo(map);
 
   var markers = L.markerClusterGroup();
-  var chargerData = [{"lat": 51.727161, "lng": -1.195861, "title": "Lidl-Oxford", "address": "Watlington Road"}, {"lat": 51.7293959583171, "lng": -1.249414073683738, "title": "Oxford Redbridge Park & Ride ", "address": "Abingdon Road"}, {"lat": 51.75211, "lng": -1.213497, "title": "The Innovation Building (Multi-storey car park), University of Oxford", "address": "Old Road"}, {"lat": 51.759553, "lng": -1.258579, "title": "Keble Road, Oxford 2", "address": "Keble Road, Oxford 2"}, {"lat": 51.934238, "lng": -1.47444, "title": "Crowne Plaza Heythrop Park Resort", "address": "Chipping Norton"}, {"lat": 51.794102, "lng": -1.28416, "title": "Pear Tree Park & Ride", "address": "Magdalen Street"}, {"lat": 51.776478, "lng": -1.26318, "title": "Summertown Car Park", "address": "Diamond Place"}, {"lat": 51.765946, "lng": -1.265958, "title": "Farndon Road", "address": "Farndon Road"}, {"lat": 51.765811, "lng": -1.267469, "title": "Farndon Road 18", "address": "Farndon Road 18"}, {"lat": 51.764957, "lng": -1.263119, "title": "Winchester Rd 6", "address": "Winchester Rd 6"}, {"lat": 51.764813, "lng": -1.267037, "title": "Shell Recharge/Ubitricity", "address": "null"}, {"lat": 51.764797, "lng": -1.26287, "title": "Winchester Rd 5", "address": "Winchester Rd 5"}, {"lat": 51.764299, "lng": -1.268654, "title": "Tackley Place", "address": "Tackley Place"}, {"lat": 51.763599, "lng": -1.18099, "title": "Thornhill Park & Ride", "address": "Headington"}, {"lat": 51.753904, "lng": -1.267673, "title": "Rewley Road 2", "address": "Rewley Road"}, {"lat": 51.752201, "lng": -1.277686, "title": "Shell Recharge/Ubitricity", "address": "null"}, {"lat": 51.749338, "lng": -1.260836, "title": "Old Greyfriars", "address": "Old Greyfriars Street"}, {"lat": 51.743142, "lng": -1.23283, "title": "Hertford street", "address": "Hertford street"}, {"lat": 51.733218, "lng": -1.214255, "title": "Between Town Road", "address": "Between Town Road"}, {"lat": 51.717362, "lng": -1.217063, "title": "Oxford Science Park - The Bellhouse Building", "address": "Sanders Road"}, {"lat": 51.752098, "lng": -1.25767, "title": "CP QA UK CPHM-C686", "address": "10 Queen St test"}, {"lat": 51.748394, "lng": -1.312056, "title": "DCCA STATION 1", "address": "Dean Court Community Centre Pinnocks Way"}, {"lat": 51.759384, "lng": -1.25931, "title": "Keble Road", "address": "Keble Road"}, {"lat": 51.719225, "lng": -1.199113, "title": "Blackbird Leys Leisure Centre", "address": "Blackbird Leys Leisure Centre"}, {"lat": 51.72723546, "lng": -1.20226698, "title": "Tesco Superstore-Oxford", "address": "7 Retail Park"}, {"lat": 51.72946422485845, "lng": -1.2488627820926013, "title": "Fastned Redbridge Park and Ride", "address": "Redbridge Park and Ride"}, {"lat": 51.770357, "lng": -1.269657, "title": "OCCE001", "address": "Frenchay Road"}, {"lat": 51.759887, "lng": -1.270068, "title": "OCCE002", "address": "Juxon Street"}, {"lat": 51.747504, "lng": -1.241394, "title": "OCCAPT011", "address": "Stockmore Street"}, {"lat": 51.74041010465896, "lng": -1.2382754916249041, "title": "OCCZ001", "address": "Bedford Street"}, {"lat": 51.739894, "lng": -1.255084, "title": "OCCAPT007", "address": "Lake Street"}, {"lat": 51.720118, "lng": -1.221169, "title": "OCCE004", "address": "Vicarage Close"}, {"lat": 51.764089, "lng": -1.264636, "title": " Leckford Road", "address": " Leckford Road"}, {"lat": 51.764089, "lng": -1.264636, "title": "Leckford Road", "address": "Leckford Road"}, {"lat": 51.788046, "lng": -1.269436, "title": "Hawksmoor road 75", "address": "Hawksmoor road 75"}, {"lat": 51.781475, "lng": -1.263562, "title": "Hamilton Rd 45", "address": "Hamilton Rd 45"}, {"lat": 51.765511, "lng": -1.268507, "title": "Farndon Road 12", "address": "Farndon Road 12"}, {"lat": 51.762732, "lng": -1.2617, "title": "Bevington Rd 10", "address": "Bevington Rd 10"}, {"lat": 51.756084, "lng": -1.215081, "title": "All saints road", "address": "All saints road"}, {"lat": 51.738103, "lng": -1.214844, "title": "OX4 2ED", "address": "Temple Road 23"}, {"lat": 51.72492, "lng": -1.201949, "title": "Ladenham 7A", "address": "Bollard in car park near Asset No. 8"}];
+  var chargerData = [{"lat": 51.727161, "lng": -1.195861, "title": "Lidl-Oxford", "address": "Watlington Road", "connectors": ["Type 2 (Socket Only) · 22kW", "CCS (Type 2) · 50kW", "CHAdeMO · 50kW"]}, {"lat": 51.7293959583171, "lng": -1.249414073683738, "title": "Oxford Redbridge Park & Ride ", "address": "Abingdon Road", "connectors": ["Type 2 (Socket Only) · 22kW"]}, {"lat": 51.75211, "lng": -1.213497, "title": "The Innovation Building (Multi-storey car park), University of Oxford", "address": "Old Road", "connectors": ["Type 2 (Socket Only) · 7.2kW"]}, {"lat": 51.759553, "lng": -1.258579, "title": "Keble Road, Oxford 2", "address": "Keble Road, Oxford 2", "connectors": ["Type 2 (Tethered Connector)  · 50kW", "CHAdeMO · 50kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 51.934238, "lng": -1.47444, "title": "Crowne Plaza Heythrop Park Resort", "address": "Chipping Norton", "connectors": ["CHAdeMO · 50kW", "CHAdeMO · 50kW"]}, {"lat": 51.794102, "lng": -1.28416, "title": "Pear Tree Park & Ride", "address": "Magdalen Street", "connectors": ["BS1363 3 Pin 13 Amp · 3kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 51.776478, "lng": -1.26318, "title": "Summertown Car Park", "address": "Diamond Place", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 51.765946, "lng": -1.265958, "title": "Farndon Road", "address": "Farndon Road", "connectors": ["Type 2 (Socket Only) · 3.7kW"]}, {"lat": 51.765811, "lng": -1.267469, "title": "Farndon Road 18", "address": "Farndon Road 18", "connectors": ["Type 2 (Socket Only) · 3.7kW"]}, {"lat": 51.764957, "lng": -1.263119, "title": "Winchester Rd 6", "address": "Winchester Rd 6", "connectors": ["Type 2 (Socket Only) · 3.7kW"]}, {"lat": 51.764813, "lng": -1.267037, "title": "Shell Recharge/Ubitricity", "address": "null", "connectors": ["Type 2 (Socket Only) · 5kW"]}, {"lat": 51.764797, "lng": -1.26287, "title": "Winchester Rd 5", "address": "Winchester Rd 5", "connectors": ["Type 2 (Socket Only) · 3.7kW"]}, {"lat": 51.764299, "lng": -1.268654, "title": "Tackley Place", "address": "Tackley Place", "connectors": ["Type 2 (Socket Only) · 3.7kW"]}, {"lat": 51.763599, "lng": -1.18099, "title": "Thornhill Park & Ride", "address": "Headington", "connectors": ["Type 2 (Socket Only) · 3.7kW", "Type 2 (Socket Only) · 3.7kW"]}, {"lat": 51.753904, "lng": -1.267673, "title": "Rewley Road 2", "address": "Rewley Road", "connectors": ["Type 2 (Tethered Connector)  · 50kW", "CHAdeMO · 50kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 51.752201, "lng": -1.277686, "title": "Shell Recharge/Ubitricity", "address": "null", "connectors": ["Type 2 (Socket Only) · 4.8kW"]}, {"lat": 51.749338, "lng": -1.260836, "title": "Old Greyfriars", "address": "Old Greyfriars Street", "connectors": ["Type 2 (Tethered Connector)  · 50kW", "CHAdeMO · 50kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 51.743142, "lng": -1.23283, "title": "Hertford street", "address": "Hertford street", "connectors": ["Type 2 (Socket Only) · 3.7kW"]}, {"lat": 51.733218, "lng": -1.214255, "title": "Between Town Road", "address": "Between Town Road", "connectors": ["Type 2 (Socket Only) · 7kW"]}, {"lat": 51.717362, "lng": -1.217063, "title": "Oxford Science Park - The Bellhouse Building", "address": "Sanders Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 51.752098, "lng": -1.25767, "title": "CP QA UK CPHM-C686", "address": "10 Queen St test", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 51.748394, "lng": -1.312056, "title": "DCCA STATION 1", "address": "Dean Court Community Centre Pinnocks Way", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 51.759384, "lng": -1.25931, "title": "Keble Road", "address": "Keble Road", "connectors": ["Type 2 (Tethered Connector)  · 50kW", "CHAdeMO · 50kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 51.719225, "lng": -1.199113, "title": "Blackbird Leys Leisure Centre", "address": "Blackbird Leys Leisure Centre", "connectors": ["Type 2 (Tethered Connector)  · 50kW", "CHAdeMO · 50kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 51.72723546, "lng": -1.20226698, "title": "Tesco Superstore-Oxford", "address": "7 Retail Park", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 51.72946422485845, "lng": -1.2488627820926013, "title": "Fastned Redbridge Park and Ride", "address": "Redbridge Park and Ride", "connectors": ["CCS (Type 2) · 300kW", "CHAdeMO · 50kW"]}, {"lat": 51.770357, "lng": -1.269657, "title": "OCCE001", "address": "Frenchay Road", "connectors": ["Type 2 (Socket Only) · 7kW"]}, {"lat": 51.759887, "lng": -1.270068, "title": "OCCE002", "address": "Juxon Street", "connectors": ["Type 2 (Socket Only) · 7kW"]}, {"lat": 51.747504, "lng": -1.241394, "title": "OCCAPT011", "address": "Stockmore Street", "connectors": ["Type 2 (Socket Only) · 11kW"]}, {"lat": 51.74041010465896, "lng": -1.2382754916249041, "title": "OCCZ001", "address": "Bedford Street", "connectors": ["Type 2 (Socket Only) · 7kW"]}, {"lat": 51.739894, "lng": -1.255084, "title": "OCCAPT007", "address": "Lake Street", "connectors": ["Type 2 (Socket Only) · 7kW"]}, {"lat": 51.720118, "lng": -1.221169, "title": "OCCE004", "address": "Vicarage Close", "connectors": ["Type 2 (Socket Only) · 7kW"]}, {"lat": 51.764089, "lng": -1.264636, "title": " Leckford Road", "address": " Leckford Road", "connectors": ["Type 2 (Socket Only) · 3.7kW"]}, {"lat": 51.764089, "lng": -1.264636, "title": "Leckford Road", "address": "Leckford Road", "connectors": ["Type 2 (Socket Only) · 3.7kW"]}, {"lat": 51.788046, "lng": -1.269436, "title": "Hawksmoor road 75", "address": "Hawksmoor road 75", "connectors": ["Type 2 (Socket Only) · 3.7kW"]}, {"lat": 51.781475, "lng": -1.263562, "title": "Hamilton Rd 45", "address": "Hamilton Rd 45", "connectors": ["Type 2 (Socket Only) · 3.7kW"]}, {"lat": 51.765511, "lng": -1.268507, "title": "Farndon Road 12", "address": "Farndon Road 12", "connectors": ["Type 2 (Socket Only) · 3.7kW"]}, {"lat": 51.762732, "lng": -1.2617, "title": "Bevington Rd 10", "address": "Bevington Rd 10", "connectors": ["Type 2 (Socket Only) · 3.7kW"]}, {"lat": 51.756084, "lng": -1.215081, "title": "All saints road", "address": "All saints road", "connectors": ["Type 2 (Socket Only) · 3.7kW"]}, {"lat": 51.738103, "lng": -1.214844, "title": "OX4 2ED", "address": "Temple Road 23", "connectors": ["Type 2 (Socket Only) · 3.7kW"]}, {"lat": 51.72492, "lng": -1.201949, "title": "Ladenham 7A", "address": "Bollard in car park near Asset No. 8", "connectors": ["Type 2 (Socket Only) · 3.7kW"]}];
 
   chargerData.forEach(function (c) {
+    var connHtml = c.connectors.length
+      ? '<div style="margin-top:6px;font-size:12px;color:#475569">' + c.connectors.join(' &middot; ') + '</div>'
+      : '';
     var marker = L.marker([c.lat, c.lng]);
     marker.bindPopup(
-      '<b>' + c.title + '</b><br>' + c.address + '<br><br>' +
+      '<b>' + c.title + '</b>' +
+      '<div style="color:#64748b;font-size:13px">' + c.address + '</div>' +
+      connHtml +
       '<a href="https://www.google.com/maps/dir/?api=1&destination=' + c.lat + ',' + c.lng +
-      '" target="_blank" rel="noopener">Get directions</a>'
+      '" target="_blank" rel="noopener" style="display:inline-block;margin-top:8px;padding:4px 10px;background:#2563eb;color:white;border-radius:4px;text-decoration:none;font-size:12px">Get directions</a>'
     );
     markers.addLayer(marker);
   });
-
   map.addLayer(markers);
+
+  // --- Connector filter ---
+  var filterBtns = document.querySelectorAll('.filter-btn');
+  var chargerItems = document.querySelectorAll('.charger-item');
+
+  filterBtns.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      filterBtns.forEach(function (b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      var f = btn.dataset.filter;
+      chargerItems.forEach(function (item) {
+        var connList = item.dataset.connectors ? item.dataset.connectors.split(',') : [];
+        item.style.display = (f === 'all' || connList.indexOf(f) !== -1) ? '' : 'none';
+      });
+    });
+  });
+
+  // --- Copy postcode ---
+  document.querySelectorAll('.copy-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var original = btn.textContent;
+      navigator.clipboard.writeText(btn.dataset.copy).then(function () {
+        btn.textContent = 'Copied!';
+        btn.classList.add('copy-btn--success');
+        setTimeout(function () {
+          btn.textContent = original;
+          btn.classList.remove('copy-btn--success');
+        }, 1500);
+      });
+    });
+  });
 }());
 </script>
 

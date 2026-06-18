@@ -17,7 +17,10 @@
 
 <header>
 <div class="container">
-<a href="/" class="logo">PlugMap <span class="tagline">UK EV Charger Locator</span></a>
+<a href="/" class="logo">
+  <svg class="logo-bolt" viewBox="0 0 24 24" fill="currentColor" width="22" height="22" aria-hidden="true"><path d="M13 2L4.5 13.5H11L10 22L19.5 10.5H13Z"/></svg>
+  PlugMap <span class="tagline">UK EV Charger Locator</span>
+</a>
 </div>
 </header>
 
@@ -28,16 +31,38 @@
 </nav>
 
 <h1>EV Chargers in Hythe</h1>
-<p class="page-intro">10 public charging stations found in Hythe.</p>
+
+<div class="stats-bar">
+  <span class="stat-pill stat-total">10 stations</span>
+  <span class="stat-pill stat-rapid">1 rapid (50kW+)</span>
+  <span class="stat-pill stat-fast">9 fast (7–50kW)</span>
+  
+</div>
 
 <div id="map"></div>
 
-<ul class="charger-list">
+
+<div class="connector-filter">
+  <span class="filter-label">Filter:</span>
+  <button class="filter-btn active" data-filter="all">All</button>
+  
+  <button class="filter-btn" data-filter="Type 2 (Socket Only)">Type 2 (Socket Only)</button>
+  
+  <button class="filter-btn" data-filter="Type 2 (Tethered Connector) ">Type 2 (Tethered Connector) </button>
+  
+</div>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Jones Lane Car Park 2</h2>
-  <p class="charger-address">Brinton Lane SO45 6AR
+<ul class="charger-list" id="charger-list">
+
+
+<li class="charger-item charger-item--rapid" data-connectors="Type 2 (Tethered Connector) ">
+  <div class="charger-header">
+    <h2 class="charger-name">Jones Lane Car Park 2</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Brinton Lane <button class="copy-btn" data-copy="SO45 6AR">SO45 6AR</button>
   </p>
   
   <div class="charger-connections">
@@ -59,9 +84,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Ladycross Road</h2>
-  <p class="charger-address">Brook Row, Ladycross Rd SO45 3JW
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Ladycross Road</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Brook Row, Ladycross Rd <button class="copy-btn" data-copy="SO45 3JW">SO45 3JW</button>
   </p>
   
   <div class="charger-connections">
@@ -83,9 +111,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Rydal Mount</h2>
-  <p class="charger-address">Cliff Road CT21 5XW
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Rydal Mount</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Cliff Road <button class="copy-btn" data-copy="CT21 5XW">CT21 5XW</button>
   </p>
   
   <div class="charger-connections">
@@ -104,9 +135,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Fishermans Beach Car Park, Hythe</h2>
-  <p class="charger-address">Fishermans Beach Car Park CT21 6HG
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Fishermans Beach Car Park, Hythe</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Fishermans Beach Car Park <button class="copy-btn" data-copy="CT21 6HG">CT21 6HG</button>
   </p>
   
   <div class="charger-connections">
@@ -128,9 +162,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Battery Point Car Park 1</h2>
-  <p class="charger-address">Battery Point Car Park 1 CT21 5T
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Battery Point Car Park 1</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Battery Point Car Park 1 <button class="copy-btn" data-copy="CT21 5T">CT21 5T</button>
   </p>
   
   <div class="charger-connections">
@@ -152,9 +189,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Mount Street Car Park 1</h2>
-  <p class="charger-address">Mount Street Car Park 1 CT21 5A
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Mount Street Car Park 1</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Mount Street Car Park 1 <button class="copy-btn" data-copy="CT21 5A">CT21 5A</button>
   </p>
   
   <div class="charger-connections">
@@ -176,9 +216,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Twiss Fort Car Park 1</h2>
-  <p class="charger-address">Twiss Fort Car Park 1 CT21 6A
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Twiss Fort Car Park 1</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Twiss Fort Car Park 1 <button class="copy-btn" data-copy="CT21 6A">CT21 6A</button>
   </p>
   
   <div class="charger-connections">
@@ -200,9 +243,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">New Road Car Park</h2>
-  <p class="charger-address">New Road Car Park SO45 6XP
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">New Road Car Park</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">New Road Car Park <button class="copy-btn" data-copy="SO45 6XP">SO45 6XP</button>
   </p>
   
   <div class="charger-connections">
@@ -224,9 +270,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Jones Lane Car Park</h2>
-  <p class="charger-address">Jones Lane Car Park SO45 6BZ
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Jones Lane Car Park</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Jones Lane Car Park <button class="copy-btn" data-copy="SO45 6BZ">SO45 6BZ</button>
   </p>
   
   <div class="charger-connections">
@@ -248,9 +297,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">ALDI Hythe</h2>
-  <p class="charger-address">142 Dymchurch Road CT21 6HJ
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">ALDI Hythe</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">142 Dymchurch Road <button class="copy-btn" data-copy="CT21 6HJ">CT21 6HJ</button>
   </p>
   
   <div class="charger-connections">
@@ -272,6 +324,23 @@
 
 <p><a href="/" class="back-link">← All UK towns</a></p>
 
+
+<div class="nearby-towns">
+  <h2 class="nearby-heading">Nearby towns</h2>
+  <ul class="nearby-list">
+  
+    <li><a href="/uk/east-grinstead/">East Grinstead</a></li>
+  
+    <li><a href="/uk/haywards-heath/">Haywards Heath</a></li>
+  
+    <li><a href="/uk/tonbridge/">Tonbridge</a></li>
+  
+    <li><a href="/uk/eastbourne/">Eastbourne</a></li>
+  
+  </ul>
+</div>
+
+
 </div>
 
 <footer>
@@ -284,26 +353,61 @@
 <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 <script>
 (function () {
+  // --- Map ---
   var map = L.map('map').setView([50.98820883059041, 0.096144039075818], 12);
-
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
   }).addTo(map);
 
   var markers = L.markerClusterGroup();
-  var chargerData = [{"lat": 50.870577, "lng": -1.400693, "title": "Jones Lane Car Park 2", "address": "Brinton Lane"}, {"lat": 50.858175, "lng": -1.399746, "title": "Ladycross Road", "address": "Brook Row, Ladycross Rd"}, {"lat": 51.0724173059041, "lng": 1.11316539075818, "title": "Rydal Mount", "address": "Cliff Road"}, {"lat": 51.064598, "lng": 1.077762, "title": "Fishermans Beach Car Park, Hythe", "address": "Fishermans Beach Car Park"}, {"lat": 51.07165, "lng": 1.124721, "title": "Battery Point Car Park 1", "address": "Battery Point Car Park 1"}, {"lat": 51.07068, "lng": 1.083612, "title": "Mount Street Car Park 1", "address": "Mount Street Car Park 1"}, {"lat": 51.067769, "lng": 1.093739, "title": "Twiss Fort Car Park 1", "address": "Twiss Fort Car Park 1"}, {"lat": 50.86899, "lng": -1.40012, "title": "New Road Car Park", "address": "New Road Car Park"}, {"lat": 50.868884, "lng": -1.397169, "title": "Jones Lane Car Park", "address": "Jones Lane Car Park"}, {"lat": 51.068348, "lng": 1.066169, "title": "ALDI Hythe", "address": "142 Dymchurch Road"}];
+  var chargerData = [{"lat": 50.870577, "lng": -1.400693, "title": "Jones Lane Car Park 2", "address": "Brinton Lane", "connectors": ["Type 2 (Tethered Connector)  · 120kW", "Type 2 (Tethered Connector)  · 120kW"]}, {"lat": 50.858175, "lng": -1.399746, "title": "Ladycross Road", "address": "Brook Row, Ladycross Rd", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 51.0724173059041, "lng": 1.11316539075818, "title": "Rydal Mount", "address": "Cliff Road", "connectors": ["Type 2 (Socket Only) · 7kW"]}, {"lat": 51.064598, "lng": 1.077762, "title": "Fishermans Beach Car Park, Hythe", "address": "Fishermans Beach Car Park", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 51.07165, "lng": 1.124721, "title": "Battery Point Car Park 1", "address": "Battery Point Car Park 1", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 51.07068, "lng": 1.083612, "title": "Mount Street Car Park 1", "address": "Mount Street Car Park 1", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 51.067769, "lng": 1.093739, "title": "Twiss Fort Car Park 1", "address": "Twiss Fort Car Park 1", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 50.86899, "lng": -1.40012, "title": "New Road Car Park", "address": "New Road Car Park", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 50.868884, "lng": -1.397169, "title": "Jones Lane Car Park", "address": "Jones Lane Car Park", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 51.068348, "lng": 1.066169, "title": "ALDI Hythe", "address": "142 Dymchurch Road", "connectors": ["Type 2 (Socket Only) · 7kW"]}];
 
   chargerData.forEach(function (c) {
+    var connHtml = c.connectors.length
+      ? '<div style="margin-top:6px;font-size:12px;color:#475569">' + c.connectors.join(' &middot; ') + '</div>'
+      : '';
     var marker = L.marker([c.lat, c.lng]);
     marker.bindPopup(
-      '<b>' + c.title + '</b><br>' + c.address + '<br><br>' +
+      '<b>' + c.title + '</b>' +
+      '<div style="color:#64748b;font-size:13px">' + c.address + '</div>' +
+      connHtml +
       '<a href="https://www.google.com/maps/dir/?api=1&destination=' + c.lat + ',' + c.lng +
-      '" target="_blank" rel="noopener">Get directions</a>'
+      '" target="_blank" rel="noopener" style="display:inline-block;margin-top:8px;padding:4px 10px;background:#2563eb;color:white;border-radius:4px;text-decoration:none;font-size:12px">Get directions</a>'
     );
     markers.addLayer(marker);
   });
-
   map.addLayer(markers);
+
+  // --- Connector filter ---
+  var filterBtns = document.querySelectorAll('.filter-btn');
+  var chargerItems = document.querySelectorAll('.charger-item');
+
+  filterBtns.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      filterBtns.forEach(function (b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      var f = btn.dataset.filter;
+      chargerItems.forEach(function (item) {
+        var connList = item.dataset.connectors ? item.dataset.connectors.split(',') : [];
+        item.style.display = (f === 'all' || connList.indexOf(f) !== -1) ? '' : 'none';
+      });
+    });
+  });
+
+  // --- Copy postcode ---
+  document.querySelectorAll('.copy-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var original = btn.textContent;
+      navigator.clipboard.writeText(btn.dataset.copy).then(function () {
+        btn.textContent = 'Copied!';
+        btn.classList.add('copy-btn--success');
+        setTimeout(function () {
+          btn.textContent = original;
+          btn.classList.remove('copy-btn--success');
+        }, 1500);
+      });
+    });
+  });
 }());
 </script>
 

@@ -17,7 +17,10 @@
 
 <header>
 <div class="container">
-<a href="/" class="logo">PlugMap <span class="tagline">UK EV Charger Locator</span></a>
+<a href="/" class="logo">
+  <svg class="logo-bolt" viewBox="0 0 24 24" fill="currentColor" width="22" height="22" aria-hidden="true"><path d="M13 2L4.5 13.5H11L10 22L19.5 10.5H13Z"/></svg>
+  PlugMap <span class="tagline">UK EV Charger Locator</span>
+</a>
 </div>
 </header>
 
@@ -28,16 +31,42 @@
 </nav>
 
 <h1>EV Chargers in Godalming</h1>
-<p class="page-intro">7 public charging stations found in Godalming.</p>
+
+<div class="stats-bar">
+  <span class="stat-pill stat-total">7 stations</span>
+  <span class="stat-pill stat-rapid">4 rapid (50kW+)</span>
+  <span class="stat-pill stat-fast">3 fast (7–50kW)</span>
+  
+</div>
 
 <div id="map"></div>
 
-<ul class="charger-list">
+
+<div class="connector-filter">
+  <span class="filter-label">Filter:</span>
+  <button class="filter-btn active" data-filter="all">All</button>
+  
+  <button class="filter-btn" data-filter="CCS (Type 2)">CCS (Type 2)</button>
+  
+  <button class="filter-btn" data-filter="CHAdeMO">CHAdeMO</button>
+  
+  <button class="filter-btn" data-filter="Type 2 (Socket Only)">Type 2 (Socket Only)</button>
+  
+  <button class="filter-btn" data-filter="Type 2 (Tethered Connector) ">Type 2 (Tethered Connector) </button>
+  
+</div>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">InstaVolt Co-Op Car Park Farncombe</h2>
-  <p class="charger-address">61 St John&#39;s Street GU7 3EH
+<ul class="charger-list" id="charger-list">
+
+
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2),CHAdeMO">
+  <div class="charger-header">
+    <h2 class="charger-name">InstaVolt Co-Op Car Park Farncombe</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">61 St John&#39;s Street <button class="copy-btn" data-copy="GU7 3EH">GU7 3EH</button>
   </p>
   
   <div class="charger-connections">
@@ -59,9 +88,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">WBC South Car Park</h2>
-  <p class="charger-address">Oglethorpe Court GU7 1AJ
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2)">
+  <div class="charger-header">
+    <h2 class="charger-name">WBC South Car Park</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Oglethorpe Court <button class="copy-btn" data-copy="GU7 1AJ">GU7 1AJ</button>
   </p>
   
   <div class="charger-connections">
@@ -80,9 +113,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Waitrose Godalming</h2>
-  <p class="charger-address">Bridge Street GU7 1HY
+<li class="charger-item charger-item--rapid" data-connectors="CHAdeMO,CCS (Type 2),Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Waitrose Godalming</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Bridge Street <button class="copy-btn" data-copy="GU7 1HY">GU7 1HY</button>
   </p>
   
   <div class="charger-connections">
@@ -128,9 +165,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">The Inn on the Lake</h2>
-  <p class="charger-address">Ockford Road GU7 1RH
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2),CHAdeMO,Type 2 (Tethered Connector) ">
+  <div class="charger-header">
+    <h2 class="charger-name">The Inn on the Lake</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Ockford Road <button class="copy-btn" data-copy="GU7 1RH">GU7 1RH</button>
   </p>
   
   <div class="charger-connections">
@@ -155,9 +196,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">SUCC Farncombe Station Road 1</h2>
-  <p class="charger-address">Station Road GU7 3NG
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">SUCC Farncombe Station Road 1</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Station Road <button class="copy-btn" data-copy="GU7 3NG">GU7 3NG</button>
   </p>
   
   <div class="charger-connections">
@@ -179,9 +223,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">SUCC Catteshall Lane 1</h2>
-  <p class="charger-address">Catteshall Lane GU7 1FF
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">SUCC Catteshall Lane 1</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Catteshall Lane <button class="copy-btn" data-copy="GU7 1FF">GU7 1FF</button>
   </p>
   
   <div class="charger-connections">
@@ -203,9 +250,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">The Burys</h2>
-  <p class="charger-address">The Burys GU7 1HR
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">The Burys</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">The Burys <button class="copy-btn" data-copy="GU7 1HR">GU7 1HR</button>
   </p>
   
   <div class="charger-connections">
@@ -227,6 +277,23 @@
 
 <p><a href="/" class="back-link">← All UK towns</a></p>
 
+
+<div class="nearby-towns">
+  <h2 class="nearby-heading">Nearby towns</h2>
+  <ul class="nearby-list">
+  
+    <li><a href="/uk/guildford/">Guildford</a></li>
+  
+    <li><a href="/uk/farnham/">Farnham</a></li>
+  
+    <li><a href="/uk/horsham/">Horsham</a></li>
+  
+    <li><a href="/uk/farnborough/">Farnborough</a></li>
+  
+  </ul>
+</div>
+
+
 </div>
 
 <footer>
@@ -239,26 +306,61 @@
 <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 <script>
 (function () {
+  // --- Map ---
   var map = L.map('map').setView([51.184256296343506, -0.6171304725237368], 12);
-
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
   }).addTo(map);
 
   var markers = L.markerClusterGroup();
-  var chargerData = [{"lat": 51.16947464196451, "lng": -0.6481656358862722, "title": "InstaVolt Co-Op Car Park Farncombe", "address": "61 St John's Street"}, {"lat": 51.184679457803725, "lng": -0.6153672921838051, "title": "WBC South Car Park", "address": "Oglethorpe Court"}, {"lat": 51.186420654590876, "lng": -0.6086648728471573, "title": "Waitrose Godalming", "address": "Bridge Street"}, {"lat": 51.1798593200454, "lng": -0.624160506748922, "title": "The Inn on the Lake", "address": "Ockford Road"}, {"lat": 51.196751, "lng": -0.60536, "title": "SUCC Farncombe Station Road 1", "address": "Station Road"}, {"lat": 51.18539, "lng": -0.608384, "title": "SUCC Catteshall Lane 1", "address": "Catteshall Lane"}, {"lat": 51.187219, "lng": -0.609811, "title": "The Burys", "address": "The Burys"}];
+  var chargerData = [{"lat": 51.16947464196451, "lng": -0.6481656358862722, "title": "InstaVolt Co-Op Car Park Farncombe", "address": "61 St John's Street", "connectors": ["CCS (Type 2) · 160kW", "CHAdeMO · 50kW"]}, {"lat": 51.184679457803725, "lng": -0.6153672921838051, "title": "WBC South Car Park", "address": "Oglethorpe Court", "connectors": ["CCS (Type 2) · 150kW"]}, {"lat": 51.186420654590876, "lng": -0.6086648728471573, "title": "Waitrose Godalming", "address": "Bridge Street", "connectors": ["CHAdeMO · 50kW", "CCS (Type 2) · 50kW", "CHAdeMO · 50kW", "CCS (Type 2) · 50kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 51.1798593200454, "lng": -0.624160506748922, "title": "The Inn on the Lake", "address": "Ockford Road", "connectors": ["CCS (Type 2) · 50kW", "CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 43kW"]}, {"lat": 51.196751, "lng": -0.60536, "title": "SUCC Farncombe Station Road 1", "address": "Station Road", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 51.18539, "lng": -0.608384, "title": "SUCC Catteshall Lane 1", "address": "Catteshall Lane", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 51.187219, "lng": -0.609811, "title": "The Burys", "address": "The Burys", "connectors": ["Type 2 (Socket Only) · 7kW"]}];
 
   chargerData.forEach(function (c) {
+    var connHtml = c.connectors.length
+      ? '<div style="margin-top:6px;font-size:12px;color:#475569">' + c.connectors.join(' &middot; ') + '</div>'
+      : '';
     var marker = L.marker([c.lat, c.lng]);
     marker.bindPopup(
-      '<b>' + c.title + '</b><br>' + c.address + '<br><br>' +
+      '<b>' + c.title + '</b>' +
+      '<div style="color:#64748b;font-size:13px">' + c.address + '</div>' +
+      connHtml +
       '<a href="https://www.google.com/maps/dir/?api=1&destination=' + c.lat + ',' + c.lng +
-      '" target="_blank" rel="noopener">Get directions</a>'
+      '" target="_blank" rel="noopener" style="display:inline-block;margin-top:8px;padding:4px 10px;background:#2563eb;color:white;border-radius:4px;text-decoration:none;font-size:12px">Get directions</a>'
     );
     markers.addLayer(marker);
   });
-
   map.addLayer(markers);
+
+  // --- Connector filter ---
+  var filterBtns = document.querySelectorAll('.filter-btn');
+  var chargerItems = document.querySelectorAll('.charger-item');
+
+  filterBtns.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      filterBtns.forEach(function (b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      var f = btn.dataset.filter;
+      chargerItems.forEach(function (item) {
+        var connList = item.dataset.connectors ? item.dataset.connectors.split(',') : [];
+        item.style.display = (f === 'all' || connList.indexOf(f) !== -1) ? '' : 'none';
+      });
+    });
+  });
+
+  // --- Copy postcode ---
+  document.querySelectorAll('.copy-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var original = btn.textContent;
+      navigator.clipboard.writeText(btn.dataset.copy).then(function () {
+        btn.textContent = 'Copied!';
+        btn.classList.add('copy-btn--success');
+        setTimeout(function () {
+          btn.textContent = original;
+          btn.classList.remove('copy-btn--success');
+        }, 1500);
+      });
+    });
+  });
 }());
 </script>
 

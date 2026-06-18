@@ -17,7 +17,10 @@
 
 <header>
 <div class="container">
-<a href="/" class="logo">PlugMap <span class="tagline">UK EV Charger Locator</span></a>
+<a href="/" class="logo">
+  <svg class="logo-bolt" viewBox="0 0 24 24" fill="currentColor" width="22" height="22" aria-hidden="true"><path d="M13 2L4.5 13.5H11L10 22L19.5 10.5H13Z"/></svg>
+  PlugMap <span class="tagline">UK EV Charger Locator</span>
+</a>
 </div>
 </header>
 
@@ -28,16 +31,43 @@
 </nav>
 
 <h1>EV Chargers in Sheffield</h1>
-<p class="page-intro">38 public charging stations found in Sheffield.</p>
+
+<div class="stats-bar">
+  <span class="stat-pill stat-total">38 stations</span>
+  <span class="stat-pill stat-rapid">10 rapid (50kW+)</span>
+  <span class="stat-pill stat-fast">27 fast (7–50kW)</span>
+  <span class="stat-pill stat-slow">1 slow</span>
+</div>
 
 <div id="map"></div>
 
-<ul class="charger-list">
+
+<div class="connector-filter">
+  <span class="filter-label">Filter:</span>
+  <button class="filter-btn active" data-filter="all">All</button>
+  
+  <button class="filter-btn" data-filter="BS1363 3 Pin 13 Amp">BS1363 3 Pin 13 Amp</button>
+  
+  <button class="filter-btn" data-filter="CCS (Type 2)">CCS (Type 2)</button>
+  
+  <button class="filter-btn" data-filter="CHAdeMO">CHAdeMO</button>
+  
+  <button class="filter-btn" data-filter="Type 2 (Socket Only)">Type 2 (Socket Only)</button>
+  
+  <button class="filter-btn" data-filter="Type 2 (Tethered Connector) ">Type 2 (Tethered Connector) </button>
+  
+</div>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">MERRYCHEF STATION 01</h2>
-  <p class="charger-address">Welbuilt 6 Nether Lane S35 9XT
+<ul class="charger-list" id="charger-list">
+
+
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">MERRYCHEF STATION 01</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Welbuilt 6 Nether Lane <button class="copy-btn" data-copy="S35 9XT">S35 9XT</button>
   </p>
   
   <div class="charger-connections">
@@ -56,9 +86,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Consultants Car Park</h2>
-  <p class="charger-address">Glossop Road S10 2JF
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Consultants Car Park</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Glossop Road <button class="copy-btn" data-copy="S10 2JF">S10 2JF</button>
   </p>
   
   <div class="charger-connections">
@@ -80,9 +113,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Meadowhall Retail Park Supercharger</h2>
-  <p class="charger-address">Meadowhall Retail Park S9 2YZ
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2)">
+  <div class="charger-header">
+    <h2 class="charger-name">Meadowhall Retail Park Supercharger</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Meadowhall Retail Park <button class="copy-btn" data-copy="S9 2YZ">S9 2YZ</button>
   </p>
   
   <div class="charger-connections">
@@ -101,9 +138,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">RAW GREENE KING ACORN 2</h2>
-  <p class="charger-address">Acorn 516 Burncross Road S35 1SL
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">RAW GREENE KING ACORN 2</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Acorn 516 Burncross Road <button class="copy-btn" data-copy="S35 1SL">S35 1SL</button>
   </p>
   
   <div class="charger-connections">
@@ -125,9 +165,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Riverside Car Park, Sheffield 2</h2>
-  <p class="charger-address">5 Millsands S3 8HN
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Riverside Car Park, Sheffield 2</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">5 Millsands <button class="copy-btn" data-copy="S3 8HN">S3 8HN</button>
   </p>
   
   <div class="charger-connections">
@@ -146,9 +189,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">zest-line-club-band</h2>
-  <p class="charger-address">Livesey Street S6 2BL
+<li class="charger-item charger-item--rapid" data-connectors="Type 2 (Tethered Connector) ">
+  <div class="charger-header">
+    <h2 class="charger-name">zest-line-club-band</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Livesey Street <button class="copy-btn" data-copy="S6 2BL">S6 2BL</button>
   </p>
   
   <div class="charger-connections">
@@ -167,9 +214,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Park &amp; Ride - Nunnery Square 1</h2>
-  <p class="charger-address">Sheffield Parkway S2 5DH
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Park &amp; Ride - Nunnery Square 1</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Sheffield Parkway <button class="copy-btn" data-copy="S2 5DH">S2 5DH</button>
   </p>
   
   <div class="charger-connections">
@@ -188,9 +238,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Eight-Foot Way Pub &amp; Restaurant</h2>
-  <p class="charger-address">2 Chaucer RD S5 9QY
+<li class="charger-item charger-item--rapid" data-connectors="CHAdeMO,CCS (Type 2),Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Eight-Foot Way Pub &amp; Restaurant</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">2 Chaucer RD <button class="copy-btn" data-copy="S5 9QY">S5 9QY</button>
   </p>
   
   <div class="charger-connections">
@@ -224,9 +278,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Morrisons Sheffield Ecclesfield</h2>
-  <p class="charger-address">299 The Common, Ecclesfield S35 9WJ
+<li class="charger-item charger-item--rapid" data-connectors="Type 2 (Socket Only),CHAdeMO,Type 2 (Tethered Connector) ">
+  <div class="charger-header">
+    <h2 class="charger-name">Morrisons Sheffield Ecclesfield</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">299 The Common, Ecclesfield <button class="copy-btn" data-copy="S35 9WJ">S35 9WJ</button>
   </p>
   
   <div class="charger-connections">
@@ -251,9 +309,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Asda</h2>
-  <p class="charger-address">Chaucer Road S5 8NH
+<li class="charger-item charger-item--slow" data-connectors="BS1363 3 Pin 13 Amp">
+  <div class="charger-header">
+    <h2 class="charger-name">Asda</h2>
+    
+  </div>
+  <p class="charger-address">Chaucer Road <button class="copy-btn" data-copy="S5 8NH">S5 8NH</button>
   </p>
   
   <div class="charger-connections">
@@ -275,9 +336,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Middlewood Park &amp; Ride 6</h2>
-  <p class="charger-address">Middlewood Road S6 1TQ
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Middlewood Park &amp; Ride 6</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Middlewood Road <button class="copy-btn" data-copy="S6 1TQ">S6 1TQ</button>
   </p>
   
   <div class="charger-connections">
@@ -296,9 +360,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Malin Bridge Park &amp; Ride 1</h2>
-  <p class="charger-address">42 Loxley New Road S6 4NG
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Malin Bridge Park &amp; Ride 1</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">42 Loxley New Road <button class="copy-btn" data-copy="S6 4NG">S6 4NG</button>
   </p>
   
   <div class="charger-connections">
@@ -317,9 +384,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Harratts Nissan Sheffield</h2>
-  <p class="charger-address">Attercliffe Road, Sheffield, South Yorkshire S4 7WW
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Harratts Nissan Sheffield</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Attercliffe Road, Sheffield, South Yorkshire <button class="copy-btn" data-copy="S4 7WW">S4 7WW</button>
   </p>
   
   <div class="charger-connections">
@@ -341,9 +411,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Shipton Road Car Park, Sheffield 1</h2>
-  <p class="charger-address">Upperthorpe Road S6 3EB
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Shipton Road Car Park, Sheffield 1</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Upperthorpe Road <button class="copy-btn" data-copy="S6 3EB">S6 3EB</button>
   </p>
   
   <div class="charger-connections">
@@ -362,9 +435,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Ebenezer Street Car Park, Sheffield 2</h2>
-  <p class="charger-address">Ebenezer Street S3 8UR
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Ebenezer Street Car Park, Sheffield 2</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Ebenezer Street <button class="copy-btn" data-copy="S3 8UR">S3 8UR</button>
   </p>
   
   <div class="charger-connections">
@@ -383,9 +459,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Trinity Street Car Park, Sheffield 2</h2>
-  <p class="charger-address">Trinity Street S3 7AL
+<li class="charger-item charger-item--rapid" data-connectors="Type 2 (Tethered Connector) ,CHAdeMO,Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Trinity Street Car Park, Sheffield 2</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Trinity Street <button class="copy-btn" data-copy="S3 7AL">S3 7AL</button>
   </p>
   
   <div class="charger-connections">
@@ -410,9 +490,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Windrush Way Car Park, Sheffield 5</h2>
-  <p class="charger-address">Windrush Way S3 8JU
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Windrush Way Car Park, Sheffield 5</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Windrush Way <button class="copy-btn" data-copy="S3 8JU">S3 8JU</button>
   </p>
   
   <div class="charger-connections">
@@ -431,9 +514,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Fitzwilliam Street Car Park, Sheffield 8</h2>
-  <p class="charger-address">Fitzwilliam Street, Sheffield City Centre S3 7SG
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Fitzwilliam Street Car Park, Sheffield 8</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Fitzwilliam Street, Sheffield City Centre <button class="copy-btn" data-copy="S3 7SG">S3 7SG</button>
   </p>
   
   <div class="charger-connections">
@@ -452,9 +538,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Fitzwilliam Street Car Park, Sheffield 4</h2>
-  <p class="charger-address">Fitzwilliam Street, Sheffield City Centre S3 7SG
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Fitzwilliam Street Car Park, Sheffield 4</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Fitzwilliam Street, Sheffield City Centre <button class="copy-btn" data-copy="S3 7SG">S3 7SG</button>
   </p>
   
   <div class="charger-connections">
@@ -473,9 +562,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Spooner Road Car Park, Sheffield 4</h2>
-  <p class="charger-address">45 Spooner Road S10 5BL
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Spooner Road Car Park, Sheffield 4</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">45 Spooner Road <button class="copy-btn" data-copy="S10 5BL">S10 5BL</button>
   </p>
   
   <div class="charger-connections">
@@ -494,9 +586,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Broomspring Lane Car Park, Sheffield 1</h2>
-  <p class="charger-address">90 Broomspring Lane, Broomhall S10 2FB
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Broomspring Lane Car Park, Sheffield 1</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">90 Broomspring Lane, Broomhall <button class="copy-btn" data-copy="S10 2FB">S10 2FB</button>
   </p>
   
   <div class="charger-connections">
@@ -515,9 +610,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Lancing Road Car Park, Sheffield 2</h2>
-  <p class="charger-address">114 Lancing Road, Highfield S2 4EU
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Lancing Road Car Park, Sheffield 2</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">114 Lancing Road, Highfield <button class="copy-btn" data-copy="S2 4EU">S2 4EU</button>
   </p>
   
   <div class="charger-connections">
@@ -536,9 +634,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Tesco Superstore - Sheffield Dinnington</h2>
-  <p class="charger-address">Undergate Road S25 2PF
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Tesco Superstore - Sheffield Dinnington</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Undergate Road <button class="copy-btn" data-copy="S25 2PF">S25 2PF</button>
   </p>
   
   <div class="charger-connections">
@@ -560,9 +661,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Stewart Road Car Park, Sheffield 4</h2>
-  <p class="charger-address">Stewart Road, Sharrow S11 8XT
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Stewart Road Car Park, Sheffield 4</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Stewart Road, Sharrow <button class="copy-btn" data-copy="S11 8XT">S11 8XT</button>
   </p>
   
   <div class="charger-connections">
@@ -581,9 +685,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Albert Road Car Park, Sheffield 1</h2>
-  <p class="charger-address">659-661 London Rd S2 4HT
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Albert Road Car Park, Sheffield 1</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">659-661 London Rd <button class="copy-btn" data-copy="S2 4HT">S2 4HT</button>
   </p>
   
   <div class="charger-connections">
@@ -602,9 +709,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Halfway Park &amp; Ride 1</h2>
-  <p class="charger-address">Eckington Way S20 3GS
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Halfway Park &amp; Ride 1</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Eckington Way <button class="copy-btn" data-copy="S20 3GS">S20 3GS</button>
   </p>
   
   <div class="charger-connections">
@@ -623,9 +733,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Riverside Car Park, Sheffield 3</h2>
-  <p class="charger-address">5 Millsands S3 8HN
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Riverside Car Park, Sheffield 3</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">5 Millsands <button class="copy-btn" data-copy="S3 8HN">S3 8HN</button>
   </p>
   
   <div class="charger-connections">
@@ -644,9 +757,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Riverside Car Park, Sheffield 4</h2>
-  <p class="charger-address">5 Millsands S3 8HN
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Riverside Car Park, Sheffield 4</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">5 Millsands <button class="copy-btn" data-copy="S3 8HN">S3 8HN</button>
   </p>
   
   <div class="charger-connections">
@@ -665,9 +781,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Lidl-Malin Bridge</h2>
-  <p class="charger-address">20 Stannington Road S6 5FL
+<li class="charger-item charger-item--rapid" data-connectors="CHAdeMO,CCS (Type 2),Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Lidl-Malin Bridge</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">20 Stannington Road <button class="copy-btn" data-copy="S6 5FL">S6 5FL</button>
   </p>
   
   <div class="charger-connections">
@@ -692,9 +812,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Tesco Superstore-Sheffield Abbeydale</h2>
-  <p class="charger-address">Abbeydale Drive S7 2QB
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Tesco Superstore-Sheffield Abbeydale</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Abbeydale Drive <button class="copy-btn" data-copy="S7 2QB">S7 2QB</button>
   </p>
   
   <div class="charger-connections">
@@ -716,9 +839,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Shrewsbury Road Car Park</h2>
-  <p class="charger-address">Penistone S36 6DY
+<li class="charger-item charger-item--rapid" data-connectors="CHAdeMO,CCS (Type 2),Type 2 (Tethered Connector) ">
+  <div class="charger-header">
+    <h2 class="charger-name">Shrewsbury Road Car Park</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Penistone <button class="copy-btn" data-copy="S36 6DY">S36 6DY</button>
   </p>
   
   <div class="charger-connections">
@@ -743,9 +870,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Aldi Supermarket, Swallownest</h2>
-  <p class="charger-address">81 81 Park Hill S26 4UN
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Aldi Supermarket, Swallownest</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">81 81 Park Hill <button class="copy-btn" data-copy="S26 4UN">S26 4UN</button>
   </p>
   
   <div class="charger-connections">
@@ -767,9 +897,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">M&amp;S Food Eco Store</h2>
-  <p class="charger-address">250 - 266 Ecclesall Road S11 8JD
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">M&amp;S Food Eco Store</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">250 - 266 Ecclesall Road <button class="copy-btn" data-copy="S11 8JD">S11 8JD</button>
   </p>
   
   <div class="charger-connections">
@@ -788,9 +921,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Fox Valley Shopping Centre</h2>
-  <p class="charger-address">Fox Valley Way S36 2AE
+<li class="charger-item charger-item--rapid" data-connectors="CHAdeMO,CCS (Type 2),Type 2 (Tethered Connector) ">
+  <div class="charger-header">
+    <h2 class="charger-name">Fox Valley Shopping Centre</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Fox Valley Way <button class="copy-btn" data-copy="S36 2AE">S36 2AE</button>
   </p>
   
   <div class="charger-connections">
@@ -815,9 +952,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Costa Coffee</h2>
-  <p class="charger-address">Princess Street S9 3YE
+<li class="charger-item charger-item--rapid" data-connectors="CHAdeMO,CCS (Type 2)">
+  <div class="charger-header">
+    <h2 class="charger-name">Costa Coffee</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Princess Street <button class="copy-btn" data-copy="S9 3YE">S9 3YE</button>
   </p>
   
   <div class="charger-connections">
@@ -839,9 +980,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Aston Library </h2>
-  <p class="charger-address">3 Workshop Road S26 4WD
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Aston Library </h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">3 Workshop Road <button class="copy-btn" data-copy="S26 4WD">S26 4WD</button>
   </p>
   
   <div class="charger-connections">
@@ -860,9 +1004,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Water Sports</h2>
-  <p class="charger-address">Water Sports S26 5RN
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Water Sports</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Water Sports <button class="copy-btn" data-copy="S26 5RN">S26 5RN</button>
   </p>
   
   <div class="charger-connections">
@@ -884,9 +1031,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Queens Road Parking/Charging</h2>
-  <p class="charger-address">Queens Road S2 4EP
+<li class="charger-item charger-item--rapid" data-connectors="CHAdeMO,CCS (Type 2)">
+  <div class="charger-header">
+    <h2 class="charger-name">Queens Road Parking/Charging</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Queens Road <button class="copy-btn" data-copy="S2 4EP">S2 4EP</button>
   </p>
   
   <div class="charger-connections">
@@ -911,6 +1062,23 @@
 
 <p><a href="/" class="back-link">← All UK towns</a></p>
 
+
+<div class="nearby-towns">
+  <h2 class="nearby-heading">Nearby towns</h2>
+  <ul class="nearby-list">
+  
+    <li><a href="/uk/barnsley/">Barnsley</a></li>
+  
+    <li><a href="/uk/chesterfield/">Chesterfield</a></li>
+  
+    <li><a href="/uk/rotherham/">Rotherham</a></li>
+  
+    <li><a href="/uk/wakefield/">Wakefield</a></li>
+  
+  </ul>
+</div>
+
+
 </div>
 
 <footer>
@@ -923,26 +1091,61 @@
 <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 <script>
 (function () {
+  // --- Map ---
   var map = L.map('map').setView([53.393993936496244, -1.4611240191290158], 12);
-
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
   }).addTo(map);
 
   var markers = L.markerClusterGroup();
-  var chargerData = [{"lat": 53.447633, "lng": -1.459572, "title": "MERRYCHEF STATION 01", "address": "Welbuilt 6 Nether Lane"}, {"lat": 53.37864362, "lng": -1.49163314, "title": "Consultants Car Park", "address": "Glossop Road"}, {"lat": 53.40546625250491, "lng": -1.414082712931986, "title": "Meadowhall Retail Park Supercharger", "address": "Meadowhall Retail Park"}, {"lat": 53.461644, "lng": -1.491865, "title": "RAW GREENE KING ACORN 2", "address": "Acorn 516 Burncross Road"}, {"lat": 53.388191, "lng": -1.467784, "title": "Riverside Car Park, Sheffield 2", "address": "5 Millsands"}, {"lat": 53.404844, "lng": -1.492928, "title": "zest-line-club-band", "address": "Livesey Street"}, {"lat": 53.385607, "lng": -1.443524, "title": "Park & Ride - Nunnery Square 1", "address": "Sheffield Parkway"}, {"lat": 53.427591, "lng": -1.4912406, "title": "Eight-Foot Way Pub & Restaurant", "address": "2 Chaucer RD"}, {"lat": 53.443724, "lng": -1.459267, "title": "Morrisons Sheffield Ecclesfield", "address": "299 The Common, Ecclesfield"}, {"lat": 53.427559, "lng": -1.486815, "title": "Asda", "address": "Chaucer Road"}, {"lat": 53.415688, "lng": -1.509242, "title": "Middlewood Park & Ride 6", "address": "Middlewood Road"}, {"lat": 53.400371, "lng": -1.508333, "title": "Malin Bridge Park & Ride 1", "address": "42 Loxley New Road"}, {"lat": 53.390856, "lng": -1.44991, "title": "Harratts Nissan Sheffield", "address": "Attercliffe Road, Sheffield, South Yorkshire"}, {"lat": 53.389416, "lng": -1.486104, "title": "Shipton Road Car Park, Sheffield 1", "address": "Upperthorpe Road"}, {"lat": 53.387939, "lng": -1.475336, "title": "Ebenezer Street Car Park, Sheffield 2", "address": "Ebenezer Street"}, {"lat": 53.387145, "lng": -1.474057, "title": "Trinity Street Car Park, Sheffield 2", "address": "Trinity Street"}, {"lat": 53.386432, "lng": -1.461501, "title": "Windrush Way Car Park, Sheffield 5", "address": "Windrush Way"}, {"lat": 53.379551, "lng": -1.479467, "title": "Fitzwilliam Street Car Park, Sheffield 8", "address": "Fitzwilliam Street, Sheffield City Centre"}, {"lat": 53.379401, "lng": -1.479645, "title": "Fitzwilliam Street Car Park, Sheffield 4", "address": "Fitzwilliam Street, Sheffield City Centre"}, {"lat": 53.378259, "lng": -1.502119, "title": "Spooner Road Car Park, Sheffield 4", "address": "45 Spooner Road"}, {"lat": 53.378163, "lng": -1.484386, "title": "Broomspring Lane Car Park, Sheffield 1", "address": "90 Broomspring Lane, Broomhall"}, {"lat": 53.370721, "lng": -1.468034, "title": "Lancing Road Car Park, Sheffield 2", "address": "114 Lancing Road, Highfield"}, {"lat": 53.370453, "lng": -1.211895, "title": "Tesco Superstore - Sheffield Dinnington", "address": "Undergate Road"}, {"lat": 53.367547, "lng": -1.497893, "title": "Stewart Road Car Park, Sheffield 4", "address": "Stewart Road, Sharrow"}, {"lat": 53.35897, "lng": -1.474235, "title": "Albert Road Car Park, Sheffield 1", "address": "659-661 London Rd"}, {"lat": 53.328089, "lng": -1.344302, "title": "Halfway Park & Ride 1", "address": "Eckington Way"}, {"lat": 53.38777, "lng": -1.467487, "title": "Riverside Car Park, Sheffield 3", "address": "5 Millsands"}, {"lat": 53.386809, "lng": -1.467861, "title": "Riverside Car Park, Sheffield 4", "address": "5 Millsands"}, {"lat": 53.3999553845194, "lng": -1.51392505951219, "title": "Lidl-Malin Bridge", "address": "20 Stannington Road"}, {"lat": 53.347228, "lng": -1.492858, "title": "Tesco Superstore-Sheffield Abbeydale", "address": "Abbeydale Drive"}, {"lat": 53.525627, "lng": -1.62738, "title": "Shrewsbury Road Car Park", "address": "Penistone"}, {"lat": 53.362020585112276, "lng": -1.3282597152579, "title": "Aldi Supermarket, Swallownest", "address": "81 81 Park Hill"}, {"lat": 53.372544, "lng": -1.486449, "title": "M&S Food Eco Store", "address": "250 - 266 Ecclesall Road"}, {"lat": 53.4829792316872, "lng": -1.58795599059522, "title": "Fox Valley Shopping Centre", "address": "Fox Valley Way"}, {"lat": 53.3957735130336, "lng": -1.4428335086053, "title": "Costa Coffee", "address": "Princess Street"}, {"lat": 53.362894, "lng": -1.316377, "title": "Aston Library ", "address": "3 Workshop Road"}, {"lat": 53.338907, "lng": -1.321058, "title": "Water Sports", "address": "Water Sports"}, {"lat": 53.369358, "lng": -1.465098, "title": "Queens Road Parking/Charging", "address": "Queens Road"}];
+  var chargerData = [{"lat": 53.447633, "lng": -1.459572, "title": "MERRYCHEF STATION 01", "address": "Welbuilt 6 Nether Lane", "connectors": ["Type 2 (Socket Only) · 22kW"]}, {"lat": 53.37864362, "lng": -1.49163314, "title": "Consultants Car Park", "address": "Glossop Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 53.40546625250491, "lng": -1.414082712931986, "title": "Meadowhall Retail Park Supercharger", "address": "Meadowhall Retail Park", "connectors": ["CCS (Type 2) · 250kW"]}, {"lat": 53.461644, "lng": -1.491865, "title": "RAW GREENE KING ACORN 2", "address": "Acorn 516 Burncross Road", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 53.388191, "lng": -1.467784, "title": "Riverside Car Park, Sheffield 2", "address": "5 Millsands", "connectors": ["Type 2 (Socket Only) · 22kW"]}, {"lat": 53.404844, "lng": -1.492928, "title": "zest-line-club-band", "address": "Livesey Street", "connectors": ["Type 2 (Tethered Connector)  · 75kW"]}, {"lat": 53.385607, "lng": -1.443524, "title": "Park & Ride - Nunnery Square 1", "address": "Sheffield Parkway", "connectors": ["Type 2 (Socket Only) · 7kW"]}, {"lat": 53.427591, "lng": -1.4912406, "title": "Eight-Foot Way Pub & Restaurant", "address": "2 Chaucer RD", "connectors": ["CHAdeMO · 50kW", "CCS (Type 2) · 50kW", "CHAdeMO · 50kW", "CCS (Type 2) · 50kW", "Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 11kW"]}, {"lat": 53.443724, "lng": -1.459267, "title": "Morrisons Sheffield Ecclesfield", "address": "299 The Common, Ecclesfield", "connectors": ["Type 2 (Socket Only) · 22kW", "CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 50kW"]}, {"lat": 53.427559, "lng": -1.486815, "title": "Asda", "address": "Chaucer Road", "connectors": ["BS1363 3 Pin 13 Amp · 3kW", "BS1363 3 Pin 13 Amp · 3kW"]}, {"lat": 53.415688, "lng": -1.509242, "title": "Middlewood Park & Ride 6", "address": "Middlewood Road", "connectors": ["Type 2 (Socket Only) · 22kW"]}, {"lat": 53.400371, "lng": -1.508333, "title": "Malin Bridge Park & Ride 1", "address": "42 Loxley New Road", "connectors": ["Type 2 (Socket Only) · 22kW"]}, {"lat": 53.390856, "lng": -1.44991, "title": "Harratts Nissan Sheffield", "address": "Attercliffe Road, Sheffield, South Yorkshire", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 53.389416, "lng": -1.486104, "title": "Shipton Road Car Park, Sheffield 1", "address": "Upperthorpe Road", "connectors": ["Type 2 (Socket Only) · 22kW"]}, {"lat": 53.387939, "lng": -1.475336, "title": "Ebenezer Street Car Park, Sheffield 2", "address": "Ebenezer Street", "connectors": ["Type 2 (Socket Only) · 22kW"]}, {"lat": 53.387145, "lng": -1.474057, "title": "Trinity Street Car Park, Sheffield 2", "address": "Trinity Street", "connectors": ["Type 2 (Tethered Connector)  · 50kW", "CHAdeMO · 50kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 53.386432, "lng": -1.461501, "title": "Windrush Way Car Park, Sheffield 5", "address": "Windrush Way", "connectors": ["Type 2 (Socket Only) · 22kW"]}, {"lat": 53.379551, "lng": -1.479467, "title": "Fitzwilliam Street Car Park, Sheffield 8", "address": "Fitzwilliam Street, Sheffield City Centre", "connectors": ["Type 2 (Socket Only) · 22kW"]}, {"lat": 53.379401, "lng": -1.479645, "title": "Fitzwilliam Street Car Park, Sheffield 4", "address": "Fitzwilliam Street, Sheffield City Centre", "connectors": ["Type 2 (Socket Only) · 22kW"]}, {"lat": 53.378259, "lng": -1.502119, "title": "Spooner Road Car Park, Sheffield 4", "address": "45 Spooner Road", "connectors": ["Type 2 (Socket Only) · 22kW"]}, {"lat": 53.378163, "lng": -1.484386, "title": "Broomspring Lane Car Park, Sheffield 1", "address": "90 Broomspring Lane, Broomhall", "connectors": ["Type 2 (Socket Only) · 22kW"]}, {"lat": 53.370721, "lng": -1.468034, "title": "Lancing Road Car Park, Sheffield 2", "address": "114 Lancing Road, Highfield", "connectors": ["Type 2 (Socket Only) · 22kW"]}, {"lat": 53.370453, "lng": -1.211895, "title": "Tesco Superstore - Sheffield Dinnington", "address": "Undergate Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 53.367547, "lng": -1.497893, "title": "Stewart Road Car Park, Sheffield 4", "address": "Stewart Road, Sharrow", "connectors": ["Type 2 (Socket Only) · 22kW"]}, {"lat": 53.35897, "lng": -1.474235, "title": "Albert Road Car Park, Sheffield 1", "address": "659-661 London Rd", "connectors": ["Type 2 (Socket Only) · 22kW"]}, {"lat": 53.328089, "lng": -1.344302, "title": "Halfway Park & Ride 1", "address": "Eckington Way", "connectors": ["Type 2 (Socket Only) · 22kW"]}, {"lat": 53.38777, "lng": -1.467487, "title": "Riverside Car Park, Sheffield 3", "address": "5 Millsands", "connectors": ["Type 2 (Socket Only) · 22kW"]}, {"lat": 53.386809, "lng": -1.467861, "title": "Riverside Car Park, Sheffield 4", "address": "5 Millsands", "connectors": ["Type 2 (Socket Only) · 22kW"]}, {"lat": 53.3999553845194, "lng": -1.51392505951219, "title": "Lidl-Malin Bridge", "address": "20 Stannington Road", "connectors": ["CHAdeMO · 50kW", "CCS (Type 2) · 50kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 53.347228, "lng": -1.492858, "title": "Tesco Superstore-Sheffield Abbeydale", "address": "Abbeydale Drive", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 53.525627, "lng": -1.62738, "title": "Shrewsbury Road Car Park", "address": "Penistone", "connectors": ["CHAdeMO · 50kW", "CCS (Type 2) · 50kW", "Type 2 (Tethered Connector)  · 43kW"]}, {"lat": 53.362020585112276, "lng": -1.3282597152579, "title": "Aldi Supermarket, Swallownest", "address": "81 81 Park Hill", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 53.372544, "lng": -1.486449, "title": "M&S Food Eco Store", "address": "250 - 266 Ecclesall Road", "connectors": ["Type 2 (Socket Only) · 7kW"]}, {"lat": 53.4829792316872, "lng": -1.58795599059522, "title": "Fox Valley Shopping Centre", "address": "Fox Valley Way", "connectors": ["CHAdeMO · 50kW", "CCS (Type 2) · 50kW", "Type 2 (Tethered Connector)  · 40kW"]}, {"lat": 53.3957735130336, "lng": -1.4428335086053, "title": "Costa Coffee", "address": "Princess Street", "connectors": ["CHAdeMO · 50kW", "CCS (Type 2) · 50kW"]}, {"lat": 53.362894, "lng": -1.316377, "title": "Aston Library ", "address": "3 Workshop Road", "connectors": ["Type 2 (Socket Only) · 22kW"]}, {"lat": 53.338907, "lng": -1.321058, "title": "Water Sports", "address": "Water Sports", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 53.369358, "lng": -1.465098, "title": "Queens Road Parking/Charging", "address": "Queens Road", "connectors": ["CHAdeMO · 50kW", "CCS (Type 2) · 50kW"]}];
 
   chargerData.forEach(function (c) {
+    var connHtml = c.connectors.length
+      ? '<div style="margin-top:6px;font-size:12px;color:#475569">' + c.connectors.join(' &middot; ') + '</div>'
+      : '';
     var marker = L.marker([c.lat, c.lng]);
     marker.bindPopup(
-      '<b>' + c.title + '</b><br>' + c.address + '<br><br>' +
+      '<b>' + c.title + '</b>' +
+      '<div style="color:#64748b;font-size:13px">' + c.address + '</div>' +
+      connHtml +
       '<a href="https://www.google.com/maps/dir/?api=1&destination=' + c.lat + ',' + c.lng +
-      '" target="_blank" rel="noopener">Get directions</a>'
+      '" target="_blank" rel="noopener" style="display:inline-block;margin-top:8px;padding:4px 10px;background:#2563eb;color:white;border-radius:4px;text-decoration:none;font-size:12px">Get directions</a>'
     );
     markers.addLayer(marker);
   });
-
   map.addLayer(markers);
+
+  // --- Connector filter ---
+  var filterBtns = document.querySelectorAll('.filter-btn');
+  var chargerItems = document.querySelectorAll('.charger-item');
+
+  filterBtns.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      filterBtns.forEach(function (b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      var f = btn.dataset.filter;
+      chargerItems.forEach(function (item) {
+        var connList = item.dataset.connectors ? item.dataset.connectors.split(',') : [];
+        item.style.display = (f === 'all' || connList.indexOf(f) !== -1) ? '' : 'none';
+      });
+    });
+  });
+
+  // --- Copy postcode ---
+  document.querySelectorAll('.copy-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var original = btn.textContent;
+      navigator.clipboard.writeText(btn.dataset.copy).then(function () {
+        btn.textContent = 'Copied!';
+        btn.classList.add('copy-btn--success');
+        setTimeout(function () {
+          btn.textContent = original;
+          btn.classList.remove('copy-btn--success');
+        }, 1500);
+      });
+    });
+  });
 }());
 </script>
 

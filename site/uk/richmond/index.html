@@ -17,7 +17,10 @@
 
 <header>
 <div class="container">
-<a href="/" class="logo">PlugMap <span class="tagline">UK EV Charger Locator</span></a>
+<a href="/" class="logo">
+  <svg class="logo-bolt" viewBox="0 0 24 24" fill="currentColor" width="22" height="22" aria-hidden="true"><path d="M13 2L4.5 13.5H11L10 22L19.5 10.5H13Z"/></svg>
+  PlugMap <span class="tagline">UK EV Charger Locator</span>
+</a>
 </div>
 </header>
 
@@ -28,16 +31,45 @@
 </nav>
 
 <h1>EV Chargers in Richmond</h1>
-<p class="page-intro">27 public charging stations found in Richmond.</p>
+
+<div class="stats-bar">
+  <span class="stat-pill stat-total">27 stations</span>
+  <span class="stat-pill stat-rapid">2 rapid (50kW+)</span>
+  <span class="stat-pill stat-fast">5 fast (7–50kW)</span>
+  <span class="stat-pill stat-slow">20 slow</span>
+</div>
 
 <div id="map"></div>
 
-<ul class="charger-list">
+
+<div class="connector-filter">
+  <span class="filter-label">Filter:</span>
+  <button class="filter-btn active" data-filter="all">All</button>
+  
+  <button class="filter-btn" data-filter="BS1363 3 Pin 13 Amp">BS1363 3 Pin 13 Amp</button>
+  
+  <button class="filter-btn" data-filter="CCS (Type 2)">CCS (Type 2)</button>
+  
+  <button class="filter-btn" data-filter="CHAdeMO">CHAdeMO</button>
+  
+  <button class="filter-btn" data-filter="Type 1 (J1772)">Type 1 (J1772)</button>
+  
+  <button class="filter-btn" data-filter="Type 2 (Socket Only)">Type 2 (Socket Only)</button>
+  
+  <button class="filter-btn" data-filter="Type 2 (Tethered Connector) ">Type 2 (Tethered Connector) </button>
+  
+</div>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Lidl-Richmond Road</h2>
-  <p class="charger-address">383-393 Richmond Road TW1 2EF
+<ul class="charger-list" id="charger-list">
+
+
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Lidl-Richmond Road</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">383-393 Richmond Road <button class="copy-btn" data-copy="TW1 2EF">TW1 2EF</button>
   </p>
   
   <div class="charger-connections">
@@ -59,9 +91,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Sainsbury&#39;s Richmond</h2>
-  <p class="charger-address">Lower Richmond Road TW9 4LT
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Sainsbury&#39;s Richmond</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Lower Richmond Road <button class="copy-btn" data-copy="TW9 4LT">TW9 4LT</button>
   </p>
   
   <div class="charger-connections">
@@ -89,9 +124,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Ultra Rapid EV Charging - Sainsbury&#39;s Richmond</h2>
-  <p class="charger-address">Sainsbury&#39;s TW9 4LT
+<li class="charger-item charger-item--rapid" data-connectors="CHAdeMO,CCS (Type 2)">
+  <div class="charger-header">
+    <h2 class="charger-name">Ultra Rapid EV Charging - Sainsbury&#39;s Richmond</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Sainsbury&#39;s <button class="copy-btn" data-copy="TW9 4LT">TW9 4LT</button>
   </p>
   
   <div class="charger-connections">
@@ -137,9 +176,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">MO Scotch Corner</h2>
-  <p class="charger-address">Scotch Corner DL10 6PQ
+<li class="charger-item charger-item--rapid" data-connectors="CHAdeMO,Type 2 (Tethered Connector) ">
+  <div class="charger-header">
+    <h2 class="charger-name">MO Scotch Corner</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Scotch Corner <button class="copy-btn" data-copy="DL10 6PQ">DL10 6PQ</button>
   </p>
   
   <div class="charger-connections">
@@ -161,9 +204,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">22 West Park Road</h2>
-  <p class="charger-address">22 West Park Road TW9 4DA
+<li class="charger-item charger-item--slow" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">22 West Park Road</h2>
+    
+  </div>
+  <p class="charger-address">22 West Park Road <button class="copy-btn" data-copy="TW9 4DA">TW9 4DA</button>
   </p>
   
   <div class="charger-connections">
@@ -182,9 +228,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Burlington Avenue</h2>
-  <p class="charger-address">Burlington Avenue TW9 4DG
+<li class="charger-item charger-item--fast" data-connectors="Type 1 (J1772),Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Burlington Avenue</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Burlington Avenue <button class="copy-btn" data-copy="TW9 4DG">TW9 4DG</button>
   </p>
   
   <div class="charger-connections">
@@ -206,9 +255,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Sandycombe Rd 369</h2>
-  <p class="charger-address">Sandycombe Rd 369 TW9 3PR
+<li class="charger-item charger-item--slow" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Sandycombe Rd 369</h2>
+    
+  </div>
+  <p class="charger-address">Sandycombe Rd 369 <button class="copy-btn" data-copy="TW9 3PR">TW9 3PR</button>
   </p>
   
   <div class="charger-connections">
@@ -227,9 +279,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">22 West Park Road</h2>
-  <p class="charger-address">22 West Park Road TW9 4DA
+<li class="charger-item charger-item--slow" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">22 West Park Road</h2>
+    
+  </div>
+  <p class="charger-address">22 West Park Road <button class="copy-btn" data-copy="TW9 4DA">TW9 4DA</button>
   </p>
   
   <div class="charger-connections">
@@ -248,9 +303,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Sandycombe Rd 302</h2>
-  <p class="charger-address">Sandycombe Rd 302 TW9 3NG
+<li class="charger-item charger-item--slow" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Sandycombe Rd 302</h2>
+    
+  </div>
+  <p class="charger-address">Sandycombe Rd 302 <button class="copy-btn" data-copy="TW9 3NG">TW9 3NG</button>
   </p>
   
   <div class="charger-connections">
@@ -269,9 +327,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">High Park Rd 4</h2>
-  <p class="charger-address">High Park Rd 4 TW9 4BH
+<li class="charger-item charger-item--slow" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">High Park Rd 4</h2>
+    
+  </div>
+  <p class="charger-address">High Park Rd 4 <button class="copy-btn" data-copy="TW9 4BH">TW9 4BH</button>
   </p>
   
   <div class="charger-connections">
@@ -290,9 +351,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">The Avenue (Richmond)</h2>
-  <p class="charger-address">The Avenue (Richmond) TW9 2AH
+<li class="charger-item charger-item--fast" data-connectors="Type 1 (J1772),Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">The Avenue (Richmond)</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">The Avenue (Richmond) <button class="copy-btn" data-copy="TW9 2AH">TW9 2AH</button>
   </p>
   
   <div class="charger-connections">
@@ -314,9 +378,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Manor Grove 64</h2>
-  <p class="charger-address">Manor Grove 64 TW9 4QF
+<li class="charger-item charger-item--slow" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Manor Grove 64</h2>
+    
+  </div>
+  <p class="charger-address">Manor Grove 64 <button class="copy-btn" data-copy="TW9 4QF">TW9 4QF</button>
   </p>
   
   <div class="charger-connections">
@@ -335,9 +402,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Sheendale Rd 7</h2>
-  <p class="charger-address">Sheendale Rd 7 TW9 2JJ
+<li class="charger-item charger-item--slow" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Sheendale Rd 7</h2>
+    
+  </div>
+  <p class="charger-address">Sheendale Rd 7 <button class="copy-btn" data-copy="TW9 2JJ">TW9 2JJ</button>
   </p>
   
   <div class="charger-connections">
@@ -356,9 +426,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Sheendale Rd</h2>
-  <p class="charger-address">Sheendale Rd TW9 2JP
+<li class="charger-item charger-item--slow" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Sheendale Rd</h2>
+    
+  </div>
+  <p class="charger-address">Sheendale Rd <button class="copy-btn" data-copy="TW9 2JP">TW9 2JP</button>
   </p>
   
   <div class="charger-connections">
@@ -377,9 +450,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Palmerston Rd 18</h2>
-  <p class="charger-address">Palmerston Rd 18 SW14 7NY
+<li class="charger-item charger-item--slow" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Palmerston Rd 18</h2>
+    
+  </div>
+  <p class="charger-address">Palmerston Rd 18 <button class="copy-btn" data-copy="SW14 7NY">SW14 7NY</button>
   </p>
   
   <div class="charger-connections">
@@ -398,9 +474,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Richmond Station</h2>
-  <p class="charger-address">Kew Road TW9 1DN
+<li class="charger-item charger-item--slow" data-connectors="BS1363 3 Pin 13 Amp">
+  <div class="charger-header">
+    <h2 class="charger-name">Richmond Station</h2>
+    
+  </div>
+  <p class="charger-address">Kew Road <button class="copy-btn" data-copy="TW9 1DN">TW9 1DN</button>
   </p>
   
   <div class="charger-connections">
@@ -422,9 +501,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Westwood Road</h2>
-  <p class="charger-address">Westwood Road SW13 0LA
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only),Type 1 (J1772)">
+  <div class="charger-header">
+    <h2 class="charger-name">Westwood Road</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Westwood Road <button class="copy-btn" data-copy="SW13 0LA">SW13 0LA</button>
   </p>
   
   <div class="charger-connections">
@@ -446,9 +528,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Defoe Ave 29</h2>
-  <p class="charger-address">Defoe Ave 29 TW9 4DS
+<li class="charger-item charger-item--slow" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Defoe Ave 29</h2>
+    
+  </div>
+  <p class="charger-address">Defoe Ave 29 <button class="copy-btn" data-copy="TW9 4DS">TW9 4DS</button>
   </p>
   
   <div class="charger-connections">
@@ -467,9 +552,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Leyborne Park 54</h2>
-  <p class="charger-address">Leyborne Park 54 TW9 3HB
+<li class="charger-item charger-item--slow" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Leyborne Park 54</h2>
+    
+  </div>
+  <p class="charger-address">Leyborne Park 54 <button class="copy-btn" data-copy="TW9 3HB">TW9 3HB</button>
   </p>
   
   <div class="charger-connections">
@@ -488,9 +576,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Defoe Ave 46</h2>
-  <p class="charger-address">Defoe Ave 46 TW9 4DT
+<li class="charger-item charger-item--slow" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Defoe Ave 46</h2>
+    
+  </div>
+  <p class="charger-address">Defoe Ave 46 <button class="copy-btn" data-copy="TW9 4DT">TW9 4DT</button>
   </p>
   
   <div class="charger-connections">
@@ -509,9 +600,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">TW9 3HB</h2>
-  <p class="charger-address">Leyborne Park 17 TW9 3HB
+<li class="charger-item charger-item--slow" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">TW9 3HB</h2>
+    
+  </div>
+  <p class="charger-address">Leyborne Park 17 <button class="copy-btn" data-copy="TW9 3HB">TW9 3HB</button>
   </p>
   
   <div class="charger-connections">
@@ -530,9 +624,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Defoe Ave 57</h2>
-  <p class="charger-address">Defoe Ave 57 TW9 4DS
+<li class="charger-item charger-item--slow" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Defoe Ave 57</h2>
+    
+  </div>
+  <p class="charger-address">Defoe Ave 57 <button class="copy-btn" data-copy="TW9 4DS">TW9 4DS</button>
   </p>
   
   <div class="charger-connections">
@@ -551,9 +648,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Leyborne Park 34</h2>
-  <p class="charger-address">Leyborne Park 34 TW9 3HA
+<li class="charger-item charger-item--slow" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Leyborne Park 34</h2>
+    
+  </div>
+  <p class="charger-address">Leyborne Park 34 <button class="copy-btn" data-copy="TW9 3HA">TW9 3HA</button>
   </p>
   
   <div class="charger-connections">
@@ -572,9 +672,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Beechwood Ave 24</h2>
-  <p class="charger-address">Beechwood Ave 24 TW9 4DE
+<li class="charger-item charger-item--slow" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Beechwood Ave 24</h2>
+    
+  </div>
+  <p class="charger-address">Beechwood Ave 24 <button class="copy-btn" data-copy="TW9 4DE">TW9 4DE</button>
   </p>
   
   <div class="charger-connections">
@@ -593,9 +696,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Beechwood Ave 27</h2>
-  <p class="charger-address">Beechwood Ave 27 TW9 4DD
+<li class="charger-item charger-item--slow" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Beechwood Ave 27</h2>
+    
+  </div>
+  <p class="charger-address">Beechwood Ave 27 <button class="copy-btn" data-copy="TW9 4DD">TW9 4DD</button>
   </p>
   
   <div class="charger-connections">
@@ -614,9 +720,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Ennerdale Rd 30</h2>
-  <p class="charger-address">Ennerdale Rd 30 TW9 3LD
+<li class="charger-item charger-item--slow" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Ennerdale Rd 30</h2>
+    
+  </div>
+  <p class="charger-address">Ennerdale Rd 30 <button class="copy-btn" data-copy="TW9 3LD">TW9 3LD</button>
   </p>
   
   <div class="charger-connections">
@@ -635,9 +744,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">High Park Rd 15</h2>
-  <p class="charger-address">High Park Rd 15 TW9 4BL
+<li class="charger-item charger-item--slow" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">High Park Rd 15</h2>
+    
+  </div>
+  <p class="charger-address">High Park Rd 15 <button class="copy-btn" data-copy="TW9 4BL">TW9 4BL</button>
   </p>
   
   <div class="charger-connections">
@@ -659,6 +771,23 @@
 
 <p><a href="/" class="back-link">← All UK towns</a></p>
 
+
+<div class="nearby-towns">
+  <h2 class="nearby-heading">Nearby towns</h2>
+  <ul class="nearby-list">
+  
+    <li><a href="/uk/harrow/">Harrow</a></li>
+  
+    <li><a href="/uk/greenford/">Greenford</a></li>
+  
+    <li><a href="/uk/wembley/">Wembley</a></li>
+  
+    <li><a href="/uk/ealing/">Ealing</a></li>
+  
+  </ul>
+</div>
+
+
 </div>
 
 <footer>
@@ -671,26 +800,61 @@
 <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 <script>
 (function () {
+  // --- Map ---
   var map = L.map('map').setView([51.58281648148148, -0.3361862222222222], 12);
-
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
   }).addTo(map);
 
   var markers = L.markerClusterGroup();
-  var chargerData = [{"lat": 51.455762, "lng": -0.310703, "title": "Lidl-Richmond Road", "address": "383-393 Richmond Road"}, {"lat": 51.467139, "lng": -0.286563, "title": "Sainsbury's Richmond", "address": "Lower Richmond Road"}, {"lat": 51.466457, "lng": -0.287409, "title": "Ultra Rapid EV Charging - Sainsbury's Richmond", "address": "Sainsbury's"}, {"lat": 54.44381, "lng": -1.66722, "title": "MO Scotch Corner", "address": "Scotch Corner"}, {"lat": 51.476527, "lng": -0.283145, "title": "22 West Park Road", "address": "22 West Park Road"}, {"lat": 51.476797, "lng": -0.284099, "title": "Burlington Avenue", "address": "Burlington Avenue"}, {"lat": 51.476673, "lng": -0.286711, "title": "Sandycombe Rd 369", "address": "Sandycombe Rd 369"}, {"lat": 51.476527, "lng": -0.283145, "title": "22 West Park Road", "address": "22 West Park Road"}, {"lat": 51.476437, "lng": -0.286748, "title": "Sandycombe Rd 302", "address": "Sandycombe Rd 302"}, {"lat": 51.475548, "lng": -0.282442, "title": "High Park Rd 4", "address": "High Park Rd 4"}, {"lat": 51.474142, "lng": -0.291974, "title": "The Avenue (Richmond)", "address": "The Avenue (Richmond)"}, {"lat": 51.465807, "lng": -0.286541, "title": "Manor Grove 64", "address": "Manor Grove 64"}, {"lat": 51.465556, "lng": -0.292927, "title": "Sheendale Rd 7", "address": "Sheendale Rd 7"}, {"lat": 51.465251, "lng": -0.292523, "title": "Sheendale Rd", "address": "Sheendale Rd"}, {"lat": 51.462754, "lng": -0.2711, "title": "Palmerston Rd 18", "address": "Palmerston Rd 18"}, {"lat": 51.462399, "lng": -0.302488, "title": "Richmond Station", "address": "Kew Road"}, {"lat": 51.46568, "lng": -0.248654, "title": "Westwood Road", "address": "Westwood Road"}, {"lat": 51.479725, "lng": -0.280986, "title": "Defoe Ave 29", "address": "Defoe Ave 29"}, {"lat": 51.479543, "lng": -0.284508, "title": "Leyborne Park 54", "address": "Leyborne Park 54"}, {"lat": 51.479483, "lng": -0.280669, "title": "Defoe Ave 46", "address": "Defoe Ave 46"}, {"lat": 51.479282, "lng": -0.285025, "title": "TW9 3HB", "address": "Leyborne Park 17"}, {"lat": 51.479219, "lng": -0.280474, "title": "Defoe Ave 57", "address": "Defoe Ave 57"}, {"lat": 51.479047, "lng": -0.285131, "title": "Leyborne Park 34", "address": "Leyborne Park 34"}, {"lat": 51.478042, "lng": -0.28275, "title": "Beechwood Ave 24", "address": "Beechwood Ave 24"}, {"lat": 51.477698, "lng": -0.282814, "title": "Beechwood Ave 27", "address": "Beechwood Ave 27"}, {"lat": 51.475528, "lng": -0.289296, "title": "Ennerdale Rd 30", "address": "Ennerdale Rd 30"}, {"lat": 51.475212, "lng": -0.280983, "title": "High Park Rd 15", "address": "High Park Rd 15"}];
+  var chargerData = [{"lat": 51.455762, "lng": -0.310703, "title": "Lidl-Richmond Road", "address": "383-393 Richmond Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 51.467139, "lng": -0.286563, "title": "Sainsbury's Richmond", "address": "Lower Richmond Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 51.466457, "lng": -0.287409, "title": "Ultra Rapid EV Charging - Sainsbury's Richmond", "address": "Sainsbury's", "connectors": ["CHAdeMO · 50kW", "CCS (Type 2) · 150kW", "CCS (Type 2) · 150kW", "CCS (Type 2) · 150kW", "CCS (Type 2) · 150kW", "CCS (Type 2) · 150kW", "CCS (Type 2) · 150kW", "CCS (Type 2) · 150kW", "CCS (Type 2) · 150kW", "CCS (Type 2) · 150kW"]}, {"lat": 54.44381, "lng": -1.66722, "title": "MO Scotch Corner", "address": "Scotch Corner", "connectors": ["CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 43kW"]}, {"lat": 51.476527, "lng": -0.283145, "title": "22 West Park Road", "address": "22 West Park Road", "connectors": ["Type 2 (Socket Only) · 3.7kW"]}, {"lat": 51.476797, "lng": -0.284099, "title": "Burlington Avenue", "address": "Burlington Avenue", "connectors": ["Type 1 (J1772) · 3kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 51.476673, "lng": -0.286711, "title": "Sandycombe Rd 369", "address": "Sandycombe Rd 369", "connectors": ["Type 2 (Socket Only) · 3.7kW"]}, {"lat": 51.476527, "lng": -0.283145, "title": "22 West Park Road", "address": "22 West Park Road", "connectors": ["Type 2 (Socket Only) · 3.7kW"]}, {"lat": 51.476437, "lng": -0.286748, "title": "Sandycombe Rd 302", "address": "Sandycombe Rd 302", "connectors": ["Type 2 (Socket Only) · 3.7kW"]}, {"lat": 51.475548, "lng": -0.282442, "title": "High Park Rd 4", "address": "High Park Rd 4", "connectors": ["Type 2 (Socket Only) · 3.7kW"]}, {"lat": 51.474142, "lng": -0.291974, "title": "The Avenue (Richmond)", "address": "The Avenue (Richmond)", "connectors": ["Type 1 (J1772) · 3kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 51.465807, "lng": -0.286541, "title": "Manor Grove 64", "address": "Manor Grove 64", "connectors": ["Type 2 (Socket Only) · 3.7kW"]}, {"lat": 51.465556, "lng": -0.292927, "title": "Sheendale Rd 7", "address": "Sheendale Rd 7", "connectors": ["Type 2 (Socket Only) · 3.7kW"]}, {"lat": 51.465251, "lng": -0.292523, "title": "Sheendale Rd", "address": "Sheendale Rd", "connectors": ["Type 2 (Socket Only) · 3.7kW"]}, {"lat": 51.462754, "lng": -0.2711, "title": "Palmerston Rd 18", "address": "Palmerston Rd 18", "connectors": ["Type 2 (Socket Only) · 3.7kW"]}, {"lat": 51.462399, "lng": -0.302488, "title": "Richmond Station", "address": "Kew Road", "connectors": ["BS1363 3 Pin 13 Amp · 3kW", "BS1363 3 Pin 13 Amp · 3kW"]}, {"lat": 51.46568, "lng": -0.248654, "title": "Westwood Road", "address": "Westwood Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 1 (J1772) · 3kW"]}, {"lat": 51.479725, "lng": -0.280986, "title": "Defoe Ave 29", "address": "Defoe Ave 29", "connectors": ["Type 2 (Socket Only) · 3.7kW"]}, {"lat": 51.479543, "lng": -0.284508, "title": "Leyborne Park 54", "address": "Leyborne Park 54", "connectors": ["Type 2 (Socket Only) · 3.7kW"]}, {"lat": 51.479483, "lng": -0.280669, "title": "Defoe Ave 46", "address": "Defoe Ave 46", "connectors": ["Type 2 (Socket Only) · 3.7kW"]}, {"lat": 51.479282, "lng": -0.285025, "title": "TW9 3HB", "address": "Leyborne Park 17", "connectors": ["Type 2 (Socket Only) · 3.7kW"]}, {"lat": 51.479219, "lng": -0.280474, "title": "Defoe Ave 57", "address": "Defoe Ave 57", "connectors": ["Type 2 (Socket Only) · 3.7kW"]}, {"lat": 51.479047, "lng": -0.285131, "title": "Leyborne Park 34", "address": "Leyborne Park 34", "connectors": ["Type 2 (Socket Only) · 3.7kW"]}, {"lat": 51.478042, "lng": -0.28275, "title": "Beechwood Ave 24", "address": "Beechwood Ave 24", "connectors": ["Type 2 (Socket Only) · 3.7kW"]}, {"lat": 51.477698, "lng": -0.282814, "title": "Beechwood Ave 27", "address": "Beechwood Ave 27", "connectors": ["Type 2 (Socket Only) · 3.7kW"]}, {"lat": 51.475528, "lng": -0.289296, "title": "Ennerdale Rd 30", "address": "Ennerdale Rd 30", "connectors": ["Type 2 (Socket Only) · 3.7kW"]}, {"lat": 51.475212, "lng": -0.280983, "title": "High Park Rd 15", "address": "High Park Rd 15", "connectors": ["Type 2 (Socket Only) · 3.7kW"]}];
 
   chargerData.forEach(function (c) {
+    var connHtml = c.connectors.length
+      ? '<div style="margin-top:6px;font-size:12px;color:#475569">' + c.connectors.join(' &middot; ') + '</div>'
+      : '';
     var marker = L.marker([c.lat, c.lng]);
     marker.bindPopup(
-      '<b>' + c.title + '</b><br>' + c.address + '<br><br>' +
+      '<b>' + c.title + '</b>' +
+      '<div style="color:#64748b;font-size:13px">' + c.address + '</div>' +
+      connHtml +
       '<a href="https://www.google.com/maps/dir/?api=1&destination=' + c.lat + ',' + c.lng +
-      '" target="_blank" rel="noopener">Get directions</a>'
+      '" target="_blank" rel="noopener" style="display:inline-block;margin-top:8px;padding:4px 10px;background:#2563eb;color:white;border-radius:4px;text-decoration:none;font-size:12px">Get directions</a>'
     );
     markers.addLayer(marker);
   });
-
   map.addLayer(markers);
+
+  // --- Connector filter ---
+  var filterBtns = document.querySelectorAll('.filter-btn');
+  var chargerItems = document.querySelectorAll('.charger-item');
+
+  filterBtns.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      filterBtns.forEach(function (b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      var f = btn.dataset.filter;
+      chargerItems.forEach(function (item) {
+        var connList = item.dataset.connectors ? item.dataset.connectors.split(',') : [];
+        item.style.display = (f === 'all' || connList.indexOf(f) !== -1) ? '' : 'none';
+      });
+    });
+  });
+
+  // --- Copy postcode ---
+  document.querySelectorAll('.copy-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var original = btn.textContent;
+      navigator.clipboard.writeText(btn.dataset.copy).then(function () {
+        btn.textContent = 'Copied!';
+        btn.classList.add('copy-btn--success');
+        setTimeout(function () {
+          btn.textContent = original;
+          btn.classList.remove('copy-btn--success');
+        }, 1500);
+      });
+    });
+  });
 }());
 </script>
 

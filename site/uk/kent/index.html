@@ -17,7 +17,10 @@
 
 <header>
 <div class="container">
-<a href="/" class="logo">PlugMap <span class="tagline">UK EV Charger Locator</span></a>
+<a href="/" class="logo">
+  <svg class="logo-bolt" viewBox="0 0 24 24" fill="currentColor" width="22" height="22" aria-hidden="true"><path d="M13 2L4.5 13.5H11L10 22L19.5 10.5H13Z"/></svg>
+  PlugMap <span class="tagline">UK EV Charger Locator</span>
+</a>
 </div>
 </header>
 
@@ -28,16 +31,41 @@
 </nav>
 
 <h1>EV Chargers in Kent</h1>
-<p class="page-intro">9 public charging stations found in Kent.</p>
+
+<div class="stats-bar">
+  <span class="stat-pill stat-total">9 stations</span>
+  <span class="stat-pill stat-rapid">2 rapid (50kW+)</span>
+  <span class="stat-pill stat-fast">7 fast (7–50kW)</span>
+  
+</div>
 
 <div id="map"></div>
 
-<ul class="charger-list">
+
+<div class="connector-filter">
+  <span class="filter-label">Filter:</span>
+  <button class="filter-btn active" data-filter="all">All</button>
+  
+  <button class="filter-btn" data-filter="CCS (Type 2)">CCS (Type 2)</button>
+  
+  <button class="filter-btn" data-filter="CHAdeMO">CHAdeMO</button>
+  
+  <button class="filter-btn" data-filter="Type 2 (Socket Only)">Type 2 (Socket Only)</button>
+  
+  <button class="filter-btn" data-filter="Type 2 (Tethered Connector) ">Type 2 (Tethered Connector) </button>
+  
+</div>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Royal Wells Park - Twining Close</h2>
-  <p class="charger-address">6 Twining Close TN4 8FJ
+<ul class="charger-list" id="charger-list">
+
+
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Royal Wells Park - Twining Close</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">6 Twining Close <button class="copy-btn" data-copy="TN4 8FJ">TN4 8FJ</button>
   </p>
   
   <div class="charger-connections">
@@ -59,9 +87,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">MFG Deal Service Station</h2>
-  <p class="charger-address">47 London Road CT14 9TF
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2),CHAdeMO">
+  <div class="charger-header">
+    <h2 class="charger-name">MFG Deal Service Station</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">47 London Road <button class="copy-btn" data-copy="CT14 9TF">CT14 9TF</button>
   </p>
   
   <div class="charger-connections">
@@ -83,9 +115,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">THE PADDOCKS CAR PARK 1</h2>
-  <p class="charger-address">Prospect Rd, Hythe CT21 5NN, UK CT21 5NN
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">THE PADDOCKS CAR PARK 1</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Prospect Rd, Hythe CT21 5NN, UK <button class="copy-btn" data-copy="CT21 5NN">CT21 5NN</button>
   </p>
   
   <div class="charger-connections">
@@ -104,9 +139,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">The Grove Car Park 2</h2>
-  <p class="charger-address">Swanscombe DA10 0AD
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">The Grove Car Park 2</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Swanscombe <button class="copy-btn" data-copy="DA10 0AD">DA10 0AD</button>
   </p>
   
   <div class="charger-connections">
@@ -128,9 +166,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">South Aylesford Retail Park</h2>
-  <p class="charger-address">Quarry Wood ME20 7TP
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">South Aylesford Retail Park</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Quarry Wood <button class="copy-btn" data-copy="ME20 7TP">ME20 7TP</button>
   </p>
   
   <div class="charger-connections">
@@ -152,9 +193,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">HIGH KNOCKE CAR PARK</h2>
-  <p class="charger-address">Cobsden Road, Romney Marsh TN29 0RJ, UK TN29 0RJ
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">HIGH KNOCKE CAR PARK</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Cobsden Road, Romney Marsh TN29 0RJ, UK <button class="copy-btn" data-copy="TN29 0RJ">TN29 0RJ</button>
   </p>
   
   <div class="charger-connections">
@@ -173,9 +217,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Alexander Grove Car Park</h2>
-  <p class="charger-address">Kings Hill ME19 4LG
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Alexander Grove Car Park</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Kings Hill <button class="copy-btn" data-copy="ME19 4LG">ME19 4LG</button>
   </p>
   
   <div class="charger-connections">
@@ -197,9 +244,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Fishmonger&#39;s Lane Car Park</h2>
-  <p class="charger-address">Mill Lane CT16 1FL
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Fishmonger&#39;s Lane Car Park</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Mill Lane <button class="copy-btn" data-copy="CT16 1FL">CT16 1FL</button>
   </p>
   
   <div class="charger-connections">
@@ -227,9 +277,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Miller &amp; Carter Riverhead</h2>
-  <p class="charger-address">Amherst Hill TN13 2EN
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2),Type 2 (Tethered Connector) ,CHAdeMO">
+  <div class="charger-header">
+    <h2 class="charger-name">Miller &amp; Carter Riverhead</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Amherst Hill <button class="copy-btn" data-copy="TN13 2EN">TN13 2EN</button>
   </p>
   
   <div class="charger-connections">
@@ -257,6 +311,23 @@
 
 <p><a href="/" class="back-link">← All UK towns</a></p>
 
+
+<div class="nearby-towns">
+  <h2 class="nearby-heading">Nearby towns</h2>
+  <ul class="nearby-list">
+  
+    <li><a href="/uk/faversham/">Faversham</a></li>
+  
+    <li><a href="/uk/sittingbourne/">Sittingbourne</a></li>
+  
+    <li><a href="/uk/ashford/">Ashford</a></li>
+  
+    <li><a href="/uk/maidstone/">Maidstone</a></li>
+  
+  </ul>
+</div>
+
+
 </div>
 
 <footer>
@@ -269,26 +340,61 @@
 <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 <script>
 (function () {
+  // --- Map ---
   var map = L.map('map').setView([51.20703764444445, 0.7096199333333333], 12);
-
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
   }).addTo(map);
 
   var markers = L.markerClusterGroup();
-  var chargerData = [{"lat": 51.136946, "lng": 0.260256, "title": "Royal Wells Park - Twining Close", "address": "6 Twining Close"}, {"lat": 51.2219733, "lng": 1.3931447, "title": "MFG Deal Service Station", "address": "47 London Road"}, {"lat": 51.070878, "lng": 1.08535, "title": "THE PADDOCKS CAR PARK 1", "address": "Prospect Rd, Hythe CT21 5NN, UK"}, {"lat": 51.447539, "lng": 0.308846, "title": "The Grove Car Park 2", "address": "Swanscombe"}, {"lat": 51.293269, "lng": 0.471739, "title": "South Aylesford Retail Park", "address": "Quarry Wood"}, {"lat": 51.012178, "lng": 0.983517, "title": "HIGH KNOCKE CAR PARK", "address": "Cobsden Road, Romney Marsh TN29 0RJ, UK"}, {"lat": 51.273101, "lng": 0.399016, "title": "Alexander Grove Car Park", "address": "Kings Hill"}, {"lat": 51.1240755, "lng": 1.3147457, "title": "Fishmonger's Lane Car Park", "address": "Mill Lane"}, {"lat": 51.283379, "lng": 0.169965, "title": "Miller & Carter Riverhead", "address": "Amherst Hill"}];
+  var chargerData = [{"lat": 51.136946, "lng": 0.260256, "title": "Royal Wells Park - Twining Close", "address": "6 Twining Close", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 51.2219733, "lng": 1.3931447, "title": "MFG Deal Service Station", "address": "47 London Road", "connectors": ["CCS (Type 2) · 150kW", "CHAdeMO · 50kW"]}, {"lat": 51.070878, "lng": 1.08535, "title": "THE PADDOCKS CAR PARK 1", "address": "Prospect Rd, Hythe CT21 5NN, UK", "connectors": ["Type 2 (Socket Only) · 7kW"]}, {"lat": 51.447539, "lng": 0.308846, "title": "The Grove Car Park 2", "address": "Swanscombe", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 51.293269, "lng": 0.471739, "title": "South Aylesford Retail Park", "address": "Quarry Wood", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 51.012178, "lng": 0.983517, "title": "HIGH KNOCKE CAR PARK", "address": "Cobsden Road, Romney Marsh TN29 0RJ, UK", "connectors": ["Type 2 (Socket Only) · 7kW"]}, {"lat": 51.273101, "lng": 0.399016, "title": "Alexander Grove Car Park", "address": "Kings Hill", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 51.1240755, "lng": 1.3147457, "title": "Fishmonger's Lane Car Park", "address": "Mill Lane", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 51.283379, "lng": 0.169965, "title": "Miller & Carter Riverhead", "address": "Amherst Hill", "connectors": ["CCS (Type 2) · 50kW", "Type 2 (Tethered Connector)  · 43kW", "CHAdeMO · 50kW"]}];
 
   chargerData.forEach(function (c) {
+    var connHtml = c.connectors.length
+      ? '<div style="margin-top:6px;font-size:12px;color:#475569">' + c.connectors.join(' &middot; ') + '</div>'
+      : '';
     var marker = L.marker([c.lat, c.lng]);
     marker.bindPopup(
-      '<b>' + c.title + '</b><br>' + c.address + '<br><br>' +
+      '<b>' + c.title + '</b>' +
+      '<div style="color:#64748b;font-size:13px">' + c.address + '</div>' +
+      connHtml +
       '<a href="https://www.google.com/maps/dir/?api=1&destination=' + c.lat + ',' + c.lng +
-      '" target="_blank" rel="noopener">Get directions</a>'
+      '" target="_blank" rel="noopener" style="display:inline-block;margin-top:8px;padding:4px 10px;background:#2563eb;color:white;border-radius:4px;text-decoration:none;font-size:12px">Get directions</a>'
     );
     markers.addLayer(marker);
   });
-
   map.addLayer(markers);
+
+  // --- Connector filter ---
+  var filterBtns = document.querySelectorAll('.filter-btn');
+  var chargerItems = document.querySelectorAll('.charger-item');
+
+  filterBtns.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      filterBtns.forEach(function (b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      var f = btn.dataset.filter;
+      chargerItems.forEach(function (item) {
+        var connList = item.dataset.connectors ? item.dataset.connectors.split(',') : [];
+        item.style.display = (f === 'all' || connList.indexOf(f) !== -1) ? '' : 'none';
+      });
+    });
+  });
+
+  // --- Copy postcode ---
+  document.querySelectorAll('.copy-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var original = btn.textContent;
+      navigator.clipboard.writeText(btn.dataset.copy).then(function () {
+        btn.textContent = 'Copied!';
+        btn.classList.add('copy-btn--success');
+        setTimeout(function () {
+          btn.textContent = original;
+          btn.classList.remove('copy-btn--success');
+        }, 1500);
+      });
+    });
+  });
 }());
 </script>
 

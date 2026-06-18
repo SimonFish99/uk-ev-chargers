@@ -17,7 +17,10 @@
 
 <header>
 <div class="container">
-<a href="/" class="logo">PlugMap <span class="tagline">UK EV Charger Locator</span></a>
+<a href="/" class="logo">
+  <svg class="logo-bolt" viewBox="0 0 24 24" fill="currentColor" width="22" height="22" aria-hidden="true"><path d="M13 2L4.5 13.5H11L10 22L19.5 10.5H13Z"/></svg>
+  PlugMap <span class="tagline">UK EV Charger Locator</span>
+</a>
 </div>
 </header>
 
@@ -28,16 +31,39 @@
 </nav>
 
 <h1>EV Chargers in Bromley</h1>
-<p class="page-intro">16 public charging stations found in Bromley.</p>
+
+<div class="stats-bar">
+  <span class="stat-pill stat-total">16 stations</span>
+  <span class="stat-pill stat-rapid">1 rapid (50kW+)</span>
+  <span class="stat-pill stat-fast">13 fast (7–50kW)</span>
+  <span class="stat-pill stat-slow">2 slow</span>
+</div>
 
 <div id="map"></div>
 
-<ul class="charger-list">
+
+<div class="connector-filter">
+  <span class="filter-label">Filter:</span>
+  <button class="filter-btn active" data-filter="all">All</button>
+  
+  <button class="filter-btn" data-filter="CHAdeMO">CHAdeMO</button>
+  
+  <button class="filter-btn" data-filter="Type 1 (J1772)">Type 1 (J1772)</button>
+  
+  <button class="filter-btn" data-filter="Type 2 (Socket Only)">Type 2 (Socket Only)</button>
+  
+</div>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Hampden Road</h2>
-  <p class="charger-address">53 Hampden Road BR3 4HD
+<ul class="charger-list" id="charger-list">
+
+
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Hampden Road</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">53 Hampden Road <button class="copy-btn" data-copy="BR3 4HD">BR3 4HD</button>
   </p>
   
   <div class="charger-connections">
@@ -56,9 +82,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">St James Avenue</h2>
-  <p class="charger-address">2 St James Avenue BR3 4DG
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">St James Avenue</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">2 St James Avenue <button class="copy-btn" data-copy="BR3 4DG">BR3 4DG</button>
   </p>
   
   <div class="charger-connections">
@@ -77,9 +106,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Shell Recharge/Ubitricity</h2>
-  <p class="charger-address">null BR1 5RH
+<li class="charger-item charger-item--slow" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Shell Recharge/Ubitricity</h2>
+    
+  </div>
+  <p class="charger-address">null <button class="copy-btn" data-copy="BR1 5RH">BR1 5RH</button>
   </p>
   
   <div class="charger-connections">
@@ -98,9 +130,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Jemca Toyota Bromley</h2>
-  <p class="charger-address">146-150 Burnt Ash Lane BR1 5TD
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Jemca Toyota Bromley</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">146-150 Burnt Ash Lane <button class="copy-btn" data-copy="BR1 5TD">BR1 5TD</button>
   </p>
   
   <div class="charger-connections">
@@ -122,9 +157,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Penge East Station (site 2)</h2>
-  <p class="charger-address">Penge East Station (site 2) SE20 7BU
+<li class="charger-item charger-item--fast" data-connectors="Type 1 (J1772),Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Penge East Station (site 2)</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Penge East Station (site 2) <button class="copy-btn" data-copy="SE20 7BU">SE20 7BU</button>
   </p>
   
   <div class="charger-connections">
@@ -146,9 +184,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Nissan Ancaster Bromley</h2>
-  <p class="charger-address">88 Plaistow Lane BR1 3JE
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Nissan Ancaster Bromley</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">88 Plaistow Lane <button class="copy-btn" data-copy="BR1 3JE">BR1 3JE</button>
   </p>
   
   <div class="charger-connections">
@@ -170,9 +211,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">St Georges Road car park</h2>
-  <p class="charger-address">St Georges Road car park BR3 1AX
+<li class="charger-item charger-item--fast" data-connectors="Type 1 (J1772),Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">St Georges Road car park</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">St Georges Road car park <button class="copy-btn" data-copy="BR3 1AX">BR3 1AX</button>
   </p>
   
   <div class="charger-connections">
@@ -194,9 +238,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">The Spa Car Park Site 2</h2>
-  <p class="charger-address">The Spa Car Park Site 2 BR3 4PF
+<li class="charger-item charger-item--fast" data-connectors="Type 1 (J1772),Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">The Spa Car Park Site 2</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">The Spa Car Park Site 2 <button class="copy-btn" data-copy="BR3 4PF">BR3 4PF</button>
   </p>
   
   <div class="charger-connections">
@@ -218,9 +265,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Civic Centre Car Park (Stockwell Close)</h2>
-  <p class="charger-address">Civic Centre Car Park (Stockwell Close) BR1 3UH
+<li class="charger-item charger-item--fast" data-connectors="Type 1 (J1772),Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Civic Centre Car Park (Stockwell Close)</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Civic Centre Car Park (Stockwell Close) <button class="copy-btn" data-copy="BR1 3UH">BR1 3UH</button>
   </p>
   
   <div class="charger-connections">
@@ -242,9 +292,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">NCP Bromley</h2>
-  <p class="charger-address">Elmfield Road BR1 1TR
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">NCP Bromley</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Elmfield Road <button class="copy-btn" data-copy="BR1 1TR">BR1 1TR</button>
   </p>
   
   <div class="charger-connections">
@@ -266,9 +319,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">97 West Wickham</h2>
-  <p class="charger-address">High Street BR4 0LS
+<li class="charger-item charger-item--rapid" data-connectors="CHAdeMO">
+  <div class="charger-header">
+    <h2 class="charger-name">97 West Wickham</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">High Street <button class="copy-btn" data-copy="BR4 0LS">BR4 0LS</button>
   </p>
   
   <div class="charger-connections">
@@ -290,9 +347,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Hayes Station Car Park</h2>
-  <p class="charger-address">Hayes Station Car Park BR2 7EJ
+<li class="charger-item charger-item--fast" data-connectors="Type 1 (J1772),Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Hayes Station Car Park</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Hayes Station Car Park <button class="copy-btn" data-copy="BR2 7EJ">BR2 7EJ</button>
   </p>
   
   <div class="charger-connections">
@@ -314,9 +374,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Tesco Superstore-Bromley</h2>
-  <p class="charger-address">Homesdale Road BR1 2UE
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Tesco Superstore-Bromley</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Homesdale Road <button class="copy-btn" data-copy="BR1 2UE">BR1 2UE</button>
   </p>
   
   <div class="charger-connections">
@@ -338,9 +401,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Hill Car Park(Site 2)</h2>
-  <p class="charger-address">Hill Car Park(Site 2) BR2 0DA
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only),Type 1 (J1772)">
+  <div class="charger-header">
+    <h2 class="charger-name">Hill Car Park(Site 2)</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Hill Car Park(Site 2) <button class="copy-btn" data-copy="BR2 0DA">BR2 0DA</button>
   </p>
   
   <div class="charger-connections">
@@ -362,9 +428,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Matlida house</h2>
-  <p class="charger-address">Hillbrow Road BR1 4JL
+<li class="charger-item charger-item--slow" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Matlida house</h2>
+    
+  </div>
+  <p class="charger-address">Hillbrow Road <button class="copy-btn" data-copy="BR1 4JL">BR1 4JL</button>
   </p>
   
   <div class="charger-connections">
@@ -386,9 +455,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Bromley Court Hotel</h2>
-  <p class="charger-address">Bromley Hill BR1 4JD
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Bromley Court Hotel</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Bromley Hill <button class="copy-btn" data-copy="BR1 4JD">BR1 4JD</button>
   </p>
   
   <div class="charger-connections">
@@ -413,6 +485,23 @@
 
 <p><a href="/" class="back-link">← All UK towns</a></p>
 
+
+<div class="nearby-towns">
+  <h2 class="nearby-heading">Nearby towns</h2>
+  <ul class="nearby-list">
+  
+    <li><a href="/uk/lewisham/">Lewisham</a></li>
+  
+    <li><a href="/uk/south-norwood/">South Norwood</a></li>
+  
+    <li><a href="/uk/greenwich/">Greenwich</a></li>
+  
+    <li><a href="/uk/croydon/">Croydon</a></li>
+  
+  </ul>
+</div>
+
+
 </div>
 
 <footer>
@@ -425,26 +514,61 @@
 <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 <script>
 (function () {
+  // --- Map ---
   var map = L.map('map').setView([51.4063446875, -0.0051569375], 12);
-
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
   }).addTo(map);
 
   var markers = L.markerClusterGroup();
-  var chargerData = [{"lat": 51.40365, "lng": -0.040681, "title": "Hampden Road", "address": "53 Hampden Road"}, {"lat": 51.39924, "lng": -0.043673, "title": "St James Avenue", "address": "2 St James Avenue"}, {"lat": 51.427379, "lng": -0.003627, "title": "Shell Recharge/Ubitricity", "address": "null"}, {"lat": 51.4221, "lng": 0.022362, "title": "Jemca Toyota Bromley", "address": "146-150 Burnt Ash Lane"}, {"lat": 51.419299, "lng": -0.054912, "title": "Penge East Station (site 2)", "address": "Penge East Station (site 2)"}, {"lat": 51.410999, "lng": 0.026223, "title": "Nissan Ancaster Bromley", "address": "88 Plaistow Lane"}, {"lat": 51.40959, "lng": -0.023402, "title": "St Georges Road car park", "address": "St Georges Road car park"}, {"lat": 51.408651, "lng": -0.038727, "title": "The Spa Car Park Site 2", "address": "The Spa Car Park Site 2"}, {"lat": 51.404468, "lng": 0.020115, "title": "Civic Centre Car Park (Stockwell Close)", "address": "Civic Centre Car Park (Stockwell Close)"}, {"lat": 51.4025, "lng": 0.017469, "title": "NCP Bromley", "address": "Elmfield Road"}, {"lat": 51.376774, "lng": -0.019622, "title": "97 West Wickham", "address": "High Street"}, {"lat": 51.376592, "lng": 0.010597, "title": "Hayes Station Car Park", "address": "Hayes Station Car Park"}, {"lat": 51.399995, "lng": 0.032592, "title": "Tesco Superstore-Bromley", "address": "Homesdale Road"}, {"lat": 51.406462, "lng": 0.010857, "title": "Hill Car Park(Site 2)", "address": "Hill Car Park(Site 2)"}, {"lat": 51.417217, "lng": -0.000418, "title": "Matlida house", "address": "Hillbrow Road"}, {"lat": 51.416599, "lng": 0.002336, "title": "Bromley Court Hotel", "address": "Bromley Hill"}];
+  var chargerData = [{"lat": 51.40365, "lng": -0.040681, "title": "Hampden Road", "address": "53 Hampden Road", "connectors": ["Type 2 (Socket Only) · 7kW"]}, {"lat": 51.39924, "lng": -0.043673, "title": "St James Avenue", "address": "2 St James Avenue", "connectors": ["Type 2 (Socket Only) · 7kW"]}, {"lat": 51.427379, "lng": -0.003627, "title": "Shell Recharge/Ubitricity", "address": "null", "connectors": ["Type 2 (Socket Only) · 4.8kW"]}, {"lat": 51.4221, "lng": 0.022362, "title": "Jemca Toyota Bromley", "address": "146-150 Burnt Ash Lane", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 51.419299, "lng": -0.054912, "title": "Penge East Station (site 2)", "address": "Penge East Station (site 2)", "connectors": ["Type 1 (J1772) · 3kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 51.410999, "lng": 0.026223, "title": "Nissan Ancaster Bromley", "address": "88 Plaistow Lane", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 51.40959, "lng": -0.023402, "title": "St Georges Road car park", "address": "St Georges Road car park", "connectors": ["Type 1 (J1772) · 3kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 51.408651, "lng": -0.038727, "title": "The Spa Car Park Site 2", "address": "The Spa Car Park Site 2", "connectors": ["Type 1 (J1772) · 3kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 51.404468, "lng": 0.020115, "title": "Civic Centre Car Park (Stockwell Close)", "address": "Civic Centre Car Park (Stockwell Close)", "connectors": ["Type 1 (J1772) · 3kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 51.4025, "lng": 0.017469, "title": "NCP Bromley", "address": "Elmfield Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 51.376774, "lng": -0.019622, "title": "97 West Wickham", "address": "High Street", "connectors": ["CHAdeMO · 50kW", "CHAdeMO · 50kW"]}, {"lat": 51.376592, "lng": 0.010597, "title": "Hayes Station Car Park", "address": "Hayes Station Car Park", "connectors": ["Type 1 (J1772) · 3kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 51.399995, "lng": 0.032592, "title": "Tesco Superstore-Bromley", "address": "Homesdale Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 51.406462, "lng": 0.010857, "title": "Hill Car Park(Site 2)", "address": "Hill Car Park(Site 2)", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 1 (J1772) · 3kW"]}, {"lat": 51.417217, "lng": -0.000418, "title": "Matlida house", "address": "Hillbrow Road", "connectors": ["Type 2 (Socket Only) · 3.7kW", "Type 2 (Socket Only) · 3.7kW"]}, {"lat": 51.416599, "lng": 0.002336, "title": "Bromley Court Hotel", "address": "Bromley Hill", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 22kW"]}];
 
   chargerData.forEach(function (c) {
+    var connHtml = c.connectors.length
+      ? '<div style="margin-top:6px;font-size:12px;color:#475569">' + c.connectors.join(' &middot; ') + '</div>'
+      : '';
     var marker = L.marker([c.lat, c.lng]);
     marker.bindPopup(
-      '<b>' + c.title + '</b><br>' + c.address + '<br><br>' +
+      '<b>' + c.title + '</b>' +
+      '<div style="color:#64748b;font-size:13px">' + c.address + '</div>' +
+      connHtml +
       '<a href="https://www.google.com/maps/dir/?api=1&destination=' + c.lat + ',' + c.lng +
-      '" target="_blank" rel="noopener">Get directions</a>'
+      '" target="_blank" rel="noopener" style="display:inline-block;margin-top:8px;padding:4px 10px;background:#2563eb;color:white;border-radius:4px;text-decoration:none;font-size:12px">Get directions</a>'
     );
     markers.addLayer(marker);
   });
-
   map.addLayer(markers);
+
+  // --- Connector filter ---
+  var filterBtns = document.querySelectorAll('.filter-btn');
+  var chargerItems = document.querySelectorAll('.charger-item');
+
+  filterBtns.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      filterBtns.forEach(function (b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      var f = btn.dataset.filter;
+      chargerItems.forEach(function (item) {
+        var connList = item.dataset.connectors ? item.dataset.connectors.split(',') : [];
+        item.style.display = (f === 'all' || connList.indexOf(f) !== -1) ? '' : 'none';
+      });
+    });
+  });
+
+  // --- Copy postcode ---
+  document.querySelectorAll('.copy-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var original = btn.textContent;
+      navigator.clipboard.writeText(btn.dataset.copy).then(function () {
+        btn.textContent = 'Copied!';
+        btn.classList.add('copy-btn--success');
+        setTimeout(function () {
+          btn.textContent = original;
+          btn.classList.remove('copy-btn--success');
+        }, 1500);
+      });
+    });
+  });
 }());
 </script>
 

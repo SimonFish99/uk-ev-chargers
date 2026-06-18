@@ -17,7 +17,10 @@
 
 <header>
 <div class="container">
-<a href="/" class="logo">PlugMap <span class="tagline">UK EV Charger Locator</span></a>
+<a href="/" class="logo">
+  <svg class="logo-bolt" viewBox="0 0 24 24" fill="currentColor" width="22" height="22" aria-hidden="true"><path d="M13 2L4.5 13.5H11L10 22L19.5 10.5H13Z"/></svg>
+  PlugMap <span class="tagline">UK EV Charger Locator</span>
+</a>
 </div>
 </header>
 
@@ -28,16 +31,44 @@
 </nav>
 
 <h1>EV Chargers in Basingstoke</h1>
-<p class="page-intro">19 public charging stations found in Basingstoke.</p>
+
+<div class="stats-bar">
+  <span class="stat-pill stat-total">19 stations</span>
+  <span class="stat-pill stat-rapid">8 rapid (50kW+)</span>
+  <span class="stat-pill stat-fast">11 fast (7–50kW)</span>
+  
+</div>
 
 <div id="map"></div>
 
-<ul class="charger-list">
+
+<div class="connector-filter">
+  <span class="filter-label">Filter:</span>
+  <button class="filter-btn active" data-filter="all">All</button>
+  
+  <button class="filter-btn" data-filter="BS1363 3 Pin 13 Amp">BS1363 3 Pin 13 Amp</button>
+  
+  <button class="filter-btn" data-filter="CCS (Type 2)">CCS (Type 2)</button>
+  
+  <button class="filter-btn" data-filter="CHAdeMO">CHAdeMO</button>
+  
+  <button class="filter-btn" data-filter="Type 2 (Socket Only)">Type 2 (Socket Only)</button>
+  
+  <button class="filter-btn" data-filter="Type 2 (Tethered Connector) ">Type 2 (Tethered Connector) </button>
+  
+</div>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">HCC Basingstoke Railway Station Car Park</h2>
-  <p class="charger-address">Clifton Terrace RG21 7QY
+<ul class="charger-list" id="charger-list">
+
+
+<li class="charger-item charger-item--rapid" data-connectors="CHAdeMO,CCS (Type 2)">
+  <div class="charger-header">
+    <h2 class="charger-name">HCC Basingstoke Railway Station Car Park</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Clifton Terrace <button class="copy-btn" data-copy="RG21 7QY">RG21 7QY</button>
   </p>
   
   <div class="charger-connections">
@@ -59,9 +90,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">BP Grove Road SF Connect</h2>
-  <p class="charger-address">Grove Road RG21 3AX
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2)">
+  <div class="charger-header">
+    <h2 class="charger-name">BP Grove Road SF Connect</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Grove Road <button class="copy-btn" data-copy="RG21 3AX">RG21 3AX</button>
   </p>
   
   <div class="charger-connections">
@@ -80,9 +115,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">The Dragonfly Pub &amp; Restaurant</h2>
-  <p class="charger-address">Maldive Road RG24 9AS
+<li class="charger-item charger-item--rapid" data-connectors="CHAdeMO,CCS (Type 2),Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">The Dragonfly Pub &amp; Restaurant</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Maldive Road <button class="copy-btn" data-copy="RG24 9AS">RG24 9AS</button>
   </p>
   
   <div class="charger-connections">
@@ -119,9 +158,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Hampshire Court Hotel</h2>
-  <p class="charger-address">Chineham RG24 8FY
+<li class="charger-item charger-item--fast" data-connectors="BS1363 3 Pin 13 Amp,Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Hampshire Court Hotel</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Chineham <button class="copy-btn" data-copy="RG24 8FY">RG24 8FY</button>
   </p>
   
   <div class="charger-connections">
@@ -143,9 +185,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Churchill Way Car Park, Basingstoke</h2>
-  <p class="charger-address">Churchill Way East RG21 7PP
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Churchill Way Car Park, Basingstoke</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Churchill Way East <button class="copy-btn" data-copy="RG21 7PP">RG21 7PP</button>
   </p>
   
   <div class="charger-connections">
@@ -167,9 +212,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Festival place</h2>
-  <p class="charger-address">Shopping Centre RG21 7BA
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Festival place</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Shopping Centre <button class="copy-btn" data-copy="RG21 7BA">RG21 7BA</button>
   </p>
   
   <div class="charger-connections">
@@ -191,9 +239,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Morrisons Basingstoke</h2>
-  <p class="charger-address">Wm Morrison Supermarkets PLC RG21 8BJ
+<li class="charger-item charger-item--rapid" data-connectors="Type 2 (Socket Only),CHAdeMO,Type 2 (Tethered Connector) ">
+  <div class="charger-header">
+    <h2 class="charger-name">Morrisons Basingstoke</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Wm Morrison Supermarkets PLC <button class="copy-btn" data-copy="RG21 8BJ">RG21 8BJ</button>
   </p>
   
   <div class="charger-connections">
@@ -218,9 +270,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Feathers Yard 1</h2>
-  <p class="charger-address">Red Lion Lane RG21 7AS
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Feathers Yard 1</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Red Lion Lane <button class="copy-btn" data-copy="RG21 7AS">RG21 7AS</button>
   </p>
   
   <div class="charger-connections">
@@ -242,9 +297,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Eastlands Car Park 1</h2>
-  <p class="charger-address">London Road RG21 4AW
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Eastlands Car Park 1</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">London Road <button class="copy-btn" data-copy="RG21 4AW">RG21 4AW</button>
   </p>
   
   <div class="charger-connections">
@@ -263,9 +321,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Central Car Park</h2>
-  <p class="charger-address">Red Lion Lane RG21 7LX
+<li class="charger-item charger-item--rapid" data-connectors="Type 2 (Tethered Connector) ,CHAdeMO">
+  <div class="charger-header">
+    <h2 class="charger-name">Central Car Park</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Red Lion Lane <button class="copy-btn" data-copy="RG21 7LX">RG21 7LX</button>
   </p>
   
   <div class="charger-connections">
@@ -288,9 +350,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Taran Microsystems Ltd</h2>
-  <p class="charger-address">Tempus Business Centre 61-62 Kingsclere Road RG21 6XG
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Taran Microsystems Ltd</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Tempus Business Centre 61-62 Kingsclere Road <button class="copy-btn" data-copy="RG21 6XG">RG21 6XG</button>
   </p>
   
   <div class="charger-connections">
@@ -307,9 +372,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Redrow Homes-Southern Counties-Cromwell Court</h2>
-  <p class="charger-address">Basing Road RG24 7AL
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Redrow Homes-Southern Counties-Cromwell Court</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Basing Road <button class="copy-btn" data-copy="RG24 7AL">RG24 7AL</button>
   </p>
   
   <div class="charger-connections">
@@ -328,9 +396,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Morrisons Basingstoke</h2>
-  <p class="charger-address">Worting Road RG21 8BJ
+<li class="charger-item charger-item--rapid" data-connectors="CHAdeMO,CCS (Type 2),Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Morrisons Basingstoke</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Worting Road <button class="copy-btn" data-copy="RG21 8BJ">RG21 8BJ</button>
   </p>
   
   <div class="charger-connections">
@@ -355,9 +427,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">ICUEVE900605</h2>
-  <p class="charger-address">23-31 Park Prewett Road RG24 9RG
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">ICUEVE900605</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">23-31 Park Prewett Road <button class="copy-btn" data-copy="RG24 9RG">RG24 9RG</button>
   </p>
   
   <div class="charger-connections">
@@ -374,9 +449,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Aldi</h2>
-  <p class="charger-address">Winklebury Way RG23 8BU
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Aldi</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Winklebury Way <button class="copy-btn" data-copy="RG23 8BU">RG23 8BU</button>
   </p>
   
   <div class="charger-connections">
@@ -398,9 +476,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Harvester The Stag and Hounds</h2>
-  <p class="charger-address">Winchester Road RG22 6HN
+<li class="charger-item charger-item--rapid" data-connectors="CHAdeMO,CCS (Type 2),Type 2 (Tethered Connector) ">
+  <div class="charger-header">
+    <h2 class="charger-name">Harvester The Stag and Hounds</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Winchester Road <button class="copy-btn" data-copy="RG22 6HN">RG22 6HN</button>
   </p>
   
   <div class="charger-connections">
@@ -425,9 +507,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Parklands Upper Car Park 1</h2>
-  <p class="charger-address">White Hart Lane RG21 4AW
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Parklands Upper Car Park 1</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">White Hart Lane <button class="copy-btn" data-copy="RG21 4AW">RG21 4AW</button>
   </p>
   
   <div class="charger-connections">
@@ -449,9 +534,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Shell Pied Piper</h2>
-  <p class="charger-address">Winchester Road RG22 6HT
+<li class="charger-item charger-item--rapid" data-connectors="Type 2 (Tethered Connector) ,CCS (Type 2),CHAdeMO">
+  <div class="charger-header">
+    <h2 class="charger-name">Shell Pied Piper</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Winchester Road <button class="copy-btn" data-copy="RG22 6HT">RG22 6HT</button>
   </p>
   
   <div class="charger-connections">
@@ -476,9 +565,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Village Hotels</h2>
-  <p class="charger-address">Basing View RG21 4EA
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Village Hotels</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Basing View <button class="copy-btn" data-copy="RG21 4EA">RG21 4EA</button>
   </p>
   
   <div class="charger-connections">
@@ -509,6 +601,23 @@
 
 <p><a href="/" class="back-link">← All UK towns</a></p>
 
+
+<div class="nearby-towns">
+  <h2 class="nearby-heading">Nearby towns</h2>
+  <ul class="nearby-list">
+  
+    <li><a href="/uk/reading/">Reading</a></li>
+  
+    <li><a href="/uk/fleet/">Fleet</a></li>
+  
+    <li><a href="/uk/newbury/">Newbury</a></li>
+  
+    <li><a href="/uk/wokingham/">Wokingham</a></li>
+  
+  </ul>
+</div>
+
+
 </div>
 
 <footer>
@@ -521,26 +630,61 @@
 <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 <script>
 (function () {
+  // --- Map ---
   var map = L.map('map').setView([51.266649261429706, -1.090500031075988], 12);
-
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
   }).addTo(map);
 
   var markers = L.markerClusterGroup();
-  var chargerData = [{"lat": 51.2679182902956, "lng": -1.08682692117344, "title": "HCC Basingstoke Railway Station Car Park", "address": "Clifton Terrace"}, {"lat": 51.251013542592, "lng": -1.08692293796619, "title": "BP Grove Road SF Connect", "address": "Grove Road"}, {"lat": 51.284532, "lng": -1.0717583, "title": "The Dragonfly Pub & Restaurant", "address": "Maldive Road"}, {"lat": 51.2836, "lng": -1.05748, "title": "Hampshire Court Hotel", "address": "Chineham"}, {"lat": 51.266402, "lng": -1.090874, "title": "Churchill Way Car Park, Basingstoke", "address": "Churchill Way East"}, {"lat": 51.264706, "lng": -1.086677, "title": "Festival place", "address": "Shopping Centre"}, {"lat": 51.263929, "lng": -1.105611, "title": "Morrisons Basingstoke", "address": "Wm Morrison Supermarkets PLC"}, {"lat": 51.262953, "lng": -1.085863, "title": "Feathers Yard 1", "address": "Red Lion Lane"}, {"lat": 51.262798, "lng": -1.082982, "title": "Eastlands Car Park 1", "address": "London Road"}, {"lat": 51.262665, "lng": -1.085169, "title": "Central Car Park", "address": "Red Lion Lane"}, {"lat": 51.274542331336534, "lng": -1.102684008288179, "title": "Taran Microsystems Ltd", "address": "Tempus Business Centre 61-62 Kingsclere Road"}, {"lat": 51.271152, "lng": -1.055658, "title": "Redrow Homes-Southern Counties-Cromwell Court", "address": "Basing Road"}, {"lat": 51.26391852277632, "lng": -1.1035326924247784, "title": "Morrisons Basingstoke", "address": "Worting Road"}, {"lat": 51.282018, "lng": -1.118853, "title": "ICUEVE900605", "address": "23-31 Park Prewett Road"}, {"lat": 51.273521, "lng": -1.113354, "title": "Aldi", "address": "Winklebury Way"}, {"lat": 51.249313, "lng": -1.11468, "title": "Harvester The Stag and Hounds", "address": "Winchester Road"}, {"lat": 51.262089, "lng": -1.081899, "title": "Parklands Upper Car Park 1", "address": "White Hart Lane"}, {"lat": 51.250129280163975, "lng": -1.114282730591185, "title": "Shell Pied Piper", "address": "Winchester Road"}, {"lat": 51.269136, "lng": -1.074393, "title": "Village Hotels", "address": "Basing View"}];
+  var chargerData = [{"lat": 51.2679182902956, "lng": -1.08682692117344, "title": "HCC Basingstoke Railway Station Car Park", "address": "Clifton Terrace", "connectors": ["CHAdeMO · 100kW", "CCS (Type 2) · 50kW"]}, {"lat": 51.251013542592, "lng": -1.08692293796619, "title": "BP Grove Road SF Connect", "address": "Grove Road", "connectors": ["CCS (Type 2) · 150kW"]}, {"lat": 51.284532, "lng": -1.0717583, "title": "The Dragonfly Pub & Restaurant", "address": "Maldive Road", "connectors": ["CHAdeMO · 50kW", "CCS (Type 2) · 50kW", "Type 2 (Socket Only) · 22kW", "CHAdeMO · 50kW", "CCS (Type 2) · 75kW", "CCS (Type 2) · 75kW", "CHAdeMO · 50kW"]}, {"lat": 51.2836, "lng": -1.05748, "title": "Hampshire Court Hotel", "address": "Chineham", "connectors": ["BS1363 3 Pin 13 Amp · 3kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 51.266402, "lng": -1.090874, "title": "Churchill Way Car Park, Basingstoke", "address": "Churchill Way East", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 51.264706, "lng": -1.086677, "title": "Festival place", "address": "Shopping Centre", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 51.263929, "lng": -1.105611, "title": "Morrisons Basingstoke", "address": "Wm Morrison Supermarkets PLC", "connectors": ["Type 2 (Socket Only) · 22kW", "CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 50kW"]}, {"lat": 51.262953, "lng": -1.085863, "title": "Feathers Yard 1", "address": "Red Lion Lane", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 51.262798, "lng": -1.082982, "title": "Eastlands Car Park 1", "address": "London Road", "connectors": ["Type 2 (Socket Only) · 7kW"]}, {"lat": 51.262665, "lng": -1.085169, "title": "Central Car Park", "address": "Red Lion Lane", "connectors": ["Type 2 (Tethered Connector)  · 43kW", "CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 50kW"]}, {"lat": 51.274542331336534, "lng": -1.102684008288179, "title": "Taran Microsystems Ltd", "address": "Tempus Business Centre 61-62 Kingsclere Road", "connectors": ["Type 2 (Socket Only) · 22kW"]}, {"lat": 51.271152, "lng": -1.055658, "title": "Redrow Homes-Southern Counties-Cromwell Court", "address": "Basing Road", "connectors": ["Type 2 (Socket Only) · 7kW"]}, {"lat": 51.26391852277632, "lng": -1.1035326924247784, "title": "Morrisons Basingstoke", "address": "Worting Road", "connectors": ["CHAdeMO · 50kW", "CCS (Type 2) · 50kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 51.282018, "lng": -1.118853, "title": "ICUEVE900605", "address": "23-31 Park Prewett Road", "connectors": ["Type 2 (Socket Only) · 11kW"]}, {"lat": 51.273521, "lng": -1.113354, "title": "Aldi", "address": "Winklebury Way", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 51.249313, "lng": -1.11468, "title": "Harvester The Stag and Hounds", "address": "Winchester Road", "connectors": ["CHAdeMO · 50kW", "CCS (Type 2) · 50kW", "Type 2 (Tethered Connector)  · 43kW"]}, {"lat": 51.262089, "lng": -1.081899, "title": "Parklands Upper Car Park 1", "address": "White Hart Lane", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 51.250129280163975, "lng": -1.114282730591185, "title": "Shell Pied Piper", "address": "Winchester Road", "connectors": ["Type 2 (Tethered Connector)  · 43kW", "CCS (Type 2) · 50kW", "CHAdeMO · 50kW"]}, {"lat": 51.269136, "lng": -1.074393, "title": "Village Hotels", "address": "Basing View", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}];
 
   chargerData.forEach(function (c) {
+    var connHtml = c.connectors.length
+      ? '<div style="margin-top:6px;font-size:12px;color:#475569">' + c.connectors.join(' &middot; ') + '</div>'
+      : '';
     var marker = L.marker([c.lat, c.lng]);
     marker.bindPopup(
-      '<b>' + c.title + '</b><br>' + c.address + '<br><br>' +
+      '<b>' + c.title + '</b>' +
+      '<div style="color:#64748b;font-size:13px">' + c.address + '</div>' +
+      connHtml +
       '<a href="https://www.google.com/maps/dir/?api=1&destination=' + c.lat + ',' + c.lng +
-      '" target="_blank" rel="noopener">Get directions</a>'
+      '" target="_blank" rel="noopener" style="display:inline-block;margin-top:8px;padding:4px 10px;background:#2563eb;color:white;border-radius:4px;text-decoration:none;font-size:12px">Get directions</a>'
     );
     markers.addLayer(marker);
   });
-
   map.addLayer(markers);
+
+  // --- Connector filter ---
+  var filterBtns = document.querySelectorAll('.filter-btn');
+  var chargerItems = document.querySelectorAll('.charger-item');
+
+  filterBtns.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      filterBtns.forEach(function (b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      var f = btn.dataset.filter;
+      chargerItems.forEach(function (item) {
+        var connList = item.dataset.connectors ? item.dataset.connectors.split(',') : [];
+        item.style.display = (f === 'all' || connList.indexOf(f) !== -1) ? '' : 'none';
+      });
+    });
+  });
+
+  // --- Copy postcode ---
+  document.querySelectorAll('.copy-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var original = btn.textContent;
+      navigator.clipboard.writeText(btn.dataset.copy).then(function () {
+        btn.textContent = 'Copied!';
+        btn.classList.add('copy-btn--success');
+        setTimeout(function () {
+          btn.textContent = original;
+          btn.classList.remove('copy-btn--success');
+        }, 1500);
+      });
+    });
+  });
 }());
 </script>
 

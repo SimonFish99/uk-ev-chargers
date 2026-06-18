@@ -17,7 +17,10 @@
 
 <header>
 <div class="container">
-<a href="/" class="logo">PlugMap <span class="tagline">UK EV Charger Locator</span></a>
+<a href="/" class="logo">
+  <svg class="logo-bolt" viewBox="0 0 24 24" fill="currentColor" width="22" height="22" aria-hidden="true"><path d="M13 2L4.5 13.5H11L10 22L19.5 10.5H13Z"/></svg>
+  PlugMap <span class="tagline">UK EV Charger Locator</span>
+</a>
 </div>
 </header>
 
@@ -28,16 +31,41 @@
 </nav>
 
 <h1>EV Chargers in Thirsk</h1>
-<p class="page-intro">7 public charging stations found in Thirsk.</p>
+
+<div class="stats-bar">
+  <span class="stat-pill stat-total">7 stations</span>
+  <span class="stat-pill stat-rapid">3 rapid (50kW+)</span>
+  <span class="stat-pill stat-fast">3 fast (7–50kW)</span>
+  <span class="stat-pill stat-slow">1 slow</span>
+</div>
 
 <div id="map"></div>
 
-<ul class="charger-list">
+
+<div class="connector-filter">
+  <span class="filter-label">Filter:</span>
+  <button class="filter-btn active" data-filter="all">All</button>
+  
+  <button class="filter-btn" data-filter="CCS (Type 2)">CCS (Type 2)</button>
+  
+  <button class="filter-btn" data-filter="CHAdeMO">CHAdeMO</button>
+  
+  <button class="filter-btn" data-filter="Type 2 (Socket Only)">Type 2 (Socket Only)</button>
+  
+  <button class="filter-btn" data-filter="Type 2 (Tethered Connector) ">Type 2 (Tethered Connector) </button>
+  
+</div>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">North York Moors National Park Authority</h2>
-  <p class="charger-address">Sutton Bank National Park Centre YO7 2EH
+<ul class="charger-list" id="charger-list">
+
+
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">North York Moors National Park Authority</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Sutton Bank National Park Centre <button class="copy-btn" data-copy="YO7 2EH">YO7 2EH</button>
   </p>
   
   <div class="charger-connections">
@@ -62,9 +90,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">MFG Thirsk (Coming Soon) </h2>
-  <p class="charger-address">York Road A170 YO7 3TY
+<li class="charger-item charger-item--rapid" data-connectors="CHAdeMO,CCS (Type 2)">
+  <div class="charger-header">
+    <h2 class="charger-name">MFG Thirsk (Coming Soon) </h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">York Road A170 <button class="copy-btn" data-copy="YO7 3TY">YO7 3TY</button>
   </p>
   
   <div class="charger-connections">
@@ -86,9 +118,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Hambleton Crematorium </h2>
-  <p class="charger-address">Maple Park Skipton Bridge YO7 4SA
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Hambleton Crematorium </h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Maple Park Skipton Bridge <button class="copy-btn" data-copy="YO7 4SA">YO7 4SA</button>
   </p>
   
   <div class="charger-connections">
@@ -110,9 +145,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Tesco Superstore-Thirsk</h2>
-  <p class="charger-address">Station Road YO7 1PZ
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Tesco Superstore-Thirsk</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Station Road <button class="copy-btn" data-copy="YO7 1PZ">YO7 1PZ</button>
   </p>
   
   <div class="charger-connections">
@@ -134,9 +172,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Millgate Car Park</h2>
-  <p class="charger-address">Marage Road YO7 1PE
+<li class="charger-item charger-item--slow" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Millgate Car Park</h2>
+    
+  </div>
+  <p class="charger-address">Marage Road <button class="copy-btn" data-copy="YO7 1PE">YO7 1PE</button>
   </p>
   
   <div class="charger-connections">
@@ -155,9 +196,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Starbucks, Topcliffe, A168</h2>
-  <p class="charger-address">Malthurst Thirsk Petrol Station YO7 3HN
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2),CHAdeMO">
+  <div class="charger-header">
+    <h2 class="charger-name">Starbucks, Topcliffe, A168</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Malthurst Thirsk Petrol Station <button class="copy-btn" data-copy="YO7 3HN">YO7 3HN</button>
   </p>
   
   <div class="charger-connections">
@@ -179,9 +224,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Millgate Car Park</h2>
-  <p class="charger-address">Marage Road YO7 1PE
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2),Type 2 (Tethered Connector) ,CHAdeMO">
+  <div class="charger-header">
+    <h2 class="charger-name">Millgate Car Park</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Marage Road <button class="copy-btn" data-copy="YO7 1PE">YO7 1PE</button>
   </p>
   
   <div class="charger-connections">
@@ -209,6 +258,23 @@
 
 <p><a href="/" class="back-link">← All UK towns</a></p>
 
+
+<div class="nearby-towns">
+  <h2 class="nearby-heading">Nearby towns</h2>
+  <ul class="nearby-list">
+  
+    <li><a href="/uk/northallerton/">Northallerton</a></li>
+  
+    <li><a href="/uk/ripon/">Ripon</a></li>
+  
+    <li><a href="/uk/knaresborough/">Knaresborough</a></li>
+  
+    <li><a href="/uk/harrogate/">Harrogate</a></li>
+  
+  </ul>
+</div>
+
+
 </div>
 
 <footer>
@@ -221,26 +287,61 @@
 <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 <script>
 (function () {
+  // --- Map ---
   var map = L.map('map').setView([54.22591084606976, -1.3375317289225612], 12);
-
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
   }).addTo(map);
 
   var markers = L.markerClusterGroup();
-  var chargerData = [{"lat": 54.24097, "lng": -1.20893, "title": "North York Moors National Park Authority", "address": "Sutton Bank National Park Centre"}, {"lat": 54.2284145885184, "lng": -1.32831669419841, "title": "MFG Thirsk (Coming Soon) ", "address": "York Road A170"}, {"lat": 54.21701192824952, "lng": -1.4284655289421835, "title": "Hambleton Crematorium ", "address": "Maple Park Skipton Bridge"}, {"lat": 54.231046, "lng": -1.34766, "title": "Tesco Superstore-Thirsk", "address": "Station Road"}, {"lat": 54.2344198105917, "lng": -1.3431449561580848, "title": "Millgate Car Park", "address": "Marage Road"}, {"lat": 54.1951752250879, "lng": -1.36333726084331, "title": "Starbucks, Topcliffe, A168", "address": "Malthurst Thirsk Petrol Station"}, {"lat": 54.2343383700408, "lng": -1.34286766231594, "title": "Millgate Car Park", "address": "Marage Road"}];
+  var chargerData = [{"lat": 54.24097, "lng": -1.20893, "title": "North York Moors National Park Authority", "address": "Sutton Bank National Park Centre", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 54.2284145885184, "lng": -1.32831669419841, "title": "MFG Thirsk (Coming Soon) ", "address": "York Road A170", "connectors": ["CHAdeMO · 100kW", "CCS (Type 2) · 150kW"]}, {"lat": 54.21701192824952, "lng": -1.4284655289421835, "title": "Hambleton Crematorium ", "address": "Maple Park Skipton Bridge", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 54.231046, "lng": -1.34766, "title": "Tesco Superstore-Thirsk", "address": "Station Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 54.2344198105917, "lng": -1.3431449561580848, "title": "Millgate Car Park", "address": "Marage Road", "connectors": ["Type 2 (Socket Only) · 5kW"]}, {"lat": 54.1951752250879, "lng": -1.36333726084331, "title": "Starbucks, Topcliffe, A168", "address": "Malthurst Thirsk Petrol Station", "connectors": ["CCS (Type 2) · 50kW", "CHAdeMO · 50kW"]}, {"lat": 54.2343383700408, "lng": -1.34286766231594, "title": "Millgate Car Park", "address": "Marage Road", "connectors": ["CCS (Type 2) · 50kW", "Type 2 (Tethered Connector)  · 43kW", "CHAdeMO · 50kW"]}];
 
   chargerData.forEach(function (c) {
+    var connHtml = c.connectors.length
+      ? '<div style="margin-top:6px;font-size:12px;color:#475569">' + c.connectors.join(' &middot; ') + '</div>'
+      : '';
     var marker = L.marker([c.lat, c.lng]);
     marker.bindPopup(
-      '<b>' + c.title + '</b><br>' + c.address + '<br><br>' +
+      '<b>' + c.title + '</b>' +
+      '<div style="color:#64748b;font-size:13px">' + c.address + '</div>' +
+      connHtml +
       '<a href="https://www.google.com/maps/dir/?api=1&destination=' + c.lat + ',' + c.lng +
-      '" target="_blank" rel="noopener">Get directions</a>'
+      '" target="_blank" rel="noopener" style="display:inline-block;margin-top:8px;padding:4px 10px;background:#2563eb;color:white;border-radius:4px;text-decoration:none;font-size:12px">Get directions</a>'
     );
     markers.addLayer(marker);
   });
-
   map.addLayer(markers);
+
+  // --- Connector filter ---
+  var filterBtns = document.querySelectorAll('.filter-btn');
+  var chargerItems = document.querySelectorAll('.charger-item');
+
+  filterBtns.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      filterBtns.forEach(function (b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      var f = btn.dataset.filter;
+      chargerItems.forEach(function (item) {
+        var connList = item.dataset.connectors ? item.dataset.connectors.split(',') : [];
+        item.style.display = (f === 'all' || connList.indexOf(f) !== -1) ? '' : 'none';
+      });
+    });
+  });
+
+  // --- Copy postcode ---
+  document.querySelectorAll('.copy-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var original = btn.textContent;
+      navigator.clipboard.writeText(btn.dataset.copy).then(function () {
+        btn.textContent = 'Copied!';
+        btn.classList.add('copy-btn--success');
+        setTimeout(function () {
+          btn.textContent = original;
+          btn.classList.remove('copy-btn--success');
+        }, 1500);
+      });
+    });
+  });
 }());
 </script>
 

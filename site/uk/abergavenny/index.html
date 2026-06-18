@@ -17,7 +17,10 @@
 
 <header>
 <div class="container">
-<a href="/" class="logo">PlugMap <span class="tagline">UK EV Charger Locator</span></a>
+<a href="/" class="logo">
+  <svg class="logo-bolt" viewBox="0 0 24 24" fill="currentColor" width="22" height="22" aria-hidden="true"><path d="M13 2L4.5 13.5H11L10 22L19.5 10.5H13Z"/></svg>
+  PlugMap <span class="tagline">UK EV Charger Locator</span>
+</a>
 </div>
 </header>
 
@@ -28,16 +31,42 @@
 </nav>
 
 <h1>EV Chargers in Abergavenny</h1>
-<p class="page-intro">5 public charging stations found in Abergavenny.</p>
+
+<div class="stats-bar">
+  <span class="stat-pill stat-total">5 stations</span>
+  <span class="stat-pill stat-rapid">2 rapid (50kW+)</span>
+  <span class="stat-pill stat-fast">3 fast (7–50kW)</span>
+  
+</div>
 
 <div id="map"></div>
 
-<ul class="charger-list">
+
+<div class="connector-filter">
+  <span class="filter-label">Filter:</span>
+  <button class="filter-btn active" data-filter="all">All</button>
+  
+  <button class="filter-btn" data-filter="CCS (Type 2)">CCS (Type 2)</button>
+  
+  <button class="filter-btn" data-filter="CHAdeMO">CHAdeMO</button>
+  
+  <button class="filter-btn" data-filter="Type 2 (Socket Only)">Type 2 (Socket Only)</button>
+  
+  <button class="filter-btn" data-filter="Type 2 (Tethered Connector) ">Type 2 (Tethered Connector) </button>
+  
+</div>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Morrisons Abergavenny</h2>
-  <p class="charger-address">Wm Morrison Supermarkets PLC NP7 5TR
+<ul class="charger-list" id="charger-list">
+
+
+<li class="charger-item charger-item--rapid" data-connectors="Type 2 (Socket Only),CHAdeMO,Type 2 (Tethered Connector) ">
+  <div class="charger-header">
+    <h2 class="charger-name">Morrisons Abergavenny</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Wm Morrison Supermarkets PLC <button class="copy-btn" data-copy="NP7 5TR">NP7 5TR</button>
   </p>
   
   <div class="charger-connections">
@@ -62,9 +91,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Byefield Lane Car Park, Tudor Street</h2>
-  <p class="charger-address">Tudor Street NP7 5DL
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Byefield Lane Car Park, Tudor Street</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Tudor Street <button class="copy-btn" data-copy="NP7 5DL">NP7 5DL</button>
   </p>
   
   <div class="charger-connections">
@@ -86,9 +118,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Trinity Terrace Car Park</h2>
-  <p class="charger-address">Trinity Terrace NP7 5BD
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Trinity Terrace Car Park</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Trinity Terrace <button class="copy-btn" data-copy="NP7 5BD">NP7 5BD</button>
   </p>
   
   <div class="charger-connections">
@@ -110,9 +145,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Nevill Hall Hospital</h2>
-  <p class="charger-address">Brecon RD NP7 7EG
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Nevill Hall Hospital</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Brecon RD <button class="copy-btn" data-copy="NP7 7EG">NP7 7EG</button>
   </p>
   
   <div class="charger-connections">
@@ -134,9 +172,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Morrisons Abergavenny</h2>
-  <p class="charger-address">Lion Street NP7 5PE
+<li class="charger-item charger-item--rapid" data-connectors="Type 2 (Socket Only),CCS (Type 2),CHAdeMO">
+  <div class="charger-header">
+    <h2 class="charger-name">Morrisons Abergavenny</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Lion Street <button class="copy-btn" data-copy="NP7 5PE">NP7 5PE</button>
   </p>
   
   <div class="charger-connections">
@@ -164,6 +206,23 @@
 
 <p><a href="/" class="back-link">← All UK towns</a></p>
 
+
+<div class="nearby-towns">
+  <h2 class="nearby-heading">Nearby towns</h2>
+  <ul class="nearby-list">
+  
+    <li><a href="/uk/pontypool/">Pontypool</a></li>
+  
+    <li><a href="/uk/cwmbran/">Cwmbran</a></li>
+  
+    <li><a href="/uk/ebbw-vale/">Ebbw Vale</a></li>
+  
+    <li><a href="/uk/tredegar/">Tredegar</a></li>
+  
+  </ul>
+</div>
+
+
 </div>
 
 <footer>
@@ -176,26 +235,61 @@
 <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 <script>
 (function () {
+  // --- Map ---
   var map = L.map('map').setView([51.798052222995466, -2.998250351208445], 12);
-
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
   }).addTo(map);
 
   var markers = L.markerClusterGroup();
-  var chargerData = [{"lat": 51.824154, "lng": -3.017032, "title": "Morrisons Abergavenny", "address": "Wm Morrison Supermarkets PLC"}, {"lat": 51.820998, "lng": -3.021917, "title": "Byefield Lane Car Park, Tudor Street", "address": "Tudor Street"}, {"lat": 51.698887, "lng": -2.90181, "title": "Trinity Terrace Car Park", "address": "Trinity Terrace"}, {"lat": 51.82278, "lng": -3.034, "title": "Nevill Hall Hospital", "address": "Brecon RD"}, {"lat": 51.8234421149773, "lng": -3.0164927560422257, "title": "Morrisons Abergavenny", "address": "Lion Street"}];
+  var chargerData = [{"lat": 51.824154, "lng": -3.017032, "title": "Morrisons Abergavenny", "address": "Wm Morrison Supermarkets PLC", "connectors": ["Type 2 (Socket Only) · 22kW", "CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 50kW"]}, {"lat": 51.820998, "lng": -3.021917, "title": "Byefield Lane Car Park, Tudor Street", "address": "Tudor Street", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 51.698887, "lng": -2.90181, "title": "Trinity Terrace Car Park", "address": "Trinity Terrace", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 51.82278, "lng": -3.034, "title": "Nevill Hall Hospital", "address": "Brecon RD", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 51.8234421149773, "lng": -3.0164927560422257, "title": "Morrisons Abergavenny", "address": "Lion Street", "connectors": ["Type 2 (Socket Only) · 22kW", "CCS (Type 2) · 50kW", "CHAdeMO · 50kW"]}];
 
   chargerData.forEach(function (c) {
+    var connHtml = c.connectors.length
+      ? '<div style="margin-top:6px;font-size:12px;color:#475569">' + c.connectors.join(' &middot; ') + '</div>'
+      : '';
     var marker = L.marker([c.lat, c.lng]);
     marker.bindPopup(
-      '<b>' + c.title + '</b><br>' + c.address + '<br><br>' +
+      '<b>' + c.title + '</b>' +
+      '<div style="color:#64748b;font-size:13px">' + c.address + '</div>' +
+      connHtml +
       '<a href="https://www.google.com/maps/dir/?api=1&destination=' + c.lat + ',' + c.lng +
-      '" target="_blank" rel="noopener">Get directions</a>'
+      '" target="_blank" rel="noopener" style="display:inline-block;margin-top:8px;padding:4px 10px;background:#2563eb;color:white;border-radius:4px;text-decoration:none;font-size:12px">Get directions</a>'
     );
     markers.addLayer(marker);
   });
-
   map.addLayer(markers);
+
+  // --- Connector filter ---
+  var filterBtns = document.querySelectorAll('.filter-btn');
+  var chargerItems = document.querySelectorAll('.charger-item');
+
+  filterBtns.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      filterBtns.forEach(function (b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      var f = btn.dataset.filter;
+      chargerItems.forEach(function (item) {
+        var connList = item.dataset.connectors ? item.dataset.connectors.split(',') : [];
+        item.style.display = (f === 'all' || connList.indexOf(f) !== -1) ? '' : 'none';
+      });
+    });
+  });
+
+  // --- Copy postcode ---
+  document.querySelectorAll('.copy-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var original = btn.textContent;
+      navigator.clipboard.writeText(btn.dataset.copy).then(function () {
+        btn.textContent = 'Copied!';
+        btn.classList.add('copy-btn--success');
+        setTimeout(function () {
+          btn.textContent = original;
+          btn.classList.remove('copy-btn--success');
+        }, 1500);
+      });
+    });
+  });
 }());
 </script>
 

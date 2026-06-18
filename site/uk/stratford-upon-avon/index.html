@@ -17,7 +17,10 @@
 
 <header>
 <div class="container">
-<a href="/" class="logo">PlugMap <span class="tagline">UK EV Charger Locator</span></a>
+<a href="/" class="logo">
+  <svg class="logo-bolt" viewBox="0 0 24 24" fill="currentColor" width="22" height="22" aria-hidden="true"><path d="M13 2L4.5 13.5H11L10 22L19.5 10.5H13Z"/></svg>
+  PlugMap <span class="tagline">UK EV Charger Locator</span>
+</a>
 </div>
 </header>
 
@@ -28,16 +31,37 @@
 </nav>
 
 <h1>EV Chargers in Stratford-upon-Avon</h1>
-<p class="page-intro">6 public charging stations found in Stratford-upon-Avon.</p>
+
+<div class="stats-bar">
+  <span class="stat-pill stat-total">6 stations</span>
+  <span class="stat-pill stat-rapid">2 rapid (50kW+)</span>
+  <span class="stat-pill stat-fast">4 fast (7–50kW)</span>
+  
+</div>
 
 <div id="map"></div>
 
-<ul class="charger-list">
+
+<div class="connector-filter">
+  <span class="filter-label">Filter:</span>
+  <button class="filter-btn active" data-filter="all">All</button>
+  
+  <button class="filter-btn" data-filter="CCS (Type 2)">CCS (Type 2)</button>
+  
+  <button class="filter-btn" data-filter="Type 2 (Socket Only)">Type 2 (Socket Only)</button>
+  
+</div>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">EVC Macdonald Alveston Manor Hotel</h2>
-  <p class="charger-address">Clopton Brg CV37 7HP
+<ul class="charger-list" id="charger-list">
+
+
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">EVC Macdonald Alveston Manor Hotel</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Clopton Brg <button class="copy-btn" data-copy="CV37 7HP">CV37 7HP</button>
   </p>
   
   <div class="charger-connections">
@@ -56,9 +80,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">EVC DoubleTree by Hilton Stratford-upon-Avon</h2>
-  <p class="charger-address">Arden Street CV37 6QQ
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2),Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">EVC DoubleTree by Hilton Stratford-upon-Avon</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Arden Street <button class="copy-btn" data-copy="CV37 6QQ">CV37 6QQ</button>
   </p>
   
   <div class="charger-connections">
@@ -80,9 +108,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">EVC Stratford Manor</h2>
-  <p class="charger-address">Warwick Road CV37 0PY
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2),Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">EVC Stratford Manor</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Warwick Road <button class="copy-btn" data-copy="CV37 0PY">CV37 0PY</button>
   </p>
   
   <div class="charger-connections">
@@ -104,9 +136,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Stratford Church Street Car Park</h2>
-  <p class="charger-address">Church Street CV37 6HB
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Stratford Church Street Car Park</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Church Street <button class="copy-btn" data-copy="CV37 6HB">CV37 6HB</button>
   </p>
   
   <div class="charger-connections">
@@ -126,9 +161,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Arden Street Car Park, Stratford-upon Avon</h2>
-  <p class="charger-address">Arden Street CV37 6NW
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Arden Street Car Park, Stratford-upon Avon</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Arden Street <button class="copy-btn" data-copy="CV37 6NW">CV37 6NW</button>
   </p>
   
   <div class="charger-connections">
@@ -147,9 +185,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Rybrook Stratford MINI</h2>
-  <p class="charger-address">Birmingham Road CV37 0RN
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Rybrook Stratford MINI</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Birmingham Road <button class="copy-btn" data-copy="CV37 0RN">CV37 0RN</button>
   </p>
   
   <div class="charger-connections">
@@ -174,6 +215,23 @@
 
 <p><a href="/" class="back-link">← All UK towns</a></p>
 
+
+<div class="nearby-towns">
+  <h2 class="nearby-heading">Nearby towns</h2>
+  <ul class="nearby-list">
+  
+    <li><a href="/uk/warwick/">Warwick</a></li>
+  
+    <li><a href="/uk/stratford-on-avon/">Stratford-on-Avon</a></li>
+  
+    <li><a href="/uk/leamington-spa/">Leamington Spa</a></li>
+  
+    <li><a href="/uk/redditch/">Redditch</a></li>
+  
+  </ul>
+</div>
+
+
 </div>
 
 <footer>
@@ -186,26 +244,61 @@
 <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 <script>
 (function () {
+  // --- Map ---
   var map = L.map('map').setView([52.202069916666666, -1.7029941068333334], 12);
-
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
   }).addTo(map);
 
   var markers = L.markerClusterGroup();
-  var chargerData = [{"lat": 52.19096475, "lng": -1.697778651, "title": "EVC Macdonald Alveston Manor Hotel", "address": "Clopton Brg"}, {"lat": 52.19440924, "lng": -1.71340284, "title": "EVC DoubleTree by Hilton Stratford-upon-Avon", "address": "Arden Street"}, {"lat": 52.22620251, "lng": -1.66413915, "title": "EVC Stratford Manor", "address": "Warwick Road"}, {"lat": 52.19017, "lng": -1.70357, "title": "Stratford Church Street Car Park", "address": "Church Street"}, {"lat": 52.195135, "lng": -1.711553, "title": "Arden Street Car Park, Stratford-upon Avon", "address": "Arden Street"}, {"lat": 52.215538, "lng": -1.727521, "title": "Rybrook Stratford MINI", "address": "Birmingham Road"}];
+  var chargerData = [{"lat": 52.19096475, "lng": -1.697778651, "title": "EVC Macdonald Alveston Manor Hotel", "address": "Clopton Brg", "connectors": ["Type 2 (Socket Only) · 22kW"]}, {"lat": 52.19440924, "lng": -1.71340284, "title": "EVC DoubleTree by Hilton Stratford-upon-Avon", "address": "Arden Street", "connectors": ["CCS (Type 2) · 100kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 52.22620251, "lng": -1.66413915, "title": "EVC Stratford Manor", "address": "Warwick Road", "connectors": ["CCS (Type 2) · 100kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 52.19017, "lng": -1.70357, "title": "Stratford Church Street Car Park", "address": "Church Street", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 52.195135, "lng": -1.711553, "title": "Arden Street Car Park, Stratford-upon Avon", "address": "Arden Street", "connectors": ["Type 2 (Socket Only) · 7kW"]}, {"lat": 52.215538, "lng": -1.727521, "title": "Rybrook Stratford MINI", "address": "Birmingham Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 22kW"]}];
 
   chargerData.forEach(function (c) {
+    var connHtml = c.connectors.length
+      ? '<div style="margin-top:6px;font-size:12px;color:#475569">' + c.connectors.join(' &middot; ') + '</div>'
+      : '';
     var marker = L.marker([c.lat, c.lng]);
     marker.bindPopup(
-      '<b>' + c.title + '</b><br>' + c.address + '<br><br>' +
+      '<b>' + c.title + '</b>' +
+      '<div style="color:#64748b;font-size:13px">' + c.address + '</div>' +
+      connHtml +
       '<a href="https://www.google.com/maps/dir/?api=1&destination=' + c.lat + ',' + c.lng +
-      '" target="_blank" rel="noopener">Get directions</a>'
+      '" target="_blank" rel="noopener" style="display:inline-block;margin-top:8px;padding:4px 10px;background:#2563eb;color:white;border-radius:4px;text-decoration:none;font-size:12px">Get directions</a>'
     );
     markers.addLayer(marker);
   });
-
   map.addLayer(markers);
+
+  // --- Connector filter ---
+  var filterBtns = document.querySelectorAll('.filter-btn');
+  var chargerItems = document.querySelectorAll('.charger-item');
+
+  filterBtns.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      filterBtns.forEach(function (b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      var f = btn.dataset.filter;
+      chargerItems.forEach(function (item) {
+        var connList = item.dataset.connectors ? item.dataset.connectors.split(',') : [];
+        item.style.display = (f === 'all' || connList.indexOf(f) !== -1) ? '' : 'none';
+      });
+    });
+  });
+
+  // --- Copy postcode ---
+  document.querySelectorAll('.copy-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var original = btn.textContent;
+      navigator.clipboard.writeText(btn.dataset.copy).then(function () {
+        btn.textContent = 'Copied!';
+        btn.classList.add('copy-btn--success');
+        setTimeout(function () {
+          btn.textContent = original;
+          btn.classList.remove('copy-btn--success');
+        }, 1500);
+      });
+    });
+  });
 }());
 </script>
 

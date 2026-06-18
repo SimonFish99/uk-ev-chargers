@@ -17,7 +17,10 @@
 
 <header>
 <div class="container">
-<a href="/" class="logo">PlugMap <span class="tagline">UK EV Charger Locator</span></a>
+<a href="/" class="logo">
+  <svg class="logo-bolt" viewBox="0 0 24 24" fill="currentColor" width="22" height="22" aria-hidden="true"><path d="M13 2L4.5 13.5H11L10 22L19.5 10.5H13Z"/></svg>
+  PlugMap <span class="tagline">UK EV Charger Locator</span>
+</a>
 </div>
 </header>
 
@@ -28,16 +31,42 @@
 </nav>
 
 <h1>EV Chargers in Blackburn</h1>
-<p class="page-intro">14 public charging stations found in Blackburn.</p>
+
+<div class="stats-bar">
+  <span class="stat-pill stat-total">14 stations</span>
+  <span class="stat-pill stat-rapid">3 rapid (50kW+)</span>
+  <span class="stat-pill stat-fast">11 fast (7–50kW)</span>
+  
+</div>
 
 <div id="map"></div>
 
-<ul class="charger-list">
+
+<div class="connector-filter">
+  <span class="filter-label">Filter:</span>
+  <button class="filter-btn active" data-filter="all">All</button>
+  
+  <button class="filter-btn" data-filter="CCS (Type 2)">CCS (Type 2)</button>
+  
+  <button class="filter-btn" data-filter="CHAdeMO">CHAdeMO</button>
+  
+  <button class="filter-btn" data-filter="Type 2 (Socket Only)">Type 2 (Socket Only)</button>
+  
+  <button class="filter-btn" data-filter="Type 2 (Tethered Connector) ">Type 2 (Tethered Connector) </button>
+  
+</div>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Lidl-Whalley Banks</h2>
-  <p class="charger-address">Whalley Banks BB2 1NU
+<ul class="charger-list" id="charger-list">
+
+
+<li class="charger-item charger-item--rapid" data-connectors="Type 2 (Socket Only),CCS (Type 2),CHAdeMO">
+  <div class="charger-header">
+    <h2 class="charger-name">Lidl-Whalley Banks</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Whalley Banks <button class="copy-btn" data-copy="BB2 1NU">BB2 1NU</button>
   </p>
   
   <div class="charger-connections">
@@ -62,9 +91,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Tesco Superstore - Blackburn</h2>
-  <p class="charger-address">Hill Street BB1 3HF
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Tesco Superstore - Blackburn</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Hill Street <button class="copy-btn" data-copy="BB1 3HF">BB1 3HF</button>
   </p>
   
   <div class="charger-connections">
@@ -86,9 +118,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">EG GROUP WATERSIDE HQ 4</h2>
-  <p class="charger-address">EG Group Waterside Head Office BB1 2FA
+<li class="charger-item charger-item--rapid" data-connectors="CHAdeMO,Type 2 (Tethered Connector) ">
+  <div class="charger-header">
+    <h2 class="charger-name">EG GROUP WATERSIDE HQ 4</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">EG Group Waterside Head Office <button class="copy-btn" data-copy="BB1 2FA">BB1 2FA</button>
   </p>
   
   <div class="charger-connections">
@@ -110,9 +146,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">CARPARK FB BLACKBURN 1</h2>
-  <p class="charger-address">Unit 5 Greenbank Business Park Dyneley Road BB1 3AB
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">CARPARK FB BLACKBURN 1</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Unit 5 Greenbank Business Park Dyneley Road <button class="copy-btn" data-copy="BB1 3AB">BB1 3AB</button>
   </p>
   
   <div class="charger-connections">
@@ -134,9 +173,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">EG GROUP HILTON 3</h2>
-  <p class="charger-address">2 Frontier Avenue BB1 3AL
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">EG GROUP HILTON 3</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">2 Frontier Avenue <button class="copy-btn" data-copy="BB1 3AL">BB1 3AL</button>
   </p>
   
   <div class="charger-connections">
@@ -158,9 +200,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">EG GROUP FRONTIER PARK</h2>
-  <p class="charger-address">Frontier Avenue BB1 3AL
+<li class="charger-item charger-item--rapid" data-connectors="CHAdeMO,Type 2 (Tethered Connector) ">
+  <div class="charger-header">
+    <h2 class="charger-name">EG GROUP FRONTIER PARK</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Frontier Avenue <button class="copy-btn" data-copy="BB1 3AL">BB1 3AL</button>
   </p>
   
   <div class="charger-connections">
@@ -200,9 +246,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">EG GROUP STANLEY HOUSE 1</h2>
-  <p class="charger-address">Stanley House, Further lane BB2 7NP
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">EG GROUP STANLEY HOUSE 1</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Stanley House, Further lane <button class="copy-btn" data-copy="BB2 7NP">BB2 7NP</button>
   </p>
   
   <div class="charger-connections">
@@ -224,9 +273,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Blackburn Technology Management Centre</h2>
-  <p class="charger-address">Blackburn Technology Managemen BB1 5QB
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Blackburn Technology Management Centre</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Blackburn Technology Managemen <button class="copy-btn" data-copy="BB1 5QB">BB1 5QB</button>
   </p>
   
   <div class="charger-connections">
@@ -245,9 +297,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">EG GROUP MY LAHORE 2</h2>
-  <p class="charger-address">98 Whitebirk Road BB1 3HR
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">EG GROUP MY LAHORE 2</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">98 Whitebirk Road <button class="copy-btn" data-copy="BB1 3HR">BB1 3HR</button>
   </p>
   
   <div class="charger-connections">
@@ -269,9 +324,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Eanam Wharf Business Centre</h2>
-  <p class="charger-address">Eanam Old Road BB1 5BL
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Eanam Wharf Business Centre</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Eanam Old Road <button class="copy-btn" data-copy="BB1 5BL">BB1 5BL</button>
   </p>
   
   <div class="charger-connections">
@@ -290,9 +348,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Feilden Street Multi-Storey Car Park</h2>
-  <p class="charger-address">Feilden Street Multi-Storey Ca BB2 1LQ
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Feilden Street Multi-Storey Car Park</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Feilden Street Multi-Storey Ca <button class="copy-btn" data-copy="BB2 1LQ">BB2 1LQ</button>
   </p>
   
   <div class="charger-connections">
@@ -314,9 +375,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Perry&#39;s Nissan Blackburn</h2>
-  <p class="charger-address">Whalley New Road BB1 6JT
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Perry&#39;s Nissan Blackburn</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Whalley New Road <button class="copy-btn" data-copy="BB1 6JT">BB1 6JT</button>
   </p>
   
   <div class="charger-connections">
@@ -335,9 +399,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">1 Appleby Street</h2>
-  <p class="charger-address">1 Appleby Street BB1 3BL
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">1 Appleby Street</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">1 Appleby Street <button class="copy-btn" data-copy="BB1 3BL">BB1 3BL</button>
   </p>
   
   <div class="charger-connections">
@@ -356,9 +423,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">The Peel Centre</h2>
-  <p class="charger-address">Whitebirk Drive BB1 3HT
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">The Peel Centre</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Whitebirk Drive <button class="copy-btn" data-copy="BB1 3HT">BB1 3HT</button>
   </p>
   
   <div class="charger-connections">
@@ -383,6 +453,23 @@
 
 <p><a href="/" class="back-link">← All UK towns</a></p>
 
+
+<div class="nearby-towns">
+  <h2 class="nearby-heading">Nearby towns</h2>
+  <ul class="nearby-list">
+  
+    <li><a href="/uk/accrington/">Accrington</a></li>
+  
+    <li><a href="/uk/clitheroe/">Clitheroe</a></li>
+  
+    <li><a href="/uk/rossendale/">Rossendale</a></li>
+  
+    <li><a href="/uk/bolton/">Bolton</a></li>
+  
+  </ul>
+</div>
+
+
 </div>
 
 <footer>
@@ -395,26 +482,61 @@
 <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 <script>
 (function () {
+  // --- Map ---
   var map = L.map('map').setView([53.752226091226476, -2.466783109979685], 12);
-
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
   }).addTo(map);
 
   var markers = L.markerClusterGroup();
-  var chargerData = [{"lat": 53.744295, "lng": -2.492958, "title": "Lidl-Whalley Banks", "address": "Whalley Banks"}, {"lat": 53.750738, "lng": -2.459421, "title": "Tesco Superstore - Blackburn", "address": "Hill Street"}, {"lat": 53.731772, "lng": -2.45692, "title": "EG GROUP WATERSIDE HQ 4", "address": "EG Group Waterside Head Office"}, {"lat": 53.757108, "lng": -2.452515, "title": "CARPARK FB BLACKBURN 1", "address": "Unit 5 Greenbank Business Park Dyneley Road"}, {"lat": 53.75387, "lng": -2.442069, "title": "EG GROUP HILTON 3", "address": "2 Frontier Avenue"}, {"lat": 53.753435, "lng": -2.440533, "title": "EG GROUP FRONTIER PARK", "address": "Frontier Avenue"}, {"lat": 53.763861, "lng": -2.53984, "title": "EG GROUP STANLEY HOUSE 1", "address": "Stanley House, Further lane"}, {"lat": 53.761124, "lng": -2.452728, "title": "Blackburn Technology Management Centre", "address": "Blackburn Technology Managemen"}, {"lat": 53.753989, "lng": -2.446263, "title": "EG GROUP MY LAHORE 2", "address": "98 Whitebirk Road"}, {"lat": 53.748823, "lng": -2.474993, "title": "Eanam Wharf Business Centre", "address": "Eanam Old Road"}, {"lat": 53.747812, "lng": -2.48731, "title": "Feilden Street Multi-Storey Car Park", "address": "Feilden Street Multi-Storey Ca"}, {"lat": 53.754427, "lng": -2.475939, "title": "Perry's Nissan Blackburn", "address": "Whalley New Road"}, {"lat": 53.75175616310938, "lng": -2.4672746746392704, "title": "1 Appleby Street", "address": "1 Appleby Street"}, {"lat": 53.758155114061225, "lng": -2.4461998650763235, "title": "The Peel Centre", "address": "Whitebirk Drive"}];
+  var chargerData = [{"lat": 53.744295, "lng": -2.492958, "title": "Lidl-Whalley Banks", "address": "Whalley Banks", "connectors": ["Type 2 (Socket Only) · 22kW", "CCS (Type 2) · 50kW", "CHAdeMO · 50kW"]}, {"lat": 53.750738, "lng": -2.459421, "title": "Tesco Superstore - Blackburn", "address": "Hill Street", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 53.731772, "lng": -2.45692, "title": "EG GROUP WATERSIDE HQ 4", "address": "EG Group Waterside Head Office", "connectors": ["CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 50kW"]}, {"lat": 53.757108, "lng": -2.452515, "title": "CARPARK FB BLACKBURN 1", "address": "Unit 5 Greenbank Business Park Dyneley Road", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 53.75387, "lng": -2.442069, "title": "EG GROUP HILTON 3", "address": "2 Frontier Avenue", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 53.753435, "lng": -2.440533, "title": "EG GROUP FRONTIER PARK", "address": "Frontier Avenue", "connectors": ["CHAdeMO · 75kW", "Type 2 (Tethered Connector)  · 175kW", "CHAdeMO · 75kW", "Type 2 (Tethered Connector)  · 175kW", "CHAdeMO · 75kW", "Type 2 (Tethered Connector)  · 175kW", "CHAdeMO · 75kW", "Type 2 (Tethered Connector)  · 175kW"]}, {"lat": 53.763861, "lng": -2.53984, "title": "EG GROUP STANLEY HOUSE 1", "address": "Stanley House, Further lane", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 53.761124, "lng": -2.452728, "title": "Blackburn Technology Management Centre", "address": "Blackburn Technology Managemen", "connectors": ["Type 2 (Socket Only) · 22kW"]}, {"lat": 53.753989, "lng": -2.446263, "title": "EG GROUP MY LAHORE 2", "address": "98 Whitebirk Road", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 53.748823, "lng": -2.474993, "title": "Eanam Wharf Business Centre", "address": "Eanam Old Road", "connectors": ["Type 2 (Socket Only) · 22kW"]}, {"lat": 53.747812, "lng": -2.48731, "title": "Feilden Street Multi-Storey Car Park", "address": "Feilden Street Multi-Storey Ca", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 53.754427, "lng": -2.475939, "title": "Perry's Nissan Blackburn", "address": "Whalley New Road", "connectors": ["Type 2 (Socket Only) · 7kW"]}, {"lat": 53.75175616310938, "lng": -2.4672746746392704, "title": "1 Appleby Street", "address": "1 Appleby Street", "connectors": ["Type 2 (Socket Only) · 11kW"]}, {"lat": 53.758155114061225, "lng": -2.4461998650763235, "title": "The Peel Centre", "address": "Whitebirk Drive", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}];
 
   chargerData.forEach(function (c) {
+    var connHtml = c.connectors.length
+      ? '<div style="margin-top:6px;font-size:12px;color:#475569">' + c.connectors.join(' &middot; ') + '</div>'
+      : '';
     var marker = L.marker([c.lat, c.lng]);
     marker.bindPopup(
-      '<b>' + c.title + '</b><br>' + c.address + '<br><br>' +
+      '<b>' + c.title + '</b>' +
+      '<div style="color:#64748b;font-size:13px">' + c.address + '</div>' +
+      connHtml +
       '<a href="https://www.google.com/maps/dir/?api=1&destination=' + c.lat + ',' + c.lng +
-      '" target="_blank" rel="noopener">Get directions</a>'
+      '" target="_blank" rel="noopener" style="display:inline-block;margin-top:8px;padding:4px 10px;background:#2563eb;color:white;border-radius:4px;text-decoration:none;font-size:12px">Get directions</a>'
     );
     markers.addLayer(marker);
   });
-
   map.addLayer(markers);
+
+  // --- Connector filter ---
+  var filterBtns = document.querySelectorAll('.filter-btn');
+  var chargerItems = document.querySelectorAll('.charger-item');
+
+  filterBtns.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      filterBtns.forEach(function (b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      var f = btn.dataset.filter;
+      chargerItems.forEach(function (item) {
+        var connList = item.dataset.connectors ? item.dataset.connectors.split(',') : [];
+        item.style.display = (f === 'all' || connList.indexOf(f) !== -1) ? '' : 'none';
+      });
+    });
+  });
+
+  // --- Copy postcode ---
+  document.querySelectorAll('.copy-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var original = btn.textContent;
+      navigator.clipboard.writeText(btn.dataset.copy).then(function () {
+        btn.textContent = 'Copied!';
+        btn.classList.add('copy-btn--success');
+        setTimeout(function () {
+          btn.textContent = original;
+          btn.classList.remove('copy-btn--success');
+        }, 1500);
+      });
+    });
+  });
 }());
 </script>
 

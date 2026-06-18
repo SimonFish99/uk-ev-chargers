@@ -17,7 +17,10 @@
 
 <header>
 <div class="container">
-<a href="/" class="logo">PlugMap <span class="tagline">UK EV Charger Locator</span></a>
+<a href="/" class="logo">
+  <svg class="logo-bolt" viewBox="0 0 24 24" fill="currentColor" width="22" height="22" aria-hidden="true"><path d="M13 2L4.5 13.5H11L10 22L19.5 10.5H13Z"/></svg>
+  PlugMap <span class="tagline">UK EV Charger Locator</span>
+</a>
 </div>
 </header>
 
@@ -28,16 +31,44 @@
 </nav>
 
 <h1>EV Chargers in Amersham</h1>
-<p class="page-intro">11 public charging stations found in Amersham.</p>
+
+<div class="stats-bar">
+  <span class="stat-pill stat-total">11 stations</span>
+  <span class="stat-pill stat-rapid">5 rapid (50kW+)</span>
+  <span class="stat-pill stat-fast">3 fast (7–50kW)</span>
+  <span class="stat-pill stat-slow">3 slow</span>
+</div>
 
 <div id="map"></div>
 
-<ul class="charger-list">
+
+<div class="connector-filter">
+  <span class="filter-label">Filter:</span>
+  <button class="filter-btn active" data-filter="all">All</button>
+  
+  <button class="filter-btn" data-filter="BS1363 3 Pin 13 Amp">BS1363 3 Pin 13 Amp</button>
+  
+  <button class="filter-btn" data-filter="CCS (Type 2)">CCS (Type 2)</button>
+  
+  <button class="filter-btn" data-filter="CHAdeMO">CHAdeMO</button>
+  
+  <button class="filter-btn" data-filter="Type 2 (Socket Only)">Type 2 (Socket Only)</button>
+  
+  <button class="filter-btn" data-filter="Type 2 (Tethered Connector) ">Type 2 (Tethered Connector) </button>
+  
+</div>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Boot &amp; Slipper</h2>
-  <p class="charger-address">Chesham Road HP6 5HN
+<ul class="charger-list" id="charger-list">
+
+
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2)">
+  <div class="charger-header">
+    <h2 class="charger-name">Boot &amp; Slipper</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Chesham Road <button class="copy-btn" data-copy="HP6 5HN">HP6 5HN</button>
   </p>
   
   <div class="charger-connections">
@@ -56,9 +87,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Shardeloes Farm Equestrian Centre</h2>
-  <p class="charger-address">Cherry Lane HP7 0QF
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2),CHAdeMO,Type 2 (Tethered Connector) ">
+  <div class="charger-header">
+    <h2 class="charger-name">Shardeloes Farm Equestrian Centre</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Cherry Lane <button class="copy-btn" data-copy="HP7 0QF">HP7 0QF</button>
   </p>
   
   <div class="charger-connections">
@@ -83,9 +118,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Old Town Car Park</h2>
-  <p class="charger-address">The Broadway HP7 0UT
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2),CHAdeMO,Type 2 (Tethered Connector) ,Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Old Town Car Park</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">The Broadway <button class="copy-btn" data-copy="HP7 0UT">HP7 0UT</button>
   </p>
   
   <div class="charger-connections">
@@ -113,9 +152,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">BP Chalfonts Way SF Connect</h2>
-  <p class="charger-address">66 White Lion Road HP7 9JS
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2)">
+  <div class="charger-header">
+    <h2 class="charger-name">BP Chalfonts Way SF Connect</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">66 White Lion Road <button class="copy-btn" data-copy="HP7 9JS">HP7 9JS</button>
   </p>
   
   <div class="charger-connections">
@@ -134,9 +177,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">MK18</h2>
-  <p class="charger-address">King George V Road HP6 5AP
+<li class="charger-item charger-item--slow" data-connectors="BS1363 3 Pin 13 Amp">
+  <div class="charger-header">
+    <h2 class="charger-name">MK18</h2>
+    
+  </div>
+  <p class="charger-address">King George V Road <button class="copy-btn" data-copy="HP6 5AP">HP6 5AP</button>
   </p>
   
   <div class="charger-connections">
@@ -158,9 +204,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">183 High Street</h2>
-  <p class="charger-address">183 High Street HP7 0EB
+<li class="charger-item charger-item--slow" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">183 High Street</h2>
+    
+  </div>
+  <p class="charger-address">183 High Street <button class="copy-btn" data-copy="HP7 0EB">HP7 0EB</button>
   </p>
   
   <div class="charger-connections">
@@ -179,9 +228,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Chenies Parade</h2>
-  <p class="charger-address">Little Chalfont HP7 9PH
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Chenies Parade</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Little Chalfont <button class="copy-btn" data-copy="HP7 9PH">HP7 9PH</button>
   </p>
   
   <div class="charger-connections">
@@ -203,9 +255,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">The Crown Inn-Amersham</h2>
-  <p class="charger-address">16 High Street HP7 0DH
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">The Crown Inn-Amersham</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">16 High Street <button class="copy-btn" data-copy="HP7 0DH">HP7 0DH</button>
   </p>
   
   <div class="charger-connections">
@@ -230,9 +285,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Sycamore Road Car Park</h2>
-  <p class="charger-address">Sycamore Road HP6 5HY
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2),CHAdeMO,Type 2 (Tethered Connector) ">
+  <div class="charger-header">
+    <h2 class="charger-name">Sycamore Road Car Park</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Sycamore Road <button class="copy-btn" data-copy="HP6 5HY">HP6 5HY</button>
   </p>
   
   <div class="charger-connections">
@@ -257,9 +316,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Tesco Superstore-Amersham</h2>
-  <p class="charger-address">London Road West HP7 0HA
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Tesco Superstore-Amersham</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">London Road West <button class="copy-btn" data-copy="HP7 0HA">HP7 0HA</button>
   </p>
   
   <div class="charger-connections">
@@ -281,9 +343,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">155 High Street</h2>
-  <p class="charger-address">155 High Street HP7 0EB
+<li class="charger-item charger-item--slow" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">155 High Street</h2>
+    
+  </div>
+  <p class="charger-address">155 High Street <button class="copy-btn" data-copy="HP7 0EB">HP7 0EB</button>
   </p>
   
   <div class="charger-connections">
@@ -305,6 +370,23 @@
 
 <p><a href="/" class="back-link">← All UK towns</a></p>
 
+
+<div class="nearby-towns">
+  <h2 class="nearby-heading">Nearby towns</h2>
+  <ul class="nearby-list">
+  
+    <li><a href="/uk/rickmansworth/">Rickmansworth</a></li>
+  
+    <li><a href="/uk/high-wycombe/">High Wycombe</a></li>
+  
+    <li><a href="/uk/slough/">Slough</a></li>
+  
+    <li><a href="/uk/hemel-hempstead/">Hemel Hempstead</a></li>
+  
+  </ul>
+</div>
+
+
 </div>
 
 <footer>
@@ -317,26 +399,61 @@
 <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 <script>
 (function () {
+  // --- Map ---
   var map = L.map('map').setView([51.67011022285719, -0.6081775247788718], 12);
-
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
   }).addTo(map);
 
   var markers = L.markerClusterGroup();
-  var chargerData = [{"lat": 51.68060416153574, "lng": -0.608239090836463, "title": "Boot & Slipper", "address": "Chesham Road"}, {"lat": 51.66414946427466, "lng": -0.6355673527804697, "title": "Shardeloes Farm Equestrian Centre", "address": "Cherry Lane"}, {"lat": 51.6666582443422, "lng": -0.613322188399394, "title": "Old Town Car Park", "address": "The Broadway"}, {"lat": 51.6715023851101, "lng": -0.583793967505471, "title": "BP Chalfonts Way SF Connect", "address": "66 White Lion Road"}, {"lat": 51.67413, "lng": -0.606514, "title": "MK18", "address": "King George V Road"}, {"lat": 51.668205, "lng": -0.6227, "title": "183 High Street", "address": "183 High Street"}, {"lat": 51.667046, "lng": -0.56346, "title": "Chenies Parade", "address": "Little Chalfont"}, {"lat": 51.666342, "lng": -0.616582, "title": "The Crown Inn-Amersham", "address": "16 High Street"}, {"lat": 51.6789991961664, "lng": -0.607264173045792, "title": "Sycamore Road Car Park", "address": "Sycamore Road"}, {"lat": 51.665632, "lng": -0.610537, "title": "Tesco Superstore-Amersham", "address": "London Road West"}, {"lat": 51.667944, "lng": -0.621973, "title": "155 High Street", "address": "155 High Street"}];
+  var chargerData = [{"lat": 51.68060416153574, "lng": -0.608239090836463, "title": "Boot & Slipper", "address": "Chesham Road", "connectors": ["CCS (Type 2) · 50kW"]}, {"lat": 51.66414946427466, "lng": -0.6355673527804697, "title": "Shardeloes Farm Equestrian Centre", "address": "Cherry Lane", "connectors": ["CCS (Type 2) · 50kW", "CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 22kW"]}, {"lat": 51.6666582443422, "lng": -0.613322188399394, "title": "Old Town Car Park", "address": "The Broadway", "connectors": ["CCS (Type 2) · 50kW", "CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 43kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 51.6715023851101, "lng": -0.583793967505471, "title": "BP Chalfonts Way SF Connect", "address": "66 White Lion Road", "connectors": ["CCS (Type 2) · 150kW"]}, {"lat": 51.67413, "lng": -0.606514, "title": "MK18", "address": "King George V Road", "connectors": ["BS1363 3 Pin 13 Amp · 3kW", "BS1363 3 Pin 13 Amp · 3kW"]}, {"lat": 51.668205, "lng": -0.6227, "title": "183 High Street", "address": "183 High Street", "connectors": ["Type 2 (Socket Only) · 5.1kW"]}, {"lat": 51.667046, "lng": -0.56346, "title": "Chenies Parade", "address": "Little Chalfont", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 51.666342, "lng": -0.616582, "title": "The Crown Inn-Amersham", "address": "16 High Street", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 51.6789991961664, "lng": -0.607264173045792, "title": "Sycamore Road Car Park", "address": "Sycamore Road", "connectors": ["CCS (Type 2) · 50kW", "CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 43kW"]}, {"lat": 51.665632, "lng": -0.610537, "title": "Tesco Superstore-Amersham", "address": "London Road West", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 51.667944, "lng": -0.621973, "title": "155 High Street", "address": "155 High Street", "connectors": ["Type 2 (Socket Only) · 5.1kW"]}];
 
   chargerData.forEach(function (c) {
+    var connHtml = c.connectors.length
+      ? '<div style="margin-top:6px;font-size:12px;color:#475569">' + c.connectors.join(' &middot; ') + '</div>'
+      : '';
     var marker = L.marker([c.lat, c.lng]);
     marker.bindPopup(
-      '<b>' + c.title + '</b><br>' + c.address + '<br><br>' +
+      '<b>' + c.title + '</b>' +
+      '<div style="color:#64748b;font-size:13px">' + c.address + '</div>' +
+      connHtml +
       '<a href="https://www.google.com/maps/dir/?api=1&destination=' + c.lat + ',' + c.lng +
-      '" target="_blank" rel="noopener">Get directions</a>'
+      '" target="_blank" rel="noopener" style="display:inline-block;margin-top:8px;padding:4px 10px;background:#2563eb;color:white;border-radius:4px;text-decoration:none;font-size:12px">Get directions</a>'
     );
     markers.addLayer(marker);
   });
-
   map.addLayer(markers);
+
+  // --- Connector filter ---
+  var filterBtns = document.querySelectorAll('.filter-btn');
+  var chargerItems = document.querySelectorAll('.charger-item');
+
+  filterBtns.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      filterBtns.forEach(function (b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      var f = btn.dataset.filter;
+      chargerItems.forEach(function (item) {
+        var connList = item.dataset.connectors ? item.dataset.connectors.split(',') : [];
+        item.style.display = (f === 'all' || connList.indexOf(f) !== -1) ? '' : 'none';
+      });
+    });
+  });
+
+  // --- Copy postcode ---
+  document.querySelectorAll('.copy-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var original = btn.textContent;
+      navigator.clipboard.writeText(btn.dataset.copy).then(function () {
+        btn.textContent = 'Copied!';
+        btn.classList.add('copy-btn--success');
+        setTimeout(function () {
+          btn.textContent = original;
+          btn.classList.remove('copy-btn--success');
+        }, 1500);
+      });
+    });
+  });
 }());
 </script>
 

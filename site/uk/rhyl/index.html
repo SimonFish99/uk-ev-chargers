@@ -17,7 +17,10 @@
 
 <header>
 <div class="container">
-<a href="/" class="logo">PlugMap <span class="tagline">UK EV Charger Locator</span></a>
+<a href="/" class="logo">
+  <svg class="logo-bolt" viewBox="0 0 24 24" fill="currentColor" width="22" height="22" aria-hidden="true"><path d="M13 2L4.5 13.5H11L10 22L19.5 10.5H13Z"/></svg>
+  PlugMap <span class="tagline">UK EV Charger Locator</span>
+</a>
 </div>
 </header>
 
@@ -28,16 +31,42 @@
 </nav>
 
 <h1>EV Chargers in Rhyl</h1>
-<p class="page-intro">8 public charging stations found in Rhyl.</p>
+
+<div class="stats-bar">
+  <span class="stat-pill stat-total">8 stations</span>
+  <span class="stat-pill stat-rapid">7 rapid (50kW+)</span>
+  <span class="stat-pill stat-fast">1 fast (7–50kW)</span>
+  
+</div>
 
 <div id="map"></div>
 
-<ul class="charger-list">
+
+<div class="connector-filter">
+  <span class="filter-label">Filter:</span>
+  <button class="filter-btn active" data-filter="all">All</button>
+  
+  <button class="filter-btn" data-filter="CCS (Type 2)">CCS (Type 2)</button>
+  
+  <button class="filter-btn" data-filter="CHAdeMO">CHAdeMO</button>
+  
+  <button class="filter-btn" data-filter="Type 2 (Socket Only)">Type 2 (Socket Only)</button>
+  
+  <button class="filter-btn" data-filter="Type 2 (Tethered Connector) ">Type 2 (Tethered Connector) </button>
+  
+</div>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Morrison Rhyl</h2>
-  <p class="charger-address">Morrison Rhyl LL18 2DF
+<ul class="charger-list" id="charger-list">
+
+
+<li class="charger-item charger-item--rapid" data-connectors="Type 2 (Socket Only),CHAdeMO,Type 2 (Tethered Connector) ">
+  <div class="charger-header">
+    <h2 class="charger-name">Morrison Rhyl</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Morrison Rhyl <button class="copy-btn" data-copy="LL18 2DF">LL18 2DF</button>
   </p>
   
   <div class="charger-connections">
@@ -62,9 +91,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Animal Trust Car Park</h2>
-  <p class="charger-address">Wellington Road LL18 1LP
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2),CHAdeMO,Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Animal Trust Car Park</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Wellington Road <button class="copy-btn" data-copy="LL18 1LP">LL18 1LP</button>
   </p>
   
   <div class="charger-connections">
@@ -89,9 +122,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Morley Road</h2>
-  <p class="charger-address">Morley Road LL18 3HD
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Morley Road</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Morley Road <button class="copy-btn" data-copy="LL18 3HD">LL18 3HD</button>
   </p>
   
   <div class="charger-connections">
@@ -113,9 +149,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">EG Kinmel Park East</h2>
-  <p class="charger-address">A55 Expressway Eastbound LL18 5XW
+<li class="charger-item charger-item--rapid" data-connectors="CHAdeMO,Type 2 (Socket Only),CCS (Type 2)">
+  <div class="charger-header">
+    <h2 class="charger-name">EG Kinmel Park East</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">A55 Expressway Eastbound <button class="copy-btn" data-copy="LL18 5XW">LL18 5XW</button>
   </p>
   
   <div class="charger-connections">
@@ -149,9 +189,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">EG Kinmel Park West</h2>
-  <p class="charger-address">Bodelwyddan LL18 5XE
+<li class="charger-item charger-item--rapid" data-connectors="CHAdeMO,Type 2 (Socket Only),CCS (Type 2)">
+  <div class="charger-header">
+    <h2 class="charger-name">EG Kinmel Park West</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Bodelwyddan <button class="copy-btn" data-copy="LL18 5XE">LL18 5XE</button>
   </p>
   
   <div class="charger-connections">
@@ -185,9 +229,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">West Kinmel Street Car Park</h2>
-  <p class="charger-address">West Kinmel Street LL18 1DA
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2),CHAdeMO,Type 2 (Tethered Connector) ,Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">West Kinmel Street Car Park</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">West Kinmel Street <button class="copy-btn" data-copy="LL18 1DA">LL18 1DA</button>
   </p>
   
   <div class="charger-connections">
@@ -269,9 +317,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">McDonald&#39;s Rhyl Retail Park</h2>
-  <p class="charger-address">Ffordd Derwen LL18 2YR
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2),CHAdeMO">
+  <div class="charger-header">
+    <h2 class="charger-name">McDonald&#39;s Rhyl Retail Park</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Ffordd Derwen <button class="copy-btn" data-copy="LL18 2YR">LL18 2YR</button>
   </p>
   
   <div class="charger-connections">
@@ -293,9 +345,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Marsh Road</h2>
-  <p class="charger-address">Marsh Road LL18 2DF
+<li class="charger-item charger-item--rapid" data-connectors="Type 2 (Socket Only),CHAdeMO,CCS (Type 2)">
+  <div class="charger-header">
+    <h2 class="charger-name">Marsh Road</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Marsh Road <button class="copy-btn" data-copy="LL18 2DF">LL18 2DF</button>
   </p>
   
   <div class="charger-connections">
@@ -323,6 +379,23 @@
 
 <p><a href="/" class="back-link">← All UK towns</a></p>
 
+
+<div class="nearby-towns">
+  <h2 class="nearby-heading">Nearby towns</h2>
+  <ul class="nearby-list">
+  
+    <li><a href="/uk/hoylake/">Hoylake</a></li>
+  
+    <li><a href="/uk/mold/">Mold</a></li>
+  
+    <li><a href="/uk/woodchurch/">Woodchurch</a></li>
+  
+    <li><a href="/uk/birkenhead/">Birkenhead</a></li>
+  
+  </ul>
+</div>
+
+
 </div>
 
 <footer>
@@ -335,26 +408,61 @@
 <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 <script>
 (function () {
+  // --- Map ---
   var map = L.map('map').setView([53.30369586189149, -3.4949486808034154], 12);
-
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
   }).addTo(map);
 
   var markers = L.markerClusterGroup();
-  var chargerData = [{"lat": 53.317369, "lng": -3.488348, "title": "Morrison Rhyl", "address": "Morrison Rhyl"}, {"lat": 53.314519900813366, "lng": -3.4995496919862603, "title": "Animal Trust Car Park", "address": "Wellington Road"}, {"lat": 53.320557591957595, "lng": -3.484796896982914, "title": "Morley Road", "address": "Morley Road"}, {"lat": 53.270576, "lng": -3.518701, "title": "EG Kinmel Park East", "address": "A55 Expressway Eastbound"}, {"lat": 53.2675730174141, "lng": -3.5187687939947, "title": "EG Kinmel Park West", "address": "Bodelwyddan"}, {"lat": 53.316470206577435, "lng": -3.493140175780809, "title": "West Kinmel Street Car Park", "address": "West Kinmel Street"}, {"lat": 53.3048758152111, "lng": -3.46909554673985, "title": "McDonald's Rhyl Retail Park", "address": "Ffordd Derwen"}, {"lat": 53.317625363158356, "lng": -3.487189340942791, "title": "Marsh Road", "address": "Marsh Road"}];
+  var chargerData = [{"lat": 53.317369, "lng": -3.488348, "title": "Morrison Rhyl", "address": "Morrison Rhyl", "connectors": ["Type 2 (Socket Only) · 22kW", "CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 50kW"]}, {"lat": 53.314519900813366, "lng": -3.4995496919862603, "title": "Animal Trust Car Park", "address": "Wellington Road", "connectors": ["CCS (Type 2) · 50kW", "CHAdeMO · 50kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 53.320557591957595, "lng": -3.484796896982914, "title": "Morley Road", "address": "Morley Road", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 53.270576, "lng": -3.518701, "title": "EG Kinmel Park East", "address": "A55 Expressway Eastbound", "connectors": ["CHAdeMO · 50kW", "Type 2 (Socket Only) · 22kW", "CCS (Type 2) · 50kW", "CCS (Type 2) · 50kW", "CHAdeMO · 50kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 53.2675730174141, "lng": -3.5187687939947, "title": "EG Kinmel Park West", "address": "Bodelwyddan", "connectors": ["CHAdeMO · 50kW", "Type 2 (Socket Only) · 22kW", "CCS (Type 2) · 50kW", "CCS (Type 2) · 50kW", "CHAdeMO · 50kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 53.316470206577435, "lng": -3.493140175780809, "title": "West Kinmel Street Car Park", "address": "West Kinmel Street", "connectors": ["CCS (Type 2) · 50kW", "CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 43kW", "CCS (Type 2) · 50kW", "CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 43kW", "Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 53.3048758152111, "lng": -3.46909554673985, "title": "McDonald's Rhyl Retail Park", "address": "Ffordd Derwen", "connectors": ["CCS (Type 2) · 120kW", "CHAdeMO · 50kW"]}, {"lat": 53.317625363158356, "lng": -3.487189340942791, "title": "Marsh Road", "address": "Marsh Road", "connectors": ["Type 2 (Socket Only) · 22kW", "CHAdeMO · 50kW", "CCS (Type 2) · 50kW"]}];
 
   chargerData.forEach(function (c) {
+    var connHtml = c.connectors.length
+      ? '<div style="margin-top:6px;font-size:12px;color:#475569">' + c.connectors.join(' &middot; ') + '</div>'
+      : '';
     var marker = L.marker([c.lat, c.lng]);
     marker.bindPopup(
-      '<b>' + c.title + '</b><br>' + c.address + '<br><br>' +
+      '<b>' + c.title + '</b>' +
+      '<div style="color:#64748b;font-size:13px">' + c.address + '</div>' +
+      connHtml +
       '<a href="https://www.google.com/maps/dir/?api=1&destination=' + c.lat + ',' + c.lng +
-      '" target="_blank" rel="noopener">Get directions</a>'
+      '" target="_blank" rel="noopener" style="display:inline-block;margin-top:8px;padding:4px 10px;background:#2563eb;color:white;border-radius:4px;text-decoration:none;font-size:12px">Get directions</a>'
     );
     markers.addLayer(marker);
   });
-
   map.addLayer(markers);
+
+  // --- Connector filter ---
+  var filterBtns = document.querySelectorAll('.filter-btn');
+  var chargerItems = document.querySelectorAll('.charger-item');
+
+  filterBtns.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      filterBtns.forEach(function (b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      var f = btn.dataset.filter;
+      chargerItems.forEach(function (item) {
+        var connList = item.dataset.connectors ? item.dataset.connectors.split(',') : [];
+        item.style.display = (f === 'all' || connList.indexOf(f) !== -1) ? '' : 'none';
+      });
+    });
+  });
+
+  // --- Copy postcode ---
+  document.querySelectorAll('.copy-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var original = btn.textContent;
+      navigator.clipboard.writeText(btn.dataset.copy).then(function () {
+        btn.textContent = 'Copied!';
+        btn.classList.add('copy-btn--success');
+        setTimeout(function () {
+          btn.textContent = original;
+          btn.classList.remove('copy-btn--success');
+        }, 1500);
+      });
+    });
+  });
 }());
 </script>
 

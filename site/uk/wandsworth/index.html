@@ -17,7 +17,10 @@
 
 <header>
 <div class="container">
-<a href="/" class="logo">PlugMap <span class="tagline">UK EV Charger Locator</span></a>
+<a href="/" class="logo">
+  <svg class="logo-bolt" viewBox="0 0 24 24" fill="currentColor" width="22" height="22" aria-hidden="true"><path d="M13 2L4.5 13.5H11L10 22L19.5 10.5H13Z"/></svg>
+  PlugMap <span class="tagline">UK EV Charger Locator</span>
+</a>
 </div>
 </header>
 
@@ -28,16 +31,43 @@
 </nav>
 
 <h1>EV Chargers in Wandsworth</h1>
-<p class="page-intro">16 public charging stations found in Wandsworth.</p>
+
+<div class="stats-bar">
+  <span class="stat-pill stat-total">16 stations</span>
+  <span class="stat-pill stat-rapid">2 rapid (50kW+)</span>
+  <span class="stat-pill stat-fast">13 fast (7–50kW)</span>
+  <span class="stat-pill stat-slow">1 slow</span>
+</div>
 
 <div id="map"></div>
 
-<ul class="charger-list">
+
+<div class="connector-filter">
+  <span class="filter-label">Filter:</span>
+  <button class="filter-btn active" data-filter="all">All</button>
+  
+  <button class="filter-btn" data-filter="BS1363 3 Pin 13 Amp">BS1363 3 Pin 13 Amp</button>
+  
+  <button class="filter-btn" data-filter="CHAdeMO">CHAdeMO</button>
+  
+  <button class="filter-btn" data-filter="Type 1 (J1772)">Type 1 (J1772)</button>
+  
+  <button class="filter-btn" data-filter="Type 2 (Socket Only)">Type 2 (Socket Only)</button>
+  
+  <button class="filter-btn" data-filter="Type 2 (Tethered Connector) ">Type 2 (Tethered Connector) </button>
+  
+</div>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Esparto Street</h2>
-  <p class="charger-address">Esparto Street SW18 4DL
+<ul class="charger-list" id="charger-list">
+
+
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Esparto Street</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Esparto Street <button class="copy-btn" data-copy="SW18 4DL">SW18 4DL</button>
   </p>
   
   <div class="charger-connections">
@@ -59,9 +89,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Lavenham Road</h2>
-  <p class="charger-address">Lavenham Road SW18 5EP
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Lavenham Road</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Lavenham Road <button class="copy-btn" data-copy="SW18 5EP">SW18 5EP</button>
   </p>
   
   <div class="charger-connections">
@@ -83,9 +116,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Quinton Street</h2>
-  <p class="charger-address">Quinton Street SW18 3QT
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Quinton Street</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Quinton Street <button class="copy-btn" data-copy="SW18 3QT">SW18 3QT</button>
   </p>
   
   <div class="charger-connections">
@@ -107,9 +143,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Skipsea House</h2>
-  <p class="charger-address">Skipsea House SW18 3S
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Skipsea House</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Skipsea House <button class="copy-btn" data-copy="SW18 3S">SW18 3S</button>
   </p>
   
   <div class="charger-connections">
@@ -131,9 +170,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">401 Battersea Park Road (opp 154A)</h2>
-  <p class="charger-address">401 Battersea Park Road (opp 154A), Battersea Park SW11 4XW
+<li class="charger-item charger-item--rapid" data-connectors="CHAdeMO,Type 2 (Tethered Connector) ">
+  <div class="charger-header">
+    <h2 class="charger-name">401 Battersea Park Road (opp 154A)</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">401 Battersea Park Road (opp 154A), Battersea Park <button class="copy-btn" data-copy="SW11 4XW">SW11 4XW</button>
   </p>
   
   <div class="charger-connections">
@@ -155,9 +198,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Upper Richmond Road</h2>
-  <p class="charger-address">Upper Richmond Road, 3 Keswick Broadway SW15 2RB
+<li class="charger-item charger-item--rapid" data-connectors="CHAdeMO,Type 2 (Tethered Connector) ">
+  <div class="charger-header">
+    <h2 class="charger-name">Upper Richmond Road</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Upper Richmond Road, 3 Keswick Broadway <button class="copy-btn" data-copy="SW15 2RB">SW15 2RB</button>
   </p>
   
   <div class="charger-connections">
@@ -182,9 +229,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Sutherland Grove</h2>
-  <p class="charger-address">Sutherland Grove SW18 1PG
+<li class="charger-item charger-item--fast" data-connectors="Type 1 (J1772),Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Sutherland Grove</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Sutherland Grove <button class="copy-btn" data-copy="SW18 1PG">SW18 1PG</button>
   </p>
   
   <div class="charger-connections">
@@ -206,9 +256,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Gatwick Road</h2>
-  <p class="charger-address">Gatwick Road SW18 5UE
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Gatwick Road</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Gatwick Road <button class="copy-btn" data-copy="SW18 5UE">SW18 5UE</button>
   </p>
   
   <div class="charger-connections">
@@ -230,9 +283,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Patten Road</h2>
-  <p class="charger-address">Patten Road SW18 3RH
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Patten Road</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Patten Road <button class="copy-btn" data-copy="SW18 3RH">SW18 3RH</button>
   </p>
   
   <div class="charger-connections">
@@ -254,9 +310,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Hillbury Road (Site 2)</h2>
-  <p class="charger-address">Hillbury Road (Site 2) SW17 8JT
+<li class="charger-item charger-item--fast" data-connectors="Type 1 (J1772),Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Hillbury Road (Site 2)</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Hillbury Road (Site 2) <button class="copy-btn" data-copy="SW17 8JT">SW17 8JT</button>
   </p>
   
   <div class="charger-connections">
@@ -278,9 +337,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Coverton Road</h2>
-  <p class="charger-address">Coverton Road, Wandsworth, London SW17 0RE
+<li class="charger-item charger-item--slow" data-connectors="BS1363 3 Pin 13 Amp">
+  <div class="charger-header">
+    <h2 class="charger-name">Coverton Road</h2>
+    
+  </div>
+  <p class="charger-address">Coverton Road, Wandsworth, London <button class="copy-btn" data-copy="SW17 0RE">SW17 0RE</button>
   </p>
   
   <div class="charger-connections">
@@ -302,9 +364,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Woodhall House</h2>
-  <p class="charger-address">Woodhall House SW18 3S
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Woodhall House</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Woodhall House <button class="copy-btn" data-copy="SW18 3S">SW18 3S</button>
   </p>
   
   <div class="charger-connections">
@@ -326,9 +391,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Morwille House</h2>
-  <p class="charger-address">Morwille House SW18 3S
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Morwille House</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Morwille House <button class="copy-btn" data-copy="SW18 3S">SW18 3S</button>
   </p>
   
   <div class="charger-connections">
@@ -350,9 +418,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">St Quentin House</h2>
-  <p class="charger-address">St Quentin House SW18 3S
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">St Quentin House</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">St Quentin House <button class="copy-btn" data-copy="SW18 3S">SW18 3S</button>
   </p>
   
   <div class="charger-connections">
@@ -374,9 +445,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Gernigan House</h2>
-  <p class="charger-address">Gernigan House SW18 3S
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Gernigan House</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Gernigan House <button class="copy-btn" data-copy="SW18 3S">SW18 3S</button>
   </p>
   
   <div class="charger-connections">
@@ -398,9 +472,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Louvaine Road</h2>
-  <p class="charger-address">Louvaine Road SW11 1SH
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Louvaine Road</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Louvaine Road <button class="copy-btn" data-copy="SW11 1SH">SW11 1SH</button>
   </p>
   
   <div class="charger-connections">
@@ -428,6 +505,23 @@
 
 <p><a href="/" class="back-link">← All UK towns</a></p>
 
+
+<div class="nearby-towns">
+  <h2 class="nearby-heading">Nearby towns</h2>
+  <ul class="nearby-list">
+  
+    <li><a href="/uk/battersea/">Battersea</a></li>
+  
+    <li><a href="/uk/wimbledon-town-and-dundonald/">Wimbledon Town &amp; Dundonald</a></li>
+  
+    <li><a href="/uk/fulham/">Fulham</a></li>
+  
+    <li><a href="/uk/merton/">Merton</a></li>
+  
+  </ul>
+</div>
+
+
 </div>
 
 <footer>
@@ -440,26 +534,61 @@
 <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 <script>
 (function () {
+  // --- Map ---
   var map = L.map('map').setView([51.4498575, -0.1812425], 12);
-
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
   }).addTo(map);
 
   var markers = L.markerClusterGroup();
-  var chargerData = [{"lat": 51.449652, "lng": -0.190538, "title": "Esparto Street", "address": "Esparto Street"}, {"lat": 51.44285, "lng": -0.197877, "title": "Lavenham Road", "address": "Lavenham Road"}, {"lat": 51.439447, "lng": -0.1835, "title": "Quinton Street", "address": "Quinton Street"}, {"lat": 51.451999, "lng": -0.174043, "title": "Skipsea House", "address": "Skipsea House"}, {"lat": 51.47381, "lng": -0.159281, "title": "401 Battersea Park Road (opp 154A)", "address": "401 Battersea Park Road (opp 154A), Battersea Park"}, {"lat": 51.45856, "lng": -0.20913, "title": "Upper Richmond Road", "address": "Upper Richmond Road, 3 Keswick Broadway"}, {"lat": 51.451577, "lng": -0.209211, "title": "Sutherland Grove", "address": "Sutherland Grove"}, {"lat": 51.448242, "lng": -0.204169, "title": "Gatwick Road", "address": "Gatwick Road"}, {"lat": 51.448111, "lng": -0.171747, "title": "Patten Road", "address": "Patten Road"}, {"lat": 51.435187, "lng": -0.149209, "title": "Hillbury Road (Site 2)", "address": "Hillbury Road (Site 2)"}, {"lat": 51.42735, "lng": -0.174714, "title": "Coverton Road", "address": "Coverton Road, Wandsworth, London"}, {"lat": 51.453071, "lng": -0.175676, "title": "Woodhall House", "address": "Woodhall House"}, {"lat": 51.452688, "lng": -0.175171, "title": "Morwille House", "address": "Morwille House"}, {"lat": 51.45255, "lng": -0.174461, "title": "St Quentin House", "address": "St Quentin House"}, {"lat": 51.451961, "lng": -0.174817, "title": "Gernigan House", "address": "Gernigan House"}, {"lat": 51.460665, "lng": -0.176336, "title": "Louvaine Road", "address": "Louvaine Road"}];
+  var chargerData = [{"lat": 51.449652, "lng": -0.190538, "title": "Esparto Street", "address": "Esparto Street", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 51.44285, "lng": -0.197877, "title": "Lavenham Road", "address": "Lavenham Road", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 51.439447, "lng": -0.1835, "title": "Quinton Street", "address": "Quinton Street", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 51.451999, "lng": -0.174043, "title": "Skipsea House", "address": "Skipsea House", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 51.47381, "lng": -0.159281, "title": "401 Battersea Park Road (opp 154A)", "address": "401 Battersea Park Road (opp 154A), Battersea Park", "connectors": ["CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 50kW"]}, {"lat": 51.45856, "lng": -0.20913, "title": "Upper Richmond Road", "address": "Upper Richmond Road, 3 Keswick Broadway", "connectors": ["CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 50kW", "Type 2 (Tethered Connector)  · 43kW"]}, {"lat": 51.451577, "lng": -0.209211, "title": "Sutherland Grove", "address": "Sutherland Grove", "connectors": ["Type 1 (J1772) · 3kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 51.448242, "lng": -0.204169, "title": "Gatwick Road", "address": "Gatwick Road", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 51.448111, "lng": -0.171747, "title": "Patten Road", "address": "Patten Road", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 51.435187, "lng": -0.149209, "title": "Hillbury Road (Site 2)", "address": "Hillbury Road (Site 2)", "connectors": ["Type 1 (J1772) · 3kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 51.42735, "lng": -0.174714, "title": "Coverton Road", "address": "Coverton Road, Wandsworth, London", "connectors": ["BS1363 3 Pin 13 Amp · 3.7kW", "BS1363 3 Pin 13 Amp · 3.7kW"]}, {"lat": 51.453071, "lng": -0.175676, "title": "Woodhall House", "address": "Woodhall House", "connectors": ["Type 2 (Socket Only) · 5kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 51.452688, "lng": -0.175171, "title": "Morwille House", "address": "Morwille House", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 51.45255, "lng": -0.174461, "title": "St Quentin House", "address": "St Quentin House", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 51.451961, "lng": -0.174817, "title": "Gernigan House", "address": "Gernigan House", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 51.460665, "lng": -0.176336, "title": "Louvaine Road", "address": "Louvaine Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}];
 
   chargerData.forEach(function (c) {
+    var connHtml = c.connectors.length
+      ? '<div style="margin-top:6px;font-size:12px;color:#475569">' + c.connectors.join(' &middot; ') + '</div>'
+      : '';
     var marker = L.marker([c.lat, c.lng]);
     marker.bindPopup(
-      '<b>' + c.title + '</b><br>' + c.address + '<br><br>' +
+      '<b>' + c.title + '</b>' +
+      '<div style="color:#64748b;font-size:13px">' + c.address + '</div>' +
+      connHtml +
       '<a href="https://www.google.com/maps/dir/?api=1&destination=' + c.lat + ',' + c.lng +
-      '" target="_blank" rel="noopener">Get directions</a>'
+      '" target="_blank" rel="noopener" style="display:inline-block;margin-top:8px;padding:4px 10px;background:#2563eb;color:white;border-radius:4px;text-decoration:none;font-size:12px">Get directions</a>'
     );
     markers.addLayer(marker);
   });
-
   map.addLayer(markers);
+
+  // --- Connector filter ---
+  var filterBtns = document.querySelectorAll('.filter-btn');
+  var chargerItems = document.querySelectorAll('.charger-item');
+
+  filterBtns.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      filterBtns.forEach(function (b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      var f = btn.dataset.filter;
+      chargerItems.forEach(function (item) {
+        var connList = item.dataset.connectors ? item.dataset.connectors.split(',') : [];
+        item.style.display = (f === 'all' || connList.indexOf(f) !== -1) ? '' : 'none';
+      });
+    });
+  });
+
+  // --- Copy postcode ---
+  document.querySelectorAll('.copy-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var original = btn.textContent;
+      navigator.clipboard.writeText(btn.dataset.copy).then(function () {
+        btn.textContent = 'Copied!';
+        btn.classList.add('copy-btn--success');
+        setTimeout(function () {
+          btn.textContent = original;
+          btn.classList.remove('copy-btn--success');
+        }, 1500);
+      });
+    });
+  });
 }());
 </script>
 

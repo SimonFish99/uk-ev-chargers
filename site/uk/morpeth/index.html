@@ -17,7 +17,10 @@
 
 <header>
 <div class="container">
-<a href="/" class="logo">PlugMap <span class="tagline">UK EV Charger Locator</span></a>
+<a href="/" class="logo">
+  <svg class="logo-bolt" viewBox="0 0 24 24" fill="currentColor" width="22" height="22" aria-hidden="true"><path d="M13 2L4.5 13.5H11L10 22L19.5 10.5H13Z"/></svg>
+  PlugMap <span class="tagline">UK EV Charger Locator</span>
+</a>
 </div>
 </header>
 
@@ -28,16 +31,41 @@
 </nav>
 
 <h1>EV Chargers in Morpeth</h1>
-<p class="page-intro">13 public charging stations found in Morpeth.</p>
+
+<div class="stats-bar">
+  <span class="stat-pill stat-total">13 stations</span>
+  <span class="stat-pill stat-rapid">4 rapid (50kW+)</span>
+  <span class="stat-pill stat-fast">8 fast (7–50kW)</span>
+  <span class="stat-pill stat-slow">1 slow</span>
+</div>
 
 <div id="map"></div>
 
-<ul class="charger-list">
+
+<div class="connector-filter">
+  <span class="filter-label">Filter:</span>
+  <button class="filter-btn active" data-filter="all">All</button>
+  
+  <button class="filter-btn" data-filter="CCS (Type 2)">CCS (Type 2)</button>
+  
+  <button class="filter-btn" data-filter="CHAdeMO">CHAdeMO</button>
+  
+  <button class="filter-btn" data-filter="Type 2 (Socket Only)">Type 2 (Socket Only)</button>
+  
+  <button class="filter-btn" data-filter="Type 2 (Tethered Connector) ">Type 2 (Tethered Connector) </button>
+  
+</div>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">St James Carpark</h2>
-  <p class="charger-address">Well Way NE61 1BH
+<ul class="charger-list" id="charger-list">
+
+
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">St James Carpark</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Well Way <button class="copy-btn" data-copy="NE61 1BH">NE61 1BH</button>
   </p>
   
   <div class="charger-connections">
@@ -65,9 +93,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">St James</h2>
-  <p class="charger-address">Wellway NE61 1BH
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Tethered Connector) ">
+  <div class="charger-header">
+    <h2 class="charger-name">St James</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Wellway <button class="copy-btn" data-copy="NE61 1BH">NE61 1BH</button>
   </p>
   
   <div class="charger-connections">
@@ -86,9 +117,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Newmarket Car Park</h2>
-  <p class="charger-address">Newmarket East NE61 1LN
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Tethered Connector) ">
+  <div class="charger-header">
+    <h2 class="charger-name">Newmarket Car Park</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Newmarket East <button class="copy-btn" data-copy="NE61 1LN">NE61 1LN</button>
   </p>
   
   <div class="charger-connections">
@@ -107,9 +141,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Goose Hill Car Park</h2>
-  <p class="charger-address">Goose Hill NE61 1TL
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Goose Hill Car Park</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Goose Hill <button class="copy-btn" data-copy="NE61 1TL">NE61 1TL</button>
   </p>
   
   <div class="charger-connections">
@@ -134,9 +171,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Cragside Hall</h2>
-  <p class="charger-address">Cragside Hall NE657PX
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Cragside Hall</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Cragside Hall <button class="copy-btn" data-copy="NE657PX">NE657PX</button>
   </p>
   
   <div class="charger-connections">
@@ -155,9 +195,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Coopies Lane Morpeth</h2>
-  <p class="charger-address">Coopie&#39;s Lane NE61 2SL
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Coopies Lane Morpeth</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Coopie&#39;s Lane <button class="copy-btn" data-copy="NE61 2SL">NE61 2SL</button>
   </p>
   
   <div class="charger-connections">
@@ -179,9 +222,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Morrisons Amble</h2>
-  <p class="charger-address">Amble NE65 0PE
+<li class="charger-item charger-item--rapid" data-connectors="Type 2 (Socket Only),CHAdeMO,Type 2 (Tethered Connector) ">
+  <div class="charger-header">
+    <h2 class="charger-name">Morrisons Amble</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Amble <button class="copy-btn" data-copy="NE65 0PE">NE65 0PE</button>
   </p>
   
   <div class="charger-connections">
@@ -206,9 +253,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Morrisons Morpeth</h2>
-  <p class="charger-address">Wm Morrison Supermarkets PLC NE61 1ST
+<li class="charger-item charger-item--rapid" data-connectors="Type 2 (Tethered Connector) ,CHAdeMO">
+  <div class="charger-header">
+    <h2 class="charger-name">Morrisons Morpeth</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Wm Morrison Supermarkets PLC <button class="copy-btn" data-copy="NE61 1ST">NE61 1ST</button>
   </p>
   
   <div class="charger-connections">
@@ -233,9 +284,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Morpeth Railway Station (South) Car Park</h2>
-  <p class="charger-address">Coopies Lane NE61 6JN
+<li class="charger-item charger-item--slow" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Morpeth Railway Station (South) Car Park</h2>
+    
+  </div>
+  <p class="charger-address">Coopies Lane <button class="copy-btn" data-copy="NE61 6JN">NE61 6JN</button>
   </p>
   
   <div class="charger-connections">
@@ -257,9 +311,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">County Hall Morpeth</h2>
-  <p class="charger-address">County Hall NE61 2EF
+<li class="charger-item charger-item--rapid" data-connectors="Type 2 (Tethered Connector) ,CHAdeMO">
+  <div class="charger-header">
+    <h2 class="charger-name">County Hall Morpeth</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">County Hall <button class="copy-btn" data-copy="NE61 2EF">NE61 2EF</button>
   </p>
   
   <div class="charger-connections">
@@ -284,9 +342,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Rothbury Community Hospital</h2>
-  <p class="charger-address">Whitton Bank Road NE65 7RW
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Rothbury Community Hospital</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Whitton Bank Road <button class="copy-btn" data-copy="NE65 7RW">NE65 7RW</button>
   </p>
   
   <div class="charger-connections">
@@ -308,9 +369,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Stanley Terrace</h2>
-  <p class="charger-address">Stanley Terrace NE61 1PA
+<li class="charger-item charger-item--rapid" data-connectors="Type 2 (Tethered Connector) ,CHAdeMO,CCS (Type 2)">
+  <div class="charger-header">
+    <h2 class="charger-name">Stanley Terrace</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Stanley Terrace <button class="copy-btn" data-copy="NE61 1PA">NE61 1PA</button>
   </p>
   
   <div class="charger-connections">
@@ -335,9 +400,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Northgate Hospital</h2>
-  <p class="charger-address">Northgate Hospital NE61 3BP
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Northgate Hospital</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Northgate Hospital <button class="copy-btn" data-copy="NE61 3BP">NE61 3BP</button>
   </p>
   
   <div class="charger-connections">
@@ -359,6 +427,23 @@
 
 <p><a href="/" class="back-link">← All UK towns</a></p>
 
+
+<div class="nearby-towns">
+  <h2 class="nearby-heading">Nearby towns</h2>
+  <ul class="nearby-list">
+  
+    <li><a href="/uk/ashington/">Ashington</a></li>
+  
+    <li><a href="/uk/cramlington/">Cramlington</a></li>
+  
+    <li><a href="/uk/alnwick/">Alnwick</a></li>
+  
+    <li><a href="/uk/blyth/">Blyth</a></li>
+  
+  </ul>
+</div>
+
+
 </div>
 
 <footer>
@@ -371,26 +456,61 @@
 <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 <script>
 (function () {
+  // --- Map ---
   var map = L.map('map').setView([55.199212401936094, -1.7111808717784358], 12);
-
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
   }).addTo(map);
 
   var markers = L.markerClusterGroup();
-  var chargerData = [{"lat": 55.170553787542616, "lng": -1.6919061054688882, "title": "St James Carpark", "address": "Well Way"}, {"lat": 55.170024, "lng": -1.69018, "title": "St James", "address": "Wellway"}, {"lat": 55.166432, "lng": -1.690391, "title": "Newmarket Car Park", "address": "Newmarket East"}, {"lat": 55.165686437626576, "lng": -1.6857642276507758, "title": "Goose Hill Car Park", "address": "Goose Hill"}, {"lat": 55.315155, "lng": -1.885767, "title": "Cragside Hall", "address": "Cragside Hall"}, {"lat": 55.162166, "lng": -1.682229, "title": "Coopies Lane Morpeth", "address": "Coopie's Lane"}, {"lat": 55.326762, "lng": -1.582318, "title": "Morrisons Amble", "address": "Amble"}, {"lat": 55.169552, "lng": -1.685545, "title": "Morrisons Morpeth", "address": "Wm Morrison Supermarkets PLC"}, {"lat": 55.162623, "lng": -1.67997, "title": "Morpeth Railway Station (South) Car Park", "address": "Coopies Lane"}, {"lat": 55.152933, "lng": -1.683965, "title": "County Hall Morpeth", "address": "County Hall"}, {"lat": 55.306628, "lng": -1.914088, "title": "Rothbury Community Hospital", "address": "Whitton Bank Road"}, {"lat": 55.168136, "lng": -1.686938, "title": "Stanley Terrace", "address": "Stanley Terrace"}, {"lat": 55.15311, "lng": -1.68629, "title": "Northgate Hospital", "address": "Northgate Hospital"}];
+  var chargerData = [{"lat": 55.170553787542616, "lng": -1.6919061054688882, "title": "St James Carpark", "address": "Well Way", "connectors": ["Type 2 (Socket Only) · 7.4kW", "Type 2 (Socket Only) · 7.4kW", "Type 2 (Socket Only) · 7.4kW", "Type 2 (Socket Only) · 7.4kW"]}, {"lat": 55.170024, "lng": -1.69018, "title": "St James", "address": "Wellway", "connectors": ["Type 2 (Tethered Connector)  · 22kW"]}, {"lat": 55.166432, "lng": -1.690391, "title": "Newmarket Car Park", "address": "Newmarket East", "connectors": ["Type 2 (Tethered Connector)  · 22kW"]}, {"lat": 55.165686437626576, "lng": -1.6857642276507758, "title": "Goose Hill Car Park", "address": "Goose Hill", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 55.315155, "lng": -1.885767, "title": "Cragside Hall", "address": "Cragside Hall", "connectors": ["Type 2 (Socket Only) · 7kW"]}, {"lat": 55.162166, "lng": -1.682229, "title": "Coopies Lane Morpeth", "address": "Coopie's Lane", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 55.326762, "lng": -1.582318, "title": "Morrisons Amble", "address": "Amble", "connectors": ["Type 2 (Socket Only) · 22kW", "CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 50kW"]}, {"lat": 55.169552, "lng": -1.685545, "title": "Morrisons Morpeth", "address": "Wm Morrison Supermarkets PLC", "connectors": ["Type 2 (Tethered Connector)  · 43kW", "CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 50kW"]}, {"lat": 55.162623, "lng": -1.67997, "title": "Morpeth Railway Station (South) Car Park", "address": "Coopies Lane", "connectors": ["Type 2 (Socket Only) · 3.6kW", "Type 2 (Socket Only) · 3.6kW"]}, {"lat": 55.152933, "lng": -1.683965, "title": "County Hall Morpeth", "address": "County Hall", "connectors": ["Type 2 (Tethered Connector)  · 43kW", "CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 50kW"]}, {"lat": 55.306628, "lng": -1.914088, "title": "Rothbury Community Hospital", "address": "Whitton Bank Road", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 55.168136, "lng": -1.686938, "title": "Stanley Terrace", "address": "Stanley Terrace", "connectors": ["Type 2 (Tethered Connector)  · 43kW", "CHAdeMO · 50kW", "CCS (Type 2) · 50kW"]}, {"lat": 55.15311, "lng": -1.68629, "title": "Northgate Hospital", "address": "Northgate Hospital", "connectors": ["Type 2 (Socket Only) · 7kW"]}];
 
   chargerData.forEach(function (c) {
+    var connHtml = c.connectors.length
+      ? '<div style="margin-top:6px;font-size:12px;color:#475569">' + c.connectors.join(' &middot; ') + '</div>'
+      : '';
     var marker = L.marker([c.lat, c.lng]);
     marker.bindPopup(
-      '<b>' + c.title + '</b><br>' + c.address + '<br><br>' +
+      '<b>' + c.title + '</b>' +
+      '<div style="color:#64748b;font-size:13px">' + c.address + '</div>' +
+      connHtml +
       '<a href="https://www.google.com/maps/dir/?api=1&destination=' + c.lat + ',' + c.lng +
-      '" target="_blank" rel="noopener">Get directions</a>'
+      '" target="_blank" rel="noopener" style="display:inline-block;margin-top:8px;padding:4px 10px;background:#2563eb;color:white;border-radius:4px;text-decoration:none;font-size:12px">Get directions</a>'
     );
     markers.addLayer(marker);
   });
-
   map.addLayer(markers);
+
+  // --- Connector filter ---
+  var filterBtns = document.querySelectorAll('.filter-btn');
+  var chargerItems = document.querySelectorAll('.charger-item');
+
+  filterBtns.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      filterBtns.forEach(function (b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      var f = btn.dataset.filter;
+      chargerItems.forEach(function (item) {
+        var connList = item.dataset.connectors ? item.dataset.connectors.split(',') : [];
+        item.style.display = (f === 'all' || connList.indexOf(f) !== -1) ? '' : 'none';
+      });
+    });
+  });
+
+  // --- Copy postcode ---
+  document.querySelectorAll('.copy-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var original = btn.textContent;
+      navigator.clipboard.writeText(btn.dataset.copy).then(function () {
+        btn.textContent = 'Copied!';
+        btn.classList.add('copy-btn--success');
+        setTimeout(function () {
+          btn.textContent = original;
+          btn.classList.remove('copy-btn--success');
+        }, 1500);
+      });
+    });
+  });
 }());
 </script>
 

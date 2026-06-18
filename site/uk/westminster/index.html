@@ -17,7 +17,10 @@
 
 <header>
 <div class="container">
-<a href="/" class="logo">PlugMap <span class="tagline">UK EV Charger Locator</span></a>
+<a href="/" class="logo">
+  <svg class="logo-bolt" viewBox="0 0 24 24" fill="currentColor" width="22" height="22" aria-hidden="true"><path d="M13 2L4.5 13.5H11L10 22L19.5 10.5H13Z"/></svg>
+  PlugMap <span class="tagline">UK EV Charger Locator</span>
+</a>
 </div>
 </header>
 
@@ -28,16 +31,41 @@
 </nav>
 
 <h1>EV Chargers in Westminster</h1>
-<p class="page-intro">17 public charging stations found in Westminster.</p>
+
+<div class="stats-bar">
+  <span class="stat-pill stat-total">17 stations</span>
+  <span class="stat-pill stat-rapid">11 rapid (50kW+)</span>
+  <span class="stat-pill stat-fast">6 fast (7–50kW)</span>
+  
+</div>
 
 <div id="map"></div>
 
-<ul class="charger-list">
+
+<div class="connector-filter">
+  <span class="filter-label">Filter:</span>
+  <button class="filter-btn active" data-filter="all">All</button>
+  
+  <button class="filter-btn" data-filter="CHAdeMO">CHAdeMO</button>
+  
+  <button class="filter-btn" data-filter="Type 1 (J1772)">Type 1 (J1772)</button>
+  
+  <button class="filter-btn" data-filter="Type 2 (Socket Only)">Type 2 (Socket Only)</button>
+  
+  <button class="filter-btn" data-filter="Type 2 (Tethered Connector) ">Type 2 (Tethered Connector) </button>
+  
+</div>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Wilton Road</h2>
-  <p class="charger-address">105 Wilton Road SW1V 1DZ
+<ul class="charger-list" id="charger-list">
+
+
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Wilton Road</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">105 Wilton Road <button class="copy-btn" data-copy="SW1V 1DZ">SW1V 1DZ</button>
   </p>
   
   <div class="charger-connections">
@@ -56,9 +84,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Wellington Place</h2>
-  <p class="charger-address">Wellington Place, St. Johns Wood NW8 7PF
+<li class="charger-item charger-item--rapid" data-connectors="CHAdeMO,Type 2 (Tethered Connector) ">
+  <div class="charger-header">
+    <h2 class="charger-name">Wellington Place</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Wellington Place, St. Johns Wood <button class="copy-btn" data-copy="NW8 7PF">NW8 7PF</button>
   </p>
   
   <div class="charger-connections">
@@ -80,9 +112,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">10-6 Rossmore Road, Westminster</h2>
-  <p class="charger-address">10-6 Rossmore Road, Westminster, London NW1 6PA, UK NW1 6PA
+<li class="charger-item charger-item--rapid" data-connectors="CHAdeMO,Type 2 (Tethered Connector) ">
+  <div class="charger-header">
+    <h2 class="charger-name">10-6 Rossmore Road, Westminster</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">10-6 Rossmore Road, Westminster, London NW1 6PA, UK <button class="copy-btn" data-copy="NW1 6PA">NW1 6PA</button>
   </p>
   
   <div class="charger-connections">
@@ -107,9 +143,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Edgware Road</h2>
-  <p class="charger-address">Edgware Road W2 1EJ
+<li class="charger-item charger-item--rapid" data-connectors="CHAdeMO,Type 2 (Tethered Connector) ">
+  <div class="charger-header">
+    <h2 class="charger-name">Edgware Road</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Edgware Road <button class="copy-btn" data-copy="W2 1EJ">W2 1EJ</button>
   </p>
   
   <div class="charger-connections">
@@ -143,9 +183,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Warwick Avenue</h2>
-  <p class="charger-address">Warwick Avenue (N.Bound @Nr. 27), Little Venice W9 2PS
+<li class="charger-item charger-item--rapid" data-connectors="CHAdeMO,Type 2 (Tethered Connector) ">
+  <div class="charger-header">
+    <h2 class="charger-name">Warwick Avenue</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Warwick Avenue (N.Bound @Nr. 27), Little Venice <button class="copy-btn" data-copy="W9 2PS">W9 2PS</button>
   </p>
   
   <div class="charger-connections">
@@ -167,9 +211,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Devonshire Street</h2>
-  <p class="charger-address">Devonshire Street W1G 7AB
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Devonshire Street</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Devonshire Street <button class="copy-btn" data-copy="W1G 7AB">W1G 7AB</button>
   </p>
   
   <div class="charger-connections">
@@ -188,9 +235,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Westbourne Park Road</h2>
-  <p class="charger-address">Westbourne Park Road W2 5QL
+<li class="charger-item charger-item--rapid" data-connectors="CHAdeMO,Type 2 (Tethered Connector) ">
+  <div class="charger-header">
+    <h2 class="charger-name">Westbourne Park Road</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Westbourne Park Road <button class="copy-btn" data-copy="W2 5QL">W2 5QL</button>
   </p>
   
   <div class="charger-connections">
@@ -212,9 +263,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Brook Street, Hyde Park Estate, Westminster</h2>
-  <p class="charger-address">Brook Street, Hyde Park Estate, Westminster, London W2 2LZ W2 2LZ
+<li class="charger-item charger-item--rapid" data-connectors="CHAdeMO,Type 2 (Tethered Connector) ">
+  <div class="charger-header">
+    <h2 class="charger-name">Brook Street, Hyde Park Estate, Westminster</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Brook Street, Hyde Park Estate, Westminster, London W2 2LZ <button class="copy-btn" data-copy="W2 2LZ">W2 2LZ</button>
   </p>
   
   <div class="charger-connections">
@@ -239,9 +294,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Lancaster Gate (Spire House), Bayswater</h2>
-  <p class="charger-address">Lancaster Gate (Spire House), Bayswater W2 3NA
+<li class="charger-item charger-item--rapid" data-connectors="CHAdeMO,Type 2 (Tethered Connector) ">
+  <div class="charger-header">
+    <h2 class="charger-name">Lancaster Gate (Spire House), Bayswater</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Lancaster Gate (Spire House), Bayswater <button class="copy-btn" data-copy="W2 3NA">W2 3NA</button>
   </p>
   
   <div class="charger-connections">
@@ -263,9 +322,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Temple Place site 2</h2>
-  <p class="charger-address">Temple Place site 2 WC2R 2PG
+<li class="charger-item charger-item--fast" data-connectors="Type 1 (J1772),Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Temple Place site 2</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Temple Place site 2 <button class="copy-btn" data-copy="WC2R 2PG">WC2R 2PG</button>
   </p>
   
   <div class="charger-connections">
@@ -287,9 +349,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Kensington Road,Kensington</h2>
-  <p class="charger-address">Kensington Road, Kensington SW7 5DP
+<li class="charger-item charger-item--rapid" data-connectors="CHAdeMO,Type 2 (Tethered Connector) ">
+  <div class="charger-header">
+    <h2 class="charger-name">Kensington Road,Kensington</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Kensington Road, Kensington <button class="copy-btn" data-copy="SW7 5DP">SW7 5DP</button>
   </p>
   
   <div class="charger-connections">
@@ -311,9 +377,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">2 Belgrave Square, Westminster</h2>
-  <p class="charger-address">2 Belgrave Square, Westminster, London SW1X 8PJ, United Kingdom SW1X 8PJ
+<li class="charger-item charger-item--rapid" data-connectors="CHAdeMO,Type 2 (Tethered Connector) ">
+  <div class="charger-header">
+    <h2 class="charger-name">2 Belgrave Square, Westminster</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">2 Belgrave Square, Westminster, London SW1X 8PJ, United Kingdom <button class="copy-btn" data-copy="SW1X 8PJ">SW1X 8PJ</button>
   </p>
   
   <div class="charger-connections">
@@ -338,9 +408,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Regency Place, Belgravia</h2>
-  <p class="charger-address">Regency Place, Belgravia, Westminster, SW1P 2DZ SW1P 2DZ
+<li class="charger-item charger-item--rapid" data-connectors="CHAdeMO,Type 2 (Tethered Connector) ">
+  <div class="charger-header">
+    <h2 class="charger-name">Regency Place, Belgravia</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Regency Place, Belgravia, Westminster, SW1P 2DZ <button class="copy-btn" data-copy="SW1P 2DZ">SW1P 2DZ</button>
   </p>
   
   <div class="charger-connections">
@@ -365,9 +439,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Francis Street</h2>
-  <p class="charger-address">Francis Street SW1P 1QL
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Francis Street</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Francis Street <button class="copy-btn" data-copy="SW1P 1QL">SW1P 1QL</button>
   </p>
   
   <div class="charger-connections">
@@ -386,9 +463,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Aylesford Street</h2>
-  <p class="charger-address">Aylesford Street SW1V 2QP
+<li class="charger-item charger-item--fast" data-connectors="Type 1 (J1772),Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Aylesford Street</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Aylesford Street <button class="copy-btn" data-copy="SW1V 2QP">SW1V 2QP</button>
   </p>
   
   <div class="charger-connections">
@@ -410,9 +490,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">23 Praed Street, Westminster</h2>
-  <p class="charger-address">23 Praed Street, Westminster, London W2 1PP, UK W2 1PP
+<li class="charger-item charger-item--rapid" data-connectors="CHAdeMO,Type 2 (Tethered Connector) ">
+  <div class="charger-header">
+    <h2 class="charger-name">23 Praed Street, Westminster</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">23 Praed Street, Westminster, London W2 1PP, UK <button class="copy-btn" data-copy="W2 1PP">W2 1PP</button>
   </p>
   
   <div class="charger-connections">
@@ -434,9 +518,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Westminster-Whitehall Place</h2>
-  <p class="charger-address">Whitehall Place SW1A 2BD
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Westminster-Whitehall Place</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Whitehall Place <button class="copy-btn" data-copy="SW1A 2BD">SW1A 2BD</button>
   </p>
   
   <div class="charger-connections">
@@ -458,6 +545,23 @@
 
 <p><a href="/" class="back-link">← All UK towns</a></p>
 
+
+<div class="nearby-towns">
+  <h2 class="nearby-heading">Nearby towns</h2>
+  <ul class="nearby-list">
+  
+    <li><a href="/uk/city-of-westminster/">City of Westminster</a></li>
+  
+    <li><a href="/uk/chelsea/">Chelsea</a></li>
+  
+    <li><a href="/uk/camden/">Camden</a></li>
+  
+    <li><a href="/uk/kandc/">K&amp;C</a></li>
+  
+  </ul>
+</div>
+
+
 </div>
 
 <footer>
@@ -470,26 +574,61 @@
 <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 <script>
 (function () {
+  // --- Map ---
   var map = L.map('map').setView([51.510468411764705, -0.15788458823529414], 12);
-
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
   }).addTo(map);
 
   var markers = L.markerClusterGroup();
-  var chargerData = [{"lat": 51.493336, "lng": -0.141381, "title": "Wilton Road", "address": "105 Wilton Road"}, {"lat": 51.531716, "lng": -0.170067, "title": "Wellington Place", "address": "Wellington Place, St. Johns Wood"}, {"lat": 51.525075, "lng": -0.164654, "title": "10-6 Rossmore Road, Westminster", "address": "10-6 Rossmore Road, Westminster, London NW1 6PA, UK"}, {"lat": 51.52401, "lng": -0.175726, "title": "Edgware Road", "address": "Edgware Road"}, {"lat": 51.523033, "lng": -0.183562, "title": "Warwick Avenue", "address": "Warwick Avenue (N.Bound @Nr. 27), Little Venice"}, {"lat": 51.52113, "lng": -0.151084, "title": "Devonshire Street", "address": "Devonshire Street"}, {"lat": 51.51881, "lng": -0.19696, "title": "Westbourne Park Road", "address": "Westbourne Park Road"}, {"lat": 51.512536, "lng": -0.172412, "title": "Brook Street, Hyde Park Estate, Westminster", "address": "Brook Street, Hyde Park Estate, Westminster, London W2 2LZ"}, {"lat": 51.511611, "lng": -0.180296, "title": "Lancaster Gate (Spire House), Bayswater", "address": "Lancaster Gate (Spire House), Bayswater"}, {"lat": 51.511407, "lng": -0.112471, "title": "Temple Place site 2", "address": "Temple Place site 2"}, {"lat": 51.5017, "lng": -0.18363, "title": "Kensington Road,Kensington", "address": "Kensington Road, Kensington"}, {"lat": 51.500074, "lng": -0.153404, "title": "2 Belgrave Square, Westminster", "address": "2 Belgrave Square, Westminster, London SW1X 8PJ, United Kingdom"}, {"lat": 51.494868, "lng": -0.132312, "title": "Regency Place, Belgravia", "address": "Regency Place, Belgravia, Westminster, SW1P 2DZ"}, {"lat": 51.494862, "lng": -0.13817, "title": "Francis Street", "address": "Francis Street"}, {"lat": 51.488705, "lng": -0.134094, "title": "Aylesford Street", "address": "Aylesford Street"}, {"lat": 51.518613, "lng": -0.170045, "title": "23 Praed Street, Westminster", "address": "23 Praed Street, Westminster, London W2 1PP, UK"}, {"lat": 51.506477, "lng": -0.12377, "title": "Westminster-Whitehall Place", "address": "Whitehall Place"}];
+  var chargerData = [{"lat": 51.493336, "lng": -0.141381, "title": "Wilton Road", "address": "105 Wilton Road", "connectors": ["Type 2 (Socket Only) · 22kW"]}, {"lat": 51.531716, "lng": -0.170067, "title": "Wellington Place", "address": "Wellington Place, St. Johns Wood", "connectors": ["CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 50kW"]}, {"lat": 51.525075, "lng": -0.164654, "title": "10-6 Rossmore Road, Westminster", "address": "10-6 Rossmore Road, Westminster, London NW1 6PA, UK", "connectors": ["CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 50kW", "Type 2 (Tethered Connector)  · 43kW"]}, {"lat": 51.52401, "lng": -0.175726, "title": "Edgware Road", "address": "Edgware Road", "connectors": ["CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 50kW", "CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 50kW", "CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 50kW"]}, {"lat": 51.523033, "lng": -0.183562, "title": "Warwick Avenue", "address": "Warwick Avenue (N.Bound @Nr. 27), Little Venice", "connectors": ["CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 50kW"]}, {"lat": 51.52113, "lng": -0.151084, "title": "Devonshire Street", "address": "Devonshire Street", "connectors": ["Type 2 (Socket Only) · 7kW"]}, {"lat": 51.51881, "lng": -0.19696, "title": "Westbourne Park Road", "address": "Westbourne Park Road", "connectors": ["CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 50kW"]}, {"lat": 51.512536, "lng": -0.172412, "title": "Brook Street, Hyde Park Estate, Westminster", "address": "Brook Street, Hyde Park Estate, Westminster, London W2 2LZ", "connectors": ["CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 50kW", "Type 2 (Tethered Connector)  · 43kW"]}, {"lat": 51.511611, "lng": -0.180296, "title": "Lancaster Gate (Spire House), Bayswater", "address": "Lancaster Gate (Spire House), Bayswater", "connectors": ["CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 50kW"]}, {"lat": 51.511407, "lng": -0.112471, "title": "Temple Place site 2", "address": "Temple Place site 2", "connectors": ["Type 1 (J1772) · 3kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 51.5017, "lng": -0.18363, "title": "Kensington Road,Kensington", "address": "Kensington Road, Kensington", "connectors": ["CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 50kW"]}, {"lat": 51.500074, "lng": -0.153404, "title": "2 Belgrave Square, Westminster", "address": "2 Belgrave Square, Westminster, London SW1X 8PJ, United Kingdom", "connectors": ["CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 50kW", "Type 2 (Tethered Connector)  · 43kW"]}, {"lat": 51.494868, "lng": -0.132312, "title": "Regency Place, Belgravia", "address": "Regency Place, Belgravia, Westminster, SW1P 2DZ", "connectors": ["CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 50kW", "Type 2 (Tethered Connector)  · 43kW"]}, {"lat": 51.494862, "lng": -0.13817, "title": "Francis Street", "address": "Francis Street", "connectors": ["Type 2 (Socket Only) · 7kW"]}, {"lat": 51.488705, "lng": -0.134094, "title": "Aylesford Street", "address": "Aylesford Street", "connectors": ["Type 1 (J1772) · 3kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 51.518613, "lng": -0.170045, "title": "23 Praed Street, Westminster", "address": "23 Praed Street, Westminster, London W2 1PP, UK", "connectors": ["CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 50kW"]}, {"lat": 51.506477, "lng": -0.12377, "title": "Westminster-Whitehall Place", "address": "Whitehall Place", "connectors": ["Type 2 (Socket Only) · 7kW"]}];
 
   chargerData.forEach(function (c) {
+    var connHtml = c.connectors.length
+      ? '<div style="margin-top:6px;font-size:12px;color:#475569">' + c.connectors.join(' &middot; ') + '</div>'
+      : '';
     var marker = L.marker([c.lat, c.lng]);
     marker.bindPopup(
-      '<b>' + c.title + '</b><br>' + c.address + '<br><br>' +
+      '<b>' + c.title + '</b>' +
+      '<div style="color:#64748b;font-size:13px">' + c.address + '</div>' +
+      connHtml +
       '<a href="https://www.google.com/maps/dir/?api=1&destination=' + c.lat + ',' + c.lng +
-      '" target="_blank" rel="noopener">Get directions</a>'
+      '" target="_blank" rel="noopener" style="display:inline-block;margin-top:8px;padding:4px 10px;background:#2563eb;color:white;border-radius:4px;text-decoration:none;font-size:12px">Get directions</a>'
     );
     markers.addLayer(marker);
   });
-
   map.addLayer(markers);
+
+  // --- Connector filter ---
+  var filterBtns = document.querySelectorAll('.filter-btn');
+  var chargerItems = document.querySelectorAll('.charger-item');
+
+  filterBtns.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      filterBtns.forEach(function (b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      var f = btn.dataset.filter;
+      chargerItems.forEach(function (item) {
+        var connList = item.dataset.connectors ? item.dataset.connectors.split(',') : [];
+        item.style.display = (f === 'all' || connList.indexOf(f) !== -1) ? '' : 'none';
+      });
+    });
+  });
+
+  // --- Copy postcode ---
+  document.querySelectorAll('.copy-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var original = btn.textContent;
+      navigator.clipboard.writeText(btn.dataset.copy).then(function () {
+        btn.textContent = 'Copied!';
+        btn.classList.add('copy-btn--success');
+        setTimeout(function () {
+          btn.textContent = original;
+          btn.classList.remove('copy-btn--success');
+        }, 1500);
+      });
+    });
+  });
 }());
 </script>
 

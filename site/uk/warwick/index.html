@@ -17,7 +17,10 @@
 
 <header>
 <div class="container">
-<a href="/" class="logo">PlugMap <span class="tagline">UK EV Charger Locator</span></a>
+<a href="/" class="logo">
+  <svg class="logo-bolt" viewBox="0 0 24 24" fill="currentColor" width="22" height="22" aria-hidden="true"><path d="M13 2L4.5 13.5H11L10 22L19.5 10.5H13Z"/></svg>
+  PlugMap <span class="tagline">UK EV Charger Locator</span>
+</a>
 </div>
 </header>
 
@@ -28,16 +31,42 @@
 </nav>
 
 <h1>EV Chargers in Warwick</h1>
-<p class="page-intro">18 public charging stations found in Warwick.</p>
+
+<div class="stats-bar">
+  <span class="stat-pill stat-total">18 stations</span>
+  <span class="stat-pill stat-rapid">7 rapid (50kW+)</span>
+  <span class="stat-pill stat-fast">10 fast (7–50kW)</span>
+  <span class="stat-pill stat-slow">1 slow</span>
+</div>
 
 <div id="map"></div>
 
-<ul class="charger-list">
+
+<div class="connector-filter">
+  <span class="filter-label">Filter:</span>
+  <button class="filter-btn active" data-filter="all">All</button>
+  
+  <button class="filter-btn" data-filter="CCS (Type 2)">CCS (Type 2)</button>
+  
+  <button class="filter-btn" data-filter="CHAdeMO">CHAdeMO</button>
+  
+  <button class="filter-btn" data-filter="Type 2 (Socket Only)">Type 2 (Socket Only)</button>
+  
+  <button class="filter-btn" data-filter="Type 2 (Tethered Connector) ">Type 2 (Tethered Connector) </button>
+  
+</div>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Warwick Bypass</h2>
-  <p class="charger-address">Warwick Bypass CV35 8RH
+<ul class="charger-list" id="charger-list">
+
+
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2)">
+  <div class="charger-header">
+    <h2 class="charger-name">Warwick Bypass</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Warwick Bypass <button class="copy-btn" data-copy="CV35 8RH">CV35 8RH</button>
   </p>
   
   <div class="charger-connections">
@@ -56,9 +85,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Guyscliffe SF Connect</h2>
-  <p class="charger-address">Coventry Road CV34 5JQ
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2)">
+  <div class="charger-header">
+    <h2 class="charger-name">Guyscliffe SF Connect</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Coventry Road <button class="copy-btn" data-copy="CV34 5JQ">CV34 5JQ</button>
   </p>
   
   <div class="charger-connections">
@@ -77,9 +110,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">EVC The Warwickshire</h2>
-  <p class="charger-address">Leek Wootton CV35 7QT
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Tethered Connector) ">
+  <div class="charger-header">
+    <h2 class="charger-name">EVC The Warwickshire</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Leek Wootton <button class="copy-btn" data-copy="CV35 7QT">CV35 7QT</button>
   </p>
   
   <div class="charger-connections">
@@ -98,9 +134,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Welcome Break Warwick Southbound Services</h2>
-  <p class="charger-address">M40 Motorway Southbound CV35 0AA
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2),CHAdeMO,Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Welcome Break Warwick Southbound Services</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">M40 Motorway Southbound <button class="copy-btn" data-copy="CV35 0AA">CV35 0AA</button>
   </p>
   
   <div class="charger-connections">
@@ -134,9 +174,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Welcome Break Warwick Northbound Services</h2>
-  <p class="charger-address">M40 CV35 0AA
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2),CHAdeMO,Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Welcome Break Warwick Northbound Services</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">M40 <button class="copy-btn" data-copy="CV35 0AA">CV35 0AA</button>
   </p>
   
   <div class="charger-connections">
@@ -167,9 +211,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">West Rock Car Park, Warwick</h2>
-  <p class="charger-address">Commainge Close CV34 4DZ
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">West Rock Car Park, Warwick</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Commainge Close <button class="copy-btn" data-copy="CV34 4DZ">CV34 4DZ</button>
   </p>
   
   <div class="charger-connections">
@@ -188,9 +235,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">For Nissan EV owners only. Please call first</h2>
-  <p class="charger-address">Tachbrook Park Drive CV34 6RH
+<li class="charger-item charger-item--rapid" data-connectors="CHAdeMO">
+  <div class="charger-header">
+    <h2 class="charger-name">For Nissan EV owners only. Please call first</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Tachbrook Park Drive <button class="copy-btn" data-copy="CV34 6RH">CV34 6RH</button>
   </p>
   
   <div class="charger-connections">
@@ -209,9 +260,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Gilks&#39; Garage Café</h2>
-  <p class="charger-address">Banbury Road CV35 0JZ
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Gilks&#39; Garage Café</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Banbury Road <button class="copy-btn" data-copy="CV35 0JZ">CV35 0JZ</button>
   </p>
   
   <div class="charger-connections">
@@ -230,9 +284,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">RAW GREENE KING ROYAL HORSE 3</h2>
-  <p class="charger-address">30 Heathcote Ln CV34 6GS
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">RAW GREENE KING ROYAL HORSE 3</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">30 Heathcote Ln <button class="copy-btn" data-copy="CV34 6GS">CV34 6GS</button>
   </p>
   
   <div class="charger-connections">
@@ -254,9 +311,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Tesco Superstore-Warwick</h2>
-  <p class="charger-address">Emscote Road CV34 5QJ
+<li class="charger-item charger-item--rapid" data-connectors="Type 2 (Socket Only),CHAdeMO,CCS (Type 2)">
+  <div class="charger-header">
+    <h2 class="charger-name">Tesco Superstore-Warwick</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Emscote Road <button class="copy-btn" data-copy="CV34 5QJ">CV34 5QJ</button>
   </p>
   
   <div class="charger-connections">
@@ -284,9 +345,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Market Square Car Park</h2>
-  <p class="charger-address">Market Place CV34 4SL
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Market Square Car Park</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Market Place <button class="copy-btn" data-copy="CV34 4SL">CV34 4SL</button>
   </p>
   
   <div class="charger-connections">
@@ -308,9 +372,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">St Mary&#39;s Area 2, Hampton Road, Warwick</h2>
-  <p class="charger-address">Hampton Road CV34 6HU
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">St Mary&#39;s Area 2, Hampton Road, Warwick</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Hampton Road <button class="copy-btn" data-copy="CV34 6HU">CV34 6HU</button>
   </p>
   
   <div class="charger-connections">
@@ -329,9 +396,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">McDonald&#39;s - Warwick Statford Road</h2>
-  <p class="charger-address">A429 CV34 6UH
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2),CHAdeMO">
+  <div class="charger-header">
+    <h2 class="charger-name">McDonald&#39;s - Warwick Statford Road</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">A429 <button class="copy-btn" data-copy="CV34 6UH">CV34 6UH</button>
   </p>
   
   <div class="charger-connections">
@@ -353,9 +424,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Lidl-Warwick</h2>
-  <p class="charger-address">Emscote Road CV34 4QP
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Lidl-Warwick</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Emscote Road <button class="copy-btn" data-copy="CV34 4QP">CV34 4QP</button>
   </p>
   
   <div class="charger-connections">
@@ -377,9 +451,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Warwick Innovation Centre</h2>
-  <p class="charger-address">Gallows Hill CV34 6UW
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Warwick Innovation Centre</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Gallows Hill <button class="copy-btn" data-copy="CV34 6UW">CV34 6UW</button>
   </p>
   
   <div class="charger-connections">
@@ -401,9 +478,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Presto Music</h2>
-  <p class="charger-address">Unit 5  CV34 6SW
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Presto Music</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Unit 5  <button class="copy-btn" data-copy="CV34 6SW">CV34 6SW</button>
   </p>
   
   <div class="charger-connections">
@@ -422,9 +502,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Ecofix</h2>
-  <p class="charger-address">Millers Road CV34 5AN
+<li class="charger-item charger-item--fast" data-connectors="CCS (Type 2),CHAdeMO">
+  <div class="charger-header">
+    <h2 class="charger-name">Ecofix</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Millers Road <button class="copy-btn" data-copy="CV34 5AN">CV34 5AN</button>
   </p>
   
   <div class="charger-connections">
@@ -446,9 +529,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Mcdonald&#39;s-Warwick</h2>
-  <p class="charger-address">Emscote Road CV34 5QJ
+<li class="charger-item charger-item--slow" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Mcdonald&#39;s-Warwick</h2>
+    
+  </div>
+  <p class="charger-address">Emscote Road <button class="copy-btn" data-copy="CV34 5QJ">CV34 5QJ</button>
   </p>
   
   <div class="charger-connections">
@@ -476,6 +562,23 @@
 
 <p><a href="/" class="back-link">← All UK towns</a></p>
 
+
+<div class="nearby-towns">
+  <h2 class="nearby-heading">Nearby towns</h2>
+  <ul class="nearby-list">
+  
+    <li><a href="/uk/leamington-spa/">Leamington Spa</a></li>
+  
+    <li><a href="/uk/stratford-on-avon/">Stratford-on-Avon</a></li>
+  
+    <li><a href="/uk/stratford-upon-avon/">Stratford-upon-Avon</a></li>
+  
+    <li><a href="/uk/coventry/">Coventry</a></li>
+  
+  </ul>
+</div>
+
+
 </div>
 
 <footer>
@@ -488,26 +591,61 @@
 <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 <script>
 (function () {
+  // --- Map ---
   var map = L.map('map').setView([52.267726458354694, -1.5634272178000357], 12);
-
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
   }).addTo(map);
 
   var markers = L.markerClusterGroup();
-  var chargerData = [{"lat": 52.278488713994506, "lng": -1.6101435312403112, "title": "Warwick Bypass", "address": "Warwick Bypass"}, {"lat": 52.292705375994785, "lng": -1.5767257848056886, "title": "Guyscliffe SF Connect", "address": "Coventry Road"}, {"lat": 52.31275649644447, "lng": -1.5796320095021115, "title": "EVC The Warwickshire", "address": "Leek Wootton"}, {"lat": 52.219129, "lng": -1.502991, "title": "Welcome Break Warwick Southbound Services", "address": "M40 Motorway Southbound"}, {"lat": 52.216453921147234, "lng": -1.5052927416228385, "title": "Welcome Break Warwick Northbound Services", "address": "M40"}, {"lat": 52.283396, "lng": -1.592207, "title": "West Rock Car Park, Warwick", "address": "Commainge Close"}, {"lat": 52.276844, "lng": -1.546546, "title": "For Nissan EV owners only. Please call first", "address": "Tachbrook Park Drive"}, {"lat": 52.154969, "lng": -1.501723, "title": "Gilks' Garage Caf\u00e9", "address": "Banbury Road"}, {"lat": 52.26919, "lng": -1.536935, "title": "RAW GREENE KING ROYAL HORSE 3", "address": "30 Heathcote Ln"}, {"lat": 52.286155, "lng": -1.564236, "title": "Tesco Superstore-Warwick", "address": "Emscote Road"}, {"lat": 52.282062, "lng": -1.590836, "title": "Market Square Car Park", "address": "Market Place"}, {"lat": 52.276249, "lng": -1.599964, "title": "St Mary's Area 2, Hampton Road, Warwick", "address": "Hampton Road"}, {"lat": 52.2603227906544, "lng": -1.61051771241034, "title": "McDonald's - Warwick Statford Road", "address": "A429"}, {"lat": 52.285722, "lng": -1.571641, "title": "Lidl-Warwick", "address": "Emscote Road"}, {"lat": 52.275135, "lng": -1.564241, "title": "Warwick Innovation Centre", "address": "Gallows Hill"}, {"lat": 52.270857452149016, "lng": -1.5353603408193521, "title": "Presto Music", "address": "Unit 5 "}, {"lat": 52.291997, "lng": -1.58955, "title": "Ecofix", "address": "Millers Road"}, {"lat": 52.2866435, "lng": -1.5631478, "title": "Mcdonald's-Warwick", "address": "Emscote Road"}];
+  var chargerData = [{"lat": 52.278488713994506, "lng": -1.6101435312403112, "title": "Warwick Bypass", "address": "Warwick Bypass", "connectors": ["CCS (Type 2) · 150kW"]}, {"lat": 52.292705375994785, "lng": -1.5767257848056886, "title": "Guyscliffe SF Connect", "address": "Coventry Road", "connectors": ["CCS (Type 2) · 150kW"]}, {"lat": 52.31275649644447, "lng": -1.5796320095021115, "title": "EVC The Warwickshire", "address": "Leek Wootton", "connectors": ["Type 2 (Tethered Connector)  · 22kW"]}, {"lat": 52.219129, "lng": -1.502991, "title": "Welcome Break Warwick Southbound Services", "address": "M40 Motorway Southbound", "connectors": ["CCS (Type 2) · 45kW", "CHAdeMO · 50kW", "CCS (Type 2) · 45kW", "CHAdeMO · 50kW", "Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 52.216453921147234, "lng": -1.5052927416228385, "title": "Welcome Break Warwick Northbound Services", "address": "M40", "connectors": ["CCS (Type 2) · 50kW", "CHAdeMO · 50kW", "CCS (Type 2) · 50kW", "CCS (Type 2) · 50kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 52.283396, "lng": -1.592207, "title": "West Rock Car Park, Warwick", "address": "Commainge Close", "connectors": ["Type 2 (Socket Only) · 7kW"]}, {"lat": 52.276844, "lng": -1.546546, "title": "For Nissan EV owners only. Please call first", "address": "Tachbrook Park Drive", "connectors": ["CHAdeMO · 50kW"]}, {"lat": 52.154969, "lng": -1.501723, "title": "Gilks' Garage Café", "address": "Banbury Road", "connectors": ["Type 2 (Socket Only) · 7kW"]}, {"lat": 52.26919, "lng": -1.536935, "title": "RAW GREENE KING ROYAL HORSE 3", "address": "30 Heathcote Ln", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 52.286155, "lng": -1.564236, "title": "Tesco Superstore-Warwick", "address": "Emscote Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 22kW", "CHAdeMO · 50kW", "CCS (Type 2) · 50kW"]}, {"lat": 52.282062, "lng": -1.590836, "title": "Market Square Car Park", "address": "Market Place", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 52.276249, "lng": -1.599964, "title": "St Mary's Area 2, Hampton Road, Warwick", "address": "Hampton Road", "connectors": ["Type 2 (Socket Only) · 7kW"]}, {"lat": 52.2603227906544, "lng": -1.61051771241034, "title": "McDonald's - Warwick Statford Road", "address": "A429", "connectors": ["CCS (Type 2) · 120kW", "CHAdeMO · 75kW"]}, {"lat": 52.285722, "lng": -1.571641, "title": "Lidl-Warwick", "address": "Emscote Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 52.275135, "lng": -1.564241, "title": "Warwick Innovation Centre", "address": "Gallows Hill", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 52.270857452149016, "lng": -1.5353603408193521, "title": "Presto Music", "address": "Unit 5 ", "connectors": ["Type 2 (Socket Only) · 7kW"]}, {"lat": 52.291997, "lng": -1.58955, "title": "Ecofix", "address": "Millers Road", "connectors": ["CCS (Type 2) · 22kW", "CHAdeMO · 22kW"]}, {"lat": 52.2866435, "lng": -1.5631478, "title": "Mcdonald's-Warwick", "address": "Emscote Road", "connectors": ["Type 2 (Socket Only) · 3kW", "Type 2 (Socket Only) · 3kW", "Type 2 (Socket Only) · 3kW"]}];
 
   chargerData.forEach(function (c) {
+    var connHtml = c.connectors.length
+      ? '<div style="margin-top:6px;font-size:12px;color:#475569">' + c.connectors.join(' &middot; ') + '</div>'
+      : '';
     var marker = L.marker([c.lat, c.lng]);
     marker.bindPopup(
-      '<b>' + c.title + '</b><br>' + c.address + '<br><br>' +
+      '<b>' + c.title + '</b>' +
+      '<div style="color:#64748b;font-size:13px">' + c.address + '</div>' +
+      connHtml +
       '<a href="https://www.google.com/maps/dir/?api=1&destination=' + c.lat + ',' + c.lng +
-      '" target="_blank" rel="noopener">Get directions</a>'
+      '" target="_blank" rel="noopener" style="display:inline-block;margin-top:8px;padding:4px 10px;background:#2563eb;color:white;border-radius:4px;text-decoration:none;font-size:12px">Get directions</a>'
     );
     markers.addLayer(marker);
   });
-
   map.addLayer(markers);
+
+  // --- Connector filter ---
+  var filterBtns = document.querySelectorAll('.filter-btn');
+  var chargerItems = document.querySelectorAll('.charger-item');
+
+  filterBtns.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      filterBtns.forEach(function (b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      var f = btn.dataset.filter;
+      chargerItems.forEach(function (item) {
+        var connList = item.dataset.connectors ? item.dataset.connectors.split(',') : [];
+        item.style.display = (f === 'all' || connList.indexOf(f) !== -1) ? '' : 'none';
+      });
+    });
+  });
+
+  // --- Copy postcode ---
+  document.querySelectorAll('.copy-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var original = btn.textContent;
+      navigator.clipboard.writeText(btn.dataset.copy).then(function () {
+        btn.textContent = 'Copied!';
+        btn.classList.add('copy-btn--success');
+        setTimeout(function () {
+          btn.textContent = original;
+          btn.classList.remove('copy-btn--success');
+        }, 1500);
+      });
+    });
+  });
 }());
 </script>
 

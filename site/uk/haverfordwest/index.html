@@ -17,7 +17,10 @@
 
 <header>
 <div class="container">
-<a href="/" class="logo">PlugMap <span class="tagline">UK EV Charger Locator</span></a>
+<a href="/" class="logo">
+  <svg class="logo-bolt" viewBox="0 0 24 24" fill="currentColor" width="22" height="22" aria-hidden="true"><path d="M13 2L4.5 13.5H11L10 22L19.5 10.5H13Z"/></svg>
+  PlugMap <span class="tagline">UK EV Charger Locator</span>
+</a>
 </div>
 </header>
 
@@ -28,16 +31,42 @@
 </nav>
 
 <h1>EV Chargers in Haverfordwest</h1>
-<p class="page-intro">9 public charging stations found in Haverfordwest.</p>
+
+<div class="stats-bar">
+  <span class="stat-pill stat-total">9 stations</span>
+  <span class="stat-pill stat-rapid">6 rapid (50kW+)</span>
+  <span class="stat-pill stat-fast">3 fast (7–50kW)</span>
+  
+</div>
 
 <div id="map"></div>
 
-<ul class="charger-list">
+
+<div class="connector-filter">
+  <span class="filter-label">Filter:</span>
+  <button class="filter-btn active" data-filter="all">All</button>
+  
+  <button class="filter-btn" data-filter="CCS (Type 2)">CCS (Type 2)</button>
+  
+  <button class="filter-btn" data-filter="CHAdeMO">CHAdeMO</button>
+  
+  <button class="filter-btn" data-filter="Type 2 (Socket Only)">Type 2 (Socket Only)</button>
+  
+  <button class="filter-btn" data-filter="Type 2 (Tethered Connector) ">Type 2 (Tethered Connector) </button>
+  
+</div>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Bridge Meadow Retail Park</h2>
-  <p class="charger-address">Bridge Meadow SA61 2PW
+<ul class="charger-list" id="charger-list">
+
+
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2),CHAdeMO">
+  <div class="charger-header">
+    <h2 class="charger-name">Bridge Meadow Retail Park</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Bridge Meadow <button class="copy-btn" data-copy="SA61 2PW">SA61 2PW</button>
   </p>
   
   <div class="charger-connections">
@@ -59,9 +88,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">MFG Haverfordwest Service Station</h2>
-  <p class="charger-address">Fishguard Road SA62 4BT
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2),CHAdeMO">
+  <div class="charger-header">
+    <h2 class="charger-name">MFG Haverfordwest Service Station</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Fishguard Road <button class="copy-btn" data-copy="SA62 4BT">SA62 4BT</button>
   </p>
   
   <div class="charger-connections">
@@ -83,9 +116,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">The Lost Coins</h2>
-  <p class="charger-address">Fishguard Road SA62 4BP
+<li class="charger-item charger-item--rapid" data-connectors="CHAdeMO,CCS (Type 2),Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">The Lost Coins</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Fishguard Road <button class="copy-btn" data-copy="SA62 4BP">SA62 4BP</button>
   </p>
   
   <div class="charger-connections">
@@ -128,9 +165,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">InstaVolt McDonald&#39;s Haverfordwest</h2>
-  <p class="charger-address">Caradocs Well Road SA61 1XJ
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2),CHAdeMO">
+  <div class="charger-header">
+    <h2 class="charger-name">InstaVolt McDonald&#39;s Haverfordwest</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Caradocs Well Road <button class="copy-btn" data-copy="SA61 1XJ">SA61 1XJ</button>
   </p>
   
   <div class="charger-connections">
@@ -152,9 +193,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Riverside Multi-storey Carpark</h2>
-  <p class="charger-address">Cartlett Road SA61 2LX
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Riverside Multi-storey Carpark</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Cartlett Road <button class="copy-btn" data-copy="SA61 2LX">SA61 2LX</button>
   </p>
   
   <div class="charger-connections">
@@ -176,9 +220,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Tesco Extra-Haverfordwest</h2>
-  <p class="charger-address">Fenton Trading Estate SA61 1BU
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Tesco Extra-Haverfordwest</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Fenton Trading Estate <button class="copy-btn" data-copy="SA61 1BU">SA61 1BU</button>
   </p>
   
   <div class="charger-connections">
@@ -200,9 +247,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">County Hall Car Park, Haverfordwest</h2>
-  <p class="charger-address">Freemens Way SA61 1UG
+<li class="charger-item charger-item--rapid" data-connectors="Type 2 (Socket Only),CHAdeMO,CCS (Type 2)">
+  <div class="charger-header">
+    <h2 class="charger-name">County Hall Car Park, Haverfordwest</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Freemens Way <button class="copy-btn" data-copy="SA61 1UG">SA61 1UG</button>
   </p>
   
   <div class="charger-connections">
@@ -230,9 +281,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">County Hall Car Park</h2>
-  <p class="charger-address">County Hall SA61 1TP
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">County Hall Car Park</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">County Hall <button class="copy-btn" data-copy="SA61 1TP">SA61 1TP</button>
   </p>
   
   <div class="charger-connections">
@@ -254,9 +308,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Withybush Retail Park</h2>
-  <p class="charger-address">Withybush Retail Park SA61 2PY
+<li class="charger-item charger-item--rapid" data-connectors="Type 2 (Tethered Connector) ,CHAdeMO,CCS (Type 2)">
+  <div class="charger-header">
+    <h2 class="charger-name">Withybush Retail Park</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Withybush Retail Park <button class="copy-btn" data-copy="SA61 2PY">SA61 2PY</button>
   </p>
   
   <div class="charger-connections">
@@ -284,6 +342,23 @@
 
 <p><a href="/" class="back-link">← All UK towns</a></p>
 
+
+<div class="nearby-towns">
+  <h2 class="nearby-heading">Nearby towns</h2>
+  <ul class="nearby-list">
+  
+    <li><a href="/uk/cardigan/">Cardigan</a></li>
+  
+    <li><a href="/uk/carmarthen/">Carmarthen</a></li>
+  
+    <li><a href="/uk/llanelli/">Llanelli</a></li>
+  
+    <li><a href="/uk/swansea/">Swansea</a></li>
+  
+  </ul>
+</div>
+
+
 </div>
 
 <footer>
@@ -296,26 +371,61 @@
 <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 <script>
 (function () {
+  // --- Map ---
   var map = L.map('map').setView([51.80592318192813, -4.968557932674718], 12);
-
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
   }).addTo(map);
 
   var markers = L.markerClusterGroup();
-  var chargerData = [{"lat": 51.8070825, "lng": -4.967699, "title": "Bridge Meadow Retail Park", "address": "Bridge Meadow"}, {"lat": 51.82293478735315, "lng": -4.9665808077817815, "title": "MFG Haverfordwest Service Station", "address": "Fishguard Road"}, {"lat": 51.817214, "lng": -4.963493, "title": "The Lost Coins", "address": "Fishguard Road"}, {"lat": 51.7919963, "lng": -4.9791729, "title": "InstaVolt McDonald's Haverfordwest", "address": "Caradocs Well Road"}, {"lat": 51.8033, "lng": -4.96681, "title": "Riverside Multi-storey Carpark", "address": "Cartlett Road"}, {"lat": 51.79749605, "lng": -4.97807909, "title": "Tesco Extra-Haverfordwest", "address": "Fenton Trading Estate"}, {"lat": 51.800952, "lng": -4.965811596290678, "title": "County Hall Car Park, Haverfordwest", "address": "Freemens Way"}, {"lat": 51.800709, "lng": -4.96587, "title": "County Hall Car Park", "address": "County Hall"}, {"lat": 51.811624, "lng": -4.963505, "title": "Withybush Retail Park", "address": "Withybush Retail Park"}];
+  var chargerData = [{"lat": 51.8070825, "lng": -4.967699, "title": "Bridge Meadow Retail Park", "address": "Bridge Meadow", "connectors": ["CCS (Type 2) · 160kW", "CHAdeMO · 60kW"]}, {"lat": 51.82293478735315, "lng": -4.9665808077817815, "title": "MFG Haverfordwest Service Station", "address": "Fishguard Road", "connectors": ["CCS (Type 2) · 150kW", "CHAdeMO · 50kW"]}, {"lat": 51.817214, "lng": -4.963493, "title": "The Lost Coins", "address": "Fishguard Road", "connectors": ["CHAdeMO · 50kW", "CHAdeMO · 50kW", "CHAdeMO · 50kW", "CCS (Type 2) · 75kW", "CCS (Type 2) · 75kW", "CCS (Type 2) · 50kW", "Type 2 (Socket Only) · 16kW", "Type 2 (Socket Only) · 16kW", "Type 2 (Socket Only) · 11kW"]}, {"lat": 51.7919963, "lng": -4.9791729, "title": "InstaVolt McDonald's Haverfordwest", "address": "Caradocs Well Road", "connectors": ["CCS (Type 2) · 120kW", "CHAdeMO · 50kW"]}, {"lat": 51.8033, "lng": -4.96681, "title": "Riverside Multi-storey Carpark", "address": "Cartlett Road", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 51.79749605, "lng": -4.97807909, "title": "Tesco Extra-Haverfordwest", "address": "Fenton Trading Estate", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 51.800952, "lng": -4.965811596290678, "title": "County Hall Car Park, Haverfordwest", "address": "Freemens Way", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW", "CHAdeMO · 50kW", "CCS (Type 2) · 50kW"]}, {"lat": 51.800709, "lng": -4.96587, "title": "County Hall Car Park", "address": "County Hall", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 51.811624, "lng": -4.963505, "title": "Withybush Retail Park", "address": "Withybush Retail Park", "connectors": ["Type 2 (Tethered Connector)  · 43kW", "CHAdeMO · 50kW", "CCS (Type 2) · 50kW"]}];
 
   chargerData.forEach(function (c) {
+    var connHtml = c.connectors.length
+      ? '<div style="margin-top:6px;font-size:12px;color:#475569">' + c.connectors.join(' &middot; ') + '</div>'
+      : '';
     var marker = L.marker([c.lat, c.lng]);
     marker.bindPopup(
-      '<b>' + c.title + '</b><br>' + c.address + '<br><br>' +
+      '<b>' + c.title + '</b>' +
+      '<div style="color:#64748b;font-size:13px">' + c.address + '</div>' +
+      connHtml +
       '<a href="https://www.google.com/maps/dir/?api=1&destination=' + c.lat + ',' + c.lng +
-      '" target="_blank" rel="noopener">Get directions</a>'
+      '" target="_blank" rel="noopener" style="display:inline-block;margin-top:8px;padding:4px 10px;background:#2563eb;color:white;border-radius:4px;text-decoration:none;font-size:12px">Get directions</a>'
     );
     markers.addLayer(marker);
   });
-
   map.addLayer(markers);
+
+  // --- Connector filter ---
+  var filterBtns = document.querySelectorAll('.filter-btn');
+  var chargerItems = document.querySelectorAll('.charger-item');
+
+  filterBtns.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      filterBtns.forEach(function (b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      var f = btn.dataset.filter;
+      chargerItems.forEach(function (item) {
+        var connList = item.dataset.connectors ? item.dataset.connectors.split(',') : [];
+        item.style.display = (f === 'all' || connList.indexOf(f) !== -1) ? '' : 'none';
+      });
+    });
+  });
+
+  // --- Copy postcode ---
+  document.querySelectorAll('.copy-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var original = btn.textContent;
+      navigator.clipboard.writeText(btn.dataset.copy).then(function () {
+        btn.textContent = 'Copied!';
+        btn.classList.add('copy-btn--success');
+        setTimeout(function () {
+          btn.textContent = original;
+          btn.classList.remove('copy-btn--success');
+        }, 1500);
+      });
+    });
+  });
 }());
 </script>
 

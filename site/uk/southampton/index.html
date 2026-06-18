@@ -17,7 +17,10 @@
 
 <header>
 <div class="container">
-<a href="/" class="logo">PlugMap <span class="tagline">UK EV Charger Locator</span></a>
+<a href="/" class="logo">
+  <svg class="logo-bolt" viewBox="0 0 24 24" fill="currentColor" width="22" height="22" aria-hidden="true"><path d="M13 2L4.5 13.5H11L10 22L19.5 10.5H13Z"/></svg>
+  PlugMap <span class="tagline">UK EV Charger Locator</span>
+</a>
 </div>
 </header>
 
@@ -28,16 +31,43 @@
 </nav>
 
 <h1>EV Chargers in Southampton</h1>
-<p class="page-intro">35 public charging stations found in Southampton.</p>
+
+<div class="stats-bar">
+  <span class="stat-pill stat-total">35 stations</span>
+  <span class="stat-pill stat-rapid">8 rapid (50kW+)</span>
+  <span class="stat-pill stat-fast">25 fast (7–50kW)</span>
+  <span class="stat-pill stat-slow">2 slow</span>
+</div>
 
 <div id="map"></div>
 
-<ul class="charger-list">
+
+<div class="connector-filter">
+  <span class="filter-label">Filter:</span>
+  <button class="filter-btn active" data-filter="all">All</button>
+  
+  <button class="filter-btn" data-filter="BS1363 3 Pin 13 Amp">BS1363 3 Pin 13 Amp</button>
+  
+  <button class="filter-btn" data-filter="CCS (Type 2)">CCS (Type 2)</button>
+  
+  <button class="filter-btn" data-filter="CHAdeMO">CHAdeMO</button>
+  
+  <button class="filter-btn" data-filter="Type 2 (Socket Only)">Type 2 (Socket Only)</button>
+  
+  <button class="filter-btn" data-filter="Type 2 (Tethered Connector) ">Type 2 (Tethered Connector) </button>
+  
+</div>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Tremona Road</h2>
-  <p class="charger-address">Tremona Road SO16 6YD
+<ul class="charger-list" id="charger-list">
+
+
+<li class="charger-item charger-item--slow" data-connectors="">
+  <div class="charger-header">
+    <h2 class="charger-name">Tremona Road</h2>
+    
+  </div>
+  <p class="charger-address">Tremona Road <button class="copy-btn" data-copy="SO16 6YD">SO16 6YD</button>
   </p>
   
   
@@ -49,9 +79,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Hilton Southampton - Utilita Bowl</h2>
-  <p class="charger-address">Botley Road SO30 3XH
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Hilton Southampton - Utilita Bowl</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Botley Road <button class="copy-btn" data-copy="SO30 3XH">SO30 3XH</button>
   </p>
   
   <div class="charger-connections">
@@ -70,9 +103,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Ocean Village Multi Storey Car Park</h2>
-  <p class="charger-address">Neptune Way SO14 3FZ
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Ocean Village Multi Storey Car Park</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Neptune Way <button class="copy-btn" data-copy="SO14 3FZ">SO14 3FZ</button>
   </p>
   
   <div class="charger-connections">
@@ -91,8 +127,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Aylesford Southampton</h2>
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2)">
+  <div class="charger-header">
+    <h2 class="charger-name">Aylesford Southampton</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
   <p class="charger-address">18 Test Lane
   </p>
   
@@ -112,9 +152,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">GLS ALPHA STATION 01</h2>
-  <p class="charger-address">The Alpha building, Willment’s Shipyard Hazel SO19 7HS
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Tethered Connector) ">
+  <div class="charger-header">
+    <h2 class="charger-name">GLS ALPHA STATION 01</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">The Alpha building, Willment’s Shipyard Hazel <button class="copy-btn" data-copy="SO19 7HS">SO19 7HS</button>
   </p>
   
   <div class="charger-connections">
@@ -133,9 +176,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Southampton Science Park</h2>
-  <p class="charger-address">Engineering Centre SO16 7PU
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Southampton Science Park</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Engineering Centre <button class="copy-btn" data-copy="SO16 7PU">SO16 7PU</button>
   </p>
   
   <div class="charger-connections">
@@ -157,9 +203,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">University of Southampton Science Park</h2>
-  <p class="charger-address">2 Venture Road SO16 7NP
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">University of Southampton Science Park</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">2 Venture Road <button class="copy-btn" data-copy="SO16 7NP">SO16 7NP</button>
   </p>
   
   <div class="charger-connections">
@@ -181,9 +230,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Exbury Gardens</h2>
-  <p class="charger-address">Summer Lane SO45 1AF
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Exbury Gardens</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Summer Lane <button class="copy-btn" data-copy="SO45 1AF">SO45 1AF</button>
   </p>
   
   <div class="charger-connections">
@@ -211,9 +263,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">NCP Portland Terrace</h2>
-  <p class="charger-address">NCP Portland Terrace SO14 7EG
+<li class="charger-item charger-item--fast" data-connectors="BS1363 3 Pin 13 Amp,Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">NCP Portland Terrace</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">NCP Portland Terrace <button class="copy-btn" data-copy="SO14 7EG">SO14 7EG</button>
   </p>
   
   <div class="charger-connections">
@@ -235,9 +290,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">EVC Botley Park Hotel &amp; Spa</h2>
-  <p class="charger-address">Winchester Rd SO32 2UA
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">EVC Botley Park Hotel &amp; Spa</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Winchester Rd <button class="copy-btn" data-copy="SO32 2UA">SO32 2UA</button>
   </p>
   
   <div class="charger-connections">
@@ -256,9 +314,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">IKEA Southampton</h2>
-  <p class="charger-address">W Quay RD SO15 1GY
+<li class="charger-item charger-item--fast" data-connectors="CCS (Type 2),CHAdeMO,Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">IKEA Southampton</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">W Quay RD <button class="copy-btn" data-copy="SO15 1GY">SO15 1GY</button>
   </p>
   
   <div class="charger-connections">
@@ -283,9 +344,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Roadchef Rownhams South Services</h2>
-  <p class="charger-address">M27 Motorway Southbound SO16 8AP
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2),CHAdeMO,Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Roadchef Rownhams South Services</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">M27 Motorway Southbound <button class="copy-btn" data-copy="SO16 8AP">SO16 8AP</button>
   </p>
   
   <div class="charger-connections">
@@ -331,9 +396,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">West Way Southampton</h2>
-  <p class="charger-address">12 Old Redbridge Road SO15 0NP
+<li class="charger-item charger-item--slow" data-connectors="BS1363 3 Pin 13 Amp">
+  <div class="charger-header">
+    <h2 class="charger-name">West Way Southampton</h2>
+    
+  </div>
+  <p class="charger-address">12 Old Redbridge Road <button class="copy-btn" data-copy="SO15 0NP">SO15 0NP</button>
   </p>
   
   <div class="charger-connections">
@@ -355,9 +423,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Station Hill</h2>
-  <p class="charger-address">Station Hill SO30 2DN
+<li class="charger-item charger-item--rapid" data-connectors="CHAdeMO,Type 2 (Tethered Connector) ">
+  <div class="charger-header">
+    <h2 class="charger-name">Station Hill</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Station Hill <button class="copy-btn" data-copy="SO30 2DN">SO30 2DN</button>
   </p>
   
   <div class="charger-connections">
@@ -379,9 +451,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">West End Road</h2>
-  <p class="charger-address">West End Road SO18
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">West End Road</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">West End Road <button class="copy-btn" data-copy="SO18">SO18</button>
   </p>
   
   <div class="charger-connections">
@@ -403,9 +478,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">4003232</h2>
-  <p class="charger-address">Harbour Parade SO15 1DE
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">4003232</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Harbour Parade <button class="copy-btn" data-copy="SO15 1DE">SO15 1DE</button>
   </p>
   
   <div class="charger-connections">
@@ -422,9 +500,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Manor Farm</h2>
-  <p class="charger-address">Pylands Lane SO31 1BH
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Manor Farm</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Pylands Lane <button class="copy-btn" data-copy="SO31 1BH">SO31 1BH</button>
   </p>
   
   <div class="charger-connections">
@@ -446,9 +527,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Miller and Carter Southampton</h2>
-  <p class="charger-address">Providence Hill SO31 8DW
+<li class="charger-item charger-item--rapid" data-connectors="CHAdeMO">
+  <div class="charger-header">
+    <h2 class="charger-name">Miller and Carter Southampton</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Providence Hill <button class="copy-btn" data-copy="SO31 8DW">SO31 8DW</button>
   </p>
   
   <div class="charger-connections">
@@ -470,9 +555,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Purlieu Construction Company</h2>
-  <p class="charger-address">Hardley Industrial Estate SO45 3NR
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2),CHAdeMO">
+  <div class="charger-header">
+    <h2 class="charger-name">Purlieu Construction Company</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Hardley Industrial Estate <button class="copy-btn" data-copy="SO45 3NR">SO45 3NR</button>
   </p>
   
   <div class="charger-connections">
@@ -494,9 +583,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">DRAX00136</h2>
-  <p class="charger-address">Highfield Lane SO17 1AQ
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">DRAX00136</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Highfield Lane <button class="copy-btn" data-copy="SO17 1AQ">SO17 1AQ</button>
   </p>
   
   <div class="charger-connections">
@@ -518,9 +610,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Boldrewood Campus</h2>
-  <p class="charger-address">Boldrewood Campus, Burgess Road SO16 7QF
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Boldrewood Campus</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Boldrewood Campus, Burgess Road <button class="copy-btn" data-copy="SO16 7QF">SO16 7QF</button>
   </p>
   
   <div class="charger-connections">
@@ -542,9 +637,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Salisbury Road</h2>
-  <p class="charger-address">Salisbury Road SO17
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Salisbury Road</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Salisbury Road <button class="copy-btn" data-copy="SO17">SO17</button>
   </p>
   
   <div class="charger-connections">
@@ -572,9 +670,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Avenue Campus</h2>
-  <p class="charger-address">Avenue Campus, Highfield Road SO17 1BF
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Avenue Campus</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Avenue Campus, Highfield Road <button class="copy-btn" data-copy="SO17 1BF">SO17 1BF</button>
   </p>
   
   <div class="charger-connections">
@@ -593,9 +694,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Avenue Campus</h2>
-  <p class="charger-address">Avenue Campus, Highfield Road, SO17 1BF
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Avenue Campus</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Avenue Campus, Highfield Road, <button class="copy-btn" data-copy="SO17 1BF">SO17 1BF</button>
   </p>
   
   <div class="charger-connections">
@@ -614,9 +718,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Bitterne Road</h2>
-  <p class="charger-address">Bitterne Road SO18 1DN
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only),CCS (Type 2)">
+  <div class="charger-header">
+    <h2 class="charger-name">Bitterne Road</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Bitterne Road <button class="copy-btn" data-copy="SO18 1DN">SO18 1DN</button>
   </p>
   
   <div class="charger-connections">
@@ -641,9 +748,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Tesco Superstore-Southampton</h2>
-  <p class="charger-address">Tebourba Way SO16 4QE
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Tesco Superstore-Southampton</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Tebourba Way <button class="copy-btn" data-copy="SO16 4QE">SO16 4QE</button>
   </p>
   
   <div class="charger-connections">
@@ -665,9 +775,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">McDonald&#39;s Shirley Road</h2>
-  <p class="charger-address">361 Shirley Road SO15 3JD
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2),CHAdeMO">
+  <div class="charger-header">
+    <h2 class="charger-name">McDonald&#39;s Shirley Road</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">361 Shirley Road <button class="copy-btn" data-copy="SO15 3JD">SO15 3JD</button>
   </p>
   
   <div class="charger-connections">
@@ -689,9 +803,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Antelope Retail Park</h2>
-  <p class="charger-address">Gavan Street SO19 8NE
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2),CHAdeMO">
+  <div class="charger-header">
+    <h2 class="charger-name">Antelope Retail Park</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Gavan Street <button class="copy-btn" data-copy="SO19 8NE">SO19 8NE</button>
   </p>
   
   <div class="charger-connections">
@@ -713,9 +831,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Jubilee Village Hall</h2>
-  <p class="charger-address">Bishops Waltham SO32 1ED
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Jubilee Village Hall</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Bishops Waltham <button class="copy-btn" data-copy="SO32 1ED">SO32 1ED</button>
   </p>
   
   <div class="charger-connections">
@@ -737,9 +858,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Townhill 1</h2>
-  <p class="charger-address">Townhill Park SO18 2FT
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Townhill 1</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Townhill Park <button class="copy-btn" data-copy="SO18 2FT">SO18 2FT</button>
   </p>
   
   <div class="charger-connections">
@@ -758,9 +882,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Pear Tree Gardens</h2>
-  <p class="charger-address">Bitterne Village SO19 7BY
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Pear Tree Gardens</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Bitterne Village <button class="copy-btn" data-copy="SO19 7BY">SO19 7BY</button>
   </p>
   
   <div class="charger-connections">
@@ -782,9 +909,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Whites Road Car Park</h2>
-  <p class="charger-address">11 Whites Road SO19 7NP
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Whites Road Car Park</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">11 Whites Road <button class="copy-btn" data-copy="SO19 7NP">SO19 7NP</button>
   </p>
   
   <div class="charger-connections">
@@ -806,9 +936,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Southbrook Road South Car Park</h2>
-  <p class="charger-address">Southbrook Road Car Park SO15 1AL
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Southbrook Road South Car Park</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Southbrook Road Car Park <button class="copy-btn" data-copy="SO15 1AL">SO15 1AL</button>
   </p>
   
   <div class="charger-connections">
@@ -830,9 +963,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Victoria Road Car Park</h2>
-  <p class="charger-address">229 Victoria Road SO19 9EG
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Victoria Road Car Park</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">229 Victoria Road <button class="copy-btn" data-copy="SO19 9EG">SO19 9EG</button>
   </p>
   
   <div class="charger-connections">
@@ -854,9 +990,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">The Village Inn</h2>
-  <p class="charger-address">Park Gate SO31 1AZ
+<li class="charger-item charger-item--rapid" data-connectors="CHAdeMO">
+  <div class="charger-header">
+    <h2 class="charger-name">The Village Inn</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Park Gate <button class="copy-btn" data-copy="SO31 1AZ">SO31 1AZ</button>
   </p>
   
   <div class="charger-connections">
@@ -881,6 +1021,23 @@
 
 <p><a href="/" class="back-link">← All UK towns</a></p>
 
+
+<div class="nearby-towns">
+  <h2 class="nearby-heading">Nearby towns</h2>
+  <ul class="nearby-list">
+  
+    <li><a href="/uk/eastleigh/">Eastleigh</a></li>
+  
+    <li><a href="/uk/hampshire/">Hampshire</a></li>
+  
+    <li><a href="/uk/winchester/">Winchester</a></li>
+  
+    <li><a href="/uk/gosport/">Gosport</a></li>
+  
+  </ul>
+</div>
+
+
 </div>
 
 <footer>
@@ -893,26 +1050,61 @@
 <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 <script>
 (function () {
+  // --- Map ---
   var map = L.map('map').setView([50.91450848395814, -1.3750412609866074], 12);
-
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
   }).addTo(map);
 
   var markers = L.markerClusterGroup();
-  var chargerData = [{"lat": 50.93323479708852, "lng": -1.435409853789679, "title": "Tremona Road", "address": "Tremona Road"}, {"lat": 50.92457294642958, "lng": -1.3200668798360766, "title": "Hilton Southampton - Utilita Bowl", "address": "Botley Road"}, {"lat": 50.89518040256101, "lng": -1.3958254456657073, "title": "Ocean Village Multi Storey Car Park", "address": "Neptune Way"}, {"lat": 50.930164619333624, "lng": -1.474012642481, "title": "Aylesford Southampton", "address": "18 Test Lane"}, {"lat": 50.905864, "lng": -1.380056, "title": "GLS ALPHA STATION 01", "address": "The Alpha building, Willment\u2019s Shipyard Hazel"}, {"lat": 50.962222, "lng": -1.423889, "title": "Southampton Science Park", "address": "Engineering Centre"}, {"lat": 50.96095350292569, "lng": -1.4228984425279805, "title": "University of Southampton Science Park", "address": "2 Venture Road"}, {"lat": 50.802382, "lng": -1.39925, "title": "Exbury Gardens", "address": "Summer Lane"}, {"lat": 50.905102, "lng": -1.40661, "title": "NCP Portland Terrace", "address": "NCP Portland Terrace"}, {"lat": 50.930940793020845, "lng": -1.2815727237902612, "title": "EVC Botley Park Hotel & Spa", "address": "Winchester Rd"}, {"lat": 50.903346, "lng": -1.411625, "title": "IKEA Southampton", "address": "W Quay RD"}, {"lat": 50.956827, "lng": -1.447867, "title": "Roadchef Rownhams South Services", "address": "M27 Motorway Southbound"}, {"lat": 50.922939, "lng": -1.473515, "title": "West Way Southampton", "address": "12 Old Redbridge Road"}, {"lat": 50.915462, "lng": -1.260265, "title": "Station Hill", "address": "Station Hill"}, {"lat": 50.915287, "lng": -1.361392, "title": "West End Road", "address": "West End Road"}, {"lat": 50.903966, "lng": -1.408591, "title": "4003232", "address": "Harbour Parade"}, {"lat": 50.903751, "lng": -1.277109, "title": "Manor Farm", "address": "Pylands Lane"}, {"lat": 50.894939, "lng": -1.317844, "title": "Miller and Carter Southampton", "address": "Providence Hill"}, {"lat": 50.842674, "lng": -1.3959861, "title": "Purlieu Construction Company", "address": "Hardley Industrial Estate"}, {"lat": 50.92743, "lng": -1.39167, "title": "DRAX00136", "address": "Highfield Lane"}, {"lat": 50.937202, "lng": -1.404781, "title": "Boldrewood Campus", "address": "Boldrewood Campus, Burgess Road"}, {"lat": 50.937165, "lng": -1.397054, "title": "Salisbury Road", "address": "Salisbury Road"}, {"lat": 50.928764, "lng": -1.402452, "title": "Avenue Campus", "address": "Avenue Campus, Highfield Road"}, {"lat": 50.923875, "lng": -1.309673, "title": "Avenue Campus", "address": "Avenue Campus, Highfield Road,"}, {"lat": 50.91506, "lng": -1.363427, "title": "Bitterne Road", "address": "Bitterne Road"}, {"lat": 50.9232, "lng": -1.447364, "title": "Tesco Superstore-Southampton", "address": "Tebourba Way"}, {"lat": 50.9189606512057, "lng": -1.42821632409371, "title": "McDonald's Shirley Road", "address": "361 Shirley Road"}, {"lat": 50.9060972259698, "lng": -1.33892972234685, "title": "Antelope Retail Park", "address": "Gavan Street"}, {"lat": 50.9533, "lng": -1.21029, "title": "Jubilee Village Hall", "address": "Bishops Waltham"}, {"lat": 50.925815, "lng": -1.355457, "title": "Townhill 1", "address": "Townhill Park"}, {"lat": 50.913725, "lng": -1.360306, "title": "Pear Tree Gardens", "address": "Bitterne Village"}, {"lat": 50.913231, "lng": -1.356975, "title": "Whites Road Car Park", "address": "11 Whites Road"}, {"lat": 50.90796, "lng": -1.41483, "title": "Southbrook Road South Car Park", "address": "Southbrook Road Car Park"}, {"lat": 50.890582, "lng": -1.382631, "title": "Victoria Road Car Park", "address": "229 Victoria Road"}, {"lat": 50.875622, "lng": -1.268603, "title": "The Village Inn", "address": "Park Gate"}];
+  var chargerData = [{"lat": 50.93323479708852, "lng": -1.435409853789679, "title": "Tremona Road", "address": "Tremona Road", "connectors": []}, {"lat": 50.92457294642958, "lng": -1.3200668798360766, "title": "Hilton Southampton - Utilita Bowl", "address": "Botley Road", "connectors": ["Type 2 (Socket Only) · 22kW"]}, {"lat": 50.89518040256101, "lng": -1.3958254456657073, "title": "Ocean Village Multi Storey Car Park", "address": "Neptune Way", "connectors": ["Type 2 (Socket Only) · 7.4kW"]}, {"lat": 50.930164619333624, "lng": -1.474012642481, "title": "Aylesford Southampton", "address": "18 Test Lane", "connectors": ["CCS (Type 2) · 150kW"]}, {"lat": 50.905864, "lng": -1.380056, "title": "GLS ALPHA STATION 01", "address": "The Alpha building, Willment’s Shipyard Hazel", "connectors": ["Type 2 (Tethered Connector)  · 43kW"]}, {"lat": 50.962222, "lng": -1.423889, "title": "Southampton Science Park", "address": "Engineering Centre", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 50.96095350292569, "lng": -1.4228984425279805, "title": "University of Southampton Science Park", "address": "2 Venture Road", "connectors": ["Type 2 (Socket Only) · 7.2kW", "Type 2 (Socket Only) · 7.2kW"]}, {"lat": 50.802382, "lng": -1.39925, "title": "Exbury Gardens", "address": "Summer Lane", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 50.905102, "lng": -1.40661, "title": "NCP Portland Terrace", "address": "NCP Portland Terrace", "connectors": ["BS1363 3 Pin 13 Amp · 3kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 50.930940793020845, "lng": -1.2815727237902612, "title": "EVC Botley Park Hotel & Spa", "address": "Winchester Rd", "connectors": ["Type 2 (Socket Only) · 22kW"]}, {"lat": 50.903346, "lng": -1.411625, "title": "IKEA Southampton", "address": "W Quay RD", "connectors": ["CCS (Type 2) · 40kW", "CHAdeMO · 40kW", "Type 2 (Socket Only) · 11kW"]}, {"lat": 50.956827, "lng": -1.447867, "title": "Roadchef Rownhams South Services", "address": "M27 Motorway Southbound", "connectors": ["CCS (Type 2) · 40kW", "CHAdeMO · 40kW", "Type 2 (Socket Only) · 11kW", "Type 2 (Socket Only) · 11kW", "CCS (Type 2) · 240kW", "CCS (Type 2) · 240kW", "CCS (Type 2) · 240kW", "CCS (Type 2) · 240kW", "CCS (Type 2) · 240kW", "CCS (Type 2) · 240kW"]}, {"lat": 50.922939, "lng": -1.473515, "title": "West Way Southampton", "address": "12 Old Redbridge Road", "connectors": ["BS1363 3 Pin 13 Amp · 3kW", "BS1363 3 Pin 13 Amp · 3kW"]}, {"lat": 50.915462, "lng": -1.260265, "title": "Station Hill", "address": "Station Hill", "connectors": ["CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 50kW"]}, {"lat": 50.915287, "lng": -1.361392, "title": "West End Road", "address": "West End Road", "connectors": ["Type 2 (Socket Only) · 11kW", "Type 2 (Socket Only) · 11kW"]}, {"lat": 50.903966, "lng": -1.408591, "title": "4003232", "address": "Harbour Parade", "connectors": ["Type 2 (Socket Only) · 11kW"]}, {"lat": 50.903751, "lng": -1.277109, "title": "Manor Farm", "address": "Pylands Lane", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 50.894939, "lng": -1.317844, "title": "Miller and Carter Southampton", "address": "Providence Hill", "connectors": ["CHAdeMO · 50kW", "CHAdeMO · 50kW"]}, {"lat": 50.842674, "lng": -1.3959861, "title": "Purlieu Construction Company", "address": "Hardley Industrial Estate", "connectors": ["CCS (Type 2) · 120kW", "CHAdeMO · 50kW"]}, {"lat": 50.92743, "lng": -1.39167, "title": "DRAX00136", "address": "Highfield Lane", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 50.937202, "lng": -1.404781, "title": "Boldrewood Campus", "address": "Boldrewood Campus, Burgess Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 50.937165, "lng": -1.397054, "title": "Salisbury Road", "address": "Salisbury Road", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 50.928764, "lng": -1.402452, "title": "Avenue Campus", "address": "Avenue Campus, Highfield Road", "connectors": ["Type 2 (Socket Only) · 7kW"]}, {"lat": 50.923875, "lng": -1.309673, "title": "Avenue Campus", "address": "Avenue Campus, Highfield Road,", "connectors": ["Type 2 (Socket Only) · 7kW"]}, {"lat": 50.91506, "lng": -1.363427, "title": "Bitterne Road", "address": "Bitterne Road", "connectors": ["Type 2 (Socket Only) · 11kW", "Type 2 (Socket Only) · 7kW", "CCS (Type 2)"]}, {"lat": 50.9232, "lng": -1.447364, "title": "Tesco Superstore-Southampton", "address": "Tebourba Way", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 50.9189606512057, "lng": -1.42821632409371, "title": "McDonald's Shirley Road", "address": "361 Shirley Road", "connectors": ["CCS (Type 2) · 120kW", "CHAdeMO · 100kW"]}, {"lat": 50.9060972259698, "lng": -1.33892972234685, "title": "Antelope Retail Park", "address": "Gavan Street", "connectors": ["CCS (Type 2) · 120kW", "CHAdeMO · 50kW"]}, {"lat": 50.9533, "lng": -1.21029, "title": "Jubilee Village Hall", "address": "Bishops Waltham", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 50.925815, "lng": -1.355457, "title": "Townhill 1", "address": "Townhill Park", "connectors": ["Type 2 (Socket Only) · 22kW"]}, {"lat": 50.913725, "lng": -1.360306, "title": "Pear Tree Gardens", "address": "Bitterne Village", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 50.913231, "lng": -1.356975, "title": "Whites Road Car Park", "address": "11 Whites Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 50.90796, "lng": -1.41483, "title": "Southbrook Road South Car Park", "address": "Southbrook Road Car Park", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 50.890582, "lng": -1.382631, "title": "Victoria Road Car Park", "address": "229 Victoria Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 50.875622, "lng": -1.268603, "title": "The Village Inn", "address": "Park Gate", "connectors": ["CHAdeMO · 50kW", "CHAdeMO · 50kW"]}];
 
   chargerData.forEach(function (c) {
+    var connHtml = c.connectors.length
+      ? '<div style="margin-top:6px;font-size:12px;color:#475569">' + c.connectors.join(' &middot; ') + '</div>'
+      : '';
     var marker = L.marker([c.lat, c.lng]);
     marker.bindPopup(
-      '<b>' + c.title + '</b><br>' + c.address + '<br><br>' +
+      '<b>' + c.title + '</b>' +
+      '<div style="color:#64748b;font-size:13px">' + c.address + '</div>' +
+      connHtml +
       '<a href="https://www.google.com/maps/dir/?api=1&destination=' + c.lat + ',' + c.lng +
-      '" target="_blank" rel="noopener">Get directions</a>'
+      '" target="_blank" rel="noopener" style="display:inline-block;margin-top:8px;padding:4px 10px;background:#2563eb;color:white;border-radius:4px;text-decoration:none;font-size:12px">Get directions</a>'
     );
     markers.addLayer(marker);
   });
-
   map.addLayer(markers);
+
+  // --- Connector filter ---
+  var filterBtns = document.querySelectorAll('.filter-btn');
+  var chargerItems = document.querySelectorAll('.charger-item');
+
+  filterBtns.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      filterBtns.forEach(function (b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      var f = btn.dataset.filter;
+      chargerItems.forEach(function (item) {
+        var connList = item.dataset.connectors ? item.dataset.connectors.split(',') : [];
+        item.style.display = (f === 'all' || connList.indexOf(f) !== -1) ? '' : 'none';
+      });
+    });
+  });
+
+  // --- Copy postcode ---
+  document.querySelectorAll('.copy-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var original = btn.textContent;
+      navigator.clipboard.writeText(btn.dataset.copy).then(function () {
+        btn.textContent = 'Copied!';
+        btn.classList.add('copy-btn--success');
+        setTimeout(function () {
+          btn.textContent = original;
+          btn.classList.remove('copy-btn--success');
+        }, 1500);
+      });
+    });
+  });
 }());
 </script>
 

@@ -17,7 +17,10 @@
 
 <header>
 <div class="container">
-<a href="/" class="logo">PlugMap <span class="tagline">UK EV Charger Locator</span></a>
+<a href="/" class="logo">
+  <svg class="logo-bolt" viewBox="0 0 24 24" fill="currentColor" width="22" height="22" aria-hidden="true"><path d="M13 2L4.5 13.5H11L10 22L19.5 10.5H13Z"/></svg>
+  PlugMap <span class="tagline">UK EV Charger Locator</span>
+</a>
 </div>
 </header>
 
@@ -28,16 +31,41 @@
 </nav>
 
 <h1>EV Chargers in Kidderminster</h1>
-<p class="page-intro">6 public charging stations found in Kidderminster.</p>
+
+<div class="stats-bar">
+  <span class="stat-pill stat-total">6 stations</span>
+  <span class="stat-pill stat-rapid">4 rapid (50kW+)</span>
+  <span class="stat-pill stat-fast">2 fast (7–50kW)</span>
+  
+</div>
 
 <div id="map"></div>
 
-<ul class="charger-list">
+
+<div class="connector-filter">
+  <span class="filter-label">Filter:</span>
+  <button class="filter-btn active" data-filter="all">All</button>
+  
+  <button class="filter-btn" data-filter="CCS (Type 2)">CCS (Type 2)</button>
+  
+  <button class="filter-btn" data-filter="CHAdeMO">CHAdeMO</button>
+  
+  <button class="filter-btn" data-filter="Type 2 (Socket Only)">Type 2 (Socket Only)</button>
+  
+  <button class="filter-btn" data-filter="Type 2 (Tethered Connector) ">Type 2 (Tethered Connector) </button>
+  
+</div>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Saba UK-Kidderminster Station</h2>
-  <p class="charger-address">Kidderminster Station DY10 1QZ
+<ul class="charger-list" id="charger-list">
+
+
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Saba UK-Kidderminster Station</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Kidderminster Station <button class="copy-btn" data-copy="DY10 1QZ">DY10 1QZ</button>
   </p>
   
   <div class="charger-connections">
@@ -56,9 +84,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Weavers Wharf</h2>
-  <p class="charger-address">DY10 1AA DY10 1AA
+<li class="charger-item charger-item--rapid" data-connectors="CHAdeMO,Type 2 (Tethered Connector) ">
+  <div class="charger-header">
+    <h2 class="charger-name">Weavers Wharf</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">DY10 1AA <button class="copy-btn" data-copy="DY10 1AA">DY10 1AA</button>
   </p>
   
   <div class="charger-connections">
@@ -80,9 +112,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Morrisons Kidderminster</h2>
-  <p class="charger-address">Green Street DY10 1AZ
+<li class="charger-item charger-item--rapid" data-connectors="Type 2 (Tethered Connector) ,CHAdeMO">
+  <div class="charger-header">
+    <h2 class="charger-name">Morrisons Kidderminster</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Green Street <button class="copy-btn" data-copy="DY10 1AZ">DY10 1AZ</button>
   </p>
   
   <div class="charger-connections">
@@ -107,9 +143,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Tesco Superstore-Kidderminster</h2>
-  <p class="charger-address">Castle Road DY11 6SW
+<li class="charger-item charger-item--rapid" data-connectors="Type 2 (Socket Only),CHAdeMO,CCS (Type 2)">
+  <div class="charger-header">
+    <h2 class="charger-name">Tesco Superstore-Kidderminster</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Castle Road <button class="copy-btn" data-copy="DY11 6SW">DY11 6SW</button>
   </p>
   
   <div class="charger-connections">
@@ -137,9 +177,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Costa Drive-Through</h2>
-  <p class="charger-address">Silverwoods Way DY11 7DT
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2),CHAdeMO">
+  <div class="charger-header">
+    <h2 class="charger-name">Costa Drive-Through</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Silverwoods Way <button class="copy-btn" data-copy="DY11 7DT">DY11 7DT</button>
   </p>
   
   <div class="charger-connections">
@@ -161,9 +205,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">4000991</h2>
-  <p class="charger-address">Whitehouse Road DY10 1HU
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">4000991</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Whitehouse Road <button class="copy-btn" data-copy="DY10 1HU">DY10 1HU</button>
   </p>
   
   <div class="charger-connections">
@@ -183,6 +230,23 @@
 
 <p><a href="/" class="back-link">← All UK towns</a></p>
 
+
+<div class="nearby-towns">
+  <h2 class="nearby-heading">Nearby towns</h2>
+  <ul class="nearby-list">
+  
+    <li><a href="/uk/dudley/">Dudley</a></li>
+  
+    <li><a href="/uk/worcester/">Worcester</a></li>
+  
+    <li><a href="/uk/bromsgrove/">Bromsgrove</a></li>
+  
+    <li><a href="/uk/wolverhampton/">Wolverhampton</a></li>
+  
+  </ul>
+</div>
+
+
 </div>
 
 <footer>
@@ -195,26 +259,61 @@
 <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 <script>
 (function () {
+  // --- Map ---
   var map = L.map('map').setView([52.38138743801212, -2.2498639847156734], 12);
-
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
   }).addTo(map);
 
   var markers = L.markerClusterGroup();
-  var chargerData = [{"lat": 52.384356, "lng": -2.238571, "title": "Saba UK-Kidderminster Station", "address": "Kidderminster Station"}, {"lat": 52.387684, "lng": -2.251058, "title": "Weavers Wharf", "address": "DY10 1AA"}, {"lat": 52.384483, "lng": -2.246243, "title": "Morrisons Kidderminster", "address": "Green Street"}, {"lat": 52.385299, "lng": -2.250444, "title": "Tesco Superstore-Kidderminster", "address": "Castle Road"}, {"lat": 52.3689006280727, "lng": -2.26125390829404, "title": "Costa Drive-Through", "address": "Silverwoods Way"}, {"lat": 52.377602, "lng": -2.251614, "title": "4000991", "address": "Whitehouse Road"}];
+  var chargerData = [{"lat": 52.384356, "lng": -2.238571, "title": "Saba UK-Kidderminster Station", "address": "Kidderminster Station", "connectors": ["Type 2 (Socket Only) · 7kW"]}, {"lat": 52.387684, "lng": -2.251058, "title": "Weavers Wharf", "address": "DY10 1AA", "connectors": ["CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 43kW"]}, {"lat": 52.384483, "lng": -2.246243, "title": "Morrisons Kidderminster", "address": "Green Street", "connectors": ["Type 2 (Tethered Connector)  · 43kW", "CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 50kW"]}, {"lat": 52.385299, "lng": -2.250444, "title": "Tesco Superstore-Kidderminster", "address": "Castle Road", "connectors": ["Type 2 (Socket Only) · 22kW", "CHAdeMO · 50kW", "CCS (Type 2) · 50kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 52.3689006280727, "lng": -2.26125390829404, "title": "Costa Drive-Through", "address": "Silverwoods Way", "connectors": ["CCS (Type 2) · 120kW", "CHAdeMO · 100kW"]}, {"lat": 52.377602, "lng": -2.251614, "title": "4000991", "address": "Whitehouse Road", "connectors": ["Type 2 (Socket Only) · 22kW"]}];
 
   chargerData.forEach(function (c) {
+    var connHtml = c.connectors.length
+      ? '<div style="margin-top:6px;font-size:12px;color:#475569">' + c.connectors.join(' &middot; ') + '</div>'
+      : '';
     var marker = L.marker([c.lat, c.lng]);
     marker.bindPopup(
-      '<b>' + c.title + '</b><br>' + c.address + '<br><br>' +
+      '<b>' + c.title + '</b>' +
+      '<div style="color:#64748b;font-size:13px">' + c.address + '</div>' +
+      connHtml +
       '<a href="https://www.google.com/maps/dir/?api=1&destination=' + c.lat + ',' + c.lng +
-      '" target="_blank" rel="noopener">Get directions</a>'
+      '" target="_blank" rel="noopener" style="display:inline-block;margin-top:8px;padding:4px 10px;background:#2563eb;color:white;border-radius:4px;text-decoration:none;font-size:12px">Get directions</a>'
     );
     markers.addLayer(marker);
   });
-
   map.addLayer(markers);
+
+  // --- Connector filter ---
+  var filterBtns = document.querySelectorAll('.filter-btn');
+  var chargerItems = document.querySelectorAll('.charger-item');
+
+  filterBtns.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      filterBtns.forEach(function (b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      var f = btn.dataset.filter;
+      chargerItems.forEach(function (item) {
+        var connList = item.dataset.connectors ? item.dataset.connectors.split(',') : [];
+        item.style.display = (f === 'all' || connList.indexOf(f) !== -1) ? '' : 'none';
+      });
+    });
+  });
+
+  // --- Copy postcode ---
+  document.querySelectorAll('.copy-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var original = btn.textContent;
+      navigator.clipboard.writeText(btn.dataset.copy).then(function () {
+        btn.textContent = 'Copied!';
+        btn.classList.add('copy-btn--success');
+        setTimeout(function () {
+          btn.textContent = original;
+          btn.classList.remove('copy-btn--success');
+        }, 1500);
+      });
+    });
+  });
 }());
 </script>
 

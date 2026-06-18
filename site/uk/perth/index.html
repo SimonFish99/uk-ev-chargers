@@ -17,7 +17,10 @@
 
 <header>
 <div class="container">
-<a href="/" class="logo">PlugMap <span class="tagline">UK EV Charger Locator</span></a>
+<a href="/" class="logo">
+  <svg class="logo-bolt" viewBox="0 0 24 24" fill="currentColor" width="22" height="22" aria-hidden="true"><path d="M13 2L4.5 13.5H11L10 22L19.5 10.5H13Z"/></svg>
+  PlugMap <span class="tagline">UK EV Charger Locator</span>
+</a>
 </div>
 </header>
 
@@ -28,16 +31,41 @@
 </nav>
 
 <h1>EV Chargers in Perth</h1>
-<p class="page-intro">10 public charging stations found in Perth.</p>
+
+<div class="stats-bar">
+  <span class="stat-pill stat-total">10 stations</span>
+  <span class="stat-pill stat-rapid">6 rapid (50kW+)</span>
+  <span class="stat-pill stat-fast">4 fast (7–50kW)</span>
+  
+</div>
 
 <div id="map"></div>
 
-<ul class="charger-list">
+
+<div class="connector-filter">
+  <span class="filter-label">Filter:</span>
+  <button class="filter-btn active" data-filter="all">All</button>
+  
+  <button class="filter-btn" data-filter="CCS (Type 2)">CCS (Type 2)</button>
+  
+  <button class="filter-btn" data-filter="CHAdeMO">CHAdeMO</button>
+  
+  <button class="filter-btn" data-filter="Type 2 (Socket Only)">Type 2 (Socket Only)</button>
+  
+  <button class="filter-btn" data-filter="Type 2 (Tethered Connector) ">Type 2 (Tethered Connector) </button>
+  
+</div>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Murray Hospital</h2>
-  <p class="charger-address">Muirhall Road PH2 7BH
+<ul class="charger-list" id="charger-list">
+
+
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only),Type 2 (Tethered Connector) ">
+  <div class="charger-header">
+    <h2 class="charger-name">Murray Hospital</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Muirhall Road <button class="copy-btn" data-copy="PH2 7BH">PH2 7BH</button>
   </p>
   
   <div class="charger-connections">
@@ -59,9 +87,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Canal Street Car Park, Perth</h2>
-  <p class="charger-address">Canal Street PH2 8LF
+<li class="charger-item charger-item--rapid" data-connectors="CHAdeMO,Type 2 (Tethered Connector) ">
+  <div class="charger-header">
+    <h2 class="charger-name">Canal Street Car Park, Perth</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Canal Street <button class="copy-btn" data-copy="PH2 8LF">PH2 8LF</button>
   </p>
   
   <div class="charger-connections">
@@ -86,9 +118,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">South Inch Car Park</h2>
-  <p class="charger-address">Inch Head Terrace PH2 8AW
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">South Inch Car Park</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Inch Head Terrace <button class="copy-btn" data-copy="PH2 8AW">PH2 8AW</button>
   </p>
   
   <div class="charger-connections">
@@ -110,9 +145,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Broxden Park &amp; Ride</h2>
-  <p class="charger-address">3 Broxden Avenue PH2 0PX
+<li class="charger-item charger-item--rapid" data-connectors="Type 2 (Tethered Connector) ,CHAdeMO">
+  <div class="charger-header">
+    <h2 class="charger-name">Broxden Park &amp; Ride</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">3 Broxden Avenue <button class="copy-btn" data-copy="PH2 0PX">PH2 0PX</button>
   </p>
   
   <div class="charger-connections">
@@ -137,9 +176,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">St. Catherine&#39;s Leisure Park</h2>
-  <p class="charger-address">St. Catherine&#39;s Leisure Park PH1 5XA
+<li class="charger-item charger-item--rapid" data-connectors="CHAdeMO,CCS (Type 2)">
+  <div class="charger-header">
+    <h2 class="charger-name">St. Catherine&#39;s Leisure Park</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">St. Catherine&#39;s Leisure Park <button class="copy-btn" data-copy="PH1 5XA">PH1 5XA</button>
   </p>
   
   <div class="charger-connections">
@@ -173,9 +216,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Luncarty Inn, Luncarty</h2>
-  <p class="charger-address">Marshall Way PH1 3UX
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Luncarty Inn, Luncarty</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Marshall Way <button class="copy-btn" data-copy="PH1 3UX">PH1 3UX</button>
   </p>
   
   <div class="charger-connections">
@@ -197,9 +243,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Tesco Superstore-Edinburgh Road</h2>
-  <p class="charger-address">Edinburgh Road PH2 8DX
+<li class="charger-item charger-item--rapid" data-connectors="Type 2 (Socket Only),CHAdeMO,CCS (Type 2)">
+  <div class="charger-header">
+    <h2 class="charger-name">Tesco Superstore-Edinburgh Road</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Edinburgh Road <button class="copy-btn" data-copy="PH2 8DX">PH2 8DX</button>
   </p>
   
   <div class="charger-connections">
@@ -227,9 +277,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">BP, The Triangle</h2>
-  <p class="charger-address">The Triangle PH1 3GA
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2),CHAdeMO">
+  <div class="charger-header">
+    <h2 class="charger-name">BP, The Triangle</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">The Triangle <button class="copy-btn" data-copy="PH1 3GA">PH1 3GA</button>
   </p>
   
   <div class="charger-connections">
@@ -263,9 +317,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Tesco Extra-Perth</h2>
-  <p class="charger-address">Crieff Road PH1 2NR
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Tesco Extra-Perth</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Crieff Road <button class="copy-btn" data-copy="PH1 2NR">PH1 2NR</button>
   </p>
   
   <div class="charger-connections">
@@ -287,9 +344,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Ionity Perth</h2>
-  <p class="charger-address">The Triangle PH1 3GA
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2)">
+  <div class="charger-header">
+    <h2 class="charger-name">Ionity Perth</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">The Triangle <button class="copy-btn" data-copy="PH1 3GA">PH1 3GA</button>
   </p>
   
   <div class="charger-connections">
@@ -311,6 +372,23 @@
 
 <p><a href="/" class="back-link">← All UK towns</a></p>
 
+
+<div class="nearby-towns">
+  <h2 class="nearby-heading">Nearby towns</h2>
+  <ul class="nearby-list">
+  
+    <li><a href="/uk/dunfermline/">Dunfermline</a></li>
+  
+    <li><a href="/uk/kirkcaldy/">Kirkcaldy</a></li>
+  
+    <li><a href="/uk/dundee/">Dundee</a></li>
+  
+    <li><a href="/uk/city-of-edinburgh/">City of Edinburgh</a></li>
+  
+  </ul>
+</div>
+
+
 </div>
 
 <footer>
@@ -323,26 +401,61 @@
 <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 <script>
 (function () {
+  // --- Map ---
   var map = L.map('map').setView([56.40480190756297, -3.4491160883793044], 12);
-
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
   }).addTo(map);
 
   var markers = L.markerClusterGroup();
-  var chargerData = [{"lat": 56.400476, "lng": -3.412323, "title": "Murray Hospital", "address": "Muirhall Road"}, {"lat": 56.394097, "lng": -3.428789, "title": "Canal Street Car Park, Perth", "address": "Canal Street"}, {"lat": 56.390662, "lng": -3.426569, "title": "South Inch Car Park", "address": "Inch Head Terrace"}, {"lat": 56.388004, "lng": -3.481691, "title": "Broxden Park & Ride", "address": "3 Broxden Avenue"}, {"lat": 56.399453, "lng": -3.4387713, "title": "St. Catherine's Leisure Park", "address": "St. Catherine's Leisure Park"}, {"lat": 56.448987, "lng": -3.464977, "title": "Luncarty Inn, Luncarty", "address": "Marshall Way"}, {"lat": 56.381637, "lng": -3.433429, "title": "Tesco Superstore-Edinburgh Road", "address": "Edinburgh Road"}, {"lat": 56.4172065642953, "lng": -3.46180377231644, "title": "BP, The Triangle", "address": "The Triangle"}, {"lat": 56.408223, "lng": -3.479582, "title": "Tesco Extra-Perth", "address": "Crieff Road"}, {"lat": 56.41927351133435, "lng": -3.4632258114766046, "title": "Ionity Perth", "address": "The Triangle"}];
+  var chargerData = [{"lat": 56.400476, "lng": -3.412323, "title": "Murray Hospital", "address": "Muirhall Road", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Tethered Connector)  · 22kW"]}, {"lat": 56.394097, "lng": -3.428789, "title": "Canal Street Car Park, Perth", "address": "Canal Street", "connectors": ["CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 50kW", "Type 2 (Tethered Connector)  · 50kW"]}, {"lat": 56.390662, "lng": -3.426569, "title": "South Inch Car Park", "address": "Inch Head Terrace", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 56.388004, "lng": -3.481691, "title": "Broxden Park & Ride", "address": "3 Broxden Avenue", "connectors": ["Type 2 (Tethered Connector)  · 43kW", "Type 2 (Tethered Connector)  · 50kW", "CHAdeMO · 50kW"]}, {"lat": 56.399453, "lng": -3.4387713, "title": "St. Catherine's Leisure Park", "address": "St. Catherine's Leisure Park", "connectors": ["CHAdeMO · 75kW", "CCS (Type 2) · 75kW", "CHAdeMO · 75kW", "CCS (Type 2) · 75kW", "CHAdeMO · 75kW", "CCS (Type 2) · 75kW"]}, {"lat": 56.448987, "lng": -3.464977, "title": "Luncarty Inn, Luncarty", "address": "Marshall Way", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 56.381637, "lng": -3.433429, "title": "Tesco Superstore-Edinburgh Road", "address": "Edinburgh Road", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 7kW", "CHAdeMO · 50kW", "CCS (Type 2) · 50kW"]}, {"lat": 56.4172065642953, "lng": -3.46180377231644, "title": "BP, The Triangle", "address": "The Triangle", "connectors": ["CCS (Type 2) · 150kW", "CHAdeMO · 100kW", "CCS (Type 2) · 150kW", "CHAdeMO · 100kW", "CCS (Type 2) · 150kW", "CHAdeMO · 100kW"]}, {"lat": 56.408223, "lng": -3.479582, "title": "Tesco Extra-Perth", "address": "Crieff Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 56.41927351133435, "lng": -3.4632258114766046, "title": "Ionity Perth", "address": "The Triangle", "connectors": ["CCS (Type 2) · 350kW"]}];
 
   chargerData.forEach(function (c) {
+    var connHtml = c.connectors.length
+      ? '<div style="margin-top:6px;font-size:12px;color:#475569">' + c.connectors.join(' &middot; ') + '</div>'
+      : '';
     var marker = L.marker([c.lat, c.lng]);
     marker.bindPopup(
-      '<b>' + c.title + '</b><br>' + c.address + '<br><br>' +
+      '<b>' + c.title + '</b>' +
+      '<div style="color:#64748b;font-size:13px">' + c.address + '</div>' +
+      connHtml +
       '<a href="https://www.google.com/maps/dir/?api=1&destination=' + c.lat + ',' + c.lng +
-      '" target="_blank" rel="noopener">Get directions</a>'
+      '" target="_blank" rel="noopener" style="display:inline-block;margin-top:8px;padding:4px 10px;background:#2563eb;color:white;border-radius:4px;text-decoration:none;font-size:12px">Get directions</a>'
     );
     markers.addLayer(marker);
   });
-
   map.addLayer(markers);
+
+  // --- Connector filter ---
+  var filterBtns = document.querySelectorAll('.filter-btn');
+  var chargerItems = document.querySelectorAll('.charger-item');
+
+  filterBtns.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      filterBtns.forEach(function (b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      var f = btn.dataset.filter;
+      chargerItems.forEach(function (item) {
+        var connList = item.dataset.connectors ? item.dataset.connectors.split(',') : [];
+        item.style.display = (f === 'all' || connList.indexOf(f) !== -1) ? '' : 'none';
+      });
+    });
+  });
+
+  // --- Copy postcode ---
+  document.querySelectorAll('.copy-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var original = btn.textContent;
+      navigator.clipboard.writeText(btn.dataset.copy).then(function () {
+        btn.textContent = 'Copied!';
+        btn.classList.add('copy-btn--success');
+        setTimeout(function () {
+          btn.textContent = original;
+          btn.classList.remove('copy-btn--success');
+        }, 1500);
+      });
+    });
+  });
 }());
 </script>
 

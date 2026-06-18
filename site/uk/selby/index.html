@@ -17,7 +17,10 @@
 
 <header>
 <div class="container">
-<a href="/" class="logo">PlugMap <span class="tagline">UK EV Charger Locator</span></a>
+<a href="/" class="logo">
+  <svg class="logo-bolt" viewBox="0 0 24 24" fill="currentColor" width="22" height="22" aria-hidden="true"><path d="M13 2L4.5 13.5H11L10 22L19.5 10.5H13Z"/></svg>
+  PlugMap <span class="tagline">UK EV Charger Locator</span>
+</a>
 </div>
 </header>
 
@@ -28,16 +31,40 @@
 </nav>
 
 <h1>EV Chargers in Selby</h1>
-<p class="page-intro">5 public charging stations found in Selby.</p>
+
+<div class="stats-bar">
+  <span class="stat-pill stat-total">5 stations</span>
+  <span class="stat-pill stat-rapid">4 rapid (50kW+)</span>
+  <span class="stat-pill stat-fast">1 fast (7–50kW)</span>
+  
+</div>
 
 <div id="map"></div>
 
-<ul class="charger-list">
+
+<div class="connector-filter">
+  <span class="filter-label">Filter:</span>
+  <button class="filter-btn active" data-filter="all">All</button>
+  
+  <button class="filter-btn" data-filter="CCS (Type 2)">CCS (Type 2)</button>
+  
+  <button class="filter-btn" data-filter="CHAdeMO">CHAdeMO</button>
+  
+  <button class="filter-btn" data-filter="Type 2 (Socket Only)">Type 2 (Socket Only)</button>
+  
+</div>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">JET Abbeyside Filling Station</h2>
-  <p class="charger-address">1 Bawtry Road Abbeyside YO8 8NA
+<ul class="charger-list" id="charger-list">
+
+
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2),CHAdeMO">
+  <div class="charger-header">
+    <h2 class="charger-name">JET Abbeyside Filling Station</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">1 Bawtry Road Abbeyside <button class="copy-btn" data-copy="YO8 8NA">YO8 8NA</button>
   </p>
   
   <div class="charger-connections">
@@ -59,9 +86,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">The Wishing Well</h2>
-  <p class="charger-address">Oakney Wood Drive YO8 8LZ 
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2)">
+  <div class="charger-header">
+    <h2 class="charger-name">The Wishing Well</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Oakney Wood Drive <button class="copy-btn" data-copy="YO8 8LZ ">YO8 8LZ </button>
   </p>
   
   <div class="charger-connections">
@@ -80,9 +111,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Selby 6881-2</h2>
-  <p class="charger-address">York Street YO8 4BE
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Selby 6881-2</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">York Street <button class="copy-btn" data-copy="YO8 4BE">YO8 4BE</button>
   </p>
   
   <div class="charger-connections">
@@ -104,9 +138,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Lidl Selby</h2>
-  <p class="charger-address">Bawtry Road YO8 8SA
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2),CHAdeMO,Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Lidl Selby</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Bawtry Road <button class="copy-btn" data-copy="YO8 8SA">YO8 8SA</button>
   </p>
   
   <div class="charger-connections">
@@ -131,9 +169,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Morrisons Selby</h2>
-  <p class="charger-address">Market Cross YO8 4JS
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2)">
+  <div class="charger-header">
+    <h2 class="charger-name">Morrisons Selby</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Market Cross <button class="copy-btn" data-copy="YO8 4JS">YO8 4JS</button>
   </p>
   
   <div class="charger-connections">
@@ -155,6 +197,23 @@
 
 <p><a href="/" class="back-link">← All UK towns</a></p>
 
+
+<div class="nearby-towns">
+  <h2 class="nearby-heading">Nearby towns</h2>
+  <ul class="nearby-list">
+  
+    <li><a href="/uk/doncaster/">Doncaster</a></li>
+  
+    <li><a href="/uk/york/">York</a></li>
+  
+    <li><a href="/uk/castleford/">Castleford</a></li>
+  
+    <li><a href="/uk/wetherby/">Wetherby</a></li>
+  
+  </ul>
+</div>
+
+
 </div>
 
 <footer>
@@ -167,26 +226,61 @@
 <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 <script>
 (function () {
+  // --- Map ---
   var map = L.map('map').setView([53.77465082054887, -1.0671284184506347], 12);
-
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
   }).addTo(map);
 
   var markers = L.markerClusterGroup();
-  var chargerData = [{"lat": 53.774371872504986, "lng": -1.0644195540277224, "title": "JET Abbeyside Filling Station", "address": "1 Bawtry Road Abbeyside"}, {"lat": 53.76591339201153, "lng": -1.0666723228454202, "title": "The Wishing Well", "address": "Oakney Wood Drive"}, {"lat": 53.783124, "lng": -1.072741, "title": "Selby 6881-2", "address": "York Street"}, {"lat": 53.76760064102618, "lng": -1.0633089795753676, "title": "Lidl Selby", "address": "Bawtry Road"}, {"lat": 53.782244197201635, "lng": -1.0685002358046631, "title": "Morrisons Selby", "address": "Market Cross"}];
+  var chargerData = [{"lat": 53.774371872504986, "lng": -1.0644195540277224, "title": "JET Abbeyside Filling Station", "address": "1 Bawtry Road Abbeyside", "connectors": ["CCS (Type 2) · 150kW", "CHAdeMO · 100kW"]}, {"lat": 53.76591339201153, "lng": -1.0666723228454202, "title": "The Wishing Well", "address": "Oakney Wood Drive", "connectors": ["CCS (Type 2) · 300kW"]}, {"lat": 53.783124, "lng": -1.072741, "title": "Selby 6881-2", "address": "York Street", "connectors": ["Type 2 (Socket Only) · 11kW", "Type 2 (Socket Only) · 11kW"]}, {"lat": 53.76760064102618, "lng": -1.0633089795753676, "title": "Lidl Selby", "address": "Bawtry Road", "connectors": ["CCS (Type 2) · 50kW", "CHAdeMO · 50kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 53.782244197201635, "lng": -1.0685002358046631, "title": "Morrisons Selby", "address": "Market Cross", "connectors": ["CCS (Type 2) · 50kW"]}];
 
   chargerData.forEach(function (c) {
+    var connHtml = c.connectors.length
+      ? '<div style="margin-top:6px;font-size:12px;color:#475569">' + c.connectors.join(' &middot; ') + '</div>'
+      : '';
     var marker = L.marker([c.lat, c.lng]);
     marker.bindPopup(
-      '<b>' + c.title + '</b><br>' + c.address + '<br><br>' +
+      '<b>' + c.title + '</b>' +
+      '<div style="color:#64748b;font-size:13px">' + c.address + '</div>' +
+      connHtml +
       '<a href="https://www.google.com/maps/dir/?api=1&destination=' + c.lat + ',' + c.lng +
-      '" target="_blank" rel="noopener">Get directions</a>'
+      '" target="_blank" rel="noopener" style="display:inline-block;margin-top:8px;padding:4px 10px;background:#2563eb;color:white;border-radius:4px;text-decoration:none;font-size:12px">Get directions</a>'
     );
     markers.addLayer(marker);
   });
-
   map.addLayer(markers);
+
+  // --- Connector filter ---
+  var filterBtns = document.querySelectorAll('.filter-btn');
+  var chargerItems = document.querySelectorAll('.charger-item');
+
+  filterBtns.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      filterBtns.forEach(function (b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      var f = btn.dataset.filter;
+      chargerItems.forEach(function (item) {
+        var connList = item.dataset.connectors ? item.dataset.connectors.split(',') : [];
+        item.style.display = (f === 'all' || connList.indexOf(f) !== -1) ? '' : 'none';
+      });
+    });
+  });
+
+  // --- Copy postcode ---
+  document.querySelectorAll('.copy-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var original = btn.textContent;
+      navigator.clipboard.writeText(btn.dataset.copy).then(function () {
+        btn.textContent = 'Copied!';
+        btn.classList.add('copy-btn--success');
+        setTimeout(function () {
+          btn.textContent = original;
+          btn.classList.remove('copy-btn--success');
+        }, 1500);
+      });
+    });
+  });
 }());
 </script>
 

@@ -17,7 +17,10 @@
 
 <header>
 <div class="container">
-<a href="/" class="logo">PlugMap <span class="tagline">UK EV Charger Locator</span></a>
+<a href="/" class="logo">
+  <svg class="logo-bolt" viewBox="0 0 24 24" fill="currentColor" width="22" height="22" aria-hidden="true"><path d="M13 2L4.5 13.5H11L10 22L19.5 10.5H13Z"/></svg>
+  PlugMap <span class="tagline">UK EV Charger Locator</span>
+</a>
 </div>
 </header>
 
@@ -28,16 +31,41 @@
 </nav>
 
 <h1>EV Chargers in Bath</h1>
-<p class="page-intro">14 public charging stations found in Bath.</p>
+
+<div class="stats-bar">
+  <span class="stat-pill stat-total">14 stations</span>
+  <span class="stat-pill stat-rapid">2 rapid (50kW+)</span>
+  <span class="stat-pill stat-fast">12 fast (7–50kW)</span>
+  
+</div>
 
 <div id="map"></div>
 
-<ul class="charger-list">
+
+<div class="connector-filter">
+  <span class="filter-label">Filter:</span>
+  <button class="filter-btn active" data-filter="all">All</button>
+  
+  <button class="filter-btn" data-filter="CCS (Type 2)">CCS (Type 2)</button>
+  
+  <button class="filter-btn" data-filter="CHAdeMO">CHAdeMO</button>
+  
+  <button class="filter-btn" data-filter="Type 2 (Socket Only)">Type 2 (Socket Only)</button>
+  
+  <button class="filter-btn" data-filter="Type 2 (Tethered Connector) ">Type 2 (Tethered Connector) </button>
+  
+</div>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Charlotte Street Car Park</h2>
-  <p class="charger-address">Crescent Gardens BA1 2NA
+<ul class="charger-list" id="charger-list">
+
+
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Charlotte Street Car Park</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Crescent Gardens <button class="copy-btn" data-copy="BA1 2NA">BA1 2NA</button>
   </p>
   
   <div class="charger-connections">
@@ -59,9 +87,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Charlotte Street Car Park Hub</h2>
-  <p class="charger-address">Charlotte Street BA1 2NA
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2),CHAdeMO,Type 2 (Tethered Connector) ">
+  <div class="charger-header">
+    <h2 class="charger-name">Charlotte Street Car Park Hub</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Charlotte Street <button class="copy-btn" data-copy="BA1 2NA">BA1 2NA</button>
   </p>
   
   <div class="charger-connections">
@@ -86,9 +118,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Bath Spa University - Academic Building</h2>
-  <p class="charger-address">Newton Park BA2 9BN
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Bath Spa University - Academic Building</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Newton Park <button class="copy-btn" data-copy="BA2 9BN">BA2 9BN</button>
   </p>
   
   <div class="charger-connections">
@@ -110,9 +145,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">EVC Bath Spa Hotel</h2>
-  <p class="charger-address">Sydney Road BA2 6NS
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">EVC Bath Spa Hotel</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Sydney Road <button class="copy-btn" data-copy="BA2 6NS">BA2 6NS</button>
   </p>
   
   <div class="charger-connections">
@@ -131,9 +169,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Park and ride</h2>
-  <p class="charger-address">Lansdown Park &amp; Ride BA1 9BJ
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Park and ride</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Lansdown Park &amp; Ride <button class="copy-btn" data-copy="BA1 9BJ">BA1 9BJ</button>
   </p>
   
   <div class="charger-connections">
@@ -152,9 +193,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Academic Building</h2>
-  <p class="charger-address">Newton Park, Newton St Loe BA2 9BN
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Academic Building</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Newton Park, Newton St Loe <button class="copy-btn" data-copy="BA2 9BN">BA2 9BN</button>
   </p>
   
   <div class="charger-connections">
@@ -176,9 +220,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">SouthGate Bath Level -1, -2 &amp; -3</h2>
-  <p class="charger-address">12 Southgate Street BA1 1AQ
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">SouthGate Bath Level -1, -2 &amp; -3</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">12 Southgate Street <button class="copy-btn" data-copy="BA1 1AQ">BA1 1AQ</button>
   </p>
   
   <div class="charger-connections">
@@ -200,9 +247,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Revive_BANES</h2>
-  <p class="charger-address">St Saviours Road BA1 6RA
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Revive_BANES</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">St Saviours Road <button class="copy-btn" data-copy="BA1 6RA">BA1 6RA</button>
   </p>
   
   <div class="charger-connections">
@@ -224,9 +274,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">SUTTON HOTELS FRANCIS HOTEL</h2>
-  <p class="charger-address">Francis Hotel, 6-12 Queen Square BA1 2HH
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">SUTTON HOTELS FRANCIS HOTEL</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Francis Hotel, 6-12 Queen Square <button class="copy-btn" data-copy="BA1 2HH">BA1 2HH</button>
   </p>
   
   <div class="charger-connections">
@@ -248,9 +301,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Revive_BANES</h2>
-  <p class="charger-address">Kingsmead Street BA1 2AA
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Revive_BANES</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Kingsmead Street <button class="copy-btn" data-copy="BA1 2AA">BA1 2AA</button>
   </p>
   
   <div class="charger-connections">
@@ -272,9 +328,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Revive_BANES</h2>
-  <p class="charger-address">Claverton Street BA2 4JP
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Revive_BANES</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Claverton Street <button class="copy-btn" data-copy="BA2 4JP">BA2 4JP</button>
   </p>
   
   <div class="charger-connections">
@@ -296,9 +355,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Bath Spa University-Locksbrook Campus</h2>
-  <p class="charger-address">Locksbrook Road BA1 3EL
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Bath Spa University-Locksbrook Campus</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Locksbrook Road <button class="copy-btn" data-copy="BA1 3EL">BA1 3EL</button>
   </p>
   
   <div class="charger-connections">
@@ -317,9 +379,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">The Pig Restaurants-Bath</h2>
-  <p class="charger-address">Hunstrete House BS39 4NS
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">The Pig Restaurants-Bath</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Hunstrete House <button class="copy-btn" data-copy="BS39 4NS">BS39 4NS</button>
   </p>
   
   <div class="charger-connections">
@@ -344,9 +409,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Morrisons Bath</h2>
-  <p class="charger-address">London Road BA1 6AE
+<li class="charger-item charger-item--rapid" data-connectors="Type 2 (Socket Only),CHAdeMO,CCS (Type 2)">
+  <div class="charger-header">
+    <h2 class="charger-name">Morrisons Bath</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">London Road <button class="copy-btn" data-copy="BA1 6AE">BA1 6AE</button>
   </p>
   
   <div class="charger-connections">
@@ -374,6 +443,23 @@
 
 <p><a href="/" class="back-link">← All UK towns</a></p>
 
+
+<div class="nearby-towns">
+  <h2 class="nearby-heading">Nearby towns</h2>
+  <ul class="nearby-list">
+  
+    <li><a href="/uk/bristol/">Bristol</a></li>
+  
+    <li><a href="/uk/patchway/">Patchway</a></li>
+  
+    <li><a href="/uk/melksham/">Melksham</a></li>
+  
+    <li><a href="/uk/chippenham/">Chippenham</a></li>
+  
+  </ul>
+</div>
+
+
 </div>
 
 <footer>
@@ -386,26 +472,61 @@
 <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 <script>
 (function () {
+  // --- Map ---
   var map = L.map('map').setView([51.38338339786909, -2.3839711680229696], 12);
-
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
   }).addTo(map);
 
   var markers = L.markerClusterGroup();
-  var chargerData = [{"lat": 51.384944, "lng": -2.369139, "title": "Charlotte Street Car Park", "address": "Crescent Gardens"}, {"lat": 51.383902028019776, "lng": -2.3671986674253276, "title": "Charlotte Street Car Park Hub", "address": "Charlotte Street"}, {"lat": 51.376916, "lng": -2.436456, "title": "Bath Spa University - Academic Building", "address": "Newton Park"}, {"lat": 51.38579047267572, "lng": -2.344342914351647, "title": "EVC Bath Spa Hotel", "address": "Sydney Road"}, {"lat": 51.41017406947179, "lng": -2.3879927705445994, "title": "Park and ride", "address": "Lansdown Park & Ride"}, {"lat": 51.378743, "lng": -2.437402, "title": "Academic Building", "address": "Newton Park, Newton St Loe"}, {"lat": 51.378208, "lng": -2.359423, "title": "SouthGate Bath Level -1, -2 & -3", "address": "12 Southgate Street"}, {"lat": 51.397781, "lng": -2.345216, "title": "Revive_BANES", "address": "St Saviours Road"}, {"lat": 51.38285, "lng": -2.362906, "title": "SUTTON HOTELS FRANCIS HOTEL", "address": "Francis Hotel, 6-12 Queen Square"}, {"lat": 51.381321, "lng": -2.364211, "title": "Revive_BANES", "address": "Kingsmead Street"}, {"lat": 51.376881, "lng": -2.353858, "title": "Revive_BANES", "address": "Claverton Street"}, {"lat": 51.382675, "lng": -2.3883, "title": "Bath Spa University-Locksbrook Campus", "address": "Locksbrook Road"}, {"lat": 51.355306, "lng": -2.507611, "title": "The Pig Restaurants-Bath", "address": "Hunstrete House"}, {"lat": 51.391876, "lng": -2.35154, "title": "Morrisons Bath", "address": "London Road"}];
+  var chargerData = [{"lat": 51.384944, "lng": -2.369139, "title": "Charlotte Street Car Park", "address": "Crescent Gardens", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 51.383902028019776, "lng": -2.3671986674253276, "title": "Charlotte Street Car Park Hub", "address": "Charlotte Street", "connectors": ["CCS (Type 2) · 50kW", "CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 43kW"]}, {"lat": 51.376916, "lng": -2.436456, "title": "Bath Spa University - Academic Building", "address": "Newton Park", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 51.38579047267572, "lng": -2.344342914351647, "title": "EVC Bath Spa Hotel", "address": "Sydney Road", "connectors": ["Type 2 (Socket Only) · 22kW"]}, {"lat": 51.41017406947179, "lng": -2.3879927705445994, "title": "Park and ride", "address": "Lansdown Park & Ride", "connectors": ["Type 2 (Socket Only) · 7kW"]}, {"lat": 51.378743, "lng": -2.437402, "title": "Academic Building", "address": "Newton Park, Newton St Loe", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 51.378208, "lng": -2.359423, "title": "SouthGate Bath Level -1, -2 & -3", "address": "12 Southgate Street", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 51.397781, "lng": -2.345216, "title": "Revive_BANES", "address": "St Saviours Road", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 51.38285, "lng": -2.362906, "title": "SUTTON HOTELS FRANCIS HOTEL", "address": "Francis Hotel, 6-12 Queen Square", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 51.381321, "lng": -2.364211, "title": "Revive_BANES", "address": "Kingsmead Street", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 51.376881, "lng": -2.353858, "title": "Revive_BANES", "address": "Claverton Street", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 51.382675, "lng": -2.3883, "title": "Bath Spa University-Locksbrook Campus", "address": "Locksbrook Road", "connectors": ["Type 2 (Socket Only) · 22kW"]}, {"lat": 51.355306, "lng": -2.507611, "title": "The Pig Restaurants-Bath", "address": "Hunstrete House", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 51.391876, "lng": -2.35154, "title": "Morrisons Bath", "address": "London Road", "connectors": ["Type 2 (Socket Only) · 22kW", "CHAdeMO · 50kW", "CCS (Type 2) · 50kW"]}];
 
   chargerData.forEach(function (c) {
+    var connHtml = c.connectors.length
+      ? '<div style="margin-top:6px;font-size:12px;color:#475569">' + c.connectors.join(' &middot; ') + '</div>'
+      : '';
     var marker = L.marker([c.lat, c.lng]);
     marker.bindPopup(
-      '<b>' + c.title + '</b><br>' + c.address + '<br><br>' +
+      '<b>' + c.title + '</b>' +
+      '<div style="color:#64748b;font-size:13px">' + c.address + '</div>' +
+      connHtml +
       '<a href="https://www.google.com/maps/dir/?api=1&destination=' + c.lat + ',' + c.lng +
-      '" target="_blank" rel="noopener">Get directions</a>'
+      '" target="_blank" rel="noopener" style="display:inline-block;margin-top:8px;padding:4px 10px;background:#2563eb;color:white;border-radius:4px;text-decoration:none;font-size:12px">Get directions</a>'
     );
     markers.addLayer(marker);
   });
-
   map.addLayer(markers);
+
+  // --- Connector filter ---
+  var filterBtns = document.querySelectorAll('.filter-btn');
+  var chargerItems = document.querySelectorAll('.charger-item');
+
+  filterBtns.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      filterBtns.forEach(function (b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      var f = btn.dataset.filter;
+      chargerItems.forEach(function (item) {
+        var connList = item.dataset.connectors ? item.dataset.connectors.split(',') : [];
+        item.style.display = (f === 'all' || connList.indexOf(f) !== -1) ? '' : 'none';
+      });
+    });
+  });
+
+  // --- Copy postcode ---
+  document.querySelectorAll('.copy-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var original = btn.textContent;
+      navigator.clipboard.writeText(btn.dataset.copy).then(function () {
+        btn.textContent = 'Copied!';
+        btn.classList.add('copy-btn--success');
+        setTimeout(function () {
+          btn.textContent = original;
+          btn.classList.remove('copy-btn--success');
+        }, 1500);
+      });
+    });
+  });
 }());
 </script>
 

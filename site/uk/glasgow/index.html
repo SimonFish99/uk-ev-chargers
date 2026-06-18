@@ -17,7 +17,10 @@
 
 <header>
 <div class="container">
-<a href="/" class="logo">PlugMap <span class="tagline">UK EV Charger Locator</span></a>
+<a href="/" class="logo">
+  <svg class="logo-bolt" viewBox="0 0 24 24" fill="currentColor" width="22" height="22" aria-hidden="true"><path d="M13 2L4.5 13.5H11L10 22L19.5 10.5H13Z"/></svg>
+  PlugMap <span class="tagline">UK EV Charger Locator</span>
+</a>
 </div>
 </header>
 
@@ -28,16 +31,41 @@
 </nav>
 
 <h1>EV Chargers in Glasgow</h1>
-<p class="page-intro">119 public charging stations found in Glasgow.</p>
+
+<div class="stats-bar">
+  <span class="stat-pill stat-total">119 stations</span>
+  <span class="stat-pill stat-rapid">29 rapid (50kW+)</span>
+  <span class="stat-pill stat-fast">90 fast (7–50kW)</span>
+  
+</div>
 
 <div id="map"></div>
 
-<ul class="charger-list">
+
+<div class="connector-filter">
+  <span class="filter-label">Filter:</span>
+  <button class="filter-btn active" data-filter="all">All</button>
+  
+  <button class="filter-btn" data-filter="CCS (Type 2)">CCS (Type 2)</button>
+  
+  <button class="filter-btn" data-filter="CHAdeMO">CHAdeMO</button>
+  
+  <button class="filter-btn" data-filter="Type 2 (Socket Only)">Type 2 (Socket Only)</button>
+  
+  <button class="filter-btn" data-filter="Type 2 (Tethered Connector) ">Type 2 (Tethered Connector) </button>
+  
+</div>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Fintry Sports Club</h2>
-  <p class="charger-address">Kippen Road G63 0YA
+<ul class="charger-list" id="charger-list">
+
+
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Fintry Sports Club</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Kippen Road <button class="copy-btn" data-copy="G63 0YA">G63 0YA</button>
   </p>
   
   <div class="charger-connections">
@@ -59,9 +87,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Arnold Clark Cumbernauld Kia</h2>
-  <p class="charger-address">South Carbrain Ring Road G67 2UA
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2),CHAdeMO">
+  <div class="charger-header">
+    <h2 class="charger-name">Arnold Clark Cumbernauld Kia</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">South Carbrain Ring Road <button class="copy-btn" data-copy="G67 2UA">G67 2UA</button>
   </p>
   
   <div class="charger-connections">
@@ -83,9 +115,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">For EV Redcastle Square Garthamlock</h2>
-  <p class="charger-address">Redcastle Square G33 5EG
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2),CHAdeMO">
+  <div class="charger-header">
+    <h2 class="charger-name">For EV Redcastle Square Garthamlock</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Redcastle Square <button class="copy-btn" data-copy="G33 5EG">G33 5EG</button>
   </p>
   
   <div class="charger-connections">
@@ -107,9 +143,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Arnold Clark Glasgow Kilburnie Street Vanstore</h2>
-  <p class="charger-address">149 Kilburnie Street G5 8JH
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2),CHAdeMO">
+  <div class="charger-header">
+    <h2 class="charger-name">Arnold Clark Glasgow Kilburnie Street Vanstore</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">149 Kilburnie Street <button class="copy-btn" data-copy="G5 8JH">G5 8JH</button>
   </p>
   
   <div class="charger-connections">
@@ -131,9 +171,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Arnold Clark - Pollokshaws Road Volkswagen</h2>
-  <p class="charger-address">1646 Pollokshaws Road G43 1RQ
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2),CHAdeMO">
+  <div class="charger-header">
+    <h2 class="charger-name">Arnold Clark - Pollokshaws Road Volkswagen</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">1646 Pollokshaws Road <button class="copy-btn" data-copy="G43 1RQ">G43 1RQ</button>
   </p>
   
   <div class="charger-connections">
@@ -155,9 +199,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Lidl-Maryhill</h2>
-  <p class="charger-address">2 Hopehill Road G20 7JN
+<li class="charger-item charger-item--rapid" data-connectors="Type 2 (Socket Only),CCS (Type 2),CHAdeMO">
+  <div class="charger-header">
+    <h2 class="charger-name">Lidl-Maryhill</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">2 Hopehill Road <button class="copy-btn" data-copy="G20 7JN">G20 7JN</button>
   </p>
   
   <div class="charger-connections">
@@ -182,9 +230,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Lidl-Pollokshaws</h2>
-  <p class="charger-address">30 Riverford Road G43 1PX
+<li class="charger-item charger-item--rapid" data-connectors="Type 2 (Socket Only),CCS (Type 2),CHAdeMO">
+  <div class="charger-header">
+    <h2 class="charger-name">Lidl-Pollokshaws</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">30 Riverford Road <button class="copy-btn" data-copy="G43 1PX">G43 1PX</button>
   </p>
   
   <div class="charger-connections">
@@ -209,9 +261,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Lidl-Duke Street</h2>
-  <p class="charger-address">285 Duke Street G31 1HX
+<li class="charger-item charger-item--rapid" data-connectors="Type 2 (Socket Only),CCS (Type 2),CHAdeMO">
+  <div class="charger-header">
+    <h2 class="charger-name">Lidl-Duke Street</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">285 Duke Street <button class="copy-btn" data-copy="G31 1HX">G31 1HX</button>
   </p>
   
   <div class="charger-connections">
@@ -236,9 +292,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Lidl-Balmore Road</h2>
-  <p class="charger-address">109 Balmore Road G22 6RL
+<li class="charger-item charger-item--rapid" data-connectors="Type 2 (Socket Only),CCS (Type 2),CHAdeMO">
+  <div class="charger-header">
+    <h2 class="charger-name">Lidl-Balmore Road</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">109 Balmore Road <button class="copy-btn" data-copy="G22 6RL">G22 6RL</button>
   </p>
   
   <div class="charger-connections">
@@ -263,9 +323,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Macdonald Crutherland House and Spa</h2>
-  <p class="charger-address">Strathaven Rd G75 0QJ
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Macdonald Crutherland House and Spa</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Strathaven Rd <button class="copy-btn" data-copy="G75 0QJ">G75 0QJ</button>
   </p>
   
   <div class="charger-connections">
@@ -287,9 +350,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Kirklee Road</h2>
-  <p class="charger-address">Kirklee Road G12 0QS
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Kirklee Road</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Kirklee Road <button class="copy-btn" data-copy="G12 0QS">G12 0QS</button>
   </p>
   
   <div class="charger-connections">
@@ -311,9 +377,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Glenbarr Street</h2>
-  <p class="charger-address">Glenbarr Road G21 2NT
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Glenbarr Street</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Glenbarr Road <button class="copy-btn" data-copy="G21 2NT">G21 2NT</button>
   </p>
   
   <div class="charger-connections">
@@ -335,9 +404,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Reidvale Street</h2>
-  <p class="charger-address">Reidvale Street G31 1SZ
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Reidvale Street</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Reidvale Street <button class="copy-btn" data-copy="G31 1SZ">G31 1SZ</button>
   </p>
   
   <div class="charger-connections">
@@ -359,9 +431,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">David Lloyd-Glasgow Rouken Glen</h2>
-  <p class="charger-address">2 Stewarton Road G46 7UZ
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">David Lloyd-Glasgow Rouken Glen</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">2 Stewarton Road <button class="copy-btn" data-copy="G46 7UZ">G46 7UZ</button>
   </p>
   
   <div class="charger-connections">
@@ -380,9 +455,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Old Gatehouse</h2>
-  <p class="charger-address">Woodilee Road G66 3FB
+<li class="charger-item charger-item--rapid" data-connectors="CHAdeMO,CCS (Type 2)">
+  <div class="charger-header">
+    <h2 class="charger-name">Old Gatehouse</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Woodilee Road <button class="copy-btn" data-copy="G66 3FB">G66 3FB</button>
   </p>
   
   <div class="charger-connections">
@@ -416,9 +495,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Burger King</h2>
-  <p class="charger-address">499 Glasgow Road ML2 7SR
+<li class="charger-item charger-item--rapid" data-connectors="CHAdeMO,CCS (Type 2)">
+  <div class="charger-header">
+    <h2 class="charger-name">Burger King</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">499 Glasgow Road <button class="copy-btn" data-copy="ML2 7SR">ML2 7SR</button>
   </p>
   
   <div class="charger-connections">
@@ -446,9 +529,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Glasgow Club Drumchapel Pool</h2>
-  <p class="charger-address">Drumry Road East G15 8NS
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Glasgow Club Drumchapel Pool</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Drumry Road East <button class="copy-btn" data-copy="G15 8NS">G15 8NS</button>
   </p>
   
   <div class="charger-connections">
@@ -470,9 +556,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Glasgow Club Drumchapel Pool</h2>
-  <p class="charger-address">Drumry Road East G15 8NS
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Glasgow Club Drumchapel Pool</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Drumry Road East <button class="copy-btn" data-copy="G15 8NS">G15 8NS</button>
   </p>
   
   <div class="charger-connections">
@@ -494,9 +583,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Glasgow Club Milton</h2>
-  <p class="charger-address">Liddesdale Road G22 7QR
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Glasgow Club Milton</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Liddesdale Road <button class="copy-btn" data-copy="G22 7QR">G22 7QR</button>
   </p>
   
   <div class="charger-connections">
@@ -518,9 +610,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Knightswood Library</h2>
-  <p class="charger-address">Dunterlie Avenue G13 3BB
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Knightswood Library</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Dunterlie Avenue <button class="copy-btn" data-copy="G13 3BB">G13 3BB</button>
   </p>
   
   <div class="charger-connections">
@@ -542,9 +637,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Scotstoun Stadium</h2>
-  <p class="charger-address">Danes Drive G14 9HD
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Scotstoun Stadium</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Danes Drive <button class="copy-btn" data-copy="G14 9HD">G14 9HD</button>
   </p>
   
   <div class="charger-connections">
@@ -566,9 +664,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Queen Margaret Road</h2>
-  <p class="charger-address">Queen Margaret Road G20 6DP
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Queen Margaret Road</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Queen Margaret Road <button class="copy-btn" data-copy="G20 6DP">G20 6DP</button>
   </p>
   
   <div class="charger-connections">
@@ -590,9 +691,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Belmont Street</h2>
-  <p class="charger-address">Belmont Street G12 8ER
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Belmont Street</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Belmont Street <button class="copy-btn" data-copy="G12 8ER">G12 8ER</button>
   </p>
   
   <div class="charger-connections">
@@ -614,9 +718,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Lilybank Car Park</h2>
-  <p class="charger-address">Lilybank Gardens G12 8SA
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Lilybank Car Park</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Lilybank Gardens <button class="copy-btn" data-copy="G12 8SA">G12 8SA</button>
   </p>
   
   <div class="charger-connections">
@@ -638,9 +745,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Dundasvale Multi-Storey Car Park, Glasgow</h2>
-  <p class="charger-address">Dundasvale Court G4 0SY
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Dundasvale Multi-Storey Car Park, Glasgow</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Dundasvale Court <button class="copy-btn" data-copy="G4 0SY">G4 0SY</button>
   </p>
   
   <div class="charger-connections">
@@ -662,9 +772,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Cathedral Precinct Car Park 1</h2>
-  <p class="charger-address">Stirling Road G4 0ET
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Cathedral Precinct Car Park 1</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Stirling Road <button class="copy-btn" data-copy="G4 0ET">G4 0ET</button>
   </p>
   
   <div class="charger-connections">
@@ -686,9 +799,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Cathedral Precinct Car Park 2</h2>
-  <p class="charger-address">Cathedral Street G4 0RD
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Cathedral Precinct Car Park 2</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Cathedral Street <button class="copy-btn" data-copy="G4 0RD">G4 0RD</button>
   </p>
   
   <div class="charger-connections">
@@ -710,9 +826,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Alexandra Park Street</h2>
-  <p class="charger-address">Alexandra Park Street G31 2UB
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Alexandra Park Street</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Alexandra Park Street <button class="copy-btn" data-copy="G31 2UB">G31 2UB</button>
   </p>
   
   <div class="charger-connections">
@@ -734,9 +853,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Cathedral Precinct Car Park 4</h2>
-  <p class="charger-address">Collins Street G4 0NL
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Cathedral Precinct Car Park 4</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Collins Street <button class="copy-btn" data-copy="G4 0NL">G4 0NL</button>
   </p>
   
   <div class="charger-connections">
@@ -758,9 +880,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Ingram Street - Car Club Only</h2>
-  <p class="charger-address">Ingram Street G1
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Ingram Street - Car Club Only</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Ingram Street <button class="copy-btn" data-copy="G1">G1</button>
   </p>
   
   <div class="charger-connections">
@@ -782,9 +907,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Craigpark (Dennistoun Library)</h2>
-  <p class="charger-address">Craigpark G31 2NA
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Craigpark (Dennistoun Library)</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Craigpark <button class="copy-btn" data-copy="G31 2NA">G31 2NA</button>
   </p>
   
   <div class="charger-connections">
@@ -806,9 +934,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Newton Street Car Park - Taxis and PH ONLY</h2>
-  <p class="charger-address">Newton Street - Taxi and Commercial ONLY G3 8BH
+<li class="charger-item charger-item--rapid" data-connectors="CHAdeMO,Type 2 (Socket Only),Type 2 (Tethered Connector) ">
+  <div class="charger-header">
+    <h2 class="charger-name">Newton Street Car Park - Taxis and PH ONLY</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Newton Street - Taxi and Commercial ONLY <button class="copy-btn" data-copy="G3 8BH">G3 8BH</button>
   </p>
   
   <div class="charger-connections">
@@ -833,9 +965,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Newton Street Car Park - Taxis and PH ONLY</h2>
-  <p class="charger-address">Newton Street - Taxi and Commercial ONLY G3 8BH
+<li class="charger-item charger-item--rapid" data-connectors="CHAdeMO,Type 2 (Socket Only),Type 2 (Tethered Connector) ">
+  <div class="charger-header">
+    <h2 class="charger-name">Newton Street Car Park - Taxis and PH ONLY</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Newton Street - Taxi and Commercial ONLY <button class="copy-btn" data-copy="G3 8BH">G3 8BH</button>
   </p>
   
   <div class="charger-connections">
@@ -860,9 +996,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Newton Street Car Park - Goods Vehicles ONLY</h2>
-  <p class="charger-address">Newton Street - Taxi and Commercial ONLY G3 8BH
+<li class="charger-item charger-item--rapid" data-connectors="CHAdeMO,Type 2 (Socket Only),Type 2 (Tethered Connector) ">
+  <div class="charger-header">
+    <h2 class="charger-name">Newton Street Car Park - Goods Vehicles ONLY</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Newton Street - Taxi and Commercial ONLY <button class="copy-btn" data-copy="G3 8BH">G3 8BH</button>
   </p>
   
   <div class="charger-connections">
@@ -887,9 +1027,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Greenfield Football Centre</h2>
-  <p class="charger-address">Duror St G32 6TP
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Greenfield Football Centre</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Duror St <button class="copy-btn" data-copy="G32 6TP">G32 6TP</button>
   </p>
   
   <div class="charger-connections">
@@ -911,9 +1054,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Paisley Road West, Glasgow</h2>
-  <p class="charger-address">Paisley Road West G51 1BG
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Paisley Road West, Glasgow</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Paisley Road West <button class="copy-btn" data-copy="G51 1BG">G51 1BG</button>
   </p>
   
   <div class="charger-connections">
@@ -935,9 +1081,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Shields Road Park and Ride</h2>
-  <p class="charger-address">Scotland Street G5 8QB
+<li class="charger-item charger-item--fast" data-connectors="CHAdeMO,Type 2 (Tethered Connector) ">
+  <div class="charger-header">
+    <h2 class="charger-name">Shields Road Park and Ride</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Scotland Street <button class="copy-btn" data-copy="G5 8QB">G5 8QB</button>
   </p>
   
   <div class="charger-connections">
@@ -962,9 +1111,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Waddell Street</h2>
-  <p class="charger-address">Waddell Street G5 0NA
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Waddell Street</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Waddell Street <button class="copy-btn" data-copy="G5 0NA">G5 0NA</button>
   </p>
   
   <div class="charger-connections">
@@ -986,9 +1138,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Glasgow National Hockey Centre, Glasgow</h2>
-  <p class="charger-address">Greenhead Street G40 1HU
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Glasgow National Hockey Centre, Glasgow</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Greenhead Street <button class="copy-btn" data-copy="G40 1HU">G40 1HU</button>
   </p>
   
   <div class="charger-connections">
@@ -1010,9 +1165,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Kenmure Street (Albert Drive)</h2>
-  <p class="charger-address">Albert Drive G41 2NJ
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Kenmure Street (Albert Drive)</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Albert Drive <button class="copy-btn" data-copy="G41 2NJ">G41 2NJ</button>
   </p>
   
   <div class="charger-connections">
@@ -1034,9 +1192,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Brodick Street</h2>
-  <p class="charger-address">Royston Road G21 2BS
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Brodick Street</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Royston Road <button class="copy-btn" data-copy="G21 2BS">G21 2BS</button>
   </p>
   
   <div class="charger-connections">
@@ -1058,9 +1219,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Allison Street</h2>
-  <p class="charger-address">Allison Street G42
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Allison Street</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Allison Street <button class="copy-btn" data-copy="G42">G42</button>
   </p>
   
   <div class="charger-connections">
@@ -1082,9 +1246,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Torrisdale Street, Glasgow</h2>
-  <p class="charger-address">Torrisdale Street G42 8YD
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Torrisdale Street, Glasgow</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Torrisdale Street <button class="copy-btn" data-copy="G42 8YD">G42 8YD</button>
   </p>
   
   <div class="charger-connections">
@@ -1106,9 +1273,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Glasgow Club, Corkerhill Road, Nethercraigs</h2>
-  <p class="charger-address">Corkerhill Road G52 1RR
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Glasgow Club, Corkerhill Road, Nethercraigs</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Corkerhill Road <button class="copy-btn" data-copy="G52 1RR">G52 1RR</button>
   </p>
   
   <div class="charger-connections">
@@ -1127,9 +1297,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Albert Avenue</h2>
-  <p class="charger-address">Albert Avenue G42
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Albert Avenue</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Albert Avenue <button class="copy-btn" data-copy="G42">G42</button>
   </p>
   
   <div class="charger-connections">
@@ -1151,9 +1324,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Glasgow Club Castlemilk Pool</h2>
-  <p class="charger-address">Castlemilk Drive G45 9UG
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Glasgow Club Castlemilk Pool</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Castlemilk Drive <button class="copy-btn" data-copy="G45 9UG">G45 9UG</button>
   </p>
   
   <div class="charger-connections">
@@ -1175,9 +1351,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Netherton Community Centre</h2>
-  <p class="charger-address">Netherton Road G13 1AX
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Netherton Community Centre</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Netherton Road <button class="copy-btn" data-copy="G13 1AX">G13 1AX</button>
   </p>
   
   <div class="charger-connections">
@@ -1199,9 +1378,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Knightswood Library</h2>
-  <p class="charger-address">Dunterlie Avenue G13 3BB
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Knightswood Library</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Dunterlie Avenue <button class="copy-btn" data-copy="G13 3BB">G13 3BB</button>
   </p>
   
   <div class="charger-connections">
@@ -1223,9 +1405,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">MFG Craigpark Service Station</h2>
-  <p class="charger-address">432 Alexandra Parade G31 3AA
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2),CHAdeMO">
+  <div class="charger-header">
+    <h2 class="charger-name">MFG Craigpark Service Station</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">432 Alexandra Parade <button class="copy-btn" data-copy="G31 3AA">G31 3AA</button>
   </p>
   
   <div class="charger-connections">
@@ -1247,9 +1433,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Glasgow Science Centre 1</h2>
-  <p class="charger-address">Pacific Quay G51 1EA
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Glasgow Science Centre 1</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Pacific Quay <button class="copy-btn" data-copy="G51 1EA">G51 1EA</button>
   </p>
   
   <div class="charger-connections">
@@ -1271,9 +1460,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Pollok Leisure Centre, Glasgow</h2>
-  <p class="charger-address">Cowglen Road G53 6EW
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Pollok Leisure Centre, Glasgow</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Cowglen Road <button class="copy-btn" data-copy="G53 6EW">G53 6EW</button>
   </p>
   
   <div class="charger-connections">
@@ -1295,9 +1487,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Q-Park Sauchiehall Street, Glasgow 1</h2>
-  <p class="charger-address">Sauchiehall Street G2 3ER
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Q-Park Sauchiehall Street, Glasgow 1</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Sauchiehall Street <button class="copy-btn" data-copy="G2 3ER">G2 3ER</button>
   </p>
   
   <div class="charger-connections">
@@ -1316,9 +1511,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Q-Park Waterloo Street, Glasgow 1</h2>
-  <p class="charger-address">99 Waterloo Street G2 6HS
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Q-Park Waterloo Street, Glasgow 1</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">99 Waterloo Street <button class="copy-btn" data-copy="G2 6HS">G2 6HS</button>
   </p>
   
   <div class="charger-connections">
@@ -1337,9 +1535,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Q-Park St Enoch, Glasgow 1</h2>
-  <p class="charger-address">Maxwell Street G1 4EQ
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Q-Park St Enoch, Glasgow 1</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Maxwell Street <button class="copy-btn" data-copy="G1 4EQ">G1 4EQ</button>
   </p>
   
   <div class="charger-connections">
@@ -1358,9 +1559,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Cumbernauld Retail Park</h2>
-  <p class="charger-address">Cumbernauld Retail Park G68 9JY
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2),CHAdeMO,Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Cumbernauld Retail Park</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Cumbernauld Retail Park <button class="copy-btn" data-copy="G68 9JY">G68 9JY</button>
   </p>
   
   <div class="charger-connections">
@@ -1394,9 +1599,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">IKEA Glasgow</h2>
-  <p class="charger-address">99 Kings Inch Drive G51 4FB
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2),CHAdeMO,Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">IKEA Glasgow</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">99 Kings Inch Drive <button class="copy-btn" data-copy="G51 4FB">G51 4FB</button>
   </p>
   
   <div class="charger-connections">
@@ -1421,9 +1630,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Great Western Rd, Glasgow</h2>
-  <p class="charger-address">723 Great Western Rd G12 8QX
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Great Western Rd, Glasgow</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">723 Great Western Rd <button class="copy-btn" data-copy="G12 8QX">G12 8QX</button>
   </p>
   
   <div class="charger-connections">
@@ -1445,9 +1657,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Concert Square 1</h2>
-  <p class="charger-address">97 COWCADDENS ROAD GLASGOW G4 0DE
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Concert Square 1</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">97 COWCADDENS ROAD GLASGOW <button class="copy-btn" data-copy="G4 0DE">G4 0DE</button>
   </p>
   
   <div class="charger-connections">
@@ -1469,9 +1684,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Cambridge Street Car Park, Glasgow (1)</h2>
-  <p class="charger-address">Cambridge Street G3 6RU
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Cambridge Street Car Park, Glasgow (1)</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Cambridge Street <button class="copy-btn" data-copy="G3 6RU">G3 6RU</button>
   </p>
   
   <div class="charger-connections">
@@ -1493,9 +1711,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Cranworth St. Car Club</h2>
-  <p class="charger-address">272 Bath Street G2 4JR
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only),Type 2 (Tethered Connector) ">
+  <div class="charger-header">
+    <h2 class="charger-name">Cranworth St. Car Club</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">272 Bath Street <button class="copy-btn" data-copy="G2 4JR">G2 4JR</button>
   </p>
   
   <div class="charger-connections">
@@ -1517,9 +1738,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Riverside Museum</h2>
-  <p class="charger-address">Riverside Museum Pier G3 8RS
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only),Type 2 (Tethered Connector) ">
+  <div class="charger-header">
+    <h2 class="charger-name">Riverside Museum</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Riverside Museum Pier <button class="copy-btn" data-copy="G3 8RS">G3 8RS</button>
   </p>
   
   <div class="charger-connections">
@@ -1541,9 +1765,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Charing Cross 1</h2>
-  <p class="charger-address">ELMBANK STREET GLASGOW G2 4PS
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Charing Cross 1</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">ELMBANK STREET GLASGOW <button class="copy-btn" data-copy="G2 4PS">G2 4PS</button>
   </p>
   
   <div class="charger-connections">
@@ -1565,9 +1792,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Blythswood Square</h2>
-  <p class="charger-address">6 Blythswood Square G2 4AD
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only),Type 2 (Tethered Connector) ">
+  <div class="charger-header">
+    <h2 class="charger-name">Blythswood Square</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">6 Blythswood Square <button class="copy-btn" data-copy="G2 4AD">G2 4AD</button>
   </p>
   
   <div class="charger-connections">
@@ -1589,9 +1819,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">EV1 &amp; EV2 ST VINCENT</h2>
-  <p class="charger-address">310 St Vincent St G2 5QR
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">EV1 &amp; EV2 ST VINCENT</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">310 St Vincent St <button class="copy-btn" data-copy="G2 5QR">G2 5QR</button>
   </p>
   
   <div class="charger-connections">
@@ -1613,9 +1846,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Cadogan Street Car Park, Glasgow (1)</h2>
-  <p class="charger-address">1 Cadogan Street G2 7HF
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Cadogan Street Car Park, Glasgow (1)</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">1 Cadogan Street <button class="copy-btn" data-copy="G2 7HF">G2 7HF</button>
   </p>
   
   <div class="charger-connections">
@@ -1637,9 +1873,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Duke Street Car Park</h2>
-  <p class="charger-address">92 Duke Street G4 0UW
+<li class="charger-item charger-item--rapid" data-connectors="Type 2 (Tethered Connector) ,CHAdeMO">
+  <div class="charger-header">
+    <h2 class="charger-name">Duke Street Car Park</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">92 Duke Street <button class="copy-btn" data-copy="G4 0UW">G4 0UW</button>
   </p>
   
   <div class="charger-connections">
@@ -1664,9 +1904,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Clyde Marine Training, Hillington</h2>
-  <p class="charger-address">Barrie Road G52 4JQ
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Clyde Marine Training, Hillington</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Barrie Road <button class="copy-btn" data-copy="G52 4JQ">G52 4JQ</button>
   </p>
   
   <div class="charger-connections">
@@ -1688,9 +1931,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Q-Park Candleriggs, Glasgow 1</h2>
-  <p class="charger-address">37 Albion Street G1 1LH
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Q-Park Candleriggs, Glasgow 1</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">37 Albion Street <button class="copy-btn" data-copy="G1 1LH">G1 1LH</button>
   </p>
   
   <div class="charger-connections">
@@ -1709,9 +1955,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Landscapes and Contracts, Hillngton (1)</h2>
-  <p class="charger-address">Carnegie Road G52 4JZ
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Landscapes and Contracts, Hillngton (1)</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Carnegie Road <button class="copy-btn" data-copy="G52 4JZ">G52 4JZ</button>
   </p>
   
   <div class="charger-connections">
@@ -1733,9 +1982,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Glasgow National Hockey Centre</h2>
-  <p class="charger-address">King&#39;s Drive G40 1HB
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Glasgow National Hockey Centre</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">King&#39;s Drive <button class="copy-btn" data-copy="G40 1HB">G40 1HB</button>
   </p>
   
   <div class="charger-connections">
@@ -1757,9 +2009,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Polmadie 1</h2>
-  <p class="charger-address">425 POLMADIE ROAD GLASGOW G42 0PJ
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Polmadie 1</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">425 POLMADIE ROAD GLASGOW <button class="copy-btn" data-copy="G42 0PJ">G42 0PJ</button>
   </p>
   
   <div class="charger-connections">
@@ -1781,9 +2036,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Holyrood Leisure Centre</h2>
-  <p class="charger-address">Albert Road G42 0PD
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Holyrood Leisure Centre</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Albert Road <button class="copy-btn" data-copy="G42 0PD">G42 0PD</button>
   </p>
   
   <div class="charger-connections">
@@ -1805,9 +2063,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">EASTWOOD PARK</h2>
-  <p class="charger-address">46 Rouken Glen Road G46 7JS
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">EASTWOOD PARK</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">46 Rouken Glen Road <button class="copy-btn" data-copy="G46 7JS">G46 7JS</button>
   </p>
   
   <div class="charger-connections">
@@ -1829,9 +2090,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Lidl - East Kilbride</h2>
-  <p class="charger-address">Churchill Avenue G74 1LU
+<li class="charger-item charger-item--rapid" data-connectors="Type 2 (Socket Only),Type 2 (Tethered Connector) ,CHAdeMO">
+  <div class="charger-header">
+    <h2 class="charger-name">Lidl - East Kilbride</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Churchill Avenue <button class="copy-btn" data-copy="G74 1LU">G74 1LU</button>
   </p>
   
   <div class="charger-connections">
@@ -1856,9 +2121,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Morrisons</h2>
-  <p class="charger-address">Auchinlea Way G34 9JJ
+<li class="charger-item charger-item--rapid" data-connectors="CHAdeMO,Type 2 (Socket Only),Type 2 (Tethered Connector) ">
+  <div class="charger-header">
+    <h2 class="charger-name">Morrisons</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Auchinlea Way <button class="copy-btn" data-copy="G34 9JJ">G34 9JJ</button>
   </p>
   
   <div class="charger-connections">
@@ -1883,9 +2152,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">SSEHUB001</h2>
-  <p class="charger-address">290-330 Castlebank street G11 6EX
+<li class="charger-item charger-item--rapid" data-connectors="Type 2 (Tethered Connector) ">
+  <div class="charger-header">
+    <h2 class="charger-name">SSEHUB001</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">290-330 Castlebank street <button class="copy-btn" data-copy="G11 6EX">G11 6EX</button>
   </p>
   
   <div class="charger-connections">
@@ -1907,9 +2180,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Barlanark Community Centre</h2>
-  <p class="charger-address">Barlanark Community Centre G33 4ST
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Barlanark Community Centre</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Barlanark Community Centre <button class="copy-btn" data-copy="G33 4ST">G33 4ST</button>
   </p>
   
   <div class="charger-connections">
@@ -1931,9 +2207,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Morrisons</h2>
-  <p class="charger-address">Morrisons Crossmyloof G41 4DA
+<li class="charger-item charger-item--rapid" data-connectors="CHAdeMO,Type 2 (Socket Only),Type 2 (Tethered Connector) ">
+  <div class="charger-header">
+    <h2 class="charger-name">Morrisons</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Morrisons Crossmyloof <button class="copy-btn" data-copy="G41 4DA">G41 4DA</button>
   </p>
   
   <div class="charger-connections">
@@ -1958,9 +2238,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Peel St Car Club</h2>
-  <p class="charger-address">65 Peel Street G11 5LX
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only),Type 2 (Tethered Connector) ">
+  <div class="charger-header">
+    <h2 class="charger-name">Peel St Car Club</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">65 Peel Street <button class="copy-btn" data-copy="G11 5LX">G11 5LX</button>
   </p>
   
   <div class="charger-connections">
@@ -1982,9 +2265,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">DRAX00132</h2>
-  <p class="charger-address">320 Peat Road G53 6SB
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">DRAX00132</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">320 Peat Road <button class="copy-btn" data-copy="G53 6SB">G53 6SB</button>
   </p>
   
   <div class="charger-connections">
@@ -2006,9 +2292,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">BBC-Pacific Quay</h2>
-  <p class="charger-address">40 Pacific Quay G51 1DA
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">BBC-Pacific Quay</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">40 Pacific Quay <button class="copy-btn" data-copy="G51 1DA">G51 1DA</button>
   </p>
   
   <div class="charger-connections">
@@ -2066,9 +2355,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Glencrest Limited</h2>
-  <p class="charger-address">150 Clydeholm Road G14 0QQ
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Glencrest Limited</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">150 Clydeholm Road <button class="copy-btn" data-copy="G14 0QQ">G14 0QQ</button>
   </p>
   
   <div class="charger-connections">
@@ -2093,9 +2385,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">IONITY Polmadie</h2>
-  <p class="charger-address">109 Polmadie Road G5 0BA
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2)">
+  <div class="charger-header">
+    <h2 class="charger-name">IONITY Polmadie</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">109 Polmadie Road <button class="copy-btn" data-copy="G5 0BA">G5 0BA</button>
   </p>
   
   <div class="charger-connections">
@@ -2114,9 +2410,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Tesco Extra-Silverburn</h2>
-  <p class="charger-address">Barrhead Road G53 6AG
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Tesco Extra-Silverburn</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Barrhead Road <button class="copy-btn" data-copy="G53 6AG">G53 6AG</button>
   </p>
   
   <div class="charger-connections">
@@ -2138,9 +2437,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Lidl-Bailston</h2>
-  <p class="charger-address">180 Main Street G69 6AH
+<li class="charger-item charger-item--rapid" data-connectors="CHAdeMO,CCS (Type 2),Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Lidl-Bailston</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">180 Main Street <button class="copy-btn" data-copy="G69 6AH">G69 6AH</button>
   </p>
   
   <div class="charger-connections">
@@ -2165,9 +2468,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Woodside Health Centre, Glasgow</h2>
-  <p class="charger-address">Doncaster Street G20 7ER
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Woodside Health Centre, Glasgow</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Doncaster Street <button class="copy-btn" data-copy="G20 7ER">G20 7ER</button>
   </p>
   
   <div class="charger-connections">
@@ -2186,9 +2492,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Duke Street 1</h2>
-  <p class="charger-address">92 DUKE STREET GLASGOW G4 0UG
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Duke Street 1</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">92 DUKE STREET GLASGOW <button class="copy-btn" data-copy="G4 0UG">G4 0UG</button>
   </p>
   
   <div class="charger-connections">
@@ -2210,9 +2519,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Cadogan Square Car Park 1</h2>
-  <p class="charger-address">25 DOUGLAS STREET GLASGOW G2 7BG
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Cadogan Square Car Park 1</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">25 DOUGLAS STREET GLASGOW <button class="copy-btn" data-copy="G2 7BG">G2 7BG</button>
   </p>
   
   <div class="charger-connections">
@@ -2234,9 +2546,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">2 Wester Common Drive</h2>
-  <p class="charger-address">2 Wester Common Drive G22 5PG
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">2 Wester Common Drive</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">2 Wester Common Drive <button class="copy-btn" data-copy="G22 5PG">G22 5PG</button>
   </p>
   
   <div class="charger-connections">
@@ -2255,9 +2570,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Tesco Extra-Glasgow Maryhill</h2>
-  <p class="charger-address">Maryhill Road G20 9SH
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Tesco Extra-Glasgow Maryhill</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Maryhill Road <button class="copy-btn" data-copy="G20 9SH">G20 9SH</button>
   </p>
   
   <div class="charger-connections">
@@ -2279,9 +2597,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Storage Vault Cambuslang Carpark</h2>
-  <p class="charger-address">Storage Vault G32 8YL
+<li class="charger-item charger-item--rapid" data-connectors="Type 2 (Tethered Connector) ,CHAdeMO">
+  <div class="charger-header">
+    <h2 class="charger-name">Storage Vault Cambuslang Carpark</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Storage Vault <button class="copy-btn" data-copy="G32 8YL">G32 8YL</button>
   </p>
   
   <div class="charger-connections">
@@ -2306,9 +2628,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Buchanan Galleries</h2>
-  <p class="charger-address">220 Buchanan Street G1 2FF
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Buchanan Galleries</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">220 Buchanan Street <button class="copy-btn" data-copy="G1 2FF">G1 2FF</button>
   </p>
   
   <div class="charger-connections">
@@ -2330,9 +2655,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">The Red Deer</h2>
-  <p class="charger-address">Cumbernauld G68 9AW
+<li class="charger-item charger-item--rapid" data-connectors="CHAdeMO,CCS (Type 2),Type 2 (Tethered Connector) ">
+  <div class="charger-header">
+    <h2 class="charger-name">The Red Deer</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Cumbernauld <button class="copy-btn" data-copy="G68 9AW">G68 9AW</button>
   </p>
   
   <div class="charger-connections">
@@ -2357,9 +2686,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Crowne Plaza Glasgow</h2>
-  <p class="charger-address">Congress Road G3 8QT
+<li class="charger-item charger-item--rapid" data-connectors="CHAdeMO">
+  <div class="charger-header">
+    <h2 class="charger-name">Crowne Plaza Glasgow</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Congress Road <button class="copy-btn" data-copy="G3 8QT">G3 8QT</button>
   </p>
   
   <div class="charger-connections">
@@ -2381,9 +2714,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Shields Road Park and Ride, Glasgow</h2>
-  <p class="charger-address">165-169 Scotland Street G5 8QF
+<li class="charger-item charger-item--rapid" data-connectors="Type 2 (Tethered Connector) ,CCS (Type 2),CHAdeMO">
+  <div class="charger-header">
+    <h2 class="charger-name">Shields Road Park and Ride, Glasgow</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">165-169 Scotland Street <button class="copy-btn" data-copy="G5 8QF">G5 8QF</button>
   </p>
   
   <div class="charger-connections">
@@ -2408,9 +2745,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Level 1</h2>
-  <p class="charger-address">Cowglen Road G53 6EW
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Level 1</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Cowglen Road <button class="copy-btn" data-copy="G53 6EW">G53 6EW</button>
   </p>
   
   <div class="charger-connections">
@@ -2432,9 +2772,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Blythswood Street</h2>
-  <p class="charger-address">Blythswood Street G2 4QY
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Blythswood Street</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Blythswood Street <button class="copy-btn" data-copy="G2 4QY">G2 4QY</button>
   </p>
   
   <div class="charger-connections">
@@ -2453,9 +2796,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Rose Street</h2>
-  <p class="charger-address">Rose Street G3 6RB
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Rose Street</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Rose Street <button class="copy-btn" data-copy="G3 6RB">G3 6RB</button>
   </p>
   
   <div class="charger-connections">
@@ -2474,9 +2820,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Bell Street</h2>
-  <p class="charger-address">Bell Street G1 1BL
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Bell Street</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Bell Street <button class="copy-btn" data-copy="G1 1BL">G1 1BL</button>
   </p>
   
   <div class="charger-connections">
@@ -2495,9 +2844,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">West Campbell Street</h2>
-  <p class="charger-address">West Campbell Street G2 6TS
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">West Campbell Street</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">West Campbell Street <button class="copy-btn" data-copy="G2 6TS">G2 6TS</button>
   </p>
   
   <div class="charger-connections">
@@ -2516,9 +2868,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">North Fredrick Street</h2>
-  <p class="charger-address">North Fredrick Street G1 2BS
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">North Fredrick Street</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">North Fredrick Street <button class="copy-btn" data-copy="G1 2BS">G1 2BS</button>
   </p>
   
   <div class="charger-connections">
@@ -2537,9 +2892,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Holland Street</h2>
-  <p class="charger-address">Holland Street G2 4NJ
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Holland Street</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Holland Street <button class="copy-btn" data-copy="G2 4NJ">G2 4NJ</button>
   </p>
   
   <div class="charger-connections">
@@ -2558,9 +2916,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Richmond Street, Glasgow</h2>
-  <p class="charger-address">Richmond Street G1 1XQ
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Richmond Street, Glasgow</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Richmond Street <button class="copy-btn" data-copy="G1 1XQ">G1 1XQ</button>
   </p>
   
   <div class="charger-connections">
@@ -2579,9 +2940,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Located at the back right of the car park, which is located in b..</h2>
-  <p class="charger-address">Charlotte Street G1 5DW 
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Located at the back right of the car park, which is located in b..</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Charlotte Street <button class="copy-btn" data-copy="G1 5DW ">G1 5DW </button>
   </p>
   
   <div class="charger-connections">
@@ -2603,9 +2967,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">350 Wellshot Road</h2>
-  <p class="charger-address">350 Wellshot Road G32 7QR
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">350 Wellshot Road</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">350 Wellshot Road <button class="copy-btn" data-copy="G32 7QR">G32 7QR</button>
   </p>
   
   <div class="charger-connections">
@@ -2627,9 +2994,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">4 Rouken Glen Road</h2>
-  <p class="charger-address">4 Rouken Glen Road G46 7EG
+<li class="charger-item charger-item--rapid" data-connectors="Type 2 (Tethered Connector) ,CCS (Type 2),CHAdeMO">
+  <div class="charger-header">
+    <h2 class="charger-name">4 Rouken Glen Road</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">4 Rouken Glen Road <button class="copy-btn" data-copy="G46 7EG">G46 7EG</button>
   </p>
   
   <div class="charger-connections">
@@ -2654,9 +3025,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Victoria Road, Glasgow</h2>
-  <p class="charger-address">Victoria Road G42 8YZ
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Victoria Road, Glasgow</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Victoria Road <button class="copy-btn" data-copy="G42 8YZ">G42 8YZ</button>
   </p>
   
   <div class="charger-connections">
@@ -2675,9 +3049,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Broomfield Road, Glasgow</h2>
-  <p class="charger-address">Broomfield Road G21 3HN
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Broomfield Road, Glasgow</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Broomfield Road <button class="copy-btn" data-copy="G21 3HN">G21 3HN</button>
   </p>
   
   <div class="charger-connections">
@@ -2696,9 +3073,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Exchange House, George St Offices, Glasgow</h2>
-  <p class="charger-address">George Street G1 1QU
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Exchange House, George St Offices, Glasgow</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">George Street <button class="copy-btn" data-copy="G1 1QU">G1 1QU</button>
   </p>
   
   <div class="charger-connections">
@@ -2717,9 +3097,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Ruby Street, Glasgow</h2>
-  <p class="charger-address">11 Ruby Street G40 3BS
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Ruby Street, Glasgow</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">11 Ruby Street <button class="copy-btn" data-copy="G40 3BS">G40 3BS</button>
   </p>
   
   <div class="charger-connections">
@@ -2738,9 +3121,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Mcneil Street, Glasgow</h2>
-  <p class="charger-address">192 Mcneil Street G5 0NH
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Mcneil Street, Glasgow</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">192 Mcneil Street <button class="copy-btn" data-copy="G5 0NH">G5 0NH</button>
   </p>
   
   <div class="charger-connections">
@@ -2759,9 +3145,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Crown Street, Glasgow</h2>
-  <p class="charger-address">Crown Street G5 9XT
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Crown Street, Glasgow</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Crown Street <button class="copy-btn" data-copy="G5 9XT">G5 9XT</button>
   </p>
   
   <div class="charger-connections">
@@ -2780,9 +3169,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Henrys (Glasgow) LTD</h2>
-  <p class="charger-address">151 Kyle Street G4 0DS
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Henrys (Glasgow) LTD</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">151 Kyle Street <button class="copy-btn" data-copy="G4 0DS">G4 0DS</button>
   </p>
   
   <div class="charger-connections">
@@ -2801,9 +3193,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Yoker Housing Association Ltd</h2>
-  <p class="charger-address">2316 Dumbarton Road G14 0JS
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Yoker Housing Association Ltd</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">2316 Dumbarton Road <button class="copy-btn" data-copy="G14 0JS">G14 0JS</button>
   </p>
   
   <div class="charger-connections">
@@ -2825,9 +3220,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Southside Housing Association</h2>
-  <p class="charger-address">Fifty Pitches Rd G51 4EB
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Southside Housing Association</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Fifty Pitches Rd <button class="copy-btn" data-copy="G51 4EB">G51 4EB</button>
   </p>
   
   <div class="charger-connections">
@@ -2849,9 +3247,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Edmundson Electrical Ltd, Glasgow</h2>
-  <p class="charger-address">Houston Road G5 8RS
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Edmundson Electrical Ltd, Glasgow</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Houston Road <button class="copy-btn" data-copy="G5 8RS">G5 8RS</button>
   </p>
   
   <div class="charger-connections">
@@ -2873,9 +3274,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Athlete&#39;s Village</h2>
-  <p class="charger-address">191 Springfield Road G40 3JD
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Athlete&#39;s Village</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">191 Springfield Road <button class="copy-btn" data-copy="G40 3JD">G40 3JD</button>
   </p>
   
   <div class="charger-connections">
@@ -2897,9 +3301,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Jenny Burn Oatlands Pub &amp; Restaurant</h2>
-  <p class="charger-address">8 Clyde Gateway G5 0BJ
+<li class="charger-item charger-item--rapid" data-connectors="CHAdeMO,CCS (Type 2)">
+  <div class="charger-header">
+    <h2 class="charger-name">Jenny Burn Oatlands Pub &amp; Restaurant</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">8 Clyde Gateway <button class="copy-btn" data-copy="G5 0BJ">G5 0BJ</button>
   </p>
   
   <div class="charger-connections">
@@ -2927,9 +3335,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Letherby Drive</h2>
-  <p class="charger-address">Letherby Drive G42 9BA
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only),CCS (Type 2),CHAdeMO">
+  <div class="charger-header">
+    <h2 class="charger-name">Letherby Drive</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Letherby Drive <button class="copy-btn" data-copy="G42 9BA">G42 9BA</button>
   </p>
   
   <div class="charger-connections">
@@ -2957,6 +3368,23 @@
 
 <p><a href="/" class="back-link">← All UK towns</a></p>
 
+
+<div class="nearby-towns">
+  <h2 class="nearby-heading">Nearby towns</h2>
+  <ul class="nearby-list">
+  
+    <li><a href="/uk/east-kilbride/">East Kilbride</a></li>
+  
+    <li><a href="/uk/paisley/">Paisley</a></li>
+  
+    <li><a href="/uk/hamilton/">Hamilton</a></li>
+  
+    <li><a href="/uk/johnstone/">Johnstone</a></li>
+  
+  </ul>
+</div>
+
+
 </div>
 
 <footer>
@@ -2969,26 +3397,61 @@
 <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 <script>
 (function () {
+  // --- Map ---
   var map = L.map('map').setView([55.853216097087184, -4.251541111165531], 12);
-
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
   }).addTo(map);
 
   var markers = L.markerClusterGroup();
-  var chargerData = [{"lat": 56.05652215, "lng": -4.22722327, "title": "Fintry Sports Club", "address": "Kippen Road"}, {"lat": 55.944031252530664, "lng": -3.9783317588530736, "title": "Arnold Clark Cumbernauld Kia", "address": "South Carbrain Ring Road"}, {"lat": 55.87189892216429, "lng": -4.143330931284993, "title": "For EV Redcastle Square Garthamlock", "address": "Redcastle Square"}, {"lat": 55.84717339596679, "lng": -4.268461464739772, "title": "Arnold Clark Glasgow Kilburnie Street Vanstore", "address": "149 Kilburnie Street"}, {"lat": 55.82726971986685, "lng": -4.296871951548326, "title": "Arnold Clark - Pollokshaws Road Volkswagen", "address": "1646 Pollokshaws Road"}, {"lat": 55.875448, "lng": -4.2695239, "title": "Lidl-Maryhill", "address": "2 Hopehill Road"}, {"lat": 55.8236165, "lng": -4.2947286, "title": "Lidl-Pollokshaws", "address": "30 Riverford Road"}, {"lat": 55.8585127, "lng": -4.22536493, "title": "Lidl-Duke Street", "address": "285 Duke Street"}, {"lat": 55.885384, "lng": -4.256834, "title": "Lidl-Balmore Road", "address": "109 Balmore Road"}, {"lat": 55.73978826541878, "lng": -4.1475887884987515, "title": "Macdonald Crutherland House and Spa", "address": "Strathaven Rd"}, {"lat": 55.883221, "lng": -4.29057, "title": "Kirklee Road", "address": "Kirklee Road"}, {"lat": 55.869181, "lng": -4.231016, "title": "Glenbarr Street", "address": "Glenbarr Road"}, {"lat": 55.856797, "lng": -4.218684, "title": "Reidvale Street", "address": "Reidvale Street"}, {"lat": 55.799929, "lng": -4.323571, "title": "David Lloyd-Glasgow Rouken Glen", "address": "2 Stewarton Road"}, {"lat": 55.925111, "lng": -4.142108, "title": "Old Gatehouse", "address": "Woodilee Road"}, {"lat": 55.776942, "lng": -3.949298, "title": "Burger King", "address": "499 Glasgow Road"}, {"lat": 56.0022, "lng": -4.37589, "title": "Glasgow Club Drumchapel Pool", "address": "Drumry Road East"}, {"lat": 55.9084, "lng": -4.37588, "title": "Glasgow Club Drumchapel Pool", "address": "Drumry Road East"}, {"lat": 55.896583, "lng": -4.323371, "title": "Glasgow Club Milton", "address": "Liddesdale Road"}, {"lat": 55.88935, "lng": -4.35732, "title": "Knightswood Library", "address": "Dunterlie Avenue"}, {"lat": 55.880633, "lng": -4.342526, "title": "Scotstoun Stadium", "address": "Danes Drive"}, {"lat": 55.879644, "lng": -4.284755, "title": "Queen Margaret Road", "address": "Queen Margaret Road"}, {"lat": 55.8771, "lng": -4.28001, "title": "Belmont Street", "address": "Belmont Street"}, {"lat": 55.875376, "lng": -4.291877, "title": "Lilybank Car Park", "address": "Lilybank Gardens"}, {"lat": 55.868761, "lng": -4.256547, "title": "Dundasvale Multi-Storey Car Park, Glasgow", "address": "Dundasvale Court"}, {"lat": 55.863845, "lng": -4.238135, "title": "Cathedral Precinct Car Park 1", "address": "Stirling Road"}, {"lat": 55.863268, "lng": -4.237289, "title": "Cathedral Precinct Car Park 2", "address": "Cathedral Street"}, {"lat": 55.862193, "lng": -4.210823, "title": "Alexandra Park Street", "address": "Alexandra Park Street"}, {"lat": 55.862147, "lng": -4.237455, "title": "Cathedral Precinct Car Park 4", "address": "Collins Street"}, {"lat": 55.859444, "lng": -4.244937, "title": "Ingram Street - Car Club Only", "address": "Ingram Street"}, {"lat": 55.859034, "lng": -4.22174, "title": "Craigpark (Dennistoun Library)", "address": "Craigpark"}, {"lat": 55.85761, "lng": -4.270013, "title": "Newton Street Car Park - Taxis and PH ONLY", "address": "Newton Street - Taxi and Commercial ONLY"}, {"lat": 55.85732, "lng": -4.270138, "title": "Newton Street Car Park - Taxis and PH ONLY", "address": "Newton Street - Taxi and Commercial ONLY"}, {"lat": 55.857227, "lng": -4.270152, "title": "Newton Street Car Park - Goods Vehicles ONLY", "address": "Newton Street - Taxi and Commercial ONLY"}, {"lat": 55.855841, "lng": -4.171868, "title": "Greenfield Football Centre", "address": "Duror St"}, {"lat": 55.852041, "lng": -4.294145, "title": "Paisley Road West, Glasgow", "address": "Paisley Road West"}, {"lat": 55.850036, "lng": -4.272882, "title": "Shields Road Park and Ride", "address": "Scotland Street"}, {"lat": 55.84744, "lng": -4.24368, "title": "Waddell Street", "address": "Waddell Street"}, {"lat": 55.84521, "lng": -4.23197, "title": "Glasgow National Hockey Centre, Glasgow", "address": "Greenhead Street"}, {"lat": 55.84226, "lng": -4.27304, "title": "Kenmure Street (Albert Drive)", "address": "Albert Drive"}, {"lat": 55.8371, "lng": -4.22272, "title": "Brodick Street", "address": "Royston Road"}, {"lat": 55.8361, "lng": -4.262, "title": "Allison Street", "address": "Allison Street"}, {"lat": 55.835028, "lng": -4.266352, "title": "Torrisdale Street, Glasgow", "address": "Torrisdale Street"}, {"lat": 55.835022, "lng": -4.336686, "title": "Glasgow Club, Corkerhill Road, Nethercraigs", "address": "Corkerhill Road"}, {"lat": 55.834721, "lng": -4.26953, "title": "Albert Avenue", "address": "Albert Avenue"}, {"lat": 55.80539, "lng": -4.23017, "title": "Glasgow Club Castlemilk Pool", "address": "Castlemilk Drive"}, {"lat": 55.534941, "lng": -4.202724, "title": "Netherton Community Centre", "address": "Netherton Road"}, {"lat": 55.532171, "lng": -4.212665, "title": "Knightswood Library", "address": "Dunterlie Avenue"}, {"lat": 55.8638335, "lng": -4.2207754, "title": "MFG Craigpark Service Station", "address": "432 Alexandra Parade"}, {"lat": 55.857174, "lng": -4.293906, "title": "Glasgow Science Centre 1", "address": "Pacific Quay"}, {"lat": 55.823208, "lng": -4.342856, "title": "Pollok Leisure Centre, Glasgow", "address": "Cowglen Road"}, {"lat": 55.864287, "lng": -4.259466, "title": "Q-Park Sauchiehall Street, Glasgow 1", "address": "Sauchiehall Street"}, {"lat": 55.860192, "lng": -4.264393, "title": "Q-Park Waterloo Street, Glasgow 1", "address": "99 Waterloo Street"}, {"lat": 55.855993, "lng": -4.253802, "title": "Q-Park St Enoch, Glasgow 1", "address": "Maxwell Street"}, {"lat": 55.9441825, "lng": -4.0317365, "title": "Cumbernauld Retail Park", "address": "Cumbernauld Retail Park"}, {"lat": 55.870191, "lng": -4.358452, "title": "IKEA Glasgow", "address": "99 Kings Inch Drive"}, {"lat": 55.877068, "lng": -4.287597, "title": "Great Western Rd, Glasgow", "address": "723 Great Western Rd"}, {"lat": 55.868948, "lng": -4.259643, "title": "Concert Square 1", "address": "97 COWCADDENS ROAD GLASGOW"}, {"lat": 55.86689, "lng": -4.2594, "title": "Cambridge Street Car Park, Glasgow (1)", "address": "Cambridge Street"}, {"lat": 55.86549, "lng": -4.268828, "title": "Cranworth St. Car Club", "address": "272 Bath Street"}, {"lat": 55.865134, "lng": -4.306318, "title": "Riverside Museum", "address": "Riverside Museum Pier"}, {"lat": 55.864883, "lng": -4.27012, "title": "Charing Cross 1", "address": "ELMBANK STREET GLASGOW"}, {"lat": 55.86404, "lng": -4.262638, "title": "Blythswood Square", "address": "6 Blythswood Square"}, {"lat": 55.862997, "lng": -4.26787, "title": "EV1 & EV2 ST VINCENT", "address": "310 St Vincent St"}, {"lat": 55.86009, "lng": -4.2607, "title": "Cadogan Street Car Park, Glasgow (1)", "address": "1 Cadogan Street"}, {"lat": 55.859316, "lng": -4.236345, "title": "Duke Street Car Park", "address": "92 Duke Street"}, {"lat": 55.858646, "lng": -4.364595, "title": "Clyde Marine Training, Hillington", "address": "Barrie Road"}, {"lat": 55.857566, "lng": -4.245133, "title": "Q-Park Candleriggs, Glasgow 1", "address": "37 Albion Street"}, {"lat": 55.85497, "lng": -4.35703, "title": "Landscapes and Contracts, Hillngton (1)", "address": "Carnegie Road"}, {"lat": 55.846372, "lng": -4.234039, "title": "Glasgow National Hockey Centre", "address": "King's Drive"}, {"lat": 55.834008, "lng": -4.244732, "title": "Polmadie 1", "address": "425 POLMADIE ROAD GLASGOW"}, {"lat": 55.831962, "lng": -4.249485, "title": "Holyrood Leisure Centre", "address": "Albert Road"}, {"lat": 55.797814, "lng": -4.303596, "title": "EASTWOOD PARK", "address": "46 Rouken Glen Road"}, {"lat": 55.762816, "lng": -4.172292, "title": "Lidl - East Kilbride", "address": "Churchill Avenue"}, {"lat": 55.869289, "lng": -4.128937, "title": "Morrisons", "address": "Auchinlea Way"}, {"lat": 55.86862, "lng": -4.31486, "title": "SSEHUB001", "address": "290-330 Castlebank street"}, {"lat": 55.857539, "lng": -4.133365, "title": "Barlanark Community Centre", "address": "Barlanark Community Centre"}, {"lat": 55.83392, "lng": -4.287334, "title": "Morrisons", "address": "Morrisons Crossmyloof"}, {"lat": 55.873701, "lng": -4.311015, "title": "Peel St Car Club", "address": "65 Peel Street"}, {"lat": 55.815806, "lng": -4.356729, "title": "DRAX00132", "address": "320 Peat Road"}, {"lat": 55.857867, "lng": -4.291453, "title": "BBC-Pacific Quay", "address": "40 Pacific Quay"}, {"lat": 55.87024, "lng": -4.33487, "title": "Glencrest Limited", "address": "150 Clydeholm Road"}, {"lat": 55.837232, "lng": -4.242494, "title": "IONITY Polmadie", "address": "109 Polmadie Road"}, {"lat": 55.822099, "lng": -4.340059, "title": "Tesco Extra-Silverburn", "address": "Barrhead Road"}, {"lat": 55.851701, "lng": -4.107198, "title": "Lidl-Bailston", "address": "180 Main Street"}, {"lat": 55.87901964742764, "lng": -4.270670733773244, "title": "Woodside Health Centre, Glasgow", "address": "Doncaster Street"}, {"lat": 55.859288, "lng": -4.238663, "title": "Duke Street 1", "address": "92 DUKE STREET GLASGOW"}, {"lat": 55.827177, "lng": -4.060527, "title": "Cadogan Square Car Park 1", "address": "25 DOUGLAS STREET GLASGOW"}, {"lat": 55.883244, "lng": -4.26416, "title": "2 Wester Common Drive", "address": "2 Wester Common Drive"}, {"lat": 55.886849, "lng": -4.286794, "title": "Tesco Extra-Glasgow Maryhill", "address": "Maryhill Road"}, {"lat": 55.834436, "lng": -4.17265, "title": "Storage Vault Cambuslang Carpark", "address": "Storage Vault"}, {"lat": 55.8639, "lng": -4.2499, "title": "Buchanan Galleries", "address": "220 Buchanan Street"}, {"lat": 55.942955, "lng": -4.01828, "title": "The Red Deer", "address": "Cumbernauld"}, {"lat": 55.86031, "lng": -4.291145, "title": "Crowne Plaza Glasgow", "address": "Congress Road"}, {"lat": 55.849615, "lng": -4.275779, "title": "Shields Road Park and Ride, Glasgow", "address": "165-169 Scotland Street"}, {"lat": 55.81863, "lng": -4.342979, "title": "Level 1", "address": "Cowglen Road"}, {"lat": 55.863572, "lng": -4.262374, "title": "Blythswood Street", "address": "Blythswood Street"}, {"lat": 55.865818, "lng": -4.261556, "title": "Rose Street", "address": "Rose Street"}, {"lat": 55.85766, "lng": -4.24316, "title": "Bell Street", "address": "Bell Street"}, {"lat": 55.85916, "lng": -4.26235, "title": "West Campbell Street", "address": "West Campbell Street"}, {"lat": 55.86216, "lng": -4.2486, "title": "North Fredrick Street", "address": "North Fredrick Street"}, {"lat": 55.86493, "lng": -4.26665, "title": "Holland Street", "address": "Holland Street"}, {"lat": 55.861514, "lng": -4.244327, "title": "Richmond Street, Glasgow", "address": "Richmond Street"}, {"lat": 55.854274, "lng": -4.241321, "title": "Located at the back right of the car park, which is located in b..", "address": "Charlotte Street"}, {"lat": 55.845342, "lng": -4.176739, "title": "350 Wellshot Road", "address": "350 Wellshot Road"}, {"lat": 55.80121, "lng": -4.320431, "title": "4 Rouken Glen Road", "address": "4 Rouken Glen Road"}, {"lat": 55.83517, "lng": -4.26529, "title": "Victoria Road, Glasgow", "address": "Victoria Road"}, {"lat": 55.882182, "lng": -4.207833, "title": "Broomfield Road, Glasgow", "address": "Broomfield Road"}, {"lat": 55.86088, "lng": -4.24591, "title": "Exchange House, George St Offices, Glasgow", "address": "George Street"}, {"lat": 55.846157, "lng": -4.220656, "title": "Ruby Street, Glasgow", "address": "11 Ruby Street"}, {"lat": 55.84574, "lng": -4.24206, "title": "Mcneil Street, Glasgow", "address": "192 Mcneil Street"}, {"lat": 55.84786, "lng": -4.25157, "title": "Crown Street, Glasgow", "address": "Crown Street"}, {"lat": 55.868551, "lng": -4.246441, "title": "Henrys (Glasgow) LTD", "address": "151 Kyle Street"}, {"lat": 55.887688, "lng": -4.376918, "title": "Yoker Housing Association Ltd", "address": "2316 Dumbarton Road"}, {"lat": 55.854309, "lng": -4.348039, "title": "Southside Housing Association", "address": "Fifty Pitches Rd"}, {"lat": 55.852535, "lng": -4.275713, "title": "Edmundson Electrical Ltd, Glasgow", "address": "Houston Road"}, {"lat": 55.846035, "lng": -4.203216, "title": "Athlete's Village", "address": "191 Springfield Road"}, {"lat": 55.838964, "lng": -4.230633, "title": "Jenny Burn Oatlands Pub & Restaurant", "address": "8 Clyde Gateway"}, {"lat": 55.825234, "lng": -4.253199, "title": "Letherby Drive", "address": "Letherby Drive"}];
+  var chargerData = [{"lat": 56.05652215, "lng": -4.22722327, "title": "Fintry Sports Club", "address": "Kippen Road", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 55.944031252530664, "lng": -3.9783317588530736, "title": "Arnold Clark Cumbernauld Kia", "address": "South Carbrain Ring Road", "connectors": ["CCS (Type 2) · 150kW", "CHAdeMO · 50kW"]}, {"lat": 55.87189892216429, "lng": -4.143330931284993, "title": "For EV Redcastle Square Garthamlock", "address": "Redcastle Square", "connectors": ["CCS (Type 2) · 160kW", "CHAdeMO · 50kW"]}, {"lat": 55.84717339596679, "lng": -4.268461464739772, "title": "Arnold Clark Glasgow Kilburnie Street Vanstore", "address": "149 Kilburnie Street", "connectors": ["CCS (Type 2) · 150kW", "CHAdeMO · 50kW"]}, {"lat": 55.82726971986685, "lng": -4.296871951548326, "title": "Arnold Clark - Pollokshaws Road Volkswagen", "address": "1646 Pollokshaws Road", "connectors": ["CCS (Type 2) · 150kW", "CHAdeMO · 50kW"]}, {"lat": 55.875448, "lng": -4.2695239, "title": "Lidl-Maryhill", "address": "2 Hopehill Road", "connectors": ["Type 2 (Socket Only) · 22kW", "CCS (Type 2) · 50kW", "CHAdeMO · 50kW"]}, {"lat": 55.8236165, "lng": -4.2947286, "title": "Lidl-Pollokshaws", "address": "30 Riverford Road", "connectors": ["Type 2 (Socket Only) · 22kW", "CCS (Type 2) · 50kW", "CHAdeMO · 50kW"]}, {"lat": 55.8585127, "lng": -4.22536493, "title": "Lidl-Duke Street", "address": "285 Duke Street", "connectors": ["Type 2 (Socket Only) · 22kW", "CCS (Type 2) · 50kW", "CHAdeMO · 50kW"]}, {"lat": 55.885384, "lng": -4.256834, "title": "Lidl-Balmore Road", "address": "109 Balmore Road", "connectors": ["Type 2 (Socket Only) · 22kW", "CCS (Type 2) · 50kW", "CHAdeMO · 50kW"]}, {"lat": 55.73978826541878, "lng": -4.1475887884987515, "title": "Macdonald Crutherland House and Spa", "address": "Strathaven Rd", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 55.883221, "lng": -4.29057, "title": "Kirklee Road", "address": "Kirklee Road", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 55.869181, "lng": -4.231016, "title": "Glenbarr Street", "address": "Glenbarr Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 55.856797, "lng": -4.218684, "title": "Reidvale Street", "address": "Reidvale Street", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 55.799929, "lng": -4.323571, "title": "David Lloyd-Glasgow Rouken Glen", "address": "2 Stewarton Road", "connectors": ["Type 2 (Socket Only) · 7kW"]}, {"lat": 55.925111, "lng": -4.142108, "title": "Old Gatehouse", "address": "Woodilee Road", "connectors": ["CHAdeMO · 50kW", "CCS (Type 2) · 75kW", "CHAdeMO · 50kW", "CCS (Type 2) · 75kW", "CHAdeMO · 50kW", "CCS (Type 2) · 75kW"]}, {"lat": 55.776942, "lng": -3.949298, "title": "Burger King", "address": "499 Glasgow Road", "connectors": ["CHAdeMO · 50kW", "CCS (Type 2) · 75kW", "CHAdeMO · 50kW", "CCS (Type 2) · 75kW"]}, {"lat": 56.0022, "lng": -4.37589, "title": "Glasgow Club Drumchapel Pool", "address": "Drumry Road East", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 55.9084, "lng": -4.37588, "title": "Glasgow Club Drumchapel Pool", "address": "Drumry Road East", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 55.896583, "lng": -4.323371, "title": "Glasgow Club Milton", "address": "Liddesdale Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 55.88935, "lng": -4.35732, "title": "Knightswood Library", "address": "Dunterlie Avenue", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 55.880633, "lng": -4.342526, "title": "Scotstoun Stadium", "address": "Danes Drive", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 55.879644, "lng": -4.284755, "title": "Queen Margaret Road", "address": "Queen Margaret Road", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 55.8771, "lng": -4.28001, "title": "Belmont Street", "address": "Belmont Street", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 55.875376, "lng": -4.291877, "title": "Lilybank Car Park", "address": "Lilybank Gardens", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 55.868761, "lng": -4.256547, "title": "Dundasvale Multi-Storey Car Park, Glasgow", "address": "Dundasvale Court", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 55.863845, "lng": -4.238135, "title": "Cathedral Precinct Car Park 1", "address": "Stirling Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 55.863268, "lng": -4.237289, "title": "Cathedral Precinct Car Park 2", "address": "Cathedral Street", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 55.862193, "lng": -4.210823, "title": "Alexandra Park Street", "address": "Alexandra Park Street", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 55.862147, "lng": -4.237455, "title": "Cathedral Precinct Car Park 4", "address": "Collins Street", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 55.859444, "lng": -4.244937, "title": "Ingram Street - Car Club Only", "address": "Ingram Street", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 55.859034, "lng": -4.22174, "title": "Craigpark (Dennistoun Library)", "address": "Craigpark", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 55.85761, "lng": -4.270013, "title": "Newton Street Car Park - Taxis and PH ONLY", "address": "Newton Street - Taxi and Commercial ONLY", "connectors": ["CHAdeMO · 50kW", "Type 2 (Socket Only) · 22kW", "Type 2 (Tethered Connector)  · 50kW"]}, {"lat": 55.85732, "lng": -4.270138, "title": "Newton Street Car Park - Taxis and PH ONLY", "address": "Newton Street - Taxi and Commercial ONLY", "connectors": ["CHAdeMO · 50kW", "Type 2 (Socket Only) · 22kW", "Type 2 (Tethered Connector)  · 50kW"]}, {"lat": 55.857227, "lng": -4.270152, "title": "Newton Street Car Park - Goods Vehicles ONLY", "address": "Newton Street - Taxi and Commercial ONLY", "connectors": ["CHAdeMO · 50kW", "Type 2 (Socket Only) · 22kW", "Type 2 (Tethered Connector)  · 50kW"]}, {"lat": 55.855841, "lng": -4.171868, "title": "Greenfield Football Centre", "address": "Duror St", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 55.852041, "lng": -4.294145, "title": "Paisley Road West, Glasgow", "address": "Paisley Road West", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 55.850036, "lng": -4.272882, "title": "Shields Road Park and Ride", "address": "Scotland Street", "connectors": ["CHAdeMO · 36kW", "Type 2 (Tethered Connector)  · 43kW", "Type 2 (Tethered Connector)  · 36kW"]}, {"lat": 55.84744, "lng": -4.24368, "title": "Waddell Street", "address": "Waddell Street", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 55.84521, "lng": -4.23197, "title": "Glasgow National Hockey Centre, Glasgow", "address": "Greenhead Street", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 55.84226, "lng": -4.27304, "title": "Kenmure Street (Albert Drive)", "address": "Albert Drive", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 55.8371, "lng": -4.22272, "title": "Brodick Street", "address": "Royston Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 55.8361, "lng": -4.262, "title": "Allison Street", "address": "Allison Street", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 55.835028, "lng": -4.266352, "title": "Torrisdale Street, Glasgow", "address": "Torrisdale Street", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 55.835022, "lng": -4.336686, "title": "Glasgow Club, Corkerhill Road, Nethercraigs", "address": "Corkerhill Road", "connectors": ["Type 2 (Socket Only) · 22kW"]}, {"lat": 55.834721, "lng": -4.26953, "title": "Albert Avenue", "address": "Albert Avenue", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 55.80539, "lng": -4.23017, "title": "Glasgow Club Castlemilk Pool", "address": "Castlemilk Drive", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 55.534941, "lng": -4.202724, "title": "Netherton Community Centre", "address": "Netherton Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 55.532171, "lng": -4.212665, "title": "Knightswood Library", "address": "Dunterlie Avenue", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 55.8638335, "lng": -4.2207754, "title": "MFG Craigpark Service Station", "address": "432 Alexandra Parade", "connectors": ["CCS (Type 2) · 150kW", "CHAdeMO · 50kW"]}, {"lat": 55.857174, "lng": -4.293906, "title": "Glasgow Science Centre 1", "address": "Pacific Quay", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 55.823208, "lng": -4.342856, "title": "Pollok Leisure Centre, Glasgow", "address": "Cowglen Road", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 55.864287, "lng": -4.259466, "title": "Q-Park Sauchiehall Street, Glasgow 1", "address": "Sauchiehall Street", "connectors": ["Type 2 (Socket Only) · 22kW"]}, {"lat": 55.860192, "lng": -4.264393, "title": "Q-Park Waterloo Street, Glasgow 1", "address": "99 Waterloo Street", "connectors": ["Type 2 (Socket Only) · 7kW"]}, {"lat": 55.855993, "lng": -4.253802, "title": "Q-Park St Enoch, Glasgow 1", "address": "Maxwell Street", "connectors": ["Type 2 (Socket Only) · 22kW"]}, {"lat": 55.9441825, "lng": -4.0317365, "title": "Cumbernauld Retail Park", "address": "Cumbernauld Retail Park", "connectors": ["CCS (Type 2) · 50kW", "CCS (Type 2) · 50kW", "CHAdeMO · 50kW", "CHAdeMO · 50kW", "Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 55.870191, "lng": -4.358452, "title": "IKEA Glasgow", "address": "99 Kings Inch Drive", "connectors": ["CCS (Type 2) · 50kW", "CHAdeMO · 50kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 55.877068, "lng": -4.287597, "title": "Great Western Rd, Glasgow", "address": "723 Great Western Rd", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 55.868948, "lng": -4.259643, "title": "Concert Square 1", "address": "97 COWCADDENS ROAD GLASGOW", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 55.86689, "lng": -4.2594, "title": "Cambridge Street Car Park, Glasgow (1)", "address": "Cambridge Street", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 55.86549, "lng": -4.268828, "title": "Cranworth St. Car Club", "address": "272 Bath Street", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Tethered Connector)  · 22kW"]}, {"lat": 55.865134, "lng": -4.306318, "title": "Riverside Museum", "address": "Riverside Museum Pier", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Tethered Connector)  · 22kW"]}, {"lat": 55.864883, "lng": -4.27012, "title": "Charing Cross 1", "address": "ELMBANK STREET GLASGOW", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 55.86404, "lng": -4.262638, "title": "Blythswood Square", "address": "6 Blythswood Square", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Tethered Connector)  · 22kW"]}, {"lat": 55.862997, "lng": -4.26787, "title": "EV1 & EV2 ST VINCENT", "address": "310 St Vincent St", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 55.86009, "lng": -4.2607, "title": "Cadogan Street Car Park, Glasgow (1)", "address": "1 Cadogan Street", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 55.859316, "lng": -4.236345, "title": "Duke Street Car Park", "address": "92 Duke Street", "connectors": ["Type 2 (Tethered Connector)  · 43kW", "Type 2 (Tethered Connector)  · 50kW", "CHAdeMO · 50kW"]}, {"lat": 55.858646, "lng": -4.364595, "title": "Clyde Marine Training, Hillington", "address": "Barrie Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 55.857566, "lng": -4.245133, "title": "Q-Park Candleriggs, Glasgow 1", "address": "37 Albion Street", "connectors": ["Type 2 (Socket Only) · 22kW"]}, {"lat": 55.85497, "lng": -4.35703, "title": "Landscapes and Contracts, Hillngton (1)", "address": "Carnegie Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 55.846372, "lng": -4.234039, "title": "Glasgow National Hockey Centre", "address": "King's Drive", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 55.834008, "lng": -4.244732, "title": "Polmadie 1", "address": "425 POLMADIE ROAD GLASGOW", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 55.831962, "lng": -4.249485, "title": "Holyrood Leisure Centre", "address": "Albert Road", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 55.797814, "lng": -4.303596, "title": "EASTWOOD PARK", "address": "46 Rouken Glen Road", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 55.762816, "lng": -4.172292, "title": "Lidl - East Kilbride", "address": "Churchill Avenue", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Tethered Connector)  · 50kW", "CHAdeMO · 50kW"]}, {"lat": 55.869289, "lng": -4.128937, "title": "Morrisons", "address": "Auchinlea Way", "connectors": ["CHAdeMO · 50kW", "Type 2 (Socket Only) · 22kW", "Type 2 (Tethered Connector)  · 50kW"]}, {"lat": 55.86862, "lng": -4.31486, "title": "SSEHUB001", "address": "290-330 Castlebank street", "connectors": ["Type 2 (Tethered Connector)  · 150kW", "Type 2 (Tethered Connector)  · 150kW"]}, {"lat": 55.857539, "lng": -4.133365, "title": "Barlanark Community Centre", "address": "Barlanark Community Centre", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 55.83392, "lng": -4.287334, "title": "Morrisons", "address": "Morrisons Crossmyloof", "connectors": ["CHAdeMO · 50kW", "Type 2 (Socket Only) · 22kW", "Type 2 (Tethered Connector)  · 50kW"]}, {"lat": 55.873701, "lng": -4.311015, "title": "Peel St Car Club", "address": "65 Peel Street", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Tethered Connector)  · 22kW"]}, {"lat": 55.815806, "lng": -4.356729, "title": "DRAX00132", "address": "320 Peat Road", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 55.857867, "lng": -4.291453, "title": "BBC-Pacific Quay", "address": "40 Pacific Quay", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 55.87024, "lng": -4.33487, "title": "Glencrest Limited", "address": "150 Clydeholm Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 55.837232, "lng": -4.242494, "title": "IONITY Polmadie", "address": "109 Polmadie Road", "connectors": ["CCS (Type 2) · 350kW"]}, {"lat": 55.822099, "lng": -4.340059, "title": "Tesco Extra-Silverburn", "address": "Barrhead Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 55.851701, "lng": -4.107198, "title": "Lidl-Bailston", "address": "180 Main Street", "connectors": ["CHAdeMO · 50kW", "CCS (Type 2) · 50kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 55.87901964742764, "lng": -4.270670733773244, "title": "Woodside Health Centre, Glasgow", "address": "Doncaster Street", "connectors": ["Type 2 (Socket Only) · 7kW"]}, {"lat": 55.859288, "lng": -4.238663, "title": "Duke Street 1", "address": "92 DUKE STREET GLASGOW", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 55.827177, "lng": -4.060527, "title": "Cadogan Square Car Park 1", "address": "25 DOUGLAS STREET GLASGOW", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 55.883244, "lng": -4.26416, "title": "2 Wester Common Drive", "address": "2 Wester Common Drive", "connectors": ["Type 2 (Socket Only) · 22kW"]}, {"lat": 55.886849, "lng": -4.286794, "title": "Tesco Extra-Glasgow Maryhill", "address": "Maryhill Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 55.834436, "lng": -4.17265, "title": "Storage Vault Cambuslang Carpark", "address": "Storage Vault", "connectors": ["Type 2 (Tethered Connector)  · 50kW", "CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 43kW"]}, {"lat": 55.8639, "lng": -4.2499, "title": "Buchanan Galleries", "address": "220 Buchanan Street", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 55.942955, "lng": -4.01828, "title": "The Red Deer", "address": "Cumbernauld", "connectors": ["CHAdeMO · 50kW", "CCS (Type 2) · 50kW", "Type 2 (Tethered Connector)  · 43kW"]}, {"lat": 55.86031, "lng": -4.291145, "title": "Crowne Plaza Glasgow", "address": "Congress Road", "connectors": ["CHAdeMO · 50kW", "CHAdeMO · 50kW"]}, {"lat": 55.849615, "lng": -4.275779, "title": "Shields Road Park and Ride, Glasgow", "address": "165-169 Scotland Street", "connectors": ["Type 2 (Tethered Connector)  · 43kW", "CCS (Type 2) · 50kW", "CHAdeMO · 50kW"]}, {"lat": 55.81863, "lng": -4.342979, "title": "Level 1", "address": "Cowglen Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 55.863572, "lng": -4.262374, "title": "Blythswood Street", "address": "Blythswood Street", "connectors": ["Type 2 (Socket Only) · 7kW"]}, {"lat": 55.865818, "lng": -4.261556, "title": "Rose Street", "address": "Rose Street", "connectors": ["Type 2 (Socket Only) · 7kW"]}, {"lat": 55.85766, "lng": -4.24316, "title": "Bell Street", "address": "Bell Street", "connectors": ["Type 2 (Socket Only) · 7kW"]}, {"lat": 55.85916, "lng": -4.26235, "title": "West Campbell Street", "address": "West Campbell Street", "connectors": ["Type 2 (Socket Only) · 7kW"]}, {"lat": 55.86216, "lng": -4.2486, "title": "North Fredrick Street", "address": "North Fredrick Street", "connectors": ["Type 2 (Socket Only) · 7kW"]}, {"lat": 55.86493, "lng": -4.26665, "title": "Holland Street", "address": "Holland Street", "connectors": ["Type 2 (Socket Only) · 7kW"]}, {"lat": 55.861514, "lng": -4.244327, "title": "Richmond Street, Glasgow", "address": "Richmond Street", "connectors": ["Type 2 (Socket Only) · 22kW"]}, {"lat": 55.854274, "lng": -4.241321, "title": "Located at the back right of the car park, which is located in b..", "address": "Charlotte Street", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 55.845342, "lng": -4.176739, "title": "350 Wellshot Road", "address": "350 Wellshot Road", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 55.80121, "lng": -4.320431, "title": "4 Rouken Glen Road", "address": "4 Rouken Glen Road", "connectors": ["Type 2 (Tethered Connector)  · 43kW", "CCS (Type 2) · 50kW", "CHAdeMO · 50kW"]}, {"lat": 55.83517, "lng": -4.26529, "title": "Victoria Road, Glasgow", "address": "Victoria Road", "connectors": ["Type 2 (Socket Only) · 22kW"]}, {"lat": 55.882182, "lng": -4.207833, "title": "Broomfield Road, Glasgow", "address": "Broomfield Road", "connectors": ["Type 2 (Socket Only) · 22kW"]}, {"lat": 55.86088, "lng": -4.24591, "title": "Exchange House, George St Offices, Glasgow", "address": "George Street", "connectors": ["Type 2 (Socket Only) · 7kW"]}, {"lat": 55.846157, "lng": -4.220656, "title": "Ruby Street, Glasgow", "address": "11 Ruby Street", "connectors": ["Type 2 (Socket Only) · 7kW"]}, {"lat": 55.84574, "lng": -4.24206, "title": "Mcneil Street, Glasgow", "address": "192 Mcneil Street", "connectors": ["Type 2 (Socket Only) · 22kW"]}, {"lat": 55.84786, "lng": -4.25157, "title": "Crown Street, Glasgow", "address": "Crown Street", "connectors": ["Type 2 (Socket Only) · 7kW"]}, {"lat": 55.868551, "lng": -4.246441, "title": "Henrys (Glasgow) LTD", "address": "151 Kyle Street", "connectors": ["Type 2 (Socket Only) · 22kW"]}, {"lat": 55.887688, "lng": -4.376918, "title": "Yoker Housing Association Ltd", "address": "2316 Dumbarton Road", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 55.854309, "lng": -4.348039, "title": "Southside Housing Association", "address": "Fifty Pitches Rd", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 55.852535, "lng": -4.275713, "title": "Edmundson Electrical Ltd, Glasgow", "address": "Houston Road", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 55.846035, "lng": -4.203216, "title": "Athlete's Village", "address": "191 Springfield Road", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 55.838964, "lng": -4.230633, "title": "Jenny Burn Oatlands Pub & Restaurant", "address": "8 Clyde Gateway", "connectors": ["CHAdeMO · 50kW", "CHAdeMO · 50kW", "CCS (Type 2) · 75kW", "CCS (Type 2) · 75kW"]}, {"lat": 55.825234, "lng": -4.253199, "title": "Letherby Drive", "address": "Letherby Drive", "connectors": ["Type 2 (Socket Only) · 7kW", "CCS (Type 2) · 22kW", "CHAdeMO · 22kW"]}];
 
   chargerData.forEach(function (c) {
+    var connHtml = c.connectors.length
+      ? '<div style="margin-top:6px;font-size:12px;color:#475569">' + c.connectors.join(' &middot; ') + '</div>'
+      : '';
     var marker = L.marker([c.lat, c.lng]);
     marker.bindPopup(
-      '<b>' + c.title + '</b><br>' + c.address + '<br><br>' +
+      '<b>' + c.title + '</b>' +
+      '<div style="color:#64748b;font-size:13px">' + c.address + '</div>' +
+      connHtml +
       '<a href="https://www.google.com/maps/dir/?api=1&destination=' + c.lat + ',' + c.lng +
-      '" target="_blank" rel="noopener">Get directions</a>'
+      '" target="_blank" rel="noopener" style="display:inline-block;margin-top:8px;padding:4px 10px;background:#2563eb;color:white;border-radius:4px;text-decoration:none;font-size:12px">Get directions</a>'
     );
     markers.addLayer(marker);
   });
-
   map.addLayer(markers);
+
+  // --- Connector filter ---
+  var filterBtns = document.querySelectorAll('.filter-btn');
+  var chargerItems = document.querySelectorAll('.charger-item');
+
+  filterBtns.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      filterBtns.forEach(function (b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      var f = btn.dataset.filter;
+      chargerItems.forEach(function (item) {
+        var connList = item.dataset.connectors ? item.dataset.connectors.split(',') : [];
+        item.style.display = (f === 'all' || connList.indexOf(f) !== -1) ? '' : 'none';
+      });
+    });
+  });
+
+  // --- Copy postcode ---
+  document.querySelectorAll('.copy-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var original = btn.textContent;
+      navigator.clipboard.writeText(btn.dataset.copy).then(function () {
+        btn.textContent = 'Copied!';
+        btn.classList.add('copy-btn--success');
+        setTimeout(function () {
+          btn.textContent = original;
+          btn.classList.remove('copy-btn--success');
+        }, 1500);
+      });
+    });
+  });
 }());
 </script>
 

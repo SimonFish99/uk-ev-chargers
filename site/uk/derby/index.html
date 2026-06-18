@@ -17,7 +17,10 @@
 
 <header>
 <div class="container">
-<a href="/" class="logo">PlugMap <span class="tagline">UK EV Charger Locator</span></a>
+<a href="/" class="logo">
+  <svg class="logo-bolt" viewBox="0 0 24 24" fill="currentColor" width="22" height="22" aria-hidden="true"><path d="M13 2L4.5 13.5H11L10 22L19.5 10.5H13Z"/></svg>
+  PlugMap <span class="tagline">UK EV Charger Locator</span>
+</a>
 </div>
 </header>
 
@@ -28,16 +31,44 @@
 </nav>
 
 <h1>EV Chargers in Derby</h1>
-<p class="page-intro">33 public charging stations found in Derby.</p>
+
+<div class="stats-bar">
+  <span class="stat-pill stat-total">33 stations</span>
+  <span class="stat-pill stat-rapid">14 rapid (50kW+)</span>
+  <span class="stat-pill stat-fast">18 fast (7–50kW)</span>
+  <span class="stat-pill stat-slow">1 slow</span>
+</div>
 
 <div id="map"></div>
 
-<ul class="charger-list">
+
+<div class="connector-filter">
+  <span class="filter-label">Filter:</span>
+  <button class="filter-btn active" data-filter="all">All</button>
+  
+  <button class="filter-btn" data-filter="BS1363 3 Pin 13 Amp">BS1363 3 Pin 13 Amp</button>
+  
+  <button class="filter-btn" data-filter="CCS (Type 2)">CCS (Type 2)</button>
+  
+  <button class="filter-btn" data-filter="CHAdeMO">CHAdeMO</button>
+  
+  <button class="filter-btn" data-filter="Type 2 (Socket Only)">Type 2 (Socket Only)</button>
+  
+  <button class="filter-btn" data-filter="Type 2 (Tethered Connector) ">Type 2 (Tethered Connector) </button>
+  
+</div>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Lidl-Foresters Leisure Park</h2>
-  <p class="charger-address">Foresters Leisure Park DE23 8AG
+<ul class="charger-list" id="charger-list">
+
+
+<li class="charger-item charger-item--rapid" data-connectors="Type 2 (Socket Only),CCS (Type 2),CHAdeMO">
+  <div class="charger-header">
+    <h2 class="charger-name">Lidl-Foresters Leisure Park</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Foresters Leisure Park <button class="copy-btn" data-copy="DE23 8AG">DE23 8AG</button>
   </p>
   
   <div class="charger-connections">
@@ -62,9 +93,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Lidl-Uttoxeter Road</h2>
-  <p class="charger-address">Uttoxeter New Road DE22 3NL
+<li class="charger-item charger-item--rapid" data-connectors="Type 2 (Socket Only),CCS (Type 2),CHAdeMO">
+  <div class="charger-header">
+    <h2 class="charger-name">Lidl-Uttoxeter Road</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Uttoxeter New Road <button class="copy-btn" data-copy="DE22 3NL">DE22 3NL</button>
   </p>
   
   <div class="charger-connections">
@@ -89,9 +124,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Derby Conference Centre</h2>
-  <p class="charger-address">London Rd DE24 8UX
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Derby Conference Centre</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">London Rd <button class="copy-btn" data-copy="DE24 8UX">DE24 8UX</button>
   </p>
   
   <div class="charger-connections">
@@ -125,9 +163,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Restricted access to Renault customers</h2>
-  <p class="charger-address">Sir Frank Whittle Road DE21 4PB
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Restricted access to Renault customers</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Sir Frank Whittle Road <button class="copy-btn" data-copy="DE21 4PB">DE21 4PB</button>
   </p>
   
   <div class="charger-connections">
@@ -147,9 +188,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">ROLLS_ROYCE GCP AH 13-14</h2>
-  <p class="charger-address">70 Raynesway Atlantic House DE21 7BE
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">ROLLS_ROYCE GCP AH 13-14</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">70 Raynesway Atlantic House <button class="copy-btn" data-copy="DE21 7BE">DE21 7BE</button>
   </p>
   
   <div class="charger-connections">
@@ -168,9 +212,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">ROLLS_ROYCE ELTON ROAD WM2</h2>
-  <p class="charger-address">68 Elton Rd DE24 8EF
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">ROLLS_ROYCE ELTON ROAD WM2</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">68 Elton Rd <button class="copy-btn" data-copy="DE24 8EF">DE24 8EF</button>
   </p>
   
   <div class="charger-connections">
@@ -189,9 +236,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">DLEV STATION 2</h2>
-  <p class="charger-address">Moor Lane DE24 9HY
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Tethered Connector) ">
+  <div class="charger-header">
+    <h2 class="charger-name">DLEV STATION 2</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Moor Lane <button class="copy-btn" data-copy="DE24 9HY">DE24 9HY</button>
   </p>
   
   <div class="charger-connections">
@@ -210,9 +260,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">ROLLS_ROYCE DERBY ROTA 2</h2>
-  <p class="charger-address">Rotatives Sinfin D DE23 8BG
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">ROLLS_ROYCE DERBY ROTA 2</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Rotatives Sinfin D <button class="copy-btn" data-copy="DE23 8BG">DE23 8BG</button>
   </p>
   
   <div class="charger-connections">
@@ -231,9 +284,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">ROLLS_ROYCE A SITE GREEN 3</h2>
-  <p class="charger-address">Victory Road Rolls-Royce Derby DE24 9GJ
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">ROLLS_ROYCE A SITE GREEN 3</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Victory Road Rolls-Royce Derby <button class="copy-btn" data-copy="DE24 9GJ">DE24 9GJ</button>
   </p>
   
   <div class="charger-connections">
@@ -252,9 +308,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">ROLLS_ROYCE A SITE GREEN 1</h2>
-  <p class="charger-address">Victory Road DE24
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">ROLLS_ROYCE A SITE GREEN 1</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Victory Road <button class="copy-btn" data-copy="DE24">DE24</button>
   </p>
   
   <div class="charger-connections">
@@ -273,9 +332,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">ROLLS_ROYCE MOOR LANE 1</h2>
-  <p class="charger-address">Moor Lane DE24 9AU
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">ROLLS_ROYCE MOOR LANE 1</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Moor Lane <button class="copy-btn" data-copy="DE24 9AU">DE24 9AU</button>
   </p>
   
   <div class="charger-connections">
@@ -294,9 +356,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">ROLLS_ROYCE WILMORE ROAD</h2>
-  <p class="charger-address">Rolls Royce Gate 8 DE24 9BD
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">ROLLS_ROYCE WILMORE ROAD</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Rolls Royce Gate 8 <button class="copy-btn" data-copy="DE24 9BD">DE24 9BD</button>
   </p>
   
   <div class="charger-connections">
@@ -315,9 +380,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">ROLLS_ROYCE TBF CHARGER 02</h2>
-  <p class="charger-address">TBF Rolls Royce Gate 6 DE24
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">ROLLS_ROYCE TBF CHARGER 02</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">TBF Rolls Royce Gate 6 <button class="copy-btn" data-copy="DE24">DE24</button>
   </p>
   
   <div class="charger-connections">
@@ -336,9 +404,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">EG GROUP PRIDE PARK</h2>
-  <p class="charger-address">Murdoch Road DE24 8AN
+<li class="charger-item charger-item--rapid" data-connectors="CHAdeMO,Type 2 (Tethered Connector) ">
+  <div class="charger-header">
+    <h2 class="charger-name">EG GROUP PRIDE PARK</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Murdoch Road <button class="copy-btn" data-copy="DE24 8AN">DE24 8AN</button>
   </p>
   
   <div class="charger-connections">
@@ -378,9 +450,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Kings Highway Pub &amp; Restaurant</h2>
-  <p class="charger-address">Rowditch PL DE22 3NH
+<li class="charger-item charger-item--rapid" data-connectors="CHAdeMO,CCS (Type 2),Type 2 (Tethered Connector) ">
+  <div class="charger-header">
+    <h2 class="charger-name">Kings Highway Pub &amp; Restaurant</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Rowditch PL <button class="copy-btn" data-copy="DE22 3NH">DE22 3NH</button>
   </p>
   
   <div class="charger-connections">
@@ -405,9 +481,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Meteor Centre Retail Park</h2>
-  <p class="charger-address">Meteor Centre DE21 4SY
+<li class="charger-item charger-item--rapid" data-connectors="CHAdeMO,CCS (Type 2),Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Meteor Centre Retail Park</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Meteor Centre <button class="copy-btn" data-copy="DE21 4SY">DE21 4SY</button>
   </p>
   
   <div class="charger-connections">
@@ -441,9 +521,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Welcome Break Derby Eastbound Services</h2>
-  <p class="charger-address">A50 Eastbound DE72 2WA
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2),CHAdeMO,Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Welcome Break Derby Eastbound Services</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">A50 Eastbound <button class="copy-btn" data-copy="DE72 2WA">DE72 2WA</button>
   </p>
   
   <div class="charger-connections">
@@ -468,9 +552,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Derby County Council</h2>
-  <p class="charger-address">15 Stores Road DE21 4BD
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Derby County Council</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">15 Stores Road <button class="copy-btn" data-copy="DE21 4BD">DE21 4BD</button>
   </p>
   
   <div class="charger-connections">
@@ -492,9 +579,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Best Buy Derby</h2>
-  <p class="charger-address">Kingsway Retail Park, Kingsway, Derby DE22 3FA
+<li class="charger-item charger-item--slow" data-connectors="BS1363 3 Pin 13 Amp">
+  <div class="charger-header">
+    <h2 class="charger-name">Best Buy Derby</h2>
+    
+  </div>
+  <p class="charger-address">Kingsway Retail Park, Kingsway, Derby <button class="copy-btn" data-copy="DE22 3FA">DE22 3FA</button>
   </p>
   
   <div class="charger-connections">
@@ -516,9 +606,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Pride Park Park &amp; Ride</h2>
-  <p class="charger-address">Pride Park Park &amp; Ride DE24 8BW
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Pride Park Park &amp; Ride</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Pride Park Park &amp; Ride <button class="copy-btn" data-copy="DE24 8BW">DE24 8BW</button>
   </p>
   
   <div class="charger-connections">
@@ -540,9 +633,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Pride Park Park &amp; Ride</h2>
-  <p class="charger-address">Pride Park Park &amp; Ride DE24 8BW
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Pride Park Park &amp; Ride</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Pride Park Park &amp; Ride <button class="copy-btn" data-copy="DE24 8BW">DE24 8BW</button>
   </p>
   
   <div class="charger-connections">
@@ -564,9 +660,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">SNC Lavalin</h2>
-  <p class="charger-address">2 Roundhouse Road DE24 8JE
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">SNC Lavalin</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">2 Roundhouse Road <button class="copy-btn" data-copy="DE24 8JE">DE24 8JE</button>
   </p>
   
   <div class="charger-connections">
@@ -588,9 +687,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Derbion Centre Superchargers</h2>
-  <p class="charger-address">Level 1, South Mall  DE1 2PG
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2)">
+  <div class="charger-header">
+    <h2 class="charger-name">Derbion Centre Superchargers</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Level 1, South Mall  <button class="copy-btn" data-copy="DE1 2PG">DE1 2PG</button>
   </p>
   
   <div class="charger-connections">
@@ -609,9 +712,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">The Markeaton</h2>
-  <p class="charger-address">Kedleston Road DE22 2TF
+<li class="charger-item charger-item--rapid" data-connectors="CHAdeMO,CCS (Type 2),Type 2 (Tethered Connector) ">
+  <div class="charger-header">
+    <h2 class="charger-name">The Markeaton</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Kedleston Road <button class="copy-btn" data-copy="DE22 2TF">DE22 2TF</button>
   </p>
   
   <div class="charger-connections">
@@ -636,9 +743,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">The Oak and Acorn</h2>
-  <p class="charger-address">Danebridge Cres  DE21 2HT
+<li class="charger-item charger-item--rapid" data-connectors="CHAdeMO,CCS (Type 2),Type 2 (Tethered Connector) ">
+  <div class="charger-header">
+    <h2 class="charger-name">The Oak and Acorn</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Danebridge Cres <button class="copy-btn" data-copy=" DE21 2HT"> DE21 2HT</button>
   </p>
   
   <div class="charger-connections">
@@ -663,9 +774,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Harvester Pride Park</h2>
-  <p class="charger-address">Roundhouse Road DE24 8JE
+<li class="charger-item charger-item--rapid" data-connectors="CHAdeMO,CCS (Type 2),Type 2 (Tethered Connector) ">
+  <div class="charger-header">
+    <h2 class="charger-name">Harvester Pride Park</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Roundhouse Road <button class="copy-btn" data-copy="DE24 8JE">DE24 8JE</button>
   </p>
   
   <div class="charger-connections">
@@ -690,9 +805,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">The Argosy</h2>
-  <p class="charger-address">Manor Road DE22 3HZ
+<li class="charger-item charger-item--rapid" data-connectors="CHAdeMO,CCS (Type 2),Type 2 (Tethered Connector) ">
+  <div class="charger-header">
+    <h2 class="charger-name">The Argosy</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Manor Road <button class="copy-btn" data-copy="DE22 3HZ">DE22 3HZ</button>
   </p>
   
   <div class="charger-connections">
@@ -717,9 +836,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">The Blue Peter Stonehouse</h2>
-  <p class="charger-address">90 Baker St DE24 0JH
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2),CHAdeMO,Type 2 (Tethered Connector) ">
+  <div class="charger-header">
+    <h2 class="charger-name">The Blue Peter Stonehouse</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">90 Baker St <button class="copy-btn" data-copy="DE24 0JH">DE24 0JH</button>
   </p>
   
   <div class="charger-connections">
@@ -744,9 +867,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">The Stenson Fields</h2>
-  <p class="charger-address">6 Northfield DE24 3JG
+<li class="charger-item charger-item--rapid" data-connectors="CHAdeMO,CCS (Type 2),Type 2 (Tethered Connector) ">
+  <div class="charger-header">
+    <h2 class="charger-name">The Stenson Fields</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">6 Northfield <button class="copy-btn" data-copy="DE24 3JG">DE24 3JG</button>
   </p>
   
   <div class="charger-connections">
@@ -771,9 +898,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">The Hollybrook</h2>
-  <p class="charger-address">Hollybrook Way DE23 3TZ
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2),CHAdeMO,Type 2 (Tethered Connector) ">
+  <div class="charger-header">
+    <h2 class="charger-name">The Hollybrook</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Hollybrook Way <button class="copy-btn" data-copy="DE23 3TZ">DE23 3TZ</button>
   </p>
   
   <div class="charger-connections">
@@ -798,9 +929,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Chatsworth Hall, Chesterfield Road, Matlock</h2>
-  <p class="charger-address">Chatsworth Hall, Chesterfield Road, Matlock DE4 3FW
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Chatsworth Hall, Chesterfield Road, Matlock</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Chatsworth Hall, Chesterfield Road, Matlock <button class="copy-btn" data-copy="DE4 3FW">DE4 3FW</button>
   </p>
   
   <div class="charger-connections">
@@ -822,9 +956,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">80673</h2>
-  <p class="charger-address">Pride Park Park-&amp;-Ride, Derby Arena DE24 8BW
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">80673</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Pride Park Park-&amp;-Ride, Derby Arena <button class="copy-btn" data-copy="DE24 8BW">DE24 8BW</button>
   </p>
   
   <div class="charger-connections">
@@ -846,9 +983,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Restricted access to Toyota customers</h2>
-  <p class="charger-address">Orient Way DE24 8BY
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Restricted access to Toyota customers</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Orient Way <button class="copy-btn" data-copy="DE24 8BY">DE24 8BY</button>
   </p>
   
   <div class="charger-connections">
@@ -873,6 +1013,23 @@
 
 <p><a href="/" class="back-link">← All UK towns</a></p>
 
+
+<div class="nearby-towns">
+  <h2 class="nearby-heading">Nearby towns</h2>
+  <ul class="nearby-list">
+  
+    <li><a href="/uk/ilkeston/">Ilkeston</a></li>
+  
+    <li><a href="/uk/long-eaton/">Long Eaton</a></li>
+  
+    <li><a href="/uk/loughborough/">Loughborough</a></li>
+  
+    <li><a href="/uk/nottingham/">Nottingham</a></li>
+  
+  </ul>
+</div>
+
+
 </div>
 
 <footer>
@@ -885,26 +1042,61 @@
 <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 <script>
 (function () {
+  // --- Map ---
   var map = L.map('map').setView([52.91445489337018, -1.4683486734848188], 12);
-
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
   }).addTo(map);
 
   var markers = L.markerClusterGroup();
-  var chargerData = [{"lat": 52.896255, "lng": -1.478067, "title": "Lidl-Foresters Leisure Park", "address": "Foresters Leisure Park"}, {"lat": 52.920834, "lng": -1.486081, "title": "Lidl-Uttoxeter Road", "address": "Uttoxeter New Road"}, {"lat": 52.90465506933688, "lng": -1.449052457672451, "title": "Derby Conference Centre", "address": "London Rd"}, {"lat": 52.93455, "lng": -1.465609, "title": "Restricted access to Renault customers", "address": "Sir Frank Whittle Road"}, {"lat": 52.90864, "lng": -1.43174, "title": "ROLLS_ROYCE GCP AH 13-14", "address": "70 Raynesway Atlantic House"}, {"lat": 52.899247, "lng": -1.469451, "title": "ROLLS_ROYCE ELTON ROAD WM2", "address": "68 Elton Rd"}, {"lat": 52.89064, "lng": -1.462463, "title": "DLEV STATION 2", "address": "Moor Lane"}, {"lat": 52.890066, "lng": -1.476445, "title": "ROLLS_ROYCE DERBY ROTA 2", "address": "Rotatives Sinfin D"}, {"lat": 52.889764, "lng": -1.466985, "title": "ROLLS_ROYCE A SITE GREEN 3", "address": "Victory Road Rolls-Royce Derby"}, {"lat": 52.888345, "lng": -1.465884, "title": "ROLLS_ROYCE A SITE GREEN 1", "address": "Victory Road"}, {"lat": 52.888147, "lng": -1.460621, "title": "ROLLS_ROYCE MOOR LANE 1", "address": "Moor Lane"}, {"lat": 52.886139, "lng": -1.472063, "title": "ROLLS_ROYCE WILMORE ROAD", "address": "Rolls Royce Gate 8"}, {"lat": 52.883246, "lng": -1.469364, "title": "ROLLS_ROYCE TBF CHARGER 02", "address": "TBF Rolls Royce Gate 6"}, {"lat": 52.912202, "lng": -1.449406, "title": "EG GROUP PRIDE PARK", "address": "Murdoch Road"}, {"lat": 52.919029, "lng": -1.5072558, "title": "Kings Highway Pub & Restaurant", "address": "Rowditch PL"}, {"lat": 52.942575, "lng": -1.463252, "title": "Meteor Centre Retail Park", "address": "Meteor Centre"}, {"lat": 52.867848, "lng": -1.366556, "title": "Welcome Break Derby Eastbound Services", "address": "A50 Eastbound"}, {"lat": 52.926281, "lng": -1.466381, "title": "Derby County Council", "address": "15 Stores Road"}, {"lat": 52.920237, "lng": -1.504397, "title": "Best Buy Derby", "address": "Kingsway Retail Park, Kingsway, Derby"}, {"lat": 52.914249, "lng": -1.448108, "title": "Pride Park Park & Ride", "address": "Pride Park Park & Ride"}, {"lat": 52.914089, "lng": -1.447951, "title": "Pride Park Park & Ride", "address": "Pride Park Park & Ride"}, {"lat": 52.915779, "lng": -1.46001, "title": "SNC Lavalin", "address": "2 Roundhouse Road"}, {"lat": 52.91916151868108, "lng": -1.4723005283719885, "title": "Derbion Centre Superchargers", "address": "Level 1, South Mall "}, {"lat": 52.944401, "lng": -1.503, "title": "The Markeaton", "address": "Kedleston Road"}, {"lat": 52.94142983429097, "lng": -1.4313807750320393, "title": "The Oak and Acorn", "address": "Danebridge Cres"}, {"lat": 52.915913, "lng": -1.457225, "title": "Harvester Pride Park", "address": "Roundhouse Road"}, {"lat": 52.911575, "lng": -1.507667, "title": "The Argosy", "address": "Manor Road"}, {"lat": 52.895748, "lng": -1.428999, "title": "The Blue Peter Stonehouse", "address": "90 Baker St"}, {"lat": 52.876446, "lng": -1.503376, "title": "The Stenson Fields", "address": "6 Northfield"}, {"lat": 52.892105058907, "lng": -1.53186366392254, "title": "The Hollybrook", "address": "Hollybrook Way"}, {"lat": 53.142477, "lng": -1.552198, "title": "Chatsworth Hall, Chesterfield Road, Matlock", "address": "Chatsworth Hall, Chesterfield Road, Matlock"}, {"lat": 52.91385, "lng": -1.44973, "title": "80673", "address": "Pride Park Park-&-Ride, Derby Arena"}, {"lat": 52.911088, "lng": -1.450624, "title": "Restricted access to Toyota customers", "address": "Orient Way"}];
+  var chargerData = [{"lat": 52.896255, "lng": -1.478067, "title": "Lidl-Foresters Leisure Park", "address": "Foresters Leisure Park", "connectors": ["Type 2 (Socket Only) · 22kW", "CCS (Type 2) · 50kW", "CHAdeMO · 50kW"]}, {"lat": 52.920834, "lng": -1.486081, "title": "Lidl-Uttoxeter Road", "address": "Uttoxeter New Road", "connectors": ["Type 2 (Socket Only) · 22kW", "CCS (Type 2) · 50kW", "CHAdeMO · 50kW"]}, {"lat": 52.90465506933688, "lng": -1.449052457672451, "title": "Derby Conference Centre", "address": "London Rd", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 52.93455, "lng": -1.465609, "title": "Restricted access to Renault customers", "address": "Sir Frank Whittle Road", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 52.90864, "lng": -1.43174, "title": "ROLLS_ROYCE GCP AH 13-14", "address": "70 Raynesway Atlantic House", "connectors": ["Type 2 (Socket Only) · 22kW"]}, {"lat": 52.899247, "lng": -1.469451, "title": "ROLLS_ROYCE ELTON ROAD WM2", "address": "68 Elton Rd", "connectors": ["Type 2 (Socket Only) · 22kW"]}, {"lat": 52.89064, "lng": -1.462463, "title": "DLEV STATION 2", "address": "Moor Lane", "connectors": ["Type 2 (Tethered Connector)  · 43kW"]}, {"lat": 52.890066, "lng": -1.476445, "title": "ROLLS_ROYCE DERBY ROTA 2", "address": "Rotatives Sinfin D", "connectors": ["Type 2 (Socket Only) · 22kW"]}, {"lat": 52.889764, "lng": -1.466985, "title": "ROLLS_ROYCE A SITE GREEN 3", "address": "Victory Road Rolls-Royce Derby", "connectors": ["Type 2 (Socket Only) · 22kW"]}, {"lat": 52.888345, "lng": -1.465884, "title": "ROLLS_ROYCE A SITE GREEN 1", "address": "Victory Road", "connectors": ["Type 2 (Socket Only) · 22kW"]}, {"lat": 52.888147, "lng": -1.460621, "title": "ROLLS_ROYCE MOOR LANE 1", "address": "Moor Lane", "connectors": ["Type 2 (Socket Only) · 22kW"]}, {"lat": 52.886139, "lng": -1.472063, "title": "ROLLS_ROYCE WILMORE ROAD", "address": "Rolls Royce Gate 8", "connectors": ["Type 2 (Socket Only) · 22kW"]}, {"lat": 52.883246, "lng": -1.469364, "title": "ROLLS_ROYCE TBF CHARGER 02", "address": "TBF Rolls Royce Gate 6", "connectors": ["Type 2 (Socket Only) · 22kW"]}, {"lat": 52.912202, "lng": -1.449406, "title": "EG GROUP PRIDE PARK", "address": "Murdoch Road", "connectors": ["CHAdeMO · 75kW", "CHAdeMO · 75kW", "CHAdeMO · 75kW", "CHAdeMO · 75kW", "Type 2 (Tethered Connector)  · 175kW", "Type 2 (Tethered Connector)  · 175kW", "Type 2 (Tethered Connector)  · 175kW", "Type 2 (Tethered Connector)  · 175kW"]}, {"lat": 52.919029, "lng": -1.5072558, "title": "Kings Highway Pub & Restaurant", "address": "Rowditch PL", "connectors": ["CHAdeMO · 50kW", "CCS (Type 2) · 50kW", "Type 2 (Tethered Connector)  · 43kW"]}, {"lat": 52.942575, "lng": -1.463252, "title": "Meteor Centre Retail Park", "address": "Meteor Centre", "connectors": ["CHAdeMO · 50kW", "CCS (Type 2) · 50kW", "CCS (Type 2) · 50kW", "CHAdeMO · 50kW", "Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 52.867848, "lng": -1.366556, "title": "Welcome Break Derby Eastbound Services", "address": "A50 Eastbound", "connectors": ["CCS (Type 2) · 50kW", "CHAdeMO · 50kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 52.926281, "lng": -1.466381, "title": "Derby County Council", "address": "15 Stores Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 52.920237, "lng": -1.504397, "title": "Best Buy Derby", "address": "Kingsway Retail Park, Kingsway, Derby", "connectors": ["BS1363 3 Pin 13 Amp · 3.7kW", "BS1363 3 Pin 13 Amp · 3.7kW"]}, {"lat": 52.914249, "lng": -1.448108, "title": "Pride Park Park & Ride", "address": "Pride Park Park & Ride", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 52.914089, "lng": -1.447951, "title": "Pride Park Park & Ride", "address": "Pride Park Park & Ride", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 52.915779, "lng": -1.46001, "title": "SNC Lavalin", "address": "2 Roundhouse Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 52.91916151868108, "lng": -1.4723005283719885, "title": "Derbion Centre Superchargers", "address": "Level 1, South Mall ", "connectors": ["CCS (Type 2) · 150kW"]}, {"lat": 52.944401, "lng": -1.503, "title": "The Markeaton", "address": "Kedleston Road", "connectors": ["CHAdeMO · 50kW", "CCS (Type 2) · 50kW", "Type 2 (Tethered Connector)  · 40kW"]}, {"lat": 52.94142983429097, "lng": -1.4313807750320393, "title": "The Oak and Acorn", "address": "Danebridge Cres", "connectors": ["CHAdeMO · 50kW", "CCS (Type 2) · 50kW", "Type 2 (Tethered Connector)  · 43kW"]}, {"lat": 52.915913, "lng": -1.457225, "title": "Harvester Pride Park", "address": "Roundhouse Road", "connectors": ["CHAdeMO · 50kW", "CCS (Type 2) · 50kW", "Type 2 (Tethered Connector)  · 43kW"]}, {"lat": 52.911575, "lng": -1.507667, "title": "The Argosy", "address": "Manor Road", "connectors": ["CHAdeMO · 50kW", "CCS (Type 2) · 50kW", "Type 2 (Tethered Connector)  · 43kW"]}, {"lat": 52.895748, "lng": -1.428999, "title": "The Blue Peter Stonehouse", "address": "90 Baker St", "connectors": ["CCS (Type 2) · 50kW", "CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 43kW"]}, {"lat": 52.876446, "lng": -1.503376, "title": "The Stenson Fields", "address": "6 Northfield", "connectors": ["CHAdeMO · 50kW", "CCS (Type 2) · 50kW", "Type 2 (Tethered Connector)  · 43kW"]}, {"lat": 52.892105058907, "lng": -1.53186366392254, "title": "The Hollybrook", "address": "Hollybrook Way", "connectors": ["CCS (Type 2) · 50kW", "CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 43kW"]}, {"lat": 53.142477, "lng": -1.552198, "title": "Chatsworth Hall, Chesterfield Road, Matlock", "address": "Chatsworth Hall, Chesterfield Road, Matlock", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 52.91385, "lng": -1.44973, "title": "80673", "address": "Pride Park Park-&-Ride, Derby Arena", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 52.911088, "lng": -1.450624, "title": "Restricted access to Toyota customers", "address": "Orient Way", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}];
 
   chargerData.forEach(function (c) {
+    var connHtml = c.connectors.length
+      ? '<div style="margin-top:6px;font-size:12px;color:#475569">' + c.connectors.join(' &middot; ') + '</div>'
+      : '';
     var marker = L.marker([c.lat, c.lng]);
     marker.bindPopup(
-      '<b>' + c.title + '</b><br>' + c.address + '<br><br>' +
+      '<b>' + c.title + '</b>' +
+      '<div style="color:#64748b;font-size:13px">' + c.address + '</div>' +
+      connHtml +
       '<a href="https://www.google.com/maps/dir/?api=1&destination=' + c.lat + ',' + c.lng +
-      '" target="_blank" rel="noopener">Get directions</a>'
+      '" target="_blank" rel="noopener" style="display:inline-block;margin-top:8px;padding:4px 10px;background:#2563eb;color:white;border-radius:4px;text-decoration:none;font-size:12px">Get directions</a>'
     );
     markers.addLayer(marker);
   });
-
   map.addLayer(markers);
+
+  // --- Connector filter ---
+  var filterBtns = document.querySelectorAll('.filter-btn');
+  var chargerItems = document.querySelectorAll('.charger-item');
+
+  filterBtns.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      filterBtns.forEach(function (b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      var f = btn.dataset.filter;
+      chargerItems.forEach(function (item) {
+        var connList = item.dataset.connectors ? item.dataset.connectors.split(',') : [];
+        item.style.display = (f === 'all' || connList.indexOf(f) !== -1) ? '' : 'none';
+      });
+    });
+  });
+
+  // --- Copy postcode ---
+  document.querySelectorAll('.copy-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var original = btn.textContent;
+      navigator.clipboard.writeText(btn.dataset.copy).then(function () {
+        btn.textContent = 'Copied!';
+        btn.classList.add('copy-btn--success');
+        setTimeout(function () {
+          btn.textContent = original;
+          btn.classList.remove('copy-btn--success');
+        }, 1500);
+      });
+    });
+  });
 }());
 </script>
 

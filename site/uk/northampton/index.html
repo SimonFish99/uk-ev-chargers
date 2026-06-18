@@ -17,7 +17,10 @@
 
 <header>
 <div class="container">
-<a href="/" class="logo">PlugMap <span class="tagline">UK EV Charger Locator</span></a>
+<a href="/" class="logo">
+  <svg class="logo-bolt" viewBox="0 0 24 24" fill="currentColor" width="22" height="22" aria-hidden="true"><path d="M13 2L4.5 13.5H11L10 22L19.5 10.5H13Z"/></svg>
+  PlugMap <span class="tagline">UK EV Charger Locator</span>
+</a>
 </div>
 </header>
 
@@ -28,16 +31,44 @@
 </nav>
 
 <h1>EV Chargers in Northampton</h1>
-<p class="page-intro">26 public charging stations found in Northampton.</p>
+
+<div class="stats-bar">
+  <span class="stat-pill stat-total">26 stations</span>
+  <span class="stat-pill stat-rapid">13 rapid (50kW+)</span>
+  <span class="stat-pill stat-fast">12 fast (7–50kW)</span>
+  <span class="stat-pill stat-slow">1 slow</span>
+</div>
 
 <div id="map"></div>
 
-<ul class="charger-list">
+
+<div class="connector-filter">
+  <span class="filter-label">Filter:</span>
+  <button class="filter-btn active" data-filter="all">All</button>
+  
+  <button class="filter-btn" data-filter="CCS (Type 2)">CCS (Type 2)</button>
+  
+  <button class="filter-btn" data-filter="CHAdeMO">CHAdeMO</button>
+  
+  <button class="filter-btn" data-filter="Type 1 (J1772)">Type 1 (J1772)</button>
+  
+  <button class="filter-btn" data-filter="Type 2 (Socket Only)">Type 2 (Socket Only)</button>
+  
+  <button class="filter-btn" data-filter="Type 2 (Tethered Connector) ">Type 2 (Tethered Connector) </button>
+  
+</div>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">The Quays</h2>
-  <p class="charger-address">Crow Lane NN3 9DA
+<ul class="charger-list" id="charger-list">
+
+
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2),CHAdeMO">
+  <div class="charger-header">
+    <h2 class="charger-name">The Quays</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Crow Lane <button class="copy-btn" data-copy="NN3 9DA">NN3 9DA</button>
   </p>
   
   <div class="charger-connections">
@@ -65,9 +96,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Tesla </h2>
-  <p class="charger-address">Carousel Way NN3 9HX
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2)">
+  <div class="charger-header">
+    <h2 class="charger-name">Tesla </h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Carousel Way <button class="copy-btn" data-copy="NN3 9HX">NN3 9HX</button>
   </p>
   
   <div class="charger-connections">
@@ -86,9 +121,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Oakwood Road</h2>
-  <p class="charger-address">Oakwood Road NN2 7HE
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Oakwood Road</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Oakwood Road <button class="copy-btn" data-copy="NN2 7HE">NN2 7HE</button>
   </p>
   
   <div class="charger-connections">
@@ -110,9 +148,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Semilong Road</h2>
-  <p class="charger-address">Semilong Road NN2 6BU
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Semilong Road</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Semilong Road <button class="copy-btn" data-copy="NN2 6BU">NN2 6BU</button>
   </p>
   
   <div class="charger-connections">
@@ -134,9 +175,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Ardington Road</h2>
-  <p class="charger-address">Ardington Road NN1 5NE
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Ardington Road</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Ardington Road <button class="copy-btn" data-copy="NN1 5NE">NN1 5NE</button>
   </p>
   
   <div class="charger-connections">
@@ -158,9 +202,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Vicarage Road</h2>
-  <p class="charger-address">Vicarage Road NN5 7AX
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Vicarage Road</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Vicarage Road <button class="copy-btn" data-copy="NN5 7AX">NN5 7AX</button>
   </p>
   
   <div class="charger-connections">
@@ -182,9 +229,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">St James Park Road</h2>
-  <p class="charger-address">St James&#39; Park Road NN5 5EL
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">St James Park Road</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">St James&#39; Park Road <button class="copy-btn" data-copy="NN5 5EL">NN5 5EL</button>
   </p>
   
   <div class="charger-connections">
@@ -206,9 +256,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Barry Road</h2>
-  <p class="charger-address">Barry Road NN1 5HU
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Barry Road</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Barry Road <button class="copy-btn" data-copy="NN1 5HU">NN1 5HU</button>
   </p>
   
   <div class="charger-connections">
@@ -230,9 +283,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">GB-LCL-A0100</h2>
-  <p class="charger-address">Upper Thrift Street NN1 5HR
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">GB-LCL-A0100</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Upper Thrift Street <button class="copy-btn" data-copy="NN1 5HR">NN1 5HR</button>
   </p>
   
   <div class="charger-connections">
@@ -254,9 +310,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Holiday Inn Rugby-Northampton</h2>
-  <p class="charger-address">M1 Junction18 A428 NN6 7XR
+<li class="charger-item charger-item--rapid" data-connectors="CHAdeMO">
+  <div class="charger-header">
+    <h2 class="charger-name">Holiday Inn Rugby-Northampton</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">M1 Junction18 A428 <button class="copy-btn" data-copy="NN6 7XR">NN6 7XR</button>
   </p>
   
   <div class="charger-connections">
@@ -278,9 +338,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Nationwide Adminsitration Centre</h2>
-  <p class="charger-address">Moulten Park Industrial Estate NN3 6NW
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Nationwide Adminsitration Centre</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Moulten Park Industrial Estate <button class="copy-btn" data-copy="NN3 6NW">NN3 6NW</button>
   </p>
   
   <div class="charger-connections">
@@ -302,9 +365,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Crystal HQ</h2>
-  <p class="charger-address">4 Titlet Bawk Avenue NN6 0LA
+<li class="charger-item charger-item--rapid" data-connectors="Type 2 (Socket Only),CHAdeMO,Type 2 (Tethered Connector) ">
+  <div class="charger-header">
+    <h2 class="charger-name">Crystal HQ</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">4 Titlet Bawk Avenue <button class="copy-btn" data-copy="NN6 0LA">NN6 0LA</button>
   </p>
   
   <div class="charger-connections">
@@ -329,9 +396,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Restricted access to Vauxhall customers</h2>
-  <p class="charger-address">Carousel Way NN3 9HG
+<li class="charger-item charger-item--slow" data-connectors="Type 1 (J1772)">
+  <div class="charger-header">
+    <h2 class="charger-name">Restricted access to Vauxhall customers</h2>
+    
+  </div>
+  <p class="charger-address">Carousel Way <button class="copy-btn" data-copy="NN3 9HG">NN3 9HG</button>
   </p>
   
   <div class="charger-connections">
@@ -350,9 +420,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Restricted access to Toyota customers</h2>
-  <p class="charger-address">Ferris Row NN3 9HX
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Restricted access to Toyota customers</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Ferris Row <button class="copy-btn" data-copy="NN3 9HX">NN3 9HX</button>
   </p>
   
   <div class="charger-connections">
@@ -374,9 +447,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Morrisons Northampton</h2>
-  <p class="charger-address">Wm Morrison Supermarkets Plc NN1 1HB
+<li class="charger-item charger-item--rapid" data-connectors="Type 2 (Tethered Connector) ,CHAdeMO,Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Morrisons Northampton</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Wm Morrison Supermarkets Plc <button class="copy-btn" data-copy="NN1 1HB">NN1 1HB</button>
   </p>
   
   <div class="charger-connections">
@@ -401,9 +478,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Harvester Grange Park</h2>
-  <p class="charger-address">Loake Close NN4 5EZ
+<li class="charger-item charger-item--rapid" data-connectors="CHAdeMO">
+  <div class="charger-header">
+    <h2 class="charger-name">Harvester Grange Park</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Loake Close <button class="copy-btn" data-copy="NN4 5EZ">NN4 5EZ</button>
   </p>
   
   <div class="charger-connections">
@@ -425,9 +506,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Morrisons</h2>
-  <p class="charger-address">Kettering Road NN3 6AA
+<li class="charger-item charger-item--rapid" data-connectors="CHAdeMO,Type 2 (Socket Only),Type 2 (Tethered Connector) ">
+  <div class="charger-header">
+    <h2 class="charger-name">Morrisons</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Kettering Road <button class="copy-btn" data-copy="NN3 6AA">NN3 6AA</button>
   </p>
   
   <div class="charger-connections">
@@ -452,9 +537,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Northampton, Commercial Street</h2>
-  <p class="charger-address">Commercial Street NN1 1PJ
+<li class="charger-item charger-item--rapid" data-connectors="CHAdeMO,Type 2 (Tethered Connector) ">
+  <div class="charger-header">
+    <h2 class="charger-name">Northampton, Commercial Street</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Commercial Street <button class="copy-btn" data-copy="NN1 1PJ">NN1 1PJ</button>
   </p>
   
   <div class="charger-connections">
@@ -479,9 +568,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Linnell Way</h2>
-  <p class="charger-address">Linnnell Way NN16 8PS
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Linnell Way</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Linnnell Way <button class="copy-btn" data-copy="NN16 8PS">NN16 8PS</button>
   </p>
   
   <div class="charger-connections">
@@ -503,9 +595,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Northampton, Upper Mounts</h2>
-  <p class="charger-address">1 Victoria St NN1 3NR
+<li class="charger-item charger-item--rapid" data-connectors="CHAdeMO,Type 2 (Tethered Connector) ">
+  <div class="charger-header">
+    <h2 class="charger-name">Northampton, Upper Mounts</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">1 Victoria St <button class="copy-btn" data-copy="NN1 3NR">NN1 3NR</button>
   </p>
   
   <div class="charger-connections">
@@ -530,9 +626,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Northampton, Newlands</h2>
-  <p class="charger-address">Newland NN1 3EL
+<li class="charger-item charger-item--rapid" data-connectors="CHAdeMO,Type 2 (Tethered Connector) ">
+  <div class="charger-header">
+    <h2 class="charger-name">Northampton, Newlands</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Newland <button class="copy-btn" data-copy="NN1 3EL">NN1 3EL</button>
   </p>
   
   <div class="charger-connections">
@@ -557,9 +657,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Northampton, Wellington Street</h2>
-  <p class="charger-address">28-34 Wellington St NN1 3AS
+<li class="charger-item charger-item--rapid" data-connectors="CHAdeMO,Type 2 (Tethered Connector) ">
+  <div class="charger-header">
+    <h2 class="charger-name">Northampton, Wellington Street</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">28-34 Wellington St <button class="copy-btn" data-copy="NN1 3AS">NN1 3AS</button>
   </p>
   
   <div class="charger-connections">
@@ -584,9 +688,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Tesco Extra-Northampton South</h2>
-  <p class="charger-address">Clannell Road NN4 0JF
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Tesco Extra-Northampton South</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Clannell Road <button class="copy-btn" data-copy="NN4 0JF">NN4 0JF</button>
   </p>
   
   <div class="charger-connections">
@@ -608,9 +715,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">LCP Weston Favell</h2>
-  <p class="charger-address">LCP Weston Favell NN3 8JP
+<li class="charger-item charger-item--rapid" data-connectors="CHAdeMO,Type 2 (Tethered Connector) ">
+  <div class="charger-header">
+    <h2 class="charger-name">LCP Weston Favell</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">LCP Weston Favell <button class="copy-btn" data-copy="NN3 8JP">NN3 8JP</button>
   </p>
   
   <div class="charger-connections">
@@ -635,9 +746,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">The Falcon</h2>
-  <p class="charger-address">Castle Ashby NN7 1LF
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">The Falcon</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Castle Ashby <button class="copy-btn" data-copy="NN7 1LF">NN7 1LF</button>
   </p>
   
   <div class="charger-connections">
@@ -659,9 +773,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Morrisons Northampton</h2>
-  <p class="charger-address">Wm Morrison Supermarkets PLC, 26 Victoria Promenade NN1 1HB
+<li class="charger-item charger-item--rapid" data-connectors="Type 2 (Socket Only),CHAdeMO,CCS (Type 2)">
+  <div class="charger-header">
+    <h2 class="charger-name">Morrisons Northampton</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Wm Morrison Supermarkets PLC, 26 Victoria Promenade <button class="copy-btn" data-copy="NN1 1HB">NN1 1HB</button>
   </p>
   
   <div class="charger-connections">
@@ -689,6 +807,23 @@
 
 <p><a href="/" class="back-link">← All UK towns</a></p>
 
+
+<div class="nearby-towns">
+  <h2 class="nearby-heading">Nearby towns</h2>
+  <ul class="nearby-list">
+  
+    <li><a href="/uk/towcester/">Towcester</a></li>
+  
+    <li><a href="/uk/lutterworth/">Lutterworth</a></li>
+  
+    <li><a href="/uk/northamptonshire-north/">Northamptonshire North</a></li>
+  
+    <li><a href="/uk/kettering/">Kettering</a></li>
+  
+  </ul>
+</div>
+
+
 </div>
 
 <footer>
@@ -701,26 +836,61 @@
 <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 <script>
 (function () {
+  // --- Map ---
   var map = L.map('map').setView([52.252251454979614, -0.8721346379645182], 12);
-
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
   }).addTo(map);
 
   var markers = L.markerClusterGroup();
-  var chargerData = [{"lat": 52.24549337288799, "lng": -0.812294031050069, "title": "The Quays", "address": "Crow Lane"}, {"lat": 52.24258845658197, "lng": -0.8342945560274015, "title": "Tesla ", "address": "Carousel Way"}, {"lat": 52.253345, "lng": -0.876198, "title": "Oakwood Road", "address": "Oakwood Road"}, {"lat": 52.247624, "lng": -0.900267, "title": "Semilong Road", "address": "Semilong Road"}, {"lat": 52.244001, "lng": -0.86909, "title": "Ardington Road", "address": "Ardington Road"}, {"lat": 52.242517, "lng": -0.917393, "title": "Vicarage Road", "address": "Vicarage Road"}, {"lat": 52.239516, "lng": -0.910608, "title": "St James Park Road", "address": "St James' Park Road"}, {"lat": 52.239377, "lng": -0.872254, "title": "Barry Road", "address": "Barry Road"}, {"lat": 52.238713, "lng": -0.876164, "title": "GB-LCL-A0100", "address": "Upper Thrift Street"}, {"lat": 52.351669, "lng": -1.148878, "title": "Holiday Inn Rugby-Northampton", "address": "M1 Junction18 A428"}, {"lat": 52.273869, "lng": -0.875469, "title": "Nationwide Adminsitration Centre", "address": "Moulten Park Industrial Estate"}, {"lat": 52.272926, "lng": -0.744971, "title": "Crystal HQ", "address": "4 Titlet Bawk Avenue"}, {"lat": 52.244692, "lng": -0.833783, "title": "Restricted access to Vauxhall customers", "address": "Carousel Way"}, {"lat": 52.243466, "lng": -0.83466, "title": "Restricted access to Toyota customers", "address": "Ferris Row"}, {"lat": 52.23397, "lng": -0.893858, "title": "Morrisons Northampton", "address": "Wm Morrison Supermarkets Plc"}, {"lat": 52.186321, "lng": -0.891303, "title": "Harvester Grange Park", "address": "Loake Close"}, {"lat": 52.259491, "lng": -0.872798, "title": "Morrisons", "address": "Kettering Road"}, {"lat": 52.234957, "lng": -0.900784, "title": "Northampton, Commercial Street", "address": "Commercial Street"}, {"lat": 52.410021, "lng": -0.740299, "title": "Linnell Way", "address": "Linnnell Way"}, {"lat": 52.241422, "lng": -0.894584, "title": "Northampton, Upper Mounts", "address": "1 Victoria St"}, {"lat": 52.240202, "lng": -0.896219, "title": "Northampton, Newlands", "address": "Newland"}, {"lat": 52.239498, "lng": -0.892761, "title": "Northampton, Wellington Street", "address": "28-34 Wellington St"}, {"lat": 52.215136, "lng": -0.912466, "title": "Tesco Extra-Northampton South", "address": "Clannell Road"}, {"lat": 52.25675, "lng": -0.83712, "title": "LCP Weston Favell", "address": "LCP Weston Favell"}, {"lat": 52.227479, "lng": -0.742344, "title": "The Falcon", "address": "Castle Ashby"}, {"lat": 52.233494, "lng": -0.894641, "title": "Morrisons Northampton", "address": "Wm Morrison Supermarkets PLC, 26 Victoria Promenade"}];
+  var chargerData = [{"lat": 52.24549337288799, "lng": -0.812294031050069, "title": "The Quays", "address": "Crow Lane", "connectors": ["CCS (Type 2) · 75kW", "CCS (Type 2) · 75kW", "CCS (Type 2) · 75kW", "CHAdeMO · 75kW"]}, {"lat": 52.24258845658197, "lng": -0.8342945560274015, "title": "Tesla ", "address": "Carousel Way", "connectors": ["CCS (Type 2) · 250kW"]}, {"lat": 52.253345, "lng": -0.876198, "title": "Oakwood Road", "address": "Oakwood Road", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 52.247624, "lng": -0.900267, "title": "Semilong Road", "address": "Semilong Road", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 52.244001, "lng": -0.86909, "title": "Ardington Road", "address": "Ardington Road", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 52.242517, "lng": -0.917393, "title": "Vicarage Road", "address": "Vicarage Road", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 52.239516, "lng": -0.910608, "title": "St James Park Road", "address": "St James' Park Road", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 52.239377, "lng": -0.872254, "title": "Barry Road", "address": "Barry Road", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 52.238713, "lng": -0.876164, "title": "GB-LCL-A0100", "address": "Upper Thrift Street", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 52.351669, "lng": -1.148878, "title": "Holiday Inn Rugby-Northampton", "address": "M1 Junction18 A428", "connectors": ["CHAdeMO · 50kW", "CHAdeMO · 50kW"]}, {"lat": 52.273869, "lng": -0.875469, "title": "Nationwide Adminsitration Centre", "address": "Moulten Park Industrial Estate", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 52.272926, "lng": -0.744971, "title": "Crystal HQ", "address": "4 Titlet Bawk Avenue", "connectors": ["Type 2 (Socket Only) · 22kW", "CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 50kW"]}, {"lat": 52.244692, "lng": -0.833783, "title": "Restricted access to Vauxhall customers", "address": "Carousel Way", "connectors": ["Type 1 (J1772) · 3.7kW"]}, {"lat": 52.243466, "lng": -0.83466, "title": "Restricted access to Toyota customers", "address": "Ferris Row", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 52.23397, "lng": -0.893858, "title": "Morrisons Northampton", "address": "Wm Morrison Supermarkets Plc", "connectors": ["Type 2 (Tethered Connector)  · 60kW", "CHAdeMO · 50kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 52.186321, "lng": -0.891303, "title": "Harvester Grange Park", "address": "Loake Close", "connectors": ["CHAdeMO · 50kW", "CHAdeMO · 50kW"]}, {"lat": 52.259491, "lng": -0.872798, "title": "Morrisons", "address": "Kettering Road", "connectors": ["CHAdeMO · 50kW", "Type 2 (Socket Only) · 22kW", "Type 2 (Tethered Connector)  · 50kW"]}, {"lat": 52.234957, "lng": -0.900784, "title": "Northampton, Commercial Street", "address": "Commercial Street", "connectors": ["CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 43kW", "Type 2 (Tethered Connector)  · 50kW"]}, {"lat": 52.410021, "lng": -0.740299, "title": "Linnell Way", "address": "Linnnell Way", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 52.241422, "lng": -0.894584, "title": "Northampton, Upper Mounts", "address": "1 Victoria St", "connectors": ["CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 50kW", "Type 2 (Tethered Connector)  · 43kW"]}, {"lat": 52.240202, "lng": -0.896219, "title": "Northampton, Newlands", "address": "Newland", "connectors": ["CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 50kW", "Type 2 (Tethered Connector)  · 43kW"]}, {"lat": 52.239498, "lng": -0.892761, "title": "Northampton, Wellington Street", "address": "28-34 Wellington St", "connectors": ["CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 50kW", "Type 2 (Tethered Connector)  · 43kW"]}, {"lat": 52.215136, "lng": -0.912466, "title": "Tesco Extra-Northampton South", "address": "Clannell Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 52.25675, "lng": -0.83712, "title": "LCP Weston Favell", "address": "LCP Weston Favell", "connectors": ["CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 50kW", "Type 2 (Tethered Connector)  · 43kW"]}, {"lat": 52.227479, "lng": -0.742344, "title": "The Falcon", "address": "Castle Ashby", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 52.233494, "lng": -0.894641, "title": "Morrisons Northampton", "address": "Wm Morrison Supermarkets PLC, 26 Victoria Promenade", "connectors": ["Type 2 (Socket Only) · 22kW", "CHAdeMO · 50kW", "CCS (Type 2) · 50kW"]}];
 
   chargerData.forEach(function (c) {
+    var connHtml = c.connectors.length
+      ? '<div style="margin-top:6px;font-size:12px;color:#475569">' + c.connectors.join(' &middot; ') + '</div>'
+      : '';
     var marker = L.marker([c.lat, c.lng]);
     marker.bindPopup(
-      '<b>' + c.title + '</b><br>' + c.address + '<br><br>' +
+      '<b>' + c.title + '</b>' +
+      '<div style="color:#64748b;font-size:13px">' + c.address + '</div>' +
+      connHtml +
       '<a href="https://www.google.com/maps/dir/?api=1&destination=' + c.lat + ',' + c.lng +
-      '" target="_blank" rel="noopener">Get directions</a>'
+      '" target="_blank" rel="noopener" style="display:inline-block;margin-top:8px;padding:4px 10px;background:#2563eb;color:white;border-radius:4px;text-decoration:none;font-size:12px">Get directions</a>'
     );
     markers.addLayer(marker);
   });
-
   map.addLayer(markers);
+
+  // --- Connector filter ---
+  var filterBtns = document.querySelectorAll('.filter-btn');
+  var chargerItems = document.querySelectorAll('.charger-item');
+
+  filterBtns.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      filterBtns.forEach(function (b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      var f = btn.dataset.filter;
+      chargerItems.forEach(function (item) {
+        var connList = item.dataset.connectors ? item.dataset.connectors.split(',') : [];
+        item.style.display = (f === 'all' || connList.indexOf(f) !== -1) ? '' : 'none';
+      });
+    });
+  });
+
+  // --- Copy postcode ---
+  document.querySelectorAll('.copy-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var original = btn.textContent;
+      navigator.clipboard.writeText(btn.dataset.copy).then(function () {
+        btn.textContent = 'Copied!';
+        btn.classList.add('copy-btn--success');
+        setTimeout(function () {
+          btn.textContent = original;
+          btn.classList.remove('copy-btn--success');
+        }, 1500);
+      });
+    });
+  });
 }());
 </script>
 

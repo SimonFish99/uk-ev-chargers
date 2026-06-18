@@ -17,7 +17,10 @@
 
 <header>
 <div class="container">
-<a href="/" class="logo">PlugMap <span class="tagline">UK EV Charger Locator</span></a>
+<a href="/" class="logo">
+  <svg class="logo-bolt" viewBox="0 0 24 24" fill="currentColor" width="22" height="22" aria-hidden="true"><path d="M13 2L4.5 13.5H11L10 22L19.5 10.5H13Z"/></svg>
+  PlugMap <span class="tagline">UK EV Charger Locator</span>
+</a>
 </div>
 </header>
 
@@ -28,16 +31,27 @@
 </nav>
 
 <h1>EV Chargers in Wimbledon Town &amp; Dundonald</h1>
-<p class="page-intro">5 public charging stations found in Wimbledon Town &amp; Dundonald.</p>
+
+<div class="stats-bar">
+  <span class="stat-pill stat-total">5 stations</span>
+  
+  
+  <span class="stat-pill stat-slow">5 slow</span>
+</div>
 
 <div id="map"></div>
 
-<ul class="charger-list">
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Opposite 93 Queens Road</h2>
-  <p class="charger-address">Queens Road SW19 8NL
+<ul class="charger-list" id="charger-list">
+
+
+<li class="charger-item charger-item--slow" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Opposite 93 Queens Road</h2>
+    
+  </div>
+  <p class="charger-address">Queens Road <button class="copy-btn" data-copy="SW19 8NL">SW19 8NL</button>
   </p>
   
   <div class="charger-connections">
@@ -56,9 +70,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Birkbeck Road, adjacent 111 Effra Road</h2>
-  <p class="charger-address">Birkbeck Road SW19 8NZ
+<li class="charger-item charger-item--slow" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Birkbeck Road, adjacent 111 Effra Road</h2>
+    
+  </div>
+  <p class="charger-address">Birkbeck Road <button class="copy-btn" data-copy="SW19 8NZ">SW19 8NZ</button>
   </p>
   
   <div class="charger-connections">
@@ -77,9 +94,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Edith Road, adjacent to 71 Clarence Road</h2>
-  <p class="charger-address">Edith Road SW19 8TW
+<li class="charger-item charger-item--slow" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Edith Road, adjacent to 71 Clarence Road</h2>
+    
+  </div>
+  <p class="charger-address">Edith Road <button class="copy-btn" data-copy="SW19 8TW">SW19 8TW</button>
   </p>
   
   <div class="charger-connections">
@@ -98,9 +118,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Fernleigh, 20 - 25 Edith Road</h2>
-  <p class="charger-address">Edith Road SW19 8UD
+<li class="charger-item charger-item--slow" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Fernleigh, 20 - 25 Edith Road</h2>
+    
+  </div>
+  <p class="charger-address">Edith Road <button class="copy-btn" data-copy="SW19 8UD">SW19 8UD</button>
   </p>
   
   <div class="charger-connections">
@@ -119,9 +142,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">10 South Park Road</h2>
-  <p class="charger-address">South Park Road SW19 8ST
+<li class="charger-item charger-item--slow" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">10 South Park Road</h2>
+    
+  </div>
+  <p class="charger-address">South Park Road <button class="copy-btn" data-copy="SW19 8ST">SW19 8ST</button>
   </p>
   
   <div class="charger-connections">
@@ -143,6 +169,23 @@
 
 <p><a href="/" class="back-link">← All UK towns</a></p>
 
+
+<div class="nearby-towns">
+  <h2 class="nearby-heading">Nearby towns</h2>
+  <ul class="nearby-list">
+  
+    <li><a href="/uk/merton/">Merton</a></li>
+  
+    <li><a href="/uk/morden/">Morden</a></li>
+  
+    <li><a href="/uk/wandsworth/">Wandsworth</a></li>
+  
+    <li><a href="/uk/mitcham/">Mitcham</a></li>
+  
+  </ul>
+</div>
+
+
 </div>
 
 <footer>
@@ -155,26 +198,61 @@
 <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 <script>
 (function () {
+  // --- Map ---
   var map = L.map('map').setView([51.4224566, -0.1940734], 12);
-
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
   }).addTo(map);
 
   var markers = L.markerClusterGroup();
-  var chargerData = [{"lat": 51.42374, "lng": -0.198954, "title": "Opposite 93 Queens Road", "address": "Queens Road"}, {"lat": 51.423136, "lng": -0.19002, "title": "Birkbeck Road, adjacent 111 Effra Road", "address": "Birkbeck Road"}, {"lat": 51.422699, "lng": -0.189641, "title": "Edith Road, adjacent to 71 Clarence Road", "address": "Edith Road"}, {"lat": 51.422116, "lng": -0.189526, "title": "Fernleigh, 20 - 25 Edith Road", "address": "Edith Road"}, {"lat": 51.420592, "lng": -0.202226, "title": "10 South Park Road", "address": "South Park Road"}];
+  var chargerData = [{"lat": 51.42374, "lng": -0.198954, "title": "Opposite 93 Queens Road", "address": "Queens Road", "connectors": ["Type 2 (Socket Only) · 3.7kW"]}, {"lat": 51.423136, "lng": -0.19002, "title": "Birkbeck Road, adjacent 111 Effra Road", "address": "Birkbeck Road", "connectors": ["Type 2 (Socket Only) · 5kW"]}, {"lat": 51.422699, "lng": -0.189641, "title": "Edith Road, adjacent to 71 Clarence Road", "address": "Edith Road", "connectors": ["Type 2 (Socket Only) · 5kW"]}, {"lat": 51.422116, "lng": -0.189526, "title": "Fernleigh, 20 - 25 Edith Road", "address": "Edith Road", "connectors": ["Type 2 (Socket Only) · 3.7kW"]}, {"lat": 51.420592, "lng": -0.202226, "title": "10 South Park Road", "address": "South Park Road", "connectors": ["Type 2 (Socket Only) · 5kW"]}];
 
   chargerData.forEach(function (c) {
+    var connHtml = c.connectors.length
+      ? '<div style="margin-top:6px;font-size:12px;color:#475569">' + c.connectors.join(' &middot; ') + '</div>'
+      : '';
     var marker = L.marker([c.lat, c.lng]);
     marker.bindPopup(
-      '<b>' + c.title + '</b><br>' + c.address + '<br><br>' +
+      '<b>' + c.title + '</b>' +
+      '<div style="color:#64748b;font-size:13px">' + c.address + '</div>' +
+      connHtml +
       '<a href="https://www.google.com/maps/dir/?api=1&destination=' + c.lat + ',' + c.lng +
-      '" target="_blank" rel="noopener">Get directions</a>'
+      '" target="_blank" rel="noopener" style="display:inline-block;margin-top:8px;padding:4px 10px;background:#2563eb;color:white;border-radius:4px;text-decoration:none;font-size:12px">Get directions</a>'
     );
     markers.addLayer(marker);
   });
-
   map.addLayer(markers);
+
+  // --- Connector filter ---
+  var filterBtns = document.querySelectorAll('.filter-btn');
+  var chargerItems = document.querySelectorAll('.charger-item');
+
+  filterBtns.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      filterBtns.forEach(function (b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      var f = btn.dataset.filter;
+      chargerItems.forEach(function (item) {
+        var connList = item.dataset.connectors ? item.dataset.connectors.split(',') : [];
+        item.style.display = (f === 'all' || connList.indexOf(f) !== -1) ? '' : 'none';
+      });
+    });
+  });
+
+  // --- Copy postcode ---
+  document.querySelectorAll('.copy-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var original = btn.textContent;
+      navigator.clipboard.writeText(btn.dataset.copy).then(function () {
+        btn.textContent = 'Copied!';
+        btn.classList.add('copy-btn--success');
+        setTimeout(function () {
+          btn.textContent = original;
+          btn.classList.remove('copy-btn--success');
+        }, 1500);
+      });
+    });
+  });
 }());
 </script>
 

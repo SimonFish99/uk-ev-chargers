@@ -17,7 +17,10 @@
 
 <header>
 <div class="container">
-<a href="/" class="logo">PlugMap <span class="tagline">UK EV Charger Locator</span></a>
+<a href="/" class="logo">
+  <svg class="logo-bolt" viewBox="0 0 24 24" fill="currentColor" width="22" height="22" aria-hidden="true"><path d="M13 2L4.5 13.5H11L10 22L19.5 10.5H13Z"/></svg>
+  PlugMap <span class="tagline">UK EV Charger Locator</span>
+</a>
 </div>
 </header>
 
@@ -28,16 +31,45 @@
 </nav>
 
 <h1>EV Chargers in Bristol</h1>
-<p class="page-intro">93 public charging stations found in Bristol.</p>
+
+<div class="stats-bar">
+  <span class="stat-pill stat-total">93 stations</span>
+  <span class="stat-pill stat-rapid">31 rapid (50kW+)</span>
+  <span class="stat-pill stat-fast">60 fast (7–50kW)</span>
+  <span class="stat-pill stat-slow">2 slow</span>
+</div>
 
 <div id="map"></div>
 
-<ul class="charger-list">
+
+<div class="connector-filter">
+  <span class="filter-label">Filter:</span>
+  <button class="filter-btn active" data-filter="all">All</button>
+  
+  <button class="filter-btn" data-filter="BS1363 3 Pin 13 Amp">BS1363 3 Pin 13 Amp</button>
+  
+  <button class="filter-btn" data-filter="CCS (Type 2)">CCS (Type 2)</button>
+  
+  <button class="filter-btn" data-filter="CHAdeMO">CHAdeMO</button>
+  
+  <button class="filter-btn" data-filter="Tesla (Model S/X)">Tesla (Model S/X)</button>
+  
+  <button class="filter-btn" data-filter="Type 2 (Socket Only)">Type 2 (Socket Only)</button>
+  
+  <button class="filter-btn" data-filter="Type 2 (Tethered Connector) ">Type 2 (Tethered Connector) </button>
+  
+</div>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Aztec Hotel &amp; Spa</h2>
-  <p class="charger-address">110 Aztec West BS32 4TS
+<ul class="charger-list" id="charger-list">
+
+
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Aztec Hotel &amp; Spa</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">110 Aztec West <button class="copy-btn" data-copy="BS32 4TS">BS32 4TS</button>
   </p>
   
   <div class="charger-connections">
@@ -71,9 +103,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Brunswick Square Car Club Only</h2>
-  <p class="charger-address">Brunswick Square BS1 3LQ
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Brunswick Square Car Club Only</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Brunswick Square <button class="copy-btn" data-copy="BS1 3LQ">BS1 3LQ</button>
   </p>
   
   <div class="charger-connections">
@@ -92,9 +127,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">BizSpace Bristol </h2>
-  <p class="charger-address">Equinox South BS32 4QL
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">BizSpace Bristol </h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Equinox South <button class="copy-btn" data-copy="BS32 4QL">BS32 4QL</button>
   </p>
   
   <div class="charger-connections">
@@ -113,9 +151,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">GL184</h2>
-  <p class="charger-address">51 Northumbria Dr, Henleaze BS9 4HN
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">GL184</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">51 Northumbria Dr, Henleaze <button class="copy-btn" data-copy="BS9 4HN">BS9 4HN</button>
   </p>
   
   <div class="charger-connections">
@@ -134,9 +175,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Ultra Rapid EV Charging - Sainsbury&#39;s Castle Court</h2>
-  <p class="charger-address">Arnos Vale BS4 3BD
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2),CHAdeMO">
+  <div class="charger-header">
+    <h2 class="charger-name">Ultra Rapid EV Charging - Sainsbury&#39;s Castle Court</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Arnos Vale <button class="copy-btn" data-copy="BS4 3BD">BS4 3BD</button>
   </p>
   
   <div class="charger-connections">
@@ -176,9 +221,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Tesco Superstore - Nailsea</h2>
-  <p class="charger-address">Stock Way North BS48 1AQ
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Tesco Superstore - Nailsea</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Stock Way North <button class="copy-btn" data-copy="BS48 1AQ">BS48 1AQ</button>
   </p>
   
   <div class="charger-connections">
@@ -200,9 +248,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Tesco Superstore - Keynsham</h2>
-  <p class="charger-address">Bristol Road BS31 2BA
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Tesco Superstore - Keynsham</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Bristol Road <button class="copy-btn" data-copy="BS31 2BA">BS31 2BA</button>
   </p>
   
   <div class="charger-connections">
@@ -224,9 +275,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Tesco Superstore - Midsomer Norton</h2>
-  <p class="charger-address">Old Mills BS39 7SW
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Tesco Superstore - Midsomer Norton</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Old Mills <button class="copy-btn" data-copy="BS39 7SW">BS39 7SW</button>
   </p>
   
   <div class="charger-connections">
@@ -248,9 +302,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Legal &amp; General Investment Management</h2>
-  <p class="charger-address">Aspects Leisure Park BS15 9LA
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Legal &amp; General Investment Management</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Aspects Leisure Park <button class="copy-btn" data-copy="BS15 9LA">BS15 9LA</button>
   </p>
   
   <div class="charger-connections">
@@ -275,9 +332,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Thornbury Leisure Centre</h2>
-  <p class="charger-address">Thornbury Road, Thornbury BS1 9NE
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Thornbury Leisure Centre</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Thornbury Road, Thornbury <button class="copy-btn" data-copy="BS1 9NE">BS1 9NE</button>
   </p>
   
   <div class="charger-connections">
@@ -299,9 +359,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">SHELL RECHARGE CRIBBS CAUSEWAY</h2>
-  <p class="charger-address">Cribbs Causeway BS10 7TG
+<li class="charger-item charger-item--rapid" data-connectors="CHAdeMO,Type 2 (Tethered Connector) ">
+  <div class="charger-header">
+    <h2 class="charger-name">SHELL RECHARGE CRIBBS CAUSEWAY</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Cribbs Causeway <button class="copy-btn" data-copy="BS10 7TG">BS10 7TG</button>
   </p>
   
   <div class="charger-connections">
@@ -326,9 +390,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Shell Recharge Newfoundland Circus</h2>
-  <p class="charger-address">95 Newfoundland Road BS2 9LU
+<li class="charger-item charger-item--rapid" data-connectors="CHAdeMO,CCS (Type 2)">
+  <div class="charger-header">
+    <h2 class="charger-name">Shell Recharge Newfoundland Circus</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">95 Newfoundland Road <button class="copy-btn" data-copy="BS2 9LU">BS2 9LU</button>
   </p>
   
   <div class="charger-connections">
@@ -350,9 +418,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Bridge Road, Leigh Woods</h2>
-  <p class="charger-address">Leigh Woods BS83PA
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Bridge Road, Leigh Woods</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Leigh Woods <button class="copy-btn" data-copy="BS83PA">BS83PA</button>
   </p>
   
   <div class="charger-connections">
@@ -374,9 +445,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">zest-park-race-year</h2>
-  <p class="charger-address">Chandus Court BS2 0UH
+<li class="charger-item charger-item--rapid" data-connectors="Type 2 (Tethered Connector) ">
+  <div class="charger-header">
+    <h2 class="charger-name">zest-park-race-year</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Chandus Court <button class="copy-btn" data-copy="BS2 0UH">BS2 0UH</button>
   </p>
   
   <div class="charger-connections">
@@ -395,9 +470,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Huntsman Taverners Pub and Restaurant</h2>
-  <p class="charger-address">Westerleigh RD BS16 6UB
+<li class="charger-item charger-item--rapid" data-connectors="CHAdeMO,CCS (Type 2),Type 2 (Socket Only),Type 2 (Tethered Connector) ">
+  <div class="charger-header">
+    <h2 class="charger-name">Huntsman Taverners Pub and Restaurant</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Westerleigh RD <button class="copy-btn" data-copy="BS16 6UB">BS16 6UB</button>
   </p>
   
   <div class="charger-connections">
@@ -431,9 +510,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Instavolt Flourish at Glenavon Farm</h2>
-  <p class="charger-address">Bath Road BS31 1TL
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2),CHAdeMO">
+  <div class="charger-header">
+    <h2 class="charger-name">Instavolt Flourish at Glenavon Farm</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Bath Road <button class="copy-btn" data-copy="BS31 1TL">BS31 1TL</button>
   </p>
   
   <div class="charger-connections">
@@ -455,9 +538,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">MFG Blackhorse</h2>
-  <p class="charger-address">Westerleigh Road BS16 7AN
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2),CHAdeMO">
+  <div class="charger-header">
+    <h2 class="charger-name">MFG Blackhorse</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Westerleigh Road <button class="copy-btn" data-copy="BS16 7AN">BS16 7AN</button>
   </p>
   
   <div class="charger-connections">
@@ -479,9 +566,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">MFG Stapleton</h2>
-  <p class="charger-address">Park Road BS16 1DT
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2),CHAdeMO">
+  <div class="charger-header">
+    <h2 class="charger-name">MFG Stapleton</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Park Road <button class="copy-btn" data-copy="BS16 1DT">BS16 1DT</button>
   </p>
   
   <div class="charger-connections">
@@ -503,9 +594,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">IKEA Bristol</h2>
-  <p class="charger-address">Eastgate Road Eastgate Shopping Centre BS5 6XX
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2),CHAdeMO,Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">IKEA Bristol</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Eastgate Road Eastgate Shopping Centre <button class="copy-btn" data-copy="BS5 6XX">BS5 6XX</button>
   </p>
   
   <div class="charger-connections">
@@ -530,9 +625,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Moto Severn View Services</h2>
-  <p class="charger-address">M48, Motorway, Jct 1, Aust BS35 4BH
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2),CHAdeMO,Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Moto Severn View Services</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">M48, Motorway, Jct 1, Aust <button class="copy-btn" data-copy="BS35 4BH">BS35 4BH</button>
   </p>
   
   <div class="charger-connections">
@@ -584,9 +683,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Yate Shopping Centre</h2>
-  <p class="charger-address">43 North Walk, Yate BS37 4AP
+<li class="charger-item charger-item--rapid" data-connectors="CHAdeMO,Type 2 (Tethered Connector) ">
+  <div class="charger-header">
+    <h2 class="charger-name">Yate Shopping Centre</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">43 North Walk, Yate <button class="copy-btn" data-copy="BS37 4AP">BS37 4AP</button>
   </p>
   
   <div class="charger-connections">
@@ -611,9 +714,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Motability Bristol</h2>
-  <p class="charger-address">Bristol Park House, 610 Bristol Business Park, Coldharbour Lane, Bristol BS16 1EJ
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Motability Bristol</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Bristol Park House, 610 Bristol Business Park, Coldharbour Lane, Bristol <button class="copy-btn" data-copy="BS16 1EJ">BS16 1EJ</button>
   </p>
   
   <div class="charger-connections">
@@ -635,9 +741,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Private business car park</h2>
-  <p class="charger-address">Dirac Crescent BS16 7FR
+<li class="charger-item charger-item--slow" data-connectors="BS1363 3 Pin 13 Amp">
+  <div class="charger-header">
+    <h2 class="charger-name">Private business car park</h2>
+    
+  </div>
+  <p class="charger-address">Dirac Crescent <button class="copy-btn" data-copy="BS16 7FR">BS16 7FR</button>
   </p>
   
   <div class="charger-connections">
@@ -662,9 +771,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Car Park</h2>
-  <p class="charger-address">Emersons Green BS16 7FR
+<li class="charger-item charger-item--rapid" data-connectors="Type 2 (Tethered Connector) ,CHAdeMO">
+  <div class="charger-header">
+    <h2 class="charger-name">Car Park</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Emersons Green <button class="copy-btn" data-copy="BS16 7FR">BS16 7FR</button>
   </p>
   
   <div class="charger-connections">
@@ -689,9 +802,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Page Road Short Stay Car Park</h2>
-  <p class="charger-address">Short Stay Car Park BS16 4NE
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Page Road Short Stay Car Park</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Short Stay Car Park <button class="copy-btn" data-copy="BS16 4NE">BS16 4NE</button>
   </p>
   
   <div class="charger-connections">
@@ -713,9 +829,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">SHELL RECHARGE BUDGENS BROADMEAD</h2>
-  <p class="charger-address">95 Newfoundland Road BS2 9LU
+<li class="charger-item charger-item--rapid" data-connectors="Type 2 (Tethered Connector) ,CHAdeMO">
+  <div class="charger-header">
+    <h2 class="charger-name">SHELL RECHARGE BUDGENS BROADMEAD</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">95 Newfoundland Road <button class="copy-btn" data-copy="BS2 9LU">BS2 9LU</button>
   </p>
   
   <div class="charger-connections">
@@ -740,9 +860,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Trenchard Street</h2>
-  <p class="charger-address">West End BS1 5AN
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Trenchard Street</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">West End <button class="copy-btn" data-copy="BS1 5AN">BS1 5AN</button>
   </p>
   
   <div class="charger-connections">
@@ -764,9 +887,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Trenchard Street</h2>
-  <p class="charger-address">West End BS1 5AN
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Trenchard Street</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">West End <button class="copy-btn" data-copy="BS1 5AN">BS1 5AN</button>
   </p>
   
   <div class="charger-connections">
@@ -788,9 +914,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">West End Car Park</h2>
-  <p class="charger-address">West End Car Park BS8 1EH
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">West End Car Park</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">West End Car Park <button class="copy-btn" data-copy="BS8 1EH">BS8 1EH</button>
   </p>
   
   <div class="charger-connections">
@@ -812,9 +941,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Trenchard Street Car Park 3</h2>
-  <p class="charger-address">Lodge Street BS1 5AN
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Trenchard Street Car Park 3</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Lodge Street <button class="copy-btn" data-copy="BS1 5AN">BS1 5AN</button>
   </p>
   
   <div class="charger-connections">
@@ -836,9 +968,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Trenchard Street Car Park 2</h2>
-  <p class="charger-address">Lodge Street BS1 5AN
+<li class="charger-item charger-item--fast" data-connectors="BS1363 3 Pin 13 Amp,Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Trenchard Street Car Park 2</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Lodge Street <button class="copy-btn" data-copy="BS1 5AN">BS1 5AN</button>
   </p>
   
   <div class="charger-connections">
@@ -860,9 +995,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">West End Car Park</h2>
-  <p class="charger-address">Berkeley Place BS8 1JX
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">West End Car Park</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Berkeley Place <button class="copy-btn" data-copy="BS8 1JX">BS8 1JX</button>
   </p>
   
   <div class="charger-connections">
@@ -881,9 +1019,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Trenchard Car Park</h2>
-  <p class="charger-address">Trenchard Car Park BS1 5AN
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Trenchard Car Park</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Trenchard Car Park <button class="copy-btn" data-copy="BS1 5AN">BS1 5AN</button>
   </p>
   
   <div class="charger-connections">
@@ -905,9 +1046,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Aurora</h2>
-  <p class="charger-address">Finzels Reach BS1 6BX
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Aurora</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Finzels Reach <button class="copy-btn" data-copy="BS1 6BX">BS1 6BX</button>
   </p>
   
   <div class="charger-connections">
@@ -929,9 +1073,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">DRAX_00112</h2>
-  <p class="charger-address">Victoria Street BS1 6HY
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">DRAX_00112</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Victoria Street <button class="copy-btn" data-copy="BS1 6HY">BS1 6HY</button>
   </p>
   
   <div class="charger-connections">
@@ -953,9 +1100,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">NCP Queen Charlotte Street</h2>
-  <p class="charger-address">NCP Queen Charlotte Street BS1 4ES
+<li class="charger-item charger-item--slow" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">NCP Queen Charlotte Street</h2>
+    
+  </div>
+  <p class="charger-address">NCP Queen Charlotte Street <button class="copy-btn" data-copy="BS1 4ES">BS1 4ES</button>
   </p>
   
   <div class="charger-connections">
@@ -977,9 +1127,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Car Park</h2>
-  <p class="charger-address">College Street BS1 5UY
+<li class="charger-item charger-item--fast" data-connectors="BS1363 3 Pin 13 Amp,Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Car Park</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">College Street <button class="copy-btn" data-copy="BS1 5UY">BS1 5UY</button>
   </p>
   
   <div class="charger-connections">
@@ -1007,9 +1160,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">College Street Car Park</h2>
-  <p class="charger-address">College Street Car Park BS1 5UU
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">College Street Car Park</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">College Street Car Park <button class="copy-btn" data-copy="BS1 5UU">BS1 5UU</button>
   </p>
   
   <div class="charger-connections">
@@ -1031,9 +1187,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Car Park</h2>
-  <p class="charger-address">Harborside BS1 4RB
+<li class="charger-item charger-item--fast" data-connectors="BS1363 3 Pin 13 Amp,Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Car Park</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Harborside <button class="copy-btn" data-copy="BS1 4RB">BS1 4RB</button>
   </p>
   
   <div class="charger-connections">
@@ -1055,9 +1214,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">The Grove</h2>
-  <p class="charger-address">Harbourside BS1 4RB
+<li class="charger-item charger-item--fast" data-connectors="BS1363 3 Pin 13 Amp,Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">The Grove</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Harbourside <button class="copy-btn" data-copy="BS1 4RB">BS1 4RB</button>
   </p>
   
   <div class="charger-connections">
@@ -1079,9 +1241,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Longwell Green Leisure Centre</h2>
-  <p class="charger-address">Leisure Road BS15 9LA
+<li class="charger-item charger-item--rapid" data-connectors="CHAdeMO">
+  <div class="charger-header">
+    <h2 class="charger-name">Longwell Green Leisure Centre</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Leisure Road <button class="copy-btn" data-copy="BS15 9LA">BS15 9LA</button>
   </p>
   
   <div class="charger-connections">
@@ -1103,9 +1269,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Long Ashton Park and Ride</h2>
-  <p class="charger-address">A370 BS3 2HB
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Long Ashton Park and Ride</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">A370 <button class="copy-btn" data-copy="BS3 2HB">BS3 2HB</button>
   </p>
   
   <div class="charger-connections">
@@ -1127,9 +1296,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Long Ashton Park and Ride</h2>
-  <p class="charger-address">A370 BS3 2HB
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Long Ashton Park and Ride</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">A370 <button class="copy-btn" data-copy="BS3 2HB">BS3 2HB</button>
   </p>
   
   <div class="charger-connections">
@@ -1151,9 +1323,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">InstaVolt Costa Coffee</h2>
-  <p class="charger-address">Fieldfare BS16 7FN
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2),CHAdeMO">
+  <div class="charger-header">
+    <h2 class="charger-name">InstaVolt Costa Coffee</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Fieldfare <button class="copy-btn" data-copy="BS16 7FN">BS16 7FN</button>
   </p>
   
   <div class="charger-connections">
@@ -1175,9 +1351,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">DoubleTree Hilton</h2>
-  <p class="charger-address">Frost Hill, Congresbury BS49 5AD
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2),CHAdeMO">
+  <div class="charger-header">
+    <h2 class="charger-name">DoubleTree Hilton</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Frost Hill, Congresbury <button class="copy-btn" data-copy="BS49 5AD">BS49 5AD</button>
   </p>
   
   <div class="charger-connections">
@@ -1199,9 +1379,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Lye Cross Farm</h2>
-  <p class="charger-address">Lye Cross Farm BS40 5RH
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2),CHAdeMO">
+  <div class="charger-header">
+    <h2 class="charger-name">Lye Cross Farm</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Lye Cross Farm <button class="copy-btn" data-copy="BS40 5RH">BS40 5RH</button>
   </p>
   
   <div class="charger-connections">
@@ -1223,9 +1407,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">College Street Car Park</h2>
-  <p class="charger-address">Saint Georges Road BS1 5UU
+<li class="charger-item charger-item--rapid" data-connectors="CHAdeMO,Type 2 (Socket Only),Type 2 (Tethered Connector) ,CCS (Type 2)">
+  <div class="charger-header">
+    <h2 class="charger-name">College Street Car Park</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Saint Georges Road <button class="copy-btn" data-copy="BS1 5UU">BS1 5UU</button>
   </p>
   
   <div class="charger-connections">
@@ -1259,9 +1447,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Revive_SGC</h2>
-  <p class="charger-address">St James Street BS16 9HE
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Revive_SGC</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">St James Street <button class="copy-btn" data-copy="BS16 9HE">BS16 9HE</button>
   </p>
   
   <div class="charger-connections">
@@ -1283,9 +1474,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Revive_BCC</h2>
-  <p class="charger-address">Portland Street BS2 8HL
+<li class="charger-item charger-item--rapid" data-connectors="Type 2 (Socket Only),CHAdeMO,CCS (Type 2)">
+  <div class="charger-header">
+    <h2 class="charger-name">Revive_BCC</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Portland Street <button class="copy-btn" data-copy="BS2 8HL">BS2 8HL</button>
   </p>
   
   <div class="charger-connections">
@@ -1316,9 +1511,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Revive_NSC</h2>
-  <p class="charger-address">High St BS15 9TR
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Revive_NSC</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">High St <button class="copy-btn" data-copy="BS15 9TR">BS15 9TR</button>
   </p>
   
   <div class="charger-connections">
@@ -1340,9 +1538,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Revive_BCC_02</h2>
-  <p class="charger-address">Whitchurch Ln BS14 0BH
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Revive_BCC_02</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Whitchurch Ln <button class="copy-btn" data-copy="BS14 0BH">BS14 0BH</button>
   </p>
   
   <div class="charger-connections">
@@ -1364,9 +1565,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Cribbs Causeway Car Park J</h2>
-  <p class="charger-address">Pegasus Road BS34 5DG 
+<li class="charger-item charger-item--rapid" data-connectors="CHAdeMO,CCS (Type 2),Type 2 (Tethered Connector) ">
+  <div class="charger-header">
+    <h2 class="charger-name">Cribbs Causeway Car Park J</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Pegasus Road <button class="copy-btn" data-copy="BS34 5DG ">BS34 5DG </button>
   </p>
   
   <div class="charger-connections">
@@ -1391,9 +1596,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Winter Stream Farm Pub</h2>
-  <p class="charger-address">Winterbourne Road BS16 1GW
+<li class="charger-item charger-item--rapid" data-connectors="CHAdeMO,CCS (Type 2)">
+  <div class="charger-header">
+    <h2 class="charger-name">Winter Stream Farm Pub</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Winterbourne Road <button class="copy-btn" data-copy="BS16 1GW">BS16 1GW</button>
   </p>
   
   <div class="charger-connections">
@@ -1421,9 +1630,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Riverside Inn Saltford</h2>
-  <p class="charger-address">The Shallows BS31 3EZ
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Riverside Inn Saltford</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">The Shallows <button class="copy-btn" data-copy="BS31 3EZ">BS31 3EZ</button>
   </p>
   
   <div class="charger-connections">
@@ -1442,9 +1654,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">EVC Mendip Spring Golf Club</h2>
-  <p class="charger-address">Mendip Spring Golf Club BS49 5JT
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">EVC Mendip Spring Golf Club</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Mendip Spring Golf Club <button class="copy-btn" data-copy="BS49 5JT">BS49 5JT</button>
   </p>
   
   <div class="charger-connections">
@@ -1463,9 +1678,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Counterslip</h2>
-  <p class="charger-address">Counterslip BS1 6BX
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Counterslip</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Counterslip <button class="copy-btn" data-copy="BS1 6BX">BS1 6BX</button>
   </p>
   
   <div class="charger-connections">
@@ -1484,9 +1702,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Tesco Extra-Bristol Brislington</h2>
-  <p class="charger-address">Callington Road BS4 5AY
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Tesco Extra-Bristol Brislington</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Callington Road <button class="copy-btn" data-copy="BS4 5AY">BS4 5AY</button>
   </p>
   
   <div class="charger-connections">
@@ -1508,9 +1729,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Premier Inn Cribbs Causeway</h2>
-  <p class="charger-address">Catbrain Lane BS10 7TQ
+<li class="charger-item charger-item--rapid" data-connectors="CHAdeMO,Type 2 (Socket Only),CCS (Type 2)">
+  <div class="charger-header">
+    <h2 class="charger-name">Premier Inn Cribbs Causeway</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Catbrain Lane <button class="copy-btn" data-copy="BS10 7TQ">BS10 7TQ</button>
   </p>
   
   <div class="charger-connections">
@@ -1544,9 +1769,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">McDonald&#39;s Cribbs Causeway</h2>
-  <p class="charger-address">Lysander Road BS10 7UA
+<li class="charger-item charger-item--rapid" data-connectors="CHAdeMO,CCS (Type 2)">
+  <div class="charger-header">
+    <h2 class="charger-name">McDonald&#39;s Cribbs Causeway</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Lysander Road <button class="copy-btn" data-copy="BS10 7UA">BS10 7UA</button>
   </p>
   
   <div class="charger-connections">
@@ -1568,9 +1797,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">The Parade Car Park</h2>
-  <p class="charger-address">Patchway BS34 5JP
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">The Parade Car Park</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Patchway <button class="copy-btn" data-copy="BS34 5JP">BS34 5JP</button>
   </p>
   
   <div class="charger-connections">
@@ -1592,9 +1824,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Portishead Marina Rapid Charging Hub</h2>
-  <p class="charger-address">Portishead BS20 7DB
+<li class="charger-item charger-item--rapid" data-connectors="CHAdeMO,CCS (Type 2),Type 2 (Tethered Connector) ">
+  <div class="charger-header">
+    <h2 class="charger-name">Portishead Marina Rapid Charging Hub</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Portishead <button class="copy-btn" data-copy="BS20 7DB">BS20 7DB</button>
   </p>
   
   <div class="charger-connections">
@@ -1628,9 +1864,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Haynes Lane Car Park</h2>
-  <p class="charger-address">Haynes Lane BS16 5JE
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Haynes Lane Car Park</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Haynes Lane <button class="copy-btn" data-copy="BS16 5JE">BS16 5JE</button>
   </p>
   
   <div class="charger-connections">
@@ -1652,9 +1891,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Cecil Road Car Park</h2>
-  <p class="charger-address">Kingswood BS15 8NA
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Cecil Road Car Park</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Kingswood <button class="copy-btn" data-copy="BS15 8NA">BS15 8NA</button>
   </p>
   
   <div class="charger-connections">
@@ -1676,9 +1918,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Chalks Road Car Park</h2>
-  <p class="charger-address">Chalks Road BS5 9EN
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Chalks Road Car Park</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Chalks Road <button class="copy-btn" data-copy="BS5 9EN">BS5 9EN</button>
   </p>
   
   <div class="charger-connections">
@@ -1700,9 +1945,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Easton Leisure Centre</h2>
-  <p class="charger-address">Thrissell Street BS5 0SW
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Easton Leisure Centre</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Thrissell Street <button class="copy-btn" data-copy="BS5 0SW">BS5 0SW</button>
   </p>
   
   <div class="charger-connections">
@@ -1724,9 +1972,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Laburnum Road Car Park</h2>
-  <p class="charger-address">Hanham BS15 3EJ
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Laburnum Road Car Park</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Hanham <button class="copy-btn" data-copy="BS15 3EJ">BS15 3EJ</button>
   </p>
   
   <div class="charger-connections">
@@ -1748,9 +1999,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Mollies Bristol</h2>
-  <p class="charger-address">Cribbs Causeway BS10 7TL
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2),Type 2 (Socket Only),CHAdeMO">
+  <div class="charger-header">
+    <h2 class="charger-name">Mollies Bristol</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Cribbs Causeway <button class="copy-btn" data-copy="BS10 7TL">BS10 7TL</button>
   </p>
   
   <div class="charger-connections">
@@ -1787,9 +2042,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Horfield Leisure Centre</h2>
-  <p class="charger-address">Dorian Road BS7 0XW
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Horfield Leisure Centre</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Dorian Road <button class="copy-btn" data-copy="BS7 0XW">BS7 0XW</button>
   </p>
   
   <div class="charger-connections">
@@ -1811,9 +2069,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Bradley Stoke Leisure Centre</h2>
-  <p class="charger-address">Fiddlers Wood Lane BS32 9BS
+<li class="charger-item charger-item--rapid" data-connectors="CHAdeMO,CCS (Type 2),Type 2 (Tethered Connector) ">
+  <div class="charger-header">
+    <h2 class="charger-name">Bradley Stoke Leisure Centre</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Fiddlers Wood Lane <button class="copy-btn" data-copy="BS32 9BS">BS32 9BS</button>
   </p>
   
   <div class="charger-connections">
@@ -1838,9 +2100,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Millennium Square underground car park</h2>
-  <p class="charger-address">10 Canons Way BS1 5LL
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Millennium Square underground car park</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">10 Canons Way <button class="copy-btn" data-copy="BS1 5LL">BS1 5LL</button>
   </p>
   
   <div class="charger-connections">
@@ -1862,9 +2127,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">The Sandringham</h2>
-  <p class="charger-address">Quaker&#39;s Road BS16 6NH
+<li class="charger-item charger-item--rapid" data-connectors="CHAdeMO,CCS (Type 2),Type 2 (Tethered Connector) ">
+  <div class="charger-header">
+    <h2 class="charger-name">The Sandringham</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Quaker&#39;s Road <button class="copy-btn" data-copy="BS16 6NH">BS16 6NH</button>
   </p>
   
   <div class="charger-connections">
@@ -1889,9 +2158,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Southmead HospitalTrust Headquarters</h2>
-  <p class="charger-address">Southmead HospitalTrust Headquarters BS10 5NB
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Southmead HospitalTrust Headquarters</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Southmead HospitalTrust Headquarters <button class="copy-btn" data-copy="BS10 5NB">BS10 5NB</button>
   </p>
   
   <div class="charger-connections">
@@ -1913,9 +2185,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Brunel Building MSCP</h2>
-  <p class="charger-address">Southmead Hospital BS10 5NB
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Brunel Building MSCP</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Southmead Hospital <button class="copy-btn" data-copy="BS10 5NB">BS10 5NB</button>
   </p>
   
   <div class="charger-connections">
@@ -1937,9 +2212,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Brunel Building MSCP</h2>
-  <p class="charger-address">Southmead Hospital BS10 5NB
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Brunel Building MSCP</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Southmead Hospital <button class="copy-btn" data-copy="BS10 5NB">BS10 5NB</button>
   </p>
   
   <div class="charger-connections">
@@ -1961,9 +2239,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Morrisons Bristol Fishponds</h2>
-  <p class="charger-address">690-718 Fishponds Road Fishponds BS16 3US
+<li class="charger-item charger-item--rapid" data-connectors="Type 2 (Socket Only),CHAdeMO,CCS (Type 2)">
+  <div class="charger-header">
+    <h2 class="charger-name">Morrisons Bristol Fishponds</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">690-718 Fishponds Road Fishponds <button class="copy-btn" data-copy="BS16 3US">BS16 3US</button>
   </p>
   
   <div class="charger-connections">
@@ -1988,9 +2270,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">The Priory</h2>
-  <p class="charger-address">Station Road BS20 7TN
+<li class="charger-item charger-item--rapid" data-connectors="CHAdeMO,CCS (Type 2),Type 2 (Tethered Connector) ">
+  <div class="charger-header">
+    <h2 class="charger-name">The Priory</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Station Road <button class="copy-btn" data-copy="BS20 7TN">BS20 7TN</button>
   </p>
   
   <div class="charger-connections">
@@ -2015,9 +2301,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Bristol Zoo Gardens (west)</h2>
-  <p class="charger-address">Bristol Zoo Gardens (west) BS8 3HA
+<li class="charger-item charger-item--fast" data-connectors="BS1363 3 Pin 13 Amp,Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Bristol Zoo Gardens (west)</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Bristol Zoo Gardens (west) <button class="copy-btn" data-copy="BS8 3HA">BS8 3HA</button>
   </p>
   
   <div class="charger-connections">
@@ -2039,9 +2328,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">City Hall</h2>
-  <p class="charger-address">College Green BS1 5TR
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">City Hall</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">College Green <button class="copy-btn" data-copy="BS1 5TR">BS1 5TR</button>
   </p>
   
   <div class="charger-connections">
@@ -2060,9 +2352,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">College Street</h2>
-  <p class="charger-address">College Street BS1 5UU
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">College Street</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">College Street <button class="copy-btn" data-copy="BS1 5UU">BS1 5UU</button>
   </p>
   
   <div class="charger-connections">
@@ -2081,9 +2376,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Bristol City Council Building Car Park</h2>
-  <p class="charger-address">Smeaton Road BS1 6XN
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Bristol City Council Building Car Park</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Smeaton Road <button class="copy-btn" data-copy="BS1 6XN">BS1 6XN</button>
   </p>
   
   <div class="charger-connections">
@@ -2105,9 +2403,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Create Centre</h2>
-  <p class="charger-address">Smeaton Road BS1 6XN
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Create Centre</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Smeaton Road <button class="copy-btn" data-copy="BS1 6XN">BS1 6XN</button>
   </p>
   
   <div class="charger-connections">
@@ -2126,9 +2427,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Create Centre</h2>
-  <p class="charger-address">Smeaton Road BS1 6XN
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Create Centre</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Smeaton Road <button class="copy-btn" data-copy="BS1 6XN">BS1 6XN</button>
   </p>
   
   <div class="charger-connections">
@@ -2150,9 +2454,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">St Monica Trust</h2>
-  <p class="charger-address">Keynsham BS31 2AU
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">St Monica Trust</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Keynsham <button class="copy-btn" data-copy="BS31 2AU">BS31 2AU</button>
   </p>
   
   <div class="charger-connections">
@@ -2174,9 +2481,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Bristol-Lysander Road Supercharger</h2>
-  <p class="charger-address">Lysander Road BS10 7DD 
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2),Tesla (Model S/X)">
+  <div class="charger-header">
+    <h2 class="charger-name">Bristol-Lysander Road Supercharger</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Lysander Road <button class="copy-btn" data-copy="BS10 7DD ">BS10 7DD </button>
   </p>
   
   <div class="charger-connections">
@@ -2198,9 +2509,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Portway</h2>
-  <p class="charger-address">Portway BS11 9QE
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Portway</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Portway <button class="copy-btn" data-copy="BS11 9QE">BS11 9QE</button>
   </p>
   
   <div class="charger-connections">
@@ -2222,9 +2536,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">A4 Portway Park and Ride</h2>
-  <p class="charger-address">Portway BS11 9QE
+<li class="charger-item charger-item--rapid" data-connectors="Type 2 (Tethered Connector) ,CHAdeMO,CCS (Type 2),Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">A4 Portway Park and Ride</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Portway <button class="copy-btn" data-copy="BS11 9QE">BS11 9QE</button>
   </p>
   
   <div class="charger-connections">
@@ -2255,9 +2573,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Car Park</h2>
-  <p class="charger-address">Redland Hill BS6 6UT
+<li class="charger-item charger-item--fast" data-connectors="BS1363 3 Pin 13 Amp,Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Car Park</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Redland Hill <button class="copy-btn" data-copy="BS6 6UT">BS6 6UT</button>
   </p>
   
   <div class="charger-connections">
@@ -2279,9 +2600,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Trenchard Street Multi-Storey Car Park</h2>
-  <p class="charger-address">Trenchard Street BS1 5AN
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Trenchard Street Multi-Storey Car Park</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Trenchard Street <button class="copy-btn" data-copy="BS1 5AN">BS1 5AN</button>
   </p>
   
   <div class="charger-connections">
@@ -2309,9 +2633,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Templegate Car Park</h2>
-  <p class="charger-address">Templegate House Templegate BS1 6PX
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Templegate Car Park</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Templegate House Templegate <button class="copy-btn" data-copy="BS1 6PX">BS1 6PX</button>
   </p>
   
   <div class="charger-connections">
@@ -2333,9 +2660,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Temple Gate Car Park 1</h2>
-  <p class="charger-address">Temple Gate BS1 6PL
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Temple Gate Car Park 1</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Temple Gate <button class="copy-btn" data-copy="BS1 6PL">BS1 6PL</button>
   </p>
   
   <div class="charger-connections">
@@ -2357,9 +2687,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Long Ashton Park and Ride</h2>
-  <p class="charger-address">Long Ashton Park &amp; Ride BS3 2HB
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Long Ashton Park and Ride</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Long Ashton Park &amp; Ride <button class="copy-btn" data-copy="BS3 2HB">BS3 2HB</button>
   </p>
   
   <div class="charger-connections">
@@ -2381,9 +2714,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Brislington Park and Ride</h2>
-  <p class="charger-address">Bath Road Brislington BS4 5RU
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Brislington Park and Ride</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Bath Road Brislington <button class="copy-btn" data-copy="BS4 5RU">BS4 5RU</button>
   </p>
   
   <div class="charger-connections">
@@ -2405,9 +2741,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">West End Car Park</h2>
-  <p class="charger-address">Berkeley Place BS8 1EH
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">West End Car Park</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Berkeley Place <button class="copy-btn" data-copy="BS8 1EH">BS8 1EH</button>
   </p>
   
   <div class="charger-connections">
@@ -2429,6 +2768,23 @@
 
 <p><a href="/" class="back-link">← All UK towns</a></p>
 
+
+<div class="nearby-towns">
+  <h2 class="nearby-heading">Nearby towns</h2>
+  <ul class="nearby-list">
+  
+    <li><a href="/uk/patchway/">Patchway</a></li>
+  
+    <li><a href="/uk/bath/">Bath</a></li>
+  
+    <li><a href="/uk/preston/">Preston</a></li>
+  
+    <li><a href="/uk/newport/">Newport</a></li>
+  
+  </ul>
+</div>
+
+
 </div>
 
 <footer>
@@ -2441,26 +2797,61 @@
 <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 <script>
 (function () {
+  // --- Map ---
   var map = L.map('map').setView([51.467516795676374, -2.5826728898912648], 12);
-
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
   }).addTo(map);
 
   var markers = L.markerClusterGroup();
-  var chargerData = [{"lat": 51.54292656646189, "lng": -2.5687507274676022, "title": "Aztec Hotel & Spa", "address": "110 Aztec West"}, {"lat": 51.460376500426435, "lng": -2.587607718405451, "title": "Brunswick Square Car Club Only", "address": "Brunswick Square"}, {"lat": 51.54755028, "lng": -2.557863531, "title": "BizSpace Bristol ", "address": "Equinox South"}, {"lat": 51.480312, "lng": -2.61253, "title": "GL184", "address": "51 Northumbria Dr, Henleaze"}, {"lat": 51.443274, "lng": -2.560203, "title": "Ultra Rapid EV Charging - Sainsbury's Castle Court", "address": "Arnos Vale"}, {"lat": 51.434863, "lng": -2.752432, "title": "Tesco Superstore - Nailsea", "address": "Stock Way North"}, {"lat": 51.416674, "lng": -2.501015, "title": "Tesco Superstore - Keynsham", "address": "Bristol Road"}, {"lat": 51.292525, "lng": -2.498202, "title": "Tesco Superstore - Midsomer Norton", "address": "Old Mills"}, {"lat": 51.44877, "lng": -2.4992, "title": "Legal & General Investment Management", "address": "Aspects Leisure Park"}, {"lat": 51.601089, "lng": -2.52706, "title": "Thornbury Leisure Centre", "address": "Thornbury Road, Thornbury"}, {"lat": 51.522339, "lng": -2.618872, "title": "SHELL RECHARGE CRIBBS CAUSEWAY", "address": "Cribbs Causeway"}, {"lat": 51.461107, "lng": -2.581821, "title": "Shell Recharge Newfoundland Circus", "address": "95 Newfoundland Road"}, {"lat": 51.45293, "lng": -2.63174, "title": "Bridge Road, Leigh Woods", "address": "Leigh Woods"}, {"lat": 51.448143, "lng": -2.572578, "title": "zest-park-race-year", "address": "Chandus Court"}, {"lat": 51.494078, "lng": -2.488658, "title": "Huntsman Taverners Pub and Restaurant", "address": "Westerleigh RD"}, {"lat": 51.4068091, "lng": -2.4686405, "title": "Instavolt Flourish at Glenavon Farm", "address": "Bath Road"}, {"lat": 51.49681, "lng": -2.4826, "title": "MFG Blackhorse", "address": "Westerleigh Road"}, {"lat": 51.4848309715113, "lng": -2.55040074039165, "title": "MFG Stapleton", "address": "Park Road"}, {"lat": 51.473057, "lng": -2.564405, "title": "IKEA Bristol", "address": "Eastgate Road Eastgate Shopping Centre"}, {"lat": 51.603802, "lng": -2.619964, "title": "Moto Severn View Services", "address": "M48, Motorway, Jct 1, Aust"}, {"lat": 51.541444, "lng": -2.416278, "title": "Yate Shopping Centre", "address": "43 North Walk, Yate"}, {"lat": 51.501557, "lng": -2.543303, "title": "Motability Bristol", "address": "Bristol Park House, 610 Bristol Business Park, Coldharbour Lane, Bristol"}, {"lat": 51.500902, "lng": -2.478183, "title": "Private business car park", "address": "Dirac Crescent"}, {"lat": 51.500883, "lng": -2.478359, "title": "Car Park", "address": "Emersons Green"}, {"lat": 51.480552, "lng": -2.509319, "title": "Page Road Short Stay Car Park", "address": "Short Stay Car Park"}, {"lat": 51.461423, "lng": -2.581415, "title": "SHELL RECHARGE BUDGENS BROADMEAD", "address": "95 Newfoundland Road"}, {"lat": 51.455669, "lng": -2.59984, "title": "Trenchard Street", "address": "West End"}, {"lat": 51.45557, "lng": -2.59984, "title": "Trenchard Street", "address": "West End"}, {"lat": 51.455473, "lng": -2.609504, "title": "West End Car Park", "address": "West End Car Park"}, {"lat": 51.454951, "lng": -2.598929, "title": "Trenchard Street Car Park 3", "address": "Lodge Street"}, {"lat": 51.454938, "lng": -2.598994, "title": "Trenchard Street Car Park 2", "address": "Lodge Street"}, {"lat": 51.454872, "lng": -2.60906, "title": "West End Car Park", "address": "Berkeley Place"}, {"lat": 51.454736, "lng": -2.59893, "title": "Trenchard Car Park", "address": "Trenchard Car Park"}, {"lat": 51.453754, "lng": -2.587966, "title": "Aurora", "address": "Finzels Reach"}, {"lat": 51.45315, "lng": -2.58997, "title": "DRAX_00112", "address": "Victoria Street"}, {"lat": 51.4529, "lng": -2.59322, "title": "NCP Queen Charlotte Street", "address": "NCP Queen Charlotte Street"}, {"lat": 51.452485, "lng": -2.602735, "title": "Car Park", "address": "College Street"}, {"lat": 51.451674, "lng": -2.604403, "title": "College Street Car Park", "address": "College Street Car Park"}, {"lat": 51.449378, "lng": -2.595999, "title": "Car Park", "address": "Harborside"}, {"lat": 51.448799, "lng": -2.59505, "title": "The Grove", "address": "Harbourside"}, {"lat": 51.448399, "lng": -2.50016, "title": "Longwell Green Leisure Centre", "address": "Leisure Road"}, {"lat": 51.435791, "lng": -2.63597, "title": "Long Ashton Park and Ride", "address": "A370"}, {"lat": 51.435692, "lng": -2.63597, "title": "Long Ashton Park and Ride", "address": "A370"}, {"lat": 51.5058307, "lng": -2.4885443, "title": "InstaVolt Costa Coffee", "address": "Fieldfare"}, {"lat": 51.3818352, "lng": -2.8062283, "title": "DoubleTree Hilton", "address": "Frost Hill, Congresbury"}, {"lat": 51.3573158, "lng": -2.7341611, "title": "Lye Cross Farm", "address": "Lye Cross Farm"}, {"lat": 51.45203599449857, "lng": -2.6032697512882805, "title": "College Street Car Park", "address": "Saint Georges Road"}, {"lat": 51.483509, "lng": -2.485488, "title": "Revive_SGC", "address": "St James Street"}, {"lat": 51.462379, "lng": -2.598996, "title": "Revive_BCC", "address": "Portland Street"}, {"lat": 51.462349, "lng": -2.50101, "title": "Revive_NSC", "address": "High St"}, {"lat": 51.409672, "lng": -2.581583, "title": "Revive_BCC_02", "address": "Whitchurch Ln"}, {"lat": 51.52585933652648, "lng": -2.5942216997941614, "title": "Cribbs Causeway Car Park J", "address": "Pegasus Road"}, {"lat": 51.52187462119511, "lng": -2.527945756471013, "title": "Winter Stream Farm Pub", "address": "Winterbourne Road"}, {"lat": 51.400078, "lng": -2.449404, "title": "Riverside Inn Saltford", "address": "The Shallows"}, {"lat": 51.35092232822018, "lng": -2.808501069876009, "title": "EVC Mendip Spring Golf Club", "address": "Mendip Spring Golf Club"}, {"lat": 51.45310876044138, "lng": -2.588564933685575, "title": "Counterslip", "address": "Counterslip"}, {"lat": 51.43184, "lng": -2.554912, "title": "Tesco Extra-Bristol Brislington", "address": "Callington Road"}, {"lat": 51.523281, "lng": -2.615222, "title": "Premier Inn Cribbs Causeway", "address": "Catbrain Lane"}, {"lat": 51.5253511419983, "lng": -2.60645044741739, "title": "McDonald's Cribbs Causeway", "address": "Lysander Road"}, {"lat": 51.538861, "lng": -2.584056, "title": "The Parade Car Park", "address": "Patchway"}, {"lat": 51.486672, "lng": -2.76478, "title": "Portishead Marina Rapid Charging Hub", "address": "Portishead"}, {"lat": 51.481917, "lng": -2.510278, "title": "Haynes Lane Car Park", "address": "Haynes Lane"}, {"lat": 51.461333, "lng": -2.506667, "title": "Cecil Road Car Park", "address": "Kingswood"}, {"lat": 51.46025, "lng": -2.551503, "title": "Chalks Road Car Park", "address": "Chalks Road"}, {"lat": 51.460058, "lng": -2.574235, "title": "Easton Leisure Centre", "address": "Thrissell Street"}, {"lat": 51.449444, "lng": -2.518417, "title": "Laburnum Road Car Park", "address": "Hanham"}, {"lat": 51.52511, "lng": -2.615667, "title": "Mollies Bristol", "address": "Cribbs Causeway"}, {"lat": 51.4938011169434, "lng": -2.58472204208374, "title": "Horfield Leisure Centre", "address": "Dorian Road"}, {"lat": 51.535657, "lng": -2.545928, "title": "Bradley Stoke Leisure Centre", "address": "Fiddlers Wood Lane"}, {"lat": 51.449286, "lng": -2.600439, "title": "Millennium Square underground car park", "address": "10 Canons Way"}, {"lat": 51.499195, "lng": -2.503604, "title": "The Sandringham", "address": "Quaker's Road"}, {"lat": 51.496792, "lng": -2.593026, "title": "Southmead HospitalTrust Headquarters", "address": "Southmead HospitalTrust Headquarters"}, {"lat": 51.496483, "lng": -2.593058, "title": "Brunel Building MSCP", "address": "Southmead Hospital"}, {"lat": 51.496426, "lng": -2.593182, "title": "Brunel Building MSCP", "address": "Southmead Hospital"}, {"lat": 51.477985, "lng": -2.532846, "title": "Morrisons Bristol Fishponds", "address": "690-718 Fishponds Road Fishponds"}, {"lat": 51.474899, "lng": -2.724, "title": "The Priory", "address": "Station Road"}, {"lat": 51.462803, "lng": -2.623801, "title": "Bristol Zoo Gardens (west)", "address": "Bristol Zoo Gardens (west)"}, {"lat": 51.452831, "lng": -2.60201, "title": "City Hall", "address": "College Green"}, {"lat": 51.451996, "lng": -2.602646, "title": "College Street", "address": "College Street"}, {"lat": 51.447315, "lng": -2.62305, "title": "Bristol City Council Building Car Park", "address": "Smeaton Road"}, {"lat": 51.447262, "lng": -2.62225, "title": "Create Centre", "address": "Smeaton Road"}, {"lat": 51.447063, "lng": -2.622256, "title": "Create Centre", "address": "Smeaton Road"}, {"lat": 51.423004, "lng": -2.492674, "title": "St Monica Trust", "address": "Keynsham"}, {"lat": 51.522884, "lng": -2.609229, "title": "Bristol-Lysander Road Supercharger", "address": "Lysander Road"}, {"lat": 51.491501, "lng": -2.689291, "title": "Portway", "address": "Portway"}, {"lat": 51.490342, "lng": -2.688797, "title": "A4 Portway Park and Ride", "address": "Portway"}, {"lat": 51.47134, "lng": -2.615144, "title": "Car Park", "address": "Redland Hill"}, {"lat": 51.45497408065427, "lng": -2.5998864501924857, "title": "Trenchard Street Multi-Storey Car Park", "address": "Trenchard Street"}, {"lat": 51.448218, "lng": -2.584469, "title": "Templegate Car Park", "address": "Templegate House Templegate"}, {"lat": 51.448168, "lng": -2.583835, "title": "Temple Gate Car Park 1", "address": "Temple Gate"}, {"lat": 51.436784, "lng": -2.6341, "title": "Long Ashton Park and Ride", "address": "Long Ashton Park & Ride"}, {"lat": 51.427926, "lng": -2.537032, "title": "Brislington Park and Ride", "address": "Bath Road Brislington"}, {"lat": 51.45598149902531, "lng": -2.609257691814264, "title": "West End Car Park", "address": "Berkeley Place"}];
+  var chargerData = [{"lat": 51.54292656646189, "lng": -2.5687507274676022, "title": "Aztec Hotel & Spa", "address": "110 Aztec West", "connectors": ["Type 2 (Socket Only) · 11kW", "Type 2 (Socket Only) · 11kW", "Type 2 (Socket Only) · 11kW", "Type 2 (Socket Only) · 11kW", "Type 2 (Socket Only) · 11kW", "Type 2 (Socket Only) · 11kW"]}, {"lat": 51.460376500426435, "lng": -2.587607718405451, "title": "Brunswick Square Car Club Only", "address": "Brunswick Square", "connectors": ["Type 2 (Socket Only) · 22kW"]}, {"lat": 51.54755028, "lng": -2.557863531, "title": "BizSpace Bristol ", "address": "Equinox South", "connectors": ["Type 2 (Socket Only) · 22kW"]}, {"lat": 51.480312, "lng": -2.61253, "title": "GL184", "address": "51 Northumbria Dr, Henleaze", "connectors": ["Type 2 (Socket Only) · 22kW"]}, {"lat": 51.443274, "lng": -2.560203, "title": "Ultra Rapid EV Charging - Sainsbury's Castle Court", "address": "Arnos Vale", "connectors": ["CCS (Type 2) · 150kW", "CCS (Type 2) · 150kW", "CCS (Type 2) · 150kW", "CCS (Type 2) · 150kW", "CCS (Type 2) · 150kW", "CCS (Type 2) · 150kW", "CCS (Type 2) · 150kW", "CHAdeMO · 50kW"]}, {"lat": 51.434863, "lng": -2.752432, "title": "Tesco Superstore - Nailsea", "address": "Stock Way North", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 51.416674, "lng": -2.501015, "title": "Tesco Superstore - Keynsham", "address": "Bristol Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 51.292525, "lng": -2.498202, "title": "Tesco Superstore - Midsomer Norton", "address": "Old Mills", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 51.44877, "lng": -2.4992, "title": "Legal & General Investment Management", "address": "Aspects Leisure Park", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 51.601089, "lng": -2.52706, "title": "Thornbury Leisure Centre", "address": "Thornbury Road, Thornbury", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 51.522339, "lng": -2.618872, "title": "SHELL RECHARGE CRIBBS CAUSEWAY", "address": "Cribbs Causeway", "connectors": ["CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 43kW", "Type 2 (Tethered Connector)  · 50kW"]}, {"lat": 51.461107, "lng": -2.581821, "title": "Shell Recharge Newfoundland Circus", "address": "95 Newfoundland Road", "connectors": ["CHAdeMO · 70kW", "CCS (Type 2) · 150kW"]}, {"lat": 51.45293, "lng": -2.63174, "title": "Bridge Road, Leigh Woods", "address": "Leigh Woods", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 51.448143, "lng": -2.572578, "title": "zest-park-race-year", "address": "Chandus Court", "connectors": ["Type 2 (Tethered Connector)  · 120kW"]}, {"lat": 51.494078, "lng": -2.488658, "title": "Huntsman Taverners Pub and Restaurant", "address": "Westerleigh RD", "connectors": ["CHAdeMO · 50kW", "CCS (Type 2) · 50kW", "Type 2 (Socket Only) · 22kW", "Type 2 (Tethered Connector)  · 43kW", "CHAdeMO · 50kW", "CCS (Type 2) · 50kW"]}, {"lat": 51.4068091, "lng": -2.4686405, "title": "Instavolt Flourish at Glenavon Farm", "address": "Bath Road", "connectors": ["CCS (Type 2) · 120kW", "CHAdeMO · 50kW"]}, {"lat": 51.49681, "lng": -2.4826, "title": "MFG Blackhorse", "address": "Westerleigh Road", "connectors": ["CCS (Type 2) · 150kW", "CHAdeMO · 50kW"]}, {"lat": 51.4848309715113, "lng": -2.55040074039165, "title": "MFG Stapleton", "address": "Park Road", "connectors": ["CCS (Type 2) · 150kW", "CHAdeMO · 50kW"]}, {"lat": 51.473057, "lng": -2.564405, "title": "IKEA Bristol", "address": "Eastgate Road Eastgate Shopping Centre", "connectors": ["CCS (Type 2) · 60kW", "CHAdeMO · 60kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 51.603802, "lng": -2.619964, "title": "Moto Severn View Services", "address": "M48, Motorway, Jct 1, Aust", "connectors": ["CCS (Type 2) · 50kW", "CHAdeMO · 50kW", "CCS (Type 2) · 350kW", "CCS (Type 2) · 350kW", "CCS (Type 2) · 350kW", "Type 2 (Socket Only) · 11kW", "Type 2 (Socket Only) · 11kW", "CCS (Type 2) · 350kW", "CCS (Type 2) · 350kW", "CHAdeMO · 100kW", "CHAdeMO · 100kW", "CHAdeMO · 100kW"]}, {"lat": 51.541444, "lng": -2.416278, "title": "Yate Shopping Centre", "address": "43 North Walk, Yate", "connectors": ["CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 50kW", "Type 2 (Tethered Connector)  · 43kW"]}, {"lat": 51.501557, "lng": -2.543303, "title": "Motability Bristol", "address": "Bristol Park House, 610 Bristol Business Park, Coldharbour Lane, Bristol", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 51.500902, "lng": -2.478183, "title": "Private business car park", "address": "Dirac Crescent", "connectors": ["BS1363 3 Pin 13 Amp · 3kW", "BS1363 3 Pin 13 Amp · 3kW", "BS1363 3 Pin 13 Amp · 3kW"]}, {"lat": 51.500883, "lng": -2.478359, "title": "Car Park", "address": "Emersons Green", "connectors": ["Type 2 (Tethered Connector)  · 43kW", "CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 50kW"]}, {"lat": 51.480552, "lng": -2.509319, "title": "Page Road Short Stay Car Park", "address": "Short Stay Car Park", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 51.461423, "lng": -2.581415, "title": "SHELL RECHARGE BUDGENS BROADMEAD", "address": "95 Newfoundland Road", "connectors": ["Type 2 (Tethered Connector)  · 43kW", "Type 2 (Tethered Connector)  · 50kW", "CHAdeMO · 50kW"]}, {"lat": 51.455669, "lng": -2.59984, "title": "Trenchard Street", "address": "West End", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 51.45557, "lng": -2.59984, "title": "Trenchard Street", "address": "West End", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 51.455473, "lng": -2.609504, "title": "West End Car Park", "address": "West End Car Park", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 51.454951, "lng": -2.598929, "title": "Trenchard Street Car Park 3", "address": "Lodge Street", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 51.454938, "lng": -2.598994, "title": "Trenchard Street Car Park 2", "address": "Lodge Street", "connectors": ["BS1363 3 Pin 13 Amp · 3kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 51.454872, "lng": -2.60906, "title": "West End Car Park", "address": "Berkeley Place", "connectors": ["Type 2 (Socket Only) · 7kW"]}, {"lat": 51.454736, "lng": -2.59893, "title": "Trenchard Car Park", "address": "Trenchard Car Park", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 51.453754, "lng": -2.587966, "title": "Aurora", "address": "Finzels Reach", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 51.45315, "lng": -2.58997, "title": "DRAX_00112", "address": "Victoria Street", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 51.4529, "lng": -2.59322, "title": "NCP Queen Charlotte Street", "address": "NCP Queen Charlotte Street", "connectors": ["Type 2 (Socket Only) · 3.7kW", "Type 2 (Socket Only) · 3.7kW"]}, {"lat": 51.452485, "lng": -2.602735, "title": "Car Park", "address": "College Street", "connectors": ["BS1363 3 Pin 13 Amp · 3kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 51.451674, "lng": -2.604403, "title": "College Street Car Park", "address": "College Street Car Park", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 51.449378, "lng": -2.595999, "title": "Car Park", "address": "Harborside", "connectors": ["BS1363 3 Pin 13 Amp · 3kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 51.448799, "lng": -2.59505, "title": "The Grove", "address": "Harbourside", "connectors": ["BS1363 3 Pin 13 Amp · 3kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 51.448399, "lng": -2.50016, "title": "Longwell Green Leisure Centre", "address": "Leisure Road", "connectors": ["CHAdeMO · 50kW", "CHAdeMO · 50kW"]}, {"lat": 51.435791, "lng": -2.63597, "title": "Long Ashton Park and Ride", "address": "A370", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 51.435692, "lng": -2.63597, "title": "Long Ashton Park and Ride", "address": "A370", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 51.5058307, "lng": -2.4885443, "title": "InstaVolt Costa Coffee", "address": "Fieldfare", "connectors": ["CCS (Type 2) · 120kW", "CHAdeMO · 50kW"]}, {"lat": 51.3818352, "lng": -2.8062283, "title": "DoubleTree Hilton", "address": "Frost Hill, Congresbury", "connectors": ["CCS (Type 2) · 120kW", "CHAdeMO · 50kW"]}, {"lat": 51.3573158, "lng": -2.7341611, "title": "Lye Cross Farm", "address": "Lye Cross Farm", "connectors": ["CCS (Type 2) · 120kW", "CHAdeMO · 50kW"]}, {"lat": 51.45203599449857, "lng": -2.6032697512882805, "title": "College Street Car Park", "address": "Saint Georges Road", "connectors": ["CHAdeMO · 50kW", "Type 2 (Socket Only) · 22kW", "Type 2 (Tethered Connector)  · 50kW", "CHAdeMO · 50kW", "CCS (Type 2) · 50kW", "Type 2 (Tethered Connector)  · 43kW"]}, {"lat": 51.483509, "lng": -2.485488, "title": "Revive_SGC", "address": "St James Street", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 51.462379, "lng": -2.598996, "title": "Revive_BCC", "address": "Portland Street", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW", "CHAdeMO · 50kW", "CCS (Type 2) · 50kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 51.462349, "lng": -2.50101, "title": "Revive_NSC", "address": "High St", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 51.409672, "lng": -2.581583, "title": "Revive_BCC_02", "address": "Whitchurch Ln", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 51.52585933652648, "lng": -2.5942216997941614, "title": "Cribbs Causeway Car Park J", "address": "Pegasus Road", "connectors": ["CHAdeMO · 50kW", "CCS (Type 2) · 50kW", "Type 2 (Tethered Connector)  · 43kW"]}, {"lat": 51.52187462119511, "lng": -2.527945756471013, "title": "Winter Stream Farm Pub", "address": "Winterbourne Road", "connectors": ["CHAdeMO · 75kW", "CCS (Type 2) · 75kW", "CHAdeMO · 75kW", "CCS (Type 2) · 75kW"]}, {"lat": 51.400078, "lng": -2.449404, "title": "Riverside Inn Saltford", "address": "The Shallows", "connectors": ["Type 2 (Socket Only) · 7kW"]}, {"lat": 51.35092232822018, "lng": -2.808501069876009, "title": "EVC Mendip Spring Golf Club", "address": "Mendip Spring Golf Club", "connectors": ["Type 2 (Socket Only) · 22kW"]}, {"lat": 51.45310876044138, "lng": -2.588564933685575, "title": "Counterslip", "address": "Counterslip", "connectors": ["Type 2 (Socket Only) · 7kW"]}, {"lat": 51.43184, "lng": -2.554912, "title": "Tesco Extra-Bristol Brislington", "address": "Callington Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 51.523281, "lng": -2.615222, "title": "Premier Inn Cribbs Causeway", "address": "Catbrain Lane", "connectors": ["CHAdeMO · 50kW", "Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW", "CHAdeMO · 50kW", "CCS (Type 2) · 50kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 51.5253511419983, "lng": -2.60645044741739, "title": "McDonald's Cribbs Causeway", "address": "Lysander Road", "connectors": ["CHAdeMO · 50kW", "CCS (Type 2) · 120kW"]}, {"lat": 51.538861, "lng": -2.584056, "title": "The Parade Car Park", "address": "Patchway", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 51.486672, "lng": -2.76478, "title": "Portishead Marina Rapid Charging Hub", "address": "Portishead", "connectors": ["CHAdeMO · 50kW", "CCS (Type 2) · 50kW", "Type 2 (Tethered Connector)  · 43kW", "Type 2 (Tethered Connector)  · 43kW", "CCS (Type 2) · 50kW", "CHAdeMO · 50kW"]}, {"lat": 51.481917, "lng": -2.510278, "title": "Haynes Lane Car Park", "address": "Haynes Lane", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 51.461333, "lng": -2.506667, "title": "Cecil Road Car Park", "address": "Kingswood", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 51.46025, "lng": -2.551503, "title": "Chalks Road Car Park", "address": "Chalks Road", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 51.460058, "lng": -2.574235, "title": "Easton Leisure Centre", "address": "Thrissell Street", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 51.449444, "lng": -2.518417, "title": "Laburnum Road Car Park", "address": "Hanham", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 51.52511, "lng": -2.615667, "title": "Mollies Bristol", "address": "Cribbs Causeway", "connectors": ["CCS (Type 2) · 100kW", "CCS (Type 2) · 100kW", "CCS (Type 2) · 100kW", "CCS (Type 2) · 100kW", "Type 2 (Socket Only) · 11kW", "CCS (Type 2) · 100kW", "CHAdeMO · 75kW"]}, {"lat": 51.4938011169434, "lng": -2.58472204208374, "title": "Horfield Leisure Centre", "address": "Dorian Road", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 51.535657, "lng": -2.545928, "title": "Bradley Stoke Leisure Centre", "address": "Fiddlers Wood Lane", "connectors": ["CHAdeMO · 50kW", "CCS (Type 2) · 50kW", "Type 2 (Tethered Connector)  · 43kW"]}, {"lat": 51.449286, "lng": -2.600439, "title": "Millennium Square underground car park", "address": "10 Canons Way", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 51.499195, "lng": -2.503604, "title": "The Sandringham", "address": "Quaker's Road", "connectors": ["CHAdeMO · 50kW", "CCS (Type 2) · 50kW", "Type 2 (Tethered Connector)  · 43kW"]}, {"lat": 51.496792, "lng": -2.593026, "title": "Southmead HospitalTrust Headquarters", "address": "Southmead HospitalTrust Headquarters", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 51.496483, "lng": -2.593058, "title": "Brunel Building MSCP", "address": "Southmead Hospital", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 51.496426, "lng": -2.593182, "title": "Brunel Building MSCP", "address": "Southmead Hospital", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 51.477985, "lng": -2.532846, "title": "Morrisons Bristol Fishponds", "address": "690-718 Fishponds Road Fishponds", "connectors": ["Type 2 (Socket Only) · 22kW", "CHAdeMO · 50kW", "CCS (Type 2) · 50kW"]}, {"lat": 51.474899, "lng": -2.724, "title": "The Priory", "address": "Station Road", "connectors": ["CHAdeMO · 50kW", "CCS (Type 2) · 50kW", "Type 2 (Tethered Connector)  · 43kW"]}, {"lat": 51.462803, "lng": -2.623801, "title": "Bristol Zoo Gardens (west)", "address": "Bristol Zoo Gardens (west)", "connectors": ["BS1363 3 Pin 13 Amp · 3kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 51.452831, "lng": -2.60201, "title": "City Hall", "address": "College Green", "connectors": ["Type 2 (Socket Only) · 7kW"]}, {"lat": 51.451996, "lng": -2.602646, "title": "College Street", "address": "College Street", "connectors": ["Type 2 (Socket Only) · 7kW"]}, {"lat": 51.447315, "lng": -2.62305, "title": "Bristol City Council Building Car Park", "address": "Smeaton Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 51.447262, "lng": -2.62225, "title": "Create Centre", "address": "Smeaton Road", "connectors": ["Type 2 (Socket Only) · 7kW"]}, {"lat": 51.447063, "lng": -2.622256, "title": "Create Centre", "address": "Smeaton Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 51.423004, "lng": -2.492674, "title": "St Monica Trust", "address": "Keynsham", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 51.522884, "lng": -2.609229, "title": "Bristol-Lysander Road Supercharger", "address": "Lysander Road", "connectors": ["CCS (Type 2) · 150kW", "Tesla (Model S/X) · 120kW"]}, {"lat": 51.491501, "lng": -2.689291, "title": "Portway", "address": "Portway", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 51.490342, "lng": -2.688797, "title": "A4 Portway Park and Ride", "address": "Portway", "connectors": ["Type 2 (Tethered Connector)  · 43kW", "CHAdeMO · 50kW", "CCS (Type 2) · 50kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 51.47134, "lng": -2.615144, "title": "Car Park", "address": "Redland Hill", "connectors": ["BS1363 3 Pin 13 Amp · 3kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 51.45497408065427, "lng": -2.5998864501924857, "title": "Trenchard Street Multi-Storey Car Park", "address": "Trenchard Street", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 51.448218, "lng": -2.584469, "title": "Templegate Car Park", "address": "Templegate House Templegate", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 51.448168, "lng": -2.583835, "title": "Temple Gate Car Park 1", "address": "Temple Gate", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 51.436784, "lng": -2.6341, "title": "Long Ashton Park and Ride", "address": "Long Ashton Park & Ride", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 51.427926, "lng": -2.537032, "title": "Brislington Park and Ride", "address": "Bath Road Brislington", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 51.45598149902531, "lng": -2.609257691814264, "title": "West End Car Park", "address": "Berkeley Place", "connectors": ["Type 2 (Socket Only) · 7kW"]}];
 
   chargerData.forEach(function (c) {
+    var connHtml = c.connectors.length
+      ? '<div style="margin-top:6px;font-size:12px;color:#475569">' + c.connectors.join(' &middot; ') + '</div>'
+      : '';
     var marker = L.marker([c.lat, c.lng]);
     marker.bindPopup(
-      '<b>' + c.title + '</b><br>' + c.address + '<br><br>' +
+      '<b>' + c.title + '</b>' +
+      '<div style="color:#64748b;font-size:13px">' + c.address + '</div>' +
+      connHtml +
       '<a href="https://www.google.com/maps/dir/?api=1&destination=' + c.lat + ',' + c.lng +
-      '" target="_blank" rel="noopener">Get directions</a>'
+      '" target="_blank" rel="noopener" style="display:inline-block;margin-top:8px;padding:4px 10px;background:#2563eb;color:white;border-radius:4px;text-decoration:none;font-size:12px">Get directions</a>'
     );
     markers.addLayer(marker);
   });
-
   map.addLayer(markers);
+
+  // --- Connector filter ---
+  var filterBtns = document.querySelectorAll('.filter-btn');
+  var chargerItems = document.querySelectorAll('.charger-item');
+
+  filterBtns.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      filterBtns.forEach(function (b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      var f = btn.dataset.filter;
+      chargerItems.forEach(function (item) {
+        var connList = item.dataset.connectors ? item.dataset.connectors.split(',') : [];
+        item.style.display = (f === 'all' || connList.indexOf(f) !== -1) ? '' : 'none';
+      });
+    });
+  });
+
+  // --- Copy postcode ---
+  document.querySelectorAll('.copy-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var original = btn.textContent;
+      navigator.clipboard.writeText(btn.dataset.copy).then(function () {
+        btn.textContent = 'Copied!';
+        btn.classList.add('copy-btn--success');
+        setTimeout(function () {
+          btn.textContent = original;
+          btn.classList.remove('copy-btn--success');
+        }, 1500);
+      });
+    });
+  });
 }());
 </script>
 

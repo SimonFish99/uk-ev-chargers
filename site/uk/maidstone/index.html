@@ -17,7 +17,10 @@
 
 <header>
 <div class="container">
-<a href="/" class="logo">PlugMap <span class="tagline">UK EV Charger Locator</span></a>
+<a href="/" class="logo">
+  <svg class="logo-bolt" viewBox="0 0 24 24" fill="currentColor" width="22" height="22" aria-hidden="true"><path d="M13 2L4.5 13.5H11L10 22L19.5 10.5H13Z"/></svg>
+  PlugMap <span class="tagline">UK EV Charger Locator</span>
+</a>
 </div>
 </header>
 
@@ -28,16 +31,41 @@
 </nav>
 
 <h1>EV Chargers in Maidstone</h1>
-<p class="page-intro">14 public charging stations found in Maidstone.</p>
+
+<div class="stats-bar">
+  <span class="stat-pill stat-total">14 stations</span>
+  <span class="stat-pill stat-rapid">8 rapid (50kW+)</span>
+  <span class="stat-pill stat-fast">6 fast (7–50kW)</span>
+  
+</div>
 
 <div id="map"></div>
 
-<ul class="charger-list">
+
+<div class="connector-filter">
+  <span class="filter-label">Filter:</span>
+  <button class="filter-btn active" data-filter="all">All</button>
+  
+  <button class="filter-btn" data-filter="CCS (Type 2)">CCS (Type 2)</button>
+  
+  <button class="filter-btn" data-filter="CHAdeMO">CHAdeMO</button>
+  
+  <button class="filter-btn" data-filter="Type 2 (Socket Only)">Type 2 (Socket Only)</button>
+  
+  <button class="filter-btn" data-filter="Type 2 (Tethered Connector) ">Type 2 (Tethered Connector) </button>
+  
+</div>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Wickes Maidstone</h2>
-  <p class="charger-address">St Peters Street ME16 0SN
+<ul class="charger-list" id="charger-list">
+
+
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Wickes Maidstone</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">St Peters Street <button class="copy-btn" data-copy="ME16 0SN">ME16 0SN</button>
   </p>
   
   <div class="charger-connections">
@@ -62,9 +90,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Pudding Lane</h2>
-  <p class="charger-address">Pudding Lane ME14 1LN
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2),CHAdeMO,Type 2 (Tethered Connector) ">
+  <div class="charger-header">
+    <h2 class="charger-name">Pudding Lane</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Pudding Lane <button class="copy-btn" data-copy="ME14 1LN">ME14 1LN</button>
   </p>
   
   <div class="charger-connections">
@@ -89,9 +121,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Chiltern Hundreds</h2>
-  <p class="charger-address">Penenden Heath Road ME14 2DG
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2),CHAdeMO">
+  <div class="charger-header">
+    <h2 class="charger-name">Chiltern Hundreds</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Penenden Heath Road <button class="copy-btn" data-copy="ME14 2DG">ME14 2DG</button>
   </p>
   
   <div class="charger-connections">
@@ -119,9 +155,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">The Cock Inn</h2>
-  <p class="charger-address">The Cock Inn ME174JD
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">The Cock Inn</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">The Cock Inn <button class="copy-btn" data-copy="ME174JD">ME174JD</button>
   </p>
   
   <div class="charger-connections">
@@ -138,9 +177,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">King Street Car Park</h2>
-  <p class="charger-address">King Street ME14 1DB
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">King Street Car Park</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">King Street <button class="copy-btn" data-copy="ME14 1DB">ME14 1DB</button>
   </p>
   
   <div class="charger-connections">
@@ -159,9 +201,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Invicta House</h2>
-  <p class="charger-address">County Road ME14 1XX
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Invicta House</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">County Road <button class="copy-btn" data-copy="ME14 1XX">ME14 1XX</button>
   </p>
   
   <div class="charger-connections">
@@ -183,9 +228,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">The Fields At Aylesford</h2>
-  <p class="charger-address">St Laurence Avenue ME16 0ZP
+<li class="charger-item charger-item--rapid" data-connectors="CHAdeMO,CCS (Type 2),Type 2 (Tethered Connector) ">
+  <div class="charger-header">
+    <h2 class="charger-name">The Fields At Aylesford</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">St Laurence Avenue <button class="copy-btn" data-copy="ME16 0ZP">ME16 0ZP</button>
   </p>
   
   <div class="charger-connections">
@@ -219,9 +268,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Roadchef Maidstone Services</h2>
-  <p class="charger-address">M20 Motorway, Jct 8, Hollingbourne ME17 1SS
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2),CHAdeMO,Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Roadchef Maidstone Services</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">M20 Motorway, Jct 8, Hollingbourne <button class="copy-btn" data-copy="ME17 1SS">ME17 1SS</button>
   </p>
   
   <div class="charger-connections">
@@ -270,9 +323,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Mercedes-Benz of Maidstone</h2>
-  <p class="charger-address">Bircholt Road ME15 9YN
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Mercedes-Benz of Maidstone</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Bircholt Road <button class="copy-btn" data-copy="ME15 9YN">ME15 9YN</button>
   </p>
   
   <div class="charger-connections">
@@ -294,9 +350,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Brunswick Street Car Park</h2>
-  <p class="charger-address">George Street ME15 6NP
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Brunswick Street Car Park</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">George Street <button class="copy-btn" data-copy="ME15 6NP">ME15 6NP</button>
   </p>
   
   <div class="charger-connections">
@@ -318,9 +377,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">InstaVolt/McDonald&#39;s Hart Street</h2>
-  <p class="charger-address">2-8 Hart Street ME16 8RA
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2),CHAdeMO">
+  <div class="charger-header">
+    <h2 class="charger-name">InstaVolt/McDonald&#39;s Hart Street</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">2-8 Hart Street <button class="copy-btn" data-copy="ME16 8RA">ME16 8RA</button>
   </p>
   
   <div class="charger-connections">
@@ -342,9 +405,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">M&amp;S Maidstone</h2>
-  <p class="charger-address">Eclipse Park ME14 3EN
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2),CHAdeMO,Type 2 (Tethered Connector) ">
+  <div class="charger-header">
+    <h2 class="charger-name">M&amp;S Maidstone</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Eclipse Park <button class="copy-btn" data-copy="ME14 3EN">ME14 3EN</button>
   </p>
   
   <div class="charger-connections">
@@ -369,9 +436,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Miller &amp; Carter White Rabbit</h2>
-  <p class="charger-address">Sandling Road ME14 2RJ
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2),CHAdeMO,Type 2 (Tethered Connector) ">
+  <div class="charger-header">
+    <h2 class="charger-name">Miller &amp; Carter White Rabbit</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Sandling Road <button class="copy-btn" data-copy="ME14 2RJ">ME14 2RJ</button>
   </p>
   
   <div class="charger-connections">
@@ -396,9 +467,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Wm Morrison Supermarkets PLC St. Saviours Road</h2>
-  <p class="charger-address">Wm Morrison Supermarkets PLC St. Saviours Road ME15 9NN
+<li class="charger-item charger-item--rapid" data-connectors="Type 2 (Tethered Connector) ,CHAdeMO,CCS (Type 2)">
+  <div class="charger-header">
+    <h2 class="charger-name">Wm Morrison Supermarkets PLC St. Saviours Road</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Wm Morrison Supermarkets PLC St. Saviours Road <button class="copy-btn" data-copy="ME15 9NN">ME15 9NN</button>
   </p>
   
   <div class="charger-connections">
@@ -426,6 +501,23 @@
 
 <p><a href="/" class="back-link">← All UK towns</a></p>
 
+
+<div class="nearby-towns">
+  <h2 class="nearby-heading">Nearby towns</h2>
+  <ul class="nearby-list">
+  
+    <li><a href="/uk/ashford/">Ashford</a></li>
+  
+    <li><a href="/uk/sittingbourne/">Sittingbourne</a></li>
+  
+    <li><a href="/uk/rochester/">Rochester</a></li>
+  
+    <li><a href="/uk/kent/">Kent</a></li>
+  
+  </ul>
+</div>
+
+
 </div>
 
 <footer>
@@ -438,26 +530,61 @@
 <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 <script>
 (function () {
+  // --- Map ---
   var map = L.map('map').setView([51.26903830837274, 0.5352266913388635], 12);
-
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
   }).addTo(map);
 
   var markers = L.markerClusterGroup();
-  var chargerData = [{"lat": 51.27390528, "lng": 0.51563406, "title": "Wickes Maidstone", "address": "St Peters Street"}, {"lat": 51.27383741170001, "lng": 0.5206227064647675, "title": "Pudding Lane", "address": "Pudding Lane"}, {"lat": 51.2857985714808, "lng": 0.5430197490062483, "title": "Chiltern Hundreds", "address": "Penenden Heath Road"}, {"lat": 51.229147, "lng": 0.542806, "title": "The Cock Inn", "address": "The Cock Inn"}, {"lat": 51.273859, "lng": 0.526436, "title": "King Street Car Park", "address": "King Street"}, {"lat": 51.27906, "lng": 0.52102, "title": "Invicta House", "address": "County Road"}, {"lat": 51.290635, "lng": 0.48867772, "title": "The Fields At Aylesford", "address": "St Laurence Avenue"}, {"lat": 51.266807, "lng": 0.614396, "title": "Roadchef Maidstone Services", "address": "M20 Motorway, Jct 8, Hollingbourne"}, {"lat": 51.239922, "lng": 0.56417, "title": "Mercedes-Benz of Maidstone", "address": "Bircholt Road"}, {"lat": 51.268601, "lng": 0.525373, "title": "Brunswick Street Car Park", "address": "George Street"}, {"lat": 51.2710098, "lng": 0.5166113, "title": "InstaVolt/McDonald's Hart Street", "address": "2-8 Hart Street"}, {"lat": 51.2865642540376, "lng": 0.548709143273072, "title": "M&S Maidstone", "address": "Eclipse Park"}, {"lat": 51.280739, "lng": 0.51924, "title": "Miller & Carter White Rabbit", "address": "Sandling Road"}, {"lat": 51.246651, "lng": 0.546458, "title": "Wm Morrison Supermarkets PLC St. Saviours Road", "address": "Wm Morrison Supermarkets PLC St. Saviours Road"}];
+  var chargerData = [{"lat": 51.27390528, "lng": 0.51563406, "title": "Wickes Maidstone", "address": "St Peters Street", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 51.27383741170001, "lng": 0.5206227064647675, "title": "Pudding Lane", "address": "Pudding Lane", "connectors": ["CCS (Type 2) · 50kW", "CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 43kW"]}, {"lat": 51.2857985714808, "lng": 0.5430197490062483, "title": "Chiltern Hundreds", "address": "Penenden Heath Road", "connectors": ["CCS (Type 2) · 75kW", "CCS (Type 2) · 75kW", "CHAdeMO · 75kW", "CCS (Type 2) · 75kW"]}, {"lat": 51.229147, "lng": 0.542806, "title": "The Cock Inn", "address": "The Cock Inn", "connectors": ["Type 2 (Socket Only) · 22kW"]}, {"lat": 51.273859, "lng": 0.526436, "title": "King Street Car Park", "address": "King Street", "connectors": ["Type 2 (Socket Only) · 7kW"]}, {"lat": 51.27906, "lng": 0.52102, "title": "Invicta House", "address": "County Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 51.290635, "lng": 0.48867772, "title": "The Fields At Aylesford", "address": "St Laurence Avenue", "connectors": ["CHAdeMO · 50kW", "CHAdeMO · 50kW", "CCS (Type 2) · 50kW", "CCS (Type 2) · 50kW", "Type 2 (Tethered Connector)  · 43kW", "Type 2 (Tethered Connector)  · 43kW"]}, {"lat": 51.266807, "lng": 0.614396, "title": "Roadchef Maidstone Services", "address": "M20 Motorway, Jct 8, Hollingbourne", "connectors": ["CCS (Type 2) · 50kW", "CHAdeMO · 50kW", "CCS (Type 2) · 50kW", "CCS (Type 2) · 50kW", "Type 2 (Socket Only) · 22kW", "CCS (Type 2) · 237kW", "CCS (Type 2) · 237kW", "CCS (Type 2) · 237kW", "CCS (Type 2) · 237kW", "CCS (Type 2) · 237kW", "CCS (Type 2) · 237kW"]}, {"lat": 51.239922, "lng": 0.56417, "title": "Mercedes-Benz of Maidstone", "address": "Bircholt Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 51.268601, "lng": 0.525373, "title": "Brunswick Street Car Park", "address": "George Street", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 51.2710098, "lng": 0.5166113, "title": "InstaVolt/McDonald's Hart Street", "address": "2-8 Hart Street", "connectors": ["CCS (Type 2) · 120kW", "CHAdeMO · 50kW"]}, {"lat": 51.2865642540376, "lng": 0.548709143273072, "title": "M&S Maidstone", "address": "Eclipse Park", "connectors": ["CCS (Type 2) · 50kW", "CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 43kW"]}, {"lat": 51.280739, "lng": 0.51924, "title": "Miller & Carter White Rabbit", "address": "Sandling Road", "connectors": ["CCS (Type 2) · 50kW", "CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 43kW"]}, {"lat": 51.246651, "lng": 0.546458, "title": "Wm Morrison Supermarkets PLC St. Saviours Road", "address": "Wm Morrison Supermarkets PLC St. Saviours Road", "connectors": ["Type 2 (Tethered Connector)  · 43kW", "CHAdeMO · 50kW", "CCS (Type 2) · 50kW"]}];
 
   chargerData.forEach(function (c) {
+    var connHtml = c.connectors.length
+      ? '<div style="margin-top:6px;font-size:12px;color:#475569">' + c.connectors.join(' &middot; ') + '</div>'
+      : '';
     var marker = L.marker([c.lat, c.lng]);
     marker.bindPopup(
-      '<b>' + c.title + '</b><br>' + c.address + '<br><br>' +
+      '<b>' + c.title + '</b>' +
+      '<div style="color:#64748b;font-size:13px">' + c.address + '</div>' +
+      connHtml +
       '<a href="https://www.google.com/maps/dir/?api=1&destination=' + c.lat + ',' + c.lng +
-      '" target="_blank" rel="noopener">Get directions</a>'
+      '" target="_blank" rel="noopener" style="display:inline-block;margin-top:8px;padding:4px 10px;background:#2563eb;color:white;border-radius:4px;text-decoration:none;font-size:12px">Get directions</a>'
     );
     markers.addLayer(marker);
   });
-
   map.addLayer(markers);
+
+  // --- Connector filter ---
+  var filterBtns = document.querySelectorAll('.filter-btn');
+  var chargerItems = document.querySelectorAll('.charger-item');
+
+  filterBtns.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      filterBtns.forEach(function (b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      var f = btn.dataset.filter;
+      chargerItems.forEach(function (item) {
+        var connList = item.dataset.connectors ? item.dataset.connectors.split(',') : [];
+        item.style.display = (f === 'all' || connList.indexOf(f) !== -1) ? '' : 'none';
+      });
+    });
+  });
+
+  // --- Copy postcode ---
+  document.querySelectorAll('.copy-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var original = btn.textContent;
+      navigator.clipboard.writeText(btn.dataset.copy).then(function () {
+        btn.textContent = 'Copied!';
+        btn.classList.add('copy-btn--success');
+        setTimeout(function () {
+          btn.textContent = original;
+          btn.classList.remove('copy-btn--success');
+        }, 1500);
+      });
+    });
+  });
 }());
 </script>
 

@@ -17,7 +17,10 @@
 
 <header>
 <div class="container">
-<a href="/" class="logo">PlugMap <span class="tagline">UK EV Charger Locator</span></a>
+<a href="/" class="logo">
+  <svg class="logo-bolt" viewBox="0 0 24 24" fill="currentColor" width="22" height="22" aria-hidden="true"><path d="M13 2L4.5 13.5H11L10 22L19.5 10.5H13Z"/></svg>
+  PlugMap <span class="tagline">UK EV Charger Locator</span>
+</a>
 </div>
 </header>
 
@@ -28,16 +31,39 @@
 </nav>
 
 <h1>EV Chargers in Newmarket</h1>
-<p class="page-intro">6 public charging stations found in Newmarket.</p>
+
+<div class="stats-bar">
+  <span class="stat-pill stat-total">6 stations</span>
+  <span class="stat-pill stat-rapid">3 rapid (50kW+)</span>
+  <span class="stat-pill stat-fast">2 fast (7–50kW)</span>
+  <span class="stat-pill stat-slow">1 slow</span>
+</div>
 
 <div id="map"></div>
 
-<ul class="charger-list">
+
+<div class="connector-filter">
+  <span class="filter-label">Filter:</span>
+  <button class="filter-btn active" data-filter="all">All</button>
+  
+  <button class="filter-btn" data-filter="CCS (Type 2)">CCS (Type 2)</button>
+  
+  <button class="filter-btn" data-filter="CHAdeMO">CHAdeMO</button>
+  
+  <button class="filter-btn" data-filter="Type 2 (Socket Only)">Type 2 (Socket Only)</button>
+  
+</div>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Newmarket Rowley Mile Course</h2>
-  <p class="charger-address">Rowley Mile Racecourse CB8 0TF
+<ul class="charger-list" id="charger-list">
+
+
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Newmarket Rowley Mile Course</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Rowley Mile Racecourse <button class="copy-btn" data-copy="CB8 0TF">CB8 0TF</button>
   </p>
   
   <div class="charger-connections">
@@ -59,9 +85,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Starbucks Newmarket Bypass Southbound</h2>
-  <p class="charger-address">Newmarket Bypass CB8 0XG
+<li class="charger-item charger-item--rapid" data-connectors="CHAdeMO,Type 2 (Socket Only),CCS (Type 2)">
+  <div class="charger-header">
+    <h2 class="charger-name">Starbucks Newmarket Bypass Southbound</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Newmarket Bypass <button class="copy-btn" data-copy="CB8 0XG">CB8 0XG</button>
   </p>
   
   <div class="charger-connections">
@@ -86,9 +116,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Newmarket Racecourse 2</h2>
-  <p class="charger-address">1, Rowley Mile Car Park CB8 0TF
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Newmarket Racecourse 2</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">1, Rowley Mile Car Park <button class="copy-btn" data-copy="CB8 0TF">CB8 0TF</button>
   </p>
   
   <div class="charger-connections">
@@ -110,9 +143,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Tesco Extra-Newmarket</h2>
-  <p class="charger-address">Fordham Road CB8 7AH
+<li class="charger-item charger-item--rapid" data-connectors="Type 2 (Socket Only),CHAdeMO,CCS (Type 2)">
+  <div class="charger-header">
+    <h2 class="charger-name">Tesco Extra-Newmarket</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Fordham Road <button class="copy-btn" data-copy="CB8 7AH">CB8 7AH</button>
   </p>
   
   <div class="charger-connections">
@@ -140,9 +177,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">McDonald&#39;s, Newmarket</h2>
-  <p class="charger-address">Fordham Road CB8 7AH
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2),CHAdeMO">
+  <div class="charger-header">
+    <h2 class="charger-name">McDonald&#39;s, Newmarket</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Fordham Road <button class="copy-btn" data-copy="CB8 7AH">CB8 7AH</button>
   </p>
   
   <div class="charger-connections">
@@ -164,9 +205,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">All Saints Car Park</h2>
-  <p class="charger-address">All Saints Car Park CB8 8ES
+<li class="charger-item charger-item--slow" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">All Saints Car Park</h2>
+    
+  </div>
+  <p class="charger-address">All Saints Car Park <button class="copy-btn" data-copy="CB8 8ES">CB8 8ES</button>
   </p>
   
   <div class="charger-connections">
@@ -188,6 +232,23 @@
 
 <p><a href="/" class="back-link">← All UK towns</a></p>
 
+
+<div class="nearby-towns">
+  <h2 class="nearby-heading">Nearby towns</h2>
+  <ul class="nearby-list">
+  
+    <li><a href="/uk/ely/">Ely</a></li>
+  
+    <li><a href="/uk/cambridge/">Cambridge</a></li>
+  
+    <li><a href="/uk/bury-st-edmunds/">Bury St Edmunds</a></li>
+  
+    <li><a href="/uk/braintree/">Braintree</a></li>
+  
+  </ul>
+</div>
+
+
 </div>
 
 <footer>
@@ -200,26 +261,61 @@
 <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 <script>
 (function () {
+  // --- Map ---
   var map = L.map('map').setView([52.24755513757534, 0.3868223974767622], 12);
-
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
   }).addTo(map);
 
   var markers = L.markerClusterGroup();
-  var chargerData = [{"lat": 52.23682303, "lng": 0.376206432, "title": "Newmarket Rowley Mile Course", "address": "Rowley Mile Racecourse"}, {"lat": 52.24911132836863, "lng": 0.36431047095811664, "title": "Starbucks Newmarket Bypass Southbound", "address": "Newmarket Bypass"}, {"lat": 52.236624, "lng": 0.376199, "title": "Newmarket Racecourse 2", "address": "1, Rowley Mile Car Park"}, {"lat": 52.260508, "lng": 0.396525, "title": "Tesco Extra-Newmarket", "address": "Fordham Road"}, {"lat": 52.2601544670834, "lng": 0.398940481902457, "title": "McDonald's, Newmarket", "address": "Fordham Road"}, {"lat": 52.24211, "lng": 0.408753, "title": "All Saints Car Park", "address": "All Saints Car Park"}];
+  var chargerData = [{"lat": 52.23682303, "lng": 0.376206432, "title": "Newmarket Rowley Mile Course", "address": "Rowley Mile Racecourse", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 52.24911132836863, "lng": 0.36431047095811664, "title": "Starbucks Newmarket Bypass Southbound", "address": "Newmarket Bypass", "connectors": ["CHAdeMO · 50kW", "Type 2 (Socket Only) · 22kW", "CCS (Type 2) · 50kW"]}, {"lat": 52.236624, "lng": 0.376199, "title": "Newmarket Racecourse 2", "address": "1, Rowley Mile Car Park", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 52.260508, "lng": 0.396525, "title": "Tesco Extra-Newmarket", "address": "Fordham Road", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 7kW", "CHAdeMO · 50kW", "CCS (Type 2) · 50kW"]}, {"lat": 52.2601544670834, "lng": 0.398940481902457, "title": "McDonald's, Newmarket", "address": "Fordham Road", "connectors": ["CCS (Type 2) · 50kW", "CHAdeMO · 50kW"]}, {"lat": 52.24211, "lng": 0.408753, "title": "All Saints Car Park", "address": "All Saints Car Park", "connectors": ["Type 2 (Socket Only) · 3.7kW"]}];
 
   chargerData.forEach(function (c) {
+    var connHtml = c.connectors.length
+      ? '<div style="margin-top:6px;font-size:12px;color:#475569">' + c.connectors.join(' &middot; ') + '</div>'
+      : '';
     var marker = L.marker([c.lat, c.lng]);
     marker.bindPopup(
-      '<b>' + c.title + '</b><br>' + c.address + '<br><br>' +
+      '<b>' + c.title + '</b>' +
+      '<div style="color:#64748b;font-size:13px">' + c.address + '</div>' +
+      connHtml +
       '<a href="https://www.google.com/maps/dir/?api=1&destination=' + c.lat + ',' + c.lng +
-      '" target="_blank" rel="noopener">Get directions</a>'
+      '" target="_blank" rel="noopener" style="display:inline-block;margin-top:8px;padding:4px 10px;background:#2563eb;color:white;border-radius:4px;text-decoration:none;font-size:12px">Get directions</a>'
     );
     markers.addLayer(marker);
   });
-
   map.addLayer(markers);
+
+  // --- Connector filter ---
+  var filterBtns = document.querySelectorAll('.filter-btn');
+  var chargerItems = document.querySelectorAll('.charger-item');
+
+  filterBtns.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      filterBtns.forEach(function (b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      var f = btn.dataset.filter;
+      chargerItems.forEach(function (item) {
+        var connList = item.dataset.connectors ? item.dataset.connectors.split(',') : [];
+        item.style.display = (f === 'all' || connList.indexOf(f) !== -1) ? '' : 'none';
+      });
+    });
+  });
+
+  // --- Copy postcode ---
+  document.querySelectorAll('.copy-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var original = btn.textContent;
+      navigator.clipboard.writeText(btn.dataset.copy).then(function () {
+        btn.textContent = 'Copied!';
+        btn.classList.add('copy-btn--success');
+        setTimeout(function () {
+          btn.textContent = original;
+          btn.classList.remove('copy-btn--success');
+        }, 1500);
+      });
+    });
+  });
 }());
 </script>
 

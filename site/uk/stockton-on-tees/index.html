@@ -17,7 +17,10 @@
 
 <header>
 <div class="container">
-<a href="/" class="logo">PlugMap <span class="tagline">UK EV Charger Locator</span></a>
+<a href="/" class="logo">
+  <svg class="logo-bolt" viewBox="0 0 24 24" fill="currentColor" width="22" height="22" aria-hidden="true"><path d="M13 2L4.5 13.5H11L10 22L19.5 10.5H13Z"/></svg>
+  PlugMap <span class="tagline">UK EV Charger Locator</span>
+</a>
 </div>
 </header>
 
@@ -28,16 +31,44 @@
 </nav>
 
 <h1>EV Chargers in Stockton-on-Tees</h1>
-<p class="page-intro">24 public charging stations found in Stockton-on-Tees.</p>
+
+<div class="stats-bar">
+  <span class="stat-pill stat-total">24 stations</span>
+  <span class="stat-pill stat-rapid">7 rapid (50kW+)</span>
+  <span class="stat-pill stat-fast">14 fast (7–50kW)</span>
+  <span class="stat-pill stat-slow">3 slow</span>
+</div>
 
 <div id="map"></div>
 
-<ul class="charger-list">
+
+<div class="connector-filter">
+  <span class="filter-label">Filter:</span>
+  <button class="filter-btn active" data-filter="all">All</button>
+  
+  <button class="filter-btn" data-filter="BS1363 3 Pin 13 Amp">BS1363 3 Pin 13 Amp</button>
+  
+  <button class="filter-btn" data-filter="CCS (Type 2)">CCS (Type 2)</button>
+  
+  <button class="filter-btn" data-filter="CHAdeMO">CHAdeMO</button>
+  
+  <button class="filter-btn" data-filter="Type 2 (Socket Only)">Type 2 (Socket Only)</button>
+  
+  <button class="filter-btn" data-filter="Type 2 (Tethered Connector) ">Type 2 (Tethered Connector) </button>
+  
+</div>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Lidl-Yarm Road</h2>
-  <p class="charger-address">Yarm Road TS18 3RU
+<ul class="charger-list" id="charger-list">
+
+
+<li class="charger-item charger-item--rapid" data-connectors="Type 2 (Socket Only),CCS (Type 2),CHAdeMO">
+  <div class="charger-header">
+    <h2 class="charger-name">Lidl-Yarm Road</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Yarm Road <button class="copy-btn" data-copy="TS18 3RU">TS18 3RU</button>
   </p>
   
   <div class="charger-connections">
@@ -62,9 +93,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Lidl-Stockton-on-Tees</h2>
-  <p class="charger-address">1 Tower Street TS18 3FH
+<li class="charger-item charger-item--rapid" data-connectors="Type 2 (Socket Only),CCS (Type 2),CHAdeMO">
+  <div class="charger-header">
+    <h2 class="charger-name">Lidl-Stockton-on-Tees</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">1 Tower Street <button class="copy-btn" data-copy="TS18 3FH">TS18 3FH</button>
   </p>
   
   <div class="charger-connections">
@@ -89,9 +124,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Littleboy Recreation Ground Car Park 3</h2>
-  <p class="charger-address">Acklam Road, Thornaby, TS17 8EU
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Littleboy Recreation Ground Car Park 3</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Acklam Road, Thornaby, <button class="copy-btn" data-copy="TS17 8EU">TS17 8EU</button>
   </p>
   
   <div class="charger-connections">
@@ -113,9 +151,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Durham University Ebsworth Building</h2>
-  <p class="charger-address">Infinity Bridge Access Stairway TS17 6BH
+<li class="charger-item charger-item--slow" data-connectors="BS1363 3 Pin 13 Amp">
+  <div class="charger-header">
+    <h2 class="charger-name">Durham University Ebsworth Building</h2>
+    
+  </div>
+  <p class="charger-address">Infinity Bridge Access Stairway <button class="copy-btn" data-copy="TS17 6BH">TS17 6BH</button>
   </p>
   
   <div class="charger-connections">
@@ -134,9 +175,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Preston Park, Stockton-on-Tees</h2>
-  <p class="charger-address">Yarm Road TS18 3RH
+<li class="charger-item charger-item--rapid" data-connectors="Type 2 (Tethered Connector) ,CHAdeMO,Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Preston Park, Stockton-on-Tees</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Yarm Road <button class="copy-btn" data-copy="TS18 3RH">TS18 3RH</button>
   </p>
   
   <div class="charger-connections">
@@ -161,9 +206,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Cowpen Bewley Country Park Car Park, Billingham 1</h2>
-  <p class="charger-address">Cowpen Bewley Country Park, Billingham TS23 3NF
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Cowpen Bewley Country Park Car Park, Billingham 1</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Cowpen Bewley Country Park, Billingham <button class="copy-btn" data-copy="TS23 3NF">TS23 3NF</button>
   </p>
   
   <div class="charger-connections">
@@ -185,9 +233,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Wynyard Woodlands Park</h2>
-  <p class="charger-address">Wynyard Road TS21 3JG
+<li class="charger-item charger-item--slow" data-connectors="BS1363 3 Pin 13 Amp">
+  <div class="charger-header">
+    <h2 class="charger-name">Wynyard Woodlands Park</h2>
+    
+  </div>
+  <p class="charger-address">Wynyard Road <button class="copy-btn" data-copy="TS21 3JG">TS21 3JG</button>
   </p>
   
   <div class="charger-connections">
@@ -206,9 +257,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Stockton Municipal Buildings</h2>
-  <p class="charger-address">Stockton Municipal Buildings TS18 1UE
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Stockton Municipal Buildings</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Stockton Municipal Buildings <button class="copy-btn" data-copy="TS18 1UE">TS18 1UE</button>
   </p>
   
   <div class="charger-connections">
@@ -227,9 +281,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Durham University Queens Campus</h2>
-  <p class="charger-address">Infinity Bridge Access Stairway TS17 6BH
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Durham University Queens Campus</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Infinity Bridge Access Stairway <button class="copy-btn" data-copy="TS17 6BH">TS17 6BH</button>
   </p>
   
   <div class="charger-connections">
@@ -248,9 +305,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Stockton Riverside College</h2>
-  <p class="charger-address">Stockton Riverside College TS17 6FB
+<li class="charger-item charger-item--slow" data-connectors="BS1363 3 Pin 13 Amp">
+  <div class="charger-header">
+    <h2 class="charger-name">Stockton Riverside College</h2>
+    
+  </div>
+  <p class="charger-address">Stockton Riverside College <button class="copy-btn" data-copy="TS17 6FB">TS17 6FB</button>
   </p>
   
   <div class="charger-connections">
@@ -269,9 +329,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">RMB Toyota</h2>
-  <p class="charger-address">1 Cygnet Drive TS18 3DZ
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">RMB Toyota</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">1 Cygnet Drive <button class="copy-btn" data-copy="TS18 3DZ">TS18 3DZ</button>
   </p>
   
   <div class="charger-connections">
@@ -293,9 +356,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Tristar House</h2>
-  <p class="charger-address">Lockheed Court TS18 3SH
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Tristar House</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Lockheed Court <button class="copy-btn" data-copy="TS18 3SH">TS18 3SH</button>
   </p>
   
   <div class="charger-connections">
@@ -314,9 +380,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Tesco Extra-Stockton-on-Tees</h2>
-  <p class="charger-address">Durham Road TS21 3LU
+<li class="charger-item charger-item--rapid" data-connectors="Type 2 (Socket Only),CHAdeMO,CCS (Type 2)">
+  <div class="charger-header">
+    <h2 class="charger-name">Tesco Extra-Stockton-on-Tees</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Durham Road <button class="copy-btn" data-copy="TS21 3LU">TS21 3LU</button>
   </p>
   
   <div class="charger-connections">
@@ -344,9 +414,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Razorblue-Admiralty House</h2>
-  <p class="charger-address">Fudan Way TS17 6EN
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Razorblue-Admiralty House</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Fudan Way <button class="copy-btn" data-copy="TS17 6EN">TS17 6EN</button>
   </p>
   
   <div class="charger-connections">
@@ -368,9 +441,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">MFG Wolviston Services</h2>
-  <p class="charger-address">Coal Lane TS22 5PZ
+<li class="charger-item charger-item--rapid" data-connectors="CHAdeMO,CCS (Type 2)">
+  <div class="charger-header">
+    <h2 class="charger-name">MFG Wolviston Services</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Coal Lane <button class="copy-btn" data-copy="TS22 5PZ">TS22 5PZ</button>
   </p>
   
   <div class="charger-connections">
@@ -392,9 +469,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">DTN Academy</h2>
-  <p class="charger-address">1 Wylam Court TS18 3FB
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">DTN Academy</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">1 Wylam Court <button class="copy-btn" data-copy="TS18 3FB">TS18 3FB</button>
   </p>
   
   <div class="charger-connections">
@@ -416,9 +496,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Prestige Motor Services Ltd</h2>
-  <p class="charger-address">10 Cowton Way TS16 0RE
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Prestige Motor Services Ltd</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">10 Cowton Way <button class="copy-btn" data-copy="TS16 0RE">TS16 0RE</button>
   </p>
   
   <div class="charger-connections">
@@ -437,9 +520,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Thirteen Housing</h2>
-  <p class="charger-address">North Shore Road TS18 2NL
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Thirteen Housing</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">North Shore Road <button class="copy-btn" data-copy="TS18 2NL">TS18 2NL</button>
   </p>
   
   <div class="charger-connections">
@@ -458,9 +544,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Morrisons Thornaby</h2>
-  <p class="charger-address">Thornaby TS17 7BS
+<li class="charger-item charger-item--rapid" data-connectors="Type 2 (Socket Only),CHAdeMO,CCS (Type 2)">
+  <div class="charger-header">
+    <h2 class="charger-name">Morrisons Thornaby</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Thornaby <button class="copy-btn" data-copy="TS17 7BS">TS17 7BS</button>
   </p>
   
   <div class="charger-connections">
@@ -485,9 +575,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Teesside Shopping Park</h2>
-  <p class="charger-address">Goodwood Square TS17 7BW
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Teesside Shopping Park</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Goodwood Square <button class="copy-btn" data-copy="TS17 7BW">TS17 7BW</button>
   </p>
   
   <div class="charger-connections">
@@ -530,9 +623,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Tesco Superstore-Billingham</h2>
-  <p class="charger-address">Leeholme Road TS23 3TA
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Tesco Superstore-Billingham</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Leeholme Road <button class="copy-btn" data-copy="TS23 3TA">TS23 3TA</button>
   </p>
   
   <div class="charger-connections">
@@ -554,9 +650,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Wolviston Services</h2>
-  <p class="charger-address">Wolviston Services TS22 5PZ
+<li class="charger-item charger-item--rapid" data-connectors="CHAdeMO,CCS (Type 2)">
+  <div class="charger-header">
+    <h2 class="charger-name">Wolviston Services</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Wolviston Services <button class="copy-btn" data-copy="TS22 5PZ">TS22 5PZ</button>
   </p>
   
   <div class="charger-connections">
@@ -578,9 +678,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Simon Bailes Peugeot Stockton</h2>
-  <p class="charger-address">Simon Bailes Peugeot Stockton TS18 1TH
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Simon Bailes Peugeot Stockton</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Simon Bailes Peugeot Stockton <button class="copy-btn" data-copy="TS18 1TH">TS18 1TH</button>
   </p>
   
   <div class="charger-connections">
@@ -602,9 +705,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Stirling House</h2>
-  <p class="charger-address">Stirling House TS17 9JP
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Stirling House</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Stirling House <button class="copy-btn" data-copy="TS17 9JP">TS17 9JP</button>
   </p>
   
   <div class="charger-connections">
@@ -626,6 +732,23 @@
 
 <p><a href="/" class="back-link">← All UK towns</a></p>
 
+
+<div class="nearby-towns">
+  <h2 class="nearby-heading">Nearby towns</h2>
+  <ul class="nearby-list">
+  
+    <li><a href="/uk/billingham/">Billingham</a></li>
+  
+    <li><a href="/uk/middlesbrough/">Middlesbrough</a></li>
+  
+    <li><a href="/uk/hartlepool/">Hartlepool</a></li>
+  
+    <li><a href="/uk/redcar/">Redcar</a></li>
+  
+  </ul>
+</div>
+
+
 </div>
 
 <footer>
@@ -638,26 +761,61 @@
 <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 <script>
 (function () {
+  // --- Map ---
   var map = L.map('map').setView([54.56875689472023, -1.3093766401384361], 12);
-
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
   }).addTo(map);
 
   var markers = L.markerClusterGroup();
-  var chargerData = [{"lat": 54.54907, "lng": -1.331404, "title": "Lidl-Yarm Road", "address": "Yarm Road"}, {"lat": 54.560856, "lng": -1.311406, "title": "Lidl-Stockton-on-Tees", "address": "1 Tower Street"}, {"lat": 54.548798, "lng": -1.284075, "title": "Littleboy Recreation Ground Car Park 3", "address": "Acklam Road, Thornaby,"}, {"lat": 54.562539, "lng": -1.296173, "title": "Durham University Ebsworth Building", "address": "Infinity Bridge Access Stairway"}, {"lat": 54.53545, "lng": -1.34137, "title": "Preston Park, Stockton-on-Tees", "address": "Yarm Road"}, {"lat": 54.62189, "lng": -1.25886, "title": "Cowpen Bewley Country Park Car Park, Billingham 1", "address": "Cowpen Bewley Country Park, Billingham"}, {"lat": 54.612319, "lng": -1.377729, "title": "Wynyard Woodlands Park", "address": "Wynyard Road"}, {"lat": 54.566662, "lng": -1.310634, "title": "Stockton Municipal Buildings", "address": "Stockton Municipal Buildings"}, {"lat": 54.563116, "lng": -1.296596, "title": "Durham University Queens Campus", "address": "Infinity Bridge Access Stairway"}, {"lat": 54.562163, "lng": -1.29971, "title": "Stockton Riverside College", "address": "Stockton Riverside College"}, {"lat": 54.544331, "lng": -1.318501, "title": "RMB Toyota", "address": "1 Cygnet Drive"}, {"lat": 54.542553, "lng": -1.323233, "title": "Tristar House", "address": "Lockheed Court"}, {"lat": 54.592803, "lng": -1.352526, "title": "Tesco Extra-Stockton-on-Tees", "address": "Durham Road"}, {"lat": 54.56383, "lng": -1.302882, "title": "Razorblue-Admiralty House", "address": "Fudan Way"}, {"lat": 54.6277436975158, "lng": -1.30655169308761, "title": "MFG Wolviston Services", "address": "Coal Lane"}, {"lat": 54.54879202368886, "lng": -1.319761030247264, "title": "DTN Academy", "address": "1 Wylam Court"}, {"lat": 54.52886940052696, "lng": -1.3588843625440177, "title": "Prestige Motor Services Ltd", "address": "10 Cowton Way"}, {"lat": 54.566502, "lng": -1.29953, "title": "Thirteen Housing", "address": "North Shore Road"}, {"lat": 54.558939407522786, "lng": -1.277656052418024, "title": "Morrisons Thornaby", "address": "Thornaby"}, {"lat": 54.5570854633319, "lng": -1.27525178903352, "title": "Teesside Shopping Park", "address": "Goodwood Square"}, {"lat": 54.607125, "lng": -1.280032, "title": "Tesco Superstore-Billingham", "address": "Leeholme Road"}, {"lat": 54.6280084806994, "lng": -1.30666943599203, "title": "Wolviston Services", "address": "Wolviston Services"}, {"lat": 54.567511, "lng": -1.306015, "title": "Simon Bailes Peugeot Stockton", "address": "Simon Bailes Peugeot Stockton"}, {"lat": 54.533209, "lng": -1.289589, "title": "Stirling House", "address": "Stirling House"}];
+  var chargerData = [{"lat": 54.54907, "lng": -1.331404, "title": "Lidl-Yarm Road", "address": "Yarm Road", "connectors": ["Type 2 (Socket Only) · 22kW", "CCS (Type 2) · 50kW", "CHAdeMO · 50kW"]}, {"lat": 54.560856, "lng": -1.311406, "title": "Lidl-Stockton-on-Tees", "address": "1 Tower Street", "connectors": ["Type 2 (Socket Only) · 22kW", "CCS (Type 2) · 50kW", "CHAdeMO · 50kW"]}, {"lat": 54.548798, "lng": -1.284075, "title": "Littleboy Recreation Ground Car Park 3", "address": "Acklam Road, Thornaby,", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 54.562539, "lng": -1.296173, "title": "Durham University Ebsworth Building", "address": "Infinity Bridge Access Stairway", "connectors": ["BS1363 3 Pin 13 Amp · 3kW"]}, {"lat": 54.53545, "lng": -1.34137, "title": "Preston Park, Stockton-on-Tees", "address": "Yarm Road", "connectors": ["Type 2 (Tethered Connector)  · 50kW", "CHAdeMO · 50kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 54.62189, "lng": -1.25886, "title": "Cowpen Bewley Country Park Car Park, Billingham 1", "address": "Cowpen Bewley Country Park, Billingham", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 54.612319, "lng": -1.377729, "title": "Wynyard Woodlands Park", "address": "Wynyard Road", "connectors": ["BS1363 3 Pin 13 Amp · 3kW"]}, {"lat": 54.566662, "lng": -1.310634, "title": "Stockton Municipal Buildings", "address": "Stockton Municipal Buildings", "connectors": ["Type 2 (Socket Only) · 7kW"]}, {"lat": 54.563116, "lng": -1.296596, "title": "Durham University Queens Campus", "address": "Infinity Bridge Access Stairway", "connectors": ["Type 2 (Socket Only) · 7kW"]}, {"lat": 54.562163, "lng": -1.29971, "title": "Stockton Riverside College", "address": "Stockton Riverside College", "connectors": ["BS1363 3 Pin 13 Amp · 3kW"]}, {"lat": 54.544331, "lng": -1.318501, "title": "RMB Toyota", "address": "1 Cygnet Drive", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 54.542553, "lng": -1.323233, "title": "Tristar House", "address": "Lockheed Court", "connectors": ["Type 2 (Socket Only) · 7kW"]}, {"lat": 54.592803, "lng": -1.352526, "title": "Tesco Extra-Stockton-on-Tees", "address": "Durham Road", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 7kW", "CHAdeMO · 50kW", "CCS (Type 2) · 50kW"]}, {"lat": 54.56383, "lng": -1.302882, "title": "Razorblue-Admiralty House", "address": "Fudan Way", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 54.6277436975158, "lng": -1.30655169308761, "title": "MFG Wolviston Services", "address": "Coal Lane", "connectors": ["CHAdeMO · 100kW", "CCS (Type 2) · 150kW"]}, {"lat": 54.54879202368886, "lng": -1.319761030247264, "title": "DTN Academy", "address": "1 Wylam Court", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 54.52886940052696, "lng": -1.3588843625440177, "title": "Prestige Motor Services Ltd", "address": "10 Cowton Way", "connectors": ["Type 2 (Socket Only) · 22kW"]}, {"lat": 54.566502, "lng": -1.29953, "title": "Thirteen Housing", "address": "North Shore Road", "connectors": ["Type 2 (Socket Only) · 7kW"]}, {"lat": 54.558939407522786, "lng": -1.277656052418024, "title": "Morrisons Thornaby", "address": "Thornaby", "connectors": ["Type 2 (Socket Only) · 22kW", "CHAdeMO · 50kW", "CCS (Type 2) · 50kW"]}, {"lat": 54.5570854633319, "lng": -1.27525178903352, "title": "Teesside Shopping Park", "address": "Goodwood Square", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 54.607125, "lng": -1.280032, "title": "Tesco Superstore-Billingham", "address": "Leeholme Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 54.6280084806994, "lng": -1.30666943599203, "title": "Wolviston Services", "address": "Wolviston Services", "connectors": ["CHAdeMO · 50kW", "CCS (Type 2) · 50kW"]}, {"lat": 54.567511, "lng": -1.306015, "title": "Simon Bailes Peugeot Stockton", "address": "Simon Bailes Peugeot Stockton", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 54.533209, "lng": -1.289589, "title": "Stirling House", "address": "Stirling House", "connectors": ["Type 2 (Socket Only) · 7kW"]}];
 
   chargerData.forEach(function (c) {
+    var connHtml = c.connectors.length
+      ? '<div style="margin-top:6px;font-size:12px;color:#475569">' + c.connectors.join(' &middot; ') + '</div>'
+      : '';
     var marker = L.marker([c.lat, c.lng]);
     marker.bindPopup(
-      '<b>' + c.title + '</b><br>' + c.address + '<br><br>' +
+      '<b>' + c.title + '</b>' +
+      '<div style="color:#64748b;font-size:13px">' + c.address + '</div>' +
+      connHtml +
       '<a href="https://www.google.com/maps/dir/?api=1&destination=' + c.lat + ',' + c.lng +
-      '" target="_blank" rel="noopener">Get directions</a>'
+      '" target="_blank" rel="noopener" style="display:inline-block;margin-top:8px;padding:4px 10px;background:#2563eb;color:white;border-radius:4px;text-decoration:none;font-size:12px">Get directions</a>'
     );
     markers.addLayer(marker);
   });
-
   map.addLayer(markers);
+
+  // --- Connector filter ---
+  var filterBtns = document.querySelectorAll('.filter-btn');
+  var chargerItems = document.querySelectorAll('.charger-item');
+
+  filterBtns.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      filterBtns.forEach(function (b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      var f = btn.dataset.filter;
+      chargerItems.forEach(function (item) {
+        var connList = item.dataset.connectors ? item.dataset.connectors.split(',') : [];
+        item.style.display = (f === 'all' || connList.indexOf(f) !== -1) ? '' : 'none';
+      });
+    });
+  });
+
+  // --- Copy postcode ---
+  document.querySelectorAll('.copy-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var original = btn.textContent;
+      navigator.clipboard.writeText(btn.dataset.copy).then(function () {
+        btn.textContent = 'Copied!';
+        btn.classList.add('copy-btn--success');
+        setTimeout(function () {
+          btn.textContent = original;
+          btn.classList.remove('copy-btn--success');
+        }, 1500);
+      });
+    });
+  });
 }());
 </script>
 

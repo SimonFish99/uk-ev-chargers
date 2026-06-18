@@ -17,7 +17,10 @@
 
 <header>
 <div class="container">
-<a href="/" class="logo">PlugMap <span class="tagline">UK EV Charger Locator</span></a>
+<a href="/" class="logo">
+  <svg class="logo-bolt" viewBox="0 0 24 24" fill="currentColor" width="22" height="22" aria-hidden="true"><path d="M13 2L4.5 13.5H11L10 22L19.5 10.5H13Z"/></svg>
+  PlugMap <span class="tagline">UK EV Charger Locator</span>
+</a>
 </div>
 </header>
 
@@ -28,16 +31,40 @@
 </nav>
 
 <h1>EV Chargers in Yeovil</h1>
-<p class="page-intro">11 public charging stations found in Yeovil.</p>
+
+<div class="stats-bar">
+  <span class="stat-pill stat-total">11 stations</span>
+  <span class="stat-pill stat-rapid">4 rapid (50kW+)</span>
+  <span class="stat-pill stat-fast">7 fast (7–50kW)</span>
+  
+</div>
 
 <div id="map"></div>
 
-<ul class="charger-list">
+
+<div class="connector-filter">
+  <span class="filter-label">Filter:</span>
+  <button class="filter-btn active" data-filter="all">All</button>
+  
+  <button class="filter-btn" data-filter="CCS (Type 2)">CCS (Type 2)</button>
+  
+  <button class="filter-btn" data-filter="CHAdeMO">CHAdeMO</button>
+  
+  <button class="filter-btn" data-filter="Type 2 (Socket Only)">Type 2 (Socket Only)</button>
+  
+</div>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Teals Farm Shop Somerset</h2>
-  <p class="charger-address">1 Orchard Lane BA22 7FS
+<ul class="charger-list" id="charger-list">
+
+
+<li class="charger-item charger-item--rapid" data-connectors="CHAdeMO,Type 2 (Socket Only),CCS (Type 2)">
+  <div class="charger-header">
+    <h2 class="charger-name">Teals Farm Shop Somerset</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">1 Orchard Lane <button class="copy-btn" data-copy="BA22 7FS">BA22 7FS</button>
   </p>
   
   <div class="charger-connections">
@@ -89,9 +116,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Yeovil Recreation Centre</h2>
-  <p class="charger-address">Mudford Road BA21 4AW
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Yeovil Recreation Centre</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Mudford Road <button class="copy-btn" data-copy="BA21 4AW">BA21 4AW</button>
   </p>
   
   <div class="charger-connections">
@@ -113,9 +143,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Goldcroft Car Parks</h2>
-  <p class="charger-address">Goldcroft. Yeovil BA21 4DH
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Goldcroft Car Parks</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Goldcroft. Yeovil <button class="copy-btn" data-copy="BA21 4DH">BA21 4DH</button>
   </p>
   
   <div class="charger-connections">
@@ -137,9 +170,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Tesco Extra - Yeovil</h2>
-  <p class="charger-address">Queensway BA20 1DL
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Tesco Extra - Yeovil</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Queensway <button class="copy-btn" data-copy="BA20 1DL">BA20 1DL</button>
   </p>
   
   <div class="charger-connections">
@@ -161,9 +197,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Stars Lane Car Park</h2>
-  <p class="charger-address">Stars Lane BA20 1NR
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Stars Lane Car Park</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Stars Lane <button class="copy-btn" data-copy="BA20 1NR">BA20 1NR</button>
   </p>
   
   <div class="charger-connections">
@@ -185,9 +224,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">McDonald&#39;s Sparkford</h2>
-  <p class="charger-address">Wakes Garage, A303 BA22 7JE
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2),CHAdeMO">
+  <div class="charger-header">
+    <h2 class="charger-name">McDonald&#39;s Sparkford</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Wakes Garage, A303 <button class="copy-btn" data-copy="BA22 7JE">BA22 7JE</button>
   </p>
   
   <div class="charger-connections">
@@ -209,9 +252,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Yeovil Retail Park</h2>
-  <p class="charger-address">Babylon Hill BA21 5BT
+<li class="charger-item charger-item--rapid" data-connectors="CHAdeMO,CCS (Type 2)">
+  <div class="charger-header">
+    <h2 class="charger-name">Yeovil Retail Park</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Babylon Hill <button class="copy-btn" data-copy="BA21 5BT">BA21 5BT</button>
   </p>
   
   <div class="charger-connections">
@@ -233,9 +280,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">South Somerset District Council Offices </h2>
-  <p class="charger-address">Brympton Way BA20 2HT
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">South Somerset District Council Offices </h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Brympton Way <button class="copy-btn" data-copy="BA20 2HT">BA20 2HT</button>
   </p>
   
   <div class="charger-connections">
@@ -254,9 +304,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Fairfield Car Park SSDC</h2>
-  <p class="charger-address">Salthouse Lane BA20 1TX
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Fairfield Car Park SSDC</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Salthouse Lane <button class="copy-btn" data-copy="BA20 1TX">BA20 1TX</button>
   </p>
   
   <div class="charger-connections">
@@ -275,9 +328,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Haynes International Motor Museum</h2>
-  <p class="charger-address">Sparkford BA22 7LH
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Haynes International Motor Museum</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Sparkford <button class="copy-btn" data-copy="BA22 7LH">BA22 7LH</button>
   </p>
   
   <div class="charger-connections">
@@ -305,9 +361,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Morrisons Yeovil</h2>
-  <p class="charger-address">Lysander Road BA20 2AU
+<li class="charger-item charger-item--rapid" data-connectors="Type 2 (Socket Only),CHAdeMO,CCS (Type 2)">
+  <div class="charger-header">
+    <h2 class="charger-name">Morrisons Yeovil</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Lysander Road <button class="copy-btn" data-copy="BA20 2AU">BA20 2AU</button>
   </p>
   
   <div class="charger-connections">
@@ -335,6 +395,23 @@
 
 <p><a href="/" class="back-link">← All UK towns</a></p>
 
+
+<div class="nearby-towns">
+  <h2 class="nearby-heading">Nearby towns</h2>
+  <ul class="nearby-list">
+  
+    <li><a href="/uk/street/">Street</a></li>
+  
+    <li><a href="/uk/wells/">Wells</a></li>
+  
+    <li><a href="/uk/chard/">Chard</a></li>
+  
+    <li><a href="/uk/weymouth/">Weymouth</a></li>
+  
+  </ul>
+</div>
+
+
 </div>
 
 <footer>
@@ -347,26 +424,61 @@
 <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 <script>
 (function () {
+  // --- Map ---
   var map = L.map('map').setView([50.96729530028115, -2.6136294932177506], 12);
-
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
   }).addTo(map);
 
   var markers = L.markerClusterGroup();
-  var chargerData = [{"lat": 51.034865, "lng": -2.532039, "title": "Teals Farm Shop Somerset", "address": "1 Orchard Lane"}, {"lat": 50.95392, "lng": -2.63713, "title": "Yeovil Recreation Centre", "address": "Mudford Road"}, {"lat": 50.94512, "lng": -2.62752, "title": "Goldcroft Car Parks", "address": "Goldcroft. Yeovil"}, {"lat": 50.942093, "lng": -2.636283, "title": "Tesco Extra - Yeovil", "address": "Queensway"}, {"lat": 50.94044, "lng": -2.6273, "title": "Stars Lane Car Park", "address": "Stars Lane"}, {"lat": 51.0294788050455, "lng": -2.57285207880523, "title": "McDonald's Sparkford", "address": "Wakes Garage, A303"}, {"lat": 50.94072, "lng": -2.607508, "title": "Yeovil Retail Park", "address": "Babylon Hill"}, {"lat": 50.935500500011734, "lng": -2.666818773100363, "title": "South Somerset District Council Offices ", "address": "Brympton Way"}, {"lat": 50.94078199803542, "lng": -2.638490573489662, "title": "Fairfield Car Park SSDC", "address": "Salthouse Lane"}, {"lat": 51.04192, "lng": -2.557702, "title": "Haynes International Motor Museum", "address": "Sparkford"}, {"lat": 50.935409, "lng": -2.646281, "title": "Morrisons Yeovil", "address": "Lysander Road"}];
+  var chargerData = [{"lat": 51.034865, "lng": -2.532039, "title": "Teals Farm Shop Somerset", "address": "1 Orchard Lane", "connectors": ["CHAdeMO · 80kW", "Type 2 (Socket Only) · 22kW", "CCS (Type 2) · 148kW", "CCS (Type 2) · 148kW", "CCS (Type 2) · 148kW", "CHAdeMO · 80kW", "Type 2 (Socket Only) · 22kW", "CCS (Type 2) · 148kW", "CCS (Type 2) · 148kW", "CCS (Type 2) · 148kW", "CCS (Type 2) · 148kW", "CCS (Type 2) · 148kW"]}, {"lat": 50.95392, "lng": -2.63713, "title": "Yeovil Recreation Centre", "address": "Mudford Road", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 50.94512, "lng": -2.62752, "title": "Goldcroft Car Parks", "address": "Goldcroft. Yeovil", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 50.942093, "lng": -2.636283, "title": "Tesco Extra - Yeovil", "address": "Queensway", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 50.94044, "lng": -2.6273, "title": "Stars Lane Car Park", "address": "Stars Lane", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 51.0294788050455, "lng": -2.57285207880523, "title": "McDonald's Sparkford", "address": "Wakes Garage, A303", "connectors": ["CCS (Type 2) · 120kW", "CHAdeMO · 50kW"]}, {"lat": 50.94072, "lng": -2.607508, "title": "Yeovil Retail Park", "address": "Babylon Hill", "connectors": ["CHAdeMO · 75kW", "CCS (Type 2) · 75kW"]}, {"lat": 50.935500500011734, "lng": -2.666818773100363, "title": "South Somerset District Council Offices ", "address": "Brympton Way", "connectors": ["Type 2 (Socket Only) · 22kW"]}, {"lat": 50.94078199803542, "lng": -2.638490573489662, "title": "Fairfield Car Park SSDC", "address": "Salthouse Lane", "connectors": ["Type 2 (Socket Only) · 22kW"]}, {"lat": 51.04192, "lng": -2.557702, "title": "Haynes International Motor Museum", "address": "Sparkford", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 50.935409, "lng": -2.646281, "title": "Morrisons Yeovil", "address": "Lysander Road", "connectors": ["Type 2 (Socket Only) · 22kW", "CHAdeMO · 50kW", "CCS (Type 2) · 50kW"]}];
 
   chargerData.forEach(function (c) {
+    var connHtml = c.connectors.length
+      ? '<div style="margin-top:6px;font-size:12px;color:#475569">' + c.connectors.join(' &middot; ') + '</div>'
+      : '';
     var marker = L.marker([c.lat, c.lng]);
     marker.bindPopup(
-      '<b>' + c.title + '</b><br>' + c.address + '<br><br>' +
+      '<b>' + c.title + '</b>' +
+      '<div style="color:#64748b;font-size:13px">' + c.address + '</div>' +
+      connHtml +
       '<a href="https://www.google.com/maps/dir/?api=1&destination=' + c.lat + ',' + c.lng +
-      '" target="_blank" rel="noopener">Get directions</a>'
+      '" target="_blank" rel="noopener" style="display:inline-block;margin-top:8px;padding:4px 10px;background:#2563eb;color:white;border-radius:4px;text-decoration:none;font-size:12px">Get directions</a>'
     );
     markers.addLayer(marker);
   });
-
   map.addLayer(markers);
+
+  // --- Connector filter ---
+  var filterBtns = document.querySelectorAll('.filter-btn');
+  var chargerItems = document.querySelectorAll('.charger-item');
+
+  filterBtns.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      filterBtns.forEach(function (b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      var f = btn.dataset.filter;
+      chargerItems.forEach(function (item) {
+        var connList = item.dataset.connectors ? item.dataset.connectors.split(',') : [];
+        item.style.display = (f === 'all' || connList.indexOf(f) !== -1) ? '' : 'none';
+      });
+    });
+  });
+
+  // --- Copy postcode ---
+  document.querySelectorAll('.copy-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var original = btn.textContent;
+      navigator.clipboard.writeText(btn.dataset.copy).then(function () {
+        btn.textContent = 'Copied!';
+        btn.classList.add('copy-btn--success');
+        setTimeout(function () {
+          btn.textContent = original;
+          btn.classList.remove('copy-btn--success');
+        }, 1500);
+      });
+    });
+  });
 }());
 </script>
 

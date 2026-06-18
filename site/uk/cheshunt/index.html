@@ -17,7 +17,10 @@
 
 <header>
 <div class="container">
-<a href="/" class="logo">PlugMap <span class="tagline">UK EV Charger Locator</span></a>
+<a href="/" class="logo">
+  <svg class="logo-bolt" viewBox="0 0 24 24" fill="currentColor" width="22" height="22" aria-hidden="true"><path d="M13 2L4.5 13.5H11L10 22L19.5 10.5H13Z"/></svg>
+  PlugMap <span class="tagline">UK EV Charger Locator</span>
+</a>
 </div>
 </header>
 
@@ -28,16 +31,38 @@
 </nav>
 
 <h1>EV Chargers in Cheshunt</h1>
-<p class="page-intro">5 public charging stations found in Cheshunt.</p>
+
+<div class="stats-bar">
+  <span class="stat-pill stat-total">5 stations</span>
+  <span class="stat-pill stat-rapid">1 rapid (50kW+)</span>
+  <span class="stat-pill stat-fast">4 fast (7–50kW)</span>
+  
+</div>
 
 <div id="map"></div>
 
-<ul class="charger-list">
+
+<div class="connector-filter">
+  <span class="filter-label">Filter:</span>
+  <button class="filter-btn active" data-filter="all">All</button>
+  
+  <button class="filter-btn" data-filter="CCS (Type 2)">CCS (Type 2)</button>
+  
+  <button class="filter-btn" data-filter="Type 2 (Socket Only)">Type 2 (Socket Only)</button>
+  
+</div>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Tesco Extra-Cheshunt</h2>
-  <p class="charger-address">Brookfield Centre EN8 0TA
+<ul class="charger-list" id="charger-list">
+
+
+<li class="charger-item charger-item--rapid" data-connectors="Type 2 (Socket Only),CCS (Type 2)">
+  <div class="charger-header">
+    <h2 class="charger-name">Tesco Extra-Cheshunt</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Brookfield Centre <button class="copy-btn" data-copy="EN8 0TA">EN8 0TA</button>
   </p>
   
   <div class="charger-connections">
@@ -62,9 +87,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Broxbourne Council Offices 1</h2>
-  <p class="charger-address">Broxbourne Council Offices EN8 9XQ
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Broxbourne Council Offices 1</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Broxbourne Council Offices <button class="copy-btn" data-copy="EN8 9XQ">EN8 9XQ</button>
   </p>
   
   <div class="charger-connections">
@@ -86,9 +114,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Newham Parade 3</h2>
-  <p class="charger-address">Newham Parade EN8 9NU
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Newham Parade 3</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Newham Parade <button class="copy-btn" data-copy="EN8 9NU">EN8 9NU</button>
   </p>
   
   <div class="charger-connections">
@@ -110,9 +141,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Windmill Lane Car Park 1</h2>
-  <p class="charger-address">Windmill Lane Car Park EN8 9AA
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Windmill Lane Car Park 1</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Windmill Lane Car Park <button class="copy-btn" data-copy="EN8 9AA">EN8 9AA</button>
   </p>
   
   <div class="charger-connections">
@@ -134,9 +168,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Birch 1</h2>
-  <p class="charger-address">The Birch Hotel EN7 5HS
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Birch 1</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">The Birch Hotel <button class="copy-btn" data-copy="EN7 5HS">EN7 5HS</button>
   </p>
   
   <div class="charger-connections">
@@ -159,6 +196,23 @@
 
 <p><a href="/" class="back-link">← All UK towns</a></p>
 
+
+<div class="nearby-towns">
+  <h2 class="nearby-heading">Nearby towns</h2>
+  <ul class="nearby-list">
+  
+    <li><a href="/uk/waltham-cross/">Waltham Cross</a></li>
+  
+    <li><a href="/uk/enfield/">Enfield</a></li>
+  
+    <li><a href="/uk/chingford/">Chingford</a></li>
+  
+    <li><a href="/uk/walthamstow/">Walthamstow</a></li>
+  
+  </ul>
+</div>
+
+
 </div>
 
 <footer>
@@ -171,26 +225,61 @@
 <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 <script>
 (function () {
+  // --- Map ---
   var map = L.map('map').setView([51.70326984, -0.04250706], 12);
-
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
   }).addTo(map);
 
   var markers = L.markerClusterGroup();
-  var chargerData = [{"lat": 51.7185612, "lng": -0.0364673, "title": "Tesco Extra-Cheshunt", "address": "Brookfield Centre"}, {"lat": 51.703137, "lng": -0.048217, "title": "Broxbourne Council Offices 1", "address": "Broxbourne Council Offices"}, {"lat": 51.703108, "lng": -0.036584, "title": "Newham Parade 3", "address": "Newham Parade"}, {"lat": 51.702553, "lng": -0.033143, "title": "Windmill Lane Car Park 1", "address": "Windmill Lane Car Park"}, {"lat": 51.68899, "lng": -0.058124, "title": "Birch 1", "address": "The Birch Hotel"}];
+  var chargerData = [{"lat": 51.7185612, "lng": -0.0364673, "title": "Tesco Extra-Cheshunt", "address": "Brookfield Centre", "connectors": ["Type 2 (Socket Only) · 22kW", "CCS (Type 2) · 75kW", "CCS (Type 2) · 75kW"]}, {"lat": 51.703137, "lng": -0.048217, "title": "Broxbourne Council Offices 1", "address": "Broxbourne Council Offices", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 51.703108, "lng": -0.036584, "title": "Newham Parade 3", "address": "Newham Parade", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 51.702553, "lng": -0.033143, "title": "Windmill Lane Car Park 1", "address": "Windmill Lane Car Park", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 51.68899, "lng": -0.058124, "title": "Birch 1", "address": "The Birch Hotel", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}];
 
   chargerData.forEach(function (c) {
+    var connHtml = c.connectors.length
+      ? '<div style="margin-top:6px;font-size:12px;color:#475569">' + c.connectors.join(' &middot; ') + '</div>'
+      : '';
     var marker = L.marker([c.lat, c.lng]);
     marker.bindPopup(
-      '<b>' + c.title + '</b><br>' + c.address + '<br><br>' +
+      '<b>' + c.title + '</b>' +
+      '<div style="color:#64748b;font-size:13px">' + c.address + '</div>' +
+      connHtml +
       '<a href="https://www.google.com/maps/dir/?api=1&destination=' + c.lat + ',' + c.lng +
-      '" target="_blank" rel="noopener">Get directions</a>'
+      '" target="_blank" rel="noopener" style="display:inline-block;margin-top:8px;padding:4px 10px;background:#2563eb;color:white;border-radius:4px;text-decoration:none;font-size:12px">Get directions</a>'
     );
     markers.addLayer(marker);
   });
-
   map.addLayer(markers);
+
+  // --- Connector filter ---
+  var filterBtns = document.querySelectorAll('.filter-btn');
+  var chargerItems = document.querySelectorAll('.charger-item');
+
+  filterBtns.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      filterBtns.forEach(function (b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      var f = btn.dataset.filter;
+      chargerItems.forEach(function (item) {
+        var connList = item.dataset.connectors ? item.dataset.connectors.split(',') : [];
+        item.style.display = (f === 'all' || connList.indexOf(f) !== -1) ? '' : 'none';
+      });
+    });
+  });
+
+  // --- Copy postcode ---
+  document.querySelectorAll('.copy-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var original = btn.textContent;
+      navigator.clipboard.writeText(btn.dataset.copy).then(function () {
+        btn.textContent = 'Copied!';
+        btn.classList.add('copy-btn--success');
+        setTimeout(function () {
+          btn.textContent = original;
+          btn.classList.remove('copy-btn--success');
+        }, 1500);
+      });
+    });
+  });
 }());
 </script>
 

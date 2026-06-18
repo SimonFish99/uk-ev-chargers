@@ -17,7 +17,10 @@
 
 <header>
 <div class="container">
-<a href="/" class="logo">PlugMap <span class="tagline">UK EV Charger Locator</span></a>
+<a href="/" class="logo">
+  <svg class="logo-bolt" viewBox="0 0 24 24" fill="currentColor" width="22" height="22" aria-hidden="true"><path d="M13 2L4.5 13.5H11L10 22L19.5 10.5H13Z"/></svg>
+  PlugMap <span class="tagline">UK EV Charger Locator</span>
+</a>
 </div>
 </header>
 
@@ -28,16 +31,40 @@
 </nav>
 
 <h1>EV Chargers in Sutton Coldfield</h1>
-<p class="page-intro">6 public charging stations found in Sutton Coldfield.</p>
+
+<div class="stats-bar">
+  <span class="stat-pill stat-total">6 stations</span>
+  <span class="stat-pill stat-rapid">3 rapid (50kW+)</span>
+  <span class="stat-pill stat-fast">3 fast (7–50kW)</span>
+  
+</div>
 
 <div id="map"></div>
 
-<ul class="charger-list">
+
+<div class="connector-filter">
+  <span class="filter-label">Filter:</span>
+  <button class="filter-btn active" data-filter="all">All</button>
+  
+  <button class="filter-btn" data-filter="CCS (Type 2)">CCS (Type 2)</button>
+  
+  <button class="filter-btn" data-filter="CHAdeMO">CHAdeMO</button>
+  
+  <button class="filter-btn" data-filter="Type 2 (Socket Only)">Type 2 (Socket Only)</button>
+  
+</div>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Lidl-Mere Green</h2>
-  <p class="charger-address">Mere Green Road B75 5BN
+<ul class="charger-list" id="charger-list">
+
+
+<li class="charger-item charger-item--rapid" data-connectors="Type 2 (Socket Only),CCS (Type 2),CHAdeMO">
+  <div class="charger-header">
+    <h2 class="charger-name">Lidl-Mere Green</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Mere Green Road <button class="copy-btn" data-copy="B75 5BN">B75 5BN</button>
   </p>
   
   <div class="charger-connections">
@@ -62,9 +89,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Foley Arms</h2>
-  <p class="charger-address">293 Foley Road B74 3NU
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2),CHAdeMO,Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Foley Arms</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">293 Foley Road <button class="copy-btn" data-copy="B74 3NU">B74 3NU</button>
   </p>
   
   <div class="charger-connections">
@@ -95,9 +126,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">The Belfry Hotel &amp; Golf Resort</h2>
-  <p class="charger-address">Lichfield Road B76 9PR
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">The Belfry Hotel &amp; Golf Resort</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Lichfield Road <button class="copy-btn" data-copy="B76 9PR">B76 9PR</button>
   </p>
   
   <div class="charger-connections">
@@ -122,9 +156,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Restricted access to Nissan customers</h2>
-  <p class="charger-address">Chester Road B74 2HE
+<li class="charger-item charger-item--rapid" data-connectors="CHAdeMO">
+  <div class="charger-header">
+    <h2 class="charger-name">Restricted access to Nissan customers</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Chester Road <button class="copy-btn" data-copy="B74 2HE">B74 2HE</button>
   </p>
   
   <div class="charger-connections">
@@ -143,9 +181,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Tesco Extra-New Oscott</h2>
-  <p class="charger-address">11 Princess Alice Drive B73 6RB
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Tesco Extra-New Oscott</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">11 Princess Alice Drive <button class="copy-btn" data-copy="B73 6RB">B73 6RB</button>
   </p>
   
   <div class="charger-connections">
@@ -167,9 +208,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Victoria Road Car Park Birmingham - 70517</h2>
-  <p class="charger-address">Victoria Road B73 6EJ
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Victoria Road Car Park Birmingham - 70517</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Victoria Road <button class="copy-btn" data-copy="B73 6EJ">B73 6EJ</button>
   </p>
   
   <div class="charger-connections">
@@ -192,6 +236,23 @@
 
 <p><a href="/" class="back-link">← All UK towns</a></p>
 
+
+<div class="nearby-towns">
+  <h2 class="nearby-heading">Nearby towns</h2>
+  <ul class="nearby-list">
+  
+    <li><a href="/uk/birmingham/">Birmingham</a></li>
+  
+    <li><a href="/uk/lichfield/">Lichfield</a></li>
+  
+    <li><a href="/uk/solihull/">Solihull</a></li>
+  
+    <li><a href="/uk/walsall/">Walsall</a></li>
+  
+  </ul>
+</div>
+
+
 </div>
 
 <footer>
@@ -204,26 +265,61 @@
 <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 <script>
 (function () {
+  // --- Map ---
   var map = L.map('map').setView([52.56857350000001, -1.838285], 12);
-
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
   }).addTo(map);
 
   var markers = L.markerClusterGroup();
-  var chargerData = [{"lat": 52.587659, "lng": -1.826905, "title": "Lidl-Mere Green", "address": "Mere Green Road"}, {"lat": 52.581282, "lng": -1.904929, "title": "Foley Arms", "address": "293 Foley Road"}, {"lat": 52.5538, "lng": -1.73399, "title": "The Belfry Hotel & Golf Resort", "address": "Lichfield Road"}, {"lat": 52.57739, "lng": -1.883626, "title": "Restricted access to Nissan customers", "address": "Chester Road"}, {"lat": 52.548944, "lng": -1.858482, "title": "Tesco Extra-New Oscott", "address": "11 Princess Alice Drive"}, {"lat": 52.562366, "lng": -1.821778, "title": "Victoria Road Car Park Birmingham - 70517", "address": "Victoria Road"}];
+  var chargerData = [{"lat": 52.587659, "lng": -1.826905, "title": "Lidl-Mere Green", "address": "Mere Green Road", "connectors": ["Type 2 (Socket Only) · 22kW", "CCS (Type 2) · 50kW", "CHAdeMO · 50kW"]}, {"lat": 52.581282, "lng": -1.904929, "title": "Foley Arms", "address": "293 Foley Road", "connectors": ["CCS (Type 2) · 75kW", "CHAdeMO · 50kW", "CCS (Type 2) · 75kW", "CHAdeMO · 50kW", "Type 2 (Socket Only) · 16kW"]}, {"lat": 52.5538, "lng": -1.73399, "title": "The Belfry Hotel & Golf Resort", "address": "Lichfield Road", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 52.57739, "lng": -1.883626, "title": "Restricted access to Nissan customers", "address": "Chester Road", "connectors": ["CHAdeMO · 50kW"]}, {"lat": 52.548944, "lng": -1.858482, "title": "Tesco Extra-New Oscott", "address": "11 Princess Alice Drive", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 52.562366, "lng": -1.821778, "title": "Victoria Road Car Park Birmingham - 70517", "address": "Victoria Road", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}];
 
   chargerData.forEach(function (c) {
+    var connHtml = c.connectors.length
+      ? '<div style="margin-top:6px;font-size:12px;color:#475569">' + c.connectors.join(' &middot; ') + '</div>'
+      : '';
     var marker = L.marker([c.lat, c.lng]);
     marker.bindPopup(
-      '<b>' + c.title + '</b><br>' + c.address + '<br><br>' +
+      '<b>' + c.title + '</b>' +
+      '<div style="color:#64748b;font-size:13px">' + c.address + '</div>' +
+      connHtml +
       '<a href="https://www.google.com/maps/dir/?api=1&destination=' + c.lat + ',' + c.lng +
-      '" target="_blank" rel="noopener">Get directions</a>'
+      '" target="_blank" rel="noopener" style="display:inline-block;margin-top:8px;padding:4px 10px;background:#2563eb;color:white;border-radius:4px;text-decoration:none;font-size:12px">Get directions</a>'
     );
     markers.addLayer(marker);
   });
-
   map.addLayer(markers);
+
+  // --- Connector filter ---
+  var filterBtns = document.querySelectorAll('.filter-btn');
+  var chargerItems = document.querySelectorAll('.charger-item');
+
+  filterBtns.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      filterBtns.forEach(function (b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      var f = btn.dataset.filter;
+      chargerItems.forEach(function (item) {
+        var connList = item.dataset.connectors ? item.dataset.connectors.split(',') : [];
+        item.style.display = (f === 'all' || connList.indexOf(f) !== -1) ? '' : 'none';
+      });
+    });
+  });
+
+  // --- Copy postcode ---
+  document.querySelectorAll('.copy-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var original = btn.textContent;
+      navigator.clipboard.writeText(btn.dataset.copy).then(function () {
+        btn.textContent = 'Copied!';
+        btn.classList.add('copy-btn--success');
+        setTimeout(function () {
+          btn.textContent = original;
+          btn.classList.remove('copy-btn--success');
+        }, 1500);
+      });
+    });
+  });
 }());
 </script>
 

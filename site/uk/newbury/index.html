@@ -17,7 +17,10 @@
 
 <header>
 <div class="container">
-<a href="/" class="logo">PlugMap <span class="tagline">UK EV Charger Locator</span></a>
+<a href="/" class="logo">
+  <svg class="logo-bolt" viewBox="0 0 24 24" fill="currentColor" width="22" height="22" aria-hidden="true"><path d="M13 2L4.5 13.5H11L10 22L19.5 10.5H13Z"/></svg>
+  PlugMap <span class="tagline">UK EV Charger Locator</span>
+</a>
 </div>
 </header>
 
@@ -28,16 +31,41 @@
 </nav>
 
 <h1>EV Chargers in Newbury</h1>
-<p class="page-intro">25 public charging stations found in Newbury.</p>
+
+<div class="stats-bar">
+  <span class="stat-pill stat-total">25 stations</span>
+  <span class="stat-pill stat-rapid">10 rapid (50kW+)</span>
+  <span class="stat-pill stat-fast">8 fast (7–50kW)</span>
+  <span class="stat-pill stat-slow">7 slow</span>
+</div>
 
 <div id="map"></div>
 
-<ul class="charger-list">
+
+<div class="connector-filter">
+  <span class="filter-label">Filter:</span>
+  <button class="filter-btn active" data-filter="all">All</button>
+  
+  <button class="filter-btn" data-filter="CCS (Type 2)">CCS (Type 2)</button>
+  
+  <button class="filter-btn" data-filter="CHAdeMO">CHAdeMO</button>
+  
+  <button class="filter-btn" data-filter="Type 2 (Socket Only)">Type 2 (Socket Only)</button>
+  
+  <button class="filter-btn" data-filter="Type 2 (Tethered Connector) ">Type 2 (Tethered Connector) </button>
+  
+</div>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">5 Kennet Road</h2>
-  <p class="charger-address">Kennet Road RG17 9XP
+<ul class="charger-list" id="charger-list">
+
+
+<li class="charger-item charger-item--slow" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">5 Kennet Road</h2>
+    
+  </div>
+  <p class="charger-address">Kennet Road <button class="copy-btn" data-copy="RG17 9XP">RG17 9XP</button>
   </p>
   
   <div class="charger-connections">
@@ -59,9 +87,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Shaw House Car Park</h2>
-  <p class="charger-address">Shaw House RG14 2DR
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Shaw House Car Park</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Shaw House <button class="copy-btn" data-copy="RG14 2DR">RG14 2DR</button>
   </p>
   
   <div class="charger-connections">
@@ -89,9 +120,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Station Road Car Park, Newbury</h2>
-  <p class="charger-address">Station Road RG14 5DT
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Station Road Car Park, Newbury</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Station Road <button class="copy-btn" data-copy="RG14 5DT">RG14 5DT</button>
   </p>
   
   <div class="charger-connections">
@@ -113,9 +147,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">The Old Bell Public House</h2>
-  <p class="charger-address">215 Andover Road RG14 6ND
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">The Old Bell Public House</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">215 Andover Road <button class="copy-btn" data-copy="RG14 6ND">RG14 6ND</button>
   </p>
   
   <div class="charger-connections">
@@ -137,9 +174,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Dogs Trust Newbury</h2>
-  <p class="charger-address">Plumb Farm RG20 0HR
+<li class="charger-item charger-item--slow" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Dogs Trust Newbury</h2>
+    
+  </div>
+  <p class="charger-address">Plumb Farm <button class="copy-btn" data-copy="RG20 0HR">RG20 0HR</button>
   </p>
   
   <div class="charger-connections">
@@ -167,9 +207,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Podium Place</h2>
-  <p class="charger-address">31 Bone Lane RG14 5SH
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2)">
+  <div class="charger-header">
+    <h2 class="charger-name">Podium Place</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">31 Bone Lane <button class="copy-btn" data-copy="RG14 5SH">RG14 5SH</button>
   </p>
   
   <div class="charger-connections">
@@ -191,9 +235,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Chesterfield Road</h2>
-  <p class="charger-address">Chesterfield Road RG14 7QB
+<li class="charger-item charger-item--slow" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Chesterfield Road</h2>
+    
+  </div>
+  <p class="charger-address">Chesterfield Road <button class="copy-btn" data-copy="RG14 7QB">RG14 7QB</button>
   </p>
   
   <div class="charger-connections">
@@ -212,9 +259,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">RG14 7QB</h2>
-  <p class="charger-address">Chesterfield Rd 9C RG14 7QB
+<li class="charger-item charger-item--slow" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">RG14 7QB</h2>
+    
+  </div>
+  <p class="charger-address">Chesterfield Rd 9C <button class="copy-btn" data-copy="RG14 7QB">RG14 7QB</button>
   </p>
   
   <div class="charger-connections">
@@ -233,9 +283,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Two Watermills Pub &amp; Restaurant</h2>
-  <p class="charger-address">Newtown Road RG14 7HB
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2),CHAdeMO,Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Two Watermills Pub &amp; Restaurant</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Newtown Road <button class="copy-btn" data-copy="RG14 7HB">RG14 7HB</button>
   </p>
   
   <div class="charger-connections">
@@ -269,9 +323,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">RG14 7NJ</h2>
-  <p class="charger-address">York Rd 53 RG14 7NJ
+<li class="charger-item charger-item--slow" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">RG14 7NJ</h2>
+    
+  </div>
+  <p class="charger-address">York Rd 53 <button class="copy-btn" data-copy="RG14 7NJ">RG14 7NJ</button>
   </p>
   
   <div class="charger-connections">
@@ -290,9 +347,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">York Rd 76</h2>
-  <p class="charger-address">York Rd 76 RG14 7NR
+<li class="charger-item charger-item--slow" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">York Rd 76</h2>
+    
+  </div>
+  <p class="charger-address">York Rd 76 <button class="copy-btn" data-copy="RG14 7NR">RG14 7NR</button>
   </p>
   
   <div class="charger-connections">
@@ -311,9 +371,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Greenham Rd 103</h2>
-  <p class="charger-address">Greenham Rd 103 RG14 7JE
+<li class="charger-item charger-item--slow" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Greenham Rd 103</h2>
+    
+  </div>
+  <p class="charger-address">Greenham Rd 103 <button class="copy-btn" data-copy="RG14 7JE">RG14 7JE</button>
   </p>
   
   <div class="charger-connections">
@@ -332,9 +395,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">David Lloyd - Newbury</h2>
-  <p class="charger-address">Monks Lane RG14 7RW
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">David Lloyd - Newbury</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Monks Lane <button class="copy-btn" data-copy="RG14 7RW">RG14 7RW</button>
   </p>
   
   <div class="charger-connections">
@@ -356,9 +422,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Shell Tothill</h2>
-  <p class="charger-address">A34 Newbury Bypass RG20 9BX
+<li class="charger-item charger-item--rapid" data-connectors="CHAdeMO,Type 2 (Tethered Connector) ">
+  <div class="charger-header">
+    <h2 class="charger-name">Shell Tothill</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">A34 Newbury Bypass <button class="copy-btn" data-copy="RG20 9BX">RG20 9BX</button>
   </p>
   
   <div class="charger-connections">
@@ -398,9 +468,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Falkland Cricket Club</h2>
-  <p class="charger-address">Enborne Street RG14 6TW
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Falkland Cricket Club</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Enborne Street <button class="copy-btn" data-copy="RG14 6TW">RG14 6TW</button>
   </p>
   
   <div class="charger-connections">
@@ -419,9 +492,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Tesco Extra-Newbury</h2>
-  <p class="charger-address">Pinchington Lane RG14 7HB
+<li class="charger-item charger-item--rapid" data-connectors="Type 2 (Socket Only),CHAdeMO,CCS (Type 2)">
+  <div class="charger-header">
+    <h2 class="charger-name">Tesco Extra-Newbury</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Pinchington Lane <button class="copy-btn" data-copy="RG14 7HB">RG14 7HB</button>
   </p>
   
   <div class="charger-connections">
@@ -449,9 +526,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Lidl-Newbury</h2>
-  <p class="charger-address">Unit 2 London Road Retail Park RG14 2BP
+<li class="charger-item charger-item--rapid" data-connectors="Type 2 (Socket Only),CCS (Type 2),CHAdeMO">
+  <div class="charger-header">
+    <h2 class="charger-name">Lidl-Newbury</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Unit 2 London Road Retail Park <button class="copy-btn" data-copy="RG14 2BP">RG14 2BP</button>
   </p>
   
   <div class="charger-connections">
@@ -476,9 +557,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">BMO Newbury 1</h2>
-  <p class="charger-address">Unit 1- Greenham Road Retail Park RG14 7HZ
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2),CHAdeMO">
+  <div class="charger-header">
+    <h2 class="charger-name">BMO Newbury 1</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Unit 1- Greenham Road Retail Park <button class="copy-btn" data-copy="RG14 7HZ">RG14 7HZ</button>
   </p>
   
   <div class="charger-connections">
@@ -500,9 +585,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Northcroft Lane Leisure Centre</h2>
-  <p class="charger-address">Northcroft Lane RG14 1RS
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Northcroft Lane Leisure Centre</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Northcroft Lane <button class="copy-btn" data-copy="RG14 1RS">RG14 1RS</button>
   </p>
   
   <div class="charger-connections">
@@ -524,9 +612,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Regus Newbury</h2>
-  <p class="charger-address">Oxford House, Pelican Lane RG14 1NX
+<li class="charger-item charger-item--fast" data-connectors="CCS (Type 2)">
+  <div class="charger-header">
+    <h2 class="charger-name">Regus Newbury</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Oxford House, Pelican Lane <button class="copy-btn" data-copy="RG14 1NX">RG14 1NX</button>
   </p>
   
   <div class="charger-connections">
@@ -545,9 +636,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">McDonald&#39;s Tot Hill Services</h2>
-  <p class="charger-address">McDonald&#39;s Tot Hill Services RG20 9BX
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2),CHAdeMO">
+  <div class="charger-header">
+    <h2 class="charger-name">McDonald&#39;s Tot Hill Services</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">McDonald&#39;s Tot Hill Services <button class="copy-btn" data-copy="RG20 9BX">RG20 9BX</button>
   </p>
   
   <div class="charger-connections">
@@ -569,9 +664,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Newbury Central Car Park</h2>
-  <p class="charger-address">Wharf Road RG14 5QP
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2),CHAdeMO">
+  <div class="charger-header">
+    <h2 class="charger-name">Newbury Central Car Park</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Wharf Road <button class="copy-btn" data-copy="RG14 5QP">RG14 5QP</button>
   </p>
   
   <div class="charger-connections">
@@ -593,9 +692,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Newbury Library Car Park</h2>
-  <p class="charger-address">Wharf Road RG14 5AU
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Newbury Library Car Park</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Wharf Road <button class="copy-btn" data-copy="RG14 5AU">RG14 5AU</button>
   </p>
   
   <div class="charger-connections">
@@ -617,9 +719,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Shell Recharge Tot Hill Services</h2>
-  <p class="charger-address">Tot Hill Services RG20 9BX
+<li class="charger-item charger-item--rapid" data-connectors="CHAdeMO,CCS (Type 2)">
+  <div class="charger-header">
+    <h2 class="charger-name">Shell Recharge Tot Hill Services</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Tot Hill Services <button class="copy-btn" data-copy="RG20 9BX">RG20 9BX</button>
   </p>
   
   <div class="charger-connections">
@@ -659,9 +765,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">BP London Road Newbury</h2>
-  <p class="charger-address">London Road RG14 2BS
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2),CHAdeMO">
+  <div class="charger-header">
+    <h2 class="charger-name">BP London Road Newbury</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">London Road <button class="copy-btn" data-copy="RG14 2BS">RG14 2BS</button>
   </p>
   
   <div class="charger-connections">
@@ -686,6 +796,23 @@
 
 <p><a href="/" class="back-link">← All UK towns</a></p>
 
+
+<div class="nearby-towns">
+  <h2 class="nearby-heading">Nearby towns</h2>
+  <ul class="nearby-list">
+  
+    <li><a href="/uk/hungerford/">Hungerford</a></li>
+  
+    <li><a href="/uk/andover/">Andover</a></li>
+  
+    <li><a href="/uk/basingstoke/">Basingstoke</a></li>
+  
+    <li><a href="/uk/abingdon/">Abingdon</a></li>
+  
+  </ul>
+</div>
+
+
 </div>
 
 <footer>
@@ -698,26 +825,61 @@
 <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 <script>
 (function () {
+  // --- Map ---
   var map = L.map('map').setView([51.38963967086666, -1.3330551704248699], 12);
-
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
   }).addTo(map);
 
   var markers = L.markerClusterGroup();
-  var chargerData = [{"lat": 51.397529274910596, "lng": -1.4454382832871886, "title": "5 Kennet Road", "address": "Kennet Road"}, {"lat": 51.41152, "lng": -1.31589, "title": "Shaw House Car Park", "address": "Shaw House"}, {"lat": 51.3987824, "lng": -1.3261711, "title": "Station Road Car Park, Newbury", "address": "Station Road"}, {"lat": 51.38264619, "lng": -1.33961760851292, "title": "The Old Bell Public House", "address": "215 Andover Road"}, {"lat": 51.386918, "lng": -1.407002, "title": "Dogs Trust Newbury", "address": "Plumb Farm"}, {"lat": 51.401084715088274, "lng": -1.3097906313440149, "title": "Podium Place", "address": "31 Bone Lane"}, {"lat": 51.394885, "lng": -1.323632, "title": "Chesterfield Road", "address": "Chesterfield Road"}, {"lat": 51.394119, "lng": -1.323402, "title": "RG14 7QB", "address": "Chesterfield Rd 9C"}, {"lat": 51.383661, "lng": -1.3220693, "title": "Two Watermills Pub & Restaurant", "address": "Newtown Road"}, {"lat": 51.396558, "lng": -1.316837, "title": "RG14 7NJ", "address": "York Rd 53"}, {"lat": 51.395905, "lng": -1.316038, "title": "York Rd 76", "address": "York Rd 76"}, {"lat": 51.392787, "lng": -1.315347, "title": "Greenham Rd 103", "address": "Greenham Rd 103"}, {"lat": 51.381109, "lng": -1.334296, "title": "David Lloyd - Newbury", "address": "Monks Lane"}, {"lat": 51.347622, "lng": -1.341771, "title": "Shell Tothill", "address": "A34 Newbury Bypass"}, {"lat": 51.37890191721729, "lng": -1.3525767267854576, "title": "Falkland Cricket Club", "address": "Enborne Street"}, {"lat": 51.383322, "lng": -1.31793, "title": "Tesco Extra-Newbury", "address": "Pinchington Lane"}, {"lat": 51.403334, "lng": -1.307562, "title": "Lidl-Newbury", "address": "Unit 2 London Road Retail Park"}, {"lat": 51.396999, "lng": -1.32025, "title": "BMO Newbury 1", "address": "Unit 1- Greenham Road Retail Park"}, {"lat": 51.403591, "lng": -1.332684, "title": "Northcroft Lane Leisure Centre", "address": "Northcroft Lane"}, {"lat": 51.406600109736104, "lng": -1.3263883695192362, "title": "Regus Newbury", "address": "Oxford House, Pelican Lane"}, {"lat": 51.3486928108458, "lng": -1.34144577297403, "title": "McDonald's Tot Hill Services", "address": "McDonald's Tot Hill Services"}, {"lat": 51.40062931293983, "lng": -1.321103282428794, "title": "Newbury Central Car Park", "address": "Wharf Road"}, {"lat": 51.40170888347484, "lng": -1.320987483987551, "title": "Newbury Library Car Park", "address": "Wharf Road"}, {"lat": 51.34807935745371, "lng": -1.342086801782557, "title": "Shell Recharge Tot Hill Services", "address": "Tot Hill Services"}, {"lat": 51.4040068, "lng": -1.3060629, "title": "BP London Road Newbury", "address": "London Road"}];
+  var chargerData = [{"lat": 51.397529274910596, "lng": -1.4454382832871886, "title": "5 Kennet Road", "address": "Kennet Road", "connectors": ["Type 2 (Socket Only) · 5kW", "Type 2 (Socket Only) · 5kW"]}, {"lat": 51.41152, "lng": -1.31589, "title": "Shaw House Car Park", "address": "Shaw House", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 51.3987824, "lng": -1.3261711, "title": "Station Road Car Park, Newbury", "address": "Station Road", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 51.38264619, "lng": -1.33961760851292, "title": "The Old Bell Public House", "address": "215 Andover Road", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 7.4kW"]}, {"lat": 51.386918, "lng": -1.407002, "title": "Dogs Trust Newbury", "address": "Plumb Farm", "connectors": ["Type 2 (Socket Only) · 3.6kW", "Type 2 (Socket Only) · 3.6kW", "Type 2 (Socket Only) · 3.6kW", "Type 2 (Socket Only) · 3.6kW"]}, {"lat": 51.401084715088274, "lng": -1.3097906313440149, "title": "Podium Place", "address": "31 Bone Lane", "connectors": ["CCS (Type 2) · 50kW", "CCS (Type 2) · 50kW"]}, {"lat": 51.394885, "lng": -1.323632, "title": "Chesterfield Road", "address": "Chesterfield Road", "connectors": ["Type 2 (Socket Only) · 3.7kW"]}, {"lat": 51.394119, "lng": -1.323402, "title": "RG14 7QB", "address": "Chesterfield Rd 9C", "connectors": ["Type 2 (Socket Only) · 3.7kW"]}, {"lat": 51.383661, "lng": -1.3220693, "title": "Two Watermills Pub & Restaurant", "address": "Newtown Road", "connectors": ["CCS (Type 2) · 50kW", "CHAdeMO · 50kW", "CHAdeMO · 50kW", "CCS (Type 2) · 50kW", "Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 11kW"]}, {"lat": 51.396558, "lng": -1.316837, "title": "RG14 7NJ", "address": "York Rd 53", "connectors": ["Type 2 (Socket Only) · 3.7kW"]}, {"lat": 51.395905, "lng": -1.316038, "title": "York Rd 76", "address": "York Rd 76", "connectors": ["Type 2 (Socket Only) · 3.7kW"]}, {"lat": 51.392787, "lng": -1.315347, "title": "Greenham Rd 103", "address": "Greenham Rd 103", "connectors": ["Type 2 (Socket Only) · 3.7kW"]}, {"lat": 51.381109, "lng": -1.334296, "title": "David Lloyd - Newbury", "address": "Monks Lane", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 51.347622, "lng": -1.341771, "title": "Shell Tothill", "address": "A34 Newbury Bypass", "connectors": ["CHAdeMO · 100kW", "Type 2 (Tethered Connector)  · 175kW", "CHAdeMO · 100kW", "Type 2 (Tethered Connector)  · 175kW", "CHAdeMO · 100kW", "Type 2 (Tethered Connector)  · 175kW", "CHAdeMO · 100kW", "Type 2 (Tethered Connector)  · 175kW"]}, {"lat": 51.37890191721729, "lng": -1.3525767267854576, "title": "Falkland Cricket Club", "address": "Enborne Street", "connectors": ["Type 2 (Socket Only) · 22kW"]}, {"lat": 51.383322, "lng": -1.31793, "title": "Tesco Extra-Newbury", "address": "Pinchington Lane", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 22kW", "CHAdeMO · 50kW", "CCS (Type 2) · 50kW"]}, {"lat": 51.403334, "lng": -1.307562, "title": "Lidl-Newbury", "address": "Unit 2 London Road Retail Park", "connectors": ["Type 2 (Socket Only) · 22kW", "CCS (Type 2) · 50kW", "CHAdeMO · 50kW"]}, {"lat": 51.396999, "lng": -1.32025, "title": "BMO Newbury 1", "address": "Unit 1- Greenham Road Retail Park", "connectors": ["CCS (Type 2) · 150kW", "CHAdeMO · 50kW"]}, {"lat": 51.403591, "lng": -1.332684, "title": "Northcroft Lane Leisure Centre", "address": "Northcroft Lane", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 51.406600109736104, "lng": -1.3263883695192362, "title": "Regus Newbury", "address": "Oxford House, Pelican Lane", "connectors": ["CCS (Type 2) · 25kW"]}, {"lat": 51.3486928108458, "lng": -1.34144577297403, "title": "McDonald's Tot Hill Services", "address": "McDonald's Tot Hill Services", "connectors": ["CCS (Type 2) · 120kW", "CHAdeMO · 100kW"]}, {"lat": 51.40062931293983, "lng": -1.321103282428794, "title": "Newbury Central Car Park", "address": "Wharf Road", "connectors": ["CCS (Type 2) · 50kW", "CHAdeMO · 50kW"]}, {"lat": 51.40170888347484, "lng": -1.320987483987551, "title": "Newbury Library Car Park", "address": "Wharf Road", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 51.34807935745371, "lng": -1.342086801782557, "title": "Shell Recharge Tot Hill Services", "address": "Tot Hill Services", "connectors": ["CHAdeMO · 74kW", "CCS (Type 2) · 180kW", "CHAdeMO · 74kW", "CHAdeMO · 74kW", "CHAdeMO · 74kW", "CCS (Type 2) · 180kW", "CCS (Type 2) · 180kW", "CCS (Type 2) · 180kW"]}, {"lat": 51.4040068, "lng": -1.3060629, "title": "BP London Road Newbury", "address": "London Road", "connectors": ["CCS (Type 2) · 150kW", "CHAdeMO · 100kW"]}];
 
   chargerData.forEach(function (c) {
+    var connHtml = c.connectors.length
+      ? '<div style="margin-top:6px;font-size:12px;color:#475569">' + c.connectors.join(' &middot; ') + '</div>'
+      : '';
     var marker = L.marker([c.lat, c.lng]);
     marker.bindPopup(
-      '<b>' + c.title + '</b><br>' + c.address + '<br><br>' +
+      '<b>' + c.title + '</b>' +
+      '<div style="color:#64748b;font-size:13px">' + c.address + '</div>' +
+      connHtml +
       '<a href="https://www.google.com/maps/dir/?api=1&destination=' + c.lat + ',' + c.lng +
-      '" target="_blank" rel="noopener">Get directions</a>'
+      '" target="_blank" rel="noopener" style="display:inline-block;margin-top:8px;padding:4px 10px;background:#2563eb;color:white;border-radius:4px;text-decoration:none;font-size:12px">Get directions</a>'
     );
     markers.addLayer(marker);
   });
-
   map.addLayer(markers);
+
+  // --- Connector filter ---
+  var filterBtns = document.querySelectorAll('.filter-btn');
+  var chargerItems = document.querySelectorAll('.charger-item');
+
+  filterBtns.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      filterBtns.forEach(function (b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      var f = btn.dataset.filter;
+      chargerItems.forEach(function (item) {
+        var connList = item.dataset.connectors ? item.dataset.connectors.split(',') : [];
+        item.style.display = (f === 'all' || connList.indexOf(f) !== -1) ? '' : 'none';
+      });
+    });
+  });
+
+  // --- Copy postcode ---
+  document.querySelectorAll('.copy-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var original = btn.textContent;
+      navigator.clipboard.writeText(btn.dataset.copy).then(function () {
+        btn.textContent = 'Copied!';
+        btn.classList.add('copy-btn--success');
+        setTimeout(function () {
+          btn.textContent = original;
+          btn.classList.remove('copy-btn--success');
+        }, 1500);
+      });
+    });
+  });
 }());
 </script>
 

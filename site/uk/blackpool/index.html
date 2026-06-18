@@ -17,7 +17,10 @@
 
 <header>
 <div class="container">
-<a href="/" class="logo">PlugMap <span class="tagline">UK EV Charger Locator</span></a>
+<a href="/" class="logo">
+  <svg class="logo-bolt" viewBox="0 0 24 24" fill="currentColor" width="22" height="22" aria-hidden="true"><path d="M13 2L4.5 13.5H11L10 22L19.5 10.5H13Z"/></svg>
+  PlugMap <span class="tagline">UK EV Charger Locator</span>
+</a>
 </div>
 </header>
 
@@ -28,16 +31,46 @@
 </nav>
 
 <h1>EV Chargers in Blackpool</h1>
-<p class="page-intro">12 public charging stations found in Blackpool.</p>
+
+<div class="stats-bar">
+  <span class="stat-pill stat-total">12 stations</span>
+  <span class="stat-pill stat-rapid">2 rapid (50kW+)</span>
+  <span class="stat-pill stat-fast">9 fast (7–50kW)</span>
+  <span class="stat-pill stat-slow">1 slow</span>
+</div>
 
 <div id="map"></div>
 
-<ul class="charger-list">
+
+<div class="connector-filter">
+  <span class="filter-label">Filter:</span>
+  <button class="filter-btn active" data-filter="all">All</button>
+  
+  <button class="filter-btn" data-filter="BS1363 3 Pin 13 Amp">BS1363 3 Pin 13 Amp</button>
+  
+  <button class="filter-btn" data-filter="CCS (Type 2)">CCS (Type 2)</button>
+  
+  <button class="filter-btn" data-filter="CHAdeMO">CHAdeMO</button>
+  
+  <button class="filter-btn" data-filter="Tesla (Model S/X)">Tesla (Model S/X)</button>
+  
+  <button class="filter-btn" data-filter="Type 2 (Socket Only)">Type 2 (Socket Only)</button>
+  
+  <button class="filter-btn" data-filter="Type 2 (Tethered Connector) ">Type 2 (Tethered Connector) </button>
+  
+</div>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Lidl-Devonshire Road</h2>
-  <p class="charger-address">127 Devonshire Road FY3 8BL
+<ul class="charger-list" id="charger-list">
+
+
+<li class="charger-item charger-item--rapid" data-connectors="Type 2 (Socket Only),CCS (Type 2),CHAdeMO">
+  <div class="charger-header">
+    <h2 class="charger-name">Lidl-Devonshire Road</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">127 Devonshire Road <button class="copy-btn" data-copy="FY3 8BL">FY3 8BL</button>
   </p>
   
   <div class="charger-connections">
@@ -62,9 +95,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Red Bank Road, Bispham, Blackpool</h2>
-  <p class="charger-address">Bispham FY2 0HJ
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Red Bank Road, Bispham, Blackpool</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Bispham <button class="copy-btn" data-copy="FY2 0HJ">FY2 0HJ</button>
   </p>
   
   <div class="charger-connections">
@@ -86,9 +122,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">The Grange, Blackpool</h2>
-  <p class="charger-address">The Grange, Blackpool FY3 7RW
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">The Grange, Blackpool</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">The Grange, Blackpool <button class="copy-btn" data-copy="FY3 7RW">FY3 7RW</button>
   </p>
   
   <div class="charger-connections">
@@ -110,9 +149,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">ICUEVE900237</h2>
-  <p class="charger-address">7 Winster Place FY4 4SJ
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">ICUEVE900237</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">7 Winster Place <button class="copy-btn" data-copy="FY4 4SJ">FY4 4SJ</button>
   </p>
   
   <div class="charger-connections">
@@ -129,9 +171,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Intelligent Charging Systems</h2>
-  <p class="charger-address">Sandersons Way FY4 4XL
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Intelligent Charging Systems</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Sandersons Way <button class="copy-btn" data-copy="FY4 4XL">FY4 4XL</button>
   </p>
   
   <div class="charger-connections">
@@ -153,9 +198,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Blackpool Council 1</h2>
-  <p class="charger-address">Central Car park FY1 5QE
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Blackpool Council 1</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Central Car park <button class="copy-btn" data-copy="FY1 5QE">FY1 5QE</button>
   </p>
   
   <div class="charger-connections">
@@ -177,9 +225,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">West Street Car Park</h2>
-  <p class="charger-address">West Street FY1 1HA
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">West Street Car Park</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">West Street <button class="copy-btn" data-copy="FY1 1HA">FY1 1HA</button>
   </p>
   
   <div class="charger-connections">
@@ -198,9 +249,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Houndshill Shopping Centre Multistorey</h2>
-  <p class="charger-address">27/29 Victoria Street FY1 4HU
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Houndshill Shopping Centre Multistorey</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">27/29 Victoria Street <button class="copy-btn" data-copy="FY1 4HU">FY1 4HU</button>
   </p>
   
   <div class="charger-connections">
@@ -222,9 +276,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">ApartHotel421 By Seafront Collection</h2>
-  <p class="charger-address">421 Promenade FY1 6BQ
+<li class="charger-item charger-item--fast" data-connectors="Tesla (Model S/X),BS1363 3 Pin 13 Amp">
+  <div class="charger-header">
+    <h2 class="charger-name">ApartHotel421 By Seafront Collection</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">421 Promenade <button class="copy-btn" data-copy="FY1 6BQ">FY1 6BQ</button>
   </p>
   
   <div class="charger-connections">
@@ -246,9 +303,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Toby Carvery Blackpool </h2>
-  <p class="charger-address">4 Oakleaf Way FY4 4FB
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2),CHAdeMO,Type 2 (Tethered Connector) ">
+  <div class="charger-header">
+    <h2 class="charger-name">Toby Carvery Blackpool </h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">4 Oakleaf Way <button class="copy-btn" data-copy="FY4 4FB">FY4 4FB</button>
   </p>
   
   <div class="charger-connections">
@@ -273,9 +334,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">The Harbour</h2>
-  <p class="charger-address">10 Winster Place FY4 4SJ
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">The Harbour</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">10 Winster Place <button class="copy-btn" data-copy="FY4 4SJ">FY4 4SJ</button>
   </p>
   
   <div class="charger-connections">
@@ -294,9 +358,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Sainsbury&#39;s</h2>
-  <p class="charger-address">New Larkhill Street FY1 3AJ
+<li class="charger-item charger-item--slow" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Sainsbury&#39;s</h2>
+    
+  </div>
+  <p class="charger-address">New Larkhill Street <button class="copy-btn" data-copy="FY1 3AJ">FY1 3AJ</button>
   </p>
   
   <div class="charger-connections">
@@ -318,6 +385,23 @@
 
 <p><a href="/" class="back-link">← All UK towns</a></p>
 
+
+<div class="nearby-towns">
+  <h2 class="nearby-heading">Nearby towns</h2>
+  <ul class="nearby-list">
+  
+    <li><a href="/uk/southport/">Southport</a></li>
+  
+    <li><a href="/uk/ormskirk/">Ormskirk</a></li>
+  
+    <li><a href="/uk/lancaster/">Lancaster</a></li>
+  
+    <li><a href="/uk/leyland/">Leyland</a></li>
+  
+  </ul>
+</div>
+
+
 </div>
 
 <footer>
@@ -330,26 +414,61 @@
 <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 <script>
 (function () {
+  // --- Map ---
   var map = L.map('map').setView([53.814359365349674, -3.0294960774003954], 12);
-
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
   }).addTo(map);
 
   var markers = L.markerClusterGroup();
-  var chargerData = [{"lat": 53.823825, "lng": -3.038869, "title": "Lidl-Devonshire Road", "address": "127 Devonshire Road"}, {"lat": 53.852277, "lng": -3.039395, "title": "Red Bank Road, Bispham, Blackpool", "address": "Bispham"}, {"lat": 53.829313, "lng": -3.017734, "title": "The Grange, Blackpool", "address": "The Grange, Blackpool"}, {"lat": 53.800716, "lng": -2.990341, "title": "ICUEVE900237", "address": "7 Winster Place"}, {"lat": 53.796564, "lng": -3.019958, "title": "Intelligent Charging Systems", "address": "Sandersons Way"}, {"lat": 53.813596, "lng": -3.053276, "title": "Blackpool Council 1", "address": "Central Car park"}, {"lat": 53.817999853880195, "lng": -3.0544371675977118, "title": "West Street Car Park", "address": "West Street"}, {"lat": 53.815930421184106, "lng": -3.053972008130245, "title": "Houndshill Shopping Centre Multistorey", "address": "27/29 Victoria Street"}, {"lat": 53.79946766603926, "lng": -3.0554995139956036, "title": "ApartHotel421 By Seafront Collection", "address": "421 Promenade"}, {"lat": 53.8015269703755, "lng": -2.9932002944181, "title": "Toby Carvery Blackpool ", "address": "4 Oakleaf Way"}, {"lat": 53.800237, "lng": -2.989691, "title": "The Harbour", "address": "10 Winster Place"}, {"lat": 53.820859472717075, "lng": -3.0475799446630845, "title": "Sainsbury's", "address": "New Larkhill Street"}];
+  var chargerData = [{"lat": 53.823825, "lng": -3.038869, "title": "Lidl-Devonshire Road", "address": "127 Devonshire Road", "connectors": ["Type 2 (Socket Only) · 22kW", "CCS (Type 2) · 50kW", "CHAdeMO · 50kW"]}, {"lat": 53.852277, "lng": -3.039395, "title": "Red Bank Road, Bispham, Blackpool", "address": "Bispham", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 53.829313, "lng": -3.017734, "title": "The Grange, Blackpool", "address": "The Grange, Blackpool", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 53.800716, "lng": -2.990341, "title": "ICUEVE900237", "address": "7 Winster Place", "connectors": ["Type 2 (Socket Only) · 7kW"]}, {"lat": 53.796564, "lng": -3.019958, "title": "Intelligent Charging Systems", "address": "Sandersons Way", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 53.813596, "lng": -3.053276, "title": "Blackpool Council 1", "address": "Central Car park", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 53.817999853880195, "lng": -3.0544371675977118, "title": "West Street Car Park", "address": "West Street", "connectors": ["Type 2 (Socket Only) · 7kW"]}, {"lat": 53.815930421184106, "lng": -3.053972008130245, "title": "Houndshill Shopping Centre Multistorey", "address": "27/29 Victoria Street", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 53.79946766603926, "lng": -3.0554995139956036, "title": "ApartHotel421 By Seafront Collection", "address": "421 Promenade", "connectors": ["Tesla (Model S/X) · 22kW", "BS1363 3 Pin 13 Amp · 3kW"]}, {"lat": 53.8015269703755, "lng": -2.9932002944181, "title": "Toby Carvery Blackpool ", "address": "4 Oakleaf Way", "connectors": ["CCS (Type 2) · 50kW", "CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 43kW"]}, {"lat": 53.800237, "lng": -2.989691, "title": "The Harbour", "address": "10 Winster Place", "connectors": ["Type 2 (Socket Only) · 7kW"]}, {"lat": 53.820859472717075, "lng": -3.0475799446630845, "title": "Sainsbury's", "address": "New Larkhill Street", "connectors": ["Type 2 (Socket Only) · 3.6kW"]}];
 
   chargerData.forEach(function (c) {
+    var connHtml = c.connectors.length
+      ? '<div style="margin-top:6px;font-size:12px;color:#475569">' + c.connectors.join(' &middot; ') + '</div>'
+      : '';
     var marker = L.marker([c.lat, c.lng]);
     marker.bindPopup(
-      '<b>' + c.title + '</b><br>' + c.address + '<br><br>' +
+      '<b>' + c.title + '</b>' +
+      '<div style="color:#64748b;font-size:13px">' + c.address + '</div>' +
+      connHtml +
       '<a href="https://www.google.com/maps/dir/?api=1&destination=' + c.lat + ',' + c.lng +
-      '" target="_blank" rel="noopener">Get directions</a>'
+      '" target="_blank" rel="noopener" style="display:inline-block;margin-top:8px;padding:4px 10px;background:#2563eb;color:white;border-radius:4px;text-decoration:none;font-size:12px">Get directions</a>'
     );
     markers.addLayer(marker);
   });
-
   map.addLayer(markers);
+
+  // --- Connector filter ---
+  var filterBtns = document.querySelectorAll('.filter-btn');
+  var chargerItems = document.querySelectorAll('.charger-item');
+
+  filterBtns.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      filterBtns.forEach(function (b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      var f = btn.dataset.filter;
+      chargerItems.forEach(function (item) {
+        var connList = item.dataset.connectors ? item.dataset.connectors.split(',') : [];
+        item.style.display = (f === 'all' || connList.indexOf(f) !== -1) ? '' : 'none';
+      });
+    });
+  });
+
+  // --- Copy postcode ---
+  document.querySelectorAll('.copy-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var original = btn.textContent;
+      navigator.clipboard.writeText(btn.dataset.copy).then(function () {
+        btn.textContent = 'Copied!';
+        btn.classList.add('copy-btn--success');
+        setTimeout(function () {
+          btn.textContent = original;
+          btn.classList.remove('copy-btn--success');
+        }, 1500);
+      });
+    });
+  });
 }());
 </script>
 

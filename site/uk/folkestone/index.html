@@ -17,7 +17,10 @@
 
 <header>
 <div class="container">
-<a href="/" class="logo">PlugMap <span class="tagline">UK EV Charger Locator</span></a>
+<a href="/" class="logo">
+  <svg class="logo-bolt" viewBox="0 0 24 24" fill="currentColor" width="22" height="22" aria-hidden="true"><path d="M13 2L4.5 13.5H11L10 22L19.5 10.5H13Z"/></svg>
+  PlugMap <span class="tagline">UK EV Charger Locator</span>
+</a>
 </div>
 </header>
 
@@ -28,16 +31,40 @@
 </nav>
 
 <h1>EV Chargers in Folkestone</h1>
-<p class="page-intro">15 public charging stations found in Folkestone.</p>
+
+<div class="stats-bar">
+  <span class="stat-pill stat-total">15 stations</span>
+  <span class="stat-pill stat-rapid">3 rapid (50kW+)</span>
+  <span class="stat-pill stat-fast">12 fast (7–50kW)</span>
+  
+</div>
 
 <div id="map"></div>
 
-<ul class="charger-list">
+
+<div class="connector-filter">
+  <span class="filter-label">Filter:</span>
+  <button class="filter-btn active" data-filter="all">All</button>
+  
+  <button class="filter-btn" data-filter="CCS (Type 2)">CCS (Type 2)</button>
+  
+  <button class="filter-btn" data-filter="CHAdeMO">CHAdeMO</button>
+  
+  <button class="filter-btn" data-filter="Type 2 (Socket Only)">Type 2 (Socket Only)</button>
+  
+</div>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">West Cliff Gardens</h2>
-  <p class="charger-address">West Cliff Gardens CT20 1SA
+<ul class="charger-list" id="charger-list">
+
+
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2),CHAdeMO,Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">West Cliff Gardens</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">West Cliff Gardens <button class="copy-btn" data-copy="CT20 1SA">CT20 1SA</button>
   </p>
   
   <div class="charger-connections">
@@ -62,9 +89,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">EuroTunnel</h2>
-  <p class="charger-address">Ashford Road CT18 8AP
+<li class="charger-item charger-item--rapid" data-connectors="CHAdeMO,CCS (Type 2),Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">EuroTunnel</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Ashford Road <button class="copy-btn" data-copy="CT18 8AP">CT18 8AP</button>
   </p>
   
   <div class="charger-connections">
@@ -95,9 +126,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">BP Pulse Charging Station</h2>
-  <p class="charger-address">244 Cheriton High Street CT19 4JE
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2)">
+  <div class="charger-header">
+    <h2 class="charger-name">BP Pulse Charging Station</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">244 Cheriton High Street <button class="copy-btn" data-copy="CT19 4JE">CT19 4JE</button>
   </p>
   
   <div class="charger-connections">
@@ -116,9 +151,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Lower Payers Car Park 1</h2>
-  <p class="charger-address">Lower Payers Car Park 1 CT20 1EZ
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Lower Payers Car Park 1</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Lower Payers Car Park 1 <button class="copy-btn" data-copy="CT20 1EZ">CT20 1EZ</button>
   </p>
   
   <div class="charger-connections">
@@ -140,9 +178,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Upper Payers Car Park 1</h2>
-  <p class="charger-address">Upper Payers Car Park 1 CT20 1E
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Upper Payers Car Park 1</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Upper Payers Car Park 1 <button class="copy-btn" data-copy="CT20 1E">CT20 1E</button>
   </p>
   
   <div class="charger-connections">
@@ -164,9 +205,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Coastal Car Park 1</h2>
-  <p class="charger-address">Coastal Car Park 1 CT20 2DR
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Coastal Car Park 1</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Coastal Car Park 1 <button class="copy-btn" data-copy="CT20 2DR">CT20 2DR</button>
   </p>
   
   <div class="charger-connections">
@@ -188,9 +232,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Broomfield Road Car Park 1</h2>
-  <p class="charger-address">Broomfield Road Car Park 1 CT19 4DH
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Broomfield Road Car Park 1</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Broomfield Road Car Park 1 <button class="copy-btn" data-copy="CT19 4DH">CT19 4DH</button>
   </p>
   
   <div class="charger-connections">
@@ -212,9 +259,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Civic Center Visitors Car Park 1</h2>
-  <p class="charger-address">Civic Center Visitors Car Park 1 CT20 2QY
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Civic Center Visitors Car Park 1</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Civic Center Visitors Car Park 1 <button class="copy-btn" data-copy="CT20 2QY">CT20 2QY</button>
   </p>
   
   <div class="charger-connections">
@@ -236,9 +286,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Castle Road Car Park 1, Sandgate</h2>
-  <p class="charger-address">Castle Road Car Park 1, Sandgate CT20 3AQ
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Castle Road Car Park 1, Sandgate</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Castle Road Car Park 1, Sandgate <button class="copy-btn" data-copy="CT20 3AQ">CT20 3AQ</button>
   </p>
   
   <div class="charger-connections">
@@ -260,9 +313,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Tesco Superstore-Folkestone</h2>
-  <p class="charger-address">Cheriton High Street CT19 4QJ
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Tesco Superstore-Folkestone</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Cheriton High Street <button class="copy-btn" data-copy="CT19 4QJ">CT19 4QJ</button>
   </p>
   
   <div class="charger-connections">
@@ -284,9 +340,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">East Cliff Paviliion Car Park 2</h2>
-  <p class="charger-address">East Cliff Pavillion Car Park CT19 6B
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">East Cliff Paviliion Car Park 2</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">East Cliff Pavillion Car Park <button class="copy-btn" data-copy="CT19 6B">CT19 6B</button>
   </p>
   
   <div class="charger-connections">
@@ -308,9 +367,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Tram Road 3</h2>
-  <p class="charger-address">20 Harbour Way CT20 1NF
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Tram Road 3</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">20 Harbour Way <button class="copy-btn" data-copy="CT20 1NF">CT20 1NF</button>
   </p>
   
   <div class="charger-connections">
@@ -332,9 +394,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Pleydell Gardens 1</h2>
-  <p class="charger-address">Pleydell Gardens 1 CT20 2D
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Pleydell Gardens 1</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Pleydell Gardens 1 <button class="copy-btn" data-copy="CT20 2D">CT20 2D</button>
   </p>
   
   <div class="charger-connections">
@@ -356,9 +421,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Sandgate Road Car Park 1</h2>
-  <p class="charger-address">Sandgate Road Car Park 1 CT20 2B
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Sandgate Road Car Park 1</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Sandgate Road Car Park 1 <button class="copy-btn" data-copy="CT20 2B">CT20 2B</button>
   </p>
   
   <div class="charger-connections">
@@ -380,9 +448,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Shellons Street Car Park</h2>
-  <p class="charger-address">Street Eanswythe Way CT20 1BP
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Shellons Street Car Park</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Street Eanswythe Way <button class="copy-btn" data-copy="CT20 1BP">CT20 1BP</button>
   </p>
   
   <div class="charger-connections">
@@ -407,6 +478,23 @@
 
 <p><a href="/" class="back-link">← All UK towns</a></p>
 
+
+<div class="nearby-towns">
+  <h2 class="nearby-heading">Nearby towns</h2>
+  <ul class="nearby-list">
+  
+    <li><a href="/uk/dover/">Dover</a></li>
+  
+    <li><a href="/uk/canterbury/">Canterbury</a></li>
+  
+    <li><a href="/uk/sandwich/">Sandwich</a></li>
+  
+    <li><a href="/uk/deal/">Deal</a></li>
+  
+  </ul>
+</div>
+
+
 </div>
 
 <footer>
@@ -419,26 +507,61 @@
 <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 <script>
 (function () {
+  // --- Map ---
   var map = L.map('map').setView([51.082248235249935, 1.1655630375751442], 12);
-
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
   }).addTo(map);
 
   var markers = L.markerClusterGroup();
-  var chargerData = [{"lat": 51.079282869355865, "lng": 1.1804454870807604, "title": "West Cliff Gardens", "address": "West Cliff Gardens"}, {"lat": 51.09636726175373, "lng": 1.1212489493299245, "title": "EuroTunnel", "address": "Ashford Road"}, {"lat": 51.0888433976394, "lng": 1.13544512721648, "title": "BP Pulse Charging Station", "address": "244 Cheriton High Street"}, {"lat": 51.08111, "lng": 1.182866, "title": "Lower Payers Car Park 1", "address": "Lower Payers Car Park 1"}, {"lat": 51.080975, "lng": 1.182179, "title": "Upper Payers Car Park 1", "address": "Upper Payers Car Park 1"}, {"lat": 51.076581, "lng": 1.177968, "title": "Coastal Car Park 1", "address": "Coastal Car Park 1"}, {"lat": 51.087592, "lng": 1.142315, "title": "Broomfield Road Car Park 1", "address": "Broomfield Road Car Park 1"}, {"lat": 51.079496, "lng": 1.16984, "title": "Civic Center Visitors Car Park 1", "address": "Civic Center Visitors Car Park 1"}, {"lat": 51.073318, "lng": 1.147519, "title": "Castle Road Car Park 1, Sandgate", "address": "Castle Road Car Park 1, Sandgate"}, {"lat": 51.090299, "lng": 1.130977, "title": "Tesco Superstore-Folkestone", "address": "Cheriton High Street"}, {"lat": 51.084006, "lng": 1.196316, "title": "East Cliff Paviliion Car Park 2", "address": "East Cliff Pavillion Car Park"}, {"lat": 51.080869, "lng": 1.185743, "title": "Tram Road 3", "address": "20 Harbour Way"}, {"lat": 51.077498, "lng": 1.176343, "title": "Pleydell Gardens 1", "address": "Pleydell Gardens 1"}, {"lat": 51.076874, "lng": 1.173326, "title": "Sandgate Road Car Park 1", "address": "Sandgate Road Car Park 1"}, {"lat": 51.080612, "lng": 1.180914, "title": "Shellons Street Car Park", "address": "Street Eanswythe Way"}];
+  var chargerData = [{"lat": 51.079282869355865, "lng": 1.1804454870807604, "title": "West Cliff Gardens", "address": "West Cliff Gardens", "connectors": ["CCS (Type 2) · 50kW", "CHAdeMO · 50kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 51.09636726175373, "lng": 1.1212489493299245, "title": "EuroTunnel", "address": "Ashford Road", "connectors": ["CHAdeMO · 60kW", "CCS (Type 2) · 90kW", "Type 2 (Socket Only) · 22kW", "CCS (Type 2) · 210kW", "CHAdeMO · 90kW"]}, {"lat": 51.0888433976394, "lng": 1.13544512721648, "title": "BP Pulse Charging Station", "address": "244 Cheriton High Street", "connectors": ["CCS (Type 2) · 150kW"]}, {"lat": 51.08111, "lng": 1.182866, "title": "Lower Payers Car Park 1", "address": "Lower Payers Car Park 1", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 51.080975, "lng": 1.182179, "title": "Upper Payers Car Park 1", "address": "Upper Payers Car Park 1", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 51.076581, "lng": 1.177968, "title": "Coastal Car Park 1", "address": "Coastal Car Park 1", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 51.087592, "lng": 1.142315, "title": "Broomfield Road Car Park 1", "address": "Broomfield Road Car Park 1", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 51.079496, "lng": 1.16984, "title": "Civic Center Visitors Car Park 1", "address": "Civic Center Visitors Car Park 1", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 51.073318, "lng": 1.147519, "title": "Castle Road Car Park 1, Sandgate", "address": "Castle Road Car Park 1, Sandgate", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 51.090299, "lng": 1.130977, "title": "Tesco Superstore-Folkestone", "address": "Cheriton High Street", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 51.084006, "lng": 1.196316, "title": "East Cliff Paviliion Car Park 2", "address": "East Cliff Pavillion Car Park", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 51.080869, "lng": 1.185743, "title": "Tram Road 3", "address": "20 Harbour Way", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 51.077498, "lng": 1.176343, "title": "Pleydell Gardens 1", "address": "Pleydell Gardens 1", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 51.076874, "lng": 1.173326, "title": "Sandgate Road Car Park 1", "address": "Sandgate Road Car Park 1", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 51.080612, "lng": 1.180914, "title": "Shellons Street Car Park", "address": "Street Eanswythe Way", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}];
 
   chargerData.forEach(function (c) {
+    var connHtml = c.connectors.length
+      ? '<div style="margin-top:6px;font-size:12px;color:#475569">' + c.connectors.join(' &middot; ') + '</div>'
+      : '';
     var marker = L.marker([c.lat, c.lng]);
     marker.bindPopup(
-      '<b>' + c.title + '</b><br>' + c.address + '<br><br>' +
+      '<b>' + c.title + '</b>' +
+      '<div style="color:#64748b;font-size:13px">' + c.address + '</div>' +
+      connHtml +
       '<a href="https://www.google.com/maps/dir/?api=1&destination=' + c.lat + ',' + c.lng +
-      '" target="_blank" rel="noopener">Get directions</a>'
+      '" target="_blank" rel="noopener" style="display:inline-block;margin-top:8px;padding:4px 10px;background:#2563eb;color:white;border-radius:4px;text-decoration:none;font-size:12px">Get directions</a>'
     );
     markers.addLayer(marker);
   });
-
   map.addLayer(markers);
+
+  // --- Connector filter ---
+  var filterBtns = document.querySelectorAll('.filter-btn');
+  var chargerItems = document.querySelectorAll('.charger-item');
+
+  filterBtns.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      filterBtns.forEach(function (b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      var f = btn.dataset.filter;
+      chargerItems.forEach(function (item) {
+        var connList = item.dataset.connectors ? item.dataset.connectors.split(',') : [];
+        item.style.display = (f === 'all' || connList.indexOf(f) !== -1) ? '' : 'none';
+      });
+    });
+  });
+
+  // --- Copy postcode ---
+  document.querySelectorAll('.copy-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var original = btn.textContent;
+      navigator.clipboard.writeText(btn.dataset.copy).then(function () {
+        btn.textContent = 'Copied!';
+        btn.classList.add('copy-btn--success');
+        setTimeout(function () {
+          btn.textContent = original;
+          btn.classList.remove('copy-btn--success');
+        }, 1500);
+      });
+    });
+  });
 }());
 </script>
 

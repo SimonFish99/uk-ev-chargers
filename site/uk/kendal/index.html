@@ -17,7 +17,10 @@
 
 <header>
 <div class="container">
-<a href="/" class="logo">PlugMap <span class="tagline">UK EV Charger Locator</span></a>
+<a href="/" class="logo">
+  <svg class="logo-bolt" viewBox="0 0 24 24" fill="currentColor" width="22" height="22" aria-hidden="true"><path d="M13 2L4.5 13.5H11L10 22L19.5 10.5H13Z"/></svg>
+  PlugMap <span class="tagline">UK EV Charger Locator</span>
+</a>
 </div>
 </header>
 
@@ -28,16 +31,37 @@
 </nav>
 
 <h1>EV Chargers in Kendal</h1>
-<p class="page-intro">7 public charging stations found in Kendal.</p>
+
+<div class="stats-bar">
+  <span class="stat-pill stat-total">7 stations</span>
+  <span class="stat-pill stat-rapid">1 rapid (50kW+)</span>
+  <span class="stat-pill stat-fast">6 fast (7–50kW)</span>
+  
+</div>
 
 <div id="map"></div>
 
-<ul class="charger-list">
+
+<div class="connector-filter">
+  <span class="filter-label">Filter:</span>
+  <button class="filter-btn active" data-filter="all">All</button>
+  
+  <button class="filter-btn" data-filter="CCS (Type 2)">CCS (Type 2)</button>
+  
+  <button class="filter-btn" data-filter="Type 2 (Socket Only)">Type 2 (Socket Only)</button>
+  
+</div>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Peppercorn Lane Car Park</h2>
-  <p class="charger-address">14 Peppercorn Ln LA9 5AF
+<ul class="charger-list" id="charger-list">
+
+
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Peppercorn Lane Car Park</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">14 Peppercorn Ln <button class="copy-btn" data-copy="LA9 5AF">LA9 5AF</button>
   </p>
   
   <div class="charger-connections">
@@ -65,9 +89,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Murley Moss Business Park</h2>
-  <p class="charger-address">Oxenholme Road LA9 7RL
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2)">
+  <div class="charger-header">
+    <h2 class="charger-name">Murley Moss Business Park</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Oxenholme Road <button class="copy-btn" data-copy="LA9 7RL">LA9 7RL</button>
   </p>
   
   <div class="charger-connections">
@@ -95,9 +123,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Cumbria Wildlife Trust</h2>
-  <p class="charger-address">Crook Road LA8 8LX
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Cumbria Wildlife Trust</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Crook Road <button class="copy-btn" data-copy="LA8 8LX">LA8 8LX</button>
   </p>
   
   <div class="charger-connections">
@@ -116,9 +147,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Sainsbury&#39;s Kendal</h2>
-  <p class="charger-address">55 Shap Road LA9 6DL
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Sainsbury&#39;s Kendal</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">55 Shap Road <button class="copy-btn" data-copy="LA9 6DL">LA9 6DL</button>
   </p>
   
   <div class="charger-connections">
@@ -140,9 +174,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">County Hall Kendal</h2>
-  <p class="charger-address">County Offices County Hall LA9 4RQ
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">County Hall Kendal</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">County Offices County Hall <button class="copy-btn" data-copy="LA9 4RQ">LA9 4RQ</button>
   </p>
   
   <div class="charger-connections">
@@ -164,9 +201,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Castle Green Hotel</h2>
-  <p class="charger-address">Castle Green Lane LA9 6RG
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Castle Green Hotel</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Castle Green Lane <button class="copy-btn" data-copy="LA9 6RG">LA9 6RG</button>
   </p>
   
   <div class="charger-connections">
@@ -185,9 +225,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Kendal College</h2>
-  <p class="charger-address">Upper car park Vicarage Drive LA9 5AY
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Kendal College</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Upper car park Vicarage Drive <button class="copy-btn" data-copy="LA9 5AY">LA9 5AY</button>
   </p>
   
   <div class="charger-connections">
@@ -212,6 +255,23 @@
 
 <p><a href="/" class="back-link">← All UK towns</a></p>
 
+
+<div class="nearby-towns">
+  <h2 class="nearby-heading">Nearby towns</h2>
+  <ul class="nearby-list">
+  
+    <li><a href="/uk/newcastle/">Newcastle</a></li>
+  
+    <li><a href="/uk/penrith/">Penrith</a></li>
+  
+    <li><a href="/uk/lancaster/">Lancaster</a></li>
+  
+    <li><a href="/uk/barrow-in-furness/">Barrow-in-Furness</a></li>
+  
+  </ul>
+</div>
+
+
 </div>
 
 <footer>
@@ -224,26 +284,61 @@
 <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 <script>
 (function () {
+  // --- Map ---
   var map = L.map('map').setView([54.32783042184959, -2.7449833771107808], 12);
-
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
   }).addTo(map);
 
   var markers = L.markerClusterGroup();
-  var chargerData = [{"lat": 54.323054114663876, "lng": -2.746163952068059, "title": "Peppercorn Lane Car Park", "address": "14 Peppercorn Ln"}, {"lat": 54.31139053677671, "lng": -2.7353750745337493, "title": "Murley Moss Business Park", "address": "Oxenholme Road"}, {"lat": 54.34582, "lng": -2.77842, "title": "Cumbria Wildlife Trust", "address": "Crook Road"}, {"lat": 54.339154, "lng": -2.739134, "title": "Sainsbury's Kendal", "address": "55 Shap Road"}, {"lat": 54.3326, "lng": -2.747104, "title": "County Hall Kendal", "address": "County Offices County Hall"}, {"lat": 54.32447530150654, "lng": -2.721428613173657, "title": "Castle Green Hotel", "address": "Castle Green Lane"}, {"lat": 54.318319, "lng": -2.747258, "title": "Kendal College", "address": "Upper car park Vicarage Drive"}];
+  var chargerData = [{"lat": 54.323054114663876, "lng": -2.746163952068059, "title": "Peppercorn Lane Car Park", "address": "14 Peppercorn Ln", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 54.31139053677671, "lng": -2.7353750745337493, "title": "Murley Moss Business Park", "address": "Oxenholme Road", "connectors": ["CCS (Type 2) · 50kW", "CCS (Type 2) · 50kW", "CCS (Type 2) · 50kW", "CCS (Type 2) · 50kW"]}, {"lat": 54.34582, "lng": -2.77842, "title": "Cumbria Wildlife Trust", "address": "Crook Road", "connectors": ["Type 2 (Socket Only) · 22kW"]}, {"lat": 54.339154, "lng": -2.739134, "title": "Sainsbury's Kendal", "address": "55 Shap Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 54.3326, "lng": -2.747104, "title": "County Hall Kendal", "address": "County Offices County Hall", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 54.32447530150654, "lng": -2.721428613173657, "title": "Castle Green Hotel", "address": "Castle Green Lane", "connectors": ["Type 2 (Socket Only) · 7kW"]}, {"lat": 54.318319, "lng": -2.747258, "title": "Kendal College", "address": "Upper car park Vicarage Drive", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}];
 
   chargerData.forEach(function (c) {
+    var connHtml = c.connectors.length
+      ? '<div style="margin-top:6px;font-size:12px;color:#475569">' + c.connectors.join(' &middot; ') + '</div>'
+      : '';
     var marker = L.marker([c.lat, c.lng]);
     marker.bindPopup(
-      '<b>' + c.title + '</b><br>' + c.address + '<br><br>' +
+      '<b>' + c.title + '</b>' +
+      '<div style="color:#64748b;font-size:13px">' + c.address + '</div>' +
+      connHtml +
       '<a href="https://www.google.com/maps/dir/?api=1&destination=' + c.lat + ',' + c.lng +
-      '" target="_blank" rel="noopener">Get directions</a>'
+      '" target="_blank" rel="noopener" style="display:inline-block;margin-top:8px;padding:4px 10px;background:#2563eb;color:white;border-radius:4px;text-decoration:none;font-size:12px">Get directions</a>'
     );
     markers.addLayer(marker);
   });
-
   map.addLayer(markers);
+
+  // --- Connector filter ---
+  var filterBtns = document.querySelectorAll('.filter-btn');
+  var chargerItems = document.querySelectorAll('.charger-item');
+
+  filterBtns.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      filterBtns.forEach(function (b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      var f = btn.dataset.filter;
+      chargerItems.forEach(function (item) {
+        var connList = item.dataset.connectors ? item.dataset.connectors.split(',') : [];
+        item.style.display = (f === 'all' || connList.indexOf(f) !== -1) ? '' : 'none';
+      });
+    });
+  });
+
+  // --- Copy postcode ---
+  document.querySelectorAll('.copy-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var original = btn.textContent;
+      navigator.clipboard.writeText(btn.dataset.copy).then(function () {
+        btn.textContent = 'Copied!';
+        btn.classList.add('copy-btn--success');
+        setTimeout(function () {
+          btn.textContent = original;
+          btn.classList.remove('copy-btn--success');
+        }, 1500);
+      });
+    });
+  });
 }());
 </script>
 

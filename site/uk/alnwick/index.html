@@ -17,7 +17,10 @@
 
 <header>
 <div class="container">
-<a href="/" class="logo">PlugMap <span class="tagline">UK EV Charger Locator</span></a>
+<a href="/" class="logo">
+  <svg class="logo-bolt" viewBox="0 0 24 24" fill="currentColor" width="22" height="22" aria-hidden="true"><path d="M13 2L4.5 13.5H11L10 22L19.5 10.5H13Z"/></svg>
+  PlugMap <span class="tagline">UK EV Charger Locator</span>
+</a>
 </div>
 </header>
 
@@ -28,16 +31,41 @@
 </nav>
 
 <h1>EV Chargers in Alnwick</h1>
-<p class="page-intro">8 public charging stations found in Alnwick.</p>
+
+<div class="stats-bar">
+  <span class="stat-pill stat-total">8 stations</span>
+  <span class="stat-pill stat-rapid">3 rapid (50kW+)</span>
+  <span class="stat-pill stat-fast">5 fast (7–50kW)</span>
+  
+</div>
 
 <div id="map"></div>
 
-<ul class="charger-list">
+
+<div class="connector-filter">
+  <span class="filter-label">Filter:</span>
+  <button class="filter-btn active" data-filter="all">All</button>
+  
+  <button class="filter-btn" data-filter="CCS (Type 2)">CCS (Type 2)</button>
+  
+  <button class="filter-btn" data-filter="CHAdeMO">CHAdeMO</button>
+  
+  <button class="filter-btn" data-filter="Type 2 (Socket Only)">Type 2 (Socket Only)</button>
+  
+  <button class="filter-btn" data-filter="Type 2 (Tethered Connector) ">Type 2 (Tethered Connector) </button>
+  
+</div>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Dispensary Street Car Park</h2>
-  <p class="charger-address">Dispensary Street NE66 1LJ
+<ul class="charger-list" id="charger-list">
+
+
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Tethered Connector) ">
+  <div class="charger-header">
+    <h2 class="charger-name">Dispensary Street Car Park</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Dispensary Street <button class="copy-btn" data-copy="NE66 1LJ">NE66 1LJ</button>
   </p>
   
   <div class="charger-connections">
@@ -56,9 +84,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Westgate House Car Park 1, Clayport St, Alnwick</h2>
-  <p class="charger-address">Clayport Street NE66 1LA
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Westgate House Car Park 1, Clayport St, Alnwick</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Clayport Street <button class="copy-btn" data-copy="NE66 1LA">NE66 1LA</button>
   </p>
   
   <div class="charger-connections">
@@ -80,9 +111,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Willowburn Retail Park</h2>
-  <p class="charger-address">Willowburn Ave NE66 2DH
+<li class="charger-item charger-item--rapid" data-connectors="CHAdeMO,CCS (Type 2),Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Willowburn Retail Park</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Willowburn Ave <button class="copy-btn" data-copy="NE66 2DH">NE66 2DH</button>
   </p>
   
   <div class="charger-connections">
@@ -116,9 +151,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Alnwick Lionheart Ind. Est.</h2>
-  <p class="charger-address">Elm Square NE66 2ES
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Alnwick Lionheart Ind. Est.</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Elm Square <button class="copy-btn" data-copy="NE66 2ES">NE66 2ES</button>
   </p>
   
   <div class="charger-connections">
@@ -140,9 +178,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">PremierInn</h2>
-  <p class="charger-address">South Road Willowburn Trading Estate NE662PF
+<li class="charger-item charger-item--rapid" data-connectors="CHAdeMO,Type 2 (Socket Only),Type 2 (Tethered Connector) ">
+  <div class="charger-header">
+    <h2 class="charger-name">PremierInn</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">South Road Willowburn Trading Estate <button class="copy-btn" data-copy="NE662PF">NE662PF</button>
   </p>
   
   <div class="charger-connections">
@@ -167,9 +209,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">IONITY Alnwick</h2>
-  <p class="charger-address">Cawledge Business Park NE66 2GD
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2)">
+  <div class="charger-header">
+    <h2 class="charger-name">IONITY Alnwick</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Cawledge Business Park <button class="copy-btn" data-copy="NE66 2GD">NE66 2GD</button>
   </p>
   
   <div class="charger-connections">
@@ -188,9 +234,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Alnwick Infirmary Drive</h2>
-  <p class="charger-address">South Road NE66 2NS
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Alnwick Infirmary Drive</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">South Road <button class="copy-btn" data-copy="NE66 2NS">NE66 2NS</button>
   </p>
   
   <div class="charger-connections">
@@ -209,9 +258,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Cawledge Business Park</h2>
-  <p class="charger-address">Cawledge Business Park NE66 2GB
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Cawledge Business Park</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Cawledge Business Park <button class="copy-btn" data-copy="NE66 2GB">NE66 2GB</button>
   </p>
   
   <div class="charger-connections">
@@ -236,6 +288,23 @@
 
 <p><a href="/" class="back-link">← All UK towns</a></p>
 
+
+<div class="nearby-towns">
+  <h2 class="nearby-heading">Nearby towns</h2>
+  <ul class="nearby-list">
+  
+    <li><a href="/uk/morpeth/">Morpeth</a></li>
+  
+    <li><a href="/uk/ashington/">Ashington</a></li>
+  
+    <li><a href="/uk/blyth/">Blyth</a></li>
+  
+    <li><a href="/uk/cramlington/">Cramlington</a></li>
+  
+  </ul>
+</div>
+
+
 </div>
 
 <footer>
@@ -248,26 +317,61 @@
 <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 <script>
 (function () {
+  // --- Map ---
   var map = L.map('map').setView([55.403927, -1.697526625], 12);
-
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
   }).addTo(map);
 
   var markers = L.markerClusterGroup();
-  var chargerData = [{"lat": 55.413201, "lng": -1.713121, "title": "Dispensary Street Car Park", "address": "Dispensary Street"}, {"lat": 55.411856, "lng": -1.710947, "title": "Westgate House Car Park 1, Clayport St, Alnwick", "address": "Clayport Street"}, {"lat": 55.400287, "lng": -1.694373, "title": "Willowburn Retail Park", "address": "Willowburn Ave"}, {"lat": 55.397916, "lng": -1.688899, "title": "Alnwick Lionheart Ind. Est.", "address": "Elm Square"}, {"lat": 55.402458, "lng": -1.689302, "title": "PremierInn", "address": "South Road Willowburn Trading Estate"}, {"lat": 55.397326, "lng": -1.693232, "title": "IONITY Alnwick", "address": "Cawledge Business Park"}, {"lat": 55.410568, "lng": -1.697553, "title": "Alnwick Infirmary Drive", "address": "South Road"}, {"lat": 55.397804, "lng": -1.692786, "title": "Cawledge Business Park", "address": "Cawledge Business Park"}];
+  var chargerData = [{"lat": 55.413201, "lng": -1.713121, "title": "Dispensary Street Car Park", "address": "Dispensary Street", "connectors": ["Type 2 (Tethered Connector)  · 22kW"]}, {"lat": 55.411856, "lng": -1.710947, "title": "Westgate House Car Park 1, Clayport St, Alnwick", "address": "Clayport Street", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 55.400287, "lng": -1.694373, "title": "Willowburn Retail Park", "address": "Willowburn Ave", "connectors": ["CHAdeMO · 50kW", "CCS (Type 2) · 50kW", "CHAdeMO · 50kW", "CCS (Type 2) · 50kW", "Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 55.397916, "lng": -1.688899, "title": "Alnwick Lionheart Ind. Est.", "address": "Elm Square", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 55.402458, "lng": -1.689302, "title": "PremierInn", "address": "South Road Willowburn Trading Estate", "connectors": ["CHAdeMO · 50kW", "Type 2 (Socket Only) · 22kW", "Type 2 (Tethered Connector)  · 50kW"]}, {"lat": 55.397326, "lng": -1.693232, "title": "IONITY Alnwick", "address": "Cawledge Business Park", "connectors": ["CCS (Type 2) · 350kW"]}, {"lat": 55.410568, "lng": -1.697553, "title": "Alnwick Infirmary Drive", "address": "South Road", "connectors": ["Type 2 (Socket Only) · 7kW"]}, {"lat": 55.397804, "lng": -1.692786, "title": "Cawledge Business Park", "address": "Cawledge Business Park", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}];
 
   chargerData.forEach(function (c) {
+    var connHtml = c.connectors.length
+      ? '<div style="margin-top:6px;font-size:12px;color:#475569">' + c.connectors.join(' &middot; ') + '</div>'
+      : '';
     var marker = L.marker([c.lat, c.lng]);
     marker.bindPopup(
-      '<b>' + c.title + '</b><br>' + c.address + '<br><br>' +
+      '<b>' + c.title + '</b>' +
+      '<div style="color:#64748b;font-size:13px">' + c.address + '</div>' +
+      connHtml +
       '<a href="https://www.google.com/maps/dir/?api=1&destination=' + c.lat + ',' + c.lng +
-      '" target="_blank" rel="noopener">Get directions</a>'
+      '" target="_blank" rel="noopener" style="display:inline-block;margin-top:8px;padding:4px 10px;background:#2563eb;color:white;border-radius:4px;text-decoration:none;font-size:12px">Get directions</a>'
     );
     markers.addLayer(marker);
   });
-
   map.addLayer(markers);
+
+  // --- Connector filter ---
+  var filterBtns = document.querySelectorAll('.filter-btn');
+  var chargerItems = document.querySelectorAll('.charger-item');
+
+  filterBtns.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      filterBtns.forEach(function (b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      var f = btn.dataset.filter;
+      chargerItems.forEach(function (item) {
+        var connList = item.dataset.connectors ? item.dataset.connectors.split(',') : [];
+        item.style.display = (f === 'all' || connList.indexOf(f) !== -1) ? '' : 'none';
+      });
+    });
+  });
+
+  // --- Copy postcode ---
+  document.querySelectorAll('.copy-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var original = btn.textContent;
+      navigator.clipboard.writeText(btn.dataset.copy).then(function () {
+        btn.textContent = 'Copied!';
+        btn.classList.add('copy-btn--success');
+        setTimeout(function () {
+          btn.textContent = original;
+          btn.classList.remove('copy-btn--success');
+        }, 1500);
+      });
+    });
+  });
 }());
 </script>
 

@@ -17,7 +17,10 @@
 
 <header>
 <div class="container">
-<a href="/" class="logo">PlugMap <span class="tagline">UK EV Charger Locator</span></a>
+<a href="/" class="logo">
+  <svg class="logo-bolt" viewBox="0 0 24 24" fill="currentColor" width="22" height="22" aria-hidden="true"><path d="M13 2L4.5 13.5H11L10 22L19.5 10.5H13Z"/></svg>
+  PlugMap <span class="tagline">UK EV Charger Locator</span>
+</a>
 </div>
 </header>
 
@@ -28,16 +31,44 @@
 </nav>
 
 <h1>EV Chargers in Eastleigh</h1>
-<p class="page-intro">37 public charging stations found in Eastleigh.</p>
+
+<div class="stats-bar">
+  <span class="stat-pill stat-total">37 stations</span>
+  <span class="stat-pill stat-rapid">6 rapid (50kW+)</span>
+  <span class="stat-pill stat-fast">3 fast (7–50kW)</span>
+  <span class="stat-pill stat-slow">28 slow</span>
+</div>
 
 <div id="map"></div>
 
-<ul class="charger-list">
+
+<div class="connector-filter">
+  <span class="filter-label">Filter:</span>
+  <button class="filter-btn active" data-filter="all">All</button>
+  
+  <button class="filter-btn" data-filter="BS1363 3 Pin 13 Amp">BS1363 3 Pin 13 Amp</button>
+  
+  <button class="filter-btn" data-filter="CCS (Type 2)">CCS (Type 2)</button>
+  
+  <button class="filter-btn" data-filter="CHAdeMO">CHAdeMO</button>
+  
+  <button class="filter-btn" data-filter="Type 2 (Socket Only)">Type 2 (Socket Only)</button>
+  
+  <button class="filter-btn" data-filter="Type 2 (Tethered Connector) ">Type 2 (Tethered Connector) </button>
+  
+</div>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Bishopstoke Road</h2>
-  <p class="charger-address">Bishopstoke Road SO50 6LA
+<ul class="charger-list" id="charger-list">
+
+
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2)">
+  <div class="charger-header">
+    <h2 class="charger-name">Bishopstoke Road</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Bishopstoke Road <button class="copy-btn" data-copy="SO50 6LA">SO50 6LA</button>
   </p>
   
   <div class="charger-connections">
@@ -56,9 +87,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">RAW GREENE KING WELCOME INN 1</h2>
-  <p class="charger-address">Fair Oak Road 154 SO50 8LP
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">RAW GREENE KING WELCOME INN 1</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Fair Oak Road 154 <button class="copy-btn" data-copy="SO50 8LP">SO50 8LP</button>
   </p>
   
   <div class="charger-connections">
@@ -77,9 +111,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">The Crescent - Bollard Adjacent To Lighting Column 9</h2>
-  <p class="charger-address">116-118 The Crescent SO50 9BL
+<li class="charger-item charger-item--slow" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">The Crescent - Bollard Adjacent To Lighting Column 9</h2>
+    
+  </div>
+  <p class="charger-address">116-118 The Crescent <button class="copy-btn" data-copy="SO50 9BL">SO50 9BL</button>
   </p>
   
   <div class="charger-connections">
@@ -98,9 +135,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Archers Road - Lighting Column 10</h2>
-  <p class="charger-address">67 Archers Rd SO50 9AZ
+<li class="charger-item charger-item--slow" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Archers Road - Lighting Column 10</h2>
+    
+  </div>
+  <p class="charger-address">67 Archers Rd <button class="copy-btn" data-copy="SO50 9AZ">SO50 9AZ</button>
   </p>
   
   <div class="charger-connections">
@@ -119,9 +159,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">George Street - Bollard Adjacent To Lighting Column 6</h2>
-  <p class="charger-address">2-4 George Street SO50 9BU
+<li class="charger-item charger-item--slow" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">George Street - Bollard Adjacent To Lighting Column 6</h2>
+    
+  </div>
+  <p class="charger-address">2-4 George Street <button class="copy-btn" data-copy="SO50 9BU">SO50 9BU</button>
   </p>
   
   <div class="charger-connections">
@@ -140,9 +183,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Newton Road - Bollard Adjacent To Lighting Column 6</h2>
-  <p class="charger-address">33-35 Newtown Road SO50 9BZ
+<li class="charger-item charger-item--slow" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Newton Road - Bollard Adjacent To Lighting Column 6</h2>
+    
+  </div>
+  <p class="charger-address">33-35 Newtown Road <button class="copy-btn" data-copy="SO50 9BZ">SO50 9BZ</button>
   </p>
   
   <div class="charger-connections">
@@ -161,9 +207,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Nutbeem Road - Bollard Adjacent To Lighting Column 4</h2>
-  <p class="charger-address">11-13 Nutbeem Road SO50 5JQ
+<li class="charger-item charger-item--slow" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Nutbeem Road - Bollard Adjacent To Lighting Column 4</h2>
+    
+  </div>
+  <p class="charger-address">11-13 Nutbeem Road <button class="copy-btn" data-copy="SO50 5JQ">SO50 5JQ</button>
   </p>
   
   <div class="charger-connections">
@@ -182,9 +231,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Mitchell Road Multi Storey Car Park</h2>
-  <p class="charger-address">Mitchell Road SO50 5RB
+<li class="charger-item charger-item--fast" data-connectors="BS1363 3 Pin 13 Amp,Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Mitchell Road Multi Storey Car Park</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Mitchell Road <button class="copy-btn" data-copy="SO50 5RB">SO50 5RB</button>
   </p>
   
   <div class="charger-connections">
@@ -206,9 +258,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Factory Road - Lighting Column 14</h2>
-  <p class="charger-address">Factory Road SO50 5GJ
+<li class="charger-item charger-item--slow" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Factory Road - Lighting Column 14</h2>
+    
+  </div>
+  <p class="charger-address">Factory Road <button class="copy-btn" data-copy="SO50 5GJ">SO50 5GJ</button>
   </p>
   
   <div class="charger-connections">
@@ -227,9 +282,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Cranbury Road - Bollard Adjacent To Lighting Column 14</h2>
-  <p class="charger-address">94-96 Cranbury Road SO50 5HD
+<li class="charger-item charger-item--slow" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Cranbury Road - Bollard Adjacent To Lighting Column 14</h2>
+    
+  </div>
+  <p class="charger-address">94-96 Cranbury Road <button class="copy-btn" data-copy="SO50 5HD">SO50 5HD</button>
   </p>
   
   <div class="charger-connections">
@@ -248,9 +306,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Desborough Road - Bollard Adjacent To Lighting Column 17</h2>
-  <p class="charger-address">113-115 Desborough Road SO50 5NP
+<li class="charger-item charger-item--slow" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Desborough Road - Bollard Adjacent To Lighting Column 17</h2>
+    
+  </div>
+  <p class="charger-address">113-115 Desborough Road <button class="copy-btn" data-copy="SO50 5NP">SO50 5NP</button>
   </p>
   
   <div class="charger-connections">
@@ -269,9 +330,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Nutbeem Road - Bollard Adjacent To Lighting Column 21</h2>
-  <p class="charger-address">165-167 Nutbeem Road SO50 5JS
+<li class="charger-item charger-item--slow" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Nutbeem Road - Bollard Adjacent To Lighting Column 21</h2>
+    
+  </div>
+  <p class="charger-address">165-167 Nutbeem Road <button class="copy-btn" data-copy="SO50 5JS">SO50 5JS</button>
   </p>
   
   <div class="charger-connections">
@@ -290,9 +354,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Cranbury Road - Bollard Adjacent To Lighting Column 22</h2>
-  <p class="charger-address">167-169 Cranbury Road SO50 5HH
+<li class="charger-item charger-item--slow" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Cranbury Road - Bollard Adjacent To Lighting Column 22</h2>
+    
+  </div>
+  <p class="charger-address">167-169 Cranbury Road <button class="copy-btn" data-copy="SO50 5HH">SO50 5HH</button>
   </p>
   
   <div class="charger-connections">
@@ -311,9 +378,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Market Street - Bollard Adjacent To Lighting Column 11</h2>
-  <p class="charger-address">193-195 Market Street SO50 5PY
+<li class="charger-item charger-item--slow" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Market Street - Bollard Adjacent To Lighting Column 11</h2>
+    
+  </div>
+  <p class="charger-address">193-195 Market Street <button class="copy-btn" data-copy="SO50 5PY">SO50 5PY</button>
   </p>
   
   <div class="charger-connections">
@@ -332,9 +402,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Desborough Road - Bollard Adjacent To Lighting Column 32</h2>
-  <p class="charger-address">230-232 Desborough Road SO50 5NH
+<li class="charger-item charger-item--slow" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Desborough Road - Bollard Adjacent To Lighting Column 32</h2>
+    
+  </div>
+  <p class="charger-address">230-232 Desborough Road <button class="copy-btn" data-copy="SO50 5NH">SO50 5NH</button>
   </p>
   
   <div class="charger-connections">
@@ -353,9 +426,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Hight Street - Bollard Adjacent To Lighting Column 10</h2>
-  <p class="charger-address">252-254 High Street SO50 5NA
+<li class="charger-item charger-item--slow" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Hight Street - Bollard Adjacent To Lighting Column 10</h2>
+    
+  </div>
+  <p class="charger-address">252-254 High Street <button class="copy-btn" data-copy="SO50 5NA">SO50 5NA</button>
   </p>
   
   <div class="charger-connections">
@@ -374,9 +450,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Arnold Road - Bollard Adjacent To Lighting Column 5</h2>
-  <p class="charger-address">41-43 Arnold Road SO50 5AR
+<li class="charger-item charger-item--slow" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Arnold Road - Bollard Adjacent To Lighting Column 5</h2>
+    
+  </div>
+  <p class="charger-address">41-43 Arnold Road <button class="copy-btn" data-copy="SO50 5AR">SO50 5AR</button>
   </p>
   
   <div class="charger-connections">
@@ -395,9 +474,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Southampton Road - Bollard Adjacent To Lighting Column 13</h2>
-  <p class="charger-address">336-338 Southampton Road SO50 5QH
+<li class="charger-item charger-item--slow" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Southampton Road - Bollard Adjacent To Lighting Column 13</h2>
+    
+  </div>
+  <p class="charger-address">336-338 Southampton Road <button class="copy-btn" data-copy="SO50 5QH">SO50 5QH</button>
   </p>
   
   <div class="charger-connections">
@@ -416,9 +498,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">APCOA SOUTHAMPTON 2</h2>
-  <p class="charger-address">Southampton Airport SO18 2HW
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">APCOA SOUTHAMPTON 2</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Southampton Airport <button class="copy-btn" data-copy="SO18 2HW">SO18 2HW</button>
   </p>
   
   <div class="charger-connections">
@@ -437,9 +522,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Channon Retail Park</h2>
-  <p class="charger-address">Woodside Avenue SO50 9ER
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2),CHAdeMO,Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Channon Retail Park</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Woodside Avenue <button class="copy-btn" data-copy="SO50 9ER">SO50 9ER</button>
   </p>
   
   <div class="charger-connections">
@@ -464,9 +553,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Chestnut Avenue Retail Park</h2>
-  <p class="charger-address">Chestnut Avenue SO53 3LE
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2),CHAdeMO,Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Chestnut Avenue Retail Park</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Chestnut Avenue <button class="copy-btn" data-copy="SO53 3LE">SO53 3LE</button>
   </p>
   
   <div class="charger-connections">
@@ -494,9 +587,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Factory Road Lamppost Charger</h2>
-  <p class="charger-address">Factory Road SO50 5HB
+<li class="charger-item charger-item--slow" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Factory Road Lamppost Charger</h2>
+    
+  </div>
+  <p class="charger-address">Factory Road <button class="copy-btn" data-copy="SO50 5HB">SO50 5HB</button>
   </p>
   
   <div class="charger-connections">
@@ -515,9 +611,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Romsey Road Car Park</h2>
-  <p class="charger-address">Romsey Road SO50 9YN
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2),CHAdeMO,Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Romsey Road Car Park</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Romsey Road <button class="copy-btn" data-copy="SO50 9YN">SO50 9YN</button>
   </p>
   
   <div class="charger-connections">
@@ -542,9 +642,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Places Leisure Eastleigh</h2>
-  <p class="charger-address">Passfield Avenue SO50 9GL
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2),CHAdeMO,Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Places Leisure Eastleigh</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Passfield Avenue <button class="copy-btn" data-copy="SO50 9GL">SO50 9GL</button>
   </p>
   
   <div class="charger-connections">
@@ -569,9 +673,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">SHELL RECHARGE CHANDLERS FORD</h2>
-  <p class="charger-address">130 Winchester Road SO53 2DS
+<li class="charger-item charger-item--rapid" data-connectors="Type 2 (Tethered Connector) ,CHAdeMO">
+  <div class="charger-header">
+    <h2 class="charger-name">SHELL RECHARGE CHANDLERS FORD</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">130 Winchester Road <button class="copy-btn" data-copy="SO53 2DS">SO53 2DS</button>
   </p>
   
   <div class="charger-connections">
@@ -593,9 +701,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Archers Road - Bollard Adjacent To Lighting Column 14</h2>
-  <p class="charger-address">109-111 Archers Road SO50 9BE
+<li class="charger-item charger-item--slow" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Archers Road - Bollard Adjacent To Lighting Column 14</h2>
+    
+  </div>
+  <p class="charger-address">109-111 Archers Road <button class="copy-btn" data-copy="SO50 9BE">SO50 9BE</button>
   </p>
   
   <div class="charger-connections">
@@ -614,9 +725,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">The Crescent - Bollard Adjacent To Lighting Column 4</h2>
-  <p class="charger-address">40-42 The Crescent SO50 9BR
+<li class="charger-item charger-item--slow" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">The Crescent - Bollard Adjacent To Lighting Column 4</h2>
+    
+  </div>
+  <p class="charger-address">40-42 The Crescent <button class="copy-btn" data-copy="SO50 9BR">SO50 9BR</button>
   </p>
   
   <div class="charger-connections">
@@ -635,9 +749,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Archers Road - Bollard Adjacent To Lighting Column 4</h2>
-  <p class="charger-address">13-15 Archers Road SO50 9AR
+<li class="charger-item charger-item--slow" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Archers Road - Bollard Adjacent To Lighting Column 4</h2>
+    
+  </div>
+  <p class="charger-address">13-15 Archers Road <button class="copy-btn" data-copy="SO50 9AR">SO50 9AR</button>
   </p>
   
   <div class="charger-connections">
@@ -656,9 +773,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Cranbury Road - Bollard Adjacent To Lighting Column 6</h2>
-  <p class="charger-address">26-28 Cranbury Road SO50 5HA
+<li class="charger-item charger-item--slow" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Cranbury Road - Bollard Adjacent To Lighting Column 6</h2>
+    
+  </div>
+  <p class="charger-address">26-28 Cranbury Road <button class="copy-btn" data-copy="SO50 5HA">SO50 5HA</button>
   </p>
   
   <div class="charger-connections">
@@ -677,9 +797,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Nutbeem Road - Bollard Adjacent To Lighting Column 14</h2>
-  <p class="charger-address">99-101 Nutbeem Road SO50 5JR
+<li class="charger-item charger-item--slow" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Nutbeem Road - Bollard Adjacent To Lighting Column 14</h2>
+    
+  </div>
+  <p class="charger-address">99-101 Nutbeem Road <button class="copy-btn" data-copy="SO50 5JR">SO50 5JR</button>
   </p>
   
   <div class="charger-connections">
@@ -698,9 +821,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Hight Street - Bollard Adjacent To Lighting Column 23</h2>
-  <p class="charger-address">141-143 High Street SO50 5LS
+<li class="charger-item charger-item--slow" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Hight Street - Bollard Adjacent To Lighting Column 23</h2>
+    
+  </div>
+  <p class="charger-address">141-143 High Street <button class="copy-btn" data-copy="SO50 5LS">SO50 5LS</button>
   </p>
   
   <div class="charger-connections">
@@ -719,9 +845,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Chamberlayne Road - Bollard Adjacent To Lighting Column 25</h2>
-  <p class="charger-address">197-199 Chamberlayne Road SO50 5HZ
+<li class="charger-item charger-item--slow" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Chamberlayne Road - Bollard Adjacent To Lighting Column 25</h2>
+    
+  </div>
+  <p class="charger-address">197-199 Chamberlayne Road <button class="copy-btn" data-copy="SO50 5HZ">SO50 5HZ</button>
   </p>
   
   <div class="charger-connections">
@@ -740,9 +869,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Market Street - Bollard Adjacent To Lighting Column 18</h2>
-  <p class="charger-address">261-263 Market Street SO50 5QE
+<li class="charger-item charger-item--slow" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Market Street - Bollard Adjacent To Lighting Column 18</h2>
+    
+  </div>
+  <p class="charger-address">261-263 Market Street <button class="copy-btn" data-copy="SO50 5QE">SO50 5QE</button>
   </p>
   
   <div class="charger-connections">
@@ -761,9 +893,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Chamberlayne Road - Bollard Adjacent To Lighting Column 33</h2>
-  <p class="charger-address">273-275 Chamberlayne Road SO50 5HX
+<li class="charger-item charger-item--slow" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Chamberlayne Road - Bollard Adjacent To Lighting Column 33</h2>
+    
+  </div>
+  <p class="charger-address">273-275 Chamberlayne Road <button class="copy-btn" data-copy="SO50 5HX">SO50 5HX</button>
   </p>
   
   <div class="charger-connections">
@@ -782,9 +917,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Desborough Road - Bollard Adjacent To Lighting Column 38</h2>
-  <p class="charger-address">300-302 Desborough Road SO50 5NF
+<li class="charger-item charger-item--slow" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Desborough Road - Bollard Adjacent To Lighting Column 38</h2>
+    
+  </div>
+  <p class="charger-address">300-302 Desborough Road <button class="copy-btn" data-copy="SO50 5NF">SO50 5NF</button>
   </p>
   
   <div class="charger-connections">
@@ -803,9 +941,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Doncaster Road - Bollard Adjacent To Lighting Column 6</h2>
-  <p class="charger-address">65-67 Doncaster Road SO50 5QR
+<li class="charger-item charger-item--slow" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Doncaster Road - Bollard Adjacent To Lighting Column 6</h2>
+    
+  </div>
+  <p class="charger-address">65-67 Doncaster Road <button class="copy-btn" data-copy="SO50 5QR">SO50 5QR</button>
   </p>
   
   <div class="charger-connections">
@@ -824,9 +965,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Best Buy Southampton B</h2>
-  <p class="charger-address">Hedge End Retail Park  Unit 2, Charles Watts Way, Southampton SO30 4RT
+<li class="charger-item charger-item--slow" data-connectors="BS1363 3 Pin 13 Amp">
+  <div class="charger-header">
+    <h2 class="charger-name">Best Buy Southampton B</h2>
+    
+  </div>
+  <p class="charger-address">Hedge End Retail Park  Unit 2, Charles Watts Way, Southampton <button class="copy-btn" data-copy="SO30 4RT">SO30 4RT</button>
   </p>
   
   <div class="charger-connections">
@@ -851,6 +995,23 @@
 
 <p><a href="/" class="back-link">← All UK towns</a></p>
 
+
+<div class="nearby-towns">
+  <h2 class="nearby-heading">Nearby towns</h2>
+  <ul class="nearby-list">
+  
+    <li><a href="/uk/southampton/">Southampton</a></li>
+  
+    <li><a href="/uk/hampshire/">Hampshire</a></li>
+  
+    <li><a href="/uk/winchester/">Winchester</a></li>
+  
+    <li><a href="/uk/gosport/">Gosport</a></li>
+  
+  </ul>
+</div>
+
+
 </div>
 
 <footer>
@@ -863,26 +1024,61 @@
 <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 <script>
 (function () {
+  // --- Map ---
   var map = L.map('map').setView([50.96585469677699, -1.355415655685605], 12);
-
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
   }).addTo(map);
 
   var markers = L.markerClusterGroup();
-  var chargerData = [{"lat": 50.97014754762469, "lng": -1.3413145708489083, "title": "Bishopstoke Road", "address": "Bishopstoke Road"}, {"lat": 50.964384, "lng": -1.322139, "title": "RAW GREENE KING WELCOME INN 1", "address": "Fair Oak Road 154"}, {"lat": 50.9737, "lng": -1.3541, "title": "The Crescent - Bollard Adjacent To Lighting Column 9", "address": "116-118 The Crescent"}, {"lat": 50.9728, "lng": -1.3557, "title": "Archers Road - Lighting Column 10", "address": "67 Archers Rd"}, {"lat": 50.97202, "lng": -1.35313, "title": "George Street - Bollard Adjacent To Lighting Column 6", "address": "2-4 George Street"}, {"lat": 50.972, "lng": -1.3539, "title": "Newton Road - Bollard Adjacent To Lighting Column 6", "address": "33-35 Newtown Road"}, {"lat": 50.9691, "lng": -1.3586, "title": "Nutbeem Road - Bollard Adjacent To Lighting Column 4", "address": "11-13 Nutbeem Road"}, {"lat": 50.968399, "lng": -1.35161, "title": "Mitchell Road Multi Storey Car Park", "address": "Mitchell Road"}, {"lat": 50.9678, "lng": -1.358, "title": "Factory Road - Lighting Column 14", "address": "Factory Road"}, {"lat": 50.9671, "lng": -1.3564, "title": "Cranbury Road - Bollard Adjacent To Lighting Column 14", "address": "94-96 Cranbury Road"}, {"lat": 50.9661, "lng": -1.3553, "title": "Desborough Road - Bollard Adjacent To Lighting Column 17", "address": "113-115 Desborough Road"}, {"lat": 50.9656, "lng": -1.3591, "title": "Nutbeem Road - Bollard Adjacent To Lighting Column 21", "address": "165-167 Nutbeem Road"}, {"lat": 50.9654, "lng": -1.3567, "title": "Cranbury Road - Bollard Adjacent To Lighting Column 22", "address": "167-169 Cranbury Road"}, {"lat": 50.9643, "lng": -1.353, "title": "Market Street - Bollard Adjacent To Lighting Column 11", "address": "193-195 Market Street"}, {"lat": 50.96292, "lng": -1.35595, "title": "Desborough Road - Bollard Adjacent To Lighting Column 32", "address": "230-232 Desborough Road"}, {"lat": 50.9625, "lng": -1.3547, "title": "Hight Street - Bollard Adjacent To Lighting Column 10", "address": "252-254 High Street"}, {"lat": 50.9597, "lng": -1.358, "title": "Arnold Road - Bollard Adjacent To Lighting Column 5", "address": "41-43 Arnold Road"}, {"lat": 50.9596, "lng": -1.3554, "title": "Southampton Road - Bollard Adjacent To Lighting Column 13", "address": "336-338 Southampton Road"}, {"lat": 50.949959, "lng": -1.363081, "title": "APCOA SOUTHAMPTON 2", "address": "Southampton Airport"}, {"lat": 50.97283269303654, "lng": -1.3681976276641308, "title": "Channon Retail Park", "address": "Woodside Avenue"}, {"lat": 50.96714536115931, "lng": -1.3872783674478342, "title": "Chestnut Avenue Retail Park", "address": "Chestnut Avenue"}, {"lat": 50.967681561487325, "lng": -1.3555595362888653, "title": "Factory Road Lamppost Charger", "address": "Factory Road"}, {"lat": 50.970634453028254, "lng": -1.3522847148640267, "title": "Romsey Road Car Park", "address": "Romsey Road"}, {"lat": 50.96984516441225, "lng": -1.3689214432536119, "title": "Places Leisure Eastleigh", "address": "Passfield Avenue"}, {"lat": 50.988382, "lng": -1.372474, "title": "SHELL RECHARGE CHANDLERS FORD", "address": "130 Winchester Road"}, {"lat": 50.9737, "lng": -1.3559, "title": "Archers Road - Bollard Adjacent To Lighting Column 14", "address": "109-111 Archers Road"}, {"lat": 50.9728, "lng": -1.3518, "title": "The Crescent - Bollard Adjacent To Lighting Column 4", "address": "40-42 The Crescent"}, {"lat": 50.9714, "lng": -1.3555, "title": "Archers Road - Bollard Adjacent To Lighting Column 4", "address": "13-15 Archers Road"}, {"lat": 50.9687, "lng": -1.3563, "title": "Cranbury Road - Bollard Adjacent To Lighting Column 6", "address": "26-28 Cranbury Road"}, {"lat": 50.9671, "lng": -1.3588, "title": "Nutbeem Road - Bollard Adjacent To Lighting Column 14", "address": "99-101 Nutbeem Road"}, {"lat": 50.9652, "lng": -1.3542, "title": "Hight Street - Bollard Adjacent To Lighting Column 23", "address": "141-143 High Street"}, {"lat": 50.9645, "lng": -1.3581, "title": "Chamberlayne Road - Bollard Adjacent To Lighting Column 25", "address": "197-199 Chamberlayne Road"}, {"lat": 50.9628, "lng": -1.3535, "title": "Market Street - Bollard Adjacent To Lighting Column 18", "address": "261-263 Market Street"}, {"lat": 50.9627, "lng": -1.3586, "title": "Chamberlayne Road - Bollard Adjacent To Lighting Column 33", "address": "273-275 Chamberlayne Road"}, {"lat": 50.9617, "lng": -1.3562, "title": "Desborough Road - Bollard Adjacent To Lighting Column 38", "address": "300-302 Desborough Road"}, {"lat": 50.9592, "lng": -1.3571, "title": "Doncaster Road - Bollard Adjacent To Lighting Column 6", "address": "65-67 Doncaster Road"}, {"lat": 50.916773, "lng": -1.313539, "title": "Best Buy Southampton B", "address": "Hedge End Retail Park  Unit 2, Charles Watts Way, Southampton"}];
+  var chargerData = [{"lat": 50.97014754762469, "lng": -1.3413145708489083, "title": "Bishopstoke Road", "address": "Bishopstoke Road", "connectors": ["CCS (Type 2) · 50kW"]}, {"lat": 50.964384, "lng": -1.322139, "title": "RAW GREENE KING WELCOME INN 1", "address": "Fair Oak Road 154", "connectors": ["Type 2 (Socket Only) · 22kW"]}, {"lat": 50.9737, "lng": -1.3541, "title": "The Crescent - Bollard Adjacent To Lighting Column 9", "address": "116-118 The Crescent", "connectors": ["Type 2 (Socket Only) · 3.7kW"]}, {"lat": 50.9728, "lng": -1.3557, "title": "Archers Road - Lighting Column 10", "address": "67 Archers Rd", "connectors": ["Type 2 (Socket Only) · 3.7kW"]}, {"lat": 50.97202, "lng": -1.35313, "title": "George Street - Bollard Adjacent To Lighting Column 6", "address": "2-4 George Street", "connectors": ["Type 2 (Socket Only) · 3.7kW"]}, {"lat": 50.972, "lng": -1.3539, "title": "Newton Road - Bollard Adjacent To Lighting Column 6", "address": "33-35 Newtown Road", "connectors": ["Type 2 (Socket Only) · 3.7kW"]}, {"lat": 50.9691, "lng": -1.3586, "title": "Nutbeem Road - Bollard Adjacent To Lighting Column 4", "address": "11-13 Nutbeem Road", "connectors": ["Type 2 (Socket Only) · 3.7kW"]}, {"lat": 50.968399, "lng": -1.35161, "title": "Mitchell Road Multi Storey Car Park", "address": "Mitchell Road", "connectors": ["BS1363 3 Pin 13 Amp · 3kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 50.9678, "lng": -1.358, "title": "Factory Road - Lighting Column 14", "address": "Factory Road", "connectors": ["Type 2 (Socket Only) · 3.7kW"]}, {"lat": 50.9671, "lng": -1.3564, "title": "Cranbury Road - Bollard Adjacent To Lighting Column 14", "address": "94-96 Cranbury Road", "connectors": ["Type 2 (Socket Only) · 3.7kW"]}, {"lat": 50.9661, "lng": -1.3553, "title": "Desborough Road - Bollard Adjacent To Lighting Column 17", "address": "113-115 Desborough Road", "connectors": ["Type 2 (Socket Only) · 3.7kW"]}, {"lat": 50.9656, "lng": -1.3591, "title": "Nutbeem Road - Bollard Adjacent To Lighting Column 21", "address": "165-167 Nutbeem Road", "connectors": ["Type 2 (Socket Only) · 3.7kW"]}, {"lat": 50.9654, "lng": -1.3567, "title": "Cranbury Road - Bollard Adjacent To Lighting Column 22", "address": "167-169 Cranbury Road", "connectors": ["Type 2 (Socket Only) · 3.7kW"]}, {"lat": 50.9643, "lng": -1.353, "title": "Market Street - Bollard Adjacent To Lighting Column 11", "address": "193-195 Market Street", "connectors": ["Type 2 (Socket Only) · 3.7kW"]}, {"lat": 50.96292, "lng": -1.35595, "title": "Desborough Road - Bollard Adjacent To Lighting Column 32", "address": "230-232 Desborough Road", "connectors": ["Type 2 (Socket Only) · 3.7kW"]}, {"lat": 50.9625, "lng": -1.3547, "title": "Hight Street - Bollard Adjacent To Lighting Column 10", "address": "252-254 High Street", "connectors": ["Type 2 (Socket Only) · 3.7kW"]}, {"lat": 50.9597, "lng": -1.358, "title": "Arnold Road - Bollard Adjacent To Lighting Column 5", "address": "41-43 Arnold Road", "connectors": ["Type 2 (Socket Only) · 3.7kW"]}, {"lat": 50.9596, "lng": -1.3554, "title": "Southampton Road - Bollard Adjacent To Lighting Column 13", "address": "336-338 Southampton Road", "connectors": ["Type 2 (Socket Only) · 3.7kW"]}, {"lat": 50.949959, "lng": -1.363081, "title": "APCOA SOUTHAMPTON 2", "address": "Southampton Airport", "connectors": ["Type 2 (Socket Only) · 11kW"]}, {"lat": 50.97283269303654, "lng": -1.3681976276641308, "title": "Channon Retail Park", "address": "Woodside Avenue", "connectors": ["CCS (Type 2) · 75kW", "CHAdeMO · 75kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 50.96714536115931, "lng": -1.3872783674478342, "title": "Chestnut Avenue Retail Park", "address": "Chestnut Avenue", "connectors": ["CCS (Type 2) · 50kW", "CHAdeMO · 50kW", "Type 2 (Socket Only) · 11kW", "Type 2 (Socket Only) · 11kW"]}, {"lat": 50.967681561487325, "lng": -1.3555595362888653, "title": "Factory Road Lamppost Charger", "address": "Factory Road", "connectors": ["Type 2 (Socket Only) · 5kW"]}, {"lat": 50.970634453028254, "lng": -1.3522847148640267, "title": "Romsey Road Car Park", "address": "Romsey Road", "connectors": ["CCS (Type 2) · 75kW", "CHAdeMO · 75kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 50.96984516441225, "lng": -1.3689214432536119, "title": "Places Leisure Eastleigh", "address": "Passfield Avenue", "connectors": ["CCS (Type 2) · 150kW", "CHAdeMO · 150kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 50.988382, "lng": -1.372474, "title": "SHELL RECHARGE CHANDLERS FORD", "address": "130 Winchester Road", "connectors": ["Type 2 (Tethered Connector)  · 50kW", "CHAdeMO · 50kW"]}, {"lat": 50.9737, "lng": -1.3559, "title": "Archers Road - Bollard Adjacent To Lighting Column 14", "address": "109-111 Archers Road", "connectors": ["Type 2 (Socket Only) · 3.7kW"]}, {"lat": 50.9728, "lng": -1.3518, "title": "The Crescent - Bollard Adjacent To Lighting Column 4", "address": "40-42 The Crescent", "connectors": ["Type 2 (Socket Only) · 3.7kW"]}, {"lat": 50.9714, "lng": -1.3555, "title": "Archers Road - Bollard Adjacent To Lighting Column 4", "address": "13-15 Archers Road", "connectors": ["Type 2 (Socket Only) · 3.7kW"]}, {"lat": 50.9687, "lng": -1.3563, "title": "Cranbury Road - Bollard Adjacent To Lighting Column 6", "address": "26-28 Cranbury Road", "connectors": ["Type 2 (Socket Only) · 3.7kW"]}, {"lat": 50.9671, "lng": -1.3588, "title": "Nutbeem Road - Bollard Adjacent To Lighting Column 14", "address": "99-101 Nutbeem Road", "connectors": ["Type 2 (Socket Only) · 3.7kW"]}, {"lat": 50.9652, "lng": -1.3542, "title": "Hight Street - Bollard Adjacent To Lighting Column 23", "address": "141-143 High Street", "connectors": ["Type 2 (Socket Only) · 3.7kW"]}, {"lat": 50.9645, "lng": -1.3581, "title": "Chamberlayne Road - Bollard Adjacent To Lighting Column 25", "address": "197-199 Chamberlayne Road", "connectors": ["Type 2 (Socket Only) · 3.7kW"]}, {"lat": 50.9628, "lng": -1.3535, "title": "Market Street - Bollard Adjacent To Lighting Column 18", "address": "261-263 Market Street", "connectors": ["Type 2 (Socket Only) · 3.7kW"]}, {"lat": 50.9627, "lng": -1.3586, "title": "Chamberlayne Road - Bollard Adjacent To Lighting Column 33", "address": "273-275 Chamberlayne Road", "connectors": ["Type 2 (Socket Only) · 3.7kW"]}, {"lat": 50.9617, "lng": -1.3562, "title": "Desborough Road - Bollard Adjacent To Lighting Column 38", "address": "300-302 Desborough Road", "connectors": ["Type 2 (Socket Only) · 3.7kW"]}, {"lat": 50.9592, "lng": -1.3571, "title": "Doncaster Road - Bollard Adjacent To Lighting Column 6", "address": "65-67 Doncaster Road", "connectors": ["Type 2 (Socket Only) · 3.7kW"]}, {"lat": 50.916773, "lng": -1.313539, "title": "Best Buy Southampton B", "address": "Hedge End Retail Park  Unit 2, Charles Watts Way, Southampton", "connectors": ["BS1363 3 Pin 13 Amp · 3.7kW", "BS1363 3 Pin 13 Amp · 3.7kW"]}];
 
   chargerData.forEach(function (c) {
+    var connHtml = c.connectors.length
+      ? '<div style="margin-top:6px;font-size:12px;color:#475569">' + c.connectors.join(' &middot; ') + '</div>'
+      : '';
     var marker = L.marker([c.lat, c.lng]);
     marker.bindPopup(
-      '<b>' + c.title + '</b><br>' + c.address + '<br><br>' +
+      '<b>' + c.title + '</b>' +
+      '<div style="color:#64748b;font-size:13px">' + c.address + '</div>' +
+      connHtml +
       '<a href="https://www.google.com/maps/dir/?api=1&destination=' + c.lat + ',' + c.lng +
-      '" target="_blank" rel="noopener">Get directions</a>'
+      '" target="_blank" rel="noopener" style="display:inline-block;margin-top:8px;padding:4px 10px;background:#2563eb;color:white;border-radius:4px;text-decoration:none;font-size:12px">Get directions</a>'
     );
     markers.addLayer(marker);
   });
-
   map.addLayer(markers);
+
+  // --- Connector filter ---
+  var filterBtns = document.querySelectorAll('.filter-btn');
+  var chargerItems = document.querySelectorAll('.charger-item');
+
+  filterBtns.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      filterBtns.forEach(function (b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      var f = btn.dataset.filter;
+      chargerItems.forEach(function (item) {
+        var connList = item.dataset.connectors ? item.dataset.connectors.split(',') : [];
+        item.style.display = (f === 'all' || connList.indexOf(f) !== -1) ? '' : 'none';
+      });
+    });
+  });
+
+  // --- Copy postcode ---
+  document.querySelectorAll('.copy-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var original = btn.textContent;
+      navigator.clipboard.writeText(btn.dataset.copy).then(function () {
+        btn.textContent = 'Copied!';
+        btn.classList.add('copy-btn--success');
+        setTimeout(function () {
+          btn.textContent = original;
+          btn.classList.remove('copy-btn--success');
+        }, 1500);
+      });
+    });
+  });
 }());
 </script>
 

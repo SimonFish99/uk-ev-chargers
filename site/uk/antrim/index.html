@@ -17,7 +17,10 @@
 
 <header>
 <div class="container">
-<a href="/" class="logo">PlugMap <span class="tagline">UK EV Charger Locator</span></a>
+<a href="/" class="logo">
+  <svg class="logo-bolt" viewBox="0 0 24 24" fill="currentColor" width="22" height="22" aria-hidden="true"><path d="M13 2L4.5 13.5H11L10 22L19.5 10.5H13Z"/></svg>
+  PlugMap <span class="tagline">UK EV Charger Locator</span>
+</a>
 </div>
 </header>
 
@@ -28,16 +31,40 @@
 </nav>
 
 <h1>EV Chargers in Antrim</h1>
-<p class="page-intro">9 public charging stations found in Antrim.</p>
+
+<div class="stats-bar">
+  <span class="stat-pill stat-total">9 stations</span>
+  <span class="stat-pill stat-rapid">3 rapid (50kW+)</span>
+  <span class="stat-pill stat-fast">6 fast (7–50kW)</span>
+  
+</div>
 
 <div id="map"></div>
 
-<ul class="charger-list">
+
+<div class="connector-filter">
+  <span class="filter-label">Filter:</span>
+  <button class="filter-btn active" data-filter="all">All</button>
+  
+  <button class="filter-btn" data-filter="CCS (Type 2)">CCS (Type 2)</button>
+  
+  <button class="filter-btn" data-filter="CHAdeMO">CHAdeMO</button>
+  
+  <button class="filter-btn" data-filter="Type 2 (Socket Only)">Type 2 (Socket Only)</button>
+  
+</div>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Tim Hortons</h2>
-  <p class="charger-address">The Junction BT41 4LL
+<ul class="charger-list" id="charger-list">
+
+
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2)">
+  <div class="charger-header">
+    <h2 class="charger-name">Tim Hortons</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">The Junction <button class="copy-btn" data-copy="BT41 4LL">BT41 4LL</button>
   </p>
   
   <div class="charger-connections">
@@ -56,9 +83,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Allen Park Leisure Centre</h2>
-  <p class="charger-address">45 Castle Rd BT41 4NA
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Allen Park Leisure Centre</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">45 Castle Rd <button class="copy-btn" data-copy="BT41 4NA">BT41 4NA</button>
   </p>
   
   <div class="charger-connections">
@@ -77,8 +107,11 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Clotworthy Arts &amp; Heritage Centre</h2>
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Clotworthy Arts &amp; Heritage Centre</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
   <p class="charger-address">Randalstown Rd
   </p>
   
@@ -98,9 +131,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">The Junction</h2>
-  <p class="charger-address">Ballymena Road BT41 4LL
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2),CHAdeMO">
+  <div class="charger-header">
+    <h2 class="charger-name">The Junction</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Ballymena Road <button class="copy-btn" data-copy="BT41 4LL">BT41 4LL</button>
   </p>
   
   <div class="charger-connections">
@@ -122,9 +159,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Lidl</h2>
-  <p class="charger-address">Ballymena Road BT41 4LL
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Lidl</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Ballymena Road <button class="copy-btn" data-copy="BT41 4LL">BT41 4LL</button>
   </p>
   
   <div class="charger-connections">
@@ -143,9 +183,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Dunsilly Hotel</h2>
-  <p class="charger-address">20 Dunsilly Road BT41 2JH
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2),Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Dunsilly Hotel</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">20 Dunsilly Road <button class="copy-btn" data-copy="BT41 2JH">BT41 2JH</button>
   </p>
   
   <div class="charger-connections">
@@ -173,9 +217,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Maxol Service Station</h2>
-  <p class="charger-address">15 Ballymena Rd BT41 4JG
+<li class="charger-item charger-item--fast" data-connectors="CCS (Type 2),CHAdeMO">
+  <div class="charger-header">
+    <h2 class="charger-name">Maxol Service Station</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">15 Ballymena Rd <button class="copy-btn" data-copy="BT41 4JG">BT41 4JG</button>
   </p>
   
   <div class="charger-connections">
@@ -197,9 +244,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Portglenone Road, Randalstown</h2>
-  <p class="charger-address">67 Portglenon Road BT41
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Portglenone Road, Randalstown</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">67 Portglenon Road <button class="copy-btn" data-copy="BT41">BT41</button>
   </p>
   
   <div class="charger-connections">
@@ -221,9 +271,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Antrim Civic Centre</h2>
-  <p class="charger-address">50 Stiles Way BT41 2UB
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Antrim Civic Centre</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">50 Stiles Way <button class="copy-btn" data-copy="BT41 2UB">BT41 2UB</button>
   </p>
   
   <div class="charger-connections">
@@ -245,6 +298,23 @@
 
 <p><a href="/" class="back-link">← All UK towns</a></p>
 
+
+<div class="nearby-towns">
+  <h2 class="nearby-heading">Nearby towns</h2>
+  <ul class="nearby-list">
+  
+    <li><a href="/uk/ballymena/">Ballymena</a></li>
+  
+    <li><a href="/uk/lisburn/">Lisburn</a></li>
+  
+    <li><a href="/uk/newtownabbey/">Newtownabbey</a></li>
+  
+    <li><a href="/uk/belfast/">Belfast</a></li>
+  
+  </ul>
+</div>
+
+
 </div>
 
 <footer>
@@ -257,26 +327,61 @@
 <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 <script>
 (function () {
+  // --- Map ---
   var map = L.map('map').setView([54.73059188006693, -6.238474675299164], 12);
-
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
   }).addTo(map);
 
   var markers = L.markerClusterGroup();
-  var chargerData = [{"lat": 54.728554505939, "lng": -6.227776093458829, "title": "Tim Hortons", "address": "The Junction"}, {"lat": 54.72609849035433, "lng": -6.247357275620459, "title": "Allen Park Leisure Centre", "address": "45 Castle Rd"}, {"lat": 54.717896942749064, "lng": -6.225961501865157, "title": "Clotworthy Arts & Heritage Centre", "address": "Randalstown Rd"}, {"lat": 54.73033331866765, "lng": -6.228527105819097, "title": "The Junction", "address": "Ballymena Road"}, {"lat": 54.727440590689696, "lng": -6.227710389999459, "title": "Lidl", "address": "Ballymena Road"}, {"lat": 54.742893690717835, "lng": -6.233568569504655, "title": "Dunsilly Hotel", "address": "20 Dunsilly Road"}, {"lat": 54.72137838148478, "lng": -6.220870141424825, "title": "Maxol Service Station", "address": "15 Ballymena Rd"}, {"lat": 54.753928, "lng": -6.326239, "title": "Portglenone Road, Randalstown", "address": "67 Portglenon Road"}, {"lat": 54.726803, "lng": -6.208262, "title": "Antrim Civic Centre", "address": "50 Stiles Way"}];
+  var chargerData = [{"lat": 54.728554505939, "lng": -6.227776093458829, "title": "Tim Hortons", "address": "The Junction", "connectors": ["CCS (Type 2) · 200kW"]}, {"lat": 54.72609849035433, "lng": -6.247357275620459, "title": "Allen Park Leisure Centre", "address": "45 Castle Rd", "connectors": ["Type 2 (Socket Only) · 7kW"]}, {"lat": 54.717896942749064, "lng": -6.225961501865157, "title": "Clotworthy Arts & Heritage Centre", "address": "Randalstown Rd", "connectors": ["Type 2 (Socket Only) · 7kW"]}, {"lat": 54.73033331866765, "lng": -6.228527105819097, "title": "The Junction", "address": "Ballymena Road", "connectors": ["CCS (Type 2) · 400kW", "CHAdeMO · 50kW"]}, {"lat": 54.727440590689696, "lng": -6.227710389999459, "title": "Lidl", "address": "Ballymena Road", "connectors": ["Type 2 (Socket Only) · 22kW"]}, {"lat": 54.742893690717835, "lng": -6.233568569504655, "title": "Dunsilly Hotel", "address": "20 Dunsilly Road", "connectors": ["CCS (Type 2) · 24kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW", "CCS (Type 2) · 120kW"]}, {"lat": 54.72137838148478, "lng": -6.220870141424825, "title": "Maxol Service Station", "address": "15 Ballymena Rd", "connectors": ["CCS (Type 2) · 40kW", "CHAdeMO · 40kW"]}, {"lat": 54.753928, "lng": -6.326239, "title": "Portglenone Road, Randalstown", "address": "67 Portglenon Road", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 54.726803, "lng": -6.208262, "title": "Antrim Civic Centre", "address": "50 Stiles Way", "connectors": ["Type 2 (Socket Only) · 7.4kW"]}];
 
   chargerData.forEach(function (c) {
+    var connHtml = c.connectors.length
+      ? '<div style="margin-top:6px;font-size:12px;color:#475569">' + c.connectors.join(' &middot; ') + '</div>'
+      : '';
     var marker = L.marker([c.lat, c.lng]);
     marker.bindPopup(
-      '<b>' + c.title + '</b><br>' + c.address + '<br><br>' +
+      '<b>' + c.title + '</b>' +
+      '<div style="color:#64748b;font-size:13px">' + c.address + '</div>' +
+      connHtml +
       '<a href="https://www.google.com/maps/dir/?api=1&destination=' + c.lat + ',' + c.lng +
-      '" target="_blank" rel="noopener">Get directions</a>'
+      '" target="_blank" rel="noopener" style="display:inline-block;margin-top:8px;padding:4px 10px;background:#2563eb;color:white;border-radius:4px;text-decoration:none;font-size:12px">Get directions</a>'
     );
     markers.addLayer(marker);
   });
-
   map.addLayer(markers);
+
+  // --- Connector filter ---
+  var filterBtns = document.querySelectorAll('.filter-btn');
+  var chargerItems = document.querySelectorAll('.charger-item');
+
+  filterBtns.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      filterBtns.forEach(function (b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      var f = btn.dataset.filter;
+      chargerItems.forEach(function (item) {
+        var connList = item.dataset.connectors ? item.dataset.connectors.split(',') : [];
+        item.style.display = (f === 'all' || connList.indexOf(f) !== -1) ? '' : 'none';
+      });
+    });
+  });
+
+  // --- Copy postcode ---
+  document.querySelectorAll('.copy-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var original = btn.textContent;
+      navigator.clipboard.writeText(btn.dataset.copy).then(function () {
+        btn.textContent = 'Copied!';
+        btn.classList.add('copy-btn--success');
+        setTimeout(function () {
+          btn.textContent = original;
+          btn.classList.remove('copy-btn--success');
+        }, 1500);
+      });
+    });
+  });
 }());
 </script>
 

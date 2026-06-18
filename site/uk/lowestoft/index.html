@@ -17,7 +17,10 @@
 
 <header>
 <div class="container">
-<a href="/" class="logo">PlugMap <span class="tagline">UK EV Charger Locator</span></a>
+<a href="/" class="logo">
+  <svg class="logo-bolt" viewBox="0 0 24 24" fill="currentColor" width="22" height="22" aria-hidden="true"><path d="M13 2L4.5 13.5H11L10 22L19.5 10.5H13Z"/></svg>
+  PlugMap <span class="tagline">UK EV Charger Locator</span>
+</a>
 </div>
 </header>
 
@@ -28,16 +31,40 @@
 </nav>
 
 <h1>EV Chargers in Lowestoft</h1>
-<p class="page-intro">6 public charging stations found in Lowestoft.</p>
+
+<div class="stats-bar">
+  <span class="stat-pill stat-total">6 stations</span>
+  <span class="stat-pill stat-rapid">2 rapid (50kW+)</span>
+  <span class="stat-pill stat-fast">4 fast (7–50kW)</span>
+  
+</div>
 
 <div id="map"></div>
 
-<ul class="charger-list">
+
+<div class="connector-filter">
+  <span class="filter-label">Filter:</span>
+  <button class="filter-btn active" data-filter="all">All</button>
+  
+  <button class="filter-btn" data-filter="CCS (Type 2)">CCS (Type 2)</button>
+  
+  <button class="filter-btn" data-filter="CHAdeMO">CHAdeMO</button>
+  
+  <button class="filter-btn" data-filter="Type 2 (Socket Only)">Type 2 (Socket Only)</button>
+  
+</div>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">McDonald&#39;s Lowestoft</h2>
-  <p class="charger-address">Leisure Way NR32 4TZ
+<ul class="charger-list" id="charger-list">
+
+
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2)">
+  <div class="charger-header">
+    <h2 class="charger-name">McDonald&#39;s Lowestoft</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Leisure Way <button class="copy-btn" data-copy="NR32 4TZ">NR32 4TZ</button>
   </p>
   
   <div class="charger-connections">
@@ -56,9 +83,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Orbis</h2>
-  <p class="charger-address">Orbis Centre NR32 1XH
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Orbis</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Orbis Centre <button class="copy-btn" data-copy="NR32 1XH">NR32 1XH</button>
   </p>
   
   <div class="charger-connections">
@@ -86,9 +116,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">North Quay Retail Park</h2>
-  <p class="charger-address">North Quay Retail Park NR32 2ED
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2),CHAdeMO,Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">North Quay Retail Park</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">North Quay Retail Park <button class="copy-btn" data-copy="NR32 2ED">NR32 2ED</button>
   </p>
   
   <div class="charger-connections">
@@ -146,9 +180,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Tesco Superstore-Lowestoft Leisure Way</h2>
-  <p class="charger-address">Leisure Way NR32 4TZ
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Tesco Superstore-Lowestoft Leisure Way</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Leisure Way <button class="copy-btn" data-copy="NR32 4TZ">NR32 4TZ</button>
   </p>
   
   <div class="charger-connections">
@@ -167,9 +204,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Sunnyside Holiday Home</h2>
-  <p class="charger-address">6 Grayson Avenue NR33 7BB
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Sunnyside Holiday Home</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">6 Grayson Avenue <button class="copy-btn" data-copy="NR33 7BB">NR33 7BB</button>
   </p>
   
   <div class="charger-connections">
@@ -188,9 +228,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Orbis Energy Lowestoft</h2>
-  <p class="charger-address">Wilde Street NR32 1XH
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Orbis Energy Lowestoft</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Wilde Street <button class="copy-btn" data-copy="NR32 1XH">NR32 1XH</button>
   </p>
   
   <div class="charger-connections">
@@ -212,6 +255,23 @@
 
 <p><a href="/" class="back-link">← All UK towns</a></p>
 
+
+<div class="nearby-towns">
+  <h2 class="nearby-heading">Nearby towns</h2>
+  <ul class="nearby-list">
+  
+    <li><a href="/uk/great-yarmouth/">Great Yarmouth</a></li>
+  
+    <li><a href="/uk/norwich/">Norwich</a></li>
+  
+    <li><a href="/uk/diss/">Diss</a></li>
+  
+    <li><a href="/uk/ipswich/">Ipswich</a></li>
+  
+  </ul>
+</div>
+
+
 </div>
 
 <footer>
@@ -224,26 +284,61 @@
 <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 <script>
 (function () {
+  // --- Map ---
   var map = L.map('map').setView([52.481396682272184, 1.7423785414613138], 12);
-
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
   }).addTo(map);
 
   var markers = L.markerClusterGroup();
-  var chargerData = [{"lat": 52.501577083633066, "lng": 1.7353289087678831, "title": "McDonald's Lowestoft", "address": "Leisure Way"}, {"lat": 52.4789, "lng": 1.7614, "title": "Orbis", "address": "Orbis Centre"}, {"lat": 52.477586, "lng": 1.732524, "title": "North Quay Retail Park", "address": "North Quay Retail Park"}, {"lat": 52.502876, "lng": 1.735055, "title": "Tesco Superstore-Lowestoft Leisure Way", "address": "Leisure Way"}, {"lat": 52.44825501, "lng": 1.72931334, "title": "Sunnyside Holiday Home", "address": "6 Grayson Avenue"}, {"lat": 52.479186, "lng": 1.76065, "title": "Orbis Energy Lowestoft", "address": "Wilde Street"}];
+  var chargerData = [{"lat": 52.501577083633066, "lng": 1.7353289087678831, "title": "McDonald's Lowestoft", "address": "Leisure Way", "connectors": ["CCS (Type 2) · 150kW"]}, {"lat": 52.4789, "lng": 1.7614, "title": "Orbis", "address": "Orbis Centre", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 52.477586, "lng": 1.732524, "title": "North Quay Retail Park", "address": "North Quay Retail Park", "connectors": ["CCS (Type 2) · 50kW", "CHAdeMO · 50kW", "CCS (Type 2) · 50kW", "CHAdeMO · 50kW", "CCS (Type 2) · 50kW", "CHAdeMO · 50kW", "Type 2 (Socket Only) · 11kW", "Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW", "CHAdeMO · 50kW", "CCS (Type 2) · 50kW", "Type 2 (Socket Only) · 22kW", "CHAdeMO · 50kW", "CCS (Type 2) · 74kW"]}, {"lat": 52.502876, "lng": 1.735055, "title": "Tesco Superstore-Lowestoft Leisure Way", "address": "Leisure Way", "connectors": ["Type 2 (Socket Only) · 22kW"]}, {"lat": 52.44825501, "lng": 1.72931334, "title": "Sunnyside Holiday Home", "address": "6 Grayson Avenue", "connectors": ["Type 2 (Socket Only) · 7kW"]}, {"lat": 52.479186, "lng": 1.76065, "title": "Orbis Energy Lowestoft", "address": "Wilde Street", "connectors": ["Type 2 (Socket Only) · 7kW"]}];
 
   chargerData.forEach(function (c) {
+    var connHtml = c.connectors.length
+      ? '<div style="margin-top:6px;font-size:12px;color:#475569">' + c.connectors.join(' &middot; ') + '</div>'
+      : '';
     var marker = L.marker([c.lat, c.lng]);
     marker.bindPopup(
-      '<b>' + c.title + '</b><br>' + c.address + '<br><br>' +
+      '<b>' + c.title + '</b>' +
+      '<div style="color:#64748b;font-size:13px">' + c.address + '</div>' +
+      connHtml +
       '<a href="https://www.google.com/maps/dir/?api=1&destination=' + c.lat + ',' + c.lng +
-      '" target="_blank" rel="noopener">Get directions</a>'
+      '" target="_blank" rel="noopener" style="display:inline-block;margin-top:8px;padding:4px 10px;background:#2563eb;color:white;border-radius:4px;text-decoration:none;font-size:12px">Get directions</a>'
     );
     markers.addLayer(marker);
   });
-
   map.addLayer(markers);
+
+  // --- Connector filter ---
+  var filterBtns = document.querySelectorAll('.filter-btn');
+  var chargerItems = document.querySelectorAll('.charger-item');
+
+  filterBtns.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      filterBtns.forEach(function (b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      var f = btn.dataset.filter;
+      chargerItems.forEach(function (item) {
+        var connList = item.dataset.connectors ? item.dataset.connectors.split(',') : [];
+        item.style.display = (f === 'all' || connList.indexOf(f) !== -1) ? '' : 'none';
+      });
+    });
+  });
+
+  // --- Copy postcode ---
+  document.querySelectorAll('.copy-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var original = btn.textContent;
+      navigator.clipboard.writeText(btn.dataset.copy).then(function () {
+        btn.textContent = 'Copied!';
+        btn.classList.add('copy-btn--success');
+        setTimeout(function () {
+          btn.textContent = original;
+          btn.classList.remove('copy-btn--success');
+        }, 1500);
+      });
+    });
+  });
 }());
 </script>
 

@@ -17,7 +17,10 @@
 
 <header>
 <div class="container">
-<a href="/" class="logo">PlugMap <span class="tagline">UK EV Charger Locator</span></a>
+<a href="/" class="logo">
+  <svg class="logo-bolt" viewBox="0 0 24 24" fill="currentColor" width="22" height="22" aria-hidden="true"><path d="M13 2L4.5 13.5H11L10 22L19.5 10.5H13Z"/></svg>
+  PlugMap <span class="tagline">UK EV Charger Locator</span>
+</a>
 </div>
 </header>
 
@@ -28,16 +31,42 @@
 </nav>
 
 <h1>EV Chargers in Eastbourne</h1>
-<p class="page-intro">6 public charging stations found in Eastbourne.</p>
+
+<div class="stats-bar">
+  <span class="stat-pill stat-total">6 stations</span>
+  <span class="stat-pill stat-rapid">2 rapid (50kW+)</span>
+  <span class="stat-pill stat-fast">4 fast (7–50kW)</span>
+  
+</div>
 
 <div id="map"></div>
 
-<ul class="charger-list">
+
+<div class="connector-filter">
+  <span class="filter-label">Filter:</span>
+  <button class="filter-btn active" data-filter="all">All</button>
+  
+  <button class="filter-btn" data-filter="CCS (Type 2)">CCS (Type 2)</button>
+  
+  <button class="filter-btn" data-filter="CHAdeMO">CHAdeMO</button>
+  
+  <button class="filter-btn" data-filter="Type 2 (Socket Only)">Type 2 (Socket Only)</button>
+  
+  <button class="filter-btn" data-filter="Type 2 (Tethered Connector) ">Type 2 (Tethered Connector) </button>
+  
+</div>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Morrisons Eastbourne</h2>
-  <p class="charger-address">Morrisons Eastbourne BN23 6QL
+<ul class="charger-list" id="charger-list">
+
+
+<li class="charger-item charger-item--rapid" data-connectors="CHAdeMO,Type 2 (Tethered Connector) ">
+  <div class="charger-header">
+    <h2 class="charger-name">Morrisons Eastbourne</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Morrisons Eastbourne <button class="copy-btn" data-copy="BN23 6QL">BN23 6QL</button>
   </p>
   
   <div class="charger-connections">
@@ -62,9 +91,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Eastbourne Railway Station</h2>
-  <p class="charger-address">Terminus Road BN21 3QJ
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Eastbourne Railway Station</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Terminus Road <button class="copy-btn" data-copy="BN21 3QJ">BN21 3QJ</button>
   </p>
   
   <div class="charger-connections">
@@ -92,9 +124,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Tesco Extra-Eastbourne</h2>
-  <p class="charger-address">21 Lottbridge Drove BN23 6QD
+<li class="charger-item charger-item--rapid" data-connectors="Type 2 (Socket Only),CCS (Type 2),CHAdeMO">
+  <div class="charger-header">
+    <h2 class="charger-name">Tesco Extra-Eastbourne</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">21 Lottbridge Drove <button class="copy-btn" data-copy="BN23 6QD">BN23 6QD</button>
   </p>
   
   <div class="charger-connections">
@@ -122,9 +158,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Southern Rail Car Park 1</h2>
-  <p class="charger-address">1 Commercial Road BN21 3XQ
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Southern Rail Car Park 1</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">1 Commercial Road <button class="copy-btn" data-copy="BN21 3XQ">BN21 3XQ</button>
   </p>
   
   <div class="charger-connections">
@@ -146,9 +185,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Mercedes-Benz of Eastbourne</h2>
-  <p class="charger-address">Westham BN24 5NH
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Mercedes-Benz of Eastbourne</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Westham <button class="copy-btn" data-copy="BN24 5NH">BN24 5NH</button>
   </p>
   
   <div class="charger-connections">
@@ -170,9 +212,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">The Beacon Shopping Centre</h2>
-  <p class="charger-address">The Beacon BN21 3NW
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">The Beacon Shopping Centre</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">The Beacon <button class="copy-btn" data-copy="BN21 3NW">BN21 3NW</button>
   </p>
   
   <div class="charger-connections">
@@ -236,6 +281,23 @@
 
 <p><a href="/" class="back-link">← All UK towns</a></p>
 
+
+<div class="nearby-towns">
+  <h2 class="nearby-heading">Nearby towns</h2>
+  <ul class="nearby-list">
+  
+    <li><a href="/uk/hythe/">Hythe</a></li>
+  
+    <li><a href="/uk/tonbridge/">Tonbridge</a></li>
+  
+    <li><a href="/uk/haywards-heath/">Haywards Heath</a></li>
+  
+    <li><a href="/uk/brighton/">Brighton</a></li>
+  
+  </ul>
+</div>
+
+
 </div>
 
 <footer>
@@ -248,26 +310,61 @@
 <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 <script>
 (function () {
+  // --- Map ---
   var map = L.map('map').setView([50.783938934986416, 0.29368856085250417], 12);
-
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
   }).addTo(map);
 
   var markers = L.markerClusterGroup();
-  var chargerData = [{"lat": 50.796861, "lng": 0.285513, "title": "Morrisons Eastbourne", "address": "Morrisons Eastbourne"}, {"lat": 50.769768, "lng": 0.281316, "title": "Eastbourne Railway Station", "address": "Terminus Road"}, {"lat": 50.78633706, "lng": 0.30411809, "title": "Tesco Extra-Eastbourne", "address": "21 Lottbridge Drove"}, {"lat": 50.770271, "lng": 0.281752, "title": "Southern Rail Car Park 1", "address": "1 Commercial Road"}, {"lat": 50.811222, "lng": 0.323875, "title": "Mercedes-Benz of Eastbourne", "address": "Westham"}, {"lat": 50.7691745499185, "lng": 0.285557275115025, "title": "The Beacon Shopping Centre", "address": "The Beacon"}];
+  var chargerData = [{"lat": 50.796861, "lng": 0.285513, "title": "Morrisons Eastbourne", "address": "Morrisons Eastbourne", "connectors": ["CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 43kW", "Type 2 (Tethered Connector)  · 50kW"]}, {"lat": 50.769768, "lng": 0.281316, "title": "Eastbourne Railway Station", "address": "Terminus Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 50.78633706, "lng": 0.30411809, "title": "Tesco Extra-Eastbourne", "address": "21 Lottbridge Drove", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 7kW", "CCS (Type 2) · 50kW", "CHAdeMO · 50kW"]}, {"lat": 50.770271, "lng": 0.281752, "title": "Southern Rail Car Park 1", "address": "1 Commercial Road", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 50.811222, "lng": 0.323875, "title": "Mercedes-Benz of Eastbourne", "address": "Westham", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 50.7691745499185, "lng": 0.285557275115025, "title": "The Beacon Shopping Centre", "address": "The Beacon", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}];
 
   chargerData.forEach(function (c) {
+    var connHtml = c.connectors.length
+      ? '<div style="margin-top:6px;font-size:12px;color:#475569">' + c.connectors.join(' &middot; ') + '</div>'
+      : '';
     var marker = L.marker([c.lat, c.lng]);
     marker.bindPopup(
-      '<b>' + c.title + '</b><br>' + c.address + '<br><br>' +
+      '<b>' + c.title + '</b>' +
+      '<div style="color:#64748b;font-size:13px">' + c.address + '</div>' +
+      connHtml +
       '<a href="https://www.google.com/maps/dir/?api=1&destination=' + c.lat + ',' + c.lng +
-      '" target="_blank" rel="noopener">Get directions</a>'
+      '" target="_blank" rel="noopener" style="display:inline-block;margin-top:8px;padding:4px 10px;background:#2563eb;color:white;border-radius:4px;text-decoration:none;font-size:12px">Get directions</a>'
     );
     markers.addLayer(marker);
   });
-
   map.addLayer(markers);
+
+  // --- Connector filter ---
+  var filterBtns = document.querySelectorAll('.filter-btn');
+  var chargerItems = document.querySelectorAll('.charger-item');
+
+  filterBtns.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      filterBtns.forEach(function (b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      var f = btn.dataset.filter;
+      chargerItems.forEach(function (item) {
+        var connList = item.dataset.connectors ? item.dataset.connectors.split(',') : [];
+        item.style.display = (f === 'all' || connList.indexOf(f) !== -1) ? '' : 'none';
+      });
+    });
+  });
+
+  // --- Copy postcode ---
+  document.querySelectorAll('.copy-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var original = btn.textContent;
+      navigator.clipboard.writeText(btn.dataset.copy).then(function () {
+        btn.textContent = 'Copied!';
+        btn.classList.add('copy-btn--success');
+        setTimeout(function () {
+          btn.textContent = original;
+          btn.classList.remove('copy-btn--success');
+        }, 1500);
+      });
+    });
+  });
 }());
 </script>
 

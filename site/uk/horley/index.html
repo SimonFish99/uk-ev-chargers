@@ -17,7 +17,10 @@
 
 <header>
 <div class="container">
-<a href="/" class="logo">PlugMap <span class="tagline">UK EV Charger Locator</span></a>
+<a href="/" class="logo">
+  <svg class="logo-bolt" viewBox="0 0 24 24" fill="currentColor" width="22" height="22" aria-hidden="true"><path d="M13 2L4.5 13.5H11L10 22L19.5 10.5H13Z"/></svg>
+  PlugMap <span class="tagline">UK EV Charger Locator</span>
+</a>
 </div>
 </header>
 
@@ -28,16 +31,41 @@
 </nav>
 
 <h1>EV Chargers in Horley</h1>
-<p class="page-intro">5 public charging stations found in Horley.</p>
+
+<div class="stats-bar">
+  <span class="stat-pill stat-total">5 stations</span>
+  <span class="stat-pill stat-rapid">2 rapid (50kW+)</span>
+  <span class="stat-pill stat-fast">2 fast (7–50kW)</span>
+  <span class="stat-pill stat-slow">1 slow</span>
+</div>
 
 <div id="map"></div>
 
-<ul class="charger-list">
+
+<div class="connector-filter">
+  <span class="filter-label">Filter:</span>
+  <button class="filter-btn active" data-filter="all">All</button>
+  
+  <button class="filter-btn" data-filter="CCS (Type 2)">CCS (Type 2)</button>
+  
+  <button class="filter-btn" data-filter="CHAdeMO">CHAdeMO</button>
+  
+  <button class="filter-btn" data-filter="Type 2 (Socket Only)">Type 2 (Socket Only)</button>
+  
+  <button class="filter-btn" data-filter="Type 2 (Tethered Connector) ">Type 2 (Tethered Connector) </button>
+  
+</div>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Gatwick North Terminal</h2>
-  <p class="charger-address">Longbridge Gate RH6 0PJ
+<ul class="charger-list" id="charger-list">
+
+
+<li class="charger-item charger-item--slow" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Gatwick North Terminal</h2>
+    
+  </div>
+  <p class="charger-address">Longbridge Gate <button class="copy-btn" data-copy="RH6 0PJ">RH6 0PJ</button>
   </p>
   
   <div class="charger-connections">
@@ -59,9 +87,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">EVC Stanhill Court Hotel</h2>
-  <p class="charger-address">Stanhill Court Hotel RH6 0EP
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">EVC Stanhill Court Hotel</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Stanhill Court Hotel <button class="copy-btn" data-copy="RH6 0EP">RH6 0EP</button>
   </p>
   
   <div class="charger-connections">
@@ -80,9 +111,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Purple Parking - Gatwick Airport</h2>
-  <p class="charger-address">Q Park RH11 0QB
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2),CHAdeMO,Type 2 (Tethered Connector) ">
+  <div class="charger-header">
+    <h2 class="charger-name">Purple Parking - Gatwick Airport</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Q Park <button class="copy-btn" data-copy="RH11 0QB">RH11 0QB</button>
   </p>
   
   <div class="charger-connections">
@@ -113,9 +148,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Gridserve Electric Forecourt Gatwick</h2>
-  <p class="charger-address">Marriott Courtyard Hotel RH6 0NT
+<li class="charger-item charger-item--rapid" data-connectors="Type 2 (Socket Only),CCS (Type 2),CHAdeMO">
+  <div class="charger-header">
+    <h2 class="charger-name">Gridserve Electric Forecourt Gatwick</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Marriott Courtyard Hotel <button class="copy-btn" data-copy="RH6 0NT">RH6 0NT</button>
   </p>
   
   <div class="charger-connections">
@@ -212,9 +251,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Victoria Rd Car Park, Horley</h2>
-  <p class="charger-address">129-131 Victoria Road RH6 7AS
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Victoria Rd Car Park, Horley</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">129-131 Victoria Road <button class="copy-btn" data-copy="RH6 7AS">RH6 7AS</button>
   </p>
   
   <div class="charger-connections">
@@ -236,6 +278,23 @@
 
 <p><a href="/" class="back-link">← All UK towns</a></p>
 
+
+<div class="nearby-towns">
+  <h2 class="nearby-heading">Nearby towns</h2>
+  <ul class="nearby-list">
+  
+    <li><a href="/uk/crawley/">Crawley</a></li>
+  
+    <li><a href="/uk/gillingham/">Gillingham</a></li>
+  
+    <li><a href="/uk/dorking/">Dorking</a></li>
+  
+    <li><a href="/uk/epsom/">Epsom</a></li>
+  
+  </ul>
+</div>
+
+
 </div>
 
 <footer>
@@ -248,26 +307,61 @@
 <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 <script>
 (function () {
+  // --- Map ---
   var map = L.map('map').setView([51.15960254675564, -0.18913968898369907], 12);
-
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
   }).addTo(map);
 
   var markers = L.markerClusterGroup();
-  var chargerData = [{"lat": 51.160769, "lng": -0.175357, "title": "Gatwick North Terminal", "address": "Longbridge Gate"}, {"lat": 51.16673507712332, "lng": -0.24118690191258824, "title": "EVC Stanhill Court Hotel", "address": "Stanhill Court Hotel"}, {"lat": 51.1428042402538, "lng": -0.210269953509842, "title": "Purple Parking - Gatwick Airport", "address": "Q Park"}, {"lat": 51.1563134164011, "lng": -0.153538589496065, "title": "Gridserve Electric Forecourt Gatwick", "address": "Marriott Courtyard Hotel"}, {"lat": 51.171391, "lng": -0.165346, "title": "Victoria Rd Car Park, Horley", "address": "129-131 Victoria Road"}];
+  var chargerData = [{"lat": 51.160769, "lng": -0.175357, "title": "Gatwick North Terminal", "address": "Longbridge Gate", "connectors": ["Type 2 (Socket Only) · 3.7kW", "Type 2 (Socket Only) · 3.7kW"]}, {"lat": 51.16673507712332, "lng": -0.24118690191258824, "title": "EVC Stanhill Court Hotel", "address": "Stanhill Court Hotel", "connectors": ["Type 2 (Socket Only) · 22kW"]}, {"lat": 51.1428042402538, "lng": -0.210269953509842, "title": "Purple Parking - Gatwick Airport", "address": "Q Park", "connectors": ["CCS (Type 2) · 50kW", "CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 43kW", "CCS (Type 2) · 150kW", "CHAdeMO · 100kW"]}, {"lat": 51.1563134164011, "lng": -0.153538589496065, "title": "Gridserve Electric Forecourt Gatwick", "address": "Marriott Courtyard Hotel", "connectors": ["Type 2 (Socket Only) · 22kW", "CCS (Type 2) · 350kW", "Type 2 (Socket Only) · 22kW", "CCS (Type 2) · 350kW", "CCS (Type 2) · 350kW", "CCS (Type 2) · 350kW", "CCS (Type 2) · 350kW", "CCS (Type 2) · 350kW", "CCS (Type 2) · 350kW", "CCS (Type 2) · 350kW", "CCS (Type 2) · 350kW", "Type 2 (Socket Only) · 22kW", "CCS (Type 2) · 350kW", "CCS (Type 2) · 350kW", "CCS (Type 2) · 350kW", "CCS (Type 2) · 350kW", "CCS (Type 2) · 350kW", "Type 2 (Socket Only) · 22kW", "CCS (Type 2) · 350kW", "CCS (Type 2) · 350kW", "CCS (Type 2) · 350kW", "CHAdeMO · 100kW", "CHAdeMO · 100kW", "CHAdeMO · 100kW", "CHAdeMO · 100kW", "CHAdeMO · 100kW", "CHAdeMO · 100kW"]}, {"lat": 51.171391, "lng": -0.165346, "title": "Victoria Rd Car Park, Horley", "address": "129-131 Victoria Road", "connectors": ["Type 2 (Socket Only) · 22kW"]}];
 
   chargerData.forEach(function (c) {
+    var connHtml = c.connectors.length
+      ? '<div style="margin-top:6px;font-size:12px;color:#475569">' + c.connectors.join(' &middot; ') + '</div>'
+      : '';
     var marker = L.marker([c.lat, c.lng]);
     marker.bindPopup(
-      '<b>' + c.title + '</b><br>' + c.address + '<br><br>' +
+      '<b>' + c.title + '</b>' +
+      '<div style="color:#64748b;font-size:13px">' + c.address + '</div>' +
+      connHtml +
       '<a href="https://www.google.com/maps/dir/?api=1&destination=' + c.lat + ',' + c.lng +
-      '" target="_blank" rel="noopener">Get directions</a>'
+      '" target="_blank" rel="noopener" style="display:inline-block;margin-top:8px;padding:4px 10px;background:#2563eb;color:white;border-radius:4px;text-decoration:none;font-size:12px">Get directions</a>'
     );
     markers.addLayer(marker);
   });
-
   map.addLayer(markers);
+
+  // --- Connector filter ---
+  var filterBtns = document.querySelectorAll('.filter-btn');
+  var chargerItems = document.querySelectorAll('.charger-item');
+
+  filterBtns.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      filterBtns.forEach(function (b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      var f = btn.dataset.filter;
+      chargerItems.forEach(function (item) {
+        var connList = item.dataset.connectors ? item.dataset.connectors.split(',') : [];
+        item.style.display = (f === 'all' || connList.indexOf(f) !== -1) ? '' : 'none';
+      });
+    });
+  });
+
+  // --- Copy postcode ---
+  document.querySelectorAll('.copy-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var original = btn.textContent;
+      navigator.clipboard.writeText(btn.dataset.copy).then(function () {
+        btn.textContent = 'Copied!';
+        btn.classList.add('copy-btn--success');
+        setTimeout(function () {
+          btn.textContent = original;
+          btn.classList.remove('copy-btn--success');
+        }, 1500);
+      });
+    });
+  });
 }());
 </script>
 

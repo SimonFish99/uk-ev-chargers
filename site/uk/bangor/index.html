@@ -17,7 +17,10 @@
 
 <header>
 <div class="container">
-<a href="/" class="logo">PlugMap <span class="tagline">UK EV Charger Locator</span></a>
+<a href="/" class="logo">
+  <svg class="logo-bolt" viewBox="0 0 24 24" fill="currentColor" width="22" height="22" aria-hidden="true"><path d="M13 2L4.5 13.5H11L10 22L19.5 10.5H13Z"/></svg>
+  PlugMap <span class="tagline">UK EV Charger Locator</span>
+</a>
 </div>
 </header>
 
@@ -28,16 +31,42 @@
 </nav>
 
 <h1>EV Chargers in Bangor</h1>
-<p class="page-intro">15 public charging stations found in Bangor.</p>
+
+<div class="stats-bar">
+  <span class="stat-pill stat-total">15 stations</span>
+  <span class="stat-pill stat-rapid">11 rapid (50kW+)</span>
+  <span class="stat-pill stat-fast">4 fast (7–50kW)</span>
+  
+</div>
 
 <div id="map"></div>
 
-<ul class="charger-list">
+
+<div class="connector-filter">
+  <span class="filter-label">Filter:</span>
+  <button class="filter-btn active" data-filter="all">All</button>
+  
+  <button class="filter-btn" data-filter="CCS (Type 2)">CCS (Type 2)</button>
+  
+  <button class="filter-btn" data-filter="CHAdeMO">CHAdeMO</button>
+  
+  <button class="filter-btn" data-filter="Type 2 (Socket Only)">Type 2 (Socket Only)</button>
+  
+  <button class="filter-btn" data-filter="Type 2 (Tethered Connector) ">Type 2 (Tethered Connector) </button>
+  
+</div>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">McDonald&#39;s</h2>
-  <p class="charger-address">Bloomfield Shopping Centre BT19 7HB
+<ul class="charger-list" id="charger-list">
+
+
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2),CHAdeMO">
+  <div class="charger-header">
+    <h2 class="charger-name">McDonald&#39;s</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Bloomfield Shopping Centre <button class="copy-btn" data-copy="BT19 7HB">BT19 7HB</button>
   </p>
   
   <div class="charger-connections">
@@ -59,8 +88,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Bloomfield Shopping Centre &amp; Retail Park</h2>
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2)">
+  <div class="charger-header">
+    <h2 class="charger-name">Bloomfield Shopping Centre &amp; Retail Park</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
   <p class="charger-address">South Circular Rd
   </p>
   
@@ -80,9 +113,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Toscana Retail Park</h2>
-  <p class="charger-address">Toscana Park BT19 1FH
+<li class="charger-item charger-item--rapid" data-connectors="Type 2 (Socket Only),CHAdeMO,CCS (Type 2)">
+  <div class="charger-header">
+    <h2 class="charger-name">Toscana Retail Park</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Toscana Park <button class="copy-btn" data-copy="BT19 1FH">BT19 1FH</button>
   </p>
   
   <div class="charger-connections">
@@ -107,9 +144,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Solo Clandeboye</h2>
-  <p class="charger-address">173 Clandeboye Rd BT19 1AA
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2)">
+  <div class="charger-header">
+    <h2 class="charger-name">Solo Clandeboye</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">173 Clandeboye Rd <button class="copy-btn" data-copy="BT19 1AA">BT19 1AA</button>
   </p>
   
   <div class="charger-connections">
@@ -128,9 +169,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Bangor Aurora Aquatic &amp; Leisure Complex</h2>
-  <p class="charger-address">Valentine Road BT20 4TB
+<li class="charger-item charger-item--rapid" data-connectors="CHAdeMO,CCS (Type 2)">
+  <div class="charger-header">
+    <h2 class="charger-name">Bangor Aurora Aquatic &amp; Leisure Complex</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Valentine Road <button class="copy-btn" data-copy="BT20 4TB">BT20 4TB</button>
   </p>
   
   <div class="charger-connections">
@@ -158,9 +203,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Bangor Sportsplex</h2>
-  <p class="charger-address">Old Belfast Rd BT19 1LU
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2),CHAdeMO">
+  <div class="charger-header">
+    <h2 class="charger-name">Bangor Sportsplex</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Old Belfast Rd <button class="copy-btn" data-copy="BT19 1LU">BT19 1LU</button>
   </p>
   
   <div class="charger-connections">
@@ -182,9 +231,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Ffordd Y Parc</h2>
-  <p class="charger-address">Ffordd Y Parc LL57 4FE
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Ffordd Y Parc</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Ffordd Y Parc <button class="copy-btn" data-copy="LL57 4FE">LL57 4FE</button>
   </p>
   
   <div class="charger-connections">
@@ -203,9 +255,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">bp Belfast Road</h2>
-  <p class="charger-address">139-141 Belfast Road BT20 3PP
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2)">
+  <div class="charger-header">
+    <h2 class="charger-name">bp Belfast Road</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">139-141 Belfast Road <button class="copy-btn" data-copy="BT20 3PP">BT20 3PP</button>
   </p>
   
   <div class="charger-connections">
@@ -224,9 +280,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">bp Rathgael Road</h2>
-  <p class="charger-address">98 Rathgael Road BT19 1RS
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2)">
+  <div class="charger-header">
+    <h2 class="charger-name">bp Rathgael Road</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">98 Rathgael Road <button class="copy-btn" data-copy="BT19 1RS">BT19 1RS</button>
   </p>
   
   <div class="charger-connections">
@@ -245,9 +305,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">EG Bangor</h2>
-  <p class="charger-address">Llandega LL57 4BO
+<li class="charger-item charger-item--rapid" data-connectors="CHAdeMO,Type 2 (Socket Only),CCS (Type 2)">
+  <div class="charger-header">
+    <h2 class="charger-name">EG Bangor</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Llandega <button class="copy-btn" data-copy="LL57 4BO">LL57 4BO</button>
   </p>
   
   <div class="charger-connections">
@@ -272,9 +336,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Bangor Retail Park</h2>
-  <p class="charger-address">Caernarfon Road LL57 4SU
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2),CHAdeMO,Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Bangor Retail Park</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Caernarfon Road <button class="copy-btn" data-copy="LL57 4SU">LL57 4SU</button>
   </p>
   
   <div class="charger-connections">
@@ -299,9 +367,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Tesco Extra-Bangor</h2>
-  <p class="charger-address">Caernarfon Road LL57 4SU
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Tesco Extra-Bangor</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Caernarfon Road <button class="copy-btn" data-copy="LL57 4SU">LL57 4SU</button>
   </p>
   
   <div class="charger-connections">
@@ -323,9 +394,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Morrisons Bangor Holyhead Road</h2>
-  <p class="charger-address">Holyhead Road LL57 2EE
+<li class="charger-item charger-item--rapid" data-connectors="Type 2 (Tethered Connector) ,CHAdeMO,CCS (Type 2)">
+  <div class="charger-header">
+    <h2 class="charger-name">Morrisons Bangor Holyhead Road</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Holyhead Road <button class="copy-btn" data-copy="LL57 2EE">LL57 2EE</button>
   </p>
   
   <div class="charger-connections">
@@ -350,9 +425,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Crawfordsburn Country Park</h2>
-  <p class="charger-address">32 Bridge Rd S BT19 1JT
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Crawfordsburn Country Park</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">32 Bridge Rd S <button class="copy-btn" data-copy="BT19 1JT">BT19 1JT</button>
   </p>
   
   <div class="charger-connections">
@@ -371,9 +449,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Aurora Car Park Bangor</h2>
-  <p class="charger-address">Aurora Car Park BT20 4UT
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Aurora Car Park Bangor</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Aurora Car Park <button class="copy-btn" data-copy="BT20 4UT">BT20 4UT</button>
   </p>
   
   <div class="charger-connections">
@@ -396,6 +477,23 @@
 
 <p><a href="/" class="back-link">← All UK towns</a></p>
 
+
+<div class="nearby-towns">
+  <h2 class="nearby-heading">Nearby towns</h2>
+  <ul class="nearby-list">
+  
+    <li><a href="/uk/downpatrick/">Downpatrick</a></li>
+  
+    <li><a href="/uk/isle-of-man/">Isle of Man</a></li>
+  
+    <li><a href="/uk/newtownards/">Newtownards</a></li>
+  
+    <li><a href="/uk/dundonald/">Dundonald</a></li>
+  
+  </ul>
+</div>
+
+
 </div>
 
 <footer>
@@ -408,26 +506,61 @@
 <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 <script>
 (function () {
+  // --- Map ---
   var map = L.map('map').setView([54.17056608173582, -5.170663443457216], 12);
-
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
   }).addTo(map);
 
   var markers = L.markerClusterGroup();
-  var chargerData = [{"lat": 54.647116468557954, "lng": -5.658857192987625, "title": "McDonald's", "address": "Bloomfield Shopping Centre"}, {"lat": 54.64813295345951, "lng": -5.65863465304426, "title": "Bloomfield Shopping Centre & Retail Park", "address": "South Circular Rd"}, {"lat": 54.64554118581495, "lng": -5.684365869048037, "title": "Toscana Retail Park", "address": "Toscana Park"}, {"lat": 54.648066847757605, "lng": -5.686861749135659, "title": "Solo Clandeboye", "address": "173 Clandeboye Rd"}, {"lat": 54.65305384957139, "lng": -5.665203304574419, "title": "Bangor Aurora Aquatic & Leisure Complex", "address": "Valentine Road"}, {"lat": 54.64964423700039, "lng": -5.708607492296096, "title": "Bangor Sportsplex", "address": "Old Belfast Rd"}, {"lat": 53.20544101568339, "lng": -4.1818745571147815, "title": "Ffordd Y Parc", "address": "Ffordd Y Parc"}, {"lat": 54.6554589201595, "lng": -5.6834348804299, "title": "bp Belfast Road", "address": "139-141 Belfast Road"}, {"lat": 54.6424254689651, "lng": -5.69322201032253, "title": "bp Rathgael Road", "address": "98 Rathgael Road"}, {"lat": 53.20389, "lng": -4.10562, "title": "EG Bangor", "address": "Llandega"}, {"lat": 53.2088912216266, "lng": -4.15122290805346, "title": "Bangor Retail Park", "address": "Caernarfon Road"}, {"lat": 53.206385, "lng": -4.153688, "title": "Tesco Extra-Bangor", "address": "Caernarfon Road"}, {"lat": 53.225986, "lng": -4.133832, "title": "Morrisons Bangor Holyhead Road", "address": "Holyhead Road"}, {"lat": 54.66610805744094, "lng": -5.72969103485147, "title": "Crawfordsburn Country Park", "address": "32 Bridge Rd S"}, {"lat": 54.65235, "lng": -5.664836, "title": "Aurora Car Park Bangor", "address": "Aurora Car Park"}];
+  var chargerData = [{"lat": 54.647116468557954, "lng": -5.658857192987625, "title": "McDonald's", "address": "Bloomfield Shopping Centre", "connectors": ["CCS (Type 2) · 160kW", "CHAdeMO · 60kW"]}, {"lat": 54.64813295345951, "lng": -5.65863465304426, "title": "Bloomfield Shopping Centre & Retail Park", "address": "South Circular Rd", "connectors": ["CCS (Type 2) · 200kW"]}, {"lat": 54.64554118581495, "lng": -5.684365869048037, "title": "Toscana Retail Park", "address": "Toscana Park", "connectors": ["Type 2 (Socket Only) · 22kW", "CHAdeMO · 120kW", "CCS (Type 2) · 120kW"]}, {"lat": 54.648066847757605, "lng": -5.686861749135659, "title": "Solo Clandeboye", "address": "173 Clandeboye Rd", "connectors": ["CCS (Type 2) · 120kW"]}, {"lat": 54.65305384957139, "lng": -5.665203304574419, "title": "Bangor Aurora Aquatic & Leisure Complex", "address": "Valentine Road", "connectors": ["CHAdeMO · 50kW", "CCS (Type 2) · 50kW", "CHAdeMO · 75kW", "CCS (Type 2) · 75kW"]}, {"lat": 54.64964423700039, "lng": -5.708607492296096, "title": "Bangor Sportsplex", "address": "Old Belfast Rd", "connectors": ["CCS (Type 2) · 50kW", "CHAdeMO · 50kW"]}, {"lat": 53.20544101568339, "lng": -4.1818745571147815, "title": "Ffordd Y Parc", "address": "Ffordd Y Parc", "connectors": ["Type 2 (Socket Only) · 7kW"]}, {"lat": 54.6554589201595, "lng": -5.6834348804299, "title": "bp Belfast Road", "address": "139-141 Belfast Road", "connectors": ["CCS (Type 2) · 150kW"]}, {"lat": 54.6424254689651, "lng": -5.69322201032253, "title": "bp Rathgael Road", "address": "98 Rathgael Road", "connectors": ["CCS (Type 2) · 150kW"]}, {"lat": 53.20389, "lng": -4.10562, "title": "EG Bangor", "address": "Llandega", "connectors": ["CHAdeMO · 50kW", "Type 2 (Socket Only) · 22kW", "CCS (Type 2) · 50kW"]}, {"lat": 53.2088912216266, "lng": -4.15122290805346, "title": "Bangor Retail Park", "address": "Caernarfon Road", "connectors": ["CCS (Type 2) · 50kW", "CHAdeMO · 50kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 53.206385, "lng": -4.153688, "title": "Tesco Extra-Bangor", "address": "Caernarfon Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 53.225986, "lng": -4.133832, "title": "Morrisons Bangor Holyhead Road", "address": "Holyhead Road", "connectors": ["Type 2 (Tethered Connector)  · 43kW", "CHAdeMO · 50kW", "CCS (Type 2) · 50kW"]}, {"lat": 54.66610805744094, "lng": -5.72969103485147, "title": "Crawfordsburn Country Park", "address": "32 Bridge Rd S", "connectors": ["Type 2 (Socket Only) · 11kW"]}, {"lat": 54.65235, "lng": -5.664836, "title": "Aurora Car Park Bangor", "address": "Aurora Car Park", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}];
 
   chargerData.forEach(function (c) {
+    var connHtml = c.connectors.length
+      ? '<div style="margin-top:6px;font-size:12px;color:#475569">' + c.connectors.join(' &middot; ') + '</div>'
+      : '';
     var marker = L.marker([c.lat, c.lng]);
     marker.bindPopup(
-      '<b>' + c.title + '</b><br>' + c.address + '<br><br>' +
+      '<b>' + c.title + '</b>' +
+      '<div style="color:#64748b;font-size:13px">' + c.address + '</div>' +
+      connHtml +
       '<a href="https://www.google.com/maps/dir/?api=1&destination=' + c.lat + ',' + c.lng +
-      '" target="_blank" rel="noopener">Get directions</a>'
+      '" target="_blank" rel="noopener" style="display:inline-block;margin-top:8px;padding:4px 10px;background:#2563eb;color:white;border-radius:4px;text-decoration:none;font-size:12px">Get directions</a>'
     );
     markers.addLayer(marker);
   });
-
   map.addLayer(markers);
+
+  // --- Connector filter ---
+  var filterBtns = document.querySelectorAll('.filter-btn');
+  var chargerItems = document.querySelectorAll('.charger-item');
+
+  filterBtns.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      filterBtns.forEach(function (b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      var f = btn.dataset.filter;
+      chargerItems.forEach(function (item) {
+        var connList = item.dataset.connectors ? item.dataset.connectors.split(',') : [];
+        item.style.display = (f === 'all' || connList.indexOf(f) !== -1) ? '' : 'none';
+      });
+    });
+  });
+
+  // --- Copy postcode ---
+  document.querySelectorAll('.copy-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var original = btn.textContent;
+      navigator.clipboard.writeText(btn.dataset.copy).then(function () {
+        btn.textContent = 'Copied!';
+        btn.classList.add('copy-btn--success');
+        setTimeout(function () {
+          btn.textContent = original;
+          btn.classList.remove('copy-btn--success');
+        }, 1500);
+      });
+    });
+  });
 }());
 </script>
 

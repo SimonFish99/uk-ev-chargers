@@ -17,7 +17,10 @@
 
 <header>
 <div class="container">
-<a href="/" class="logo">PlugMap <span class="tagline">UK EV Charger Locator</span></a>
+<a href="/" class="logo">
+  <svg class="logo-bolt" viewBox="0 0 24 24" fill="currentColor" width="22" height="22" aria-hidden="true"><path d="M13 2L4.5 13.5H11L10 22L19.5 10.5H13Z"/></svg>
+  PlugMap <span class="tagline">UK EV Charger Locator</span>
+</a>
 </div>
 </header>
 
@@ -28,16 +31,42 @@
 </nav>
 
 <h1>EV Chargers in Lincoln</h1>
-<p class="page-intro">26 public charging stations found in Lincoln.</p>
+
+<div class="stats-bar">
+  <span class="stat-pill stat-total">26 stations</span>
+  <span class="stat-pill stat-rapid">6 rapid (50kW+)</span>
+  <span class="stat-pill stat-fast">19 fast (7–50kW)</span>
+  <span class="stat-pill stat-slow">1 slow</span>
+</div>
 
 <div id="map"></div>
 
-<ul class="charger-list">
+
+<div class="connector-filter">
+  <span class="filter-label">Filter:</span>
+  <button class="filter-btn active" data-filter="all">All</button>
+  
+  <button class="filter-btn" data-filter="CCS (Type 2)">CCS (Type 2)</button>
+  
+  <button class="filter-btn" data-filter="CHAdeMO">CHAdeMO</button>
+  
+  <button class="filter-btn" data-filter="Type 2 (Socket Only)">Type 2 (Socket Only)</button>
+  
+  <button class="filter-btn" data-filter="Type 2 (Tethered Connector) ">Type 2 (Tethered Connector) </button>
+  
+</div>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Tesla Lincoln</h2>
-  <p class="charger-address">1 Turnstone Road LN6 3UA
+<ul class="charger-list" id="charger-list">
+
+
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2)">
+  <div class="charger-header">
+    <h2 class="charger-name">Tesla Lincoln</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">1 Turnstone Road <button class="copy-btn" data-copy="LN6 3UA">LN6 3UA</button>
   </p>
   
   <div class="charger-connections">
@@ -56,9 +85,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">McDonald&#39;s Lincolnshire Showground</h2>
-  <p class="charger-address">Horncastle Lane LN1 2ZR
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">McDonald&#39;s Lincolnshire Showground</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Horncastle Lane <button class="copy-btn" data-copy="LN1 2ZR">LN1 2ZR</button>
   </p>
   
   <div class="charger-connections">
@@ -80,9 +112,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Dynex Semiconductor</h2>
-  <p class="charger-address">Doddington Road LN6 3LF
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Dynex Semiconductor</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Doddington Road <button class="copy-btn" data-copy="LN6 3LF">LN6 3LF</button>
   </p>
   
   <div class="charger-connections">
@@ -113,9 +148,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Motherby Car Park 1</h2>
-  <p class="charger-address">Motherby Car Park LN1 1EX
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Motherby Car Park 1</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Motherby Car Park <button class="copy-btn" data-copy="LN1 1EX">LN1 1EX</button>
   </p>
   
   <div class="charger-connections">
@@ -137,9 +175,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Shuttleworth House Car Park 1</h2>
-  <p class="charger-address">Shuttleworth House Car Park LN2 5DY
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Shuttleworth House Car Park 1</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Shuttleworth House Car Park <button class="copy-btn" data-copy="LN2 5DY">LN2 5DY</button>
   </p>
   
   <div class="charger-connections">
@@ -161,9 +202,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Moorland Centre Lincoln</h2>
-  <p class="charger-address">Moorland Way LN6 7JW
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2),CHAdeMO">
+  <div class="charger-header">
+    <h2 class="charger-name">Moorland Centre Lincoln</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Moorland Way <button class="copy-btn" data-copy="LN6 7JW">LN6 7JW</button>
   </p>
   
   <div class="charger-connections">
@@ -215,9 +260,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">53-67 Yarborough Road (Rma)</h2>
-  <p class="charger-address">53-67 Yarborough Road LN1 1HS
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">53-67 Yarborough Road (Rma)</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">53-67 Yarborough Road <button class="copy-btn" data-copy="LN1 1HS">LN1 1HS</button>
   </p>
   
   <div class="charger-connections">
@@ -242,9 +290,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Ruckland Court Care Home</h2>
-  <p class="charger-address">Ruckland Ave LN1 3TP
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Ruckland Court Care Home</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Ruckland Ave <button class="copy-btn" data-copy="LN1 3TP">LN1 3TP</button>
   </p>
   
   <div class="charger-connections">
@@ -263,9 +314,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Morrisons Lincoln Triton Rd</h2>
-  <p class="charger-address">Morrisons Lincoln Triton Rd LN6 7QL
+<li class="charger-item charger-item--rapid" data-connectors="CHAdeMO,Type 2 (Socket Only),Type 2 (Tethered Connector) ">
+  <div class="charger-header">
+    <h2 class="charger-name">Morrisons Lincoln Triton Rd</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Morrisons Lincoln Triton Rd <button class="copy-btn" data-copy="LN6 7QL">LN6 7QL</button>
   </p>
   
   <div class="charger-connections">
@@ -290,9 +345,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Tesco Extra - Lincoln</h2>
-  <p class="charger-address">186 Wragby Road LN2 4QQ
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Tesco Extra - Lincoln</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">186 Wragby Road <button class="copy-btn" data-copy="LN2 4QQ">LN2 4QQ</button>
   </p>
   
   <div class="charger-connections">
@@ -314,9 +372,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Orchard Street Car Park</h2>
-  <p class="charger-address">Orchard Street LN1 1DD
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Orchard Street Car Park</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Orchard Street <button class="copy-btn" data-copy="LN1 1DD">LN1 1DD</button>
   </p>
   
   <div class="charger-connections">
@@ -338,9 +399,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Lincoln City Hall</h2>
-  <p class="charger-address">Beamont Fee LN1 1DE
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Lincoln City Hall</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Beamont Fee <button class="copy-btn" data-copy="LN1 1DE">LN1 1DE</button>
   </p>
   
   <div class="charger-connections">
@@ -362,9 +426,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">The Horse &amp; Groom</h2>
-  <p class="charger-address">The Horse &amp; Groom Carholme Road LN1 1RH
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Tethered Connector) ,CHAdeMO">
+  <div class="charger-header">
+    <h2 class="charger-name">The Horse &amp; Groom</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">The Horse &amp; Groom Carholme Road <button class="copy-btn" data-copy="LN1 1RH">LN1 1RH</button>
   </p>
   
   <div class="charger-connections">
@@ -386,9 +453,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Lincoln Transport Hub</h2>
-  <p class="charger-address">Multi-Storey Car Park Next to Bus Station Melville Street LN5 7HW
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Lincoln Transport Hub</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Multi-Storey Car Park Next to Bus Station Melville Street <button class="copy-btn" data-copy="LN5 7HW">LN5 7HW</button>
   </p>
   
   <div class="charger-connections">
@@ -410,9 +480,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Lincoln Transport Hub</h2>
-  <p class="charger-address">Melville Street LN5 7HW
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Lincoln Transport Hub</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Melville Street <button class="copy-btn" data-copy="LN5 7HW">LN5 7HW</button>
   </p>
   
   <div class="charger-connections">
@@ -434,9 +507,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Wyvern House</h2>
-  <p class="charger-address">Kesteven Road LN5 7LH
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Wyvern House</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Kesteven Road <button class="copy-btn" data-copy="LN5 7LH">LN5 7LH</button>
   </p>
   
   <div class="charger-connections">
@@ -458,9 +534,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">SM LOWER CP1 ST MARKS EV 2</h2>
-  <p class="charger-address">1 St Mark&#39;s Square LN5 7EY
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">SM LOWER CP1 ST MARKS EV 2</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">1 St Mark&#39;s Square <button class="copy-btn" data-copy="LN5 7EY">LN5 7EY</button>
   </p>
   
   <div class="charger-connections">
@@ -482,9 +561,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Chaplin Street Car Park, Lincoln</h2>
-  <p class="charger-address">Chaplin Street LN5 7RU
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Chaplin Street Car Park, Lincoln</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Chaplin Street <button class="copy-btn" data-copy="LN5 7RU">LN5 7RU</button>
   </p>
   
   <div class="charger-connections">
@@ -503,9 +585,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Lincoln Science &amp; Innovation Park</h2>
-  <p class="charger-address">Beevor Street LN6 7DJ
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Lincoln Science &amp; Innovation Park</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Beevor Street <button class="copy-btn" data-copy="LN6 7DJ">LN6 7DJ</button>
   </p>
   
   <div class="charger-connections">
@@ -530,9 +615,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Morrison </h2>
-  <p class="charger-address">Shop parking LN6 7QL
+<li class="charger-item charger-item--slow" data-connectors="CCS (Type 2),CHAdeMO,Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Morrison </h2>
+    
+  </div>
+  <p class="charger-address">Shop parking <button class="copy-btn" data-copy="LN6 7QL">LN6 7QL</button>
   </p>
   
   <div class="charger-connections">
@@ -557,9 +645,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Tesco Canwick Rd</h2>
-  <p class="charger-address">Canwick Rd Trading Estate LN5 8HS
+<li class="charger-item charger-item--rapid" data-connectors="Type 2 (Socket Only),CCS (Type 2),CHAdeMO">
+  <div class="charger-header">
+    <h2 class="charger-name">Tesco Canwick Rd</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Canwick Rd Trading Estate <button class="copy-btn" data-copy="LN5 8HS">LN5 8HS</button>
   </p>
   
   <div class="charger-connections">
@@ -587,9 +679,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Instavolt, Mc Donalds</h2>
-  <p class="charger-address">Ruston Way LN6 7FS
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2),CHAdeMO">
+  <div class="charger-header">
+    <h2 class="charger-name">Instavolt, Mc Donalds</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Ruston Way <button class="copy-btn" data-copy="LN6 7FS">LN6 7FS</button>
   </p>
   
   <div class="charger-connections">
@@ -611,9 +707,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Torksey</h2>
-  <p class="charger-address">Torksey LN1 2EH
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Torksey</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Torksey <button class="copy-btn" data-copy="LN1 2EH">LN1 2EH</button>
   </p>
   
   <div class="charger-connections">
@@ -635,9 +734,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Co-op - Winning Post</h2>
-  <p class="charger-address">Carholme Road LN1 1RU
+<li class="charger-item charger-item--rapid" data-connectors="CHAdeMO,Type 2 (Tethered Connector) ">
+  <div class="charger-header">
+    <h2 class="charger-name">Co-op - Winning Post</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Carholme Road <button class="copy-btn" data-copy="LN1 1RU">LN1 1RU</button>
   </p>
   
   <div class="charger-connections">
@@ -662,9 +765,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">The Duke William Hotel</h2>
-  <p class="charger-address">44 Bailgate LN1 3AP
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Tethered Connector) ,CHAdeMO">
+  <div class="charger-header">
+    <h2 class="charger-name">The Duke William Hotel</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">44 Bailgate <button class="copy-btn" data-copy="LN1 3AP">LN1 3AP</button>
   </p>
   
   <div class="charger-connections">
@@ -686,9 +792,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Lincoln Broadgate Car Park</h2>
-  <p class="charger-address">Saint Rumbold&#39;s Street LN2 5AP
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Lincoln Broadgate Car Park</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Saint Rumbold&#39;s Street <button class="copy-btn" data-copy="LN2 5AP">LN2 5AP</button>
   </p>
   
   <div class="charger-connections">
@@ -713,6 +822,23 @@
 
 <p><a href="/" class="back-link">← All UK towns</a></p>
 
+
+<div class="nearby-towns">
+  <h2 class="nearby-heading">Nearby towns</h2>
+  <ul class="nearby-list">
+  
+    <li><a href="/uk/newark/">Newark</a></li>
+  
+    <li><a href="/uk/grantham/">Grantham</a></li>
+  
+    <li><a href="/uk/scunthorpe/">Scunthorpe</a></li>
+  
+    <li><a href="/uk/retford/">Retford</a></li>
+  
+  </ul>
+</div>
+
+
 </div>
 
 <footer>
@@ -725,26 +851,61 @@
 <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 <script>
 (function () {
+  // --- Map ---
   var map = L.map('map').setView([53.23158161236124, -0.5569990498727607], 12);
-
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
   }).addTo(map);
 
   var markers = L.markerClusterGroup();
-  var chargerData = [{"lat": 53.19848850604828, "lng": -0.6131963892264594, "title": "Tesla Lincoln", "address": "1 Turnstone Road"}, {"lat": 53.290393993414796, "lng": -0.5425868061870176, "title": "McDonald's Lincolnshire Showground", "address": "Horncastle Lane"}, {"lat": 53.20645123841692, "lng": -0.6113765298878207, "title": "Dynex Semiconductor", "address": "Doddington Road"}, {"lat": 53.23173, "lng": -0.54124, "title": "Motherby Car Park 1", "address": "Motherby Car Park"}, {"lat": 53.228362, "lng": -0.526659, "title": "Shuttleworth House Car Park 1", "address": "Shuttleworth House Car Park"}, {"lat": 53.202909, "lng": -0.582676, "title": "Moorland Centre Lincoln", "address": "Moorland Way"}, {"lat": 53.23412, "lng": -0.54589, "title": "53-67 Yarborough Road (Rma)", "address": "53-67 Yarborough Road"}, {"lat": 53.24959, "lng": -0.54063, "title": "Ruckland Court Care Home", "address": "Ruckland Ave"}, {"lat": 53.22435, "lng": -0.555485, "title": "Morrisons Lincoln Triton Rd", "address": "Morrisons Lincoln Triton Rd"}, {"lat": 53.239606, "lng": -0.516249, "title": "Tesco Extra - Lincoln", "address": "186 Wragby Road"}, {"lat": 53.231461, "lng": -0.54318, "title": "Orchard Street Car Park", "address": "Orchard Street"}, {"lat": 53.231035, "lng": -0.543842, "title": "Lincoln City Hall", "address": "Beamont Fee"}, {"lat": 53.230369, "lng": -0.547528, "title": "The Horse & Groom", "address": "The Horse & Groom Carholme Road"}, {"lat": 53.227215, "lng": -0.536983, "title": "Lincoln Transport Hub", "address": "Multi-Storey Car Park Next to Bus Station Melville Street"}, {"lat": 53.226883, "lng": -0.537522, "title": "Lincoln Transport Hub", "address": "Melville Street"}, {"lat": 53.22435, "lng": -0.53854, "title": "Wyvern House", "address": "Kesteven Road"}, {"lat": 53.224895, "lng": -0.544969, "title": "SM LOWER CP1 ST MARKS EV 2", "address": "1 St Mark's Square"}, {"lat": 53.223161, "lng": -0.542633, "title": "Chaplin Street Car Park, Lincoln", "address": "Chaplin Street"}, {"lat": 53.227818, "lng": -0.557656, "title": "Lincoln Science & Innovation Park", "address": "Beevor Street"}, {"lat": 53.22477203085333, "lng": -0.5543411764812163, "title": "Morrison ", "address": "Shop parking"}, {"lat": 53.223023, "lng": -0.5320423, "title": "Tesco Canwick Rd", "address": "Canwick Rd Trading Estate"}, {"lat": 53.2268871526589, "lng": -0.551120094909265, "title": "Instavolt, Mc Donalds", "address": "Ruston Way"}, {"lat": 53.29343, "lng": -0.744065, "title": "Torksey", "address": "Torksey"}, {"lat": 53.233624, "lng": -0.557418, "title": "Co-op - Winning Post", "address": "Carholme Road"}, {"lat": 53.236806, "lng": -0.538357, "title": "The Duke William Hotel", "address": "44 Bailgate"}, {"lat": 53.229392, "lng": -0.53579, "title": "Lincoln Broadgate Car Park", "address": "Saint Rumbold's Street"}];
+  var chargerData = [{"lat": 53.19848850604828, "lng": -0.6131963892264594, "title": "Tesla Lincoln", "address": "1 Turnstone Road", "connectors": ["CCS (Type 2) · 250kW"]}, {"lat": 53.290393993414796, "lng": -0.5425868061870176, "title": "McDonald's Lincolnshire Showground", "address": "Horncastle Lane", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 53.20645123841692, "lng": -0.6113765298878207, "title": "Dynex Semiconductor", "address": "Doddington Road", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 53.23173, "lng": -0.54124, "title": "Motherby Car Park 1", "address": "Motherby Car Park", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 53.228362, "lng": -0.526659, "title": "Shuttleworth House Car Park 1", "address": "Shuttleworth House Car Park", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 53.202909, "lng": -0.582676, "title": "Moorland Centre Lincoln", "address": "Moorland Way", "connectors": ["CCS (Type 2) · 180kW", "CHAdeMO · 80kW", "CCS (Type 2) · 180kW", "CCS (Type 2) · 180kW", "CCS (Type 2) · 180kW", "CCS (Type 2) · 180kW", "CCS (Type 2) · 180kW", "CHAdeMO · 80kW", "CCS (Type 2) · 180kW", "CCS (Type 2) · 180kW", "CCS (Type 2) · 180kW", "CCS (Type 2) · 180kW"]}, {"lat": 53.23412, "lng": -0.54589, "title": "53-67 Yarborough Road (Rma)", "address": "53-67 Yarborough Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 53.24959, "lng": -0.54063, "title": "Ruckland Court Care Home", "address": "Ruckland Ave", "connectors": ["Type 2 (Socket Only) · 22kW"]}, {"lat": 53.22435, "lng": -0.555485, "title": "Morrisons Lincoln Triton Rd", "address": "Morrisons Lincoln Triton Rd", "connectors": ["CHAdeMO · 50kW", "Type 2 (Socket Only) · 22kW", "Type 2 (Tethered Connector)  · 50kW"]}, {"lat": 53.239606, "lng": -0.516249, "title": "Tesco Extra - Lincoln", "address": "186 Wragby Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 53.231461, "lng": -0.54318, "title": "Orchard Street Car Park", "address": "Orchard Street", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 53.231035, "lng": -0.543842, "title": "Lincoln City Hall", "address": "Beamont Fee", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 53.230369, "lng": -0.547528, "title": "The Horse & Groom", "address": "The Horse & Groom Carholme Road", "connectors": ["Type 2 (Tethered Connector)  · 36kW", "CHAdeMO · 22kW"]}, {"lat": 53.227215, "lng": -0.536983, "title": "Lincoln Transport Hub", "address": "Multi-Storey Car Park Next to Bus Station Melville Street", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 53.226883, "lng": -0.537522, "title": "Lincoln Transport Hub", "address": "Melville Street", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 53.22435, "lng": -0.53854, "title": "Wyvern House", "address": "Kesteven Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 53.224895, "lng": -0.544969, "title": "SM LOWER CP1 ST MARKS EV 2", "address": "1 St Mark's Square", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 53.223161, "lng": -0.542633, "title": "Chaplin Street Car Park, Lincoln", "address": "Chaplin Street", "connectors": ["Type 2 (Socket Only) · 7kW"]}, {"lat": 53.227818, "lng": -0.557656, "title": "Lincoln Science & Innovation Park", "address": "Beevor Street", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 53.22477203085333, "lng": -0.5543411764812163, "title": "Morrison ", "address": "Shop parking", "connectors": ["CCS (Type 2)", "CHAdeMO", "Type 2 (Socket Only)"]}, {"lat": 53.223023, "lng": -0.5320423, "title": "Tesco Canwick Rd", "address": "Canwick Rd Trading Estate", "connectors": ["Type 2 (Socket Only) · 22kW", "CCS (Type 2) · 50kW", "CHAdeMO · 50kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 53.2268871526589, "lng": -0.551120094909265, "title": "Instavolt, Mc Donalds", "address": "Ruston Way", "connectors": ["CCS (Type 2) · 50kW", "CHAdeMO · 50kW"]}, {"lat": 53.29343, "lng": -0.744065, "title": "Torksey", "address": "Torksey", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 53.233624, "lng": -0.557418, "title": "Co-op - Winning Post", "address": "Carholme Road", "connectors": ["CHAdeMO · 50kW", "CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 22kW"]}, {"lat": 53.236806, "lng": -0.538357, "title": "The Duke William Hotel", "address": "44 Bailgate", "connectors": ["Type 2 (Tethered Connector)  · 22kW", "CHAdeMO · 22kW"]}, {"lat": 53.229392, "lng": -0.53579, "title": "Lincoln Broadgate Car Park", "address": "Saint Rumbold's Street", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}];
 
   chargerData.forEach(function (c) {
+    var connHtml = c.connectors.length
+      ? '<div style="margin-top:6px;font-size:12px;color:#475569">' + c.connectors.join(' &middot; ') + '</div>'
+      : '';
     var marker = L.marker([c.lat, c.lng]);
     marker.bindPopup(
-      '<b>' + c.title + '</b><br>' + c.address + '<br><br>' +
+      '<b>' + c.title + '</b>' +
+      '<div style="color:#64748b;font-size:13px">' + c.address + '</div>' +
+      connHtml +
       '<a href="https://www.google.com/maps/dir/?api=1&destination=' + c.lat + ',' + c.lng +
-      '" target="_blank" rel="noopener">Get directions</a>'
+      '" target="_blank" rel="noopener" style="display:inline-block;margin-top:8px;padding:4px 10px;background:#2563eb;color:white;border-radius:4px;text-decoration:none;font-size:12px">Get directions</a>'
     );
     markers.addLayer(marker);
   });
-
   map.addLayer(markers);
+
+  // --- Connector filter ---
+  var filterBtns = document.querySelectorAll('.filter-btn');
+  var chargerItems = document.querySelectorAll('.charger-item');
+
+  filterBtns.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      filterBtns.forEach(function (b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      var f = btn.dataset.filter;
+      chargerItems.forEach(function (item) {
+        var connList = item.dataset.connectors ? item.dataset.connectors.split(',') : [];
+        item.style.display = (f === 'all' || connList.indexOf(f) !== -1) ? '' : 'none';
+      });
+    });
+  });
+
+  // --- Copy postcode ---
+  document.querySelectorAll('.copy-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var original = btn.textContent;
+      navigator.clipboard.writeText(btn.dataset.copy).then(function () {
+        btn.textContent = 'Copied!';
+        btn.classList.add('copy-btn--success');
+        setTimeout(function () {
+          btn.textContent = original;
+          btn.classList.remove('copy-btn--success');
+        }, 1500);
+      });
+    });
+  });
 }());
 </script>
 

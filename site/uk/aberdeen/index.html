@@ -17,7 +17,10 @@
 
 <header>
 <div class="container">
-<a href="/" class="logo">PlugMap <span class="tagline">UK EV Charger Locator</span></a>
+<a href="/" class="logo">
+  <svg class="logo-bolt" viewBox="0 0 24 24" fill="currentColor" width="22" height="22" aria-hidden="true"><path d="M13 2L4.5 13.5H11L10 22L19.5 10.5H13Z"/></svg>
+  PlugMap <span class="tagline">UK EV Charger Locator</span>
+</a>
 </div>
 </header>
 
@@ -28,16 +31,42 @@
 </nav>
 
 <h1>EV Chargers in Aberdeen</h1>
-<p class="page-intro">29 public charging stations found in Aberdeen.</p>
+
+<div class="stats-bar">
+  <span class="stat-pill stat-total">29 stations</span>
+  <span class="stat-pill stat-rapid">11 rapid (50kW+)</span>
+  <span class="stat-pill stat-fast">18 fast (7–50kW)</span>
+  
+</div>
 
 <div id="map"></div>
 
-<ul class="charger-list">
+
+<div class="connector-filter">
+  <span class="filter-label">Filter:</span>
+  <button class="filter-btn active" data-filter="all">All</button>
+  
+  <button class="filter-btn" data-filter="CCS (Type 2)">CCS (Type 2)</button>
+  
+  <button class="filter-btn" data-filter="CHAdeMO">CHAdeMO</button>
+  
+  <button class="filter-btn" data-filter="Type 2 (Socket Only)">Type 2 (Socket Only)</button>
+  
+  <button class="filter-btn" data-filter="Type 2 (Tethered Connector) ">Type 2 (Tethered Connector) </button>
+  
+</div>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Arnold Clark Charge</h2>
-  <p class="charger-address">Craigshaw Road AB12 3AR
+<ul class="charger-list" id="charger-list">
+
+
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2),CHAdeMO">
+  <div class="charger-header">
+    <h2 class="charger-name">Arnold Clark Charge</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Craigshaw Road <button class="copy-btn" data-copy="AB12 3AR">AB12 3AR</button>
   </p>
   
   <div class="charger-connections">
@@ -59,9 +88,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Lidl-Torry</h2>
-  <p class="charger-address">Greenwell Road AB12 3ZR
+<li class="charger-item charger-item--rapid" data-connectors="Type 2 (Socket Only),CCS (Type 2),CHAdeMO">
+  <div class="charger-header">
+    <h2 class="charger-name">Lidl-Torry</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Greenwell Road <button class="copy-btn" data-copy="AB12 3ZR">AB12 3ZR</button>
   </p>
   
   <div class="charger-connections">
@@ -86,9 +119,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Norwood Hall Hotel </h2>
-  <p class="charger-address">Garthdee Road AB15 9FX
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Norwood Hall Hotel </h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Garthdee Road <button class="copy-btn" data-copy="AB15 9FX">AB15 9FX</button>
   </p>
   
   <div class="charger-connections">
@@ -107,9 +143,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">MFG Esso North Anderson Drive</h2>
-  <p class="charger-address">565 North Anderson Drive AB16 7GD
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2),CHAdeMO">
+  <div class="charger-header">
+    <h2 class="charger-name">MFG Esso North Anderson Drive</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">565 North Anderson Drive <button class="copy-btn" data-copy="AB16 7GD">AB16 7GD</button>
   </p>
   
   <div class="charger-connections">
@@ -131,9 +171,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Greggs Westhill (ESB)</h2>
-  <p class="charger-address">Venture Way AB32 6BQ
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2)">
+  <div class="charger-header">
+    <h2 class="charger-name">Greggs Westhill (ESB)</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Venture Way <button class="copy-btn" data-copy="AB32 6BQ">AB32 6BQ</button>
   </p>
   
   <div class="charger-connections">
@@ -167,9 +211,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">MFG Dyce</h2>
-  <p class="charger-address">Wellheads Road AB21 7HG
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2),CHAdeMO">
+  <div class="charger-header">
+    <h2 class="charger-name">MFG Dyce</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Wellheads Road <button class="copy-btn" data-copy="AB21 7HG">AB21 7HG</button>
   </p>
   
   <div class="charger-connections">
@@ -194,9 +242,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Premier inn Aberdeen South (Portlethen)</h2>
-  <p class="charger-address">Portlethen AB12 4QS
+<li class="charger-item charger-item--rapid" data-connectors="CHAdeMO,Type 2 (Socket Only),Type 2 (Tethered Connector) ">
+  <div class="charger-header">
+    <h2 class="charger-name">Premier inn Aberdeen South (Portlethen)</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Portlethen <button class="copy-btn" data-copy="AB12 4QS">AB12 4QS</button>
   </p>
   
   <div class="charger-connections">
@@ -221,9 +273,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">MFG Esplanade - MFG EV Power</h2>
-  <p class="charger-address">MFG Esplanade Service Station AB11 5RN
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2),CHAdeMO">
+  <div class="charger-header">
+    <h2 class="charger-name">MFG Esplanade - MFG EV Power</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">MFG Esplanade Service Station <button class="copy-btn" data-copy="AB11 5RN">AB11 5RN</button>
   </p>
   
   <div class="charger-connections">
@@ -248,9 +304,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Dyce Farm</h2>
-  <p class="charger-address">1A International Avenue AB21 0BH
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2)">
+  <div class="charger-header">
+    <h2 class="charger-name">Dyce Farm</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">1A International Avenue <button class="copy-btn" data-copy="AB21 0BH">AB21 0BH</button>
   </p>
   
   <div class="charger-connections">
@@ -269,9 +329,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Aberdeen Exhibition and Conference Centre</h2>
-  <p class="charger-address">4 Exhibition Avenue AB23 8BL
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Aberdeen Exhibition and Conference Centre</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">4 Exhibition Avenue <button class="copy-btn" data-copy="AB23 8BL">AB23 8BL</button>
   </p>
   
   <div class="charger-connections">
@@ -293,9 +356,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Aberdeen Exhibition &amp; Conference Centre</h2>
-  <p class="charger-address">Bridge Of Don, Aberdeen City AB23 8BL
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Aberdeen Exhibition &amp; Conference Centre</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Bridge Of Don, Aberdeen City <button class="copy-btn" data-copy="AB23 8BL">AB23 8BL</button>
   </p>
   
   <div class="charger-connections">
@@ -317,9 +383,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Danestone Car Park</h2>
-  <p class="charger-address">9 Fairview Street AB22 8ZP
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Danestone Car Park</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">9 Fairview Street <button class="copy-btn" data-copy="AB22 8ZP">AB22 8ZP</button>
   </p>
   
   <div class="charger-connections">
@@ -341,9 +410,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Mastrick Housing Office</h2>
-  <p class="charger-address">43 Spey Road AB16 6SH
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Mastrick Housing Office</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">43 Spey Road <button class="copy-btn" data-copy="AB16 6SH">AB16 6SH</button>
   </p>
   
   <div class="charger-connections">
@@ -365,9 +437,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Aberdeen Royal (Trusty Teds)</h2>
-  <p class="charger-address">76 Cornhill Road AB25 2EH
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Aberdeen Royal (Trusty Teds)</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">76 Cornhill Road <button class="copy-btn" data-copy="AB25 2EH">AB25 2EH</button>
   </p>
   
   <div class="charger-connections">
@@ -389,9 +464,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Aberdeen Royal Eye Clinic Car Park</h2>
-  <p class="charger-address">24 Foresterhill Court AB25 2WA
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Aberdeen Royal Eye Clinic Car Park</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">24 Foresterhill Court <button class="copy-btn" data-copy="AB25 2WA">AB25 2WA</button>
   </p>
   
   <div class="charger-connections">
@@ -413,9 +491,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Kingswells Park &amp; Ride</h2>
-  <p class="charger-address">1 Edmond Gardens AB15 8PL
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Kingswells Park &amp; Ride</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">1 Edmond Gardens <button class="copy-btn" data-copy="AB15 8PL">AB15 8PL</button>
   </p>
   
   <div class="charger-connections">
@@ -437,9 +518,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Marischal College, Aberdeen (1)</h2>
-  <p class="charger-address">Broad Street AB10 1AB
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Marischal College, Aberdeen (1)</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Broad Street <button class="copy-btn" data-copy="AB10 1AB">AB10 1AB</button>
   </p>
   
   <div class="charger-connections">
@@ -458,9 +542,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">James Hutton Institute</h2>
-  <p class="charger-address">77 Macaulay Drive AB15 8QH
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">James Hutton Institute</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">77 Macaulay Drive <button class="copy-btn" data-copy="AB15 8QH">AB15 8QH</button>
   </p>
   
   <div class="charger-connections">
@@ -482,9 +569,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Kincorth Library</h2>
-  <p class="charger-address">247A Kincorth Circle AB12 5NA
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Kincorth Library</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">247A Kincorth Circle <button class="copy-btn" data-copy="AB12 5NA">AB12 5NA</button>
   </p>
   
   <div class="charger-connections">
@@ -506,9 +596,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Aberdeen Snowsports Centre</h2>
-  <p class="charger-address">77 Garthdee Road AB10 7BA
+<li class="charger-item charger-item--rapid" data-connectors="CHAdeMO,Type 2 (Tethered Connector) ">
+  <div class="charger-header">
+    <h2 class="charger-name">Aberdeen Snowsports Centre</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">77 Garthdee Road <button class="copy-btn" data-copy="AB10 7BA">AB10 7BA</button>
   </p>
   
   <div class="charger-connections">
@@ -533,9 +627,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Grays School of Art</h2>
-  <p class="charger-address">Robert Gordon University AB10 7QD
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Grays School of Art</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Robert Gordon University <button class="copy-btn" data-copy="AB10 7QD">AB10 7QD</button>
   </p>
   
   <div class="charger-connections">
@@ -557,9 +654,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Riverside Building</h2>
-  <p class="charger-address">Robert Gordon University AB10 7QE
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Riverside Building</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Robert Gordon University <button class="copy-btn" data-copy="AB10 7QE">AB10 7QE</button>
   </p>
   
   <div class="charger-connections">
@@ -578,9 +678,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Ishbel Gordon Building</h2>
-  <p class="charger-address">Robert Gordon University AB10 7QE
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Ishbel Gordon Building</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Robert Gordon University <button class="copy-btn" data-copy="AB10 7QE">AB10 7QE</button>
   </p>
   
   <div class="charger-connections">
@@ -599,9 +702,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Tesco Superstore-Aberdeen Woodend</h2>
-  <p class="charger-address">Woodend Hospital AB15 6LT
+<li class="charger-item charger-item--rapid" data-connectors="Type 2 (Socket Only),CHAdeMO,CCS (Type 2)">
+  <div class="charger-header">
+    <h2 class="charger-name">Tesco Superstore-Aberdeen Woodend</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Woodend Hospital <button class="copy-btn" data-copy="AB15 6LT">AB15 6LT</button>
   </p>
   
   <div class="charger-connections">
@@ -629,9 +736,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Hazlehead Park</h2>
-  <p class="charger-address">Hazlehead Park AB15 8BJ
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Hazlehead Park</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Hazlehead Park <button class="copy-btn" data-copy="AB15 8BJ">AB15 8BJ</button>
   </p>
   
   <div class="charger-connections">
@@ -653,9 +763,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Aberdeen Supercharger</h2>
-  <p class="charger-address">Wellington Circle Aberdeen AB12 3JG
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2)">
+  <div class="charger-header">
+    <h2 class="charger-name">Aberdeen Supercharger</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Wellington Circle Aberdeen <button class="copy-btn" data-copy="AB12 3JG">AB12 3JG</button>
   </p>
   
   <div class="charger-connections">
@@ -674,9 +788,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Prospect Road</h2>
-  <p class="charger-address">Westhill AB32 6FE
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Prospect Road</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Westhill <button class="copy-btn" data-copy="AB32 6FE">AB32 6FE</button>
   </p>
   
   <div class="charger-connections">
@@ -698,9 +815,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Subsea 7</h2>
-  <p class="charger-address">Greenwell Base AB12 3AX
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Subsea 7</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Greenwell Base <button class="copy-btn" data-copy="AB12 3AX">AB12 3AX</button>
   </p>
   
   <div class="charger-connections">
@@ -722,9 +842,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Satrosphere Car Park, Aberdeen</h2>
-  <p class="charger-address">179 Constitution Street AB24 5TU
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Satrosphere Car Park, Aberdeen</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">179 Constitution Street <button class="copy-btn" data-copy="AB24 5TU">AB24 5TU</button>
   </p>
   
   <div class="charger-connections">
@@ -749,6 +872,23 @@
 
 <p><a href="/" class="back-link">← All UK towns</a></p>
 
+
+<div class="nearby-towns">
+  <h2 class="nearby-heading">Nearby towns</h2>
+  <ul class="nearby-list">
+  
+    <li><a href="/uk/inverurie/">Inverurie</a></li>
+  
+    <li><a href="/uk/st-andrews/">St Andrews</a></li>
+  
+    <li><a href="/uk/dundee/">Dundee</a></li>
+  
+    <li><a href="/uk/dunbar/">Dunbar</a></li>
+  
+  </ul>
+</div>
+
+
 </div>
 
 <footer>
@@ -761,26 +901,61 @@
 <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 <script>
 (function () {
+  // --- Map ---
   var map = L.map('map').setView([57.14379029195183, -2.1426791790188084], 12);
-
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
   }).addTo(map);
 
   var markers = L.markerClusterGroup();
-  var chargerData = [{"lat": 57.126629969528636, "lng": -2.091638890640752, "title": "Arnold Clark Charge", "address": "Craigshaw Road"}, {"lat": 57.127538, "lng": -2.089599, "title": "Lidl-Torry", "address": "Greenwell Road"}, {"lat": 57.11751069, "lng": -2.152199556, "title": "Norwood Hall Hotel ", "address": "Garthdee Road"}, {"lat": 57.17249672852712, "lng": -2.1459793207116853, "title": "MFG Esso North Anderson Drive", "address": "565 North Anderson Drive"}, {"lat": 57.148065238857725, "lng": -2.2669869982480577, "title": "Greggs Westhill (ESB)", "address": "Venture Way"}, {"lat": 57.19916046990414, "lng": -2.1840013646865373, "title": "MFG Dyce", "address": "Wellheads Road"}, {"lat": 57.064709, "lng": -2.142978, "title": "Premier inn Aberdeen South (Portlethen)", "address": "Portlethen"}, {"lat": 57.136898138881804, "lng": -2.0969132730382114, "title": "MFG Esplanade - MFG EV Power", "address": "MFG Esplanade Service Station"}, {"lat": 57.19604589544957, "lng": -2.2036862242110544, "title": "Dyce Farm", "address": "1A International Avenue"}, {"lat": 57.186084, "lng": -2.087764, "title": "Aberdeen Exhibition and Conference Centre", "address": "4 Exhibition Avenue"}, {"lat": 57.186036, "lng": -2.088934, "title": "Aberdeen Exhibition & Conference Centre", "address": "Bridge Of Don, Aberdeen City"}, {"lat": 57.182626, "lng": -2.136902, "title": "Danestone Car Park", "address": "9 Fairview Street"}, {"lat": 57.15665, "lng": -2.164577, "title": "Mastrick Housing Office", "address": "43 Spey Road"}, {"lat": 57.156367, "lng": -2.129746, "title": "Aberdeen Royal (Trusty Teds)", "address": "76 Cornhill Road"}, {"lat": 57.153428, "lng": -2.131306, "title": "Aberdeen Royal Eye Clinic Car Park", "address": "24 Foresterhill Court"}, {"lat": 57.14977, "lng": -2.223608, "title": "Kingswells Park & Ride", "address": "1 Edmond Gardens"}, {"lat": 57.149761, "lng": -2.095642, "title": "Marischal College, Aberdeen (1)", "address": "Broad Street"}, {"lat": 57.133347, "lng": -2.158328, "title": "James Hutton Institute", "address": "77 Macaulay Drive"}, {"lat": 57.120828, "lng": -2.10409, "title": "Kincorth Library", "address": "247A Kincorth Circle"}, {"lat": 57.121661, "lng": -2.126124, "title": "Aberdeen Snowsports Centre", "address": "77 Garthdee Road"}, {"lat": 57.118823518154386, "lng": -2.147645511697874, "title": "Grays School of Art", "address": "Robert Gordon University"}, {"lat": 57.11908669277719, "lng": -2.1394774261586917, "title": "Riverside Building", "address": "Robert Gordon University"}, {"lat": 57.11932312452251, "lng": -2.1368276261525807, "title": "Ishbel Gordon Building", "address": "Robert Gordon University"}, {"lat": 57.14961, "lng": -2.171054, "title": "Tesco Superstore-Aberdeen Woodend", "address": "Woodend Hospital"}, {"lat": 57.139239, "lng": -2.178726, "title": "Hazlehead Park", "address": "Hazlehead Park"}, {"lat": 57.110318, "lng": -2.092522, "title": "Aberdeen Supercharger", "address": "Wellington Circle Aberdeen"}, {"lat": 57.145359, "lng": -2.28621, "title": "Prospect Road", "address": "Westhill"}, {"lat": 57.129276, "lng": -2.079503, "title": "Subsea 7", "address": "Greenwell Base"}, {"lat": 57.153271, "lng": -2.084727, "title": "Satrosphere Car Park, Aberdeen", "address": "179 Constitution Street"}];
+  var chargerData = [{"lat": 57.126629969528636, "lng": -2.091638890640752, "title": "Arnold Clark Charge", "address": "Craigshaw Road", "connectors": ["CCS (Type 2) · 150kW", "CHAdeMO · 50kW"]}, {"lat": 57.127538, "lng": -2.089599, "title": "Lidl-Torry", "address": "Greenwell Road", "connectors": ["Type 2 (Socket Only) · 22kW", "CCS (Type 2) · 50kW", "CHAdeMO · 50kW"]}, {"lat": 57.11751069, "lng": -2.152199556, "title": "Norwood Hall Hotel ", "address": "Garthdee Road", "connectors": ["Type 2 (Socket Only) · 22kW"]}, {"lat": 57.17249672852712, "lng": -2.1459793207116853, "title": "MFG Esso North Anderson Drive", "address": "565 North Anderson Drive", "connectors": ["CCS (Type 2) · 150kW", "CHAdeMO · 50kW"]}, {"lat": 57.148065238857725, "lng": -2.2669869982480577, "title": "Greggs Westhill (ESB)", "address": "Venture Way", "connectors": ["CCS (Type 2) · 300kW", "CCS (Type 2) · 300kW", "CCS (Type 2) · 300kW", "CCS (Type 2) · 300kW", "CCS (Type 2) · 300kW", "CCS (Type 2) · 300kW"]}, {"lat": 57.19916046990414, "lng": -2.1840013646865373, "title": "MFG Dyce", "address": "Wellheads Road", "connectors": ["CCS (Type 2) · 150kW", "CHAdeMO · 50kW", "CCS (Type 2) · 300kW"]}, {"lat": 57.064709, "lng": -2.142978, "title": "Premier inn Aberdeen South (Portlethen)", "address": "Portlethen", "connectors": ["CHAdeMO · 50kW", "Type 2 (Socket Only) · 22kW", "Type 2 (Tethered Connector)  · 60kW"]}, {"lat": 57.136898138881804, "lng": -2.0969132730382114, "title": "MFG Esplanade - MFG EV Power", "address": "MFG Esplanade Service Station", "connectors": ["CCS (Type 2) · 150kW", "CCS (Type 2) · 300kW", "CHAdeMO · 50kW"]}, {"lat": 57.19604589544957, "lng": -2.2036862242110544, "title": "Dyce Farm", "address": "1A International Avenue", "connectors": ["CCS (Type 2) · 75kW"]}, {"lat": 57.186084, "lng": -2.087764, "title": "Aberdeen Exhibition and Conference Centre", "address": "4 Exhibition Avenue", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 57.186036, "lng": -2.088934, "title": "Aberdeen Exhibition & Conference Centre", "address": "Bridge Of Don, Aberdeen City", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 57.182626, "lng": -2.136902, "title": "Danestone Car Park", "address": "9 Fairview Street", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 57.15665, "lng": -2.164577, "title": "Mastrick Housing Office", "address": "43 Spey Road", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 57.156367, "lng": -2.129746, "title": "Aberdeen Royal (Trusty Teds)", "address": "76 Cornhill Road", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 57.153428, "lng": -2.131306, "title": "Aberdeen Royal Eye Clinic Car Park", "address": "24 Foresterhill Court", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 57.14977, "lng": -2.223608, "title": "Kingswells Park & Ride", "address": "1 Edmond Gardens", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 57.149761, "lng": -2.095642, "title": "Marischal College, Aberdeen (1)", "address": "Broad Street", "connectors": ["Type 2 (Socket Only) · 7kW"]}, {"lat": 57.133347, "lng": -2.158328, "title": "James Hutton Institute", "address": "77 Macaulay Drive", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 57.120828, "lng": -2.10409, "title": "Kincorth Library", "address": "247A Kincorth Circle", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 57.121661, "lng": -2.126124, "title": "Aberdeen Snowsports Centre", "address": "77 Garthdee Road", "connectors": ["CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 43kW", "Type 2 (Tethered Connector)  · 50kW"]}, {"lat": 57.118823518154386, "lng": -2.147645511697874, "title": "Grays School of Art", "address": "Robert Gordon University", "connectors": ["Type 2 (Socket Only) · 7.7kW", "Type 2 (Socket Only) · 7.7kW"]}, {"lat": 57.11908669277719, "lng": -2.1394774261586917, "title": "Riverside Building", "address": "Robert Gordon University", "connectors": ["Type 2 (Socket Only) · 7.7kW"]}, {"lat": 57.11932312452251, "lng": -2.1368276261525807, "title": "Ishbel Gordon Building", "address": "Robert Gordon University", "connectors": ["Type 2 (Socket Only) · 7.7kW"]}, {"lat": 57.14961, "lng": -2.171054, "title": "Tesco Superstore-Aberdeen Woodend", "address": "Woodend Hospital", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 22kW", "CHAdeMO · 50kW", "CCS (Type 2) · 50kW"]}, {"lat": 57.139239, "lng": -2.178726, "title": "Hazlehead Park", "address": "Hazlehead Park", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 57.110318, "lng": -2.092522, "title": "Aberdeen Supercharger", "address": "Wellington Circle Aberdeen", "connectors": ["CCS (Type 2) · 120kW"]}, {"lat": 57.145359, "lng": -2.28621, "title": "Prospect Road", "address": "Westhill", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 57.129276, "lng": -2.079503, "title": "Subsea 7", "address": "Greenwell Base", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 57.153271, "lng": -2.084727, "title": "Satrosphere Car Park, Aberdeen", "address": "179 Constitution Street", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}];
 
   chargerData.forEach(function (c) {
+    var connHtml = c.connectors.length
+      ? '<div style="margin-top:6px;font-size:12px;color:#475569">' + c.connectors.join(' &middot; ') + '</div>'
+      : '';
     var marker = L.marker([c.lat, c.lng]);
     marker.bindPopup(
-      '<b>' + c.title + '</b><br>' + c.address + '<br><br>' +
+      '<b>' + c.title + '</b>' +
+      '<div style="color:#64748b;font-size:13px">' + c.address + '</div>' +
+      connHtml +
       '<a href="https://www.google.com/maps/dir/?api=1&destination=' + c.lat + ',' + c.lng +
-      '" target="_blank" rel="noopener">Get directions</a>'
+      '" target="_blank" rel="noopener" style="display:inline-block;margin-top:8px;padding:4px 10px;background:#2563eb;color:white;border-radius:4px;text-decoration:none;font-size:12px">Get directions</a>'
     );
     markers.addLayer(marker);
   });
-
   map.addLayer(markers);
+
+  // --- Connector filter ---
+  var filterBtns = document.querySelectorAll('.filter-btn');
+  var chargerItems = document.querySelectorAll('.charger-item');
+
+  filterBtns.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      filterBtns.forEach(function (b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      var f = btn.dataset.filter;
+      chargerItems.forEach(function (item) {
+        var connList = item.dataset.connectors ? item.dataset.connectors.split(',') : [];
+        item.style.display = (f === 'all' || connList.indexOf(f) !== -1) ? '' : 'none';
+      });
+    });
+  });
+
+  // --- Copy postcode ---
+  document.querySelectorAll('.copy-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var original = btn.textContent;
+      navigator.clipboard.writeText(btn.dataset.copy).then(function () {
+        btn.textContent = 'Copied!';
+        btn.classList.add('copy-btn--success');
+        setTimeout(function () {
+          btn.textContent = original;
+          btn.classList.remove('copy-btn--success');
+        }, 1500);
+      });
+    });
+  });
 }());
 </script>
 

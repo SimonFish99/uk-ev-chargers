@@ -17,7 +17,10 @@
 
 <header>
 <div class="container">
-<a href="/" class="logo">PlugMap <span class="tagline">UK EV Charger Locator</span></a>
+<a href="/" class="logo">
+  <svg class="logo-bolt" viewBox="0 0 24 24" fill="currentColor" width="22" height="22" aria-hidden="true"><path d="M13 2L4.5 13.5H11L10 22L19.5 10.5H13Z"/></svg>
+  PlugMap <span class="tagline">UK EV Charger Locator</span>
+</a>
 </div>
 </header>
 
@@ -28,16 +31,41 @@
 </nav>
 
 <h1>EV Chargers in Winchester</h1>
-<p class="page-intro">33 public charging stations found in Winchester.</p>
+
+<div class="stats-bar">
+  <span class="stat-pill stat-total">33 stations</span>
+  <span class="stat-pill stat-rapid">4 rapid (50kW+)</span>
+  <span class="stat-pill stat-fast">14 fast (7–50kW)</span>
+  <span class="stat-pill stat-slow">15 slow</span>
+</div>
 
 <div id="map"></div>
 
-<ul class="charger-list">
+
+<div class="connector-filter">
+  <span class="filter-label">Filter:</span>
+  <button class="filter-btn active" data-filter="all">All</button>
+  
+  <button class="filter-btn" data-filter="CCS (Type 2)">CCS (Type 2)</button>
+  
+  <button class="filter-btn" data-filter="CHAdeMO">CHAdeMO</button>
+  
+  <button class="filter-btn" data-filter="Type 2 (Socket Only)">Type 2 (Socket Only)</button>
+  
+  <button class="filter-btn" data-filter="Type 2 (Tethered Connector) ">Type 2 (Tethered Connector) </button>
+  
+</div>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">GS10229A</h2>
-  <p class="charger-address">A34 By-Pass, Sutton Scotney S021 3JY
+<ul class="charger-list" id="charger-list">
+
+
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">GS10229A</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">A34 By-Pass, Sutton Scotney <button class="copy-btn" data-copy="S021 3JY">S021 3JY</button>
   </p>
   
   <div class="charger-connections">
@@ -56,9 +84,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Lovedon Fields</h2>
-  <p class="charger-address">Lovedon Lane SO23
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Lovedon Fields</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Lovedon Lane <button class="copy-btn" data-copy="SO23">SO23</button>
   </p>
   
   <div class="charger-connections">
@@ -77,9 +108,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">RAW GREENE KING JOLLY FARMER 1</h2>
-  <p class="charger-address">Boscobel Road SO22 6RY
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">RAW GREENE KING JOLLY FARMER 1</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Boscobel Road <button class="copy-btn" data-copy="SO22 6RY">SO22 6RY</button>
   </p>
   
   <div class="charger-connections">
@@ -98,9 +132,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">ETB WINCHESTER</h2>
-  <p class="charger-address">ETB Autocentres - Winchester Unit 1 Easton La SO23 7RQ
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Tethered Connector) ">
+  <div class="charger-header">
+    <h2 class="charger-name">ETB WINCHESTER</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">ETB Autocentres - Winchester Unit 1 Easton La <button class="copy-btn" data-copy="SO23 7RQ">SO23 7RQ</button>
   </p>
   
   <div class="charger-connections">
@@ -119,9 +156,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">WCC Vaultex MSCP 1</h2>
-  <p class="charger-address">Barfield Close SO23 9SQ
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">WCC Vaultex MSCP 1</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Barfield Close <button class="copy-btn" data-copy="SO23 9SQ">SO23 9SQ</button>
   </p>
   
   <div class="charger-connections">
@@ -143,9 +183,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Winchester City Council  : Coach Park Car Park</h2>
-  <p class="charger-address">Worthy Lane SO23 7AB
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2),CHAdeMO">
+  <div class="charger-header">
+    <h2 class="charger-name">Winchester City Council  : Coach Park Car Park</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Worthy Lane <button class="copy-btn" data-copy="SO23 7AB">SO23 7AB</button>
   </p>
   
   <div class="charger-connections">
@@ -167,9 +211,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">RAWOWNED LAINSTONHOUSE 2</h2>
-  <p class="charger-address">Lainston House SO21 2LT
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">RAWOWNED LAINSTONHOUSE 2</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Lainston House <button class="copy-btn" data-copy="SO21 2LT">SO21 2LT</button>
   </p>
   
   <div class="charger-connections">
@@ -191,9 +238,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Durngate 2</h2>
-  <p class="charger-address">North Walls SO23 8DX
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Durngate 2</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">North Walls <button class="copy-btn" data-copy="SO23 8DX">SO23 8DX</button>
   </p>
   
   <div class="charger-connections">
@@ -215,9 +265,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Moto Winchester Southbound Services</h2>
-  <p class="charger-address">Moto Winchester Southbound Services SO21 1PP
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2),CHAdeMO,Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Moto Winchester Southbound Services</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Moto Winchester Southbound Services <button class="copy-btn" data-copy="SO21 1PP">SO21 1PP</button>
   </p>
   
   <div class="charger-connections">
@@ -266,9 +320,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Arthur Road - Lighting Column 3</h2>
-  <p class="charger-address">30-32 Arthur Road SO23 7ED
+<li class="charger-item charger-item--slow" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Arthur Road - Lighting Column 3</h2>
+    
+  </div>
+  <p class="charger-address">30-32 Arthur Road <button class="copy-btn" data-copy="SO23 7ED">SO23 7ED</button>
   </p>
   
   <div class="charger-connections">
@@ -287,9 +344,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Arthur Road - Lighting Column 5</h2>
-  <p class="charger-address">10 Arthur Road SO23 7EA
+<li class="charger-item charger-item--slow" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Arthur Road - Lighting Column 5</h2>
+    
+  </div>
+  <p class="charger-address">10 Arthur Road <button class="copy-btn" data-copy="SO23 7EA">SO23 7EA</button>
   </p>
   
   <div class="charger-connections">
@@ -308,9 +368,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Saxon Road - Lighting Column 2</h2>
-  <p class="charger-address">20 Saxon Road SO23 7DJ
+<li class="charger-item charger-item--slow" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Saxon Road - Lighting Column 2</h2>
+    
+  </div>
+  <p class="charger-address">20 Saxon Road <button class="copy-btn" data-copy="SO23 7DJ">SO23 7DJ</button>
   </p>
   
   <div class="charger-connections">
@@ -329,9 +392,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Nuns Road - Lighting Column 2</h2>
-  <p class="charger-address">16-18 Nuns Road SO23 7EF
+<li class="charger-item charger-item--slow" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Nuns Road - Lighting Column 2</h2>
+    
+  </div>
+  <p class="charger-address">16-18 Nuns Road <button class="copy-btn" data-copy="SO23 7EF">SO23 7EF</button>
   </p>
   
   <div class="charger-connections">
@@ -350,9 +416,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">WIN HOTELSPA</h2>
-  <p class="charger-address">26 Athelstan Rd SO23 7BT
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">WIN HOTELSPA</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">26 Athelstan Rd <button class="copy-btn" data-copy="SO23 7BT">SO23 7BT</button>
   </p>
   
   <div class="charger-connections">
@@ -374,9 +443,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Egbert Road - Lighting Column 2</h2>
-  <p class="charger-address">4-6 Egbert Road SO23 7ED
+<li class="charger-item charger-item--slow" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Egbert Road - Lighting Column 2</h2>
+    
+  </div>
+  <p class="charger-address">4-6 Egbert Road <button class="copy-btn" data-copy="SO23 7ED">SO23 7ED</button>
   </p>
   
   <div class="charger-connections">
@@ -395,9 +467,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Monks Road - Lighting Column 2</h2>
-  <p class="charger-address">18-20 Monks Road SO23 7EQ
+<li class="charger-item charger-item--slow" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Monks Road - Lighting Column 2</h2>
+    
+  </div>
+  <p class="charger-address">18-20 Monks Road <button class="copy-btn" data-copy="SO23 7EQ">SO23 7EQ</button>
   </p>
   
   <div class="charger-connections">
@@ -416,9 +491,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Monks Road - Lighting Column 4</h2>
-  <p class="charger-address">48 Monks Road SO23 7EQ
+<li class="charger-item charger-item--slow" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Monks Road - Lighting Column 4</h2>
+    
+  </div>
+  <p class="charger-address">48 Monks Road <button class="copy-btn" data-copy="SO23 7EQ">SO23 7EQ</button>
   </p>
   
   <div class="charger-connections">
@@ -437,9 +515,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">King Alfred Terrace - Lighting Column 2</h2>
-  <p class="charger-address">7-8 King Alfred Terrace SO23 7DE
+<li class="charger-item charger-item--slow" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">King Alfred Terrace - Lighting Column 2</h2>
+    
+  </div>
+  <p class="charger-address">7-8 King Alfred Terrace <button class="copy-btn" data-copy="SO23 7DE">SO23 7DE</button>
   </p>
   
   <div class="charger-connections">
@@ -458,9 +539,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">King Alfred Terrace - Lighting Column 1</h2>
-  <p class="charger-address">16-17 King Alfred Terrace SO23 7DE
+<li class="charger-item charger-item--slow" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">King Alfred Terrace - Lighting Column 1</h2>
+    
+  </div>
+  <p class="charger-address">16-17 King Alfred Terrace <button class="copy-btn" data-copy="SO23 7DE">SO23 7DE</button>
   </p>
   
   <div class="charger-connections">
@@ -479,9 +563,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Hyde Abbey Road - Lighting Column 5</h2>
-  <p class="charger-address">20-21 Hyde Abbey Road SO23 7DA
+<li class="charger-item charger-item--slow" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Hyde Abbey Road - Lighting Column 5</h2>
+    
+  </div>
+  <p class="charger-address">20-21 Hyde Abbey Road <button class="copy-btn" data-copy="SO23 7DA">SO23 7DA</button>
   </p>
   
   <div class="charger-connections">
@@ -500,9 +587,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Park Avenue - Lighting Column 3</h2>
-  <p class="charger-address">Park Avenue SO23 8DJ
+<li class="charger-item charger-item--slow" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Park Avenue - Lighting Column 3</h2>
+    
+  </div>
+  <p class="charger-address">Park Avenue <button class="copy-btn" data-copy="SO23 8DJ">SO23 8DJ</button>
   </p>
   
   <div class="charger-connections">
@@ -521,9 +611,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">WCC St Peters Car Park</h2>
-  <p class="charger-address">Gordon Road SO23 7DD
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">WCC St Peters Car Park</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Gordon Road <button class="copy-btn" data-copy="SO23 7DD">SO23 7DD</button>
   </p>
   
   <div class="charger-connections">
@@ -545,9 +638,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">ICUEVE900606</h2>
-  <p class="charger-address">Southgate Street SO23 9EF
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">ICUEVE900606</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Southgate Street <button class="copy-btn" data-copy="SO23 9EF">SO23 9EF</button>
   </p>
   
   <div class="charger-connections">
@@ -564,9 +660,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Barfield Park and Ride 1</h2>
-  <p class="charger-address">Barfield Close SO23 9SQ
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Barfield Park and Ride 1</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Barfield Close <button class="copy-btn" data-copy="SO23 9SQ">SO23 9SQ</button>
   </p>
   
   <div class="charger-connections">
@@ -588,9 +687,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Sainsbury&#39;s Badger Farm</h2>
-  <p class="charger-address">Badger Farm Road SO22 4QB
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Sainsbury&#39;s Badger Farm</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Badger Farm Road <button class="copy-btn" data-copy="SO22 4QB">SO22 4QB</button>
   </p>
   
   <div class="charger-connections">
@@ -612,9 +714,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Williams Garage</h2>
-  <p class="charger-address">Otterbourne SO21 2EE
+<li class="charger-item charger-item--rapid" data-connectors="CHAdeMO">
+  <div class="charger-header">
+    <h2 class="charger-name">Williams Garage</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Otterbourne <button class="copy-btn" data-copy="SO21 2EE">SO21 2EE</button>
   </p>
   
   <div class="charger-connections">
@@ -636,9 +742,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">East Winchester Park and Ride 1</h2>
-  <p class="charger-address">Garnier Road SO23 9NP
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">East Winchester Park and Ride 1</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Garnier Road <button class="copy-btn" data-copy="SO23 9NP">SO23 9NP</button>
   </p>
   
   <div class="charger-connections">
@@ -660,9 +769,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Tesco Extra - Winchester</h2>
-  <p class="charger-address">Easton Lane SO23 7RS
+<li class="charger-item charger-item--rapid" data-connectors="CHAdeMO,CCS (Type 2),Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Tesco Extra - Winchester</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Easton Lane <button class="copy-btn" data-copy="SO23 7RS">SO23 7RS</button>
   </p>
   
   <div class="charger-connections">
@@ -690,9 +803,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Egbert Road - Lighting Column 3</h2>
-  <p class="charger-address">27-29 Egbert Road SO23 7ED
+<li class="charger-item charger-item--slow" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Egbert Road - Lighting Column 3</h2>
+    
+  </div>
+  <p class="charger-address">27-29 Egbert Road <button class="copy-btn" data-copy="SO23 7ED">SO23 7ED</button>
   </p>
   
   <div class="charger-connections">
@@ -711,9 +827,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Nuns Road - Lighting Column 4</h2>
-  <p class="charger-address">44-46 Nuns Road SO23 7EF
+<li class="charger-item charger-item--slow" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Nuns Road - Lighting Column 4</h2>
+    
+  </div>
+  <p class="charger-address">44-46 Nuns Road <button class="copy-btn" data-copy="SO23 7EF">SO23 7EF</button>
   </p>
   
   <div class="charger-connections">
@@ -732,9 +851,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">6 Alswitha Terrace, King Alfred Pl</h2>
-  <p class="charger-address">6 Alswitha Terrace, King Alfred Pl SO23 7DQ
+<li class="charger-item charger-item--slow" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">6 Alswitha Terrace, King Alfred Pl</h2>
+    
+  </div>
+  <p class="charger-address">6 Alswitha Terrace, King Alfred Pl <button class="copy-btn" data-copy="SO23 7DQ">SO23 7DQ</button>
   </p>
   
   <div class="charger-connections">
@@ -753,9 +875,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Hyde Abbey Road - Lighting Column 3</h2>
-  <p class="charger-address">49 Hyde Abbey Road SO23 7DA
+<li class="charger-item charger-item--slow" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Hyde Abbey Road - Lighting Column 3</h2>
+    
+  </div>
+  <p class="charger-address">49 Hyde Abbey Road <button class="copy-btn" data-copy="SO23 7DA">SO23 7DA</button>
   </p>
   
   <div class="charger-connections">
@@ -774,9 +899,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Park Avenue</h2>
-  <p class="charger-address">Park Avenue SO23 8DL
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Park Avenue</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Park Avenue <button class="copy-btn" data-copy="SO23 8DL">SO23 8DL</button>
   </p>
   
   <div class="charger-connections">
@@ -798,6 +926,23 @@
 
 <p><a href="/" class="back-link">← All UK towns</a></p>
 
+
+<div class="nearby-towns">
+  <h2 class="nearby-heading">Nearby towns</h2>
+  <ul class="nearby-list">
+  
+    <li><a href="/uk/eastleigh/">Eastleigh</a></li>
+  
+    <li><a href="/uk/southampton/">Southampton</a></li>
+  
+    <li><a href="/uk/hampshire/">Hampshire</a></li>
+  
+    <li><a href="/uk/andover/">Andover</a></li>
+  
+  </ul>
+</div>
+
+
 </div>
 
 <footer>
@@ -810,26 +955,61 @@
 <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 <script>
 (function () {
+  // --- Map ---
   var map = L.map('map').setView([51.06974489602032, -1.313790339930696], 12);
-
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
   }).addTo(map);
 
   var markers = L.markerClusterGroup();
-  var chargerData = [{"lat": 51.156913, "lng": -1.346844, "title": "GS10229A", "address": "A34 By-Pass, Sutton Scotney"}, {"lat": 51.094155, "lng": -1.293446, "title": "Lovedon Fields", "address": "Lovedon Lane"}, {"lat": 51.071112, "lng": -1.31978, "title": "RAW GREENE KING JOLLY FARMER 1", "address": "Boscobel Road"}, {"lat": 51.066415, "lng": -1.30255, "title": "ETB WINCHESTER", "address": "ETB Autocentres - Winchester Unit 1 Easton La"}, {"lat": 51.05461, "lng": -1.307292, "title": "WCC Vaultex MSCP 1", "address": "Barfield Close"}, {"lat": 51.06941200360873, "lng": -1.3162851700797091, "title": "Winchester City Council  : Coach Park Car Park", "address": "Worthy Lane"}, {"lat": 51.082394, "lng": -1.371325, "title": "RAWOWNED LAINSTONHOUSE 2", "address": "Lainston House"}, {"lat": 51.064804, "lng": -1.308361, "title": "Durngate 2", "address": "North Walls"}, {"lat": 51.115446, "lng": -1.255064, "title": "Moto Winchester Southbound Services", "address": "Moto Winchester Southbound Services"}, {"lat": 51.071, "lng": -1.3138, "title": "Arthur Road - Lighting Column 3", "address": "30-32 Arthur Road"}, {"lat": 51.0709, "lng": -1.3127, "title": "Arthur Road - Lighting Column 5", "address": "10 Arthur Road"}, {"lat": 51.0705, "lng": -1.3127, "title": "Saxon Road - Lighting Column 2", "address": "20 Saxon Road"}, {"lat": 51.0703, "lng": -1.3117, "title": "Nuns Road - Lighting Column 2", "address": "16-18 Nuns Road"}, {"lat": 51.069955, "lng": -1.317748, "title": "WIN HOTELSPA", "address": "26 Athelstan Rd"}, {"lat": 51.0697, "lng": -1.3141, "title": "Egbert Road - Lighting Column 2", "address": "4-6 Egbert Road"}, {"lat": 51.0694, "lng": -1.3123, "title": "Monks Road - Lighting Column 2", "address": "18-20 Monks Road"}, {"lat": 51.0693, "lng": -1.3112, "title": "Monks Road - Lighting Column 4", "address": "48 Monks Road"}, {"lat": 51.0678, "lng": -1.3129, "title": "King Alfred Terrace - Lighting Column 2", "address": "7-8 King Alfred Terrace"}, {"lat": 51.0677, "lng": -1.3124, "title": "King Alfred Terrace - Lighting Column 1", "address": "16-17 King Alfred Terrace"}, {"lat": 51.0669, "lng": -1.3135, "title": "Hyde Abbey Road - Lighting Column 5", "address": "20-21 Hyde Abbey Road"}, {"lat": 51.0655, "lng": -1.3103, "title": "Park Avenue - Lighting Column 3", "address": "Park Avenue"}, {"lat": 51.065464, "lng": -1.312139, "title": "WCC St Peters Car Park", "address": "Gordon Road"}, {"lat": 51.06267, "lng": -1.317215, "title": "ICUEVE900606", "address": "Southgate Street"}, {"lat": 51.054167, "lng": -1.307521, "title": "Barfield Park and Ride 1", "address": "Barfield Close"}, {"lat": 51.046366, "lng": -1.339979, "title": "Sainsbury's Badger Farm", "address": "Badger Farm Road"}, {"lat": 51.008183, "lng": -1.342844, "title": "Williams Garage", "address": "Otterbourne"}, {"lat": 51.05062, "lng": -1.30572, "title": "East Winchester Park and Ride 1", "address": "Garnier Road"}, {"lat": 51.0691425650617, "lng": -1.29309904763326, "title": "Tesco Extra - Winchester", "address": "Easton Lane"}, {"lat": 51.0703, "lng": -1.3141, "title": "Egbert Road - Lighting Column 3", "address": "27-29 Egbert Road"}, {"lat": 51.0701, "lng": -1.3107, "title": "Nuns Road - Lighting Column 4", "address": "44-46 Nuns Road"}, {"lat": 51.0685, "lng": -1.3127, "title": "6 Alswitha Terrace, King Alfred Pl", "address": "6 Alswitha Terrace, King Alfred Pl"}, {"lat": 51.0663, "lng": -1.3138, "title": "Hyde Abbey Road - Lighting Column 3", "address": "49 Hyde Abbey Road"}, {"lat": 51.065553, "lng": -1.308969, "title": "Park Avenue", "address": "Park Avenue"}];
+  var chargerData = [{"lat": 51.156913, "lng": -1.346844, "title": "GS10229A", "address": "A34 By-Pass, Sutton Scotney", "connectors": ["Type 2 (Socket Only) · 22kW"]}, {"lat": 51.094155, "lng": -1.293446, "title": "Lovedon Fields", "address": "Lovedon Lane", "connectors": ["Type 2 (Socket Only) · 22kW"]}, {"lat": 51.071112, "lng": -1.31978, "title": "RAW GREENE KING JOLLY FARMER 1", "address": "Boscobel Road", "connectors": ["Type 2 (Socket Only) · 22kW"]}, {"lat": 51.066415, "lng": -1.30255, "title": "ETB WINCHESTER", "address": "ETB Autocentres - Winchester Unit 1 Easton La", "connectors": ["Type 2 (Tethered Connector)  · 43kW"]}, {"lat": 51.05461, "lng": -1.307292, "title": "WCC Vaultex MSCP 1", "address": "Barfield Close", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 51.06941200360873, "lng": -1.3162851700797091, "title": "Winchester City Council  : Coach Park Car Park", "address": "Worthy Lane", "connectors": ["CCS (Type 2) · 50kW", "CHAdeMO · 50kW"]}, {"lat": 51.082394, "lng": -1.371325, "title": "RAWOWNED LAINSTONHOUSE 2", "address": "Lainston House", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 51.064804, "lng": -1.308361, "title": "Durngate 2", "address": "North Walls", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 51.115446, "lng": -1.255064, "title": "Moto Winchester Southbound Services", "address": "Moto Winchester Southbound Services", "connectors": ["CCS (Type 2) · 50kW", "CHAdeMO · 50kW", "CCS (Type 2) · 50kW", "CCS (Type 2) · 50kW", "Type 2 (Socket Only) · 11kW", "CCS (Type 2) · 237kW", "CCS (Type 2) · 237kW", "CCS (Type 2) · 237kW", "CCS (Type 2) · 237kW", "CCS (Type 2) · 237kW", "CCS (Type 2) · 237kW"]}, {"lat": 51.071, "lng": -1.3138, "title": "Arthur Road - Lighting Column 3", "address": "30-32 Arthur Road", "connectors": ["Type 2 (Socket Only) · 3.7kW"]}, {"lat": 51.0709, "lng": -1.3127, "title": "Arthur Road - Lighting Column 5", "address": "10 Arthur Road", "connectors": ["Type 2 (Socket Only) · 3.7kW"]}, {"lat": 51.0705, "lng": -1.3127, "title": "Saxon Road - Lighting Column 2", "address": "20 Saxon Road", "connectors": ["Type 2 (Socket Only) · 3.7kW"]}, {"lat": 51.0703, "lng": -1.3117, "title": "Nuns Road - Lighting Column 2", "address": "16-18 Nuns Road", "connectors": ["Type 2 (Socket Only) · 3.7kW"]}, {"lat": 51.069955, "lng": -1.317748, "title": "WIN HOTELSPA", "address": "26 Athelstan Rd", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 51.0697, "lng": -1.3141, "title": "Egbert Road - Lighting Column 2", "address": "4-6 Egbert Road", "connectors": ["Type 2 (Socket Only) · 3.7kW"]}, {"lat": 51.0694, "lng": -1.3123, "title": "Monks Road - Lighting Column 2", "address": "18-20 Monks Road", "connectors": ["Type 2 (Socket Only) · 3.7kW"]}, {"lat": 51.0693, "lng": -1.3112, "title": "Monks Road - Lighting Column 4", "address": "48 Monks Road", "connectors": ["Type 2 (Socket Only) · 3.7kW"]}, {"lat": 51.0678, "lng": -1.3129, "title": "King Alfred Terrace - Lighting Column 2", "address": "7-8 King Alfred Terrace", "connectors": ["Type 2 (Socket Only) · 3.7kW"]}, {"lat": 51.0677, "lng": -1.3124, "title": "King Alfred Terrace - Lighting Column 1", "address": "16-17 King Alfred Terrace", "connectors": ["Type 2 (Socket Only) · 3.7kW"]}, {"lat": 51.0669, "lng": -1.3135, "title": "Hyde Abbey Road - Lighting Column 5", "address": "20-21 Hyde Abbey Road", "connectors": ["Type 2 (Socket Only) · 3.7kW"]}, {"lat": 51.0655, "lng": -1.3103, "title": "Park Avenue - Lighting Column 3", "address": "Park Avenue", "connectors": ["Type 2 (Socket Only) · 3.7kW"]}, {"lat": 51.065464, "lng": -1.312139, "title": "WCC St Peters Car Park", "address": "Gordon Road", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 51.06267, "lng": -1.317215, "title": "ICUEVE900606", "address": "Southgate Street", "connectors": ["Type 2 (Socket Only) · 11kW"]}, {"lat": 51.054167, "lng": -1.307521, "title": "Barfield Park and Ride 1", "address": "Barfield Close", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 51.046366, "lng": -1.339979, "title": "Sainsbury's Badger Farm", "address": "Badger Farm Road", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 51.008183, "lng": -1.342844, "title": "Williams Garage", "address": "Otterbourne", "connectors": ["CHAdeMO · 50kW", "CHAdeMO · 50kW"]}, {"lat": 51.05062, "lng": -1.30572, "title": "East Winchester Park and Ride 1", "address": "Garnier Road", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 51.0691425650617, "lng": -1.29309904763326, "title": "Tesco Extra - Winchester", "address": "Easton Lane", "connectors": ["CHAdeMO · 50kW", "CCS (Type 2) · 50kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 51.0703, "lng": -1.3141, "title": "Egbert Road - Lighting Column 3", "address": "27-29 Egbert Road", "connectors": ["Type 2 (Socket Only) · 3.7kW"]}, {"lat": 51.0701, "lng": -1.3107, "title": "Nuns Road - Lighting Column 4", "address": "44-46 Nuns Road", "connectors": ["Type 2 (Socket Only) · 3.7kW"]}, {"lat": 51.0685, "lng": -1.3127, "title": "6 Alswitha Terrace, King Alfred Pl", "address": "6 Alswitha Terrace, King Alfred Pl", "connectors": ["Type 2 (Socket Only) · 3.7kW"]}, {"lat": 51.0663, "lng": -1.3138, "title": "Hyde Abbey Road - Lighting Column 3", "address": "49 Hyde Abbey Road", "connectors": ["Type 2 (Socket Only) · 3.7kW"]}, {"lat": 51.065553, "lng": -1.308969, "title": "Park Avenue", "address": "Park Avenue", "connectors": ["Type 2 (Socket Only) · 22kW"]}];
 
   chargerData.forEach(function (c) {
+    var connHtml = c.connectors.length
+      ? '<div style="margin-top:6px;font-size:12px;color:#475569">' + c.connectors.join(' &middot; ') + '</div>'
+      : '';
     var marker = L.marker([c.lat, c.lng]);
     marker.bindPopup(
-      '<b>' + c.title + '</b><br>' + c.address + '<br><br>' +
+      '<b>' + c.title + '</b>' +
+      '<div style="color:#64748b;font-size:13px">' + c.address + '</div>' +
+      connHtml +
       '<a href="https://www.google.com/maps/dir/?api=1&destination=' + c.lat + ',' + c.lng +
-      '" target="_blank" rel="noopener">Get directions</a>'
+      '" target="_blank" rel="noopener" style="display:inline-block;margin-top:8px;padding:4px 10px;background:#2563eb;color:white;border-radius:4px;text-decoration:none;font-size:12px">Get directions</a>'
     );
     markers.addLayer(marker);
   });
-
   map.addLayer(markers);
+
+  // --- Connector filter ---
+  var filterBtns = document.querySelectorAll('.filter-btn');
+  var chargerItems = document.querySelectorAll('.charger-item');
+
+  filterBtns.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      filterBtns.forEach(function (b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      var f = btn.dataset.filter;
+      chargerItems.forEach(function (item) {
+        var connList = item.dataset.connectors ? item.dataset.connectors.split(',') : [];
+        item.style.display = (f === 'all' || connList.indexOf(f) !== -1) ? '' : 'none';
+      });
+    });
+  });
+
+  // --- Copy postcode ---
+  document.querySelectorAll('.copy-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var original = btn.textContent;
+      navigator.clipboard.writeText(btn.dataset.copy).then(function () {
+        btn.textContent = 'Copied!';
+        btn.classList.add('copy-btn--success');
+        setTimeout(function () {
+          btn.textContent = original;
+          btn.classList.remove('copy-btn--success');
+        }, 1500);
+      });
+    });
+  });
 }());
 </script>
 

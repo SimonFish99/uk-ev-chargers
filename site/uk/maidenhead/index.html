@@ -17,7 +17,10 @@
 
 <header>
 <div class="container">
-<a href="/" class="logo">PlugMap <span class="tagline">UK EV Charger Locator</span></a>
+<a href="/" class="logo">
+  <svg class="logo-bolt" viewBox="0 0 24 24" fill="currentColor" width="22" height="22" aria-hidden="true"><path d="M13 2L4.5 13.5H11L10 22L19.5 10.5H13Z"/></svg>
+  PlugMap <span class="tagline">UK EV Charger Locator</span>
+</a>
 </div>
 </header>
 
@@ -28,16 +31,39 @@
 </nav>
 
 <h1>EV Chargers in Maidenhead</h1>
-<p class="page-intro">7 public charging stations found in Maidenhead.</p>
+
+<div class="stats-bar">
+  <span class="stat-pill stat-total">7 stations</span>
+  <span class="stat-pill stat-rapid">1 rapid (50kW+)</span>
+  <span class="stat-pill stat-fast">5 fast (7–50kW)</span>
+  <span class="stat-pill stat-slow">1 slow</span>
+</div>
 
 <div id="map"></div>
 
-<ul class="charger-list">
+
+<div class="connector-filter">
+  <span class="filter-label">Filter:</span>
+  <button class="filter-btn active" data-filter="all">All</button>
+  
+  <button class="filter-btn" data-filter="CCS (Type 2)">CCS (Type 2)</button>
+  
+  <button class="filter-btn" data-filter="CHAdeMO">CHAdeMO</button>
+  
+  <button class="filter-btn" data-filter="Type 2 (Socket Only)">Type 2 (Socket Only)</button>
+  
+</div>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Hines Meadow Car Park</h2>
-  <p class="charger-address">Lower ground left corner SL6 8QZ
+<ul class="charger-list" id="charger-list">
+
+
+<li class="charger-item charger-item--slow" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Hines Meadow Car Park</h2>
+    
+  </div>
+  <p class="charger-address">Lower ground left corner <button class="copy-btn" data-copy="SL6 8QZ">SL6 8QZ</button>
   </p>
   
   <div class="charger-connections">
@@ -59,9 +85,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">College Road 1</h2>
-  <p class="charger-address">12 College Road SL6 6BB
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">College Road 1</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">12 College Road <button class="copy-btn" data-copy="SL6 6BB">SL6 6BB</button>
   </p>
   
   <div class="charger-connections">
@@ -83,9 +112,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Lower Boyndon Road 1</h2>
-  <p class="charger-address">30 Lower Boyndon Road SL6 4DD
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Lower Boyndon Road 1</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">30 Lower Boyndon Road <button class="copy-btn" data-copy="SL6 4DD">SL6 4DD</button>
   </p>
   
   <div class="charger-connections">
@@ -107,9 +139,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Cromwell Road 1</h2>
-  <p class="charger-address">Cromwell Road 1 SL6 6LZ
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Cromwell Road 1</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Cromwell Road 1 <button class="copy-btn" data-copy="SL6 6LZ">SL6 6LZ</button>
   </p>
   
   <div class="charger-connections">
@@ -131,9 +166,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Shell Maidenhead</h2>
-  <p class="charger-address">237 Bath Road SL6 0AR
+<li class="charger-item charger-item--rapid" data-connectors="CHAdeMO,CCS (Type 2)">
+  <div class="charger-header">
+    <h2 class="charger-name">Shell Maidenhead</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">237 Bath Road <button class="copy-btn" data-copy="SL6 0AR">SL6 0AR</button>
   </p>
   
   <div class="charger-connections">
@@ -161,9 +200,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Hurleyford Farm Limited</h2>
-  <p class="charger-address">Mill Lane SL6 5ND
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Hurleyford Farm Limited</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Mill Lane <button class="copy-btn" data-copy="SL6 5ND">SL6 5ND</button>
   </p>
   
   <div class="charger-connections">
@@ -182,9 +224,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Sainsbury&#39;s Building Car Park</h2>
-  <p class="charger-address">Sainsbury&#39;s Building - Underground Floor SL6 1QE
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Sainsbury&#39;s Building Car Park</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Sainsbury&#39;s Building - Underground Floor <button class="copy-btn" data-copy="SL6 1QE">SL6 1QE</button>
   </p>
   
   <div class="charger-connections">
@@ -209,6 +254,23 @@
 
 <p><a href="/" class="back-link">← All UK towns</a></p>
 
+
+<div class="nearby-towns">
+  <h2 class="nearby-heading">Nearby towns</h2>
+  <ul class="nearby-list">
+  
+    <li><a href="/uk/marlow/">Marlow</a></li>
+  
+    <li><a href="/uk/high-wycombe/">High Wycombe</a></li>
+  
+    <li><a href="/uk/windsor/">Windsor</a></li>
+  
+    <li><a href="/uk/bracknell/">Bracknell</a></li>
+  
+  </ul>
+</div>
+
+
 </div>
 
 <footer>
@@ -221,26 +283,61 @@
 <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 <script>
 (function () {
+  // --- Map ---
   var map = L.map('map').setView([51.5273201456165, -0.7339943355282933], 12);
-
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
   }).addTo(map);
 
   var markers = L.markerClusterGroup();
-  var chargerData = [{"lat": 51.524101, "lng": -0.715837, "title": "Hines Meadow Car Park", "address": "Lower ground left corner"}, {"lat": 51.526241, "lng": -0.73362, "title": "College Road 1", "address": "12 College Road"}, {"lat": 51.519688, "lng": -0.732679, "title": "Lower Boyndon Road 1", "address": "30 Lower Boyndon Road"}, {"lat": 51.525258, "lng": -0.739616, "title": "Cromwell Road 1", "address": "Cromwell Road 1"}, {"lat": 51.5227, "lng": -0.69143, "title": "Shell Maidenhead", "address": "237 Bath Road"}, {"lat": 51.54875309, "lng": -0.80591815, "title": "Hurleyford Farm Limited", "address": "Mill Lane"}, {"lat": 51.52449992931548, "lng": -0.718860198698053, "title": "Sainsbury's Building Car Park", "address": "Sainsbury's Building - Underground Floor"}];
+  var chargerData = [{"lat": 51.524101, "lng": -0.715837, "title": "Hines Meadow Car Park", "address": "Lower ground left corner", "connectors": ["Type 2 (Socket Only) · 3.7kW", "Type 2 (Socket Only) · 3.7kW"]}, {"lat": 51.526241, "lng": -0.73362, "title": "College Road 1", "address": "12 College Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 51.519688, "lng": -0.732679, "title": "Lower Boyndon Road 1", "address": "30 Lower Boyndon Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 51.525258, "lng": -0.739616, "title": "Cromwell Road 1", "address": "Cromwell Road 1", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 51.5227, "lng": -0.69143, "title": "Shell Maidenhead", "address": "237 Bath Road", "connectors": ["CHAdeMO · 100kW", "CCS (Type 2) · 175kW", "CHAdeMO · 100kW", "CCS (Type 2) · 175kW"]}, {"lat": 51.54875309, "lng": -0.80591815, "title": "Hurleyford Farm Limited", "address": "Mill Lane", "connectors": ["Type 2 (Socket Only) · 22kW"]}, {"lat": 51.52449992931548, "lng": -0.718860198698053, "title": "Sainsbury's Building Car Park", "address": "Sainsbury's Building - Underground Floor", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}];
 
   chargerData.forEach(function (c) {
+    var connHtml = c.connectors.length
+      ? '<div style="margin-top:6px;font-size:12px;color:#475569">' + c.connectors.join(' &middot; ') + '</div>'
+      : '';
     var marker = L.marker([c.lat, c.lng]);
     marker.bindPopup(
-      '<b>' + c.title + '</b><br>' + c.address + '<br><br>' +
+      '<b>' + c.title + '</b>' +
+      '<div style="color:#64748b;font-size:13px">' + c.address + '</div>' +
+      connHtml +
       '<a href="https://www.google.com/maps/dir/?api=1&destination=' + c.lat + ',' + c.lng +
-      '" target="_blank" rel="noopener">Get directions</a>'
+      '" target="_blank" rel="noopener" style="display:inline-block;margin-top:8px;padding:4px 10px;background:#2563eb;color:white;border-radius:4px;text-decoration:none;font-size:12px">Get directions</a>'
     );
     markers.addLayer(marker);
   });
-
   map.addLayer(markers);
+
+  // --- Connector filter ---
+  var filterBtns = document.querySelectorAll('.filter-btn');
+  var chargerItems = document.querySelectorAll('.charger-item');
+
+  filterBtns.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      filterBtns.forEach(function (b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      var f = btn.dataset.filter;
+      chargerItems.forEach(function (item) {
+        var connList = item.dataset.connectors ? item.dataset.connectors.split(',') : [];
+        item.style.display = (f === 'all' || connList.indexOf(f) !== -1) ? '' : 'none';
+      });
+    });
+  });
+
+  // --- Copy postcode ---
+  document.querySelectorAll('.copy-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var original = btn.textContent;
+      navigator.clipboard.writeText(btn.dataset.copy).then(function () {
+        btn.textContent = 'Copied!';
+        btn.classList.add('copy-btn--success');
+        setTimeout(function () {
+          btn.textContent = original;
+          btn.classList.remove('copy-btn--success');
+        }, 1500);
+      });
+    });
+  });
 }());
 </script>
 

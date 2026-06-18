@@ -17,7 +17,10 @@
 
 <header>
 <div class="container">
-<a href="/" class="logo">PlugMap <span class="tagline">UK EV Charger Locator</span></a>
+<a href="/" class="logo">
+  <svg class="logo-bolt" viewBox="0 0 24 24" fill="currentColor" width="22" height="22" aria-hidden="true"><path d="M13 2L4.5 13.5H11L10 22L19.5 10.5H13Z"/></svg>
+  PlugMap <span class="tagline">UK EV Charger Locator</span>
+</a>
 </div>
 </header>
 
@@ -28,16 +31,41 @@
 </nav>
 
 <h1>EV Chargers in York</h1>
-<p class="page-intro">27 public charging stations found in York.</p>
+
+<div class="stats-bar">
+  <span class="stat-pill stat-total">27 stations</span>
+  <span class="stat-pill stat-rapid">7 rapid (50kW+)</span>
+  <span class="stat-pill stat-fast">20 fast (7–50kW)</span>
+  
+</div>
 
 <div id="map"></div>
 
-<ul class="charger-list">
+
+<div class="connector-filter">
+  <span class="filter-label">Filter:</span>
+  <button class="filter-btn active" data-filter="all">All</button>
+  
+  <button class="filter-btn" data-filter="CCS (Type 2)">CCS (Type 2)</button>
+  
+  <button class="filter-btn" data-filter="CHAdeMO">CHAdeMO</button>
+  
+  <button class="filter-btn" data-filter="Type 2 (Socket Only)">Type 2 (Socket Only)</button>
+  
+  <button class="filter-btn" data-filter="Type 2 (Tethered Connector) ">Type 2 (Tethered Connector) </button>
+  
+</div>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Clifton Moor Car Park</h2>
-  <p class="charger-address">Clifton Moor Shopping Center YO30 4XZ
+<ul class="charger-list" id="charger-list">
+
+
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Clifton Moor Car Park</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Clifton Moor Shopping Center <button class="copy-btn" data-copy="YO30 4XZ">YO30 4XZ</button>
   </p>
   
   <div class="charger-connections">
@@ -59,9 +87,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Kirkbymoorside Golf Club</h2>
-  <p class="charger-address">Manor Vale Lane YO62 6EG
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Kirkbymoorside Golf Club</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Manor Vale Lane <button class="copy-btn" data-copy="YO62 6EG">YO62 6EG</button>
   </p>
   
   <div class="charger-connections">
@@ -80,9 +111,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Poppleton Bar Park and Ride</h2>
-  <p class="charger-address">A59 YO26 6QF
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Poppleton Bar Park and Ride</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">A59 <button class="copy-btn" data-copy="YO26 6QF">YO26 6QF</button>
   </p>
   
   <div class="charger-connections">
@@ -104,9 +138,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Q-Park Barbican, York 4</h2>
-  <p class="charger-address">Kent Street YO10 4AH
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Q-Park Barbican, York 4</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Kent Street <button class="copy-btn" data-copy="YO10 4AH">YO10 4AH</button>
   </p>
   
   <div class="charger-connections">
@@ -125,9 +162,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">ALDI Clifton</h2>
-  <p class="charger-address">ALDI Clifton YO30 6RF
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">ALDI Clifton</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">ALDI Clifton <button class="copy-btn" data-copy="YO30 6RF">YO30 6RF</button>
   </p>
   
   <div class="charger-connections">
@@ -149,9 +189,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Poppleton Bar rapid charger</h2>
-  <p class="charger-address">Poppleton Park&amp;Ride YO26 6QF
+<li class="charger-item charger-item--rapid" data-connectors="CHAdeMO,Type 2 (Tethered Connector) ">
+  <div class="charger-header">
+    <h2 class="charger-name">Poppleton Bar rapid charger</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Poppleton Park&amp;Ride <button class="copy-btn" data-copy="YO26 6QF">YO26 6QF</button>
   </p>
   
   <div class="charger-connections">
@@ -176,9 +220,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Bootham Row Car Park</h2>
-  <p class="charger-address">Bootham Row YO30 7BP
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Bootham Row Car Park</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Bootham Row <button class="copy-btn" data-copy="YO30 7BP">YO30 7BP</button>
   </p>
   
   <div class="charger-connections">
@@ -200,9 +247,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Morrisons York</h2>
-  <p class="charger-address">Layerthorpe YO31 7UJ
+<li class="charger-item charger-item--rapid" data-connectors="Type 2 (Tethered Connector) ,CHAdeMO,Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Morrisons York</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Layerthorpe <button class="copy-btn" data-copy="YO31 7UJ">YO31 7UJ</button>
   </p>
   
   <div class="charger-connections">
@@ -227,9 +278,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Q Parks Shambles, York 1</h2>
-  <p class="charger-address">Garden Place YO1 7NZ
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Q Parks Shambles, York 1</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Garden Place <button class="copy-btn" data-copy="YO1 7NZ">YO1 7NZ</button>
   </p>
   
   <div class="charger-connections">
@@ -248,9 +302,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">DRAX00217</h2>
-  <p class="charger-address">Novotel York YO10 4FD
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">DRAX00217</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Novotel York <button class="copy-btn" data-copy="YO10 4FD">YO10 4FD</button>
   </p>
   
   <div class="charger-connections">
@@ -272,9 +329,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Poppleton Bar layby lane</h2>
-  <p class="charger-address">North Field Lane YO26 6QF
+<li class="charger-item charger-item--rapid" data-connectors="CHAdeMO,Type 2 (Tethered Connector) ">
+  <div class="charger-header">
+    <h2 class="charger-name">Poppleton Bar layby lane</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">North Field Lane <button class="copy-btn" data-copy="YO26 6QF">YO26 6QF</button>
   </p>
   
   <div class="charger-connections">
@@ -299,9 +360,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Lendal Tower</h2>
-  <p class="charger-address">Lendal Bridge YO1 7DP
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Lendal Tower</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Lendal Bridge <button class="copy-btn" data-copy="YO1 7DP">YO1 7DP</button>
   </p>
   
   <div class="charger-connections">
@@ -320,9 +384,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Monks Cross Park &amp; Ride</h2>
-  <p class="charger-address">Martello Way YO32 9JU
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Monks Cross Park &amp; Ride</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Martello Way <button class="copy-btn" data-copy="YO32 9JU">YO32 9JU</button>
   </p>
   
   <div class="charger-connections">
@@ -341,9 +408,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">York Community Stadium North Car Park ( Near Leisure Centre ) </h2>
-  <p class="charger-address">Kathryn Avenue YO32 9JS
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">York Community Stadium North Car Park ( Near Leisure Centre ) </h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Kathryn Avenue <button class="copy-btn" data-copy="YO32 9JS">YO32 9JS</button>
   </p>
   
   <div class="charger-connections">
@@ -365,9 +435,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Coxwold House 1</h2>
-  <p class="charger-address">Coxwold House YO61 3FB
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Coxwold House 1</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Coxwold House <button class="copy-btn" data-copy="YO61 3FB">YO61 3FB</button>
   </p>
   
   <div class="charger-connections">
@@ -386,9 +459,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">West Green Car Park</h2>
-  <p class="charger-address">West Green YO42 2YS
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">West Green Car Park</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">West Green <button class="copy-btn" data-copy="YO42 2YS">YO42 2YS</button>
   </p>
   
   <div class="charger-connections">
@@ -407,9 +483,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Askham Bar Park and Ride</h2>
-  <p class="charger-address">A64 YO24 1LW
+<li class="charger-item charger-item--rapid" data-connectors="CHAdeMO">
+  <div class="charger-header">
+    <h2 class="charger-name">Askham Bar Park and Ride</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">A64 <button class="copy-btn" data-copy="YO24 1LW">YO24 1LW</button>
   </p>
   
   <div class="charger-connections">
@@ -431,9 +511,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">The Beehive</h2>
-  <p class="charger-address">22 Ascot Way YO24 4QZ
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">The Beehive</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">22 Ascot Way <button class="copy-btn" data-copy="YO24 4QZ">YO24 4QZ</button>
   </p>
   
   <div class="charger-connections">
@@ -452,9 +535,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Morrisons York Foss Islands</h2>
-  <p class="charger-address">Foss Islands Rd YO31 7UJ
+<li class="charger-item charger-item--rapid" data-connectors="CHAdeMO,CCS (Type 2),Type 2 (Tethered Connector) ">
+  <div class="charger-header">
+    <h2 class="charger-name">Morrisons York Foss Islands</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Foss Islands Rd <button class="copy-btn" data-copy="YO31 7UJ">YO31 7UJ</button>
   </p>
   
   <div class="charger-connections">
@@ -479,9 +566,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Travelodge Monks Cross</h2>
-  <p class="charger-address">Monks Cross Dr YO32 9GZ
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Travelodge Monks Cross</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Monks Cross Dr <button class="copy-btn" data-copy="YO32 9GZ">YO32 9GZ</button>
   </p>
   
   <div class="charger-connections">
@@ -503,9 +593,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Monks Cross Car Park F ( Near Pizza Hut )</h2>
-  <p class="charger-address">Huntington YO32 9LF
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Monks Cross Car Park F ( Near Pizza Hut )</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Huntington <button class="copy-btn" data-copy="YO32 9LF">YO32 9LF</button>
   </p>
   
   <div class="charger-connections">
@@ -524,9 +617,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Fulford</h2>
-  <p class="charger-address">Fulford YO19 4TA
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Fulford</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Fulford <button class="copy-btn" data-copy="YO19 4TA">YO19 4TA</button>
   </p>
   
   <div class="charger-connections">
@@ -545,9 +641,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Nunnery Lane car park</h2>
-  <p class="charger-address">43 Nunnery Lane YO23 1AA
+<li class="charger-item charger-item--rapid" data-connectors="CHAdeMO,Type 2 (Tethered Connector) ">
+  <div class="charger-header">
+    <h2 class="charger-name">Nunnery Lane car park</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">43 Nunnery Lane <button class="copy-btn" data-copy="YO23 1AA">YO23 1AA</button>
   </p>
   
   <div class="charger-connections">
@@ -572,9 +672,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Askham Bar Park &amp; Ride</h2>
-  <p class="charger-address">Askham Bar Park &amp; Ride YO24
+<li class="charger-item charger-item--rapid" data-connectors="CHAdeMO,CCS (Type 2),Type 2 (Tethered Connector) ,Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Askham Bar Park &amp; Ride</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Askham Bar Park &amp; Ride <button class="copy-btn" data-copy="YO24">YO24</button>
   </p>
   
   <div class="charger-connections">
@@ -602,9 +706,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Bootham Row Car Park</h2>
-  <p class="charger-address">Bootham Row Car Park YO30 7BP
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Bootham Row Car Park</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Bootham Row Car Park <button class="copy-btn" data-copy="YO30 7BP">YO30 7BP</button>
   </p>
   
   <div class="charger-connections">
@@ -623,9 +730,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Cineworld Car Park</h2>
-  <p class="charger-address">Martello Way YO32 9JU
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Cineworld Car Park</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Martello Way <button class="copy-btn" data-copy="YO32 9JU">YO32 9JU</button>
   </p>
   
   <div class="charger-connections">
@@ -647,9 +757,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">This point is reserved for council pool vehicles and visitors to the Eco Depot</h2>
-  <p class="charger-address">1 Hazel Court YO10 3DS
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">This point is reserved for council pool vehicles and visitors to the Eco Depot</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">1 Hazel Court <button class="copy-btn" data-copy="YO10 3DS">YO10 3DS</button>
   </p>
   
   <div class="charger-connections">
@@ -674,6 +787,23 @@
 
 <p><a href="/" class="back-link">← All UK towns</a></p>
 
+
+<div class="nearby-towns">
+  <h2 class="nearby-heading">Nearby towns</h2>
+  <ul class="nearby-list">
+  
+    <li><a href="/uk/selby/">Selby</a></li>
+  
+    <li><a href="/uk/wetherby/">Wetherby</a></li>
+  
+    <li><a href="/uk/thirsk/">Thirsk</a></li>
+  
+    <li><a href="/uk/knaresborough/">Knaresborough</a></li>
+  
+  </ul>
+</div>
+
+
 </div>
 
 <footer>
@@ -686,26 +816,61 @@
 <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 <script>
 (function () {
+  // --- Map ---
   var map = L.map('map').setView([53.97966317876579, -1.0748094289280692], 12);
-
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
   }).addTo(map);
 
   var markers = L.markerClusterGroup();
-  var chargerData = [{"lat": 53.991428, "lng": -1.104439, "title": "Clifton Moor Car Park", "address": "Clifton Moor Shopping Center"}, {"lat": 54.27694463, "lng": -0.939034818, "title": "Kirkbymoorside Golf Club", "address": "Manor Vale Lane"}, {"lat": 53.973049, "lng": -1.14924, "title": "Poppleton Bar Park and Ride", "address": "A59"}, {"lat": 53.952729, "lng": -1.073347, "title": "Q-Park Barbican, York 4", "address": "Kent Street"}, {"lat": 53.984154, "lng": -1.095365, "title": "ALDI Clifton", "address": "ALDI Clifton"}, {"lat": 53.972918, "lng": -1.150518, "title": "Poppleton Bar rapid charger", "address": "Poppleton Park&Ride"}, {"lat": 53.963699, "lng": -1.08633, "title": "Bootham Row Car Park", "address": "Bootham Row"}, {"lat": 53.959499, "lng": -1.071522, "title": "Morrisons York", "address": "Layerthorpe"}, {"lat": 53.958319, "lng": -1.076517, "title": "Q Parks Shambles, York 1", "address": "Garden Place"}, {"lat": 53.95228, "lng": -1.0772, "title": "DRAX00217", "address": "Novotel York"}, {"lat": 53.96837, "lng": -1.15186, "title": "Poppleton Bar layby lane", "address": "North Field Lane"}, {"lat": 53.9603301, "lng": -1.08705565, "title": "Lendal Tower", "address": "Lendal Bridge"}, {"lat": 53.98162514046794, "lng": -1.051295474945391, "title": "Monks Cross Park & Ride", "address": "Martello Way"}, {"lat": 53.98535313253842, "lng": -1.0530792107546176, "title": "York Community Stadium North Car Park ( Near Leisure Centre ) ", "address": "Kathryn Avenue"}, {"lat": 54.115294, "lng": -1.184086, "title": "Coxwold House 1", "address": "Coxwold House"}, {"lat": 53.929404, "lng": -0.781537, "title": "West Green Car Park", "address": "West Green"}, {"lat": 53.927547, "lng": -1.118227, "title": "Askham Bar Park and Ride", "address": "A64"}, {"lat": 53.94822294295494, "lng": -1.1196872883554079, "title": "The Beehive", "address": "22 Ascot Way"}, {"lat": 53.9606668218004, "lng": -1.0704838023195862, "title": "Morrisons York Foss Islands", "address": "Foss Islands Rd"}, {"lat": 53.990463, "lng": -1.047362, "title": "Travelodge Monks Cross", "address": "Monks Cross Dr"}, {"lat": 53.987102779385964, "lng": -1.0471735107370819, "title": "Monks Cross Car Park F ( Near Pizza Hut )", "address": "Huntington"}, {"lat": 53.921558, "lng": -1.078186, "title": "Fulford", "address": "Fulford"}, {"lat": 53.954136, "lng": -1.087322, "title": "Nunnery Lane car park", "address": "43 Nunnery Lane"}, {"lat": 53.92973335244082, "lng": -1.117952620167216, "title": "Askham Bar Park & Ride", "address": "Askham Bar Park & Ride"}, {"lat": 53.9637, "lng": -1.08533, "title": "Bootham Row Car Park", "address": "Bootham Row Car Park"}, {"lat": 53.983190927087776, "lng": -1.0522592057785687, "title": "Cineworld Car Park", "address": "Martello Way"}, {"lat": 53.959189, "lng": -1.063445, "title": "This point is reserved for council pool vehicles and visitors to the Eco Depot", "address": "1 Hazel Court"}];
+  var chargerData = [{"lat": 53.991428, "lng": -1.104439, "title": "Clifton Moor Car Park", "address": "Clifton Moor Shopping Center", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 54.27694463, "lng": -0.939034818, "title": "Kirkbymoorside Golf Club", "address": "Manor Vale Lane", "connectors": ["Type 2 (Socket Only) · 22kW"]}, {"lat": 53.973049, "lng": -1.14924, "title": "Poppleton Bar Park and Ride", "address": "A59", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 53.952729, "lng": -1.073347, "title": "Q-Park Barbican, York 4", "address": "Kent Street", "connectors": ["Type 2 (Socket Only) · 22kW"]}, {"lat": 53.984154, "lng": -1.095365, "title": "ALDI Clifton", "address": "ALDI Clifton", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 53.972918, "lng": -1.150518, "title": "Poppleton Bar rapid charger", "address": "Poppleton Park&Ride", "connectors": ["CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 50kW", "Type 2 (Tethered Connector)  · 43kW"]}, {"lat": 53.963699, "lng": -1.08633, "title": "Bootham Row Car Park", "address": "Bootham Row", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 53.959499, "lng": -1.071522, "title": "Morrisons York", "address": "Layerthorpe", "connectors": ["Type 2 (Tethered Connector)  · 60kW", "CHAdeMO · 50kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 53.958319, "lng": -1.076517, "title": "Q Parks Shambles, York 1", "address": "Garden Place", "connectors": ["Type 2 (Socket Only) · 22kW"]}, {"lat": 53.95228, "lng": -1.0772, "title": "DRAX00217", "address": "Novotel York", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 53.96837, "lng": -1.15186, "title": "Poppleton Bar layby lane", "address": "North Field Lane", "connectors": ["CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 50kW", "Type 2 (Tethered Connector)  · 43kW"]}, {"lat": 53.9603301, "lng": -1.08705565, "title": "Lendal Tower", "address": "Lendal Bridge", "connectors": ["Type 2 (Socket Only) · 7kW"]}, {"lat": 53.98162514046794, "lng": -1.051295474945391, "title": "Monks Cross Park & Ride", "address": "Martello Way", "connectors": ["Type 2 (Socket Only) · 7.2kW"]}, {"lat": 53.98535313253842, "lng": -1.0530792107546176, "title": "York Community Stadium North Car Park ( Near Leisure Centre ) ", "address": "Kathryn Avenue", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 54.115294, "lng": -1.184086, "title": "Coxwold House 1", "address": "Coxwold House", "connectors": ["Type 2 (Socket Only) · 22kW"]}, {"lat": 53.929404, "lng": -0.781537, "title": "West Green Car Park", "address": "West Green", "connectors": ["Type 2 (Socket Only) · 7kW"]}, {"lat": 53.927547, "lng": -1.118227, "title": "Askham Bar Park and Ride", "address": "A64", "connectors": ["CHAdeMO · 50kW", "CHAdeMO · 50kW"]}, {"lat": 53.94822294295494, "lng": -1.1196872883554079, "title": "The Beehive", "address": "22 Ascot Way", "connectors": ["Type 2 (Socket Only) · 7kW"]}, {"lat": 53.9606668218004, "lng": -1.0704838023195862, "title": "Morrisons York Foss Islands", "address": "Foss Islands Rd", "connectors": ["CHAdeMO · 50kW", "CCS (Type 2) · 50kW", "Type 2 (Tethered Connector)  · 43kW"]}, {"lat": 53.990463, "lng": -1.047362, "title": "Travelodge Monks Cross", "address": "Monks Cross Dr", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 53.987102779385964, "lng": -1.0471735107370819, "title": "Monks Cross Car Park F ( Near Pizza Hut )", "address": "Huntington", "connectors": ["Type 2 (Socket Only) · 7kW"]}, {"lat": 53.921558, "lng": -1.078186, "title": "Fulford", "address": "Fulford", "connectors": ["Type 2 (Socket Only) · 7kW"]}, {"lat": 53.954136, "lng": -1.087322, "title": "Nunnery Lane car park", "address": "43 Nunnery Lane", "connectors": ["CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 50kW", "Type 2 (Tethered Connector)  · 43kW"]}, {"lat": 53.92973335244082, "lng": -1.117952620167216, "title": "Askham Bar Park & Ride", "address": "Askham Bar Park & Ride", "connectors": ["CHAdeMO · 50kW", "CCS (Type 2) · 50kW", "Type 2 (Tethered Connector)  · 43kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 53.9637, "lng": -1.08533, "title": "Bootham Row Car Park", "address": "Bootham Row Car Park", "connectors": ["Type 2 (Socket Only) · 22kW"]}, {"lat": 53.983190927087776, "lng": -1.0522592057785687, "title": "Cineworld Car Park", "address": "Martello Way", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 53.959189, "lng": -1.063445, "title": "This point is reserved for council pool vehicles and visitors to the Eco Depot", "address": "1 Hazel Court", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}];
 
   chargerData.forEach(function (c) {
+    var connHtml = c.connectors.length
+      ? '<div style="margin-top:6px;font-size:12px;color:#475569">' + c.connectors.join(' &middot; ') + '</div>'
+      : '';
     var marker = L.marker([c.lat, c.lng]);
     marker.bindPopup(
-      '<b>' + c.title + '</b><br>' + c.address + '<br><br>' +
+      '<b>' + c.title + '</b>' +
+      '<div style="color:#64748b;font-size:13px">' + c.address + '</div>' +
+      connHtml +
       '<a href="https://www.google.com/maps/dir/?api=1&destination=' + c.lat + ',' + c.lng +
-      '" target="_blank" rel="noopener">Get directions</a>'
+      '" target="_blank" rel="noopener" style="display:inline-block;margin-top:8px;padding:4px 10px;background:#2563eb;color:white;border-radius:4px;text-decoration:none;font-size:12px">Get directions</a>'
     );
     markers.addLayer(marker);
   });
-
   map.addLayer(markers);
+
+  // --- Connector filter ---
+  var filterBtns = document.querySelectorAll('.filter-btn');
+  var chargerItems = document.querySelectorAll('.charger-item');
+
+  filterBtns.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      filterBtns.forEach(function (b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      var f = btn.dataset.filter;
+      chargerItems.forEach(function (item) {
+        var connList = item.dataset.connectors ? item.dataset.connectors.split(',') : [];
+        item.style.display = (f === 'all' || connList.indexOf(f) !== -1) ? '' : 'none';
+      });
+    });
+  });
+
+  // --- Copy postcode ---
+  document.querySelectorAll('.copy-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var original = btn.textContent;
+      navigator.clipboard.writeText(btn.dataset.copy).then(function () {
+        btn.textContent = 'Copied!';
+        btn.classList.add('copy-btn--success');
+        setTimeout(function () {
+          btn.textContent = original;
+          btn.classList.remove('copy-btn--success');
+        }, 1500);
+      });
+    });
+  });
 }());
 </script>
 

@@ -17,7 +17,10 @@
 
 <header>
 <div class="container">
-<a href="/" class="logo">PlugMap <span class="tagline">UK EV Charger Locator</span></a>
+<a href="/" class="logo">
+  <svg class="logo-bolt" viewBox="0 0 24 24" fill="currentColor" width="22" height="22" aria-hidden="true"><path d="M13 2L4.5 13.5H11L10 22L19.5 10.5H13Z"/></svg>
+  PlugMap <span class="tagline">UK EV Charger Locator</span>
+</a>
 </div>
 </header>
 
@@ -28,16 +31,42 @@
 </nav>
 
 <h1>EV Chargers in Bodmin</h1>
-<p class="page-intro">8 public charging stations found in Bodmin.</p>
+
+<div class="stats-bar">
+  <span class="stat-pill stat-total">8 stations</span>
+  <span class="stat-pill stat-rapid">5 rapid (50kW+)</span>
+  <span class="stat-pill stat-fast">3 fast (7–50kW)</span>
+  
+</div>
 
 <div id="map"></div>
 
-<ul class="charger-list">
+
+<div class="connector-filter">
+  <span class="filter-label">Filter:</span>
+  <button class="filter-btn active" data-filter="all">All</button>
+  
+  <button class="filter-btn" data-filter="CCS (Type 2)">CCS (Type 2)</button>
+  
+  <button class="filter-btn" data-filter="CHAdeMO">CHAdeMO</button>
+  
+  <button class="filter-btn" data-filter="Type 2 (Socket Only)">Type 2 (Socket Only)</button>
+  
+  <button class="filter-btn" data-filter="Type 2 (Tethered Connector) ">Type 2 (Tethered Connector) </button>
+  
+</div>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Ionity Bodmin</h2>
-  <p class="charger-address">Barnpark Lane PL31 2WR
+<ul class="charger-list" id="charger-list">
+
+
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2)">
+  <div class="charger-header">
+    <h2 class="charger-name">Ionity Bodmin</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Barnpark Lane <button class="copy-btn" data-copy="PL31 2WR">PL31 2WR</button>
   </p>
   
   <div class="charger-connections">
@@ -59,9 +88,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Victoria Square</h2>
-  <p class="charger-address">Victoria Square PL31 1EB
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Victoria Square</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Victoria Square <button class="copy-btn" data-copy="PL31 1EB">PL31 1EB</button>
   </p>
   
   <div class="charger-connections">
@@ -80,9 +112,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Morrisons Bodmin</h2>
-  <p class="charger-address">Morrisons Bodmin PL31 2ST
+<li class="charger-item charger-item--rapid" data-connectors="Type 2 (Socket Only),CHAdeMO,Type 2 (Tethered Connector) ">
+  <div class="charger-header">
+    <h2 class="charger-name">Morrisons Bodmin</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Morrisons Bodmin <button class="copy-btn" data-copy="PL31 2ST">PL31 2ST</button>
   </p>
   
   <div class="charger-connections">
@@ -107,9 +143,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Bodmin Retail Park</h2>
-  <p class="charger-address">Launceston Road PL31 2GA
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2),CHAdeMO">
+  <div class="charger-header">
+    <h2 class="charger-name">Bodmin Retail Park</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Launceston Road <button class="copy-btn" data-copy="PL31 2GA">PL31 2GA</button>
   </p>
   
   <div class="charger-connections">
@@ -131,9 +171,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Chy Trevail</h2>
-  <p class="charger-address">Chy Trevail, Beacon Technology PL31 2FR
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Chy Trevail</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Chy Trevail, Beacon Technology <button class="copy-btn" data-copy="PL31 2FR">PL31 2FR</button>
   </p>
   
   <div class="charger-connections">
@@ -155,9 +198,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Berrycoombe Car Park</h2>
-  <p class="charger-address">Berrycoombe Road PL31 2NS
+<li class="charger-item charger-item--rapid" data-connectors="Type 2 (Tethered Connector) ,CHAdeMO">
+  <div class="charger-header">
+    <h2 class="charger-name">Berrycoombe Car Park</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Berrycoombe Road <button class="copy-btn" data-copy="PL31 2NS">PL31 2NS</button>
   </p>
   
   <div class="charger-connections">
@@ -182,9 +229,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Morrisons Bodmin</h2>
-  <p class="charger-address">Priory Road PL31 2ST
+<li class="charger-item charger-item--rapid" data-connectors="CHAdeMO,CCS (Type 2),Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Morrisons Bodmin</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Priory Road <button class="copy-btn" data-copy="PL31 2ST">PL31 2ST</button>
   </p>
   
   <div class="charger-connections">
@@ -209,9 +260,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Saint Mabyn Holiday Park</h2>
-  <p class="charger-address">St Mabyn PL30 3BY
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Saint Mabyn Holiday Park</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">St Mabyn <button class="copy-btn" data-copy="PL30 3BY">PL30 3BY</button>
   </p>
   
   <div class="charger-connections">
@@ -236,6 +290,23 @@
 
 <p><a href="/" class="back-link">← All UK towns</a></p>
 
+
+<div class="nearby-towns">
+  <h2 class="nearby-heading">Nearby towns</h2>
+  <ul class="nearby-list">
+  
+    <li><a href="/uk/truro/">Truro</a></li>
+  
+    <li><a href="/uk/falmouth/">Falmouth</a></li>
+  
+    <li><a href="/uk/redruth/">Redruth</a></li>
+  
+    <li><a href="/uk/plymouth/">Plymouth</a></li>
+  
+  </ul>
+</div>
+
+
 </div>
 
 <footer>
@@ -248,26 +319,61 @@
 <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 <script>
 (function () {
+  // --- Map ---
   var map = L.map('map').setView([50.47655935159585, -4.718567159547698], 12);
-
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
   }).addTo(map);
 
   var markers = L.markerClusterGroup();
-  var chargerData = [{"lat": 50.471763793775835, "lng": -4.704192031617509, "title": "Ionity Bodmin", "address": "Barnpark Lane"}, {"lat": 50.463848574658186, "lng": -4.712616873621414, "title": "Victoria Square", "address": "Victoria Square"}, {"lat": 50.468418, "lng": -4.708999, "title": "Morrisons Bodmin", "address": "Morrisons Bodmin"}, {"lat": 50.470666191263206, "lng": -4.705038013115768, "title": "Bodmin Retail Park", "address": "Launceston Road"}, {"lat": 50.4696, "lng": -4.74025, "title": "Chy Trevail", "address": "Chy Trevail, Beacon Technology"}, {"lat": 50.473251, "lng": -4.723145, "title": "Berrycoombe Car Park", "address": "Berrycoombe Road"}, {"lat": 50.46830025306963, "lng": -4.706374358026892, "title": "Morrisons Bodmin", "address": "Priory Road"}, {"lat": 50.526627, "lng": -4.747922, "title": "Saint Mabyn Holiday Park", "address": "St Mabyn"}];
+  var chargerData = [{"lat": 50.471763793775835, "lng": -4.704192031617509, "title": "Ionity Bodmin", "address": "Barnpark Lane", "connectors": ["CCS (Type 2) · 350kW", "CCS (Type 2) · 200kW"]}, {"lat": 50.463848574658186, "lng": -4.712616873621414, "title": "Victoria Square", "address": "Victoria Square", "connectors": ["Type 2 (Socket Only) · 7kW"]}, {"lat": 50.468418, "lng": -4.708999, "title": "Morrisons Bodmin", "address": "Morrisons Bodmin", "connectors": ["Type 2 (Socket Only) · 22kW", "CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 50kW"]}, {"lat": 50.470666191263206, "lng": -4.705038013115768, "title": "Bodmin Retail Park", "address": "Launceston Road", "connectors": ["CCS (Type 2) · 160kW", "CHAdeMO · 50kW"]}, {"lat": 50.4696, "lng": -4.74025, "title": "Chy Trevail", "address": "Chy Trevail, Beacon Technology", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 50.473251, "lng": -4.723145, "title": "Berrycoombe Car Park", "address": "Berrycoombe Road", "connectors": ["Type 2 (Tethered Connector)  · 50kW", "CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 43kW"]}, {"lat": 50.46830025306963, "lng": -4.706374358026892, "title": "Morrisons Bodmin", "address": "Priory Road", "connectors": ["CHAdeMO · 50kW", "CCS (Type 2) · 50kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 50.526627, "lng": -4.747922, "title": "Saint Mabyn Holiday Park", "address": "St Mabyn", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 22kW"]}];
 
   chargerData.forEach(function (c) {
+    var connHtml = c.connectors.length
+      ? '<div style="margin-top:6px;font-size:12px;color:#475569">' + c.connectors.join(' &middot; ') + '</div>'
+      : '';
     var marker = L.marker([c.lat, c.lng]);
     marker.bindPopup(
-      '<b>' + c.title + '</b><br>' + c.address + '<br><br>' +
+      '<b>' + c.title + '</b>' +
+      '<div style="color:#64748b;font-size:13px">' + c.address + '</div>' +
+      connHtml +
       '<a href="https://www.google.com/maps/dir/?api=1&destination=' + c.lat + ',' + c.lng +
-      '" target="_blank" rel="noopener">Get directions</a>'
+      '" target="_blank" rel="noopener" style="display:inline-block;margin-top:8px;padding:4px 10px;background:#2563eb;color:white;border-radius:4px;text-decoration:none;font-size:12px">Get directions</a>'
     );
     markers.addLayer(marker);
   });
-
   map.addLayer(markers);
+
+  // --- Connector filter ---
+  var filterBtns = document.querySelectorAll('.filter-btn');
+  var chargerItems = document.querySelectorAll('.charger-item');
+
+  filterBtns.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      filterBtns.forEach(function (b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      var f = btn.dataset.filter;
+      chargerItems.forEach(function (item) {
+        var connList = item.dataset.connectors ? item.dataset.connectors.split(',') : [];
+        item.style.display = (f === 'all' || connList.indexOf(f) !== -1) ? '' : 'none';
+      });
+    });
+  });
+
+  // --- Copy postcode ---
+  document.querySelectorAll('.copy-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var original = btn.textContent;
+      navigator.clipboard.writeText(btn.dataset.copy).then(function () {
+        btn.textContent = 'Copied!';
+        btn.classList.add('copy-btn--success');
+        setTimeout(function () {
+          btn.textContent = original;
+          btn.classList.remove('copy-btn--success');
+        }, 1500);
+      });
+    });
+  });
 }());
 </script>
 

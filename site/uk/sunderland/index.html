@@ -17,7 +17,10 @@
 
 <header>
 <div class="container">
-<a href="/" class="logo">PlugMap <span class="tagline">UK EV Charger Locator</span></a>
+<a href="/" class="logo">
+  <svg class="logo-bolt" viewBox="0 0 24 24" fill="currentColor" width="22" height="22" aria-hidden="true"><path d="M13 2L4.5 13.5H11L10 22L19.5 10.5H13Z"/></svg>
+  PlugMap <span class="tagline">UK EV Charger Locator</span>
+</a>
 </div>
 </header>
 
@@ -28,16 +31,44 @@
 </nav>
 
 <h1>EV Chargers in Sunderland</h1>
-<p class="page-intro">44 public charging stations found in Sunderland.</p>
+
+<div class="stats-bar">
+  <span class="stat-pill stat-total">44 stations</span>
+  <span class="stat-pill stat-rapid">7 rapid (50kW+)</span>
+  <span class="stat-pill stat-fast">35 fast (7–50kW)</span>
+  <span class="stat-pill stat-slow">2 slow</span>
+</div>
 
 <div id="map"></div>
 
-<ul class="charger-list">
+
+<div class="connector-filter">
+  <span class="filter-label">Filter:</span>
+  <button class="filter-btn active" data-filter="all">All</button>
+  
+  <button class="filter-btn" data-filter="BS1363 3 Pin 13 Amp">BS1363 3 Pin 13 Amp</button>
+  
+  <button class="filter-btn" data-filter="CCS (Type 2)">CCS (Type 2)</button>
+  
+  <button class="filter-btn" data-filter="CHAdeMO">CHAdeMO</button>
+  
+  <button class="filter-btn" data-filter="Type 2 (Socket Only)">Type 2 (Socket Only)</button>
+  
+  <button class="filter-btn" data-filter="Type 2 (Tethered Connector) ">Type 2 (Tethered Connector) </button>
+  
+</div>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Lidl-Sunderland</h2>
-  <p class="charger-address">Durham Road SR3 4DF
+<ul class="charger-list" id="charger-list">
+
+
+<li class="charger-item charger-item--rapid" data-connectors="Type 2 (Socket Only),CCS (Type 2),CHAdeMO">
+  <div class="charger-header">
+    <h2 class="charger-name">Lidl-Sunderland</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Durham Road <button class="copy-btn" data-copy="SR3 4DF">SR3 4DF</button>
   </p>
   
   <div class="charger-connections">
@@ -62,9 +93,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Nissan Main Car Park 3</h2>
-  <p class="charger-address">Nissan Main Car Park, Washington Road, Sunderland SR5 3NS
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only),BS1363 3 Pin 13 Amp">
+  <div class="charger-header">
+    <h2 class="charger-name">Nissan Main Car Park 3</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Nissan Main Car Park, Washington Road, Sunderland <button class="copy-btn" data-copy="SR5 3NS">SR5 3NS</button>
   </p>
   
   <div class="charger-connections">
@@ -86,9 +120,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Aldenham Road 1, Sunderland</h2>
-  <p class="charger-address">65 SR3 3DS
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Aldenham Road 1, Sunderland</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">65 <button class="copy-btn" data-copy="SR3 3DS">SR3 3DS</button>
   </p>
   
   <div class="charger-connections">
@@ -110,9 +147,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Cherry Blossom Way</h2>
-  <p class="charger-address">Cherry Blossom Way SR5 3NT
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Cherry Blossom Way</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Cherry Blossom Way <button class="copy-btn" data-copy="SR5 3NT">SR5 3NT</button>
   </p>
   
   <div class="charger-connections">
@@ -131,9 +171,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Town Centre Citroen</h2>
-  <p class="charger-address">Town Centre Citroen SR5 3JN
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Town Centre Citroen</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Town Centre Citroen <button class="copy-btn" data-copy="SR5 3JN">SR5 3JN</button>
   </p>
   
   <div class="charger-connections">
@@ -155,9 +198,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Sunderland Royal Hospital</h2>
-  <p class="charger-address">Estates Department SR4 7TP
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Sunderland Royal Hospital</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Estates Department <button class="copy-btn" data-copy="SR4 7TP">SR4 7TP</button>
   </p>
   
   <div class="charger-connections">
@@ -176,9 +222,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Sunderland Royal Hospital</h2>
-  <p class="charger-address">Estates Department SR4 7TP
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Sunderland Royal Hospital</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Estates Department <button class="copy-btn" data-copy="SR4 7TP">SR4 7TP</button>
   </p>
   
   <div class="charger-connections">
@@ -197,9 +246,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Wellmere Road</h2>
-  <p class="charger-address">Leechmere Industrial Estate SR2 9TE
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Wellmere Road</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Leechmere Industrial Estate <button class="copy-btn" data-copy="SR2 9TE">SR2 9TE</button>
   </p>
   
   <div class="charger-connections">
@@ -218,9 +270,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Gateshead College</h2>
-  <p class="charger-address">Washington Road SR5 3HE
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2),CHAdeMO,Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Gateshead College</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Washington Road <button class="copy-btn" data-copy="SR5 3HE">SR5 3HE</button>
   </p>
   
   <div class="charger-connections">
@@ -245,9 +301,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Ocean Park Car Park</h2>
-  <p class="charger-address">Ocean Park Car Park SR6 8ZZ
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Ocean Park Car Park</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Ocean Park Car Park <button class="copy-btn" data-copy="SR6 8ZZ">SR6 8ZZ</button>
   </p>
   
   <div class="charger-connections">
@@ -266,9 +325,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Gateshead College Nissan Site</h2>
-  <p class="charger-address">Gateshead College Nissan Site SR5 3NS
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Gateshead College Nissan Site</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Gateshead College Nissan Site <button class="copy-btn" data-copy="SR5 3NS">SR5 3NS</button>
   </p>
   
   <div class="charger-connections">
@@ -290,9 +352,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Nissan Main Car Park</h2>
-  <p class="charger-address">Washington Road SR5 3HZ
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Nissan Main Car Park</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Washington Road <button class="copy-btn" data-copy="SR5 3HZ">SR5 3HZ</button>
   </p>
   
   <div class="charger-connections">
@@ -314,9 +379,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Lidl - North Hylton Road</h2>
-  <p class="charger-address">North Hylton Road SR5 3JJ
+<li class="charger-item charger-item--rapid" data-connectors="Type 2 (Tethered Connector) ,CHAdeMO">
+  <div class="charger-header">
+    <h2 class="charger-name">Lidl - North Hylton Road</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">North Hylton Road <button class="copy-btn" data-copy="SR5 3JJ">SR5 3JJ</button>
   </p>
   
   <div class="charger-connections">
@@ -341,9 +410,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Nissan WEST NMUK Reception</h2>
-  <p class="charger-address">Washington Road SR5 3NS
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Nissan WEST NMUK Reception</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Washington Road <button class="copy-btn" data-copy="SR5 3NS">SR5 3NS</button>
   </p>
   
   <div class="charger-connections">
@@ -365,9 +437,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">University of Sunderland St Peters Campus</h2>
-  <p class="charger-address">University of Sunderland St Peters Campus SR6 3SD
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">University of Sunderland St Peters Campus</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">University of Sunderland St Peters Campus <button class="copy-btn" data-copy="SR6 3SD">SR6 3SD</button>
   </p>
   
   <div class="charger-connections">
@@ -386,9 +461,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Charles Street, Sunderland</h2>
-  <p class="charger-address">Charles Street SR1 1XB
+<li class="charger-item charger-item--rapid" data-connectors="Type 2 (Tethered Connector) ,CHAdeMO">
+  <div class="charger-header">
+    <h2 class="charger-name">Charles Street, Sunderland</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Charles Street <button class="copy-btn" data-copy="SR1 1XB">SR1 1XB</button>
   </p>
   
   <div class="charger-connections">
@@ -413,9 +492,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Tyne and Wear Fire and Rescue Service HQ</h2>
-  <p class="charger-address">Nissan Way SR5 3QY
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Tyne and Wear Fire and Rescue Service HQ</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Nissan Way <button class="copy-btn" data-copy="SR5 3QY">SR5 3QY</button>
   </p>
   
   <div class="charger-connections">
@@ -437,9 +519,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Future Technology Centre</h2>
-  <p class="charger-address">Nissan Way SR5 3NY
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Future Technology Centre</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Nissan Way <button class="copy-btn" data-copy="SR5 3NY">SR5 3NY</button>
   </p>
   
   <div class="charger-connections">
@@ -458,9 +543,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Gilbridge Avenue Police Station</h2>
-  <p class="charger-address">Gilbridge Avenue Police Station SR1 3AW
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Gilbridge Avenue Police Station</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Gilbridge Avenue Police Station <button class="copy-btn" data-copy="SR1 3AW">SR1 3AW</button>
   </p>
   
   <div class="charger-connections">
@@ -479,9 +567,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Future Technology Centre</h2>
-  <p class="charger-address">Nissan Way SR5 3NY
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Future Technology Centre</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Nissan Way <button class="copy-btn" data-copy="SR5 3NY">SR5 3NY</button>
   </p>
   
   <div class="charger-connections">
@@ -500,9 +591,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">University of Sunderland City Space</h2>
-  <p class="charger-address">University of Sunderland City Space SR1 3SD
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">University of Sunderland City Space</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">University of Sunderland City Space <button class="copy-btn" data-copy="SR1 3SD">SR1 3SD</button>
   </p>
   
   <div class="charger-connections">
@@ -521,9 +615,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Emprise Business Centre</h2>
-  <p class="charger-address">Emprise Business Centre SR2 7DN
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Emprise Business Centre</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Emprise Business Centre <button class="copy-btn" data-copy="SR2 7DN">SR2 7DN</button>
   </p>
   
   <div class="charger-connections">
@@ -545,9 +642,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Sunderland Civic Centre</h2>
-  <p class="charger-address">Cowan Terrace SR2 7DN
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Sunderland Civic Centre</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Cowan Terrace <button class="copy-btn" data-copy="SR2 7DN">SR2 7DN</button>
   </p>
   
   <div class="charger-connections">
@@ -566,9 +666,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Boughton Street Car Park</h2>
-  <p class="charger-address">Boughton Street Car Park SR1 3ZZ
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Boughton Street Car Park</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Boughton Street Car Park <button class="copy-btn" data-copy="SR1 3ZZ">SR1 3ZZ</button>
   </p>
   
   <div class="charger-connections">
@@ -587,9 +690,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Sunderland Royal Hospital</h2>
-  <p class="charger-address">Kayll Road SR4 7TP
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Sunderland Royal Hospital</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Kayll Road <button class="copy-btn" data-copy="SR4 7TP">SR4 7TP</button>
   </p>
   
   <div class="charger-connections">
@@ -608,9 +714,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Asda</h2>
-  <p class="charger-address">Leechmere Road Industrial Estate SR2 9TT
+<li class="charger-item charger-item--fast" data-connectors="BS1363 3 Pin 13 Amp,Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Asda</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Leechmere Road Industrial Estate <button class="copy-btn" data-copy="SR2 9TT">SR2 9TT</button>
   </p>
   
   <div class="charger-connections">
@@ -632,9 +741,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Morrisons Sunderland Doxford Park</h2>
-  <p class="charger-address">Morrisons Sunderland Doxford P SR3 2NE
+<li class="charger-item charger-item--rapid" data-connectors="Type 2 (Tethered Connector) ,CHAdeMO,Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Morrisons Sunderland Doxford Park</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Morrisons Sunderland Doxford P <button class="copy-btn" data-copy="SR3 2NE">SR3 2NE</button>
   </p>
   
   <div class="charger-connections">
@@ -659,9 +772,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Sainsbury&#39;s Sunderland North</h2>
-  <p class="charger-address">Riverside Way SR5 3JG
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Sainsbury&#39;s Sunderland North</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Riverside Way <button class="copy-btn" data-copy="SR5 3JG">SR5 3JG</button>
   </p>
   
   <div class="charger-connections">
@@ -680,9 +796,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">North East Bic LTD-Business Innovation Centre</h2>
-  <p class="charger-address">Wearfield SR5 2TA
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">North East Bic LTD-Business Innovation Centre</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Wearfield <button class="copy-btn" data-copy="SR5 2TA">SR5 2TA</button>
   </p>
   
   <div class="charger-connections">
@@ -719,9 +838,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Nissan EAST NMUK Offices</h2>
-  <p class="charger-address">Nissan EAST NMUK Offices SR5 3NS
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Nissan EAST NMUK Offices</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Nissan EAST NMUK Offices <button class="copy-btn" data-copy="SR5 3NS">SR5 3NS</button>
   </p>
   
   <div class="charger-connections">
@@ -743,9 +865,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Cellular Solutions</h2>
-  <p class="charger-address">Ferryboat Lane, Sunderland SR5 3JN
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only),BS1363 3 Pin 13 Amp">
+  <div class="charger-header">
+    <h2 class="charger-name">Cellular Solutions</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Ferryboat Lane, Sunderland <button class="copy-btn" data-copy="SR5 3JN">SR5 3JN</button>
   </p>
   
   <div class="charger-connections">
@@ -767,9 +892,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Biddick Arts Centre</h2>
-  <p class="charger-address">Biddick Arts Centre, Fallowfield way, Washington, Tyne &amp; Wear NE38 8AB
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only),BS1363 3 Pin 13 Amp">
+  <div class="charger-header">
+    <h2 class="charger-name">Biddick Arts Centre</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Biddick Arts Centre, Fallowfield way, Washington, Tyne &amp; Wear <button class="copy-btn" data-copy="NE38 8AB">NE38 8AB</button>
   </p>
   
   <div class="charger-connections">
@@ -791,9 +919,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Nissan NMUK Test Track</h2>
-  <p class="charger-address">Nissan NMUK Test Track SR5 3NS
+<li class="charger-item charger-item--slow" data-connectors="BS1363 3 Pin 13 Amp">
+  <div class="charger-header">
+    <h2 class="charger-name">Nissan NMUK Test Track</h2>
+    
+  </div>
+  <p class="charger-address">Nissan NMUK Test Track <button class="copy-btn" data-copy="SR5 3NS">SR5 3NS</button>
   </p>
   
   <div class="charger-connections">
@@ -812,9 +943,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Morrisons Sunderland</h2>
-  <p class="charger-address">William Doxford Centre SR3 2NE
+<li class="charger-item charger-item--rapid" data-connectors="Type 2 (Socket Only),CHAdeMO,CCS (Type 2)">
+  <div class="charger-header">
+    <h2 class="charger-name">Morrisons Sunderland</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">William Doxford Centre <button class="copy-btn" data-copy="SR3 2NE">SR3 2NE</button>
   </p>
   
   <div class="charger-connections">
@@ -839,9 +974,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Bunnyhill Centre</h2>
-  <p class="charger-address">Bunnyhill Centre SR2 7DN
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Bunnyhill Centre</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Bunnyhill Centre <button class="copy-btn" data-copy="SR2 7DN">SR2 7DN</button>
   </p>
   
   <div class="charger-connections">
@@ -863,9 +1001,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Tatham Street Car Park</h2>
-  <p class="charger-address">Tatham Street Car Park SR3 2QY
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Tatham Street Car Park</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Tatham Street Car Park <button class="copy-btn" data-copy="SR3 2QY">SR3 2QY</button>
   </p>
   
   <div class="charger-connections">
@@ -884,9 +1025,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Wearside Golf Club</h2>
-  <p class="charger-address">Wearside Golf Club SR4 9JT
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Wearside Golf Club</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Wearside Golf Club <button class="copy-btn" data-copy="SR4 9JT">SR4 9JT</button>
   </p>
   
   <div class="charger-connections">
@@ -905,9 +1049,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Silksworth Community Centre</h2>
-  <p class="charger-address">Silksworth Community Centre (Puma Centre) SR3 1PD
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Silksworth Community Centre</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Silksworth Community Centre (Puma Centre) <button class="copy-btn" data-copy="SR3 1PD">SR3 1PD</button>
   </p>
   
   <div class="charger-connections">
@@ -926,9 +1073,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Whitburn South Bents Car Park</h2>
-  <p class="charger-address">Whitburn South Bents Car Park SR6 7NT
+<li class="charger-item charger-item--rapid" data-connectors="CHAdeMO,Type 2 (Tethered Connector) ">
+  <div class="charger-header">
+    <h2 class="charger-name">Whitburn South Bents Car Park</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Whitburn South Bents Car Park <button class="copy-btn" data-copy="SR6 7NT">SR6 7NT</button>
   </p>
   
   <div class="charger-connections">
@@ -953,9 +1104,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Pulman Sunderland-Volkswagen</h2>
-  <p class="charger-address">Newcastle Road SR5 1QE
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Pulman Sunderland-Volkswagen</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Newcastle Road <button class="copy-btn" data-copy="SR5 1QE">SR5 1QE</button>
   </p>
   
   <div class="charger-connections">
@@ -974,9 +1128,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Sunderland</h2>
-  <p class="charger-address">Nissan Battery Plant Car Park SR5 3NS
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Sunderland</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Nissan Battery Plant Car Park <button class="copy-btn" data-copy="SR5 3NS">SR5 3NS</button>
   </p>
   
   <div class="charger-connections">
@@ -998,9 +1155,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Evans Halshaw Sunderland</h2>
-  <p class="charger-address">7 Castellian Road SR5 3RL
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Evans Halshaw Sunderland</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">7 Castellian Road <button class="copy-btn" data-copy="SR5 3RL">SR5 3RL</button>
   </p>
   
   <div class="charger-connections">
@@ -1022,9 +1182,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Commercial Road</h2>
-  <p class="charger-address">Commercial Road SR2 8GW
+<li class="charger-item charger-item--slow" data-connectors="BS1363 3 Pin 13 Amp">
+  <div class="charger-header">
+    <h2 class="charger-name">Commercial Road</h2>
+    
+  </div>
+  <p class="charger-address">Commercial Road <button class="copy-btn" data-copy="SR2 8GW">SR2 8GW</button>
   </p>
   
   <div class="charger-connections">
@@ -1043,9 +1206,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Ocean Road</h2>
-  <p class="charger-address">Ocean Road SR2 9QU
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Ocean Road</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Ocean Road <button class="copy-btn" data-copy="SR2 9QU">SR2 9QU</button>
   </p>
   
   <div class="charger-connections">
@@ -1067,6 +1233,23 @@
 
 <p><a href="/" class="back-link">← All UK towns</a></p>
 
+
+<div class="nearby-towns">
+  <h2 class="nearby-heading">Nearby towns</h2>
+  <ul class="nearby-list">
+  
+    <li><a href="/uk/south-shields/">South Shields</a></li>
+  
+    <li><a href="/uk/washington/">Washington</a></li>
+  
+    <li><a href="/uk/jarrow/">Jarrow</a></li>
+  
+    <li><a href="/uk/seaham/">Seaham</a></li>
+  
+  </ul>
+</div>
+
+
 </div>
 
 <footer>
@@ -1079,26 +1262,61 @@
 <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 <script>
 (function () {
+  // --- Map ---
   var map = L.map('map').setView([54.89881264624649, -1.4204935833219425], 12);
-
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
   }).addTo(map);
 
   var markers = L.markerClusterGroup();
-  var chargerData = [{"lat": 54.88882, "lng": -1.41816, "title": "Lidl-Sunderland", "address": "Durham Road"}, {"lat": 54.921638, "lng": -1.46631, "title": "Nissan Main Car Park 3", "address": "Nissan Main Car Park, Washington Road, Sunderland"}, {"lat": 54.876484, "lng": -1.420116, "title": "Aldenham Road 1, Sunderland", "address": "65"}, {"lat": 54.918182, "lng": -1.486937, "title": "Cherry Blossom Way", "address": "Cherry Blossom Way"}, {"lat": 54.913964, "lng": -1.45873, "title": "Town Centre Citroen", "address": "Town Centre Citroen"}, {"lat": 54.902389, "lng": -1.40678, "title": "Sunderland Royal Hospital", "address": "Estates Department"}, {"lat": 54.902289, "lng": -1.40678, "title": "Sunderland Royal Hospital", "address": "Estates Department"}, {"lat": 54.88082, "lng": -1.371616, "title": "Wellmere Road", "address": "Leechmere Industrial Estate"}, {"lat": 54.922938, "lng": -1.471278, "title": "Gateshead College", "address": "Washington Road"}, {"lat": 54.936007, "lng": -1.371349, "title": "Ocean Park Car Park", "address": "Ocean Park Car Park"}, {"lat": 54.922758, "lng": -1.470996, "title": "Gateshead College Nissan Site", "address": "Gateshead College Nissan Site"}, {"lat": 54.922144, "lng": -1.466991, "title": "Nissan Main Car Park", "address": "Washington Road"}, {"lat": 54.922026, "lng": -1.428377, "title": "Lidl - North Hylton Road", "address": "North Hylton Road"}, {"lat": 54.920977, "lng": -1.471637, "title": "Nissan WEST NMUK Reception", "address": "Washington Road"}, {"lat": 54.912317, "lng": -1.372204, "title": "University of Sunderland St Peters Campus", "address": "University of Sunderland St Peters Campus"}, {"lat": 54.908202, "lng": -1.377655, "title": "Charles Street, Sunderland", "address": "Charles Street"}, {"lat": 54.908107, "lng": -1.487201, "title": "Tyne and Wear Fire and Rescue Service HQ", "address": "Nissan Way"}, {"lat": 54.907166, "lng": -1.484941, "title": "Future Technology Centre", "address": "Nissan Way"}, {"lat": 54.907121, "lng": -1.388899, "title": "Gilbridge Avenue Police Station", "address": "Gilbridge Avenue Police Station"}, {"lat": 54.907063, "lng": -1.484941, "title": "Future Technology Centre", "address": "Nissan Way"}, {"lat": 54.904491, "lng": -1.392698, "title": "University of Sunderland City Space", "address": "University of Sunderland City Space"}, {"lat": 54.90382, "lng": -1.377277, "title": "Emprise Business Centre", "address": "Emprise Business Centre"}, {"lat": 54.902355, "lng": -1.382444, "title": "Sunderland Civic Centre", "address": "Cowan Terrace"}, {"lat": 54.902256, "lng": -1.386744, "title": "Boughton Street Car Park", "address": "Boughton Street Car Park"}, {"lat": 54.90155, "lng": -1.406987, "title": "Sunderland Royal Hospital", "address": "Kayll Road"}, {"lat": 54.881317, "lng": -1.374252, "title": "Asda", "address": "Leechmere Road Industrial Estate"}, {"lat": 54.866951, "lng": -1.414703, "title": "Morrisons Sunderland Doxford Park", "address": "Morrisons Sunderland Doxford P"}, {"lat": 54.920248, "lng": -1.422948, "title": "Sainsbury's Sunderland North", "address": "Riverside Way"}, {"lat": 54.91836, "lng": -1.41449, "title": "North East Bic LTD-Business Innovation Centre", "address": "Wearfield"}, {"lat": 54.921199, "lng": -1.467836, "title": "Nissan EAST NMUK Offices", "address": "Nissan EAST NMUK Offices"}, {"lat": 54.915217, "lng": -1.459393, "title": "Cellular Solutions", "address": "Ferryboat Lane, Sunderland"}, {"lat": 54.530959, "lng": -1.310808, "title": "Biddick Arts Centre", "address": "Biddick Arts Centre, Fallowfield way, Washington, Tyne & Wear"}, {"lat": 54.909617, "lng": -1.468518, "title": "Nissan NMUK Test Track", "address": "Nissan NMUK Test Track"}, {"lat": 54.86689843484555, "lng": -1.4162236661654788, "title": "Morrisons Sunderland", "address": "William Doxford Centre"}, {"lat": 54.925963, "lng": -1.446926, "title": "Bunnyhill Centre", "address": "Bunnyhill Centre"}, {"lat": 54.902926, "lng": -1.375003, "title": "Tatham Street Car Park", "address": "Tatham Street Car Park"}, {"lat": 54.892494, "lng": -1.478815, "title": "Wearside Golf Club", "address": "Wearside Golf Club"}, {"lat": 54.8833, "lng": -1.408803, "title": "Silksworth Community Centre", "address": "Silksworth Community Centre (Puma Centre)"}, {"lat": 54.94477, "lng": -1.364746, "title": "Whitburn South Bents Car Park", "address": "Whitburn South Bents Car Park"}, {"lat": 54.930013, "lng": -1.390559, "title": "Pulman Sunderland-Volkswagen", "address": "Newcastle Road"}, {"lat": 54.923774, "lng": -1.463665, "title": "Sunderland", "address": "Nissan Battery Plant Car Park"}, {"lat": 54.918726, "lng": -1.432847, "title": "Evans Halshaw Sunderland", "address": "7 Castellian Road"}, {"lat": 54.893776, "lng": -1.366589, "title": "Commercial Road", "address": "Commercial Road"}, {"lat": 54.885364, "lng": -1.366545, "title": "Ocean Road", "address": "Ocean Road"}];
+  var chargerData = [{"lat": 54.88882, "lng": -1.41816, "title": "Lidl-Sunderland", "address": "Durham Road", "connectors": ["Type 2 (Socket Only) · 22kW", "CCS (Type 2) · 50kW", "CHAdeMO · 50kW"]}, {"lat": 54.921638, "lng": -1.46631, "title": "Nissan Main Car Park 3", "address": "Nissan Main Car Park, Washington Road, Sunderland", "connectors": ["Type 2 (Socket Only) · 7kW", "BS1363 3 Pin 13 Amp · 3.7kW"]}, {"lat": 54.876484, "lng": -1.420116, "title": "Aldenham Road 1, Sunderland", "address": "65", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 54.918182, "lng": -1.486937, "title": "Cherry Blossom Way", "address": "Cherry Blossom Way", "connectors": ["Type 2 (Socket Only) · 7kW"]}, {"lat": 54.913964, "lng": -1.45873, "title": "Town Centre Citroen", "address": "Town Centre Citroen", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 54.902389, "lng": -1.40678, "title": "Sunderland Royal Hospital", "address": "Estates Department", "connectors": ["Type 2 (Socket Only) · 7kW"]}, {"lat": 54.902289, "lng": -1.40678, "title": "Sunderland Royal Hospital", "address": "Estates Department", "connectors": ["Type 2 (Socket Only) · 7kW"]}, {"lat": 54.88082, "lng": -1.371616, "title": "Wellmere Road", "address": "Leechmere Industrial Estate", "connectors": ["Type 2 (Socket Only) · 7kW"]}, {"lat": 54.922938, "lng": -1.471278, "title": "Gateshead College", "address": "Washington Road", "connectors": ["CCS (Type 2) · 60kW", "CHAdeMO · 60kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 54.936007, "lng": -1.371349, "title": "Ocean Park Car Park", "address": "Ocean Park Car Park", "connectors": ["Type 2 (Socket Only) · 7kW"]}, {"lat": 54.922758, "lng": -1.470996, "title": "Gateshead College Nissan Site", "address": "Gateshead College Nissan Site", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 54.922144, "lng": -1.466991, "title": "Nissan Main Car Park", "address": "Washington Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 54.922026, "lng": -1.428377, "title": "Lidl - North Hylton Road", "address": "North Hylton Road", "connectors": ["Type 2 (Tethered Connector)  · 43kW", "CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 50kW"]}, {"lat": 54.920977, "lng": -1.471637, "title": "Nissan WEST NMUK Reception", "address": "Washington Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 54.912317, "lng": -1.372204, "title": "University of Sunderland St Peters Campus", "address": "University of Sunderland St Peters Campus", "connectors": ["Type 2 (Socket Only) · 7kW"]}, {"lat": 54.908202, "lng": -1.377655, "title": "Charles Street, Sunderland", "address": "Charles Street", "connectors": ["Type 2 (Tethered Connector)  · 43kW", "CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 50kW"]}, {"lat": 54.908107, "lng": -1.487201, "title": "Tyne and Wear Fire and Rescue Service HQ", "address": "Nissan Way", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 54.907166, "lng": -1.484941, "title": "Future Technology Centre", "address": "Nissan Way", "connectors": ["Type 2 (Socket Only) · 7kW"]}, {"lat": 54.907121, "lng": -1.388899, "title": "Gilbridge Avenue Police Station", "address": "Gilbridge Avenue Police Station", "connectors": ["Type 2 (Socket Only) · 7kW"]}, {"lat": 54.907063, "lng": -1.484941, "title": "Future Technology Centre", "address": "Nissan Way", "connectors": ["Type 2 (Socket Only) · 7kW"]}, {"lat": 54.904491, "lng": -1.392698, "title": "University of Sunderland City Space", "address": "University of Sunderland City Space", "connectors": ["Type 2 (Socket Only) · 7kW"]}, {"lat": 54.90382, "lng": -1.377277, "title": "Emprise Business Centre", "address": "Emprise Business Centre", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 54.902355, "lng": -1.382444, "title": "Sunderland Civic Centre", "address": "Cowan Terrace", "connectors": ["Type 2 (Socket Only) · 7kW"]}, {"lat": 54.902256, "lng": -1.386744, "title": "Boughton Street Car Park", "address": "Boughton Street Car Park", "connectors": ["Type 2 (Socket Only) · 7kW"]}, {"lat": 54.90155, "lng": -1.406987, "title": "Sunderland Royal Hospital", "address": "Kayll Road", "connectors": ["Type 2 (Socket Only) · 7kW"]}, {"lat": 54.881317, "lng": -1.374252, "title": "Asda", "address": "Leechmere Road Industrial Estate", "connectors": ["BS1363 3 Pin 13 Amp · 3kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 54.866951, "lng": -1.414703, "title": "Morrisons Sunderland Doxford Park", "address": "Morrisons Sunderland Doxford P", "connectors": ["Type 2 (Tethered Connector)  · 60kW", "CHAdeMO · 50kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 54.920248, "lng": -1.422948, "title": "Sainsbury's Sunderland North", "address": "Riverside Way", "connectors": ["Type 2 (Socket Only) · 7kW"]}, {"lat": 54.91836, "lng": -1.41449, "title": "North East Bic LTD-Business Innovation Centre", "address": "Wearfield", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 54.921199, "lng": -1.467836, "title": "Nissan EAST NMUK Offices", "address": "Nissan EAST NMUK Offices", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 54.915217, "lng": -1.459393, "title": "Cellular Solutions", "address": "Ferryboat Lane, Sunderland", "connectors": ["Type 2 (Socket Only) · 7kW", "BS1363 3 Pin 13 Amp · 3.7kW"]}, {"lat": 54.530959, "lng": -1.310808, "title": "Biddick Arts Centre", "address": "Biddick Arts Centre, Fallowfield way, Washington, Tyne & Wear", "connectors": ["Type 2 (Socket Only) · 7kW", "BS1363 3 Pin 13 Amp · 3.7kW"]}, {"lat": 54.909617, "lng": -1.468518, "title": "Nissan NMUK Test Track", "address": "Nissan NMUK Test Track", "connectors": ["BS1363 3 Pin 13 Amp · 3kW"]}, {"lat": 54.86689843484555, "lng": -1.4162236661654788, "title": "Morrisons Sunderland", "address": "William Doxford Centre", "connectors": ["Type 2 (Socket Only) · 22kW", "CHAdeMO · 50kW", "CCS (Type 2) · 50kW"]}, {"lat": 54.925963, "lng": -1.446926, "title": "Bunnyhill Centre", "address": "Bunnyhill Centre", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 54.902926, "lng": -1.375003, "title": "Tatham Street Car Park", "address": "Tatham Street Car Park", "connectors": ["Type 2 (Socket Only) · 7kW"]}, {"lat": 54.892494, "lng": -1.478815, "title": "Wearside Golf Club", "address": "Wearside Golf Club", "connectors": ["Type 2 (Socket Only) · 7kW"]}, {"lat": 54.8833, "lng": -1.408803, "title": "Silksworth Community Centre", "address": "Silksworth Community Centre (Puma Centre)", "connectors": ["Type 2 (Socket Only) · 7kW"]}, {"lat": 54.94477, "lng": -1.364746, "title": "Whitburn South Bents Car Park", "address": "Whitburn South Bents Car Park", "connectors": ["CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 50kW", "Type 2 (Tethered Connector)  · 43kW"]}, {"lat": 54.930013, "lng": -1.390559, "title": "Pulman Sunderland-Volkswagen", "address": "Newcastle Road", "connectors": ["Type 2 (Socket Only) · 22kW"]}, {"lat": 54.923774, "lng": -1.463665, "title": "Sunderland", "address": "Nissan Battery Plant Car Park", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 54.918726, "lng": -1.432847, "title": "Evans Halshaw Sunderland", "address": "7 Castellian Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 54.893776, "lng": -1.366589, "title": "Commercial Road", "address": "Commercial Road", "connectors": ["BS1363 3 Pin 13 Amp · 3kW"]}, {"lat": 54.885364, "lng": -1.366545, "title": "Ocean Road", "address": "Ocean Road", "connectors": ["Type 2 (Socket Only) · 7kW"]}];
 
   chargerData.forEach(function (c) {
+    var connHtml = c.connectors.length
+      ? '<div style="margin-top:6px;font-size:12px;color:#475569">' + c.connectors.join(' &middot; ') + '</div>'
+      : '';
     var marker = L.marker([c.lat, c.lng]);
     marker.bindPopup(
-      '<b>' + c.title + '</b><br>' + c.address + '<br><br>' +
+      '<b>' + c.title + '</b>' +
+      '<div style="color:#64748b;font-size:13px">' + c.address + '</div>' +
+      connHtml +
       '<a href="https://www.google.com/maps/dir/?api=1&destination=' + c.lat + ',' + c.lng +
-      '" target="_blank" rel="noopener">Get directions</a>'
+      '" target="_blank" rel="noopener" style="display:inline-block;margin-top:8px;padding:4px 10px;background:#2563eb;color:white;border-radius:4px;text-decoration:none;font-size:12px">Get directions</a>'
     );
     markers.addLayer(marker);
   });
-
   map.addLayer(markers);
+
+  // --- Connector filter ---
+  var filterBtns = document.querySelectorAll('.filter-btn');
+  var chargerItems = document.querySelectorAll('.charger-item');
+
+  filterBtns.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      filterBtns.forEach(function (b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      var f = btn.dataset.filter;
+      chargerItems.forEach(function (item) {
+        var connList = item.dataset.connectors ? item.dataset.connectors.split(',') : [];
+        item.style.display = (f === 'all' || connList.indexOf(f) !== -1) ? '' : 'none';
+      });
+    });
+  });
+
+  // --- Copy postcode ---
+  document.querySelectorAll('.copy-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var original = btn.textContent;
+      navigator.clipboard.writeText(btn.dataset.copy).then(function () {
+        btn.textContent = 'Copied!';
+        btn.classList.add('copy-btn--success');
+        setTimeout(function () {
+          btn.textContent = original;
+          btn.classList.remove('copy-btn--success');
+        }, 1500);
+      });
+    });
+  });
 }());
 </script>
 

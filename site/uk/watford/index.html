@@ -17,7 +17,10 @@
 
 <header>
 <div class="container">
-<a href="/" class="logo">PlugMap <span class="tagline">UK EV Charger Locator</span></a>
+<a href="/" class="logo">
+  <svg class="logo-bolt" viewBox="0 0 24 24" fill="currentColor" width="22" height="22" aria-hidden="true"><path d="M13 2L4.5 13.5H11L10 22L19.5 10.5H13Z"/></svg>
+  PlugMap <span class="tagline">UK EV Charger Locator</span>
+</a>
 </div>
 </header>
 
@@ -28,16 +31,43 @@
 </nav>
 
 <h1>EV Chargers in Watford</h1>
-<p class="page-intro">39 public charging stations found in Watford.</p>
+
+<div class="stats-bar">
+  <span class="stat-pill stat-total">39 stations</span>
+  <span class="stat-pill stat-rapid">3 rapid (50kW+)</span>
+  <span class="stat-pill stat-fast">36 fast (7–50kW)</span>
+  
+</div>
 
 <div id="map"></div>
 
-<ul class="charger-list">
+
+<div class="connector-filter">
+  <span class="filter-label">Filter:</span>
+  <button class="filter-btn active" data-filter="all">All</button>
+  
+  <button class="filter-btn" data-filter="BS1363 3 Pin 13 Amp">BS1363 3 Pin 13 Amp</button>
+  
+  <button class="filter-btn" data-filter="CCS (Type 2)">CCS (Type 2)</button>
+  
+  <button class="filter-btn" data-filter="CHAdeMO">CHAdeMO</button>
+  
+  <button class="filter-btn" data-filter="Type 2 (Socket Only)">Type 2 (Socket Only)</button>
+  
+  <button class="filter-btn" data-filter="Type 2 (Tethered Connector) ">Type 2 (Tethered Connector) </button>
+  
+</div>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">The Arches Retail Park</h2>
-  <p class="charger-address">642 Lower High Street WD17 2SD
+<ul class="charger-list" id="charger-list">
+
+
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">The Arches Retail Park</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">642 Lower High Street <button class="copy-btn" data-copy="WD17 2SD">WD17 2SD</button>
   </p>
   
   <div class="charger-connections">
@@ -56,9 +86,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Sainsbury&#39;s Dome Roundabout</h2>
-  <p class="charger-address">Colne Way WD25 9GP
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2)">
+  <div class="charger-header">
+    <h2 class="charger-name">Sainsbury&#39;s Dome Roundabout</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Colne Way <button class="copy-btn" data-copy="WD25 9GP">WD25 9GP</button>
   </p>
   
   <div class="charger-connections">
@@ -77,9 +111,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Dapple Court</h2>
-  <p class="charger-address">300 Croxley View WD18 6AH
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Dapple Court</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">300 Croxley View <button class="copy-btn" data-copy="WD18 6AH">WD18 6AH</button>
   </p>
   
   <div class="charger-connections">
@@ -125,9 +162,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Westland Road, Watford</h2>
-  <p class="charger-address">Westland Road WD17 1QS
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Westland Road, Watford</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Westland Road <button class="copy-btn" data-copy="WD17 1QS">WD17 1QS</button>
   </p>
   
   <div class="charger-connections">
@@ -149,9 +189,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">The Avenue Carpark</h2>
-  <p class="charger-address">Rickmansworth Road WD17 3EX
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">The Avenue Carpark</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Rickmansworth Road <button class="copy-btn" data-copy="WD17 3EX">WD17 3EX</button>
   </p>
   
   <div class="charger-connections">
@@ -173,9 +216,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Sutton Road, Watford</h2>
-  <p class="charger-address">Sutton Road WD17 2QG
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Sutton Road, Watford</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Sutton Road <button class="copy-btn" data-copy="WD17 2QG">WD17 2QG</button>
   </p>
   
   <div class="charger-connections">
@@ -197,9 +243,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Watford Gade 01</h2>
-  <p class="charger-address">CitiPark Gade WD18 0JX
+<li class="charger-item charger-item--rapid" data-connectors="Type 2 (Tethered Connector) ">
+  <div class="charger-header">
+    <h2 class="charger-name">Watford Gade 01</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">CitiPark Gade <button class="copy-btn" data-copy="WD18 0JX">WD18 0JX</button>
   </p>
   
   <div class="charger-connections">
@@ -218,9 +268,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Intu Watford</h2>
-  <p class="charger-address">Queens Car-park Level 1 WD17 2UB
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Intu Watford</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Queens Car-park Level 1 <button class="copy-btn" data-copy="WD17 2UB">WD17 2UB</button>
   </p>
   
   <div class="charger-connections">
@@ -242,9 +295,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Granvill Road, Watford</h2>
-  <p class="charger-address">Granvill Road WD18 0AH
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Granvill Road, Watford</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Granvill Road <button class="copy-btn" data-copy="WD18 0AH">WD18 0AH</button>
   </p>
   
   <div class="charger-connections">
@@ -266,9 +322,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Bandbury Street</h2>
-  <p class="charger-address">Bandbury Street WD18 0EX
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Bandbury Street</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Bandbury Street <button class="copy-btn" data-copy="WD18 0EX">WD18 0EX</button>
   </p>
   
   <div class="charger-connections">
@@ -290,9 +349,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Century Retail Park</h2>
-  <p class="charger-address">Dalton Way WD17 2SF
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Century Retail Park</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Dalton Way <button class="copy-btn" data-copy="WD17 2SF">WD17 2SF</button>
   </p>
   
   <div class="charger-connections">
@@ -317,9 +379,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Watford Business Park</h2>
-  <p class="charger-address">Greenhill Crescent WD18 8QU
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Watford Business Park</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Greenhill Crescent <button class="copy-btn" data-copy="WD18 8QU">WD18 8QU</button>
   </p>
   
   <div class="charger-connections">
@@ -339,9 +404,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Croxley Business Park</h2>
-  <p class="charger-address">Building 1 WD18 8YR
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Croxley Business Park</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Building 1 <button class="copy-btn" data-copy="WD18 8YR">WD18 8YR</button>
   </p>
   
   <div class="charger-connections">
@@ -363,9 +431,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">RAWOWNED ATTENBOROUGH C1</h2>
-  <p class="charger-address">5 Edinburgh Mews WD19 4FS
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">RAWOWNED ATTENBOROUGH C1</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">5 Edinburgh Mews <button class="copy-btn" data-copy="WD19 4FS">WD19 4FS</button>
   </p>
   
   <div class="charger-connections">
@@ -387,9 +458,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Renault Nissan Alliance</h2>
-  <p class="charger-address">Unit 5, Wolsey Business Park, Watford, Hertfordshire WD18 9BL
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only),BS1363 3 Pin 13 Amp">
+  <div class="charger-header">
+    <h2 class="charger-name">Renault Nissan Alliance</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Unit 5, Wolsey Business Park, Watford, Hertfordshire <button class="copy-btn" data-copy="WD18 9BL">WD18 9BL</button>
   </p>
   
   <div class="charger-connections">
@@ -411,9 +485,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Grovesnor Road, Watford</h2>
-  <p class="charger-address">Grovesnor Road WD17 2QS
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Grovesnor Road, Watford</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Grovesnor Road <button class="copy-btn" data-copy="WD17 2QS">WD17 2QS</button>
   </p>
   
   <div class="charger-connections">
@@ -435,9 +512,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Century Park</h2>
-  <p class="charger-address">Dalton Way WD17 2SF
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Century Park</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Dalton Way <button class="copy-btn" data-copy="WD17 2SF">WD17 2SF</button>
   </p>
   
   <div class="charger-connections">
@@ -465,9 +545,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Watford, Bradshaw Road</h2>
-  <p class="charger-address">78 Bradshaw Road WD24 4DF
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Watford, Bradshaw Road</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">78 Bradshaw Road <button class="copy-btn" data-copy="WD24 4DF">WD24 4DF</button>
   </p>
   
   <div class="charger-connections">
@@ -489,9 +572,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Victoria Road, Watford</h2>
-  <p class="charger-address">67 Victoria Road WD24 5DN
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Victoria Road, Watford</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">67 Victoria Road <button class="copy-btn" data-copy="WD24 5DN">WD24 5DN</button>
   </p>
   
   <div class="charger-connections">
@@ -513,9 +599,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Salisbury Road, Watford</h2>
-  <p class="charger-address">Salisbury Road WD24 4DT
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Salisbury Road, Watford</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Salisbury Road <button class="copy-btn" data-copy="WD24 4DT">WD24 4DT</button>
   </p>
   
   <div class="charger-connections">
@@ -537,9 +626,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Church Road, Watford</h2>
-  <p class="charger-address">Church Road WD17 4PU
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Church Road, Watford</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Church Road <button class="copy-btn" data-copy="WD17 4PU">WD17 4PU</button>
   </p>
   
   <div class="charger-connections">
@@ -561,9 +653,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Stamford Road, Watford</h2>
-  <p class="charger-address">Stamford Road WD17 4QS
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Stamford Road, Watford</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Stamford Road <button class="copy-btn" data-copy="WD17 4QS">WD17 4QS</button>
   </p>
   
   <div class="charger-connections">
@@ -585,9 +680,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Watford, Essex Road</h2>
-  <p class="charger-address">Next to Post Box, Essex Road WD17 4EL
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Watford, Essex Road</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Next to Post Box, Essex Road <button class="copy-btn" data-copy="WD17 4EL">WD17 4EL</button>
   </p>
   
   <div class="charger-connections">
@@ -609,9 +707,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Sotheron Road, Watford</h2>
-  <p class="charger-address">Southernon Road WD17 2QA
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Sotheron Road, Watford</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Southernon Road <button class="copy-btn" data-copy="WD17 2QA">WD17 2QA</button>
   </p>
   
   <div class="charger-connections">
@@ -633,9 +734,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Watford, Cassiobury Park 1 (Gade Avenue)</h2>
-  <p class="charger-address">Cassiobury Park Car Park, Gade Avenue, WD18 7LG
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Watford, Cassiobury Park 1 (Gade Avenue)</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Cassiobury Park Car Park, Gade Avenue, <button class="copy-btn" data-copy="WD18 7LG">WD18 7LG</button>
   </p>
   
   <div class="charger-connections">
@@ -657,9 +761,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Watford, Shaftesbury Road</h2>
-  <p class="charger-address">Shaftesbury Road, Watford WD17 2RQ
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Watford, Shaftesbury Road</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Shaftesbury Road, Watford <button class="copy-btn" data-copy="WD17 2RQ">WD17 2RQ</button>
   </p>
   
   <div class="charger-connections">
@@ -681,9 +788,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Mildred Avenue, Watford</h2>
-  <p class="charger-address">Mildred Avenue WD18 7DX
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Mildred Avenue, Watford</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Mildred Avenue <button class="copy-btn" data-copy="WD18 7DX">WD18 7DX</button>
   </p>
   
   <div class="charger-connections">
@@ -705,9 +815,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Watford, Durban Road East</h2>
-  <p class="charger-address">33 Durban Road East WD18 0RN
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Watford, Durban Road East</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">33 Durban Road East <button class="copy-btn" data-copy="WD18 0RN">WD18 0RN</button>
   </p>
   
   <div class="charger-connections">
@@ -729,9 +842,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Holywell Road</h2>
-  <p class="charger-address">Holywell Road WD18 0HU
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Holywell Road</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Holywell Road <button class="copy-btn" data-copy="WD18 0HU">WD18 0HU</button>
   </p>
   
   <div class="charger-connections">
@@ -753,9 +869,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Belgrave Avenue</h2>
-  <p class="charger-address">Belgrave Avenue WD18 7UE
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Belgrave Avenue</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Belgrave Avenue <button class="copy-btn" data-copy="WD18 7UE">WD18 7UE</button>
   </p>
   
   <div class="charger-connections">
@@ -777,9 +896,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Liverpool Road</h2>
-  <p class="charger-address">Liverpool Road WD18 0DW
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Liverpool Road</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Liverpool Road <button class="copy-btn" data-copy="WD18 0DW">WD18 0DW</button>
   </p>
   
   <div class="charger-connections">
@@ -801,9 +923,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Tucker Street</h2>
-  <p class="charger-address">Tucker Street WD18 0AU
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Tucker Street</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Tucker Street <button class="copy-btn" data-copy="WD18 0AU">WD18 0AU</button>
   </p>
   
   <div class="charger-connections">
@@ -825,9 +950,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Elfrida Road</h2>
-  <p class="charger-address">Elfrida Road WD18 0AT
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Elfrida Road</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Elfrida Road <button class="copy-btn" data-copy="WD18 0AT">WD18 0AT</button>
   </p>
   
   <div class="charger-connections">
@@ -849,9 +977,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Bushey Arches Car Park</h2>
-  <p class="charger-address">Bushey Arches Car Park, Arches Service Station, Pinner Road, Bushey WD19 4FB
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Bushey Arches Car Park</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Bushey Arches Car Park, Arches Service Station, Pinner Road, Bushey <button class="copy-btn" data-copy="WD19 4FB">WD19 4FB</button>
   </p>
   
   <div class="charger-connections">
@@ -873,9 +1004,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Caxton Way Exit, Watford</h2>
-  <p class="charger-address">Caxton Road WD18 8FQ
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Caxton Way Exit, Watford</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Caxton Road <button class="copy-btn" data-copy="WD18 8FQ">WD18 8FQ</button>
   </p>
   
   <div class="charger-connections">
@@ -897,9 +1031,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Lower Paddock Road</h2>
-  <p class="charger-address">Lower Paddock Road WD19 4GU
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Lower Paddock Road</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Lower Paddock Road <button class="copy-btn" data-copy="WD19 4GU">WD19 4GU</button>
   </p>
   
   <div class="charger-connections">
@@ -921,9 +1058,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Caxton Way Entrance, Watford</h2>
-  <p class="charger-address">Caxton Road WD18 8QZ
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Caxton Way Entrance, Watford</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Caxton Road <button class="copy-btn" data-copy="WD18 8QZ">WD18 8QZ</button>
   </p>
   
   <div class="charger-connections">
@@ -945,9 +1085,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">BT Fleet</h2>
-  <p class="charger-address">Orphanage Road WD24 4QH
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">BT Fleet</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Orphanage Road <button class="copy-btn" data-copy="WD24 4QH">WD24 4QH</button>
   </p>
   
   <div class="charger-connections">
@@ -969,9 +1112,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Toby Carvery Watford</h2>
-  <p class="charger-address">3 Hartspring Lane WD25 8AD
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2),CHAdeMO,Type 2 (Tethered Connector) ">
+  <div class="charger-header">
+    <h2 class="charger-name">Toby Carvery Watford</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">3 Hartspring Lane <button class="copy-btn" data-copy="WD25 8AD">WD25 8AD</button>
   </p>
   
   <div class="charger-connections">
@@ -999,6 +1146,23 @@
 
 <p><a href="/" class="back-link">← All UK towns</a></p>
 
+
+<div class="nearby-towns">
+  <h2 class="nearby-heading">Nearby towns</h2>
+  <ul class="nearby-list">
+  
+    <li><a href="/uk/harrow/">Harrow</a></li>
+  
+    <li><a href="/uk/richmond/">Richmond</a></li>
+  
+    <li><a href="/uk/rickmansworth/">Rickmansworth</a></li>
+  
+    <li><a href="/uk/st-albans/">St Albans</a></li>
+  
+  </ul>
+</div>
+
+
 </div>
 
 <footer>
@@ -1011,26 +1175,61 @@
 <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 <script>
 (function () {
+  // --- Map ---
   var map = L.map('map').setView([51.655045195374605, -0.380590908552691], 12);
-
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
   }).addTo(map);
 
   var markers = L.markerClusterGroup();
-  var chargerData = [{"lat": 51.64847271, "lng": -0.38735624, "title": "The Arches Retail Park", "address": "642 Lower High Street"}, {"lat": 51.68154132563524, "lng": -0.38936309802494407, "title": "Sainsbury's Dome Roundabout", "address": "Colne Way"}, {"lat": 51.644441, "lng": -0.423675, "title": "Dapple Court", "address": "300 Croxley View"}, {"lat": 51.661521, "lng": -0.398813, "title": "Westland Road, Watford", "address": "Westland Road"}, {"lat": 51.658964, "lng": -0.403444, "title": "The Avenue Carpark", "address": "Rickmansworth Road"}, {"lat": 51.658999, "lng": -0.393842, "title": "Sutton Road, Watford", "address": "Sutton Road"}, {"lat": 51.657893, "lng": -0.401357, "title": "Watford Gade 01", "address": "CitiPark Gade"}, {"lat": 51.654999, "lng": -0.392859, "title": "Intu Watford", "address": "Queens Car-park Level 1"}, {"lat": 51.653278, "lng": -0.395104, "title": "Granvill Road, Watford", "address": "Granvill Road"}, {"lat": 51.650611, "lng": -0.404032, "title": "Bandbury Street", "address": "Bandbury Street"}, {"lat": 51.648285, "lng": -0.386395, "title": "Century Retail Park", "address": "Dalton Way"}, {"lat": 51.646622, "lng": -0.426528, "title": "Watford Business Park", "address": "Greenhill Crescent"}, {"lat": 51.646599, "lng": -0.42811, "title": "Croxley Business Park", "address": "Building 1"}, {"lat": 51.64593, "lng": -0.383176, "title": "RAWOWNED ATTENBOROUGH C1", "address": "5 Edinburgh Mews"}, {"lat": 51.640562, "lng": -0.427887, "title": "Renault Nissan Alliance", "address": "Unit 5, Wolsey Business Park, Watford, Hertfordshire"}, {"lat": 51.656713, "lng": -0.39201, "title": "Grovesnor Road, Watford", "address": "Grovesnor Road"}, {"lat": 51.64857258397426, "lng": -0.3899420955300043, "title": "Century Park", "address": "Dalton Way"}, {"lat": 51.670549, "lng": -0.39444, "title": "Watford, Bradshaw Road", "address": "78 Bradshaw Road"}, {"lat": 51.670414, "lng": -0.400168, "title": "Victoria Road, Watford", "address": "67 Victoria Road"}, {"lat": 51.670033, "lng": -0.396951, "title": "Salisbury Road, Watford", "address": "Salisbury Road"}, {"lat": 51.666349, "lng": -0.400482, "title": "Church Road, Watford", "address": "Church Road"}, {"lat": 51.664678, "lng": -0.401976, "title": "Stamford Road, Watford", "address": "Stamford Road"}, {"lat": 51.662258, "lng": -0.40143, "title": "Watford, Essex Road", "address": "Next to Post Box, Essex Road"}, {"lat": 51.660112, "lng": -0.394206, "title": "Sotheron Road, Watford", "address": "Southernon Road"}, {"lat": 51.658916, "lng": -0.421683, "title": "Watford, Cassiobury Park 1 (Gade Avenue)", "address": "Cassiobury Park Car Park, Gade Avenue,"}, {"lat": 51.65795, "lng": -0.389919, "title": "Watford, Shaftesbury Road", "address": "Shaftesbury Road, Watford"}, {"lat": 51.654924, "lng": -0.409749, "title": "Mildred Avenue, Watford", "address": "Mildred Avenue"}, {"lat": 51.653821, "lng": -0.404949, "title": "Watford, Durban Road East", "address": "33 Durban Road East"}, {"lat": 51.65027, "lng": -0.405378, "title": "Holywell Road", "address": "Holywell Road"}, {"lat": 51.65032, "lng": -0.410844, "title": "Belgrave Avenue", "address": "Belgrave Avenue"}, {"lat": 51.650167, "lng": -0.399586, "title": "Liverpool Road", "address": "Liverpool Road"}, {"lat": 51.649592, "lng": -0.394906, "title": "Tucker Street", "address": "Tucker Street"}, {"lat": 51.648852, "lng": -0.394098, "title": "Elfrida Road", "address": "Elfrida Road"}, {"lat": 51.64673, "lng": 0.384228, "title": "Bushey Arches Car Park", "address": "Bushey Arches Car Park, Arches Service Station, Pinner Road, Bushey"}, {"lat": 51.644341, "lng": -0.425849, "title": "Caxton Way Exit, Watford", "address": "Caxton Road"}, {"lat": 51.643177, "lng": -0.377865, "title": "Lower Paddock Road", "address": "Lower Paddock Road"}, {"lat": 51.642024, "lng": -0.425212, "title": "Caxton Way Entrance, Watford", "address": "Caxton Road"}, {"lat": 51.661476, "lng": -0.391724, "title": "BT Fleet", "address": "Orphanage Road"}, {"lat": 51.665806, "lng": -0.361965, "title": "Toby Carvery Watford", "address": "3 Hartspring Lane"}];
+  var chargerData = [{"lat": 51.64847271, "lng": -0.38735624, "title": "The Arches Retail Park", "address": "642 Lower High Street", "connectors": ["Type 2 (Socket Only) · 7kW"]}, {"lat": 51.68154132563524, "lng": -0.38936309802494407, "title": "Sainsbury's Dome Roundabout", "address": "Colne Way", "connectors": ["CCS (Type 2) · 150kW"]}, {"lat": 51.644441, "lng": -0.423675, "title": "Dapple Court", "address": "300 Croxley View", "connectors": ["Type 2 (Socket Only) · 3kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 51.661521, "lng": -0.398813, "title": "Westland Road, Watford", "address": "Westland Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 51.658964, "lng": -0.403444, "title": "The Avenue Carpark", "address": "Rickmansworth Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 51.658999, "lng": -0.393842, "title": "Sutton Road, Watford", "address": "Sutton Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 51.657893, "lng": -0.401357, "title": "Watford Gade 01", "address": "CitiPark Gade", "connectors": ["Type 2 (Tethered Connector)  · 120kW"]}, {"lat": 51.654999, "lng": -0.392859, "title": "Intu Watford", "address": "Queens Car-park Level 1", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 51.653278, "lng": -0.395104, "title": "Granvill Road, Watford", "address": "Granvill Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 51.650611, "lng": -0.404032, "title": "Bandbury Street", "address": "Bandbury Street", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 51.648285, "lng": -0.386395, "title": "Century Retail Park", "address": "Dalton Way", "connectors": ["Type 2 (Socket Only) · 3.7kW", "Type 2 (Socket Only) · 3.7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 51.646622, "lng": -0.426528, "title": "Watford Business Park", "address": "Greenhill Crescent", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 51.646599, "lng": -0.42811, "title": "Croxley Business Park", "address": "Building 1", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 51.64593, "lng": -0.383176, "title": "RAWOWNED ATTENBOROUGH C1", "address": "5 Edinburgh Mews", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 51.640562, "lng": -0.427887, "title": "Renault Nissan Alliance", "address": "Unit 5, Wolsey Business Park, Watford, Hertfordshire", "connectors": ["Type 2 (Socket Only) · 7kW", "BS1363 3 Pin 13 Amp · 3.7kW"]}, {"lat": 51.656713, "lng": -0.39201, "title": "Grovesnor Road, Watford", "address": "Grovesnor Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 51.64857258397426, "lng": -0.3899420955300043, "title": "Century Park", "address": "Dalton Way", "connectors": ["Type 2 (Socket Only) · 3.6kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 51.670549, "lng": -0.39444, "title": "Watford, Bradshaw Road", "address": "78 Bradshaw Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 51.670414, "lng": -0.400168, "title": "Victoria Road, Watford", "address": "67 Victoria Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 51.670033, "lng": -0.396951, "title": "Salisbury Road, Watford", "address": "Salisbury Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 51.666349, "lng": -0.400482, "title": "Church Road, Watford", "address": "Church Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 51.664678, "lng": -0.401976, "title": "Stamford Road, Watford", "address": "Stamford Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 51.662258, "lng": -0.40143, "title": "Watford, Essex Road", "address": "Next to Post Box, Essex Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 51.660112, "lng": -0.394206, "title": "Sotheron Road, Watford", "address": "Southernon Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 51.658916, "lng": -0.421683, "title": "Watford, Cassiobury Park 1 (Gade Avenue)", "address": "Cassiobury Park Car Park, Gade Avenue,", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 51.65795, "lng": -0.389919, "title": "Watford, Shaftesbury Road", "address": "Shaftesbury Road, Watford", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 51.654924, "lng": -0.409749, "title": "Mildred Avenue, Watford", "address": "Mildred Avenue", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 51.653821, "lng": -0.404949, "title": "Watford, Durban Road East", "address": "33 Durban Road East", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 51.65027, "lng": -0.405378, "title": "Holywell Road", "address": "Holywell Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 51.65032, "lng": -0.410844, "title": "Belgrave Avenue", "address": "Belgrave Avenue", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 51.650167, "lng": -0.399586, "title": "Liverpool Road", "address": "Liverpool Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 51.649592, "lng": -0.394906, "title": "Tucker Street", "address": "Tucker Street", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 51.648852, "lng": -0.394098, "title": "Elfrida Road", "address": "Elfrida Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 51.64673, "lng": 0.384228, "title": "Bushey Arches Car Park", "address": "Bushey Arches Car Park, Arches Service Station, Pinner Road, Bushey", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 51.644341, "lng": -0.425849, "title": "Caxton Way Exit, Watford", "address": "Caxton Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 51.643177, "lng": -0.377865, "title": "Lower Paddock Road", "address": "Lower Paddock Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 51.642024, "lng": -0.425212, "title": "Caxton Way Entrance, Watford", "address": "Caxton Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 51.661476, "lng": -0.391724, "title": "BT Fleet", "address": "Orphanage Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 51.665806, "lng": -0.361965, "title": "Toby Carvery Watford", "address": "3 Hartspring Lane", "connectors": ["CCS (Type 2) · 50kW", "CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 43kW"]}];
 
   chargerData.forEach(function (c) {
+    var connHtml = c.connectors.length
+      ? '<div style="margin-top:6px;font-size:12px;color:#475569">' + c.connectors.join(' &middot; ') + '</div>'
+      : '';
     var marker = L.marker([c.lat, c.lng]);
     marker.bindPopup(
-      '<b>' + c.title + '</b><br>' + c.address + '<br><br>' +
+      '<b>' + c.title + '</b>' +
+      '<div style="color:#64748b;font-size:13px">' + c.address + '</div>' +
+      connHtml +
       '<a href="https://www.google.com/maps/dir/?api=1&destination=' + c.lat + ',' + c.lng +
-      '" target="_blank" rel="noopener">Get directions</a>'
+      '" target="_blank" rel="noopener" style="display:inline-block;margin-top:8px;padding:4px 10px;background:#2563eb;color:white;border-radius:4px;text-decoration:none;font-size:12px">Get directions</a>'
     );
     markers.addLayer(marker);
   });
-
   map.addLayer(markers);
+
+  // --- Connector filter ---
+  var filterBtns = document.querySelectorAll('.filter-btn');
+  var chargerItems = document.querySelectorAll('.charger-item');
+
+  filterBtns.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      filterBtns.forEach(function (b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      var f = btn.dataset.filter;
+      chargerItems.forEach(function (item) {
+        var connList = item.dataset.connectors ? item.dataset.connectors.split(',') : [];
+        item.style.display = (f === 'all' || connList.indexOf(f) !== -1) ? '' : 'none';
+      });
+    });
+  });
+
+  // --- Copy postcode ---
+  document.querySelectorAll('.copy-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var original = btn.textContent;
+      navigator.clipboard.writeText(btn.dataset.copy).then(function () {
+        btn.textContent = 'Copied!';
+        btn.classList.add('copy-btn--success');
+        setTimeout(function () {
+          btn.textContent = original;
+          btn.classList.remove('copy-btn--success');
+        }, 1500);
+      });
+    });
+  });
 }());
 </script>
 

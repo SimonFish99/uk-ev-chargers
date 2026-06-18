@@ -17,7 +17,10 @@
 
 <header>
 <div class="container">
-<a href="/" class="logo">PlugMap <span class="tagline">UK EV Charger Locator</span></a>
+<a href="/" class="logo">
+  <svg class="logo-bolt" viewBox="0 0 24 24" fill="currentColor" width="22" height="22" aria-hidden="true"><path d="M13 2L4.5 13.5H11L10 22L19.5 10.5H13Z"/></svg>
+  PlugMap <span class="tagline">UK EV Charger Locator</span>
+</a>
 </div>
 </header>
 
@@ -28,16 +31,43 @@
 </nav>
 
 <h1>EV Chargers in Ely</h1>
-<p class="page-intro">10 public charging stations found in Ely.</p>
+
+<div class="stats-bar">
+  <span class="stat-pill stat-total">10 stations</span>
+  <span class="stat-pill stat-rapid">2 rapid (50kW+)</span>
+  <span class="stat-pill stat-fast">6 fast (7–50kW)</span>
+  <span class="stat-pill stat-slow">2 slow</span>
+</div>
 
 <div id="map"></div>
 
-<ul class="charger-list">
+
+<div class="connector-filter">
+  <span class="filter-label">Filter:</span>
+  <button class="filter-btn active" data-filter="all">All</button>
+  
+  <button class="filter-btn" data-filter="BS1363 3 Pin 13 Amp">BS1363 3 Pin 13 Amp</button>
+  
+  <button class="filter-btn" data-filter="CCS (Type 2)">CCS (Type 2)</button>
+  
+  <button class="filter-btn" data-filter="CHAdeMO">CHAdeMO</button>
+  
+  <button class="filter-btn" data-filter="Type 2 (Socket Only)">Type 2 (Socket Only)</button>
+  
+  <button class="filter-btn" data-filter="Type 2 (Tethered Connector) ">Type 2 (Tethered Connector) </button>
+  
+</div>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Sainsbury&#39;s Ely</h2>
-  <p class="charger-address">Lisle Lane CB7 4AS
+<ul class="charger-list" id="charger-list">
+
+
+<li class="charger-item charger-item--slow" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Sainsbury&#39;s Ely</h2>
+    
+  </div>
+  <p class="charger-address">Lisle Lane <button class="copy-btn" data-copy="CB7 4AS">CB7 4AS</button>
   </p>
   
   <div class="charger-connections">
@@ -59,9 +89,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Ben&#39;s Yard LTD</h2>
-  <p class="charger-address">Ben&#39;s Yard CB7 5TR
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Ben&#39;s Yard LTD</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Ben&#39;s Yard <button class="copy-btn" data-copy="CB7 5TR">CB7 5TR</button>
   </p>
   
   <div class="charger-connections">
@@ -89,9 +122,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Newnham Street Car Park 1</h2>
-  <p class="charger-address">Newnham Street Car Park CB7 4PQ
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Newnham Street Car Park 1</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Newnham Street Car Park <button class="copy-btn" data-copy="CB7 4PQ">CB7 4PQ</button>
   </p>
   
   <div class="charger-connections">
@@ -113,9 +149,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Barton Road Car Park 1</h2>
-  <p class="charger-address">Barton Road Car Park CB7 4DB
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Barton Road Car Park 1</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Barton Road Car Park <button class="copy-btn" data-copy="CB7 4DB">CB7 4DB</button>
   </p>
   
   <div class="charger-connections">
@@ -137,9 +176,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Clay Street Car Park 1</h2>
-  <p class="charger-address">Clay Street Car Park CB7 4AF
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Clay Street Car Park 1</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Clay Street Car Park <button class="copy-btn" data-copy="CB7 4AF">CB7 4AF</button>
   </p>
   
   <div class="charger-connections">
@@ -161,9 +203,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">A10</h2>
-  <p class="charger-address">A10 CB6 2SH
+<li class="charger-item charger-item--rapid" data-connectors="CHAdeMO,Type 2 (Tethered Connector) ">
+  <div class="charger-header">
+    <h2 class="charger-name">A10</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">A10 <button class="copy-btn" data-copy="CB6 2SH">CB6 2SH</button>
   </p>
   
   <div class="charger-connections">
@@ -185,9 +231,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Sainsburys Ely 1</h2>
-  <p class="charger-address">Sainsburys Ely CB7 4AS
+<li class="charger-item charger-item--slow" data-connectors="BS1363 3 Pin 13 Amp">
+  <div class="charger-header">
+    <h2 class="charger-name">Sainsburys Ely 1</h2>
+    
+  </div>
+  <p class="charger-address">Sainsburys Ely <button class="copy-btn" data-copy="CB7 4AS">CB7 4AS</button>
   </p>
   
   <div class="charger-connections">
@@ -209,9 +258,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Ely Station Car Park</h2>
-  <p class="charger-address">3 The Dock CB7 4DJ
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Ely Station Car Park</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">3 The Dock <button class="copy-btn" data-copy="CB7 4DJ">CB7 4DJ</button>
   </p>
   
   <div class="charger-connections">
@@ -233,9 +285,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">EVC Ely City Golf Club</h2>
-  <p class="charger-address">Cambridge Rd CB7 4HX
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">EVC Ely City Golf Club</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Cambridge Rd <button class="copy-btn" data-copy="CB7 4HX">CB7 4HX</button>
   </p>
   
   <div class="charger-connections">
@@ -254,9 +309,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Tesco Superstore-Ely</h2>
-  <p class="charger-address">Angel Drove CB7 4DJ
+<li class="charger-item charger-item--rapid" data-connectors="Type 2 (Socket Only),CCS (Type 2),CHAdeMO">
+  <div class="charger-header">
+    <h2 class="charger-name">Tesco Superstore-Ely</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Angel Drove <button class="copy-btn" data-copy="CB7 4DJ">CB7 4DJ</button>
   </p>
   
   <div class="charger-connections">
@@ -287,6 +346,23 @@
 
 <p><a href="/" class="back-link">← All UK towns</a></p>
 
+
+<div class="nearby-towns">
+  <h2 class="nearby-heading">Nearby towns</h2>
+  <ul class="nearby-list">
+  
+    <li><a href="/uk/newmarket/">Newmarket</a></li>
+  
+    <li><a href="/uk/cambridge/">Cambridge</a></li>
+  
+    <li><a href="/uk/huntingdonshire/">Huntingdonshire</a></li>
+  
+    <li><a href="/uk/huntingdon/">Huntingdon</a></li>
+  
+  </ul>
+</div>
+
+
 </div>
 
 <footer>
@@ -299,26 +375,61 @@
 <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 <script>
 (function () {
+  // --- Map ---
   var map = L.map('map').setView([52.38845637378678, 0.27277389221361126], 12);
-
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
   }).addTo(map);
 
   var markers = L.markerClusterGroup();
-  var chargerData = [{"lat": 52.398571, "lng": 0.272818, "title": "Sainsbury's Ely", "address": "Lisle Lane"}, {"lat": 52.3731683, "lng": 0.2922847, "title": "Ben's Yard LTD", "address": "Ben's Yard"}, {"lat": 52.401816, "lng": 0.267548, "title": "Newnham Street Car Park 1", "address": "Newnham Street Car Park"}, {"lat": 52.397036, "lng": 0.2592, "title": "Barton Road Car Park 1", "address": "Barton Road Car Park"}, {"lat": 52.331331, "lng": 0.336937, "title": "Clay Street Car Park 1", "address": "Clay Street Car Park"}, {"lat": 52.406923, "lng": 0.246826, "title": "A10", "address": "A10"}, {"lat": 52.398701, "lng": 0.270959, "title": "Sainsburys Ely 1", "address": "Sainsburys Ely"}, {"lat": 52.393112, "lng": 0.265204, "title": "Ely Station Car Park", "address": "3 The Dock"}, {"lat": 52.392073517867736, "lng": 0.25072866213611245, "title": "EVC Ely City Golf Club", "address": "Cambridge Rd"}, {"lat": 52.39183192, "lng": 0.26523356, "title": "Tesco Superstore-Ely", "address": "Angel Drove"}];
+  var chargerData = [{"lat": 52.398571, "lng": 0.272818, "title": "Sainsbury's Ely", "address": "Lisle Lane", "connectors": ["Type 2 (Socket Only) · 3.7kW", "Type 2 (Socket Only) · 3.7kW"]}, {"lat": 52.3731683, "lng": 0.2922847, "title": "Ben's Yard LTD", "address": "Ben's Yard", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 52.401816, "lng": 0.267548, "title": "Newnham Street Car Park 1", "address": "Newnham Street Car Park", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 52.397036, "lng": 0.2592, "title": "Barton Road Car Park 1", "address": "Barton Road Car Park", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 52.331331, "lng": 0.336937, "title": "Clay Street Car Park 1", "address": "Clay Street Car Park", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 52.406923, "lng": 0.246826, "title": "A10", "address": "A10", "connectors": ["CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 50kW"]}, {"lat": 52.398701, "lng": 0.270959, "title": "Sainsburys Ely 1", "address": "Sainsburys Ely", "connectors": ["BS1363 3 Pin 13 Amp · 3kW", "BS1363 3 Pin 13 Amp · 3kW"]}, {"lat": 52.393112, "lng": 0.265204, "title": "Ely Station Car Park", "address": "3 The Dock", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 52.392073517867736, "lng": 0.25072866213611245, "title": "EVC Ely City Golf Club", "address": "Cambridge Rd", "connectors": ["Type 2 (Socket Only) · 22kW"]}, {"lat": 52.39183192, "lng": 0.26523356, "title": "Tesco Superstore-Ely", "address": "Angel Drove", "connectors": ["Type 2 (Socket Only) · 7kW", "CCS (Type 2) · 50kW", "Type 2 (Socket Only) · 22kW", "CHAdeMO · 50kW"]}];
 
   chargerData.forEach(function (c) {
+    var connHtml = c.connectors.length
+      ? '<div style="margin-top:6px;font-size:12px;color:#475569">' + c.connectors.join(' &middot; ') + '</div>'
+      : '';
     var marker = L.marker([c.lat, c.lng]);
     marker.bindPopup(
-      '<b>' + c.title + '</b><br>' + c.address + '<br><br>' +
+      '<b>' + c.title + '</b>' +
+      '<div style="color:#64748b;font-size:13px">' + c.address + '</div>' +
+      connHtml +
       '<a href="https://www.google.com/maps/dir/?api=1&destination=' + c.lat + ',' + c.lng +
-      '" target="_blank" rel="noopener">Get directions</a>'
+      '" target="_blank" rel="noopener" style="display:inline-block;margin-top:8px;padding:4px 10px;background:#2563eb;color:white;border-radius:4px;text-decoration:none;font-size:12px">Get directions</a>'
     );
     markers.addLayer(marker);
   });
-
   map.addLayer(markers);
+
+  // --- Connector filter ---
+  var filterBtns = document.querySelectorAll('.filter-btn');
+  var chargerItems = document.querySelectorAll('.charger-item');
+
+  filterBtns.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      filterBtns.forEach(function (b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      var f = btn.dataset.filter;
+      chargerItems.forEach(function (item) {
+        var connList = item.dataset.connectors ? item.dataset.connectors.split(',') : [];
+        item.style.display = (f === 'all' || connList.indexOf(f) !== -1) ? '' : 'none';
+      });
+    });
+  });
+
+  // --- Copy postcode ---
+  document.querySelectorAll('.copy-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var original = btn.textContent;
+      navigator.clipboard.writeText(btn.dataset.copy).then(function () {
+        btn.textContent = 'Copied!';
+        btn.classList.add('copy-btn--success');
+        setTimeout(function () {
+          btn.textContent = original;
+          btn.classList.remove('copy-btn--success');
+        }, 1500);
+      });
+    });
+  });
 }());
 </script>
 

@@ -17,7 +17,10 @@
 
 <header>
 <div class="container">
-<a href="/" class="logo">PlugMap <span class="tagline">UK EV Charger Locator</span></a>
+<a href="/" class="logo">
+  <svg class="logo-bolt" viewBox="0 0 24 24" fill="currentColor" width="22" height="22" aria-hidden="true"><path d="M13 2L4.5 13.5H11L10 22L19.5 10.5H13Z"/></svg>
+  PlugMap <span class="tagline">UK EV Charger Locator</span>
+</a>
 </div>
 </header>
 
@@ -28,16 +31,39 @@
 </nav>
 
 <h1>EV Chargers in Harrow</h1>
-<p class="page-intro">25 public charging stations found in Harrow.</p>
+
+<div class="stats-bar">
+  <span class="stat-pill stat-total">25 stations</span>
+  <span class="stat-pill stat-rapid">3 rapid (50kW+)</span>
+  <span class="stat-pill stat-fast">4 fast (7–50kW)</span>
+  <span class="stat-pill stat-slow">18 slow</span>
+</div>
 
 <div id="map"></div>
 
-<ul class="charger-list">
+
+<div class="connector-filter">
+  <span class="filter-label">Filter:</span>
+  <button class="filter-btn active" data-filter="all">All</button>
+  
+  <button class="filter-btn" data-filter="CCS (Type 2)">CCS (Type 2)</button>
+  
+  <button class="filter-btn" data-filter="CHAdeMO">CHAdeMO</button>
+  
+  <button class="filter-btn" data-filter="Type 2 (Socket Only)">Type 2 (Socket Only)</button>
+  
+</div>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">87 Vista Way</h2>
-  <p class="charger-address">87 Vista Way HA3 0SJ
+<ul class="charger-list" id="charger-list">
+
+
+<li class="charger-item charger-item--slow" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">87 Vista Way</h2>
+    
+  </div>
+  <p class="charger-address">87 Vista Way <button class="copy-btn" data-copy="HA3 0SJ">HA3 0SJ</button>
   </p>
   
   <div class="charger-connections">
@@ -56,9 +82,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Waitrose</h2>
-  <p class="charger-address">350 High Road HA3 6HL
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Waitrose</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">350 High Road <button class="copy-btn" data-copy="HA3 6HL">HA3 6HL</button>
   </p>
   
   <div class="charger-connections">
@@ -80,9 +109,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Waitrose</h2>
-  <p class="charger-address">140 Northolt Road HA2 0EG
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Waitrose</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">140 Northolt Road <button class="copy-btn" data-copy="HA2 0EG">HA2 0EG</button>
   </p>
   
   <div class="charger-connections">
@@ -104,9 +136,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">McDonald&#39;s Shaftesbury</h2>
-  <p class="charger-address">19 Porlock Avenue HA2 0AG
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2),CHAdeMO">
+  <div class="charger-header">
+    <h2 class="charger-name">McDonald&#39;s Shaftesbury</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">19 Porlock Avenue <button class="copy-btn" data-copy="HA2 0AG">HA2 0AG</button>
   </p>
   
   <div class="charger-connections">
@@ -128,9 +164,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">55-57 Rutland Road</h2>
-  <p class="charger-address">55 - 57 Rutland Road HA1 4JN
+<li class="charger-item charger-item--slow" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">55-57 Rutland Road</h2>
+    
+  </div>
+  <p class="charger-address">55 - 57 Rutland Road <button class="copy-btn" data-copy="HA1 4JN">HA1 4JN</button>
   </p>
   
   <div class="charger-connections">
@@ -149,9 +188,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">86-88 Sussex Road</h2>
-  <p class="charger-address">86 - 88 Sussex Road HA1 4NB
+<li class="charger-item charger-item--slow" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">86-88 Sussex Road</h2>
+    
+  </div>
+  <p class="charger-address">86 - 88 Sussex Road <button class="copy-btn" data-copy="HA1 4NB">HA1 4NB</button>
   </p>
   
   <div class="charger-connections">
@@ -170,9 +212,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">42-44 Rutland Road</h2>
-  <p class="charger-address">42 - 44 Rutland Road HA1 4JN
+<li class="charger-item charger-item--slow" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">42-44 Rutland Road</h2>
+    
+  </div>
+  <p class="charger-address">42 - 44 Rutland Road <button class="copy-btn" data-copy="HA1 4JN">HA1 4JN</button>
   </p>
   
   <div class="charger-connections">
@@ -191,9 +236,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">53-55 Bedford Road</h2>
-  <p class="charger-address">53 - 55 Bedford Road HA1 4LZ
+<li class="charger-item charger-item--slow" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">53-55 Bedford Road</h2>
+    
+  </div>
+  <p class="charger-address">53 - 55 Bedford Road <button class="copy-btn" data-copy="HA1 4LZ">HA1 4LZ</button>
   </p>
   
   <div class="charger-connections">
@@ -212,9 +260,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">83-95 Clitheroe Avenue</h2>
-  <p class="charger-address">83 - 95 Clitheroe Avenue HA2 9UU
+<li class="charger-item charger-item--slow" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">83-95 Clitheroe Avenue</h2>
+    
+  </div>
+  <p class="charger-address">83 - 95 Clitheroe Avenue <button class="copy-btn" data-copy="HA2 9UU">HA2 9UU</button>
   </p>
   
   <div class="charger-connections">
@@ -233,9 +284,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">122-124 Sussex Road</h2>
-  <p class="charger-address">122 - 124 Sussex Road HA1 4NB
+<li class="charger-item charger-item--slow" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">122-124 Sussex Road</h2>
+    
+  </div>
+  <p class="charger-address">122 - 124 Sussex Road <button class="copy-btn" data-copy="HA1 4NB">HA1 4NB</button>
   </p>
   
   <div class="charger-connections">
@@ -254,9 +308,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">14-16 Drury Road</h2>
-  <p class="charger-address">14 - 16 Drury Road HA1 4BY
+<li class="charger-item charger-item--slow" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">14-16 Drury Road</h2>
+    
+  </div>
+  <p class="charger-address">14 - 16 Drury Road <button class="copy-btn" data-copy="HA1 4BY">HA1 4BY</button>
   </p>
   
   <div class="charger-connections">
@@ -275,9 +332,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">5-7 Merivale Road</h2>
-  <p class="charger-address">5 - 7 Merivale Road HA1 4BJ
+<li class="charger-item charger-item--slow" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">5-7 Merivale Road</h2>
+    
+  </div>
+  <p class="charger-address">5 - 7 Merivale Road <button class="copy-btn" data-copy="HA1 4BJ">HA1 4BJ</button>
   </p>
   
   <div class="charger-connections">
@@ -296,9 +356,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">3-5 Drury Road</h2>
-  <p class="charger-address">3 - 5 Drury Road HA1 4BZ
+<li class="charger-item charger-item--slow" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">3-5 Drury Road</h2>
+    
+  </div>
+  <p class="charger-address">3 - 5 Drury Road <button class="copy-btn" data-copy="HA1 4BZ">HA1 4BZ</button>
   </p>
   
   <div class="charger-connections">
@@ -317,9 +380,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">45-47 Bowen Road</h2>
-  <p class="charger-address">45 - 47 Bowen Road HA1 4DG
+<li class="charger-item charger-item--slow" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">45-47 Bowen Road</h2>
+    
+  </div>
+  <p class="charger-address">45 - 47 Bowen Road <button class="copy-btn" data-copy="HA1 4DG">HA1 4DG</button>
   </p>
   
   <div class="charger-connections">
@@ -338,9 +404,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">25-27 Merivale Road</h2>
-  <p class="charger-address">25 - 27 Merivale Road HA1 4BJ
+<li class="charger-item charger-item--slow" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">25-27 Merivale Road</h2>
+    
+  </div>
+  <p class="charger-address">25 - 27 Merivale Road <button class="copy-btn" data-copy="HA1 4BJ">HA1 4BJ</button>
   </p>
   
   <div class="charger-connections">
@@ -359,9 +428,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">38-40 Oxford Road</h2>
-  <p class="charger-address">38 - 40 Oxford Road HA1 4JQ
+<li class="charger-item charger-item--slow" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">38-40 Oxford Road</h2>
+    
+  </div>
+  <p class="charger-address">38 - 40 Oxford Road <button class="copy-btn" data-copy="HA1 4JQ">HA1 4JQ</button>
   </p>
   
   <div class="charger-connections">
@@ -380,9 +452,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">12-14 Sussex Road</h2>
-  <p class="charger-address">12 - 14 Sussex Road HA1 4LT
+<li class="charger-item charger-item--slow" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">12-14 Sussex Road</h2>
+    
+  </div>
+  <p class="charger-address">12 - 14 Sussex Road <button class="copy-btn" data-copy="HA1 4LT">HA1 4LT</button>
   </p>
   
   <div class="charger-connections">
@@ -401,9 +476,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">60-62 Grant Road</h2>
-  <p class="charger-address">60 - 62 Grant Road HA3 7SQ
+<li class="charger-item charger-item--slow" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">60-62 Grant Road</h2>
+    
+  </div>
+  <p class="charger-address">60 - 62 Grant Road <button class="copy-btn" data-copy="HA3 7SQ">HA3 7SQ</button>
   </p>
   
   <div class="charger-connections">
@@ -422,9 +500,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">38-40 Grant Road</h2>
-  <p class="charger-address">38 - 40 Grant Road HA3 7SG
+<li class="charger-item charger-item--slow" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">38-40 Grant Road</h2>
+    
+  </div>
+  <p class="charger-address">38 - 40 Grant Road <button class="copy-btn" data-copy="HA3 7SG">HA3 7SG</button>
   </p>
   
   <div class="charger-connections">
@@ -443,9 +524,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">18-20 Oxford Road</h2>
-  <p class="charger-address">18 - 20 Oxford Road HA1 4JQ
+<li class="charger-item charger-item--slow" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">18-20 Oxford Road</h2>
+    
+  </div>
+  <p class="charger-address">18 - 20 Oxford Road <button class="copy-btn" data-copy="HA1 4JQ">HA1 4JQ</button>
   </p>
   
   <div class="charger-connections">
@@ -464,9 +548,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">80-82 Clitheroe Avenue</h2>
-  <p class="charger-address">80 - 82 Clitheroe Avenue HA2 9UX
+<li class="charger-item charger-item--slow" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">80-82 Clitheroe Avenue</h2>
+    
+  </div>
+  <p class="charger-address">80 - 82 Clitheroe Avenue <button class="copy-btn" data-copy="HA2 9UX">HA2 9UX</button>
   </p>
   
   <div class="charger-connections">
@@ -485,9 +572,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">87 West Street</h2>
-  <p class="charger-address">87 West Street HA13EL
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">87 West Street</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">87 West Street <button class="copy-btn" data-copy="HA13EL">HA13EL</button>
   </p>
   
   <div class="charger-connections">
@@ -506,9 +596,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Tesco Superstore-Harrow Station Road</h2>
-  <p class="charger-address">Station Road HA1 2TU
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Tesco Superstore-Harrow Station Road</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Station Road <button class="copy-btn" data-copy="HA1 2TU">HA1 2TU</button>
   </p>
   
   <div class="charger-connections">
@@ -530,9 +623,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Harrow-On-The-Hill LU Station Car Park, Station Approach, Harrow</h2>
-  <p class="charger-address">Harrow-On-The-Hill LU Station Car Park, Station Approach, Harrow HA1 1BB
+<li class="charger-item charger-item--rapid" data-connectors="CHAdeMO,CCS (Type 2)">
+  <div class="charger-header">
+    <h2 class="charger-name">Harrow-On-The-Hill LU Station Car Park, Station Approach, Harrow</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Harrow-On-The-Hill LU Station Car Park, Station Approach, Harrow <button class="copy-btn" data-copy="HA1 1BB">HA1 1BB</button>
   </p>
   
   <div class="charger-connections">
@@ -554,9 +651,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">South Harrow LU Station Car Park</h2>
-  <p class="charger-address">South Harrow LU Station Car Park, South Hill Avenue, Harrow HA2 8HN
+<li class="charger-item charger-item--rapid" data-connectors="CHAdeMO">
+  <div class="charger-header">
+    <h2 class="charger-name">South Harrow LU Station Car Park</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">South Harrow LU Station Car Park, South Hill Avenue, Harrow <button class="copy-btn" data-copy="HA2 8HN">HA2 8HN</button>
   </p>
   
   <div class="charger-connections">
@@ -578,6 +679,23 @@
 
 <p><a href="/" class="back-link">← All UK towns</a></p>
 
+
+<div class="nearby-towns">
+  <h2 class="nearby-heading">Nearby towns</h2>
+  <ul class="nearby-list">
+  
+    <li><a href="/uk/richmond/">Richmond</a></li>
+  
+    <li><a href="/uk/greenford/">Greenford</a></li>
+  
+    <li><a href="/uk/wembley/">Wembley</a></li>
+  
+    <li><a href="/uk/ealing/">Ealing</a></li>
+  
+  </ul>
+</div>
+
+
 </div>
 
 <footer>
@@ -590,26 +708,61 @@
 <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 <script>
 (function () {
+  // --- Map ---
   var map = L.map('map').setView([51.580812524, -0.34613940800000004], 12);
-
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
   }).addTo(map);
 
   var markers = L.markerClusterGroup();
-  var chargerData = [{"lat": 51.581089, "lng": -0.297473, "title": "87 Vista Way", "address": "87 Vista Way"}, {"lat": 51.6054, "lng": -0.339283, "title": "Waitrose", "address": "350 High Road"}, {"lat": 51.5676, "lng": -0.351734, "title": "Waitrose", "address": "140 Northolt Road"}, {"lat": 51.5726159, "lng": -0.3533546, "title": "McDonald's Shaftesbury", "address": "19 Porlock Avenue"}, {"lat": 51.5836155, "lng": -0.3499291, "title": "55-57 Rutland Road", "address": "55 - 57 Rutland Road"}, {"lat": 51.5845102, "lng": -0.351788, "title": "86-88 Sussex Road", "address": "86 - 88 Sussex Road"}, {"lat": 51.5833405, "lng": -0.3502601, "title": "42-44 Rutland Road", "address": "42 - 44 Rutland Road"}, {"lat": 51.5839177, "lng": -0.3509823, "title": "53-55 Bedford Road", "address": "53 - 55 Bedford Road"}, {"lat": 51.5711221, "lng": -0.3657072, "title": "83-95 Clitheroe Avenue", "address": "83 - 95 Clitheroe Avenue"}, {"lat": 51.5847461, "lng": -0.353403, "title": "122-124 Sussex Road", "address": "122 - 124 Sussex Road"}, {"lat": 51.578405, "lng": -0.3518688, "title": "14-16 Drury Road", "address": "14 - 16 Drury Road"}, {"lat": 51.577064, "lng": -0.3493739, "title": "5-7 Merivale Road", "address": "5 - 7 Merivale Road"}, {"lat": 51.5787596, "lng": -0.3515546, "title": "3-5 Drury Road", "address": "3 - 5 Drury Road"}, {"lat": 51.5776592, "lng": -0.3489688, "title": "45-47 Bowen Road", "address": "45 - 47 Bowen Road"}, {"lat": 51.5765421, "lng": -0.3497228, "title": "25-27 Merivale Road", "address": "25 - 27 Merivale Road"}, {"lat": 51.5830625, "lng": -0.3490107, "title": "38-40 Oxford Road", "address": "38 - 40 Oxford Road"}, {"lat": 51.5838109, "lng": -0.3485194, "title": "12-14 Sussex Road", "address": "12 - 14 Sussex Road"}, {"lat": 51.595868, "lng": -0.3317292, "title": "60-62 Grant Road", "address": "60 - 62 Grant Road"}, {"lat": 51.5959364, "lng": -0.3327752, "title": "38-40 Grant Road", "address": "38 - 40 Grant Road"}, {"lat": 51.5825192, "lng": -0.3494158, "title": "18-20 Oxford Road", "address": "18 - 20 Oxford Road"}, {"lat": 51.5710382, "lng": -0.3661257, "title": "80-82 Clitheroe Avenue", "address": "80 - 82 Clitheroe Avenue"}, {"lat": 51.572985, "lng": -0.341118, "title": "87 West Street", "address": "87 West Street"}, {"lat": 51.585842, "lng": -0.333703, "title": "Tesco Superstore-Harrow Station Road", "address": "Station Road"}, {"lat": 51.57842, "lng": -0.334269, "title": "Harrow-On-The-Hill LU Station Car Park, Station Approach, Harrow", "address": "Harrow-On-The-Hill LU Station Car Park, Station Approach, Harrow"}, {"lat": 51.564444, "lng": -0.351416, "title": "South Harrow LU Station Car Park", "address": "South Harrow LU Station Car Park, South Hill Avenue, Harrow"}];
+  var chargerData = [{"lat": 51.581089, "lng": -0.297473, "title": "87 Vista Way", "address": "87 Vista Way", "connectors": ["Type 2 (Socket Only) · 5kW"]}, {"lat": 51.6054, "lng": -0.339283, "title": "Waitrose", "address": "350 High Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 51.5676, "lng": -0.351734, "title": "Waitrose", "address": "140 Northolt Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 51.5726159, "lng": -0.3533546, "title": "McDonald's Shaftesbury", "address": "19 Porlock Avenue", "connectors": ["CCS (Type 2) · 62.5kW", "CHAdeMO · 50kW"]}, {"lat": 51.5836155, "lng": -0.3499291, "title": "55-57 Rutland Road", "address": "55 - 57 Rutland Road", "connectors": ["Type 2 (Socket Only) · 5.1kW"]}, {"lat": 51.5845102, "lng": -0.351788, "title": "86-88 Sussex Road", "address": "86 - 88 Sussex Road", "connectors": ["Type 2 (Socket Only) · 5.1kW"]}, {"lat": 51.5833405, "lng": -0.3502601, "title": "42-44 Rutland Road", "address": "42 - 44 Rutland Road", "connectors": ["Type 2 (Socket Only) · 5.1kW"]}, {"lat": 51.5839177, "lng": -0.3509823, "title": "53-55 Bedford Road", "address": "53 - 55 Bedford Road", "connectors": ["Type 2 (Socket Only) · 5.1kW"]}, {"lat": 51.5711221, "lng": -0.3657072, "title": "83-95 Clitheroe Avenue", "address": "83 - 95 Clitheroe Avenue", "connectors": ["Type 2 (Socket Only) · 4.6kW"]}, {"lat": 51.5847461, "lng": -0.353403, "title": "122-124 Sussex Road", "address": "122 - 124 Sussex Road", "connectors": ["Type 2 (Socket Only) · 5.1kW"]}, {"lat": 51.578405, "lng": -0.3518688, "title": "14-16 Drury Road", "address": "14 - 16 Drury Road", "connectors": ["Type 2 (Socket Only) · 5.1kW"]}, {"lat": 51.577064, "lng": -0.3493739, "title": "5-7 Merivale Road", "address": "5 - 7 Merivale Road", "connectors": ["Type 2 (Socket Only) · 5.1kW"]}, {"lat": 51.5787596, "lng": -0.3515546, "title": "3-5 Drury Road", "address": "3 - 5 Drury Road", "connectors": ["Type 2 (Socket Only) · 5.1kW"]}, {"lat": 51.5776592, "lng": -0.3489688, "title": "45-47 Bowen Road", "address": "45 - 47 Bowen Road", "connectors": ["Type 2 (Socket Only) · 5.1kW"]}, {"lat": 51.5765421, "lng": -0.3497228, "title": "25-27 Merivale Road", "address": "25 - 27 Merivale Road", "connectors": ["Type 2 (Socket Only) · 5.1kW"]}, {"lat": 51.5830625, "lng": -0.3490107, "title": "38-40 Oxford Road", "address": "38 - 40 Oxford Road", "connectors": ["Type 2 (Socket Only) · 5.1kW"]}, {"lat": 51.5838109, "lng": -0.3485194, "title": "12-14 Sussex Road", "address": "12 - 14 Sussex Road", "connectors": ["Type 2 (Socket Only) · 5.1kW"]}, {"lat": 51.595868, "lng": -0.3317292, "title": "60-62 Grant Road", "address": "60 - 62 Grant Road", "connectors": ["Type 2 (Socket Only) · 5.1kW"]}, {"lat": 51.5959364, "lng": -0.3327752, "title": "38-40 Grant Road", "address": "38 - 40 Grant Road", "connectors": ["Type 2 (Socket Only) · 4.8kW"]}, {"lat": 51.5825192, "lng": -0.3494158, "title": "18-20 Oxford Road", "address": "18 - 20 Oxford Road", "connectors": ["Type 2 (Socket Only) · 5.1kW"]}, {"lat": 51.5710382, "lng": -0.3661257, "title": "80-82 Clitheroe Avenue", "address": "80 - 82 Clitheroe Avenue", "connectors": ["Type 2 (Socket Only) · 5.1kW"]}, {"lat": 51.572985, "lng": -0.341118, "title": "87 West Street", "address": "87 West Street", "connectors": ["Type 2 (Socket Only) · 7kW"]}, {"lat": 51.585842, "lng": -0.333703, "title": "Tesco Superstore-Harrow Station Road", "address": "Station Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 51.57842, "lng": -0.334269, "title": "Harrow-On-The-Hill LU Station Car Park, Station Approach, Harrow", "address": "Harrow-On-The-Hill LU Station Car Park, Station Approach, Harrow", "connectors": ["CHAdeMO · 50kW", "CCS (Type 2) · 50kW"]}, {"lat": 51.564444, "lng": -0.351416, "title": "South Harrow LU Station Car Park", "address": "South Harrow LU Station Car Park, South Hill Avenue, Harrow", "connectors": ["CHAdeMO · 50kW"]}];
 
   chargerData.forEach(function (c) {
+    var connHtml = c.connectors.length
+      ? '<div style="margin-top:6px;font-size:12px;color:#475569">' + c.connectors.join(' &middot; ') + '</div>'
+      : '';
     var marker = L.marker([c.lat, c.lng]);
     marker.bindPopup(
-      '<b>' + c.title + '</b><br>' + c.address + '<br><br>' +
+      '<b>' + c.title + '</b>' +
+      '<div style="color:#64748b;font-size:13px">' + c.address + '</div>' +
+      connHtml +
       '<a href="https://www.google.com/maps/dir/?api=1&destination=' + c.lat + ',' + c.lng +
-      '" target="_blank" rel="noopener">Get directions</a>'
+      '" target="_blank" rel="noopener" style="display:inline-block;margin-top:8px;padding:4px 10px;background:#2563eb;color:white;border-radius:4px;text-decoration:none;font-size:12px">Get directions</a>'
     );
     markers.addLayer(marker);
   });
-
   map.addLayer(markers);
+
+  // --- Connector filter ---
+  var filterBtns = document.querySelectorAll('.filter-btn');
+  var chargerItems = document.querySelectorAll('.charger-item');
+
+  filterBtns.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      filterBtns.forEach(function (b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      var f = btn.dataset.filter;
+      chargerItems.forEach(function (item) {
+        var connList = item.dataset.connectors ? item.dataset.connectors.split(',') : [];
+        item.style.display = (f === 'all' || connList.indexOf(f) !== -1) ? '' : 'none';
+      });
+    });
+  });
+
+  // --- Copy postcode ---
+  document.querySelectorAll('.copy-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var original = btn.textContent;
+      navigator.clipboard.writeText(btn.dataset.copy).then(function () {
+        btn.textContent = 'Copied!';
+        btn.classList.add('copy-btn--success');
+        setTimeout(function () {
+          btn.textContent = original;
+          btn.classList.remove('copy-btn--success');
+        }, 1500);
+      });
+    });
+  });
 }());
 </script>
 

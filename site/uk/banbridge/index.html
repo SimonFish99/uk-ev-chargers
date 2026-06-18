@@ -17,7 +17,10 @@
 
 <header>
 <div class="container">
-<a href="/" class="logo">PlugMap <span class="tagline">UK EV Charger Locator</span></a>
+<a href="/" class="logo">
+  <svg class="logo-bolt" viewBox="0 0 24 24" fill="currentColor" width="22" height="22" aria-hidden="true"><path d="M13 2L4.5 13.5H11L10 22L19.5 10.5H13Z"/></svg>
+  PlugMap <span class="tagline">UK EV Charger Locator</span>
+</a>
 </div>
 </header>
 
@@ -28,15 +31,38 @@
 </nav>
 
 <h1>EV Chargers in Banbridge</h1>
-<p class="page-intro">7 public charging stations found in Banbridge.</p>
+
+<div class="stats-bar">
+  <span class="stat-pill stat-total">7 stations</span>
+  <span class="stat-pill stat-rapid">3 rapid (50kW+)</span>
+  <span class="stat-pill stat-fast">4 fast (7–50kW)</span>
+  
+</div>
 
 <div id="map"></div>
 
-<ul class="charger-list">
+
+<div class="connector-filter">
+  <span class="filter-label">Filter:</span>
+  <button class="filter-btn active" data-filter="all">All</button>
+  
+  <button class="filter-btn" data-filter="CCS (Type 2)">CCS (Type 2)</button>
+  
+  <button class="filter-btn" data-filter="CHAdeMO">CHAdeMO</button>
+  
+  <button class="filter-btn" data-filter="Type 2 (Socket Only)">Type 2 (Socket Only)</button>
+  
+</div>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">McDonald&#39;s</h2>
+<ul class="charger-list" id="charger-list">
+
+
+<li class="charger-item charger-item--fast" data-connectors="CCS (Type 2)">
+  <div class="charger-header">
+    <h2 class="charger-name">McDonald&#39;s</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
   <p class="charger-address">Bridgetwater Park
   </p>
   
@@ -56,9 +82,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Banbridge The Boulevard</h2>
-  <p class="charger-address">Cascum Link BT32 3NB
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2),CHAdeMO">
+  <div class="charger-header">
+    <h2 class="charger-name">Banbridge The Boulevard</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Cascum Link <button class="copy-btn" data-copy="BT32 3NB">BT32 3NB</button>
   </p>
   
   <div class="charger-connections">
@@ -80,9 +110,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Maxol</h2>
-  <p class="charger-address">Newry Road BT32 3EF
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2)">
+  <div class="charger-header">
+    <h2 class="charger-name">Maxol</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Newry Road <button class="copy-btn" data-copy="BT32 3EF">BT32 3EF</button>
   </p>
   
   <div class="charger-connections">
@@ -101,9 +135,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Downshire Arms</h2>
-  <p class="charger-address">Newry Street BT32 3EF
+<li class="charger-item charger-item--fast" data-connectors="CCS (Type 2)">
+  <div class="charger-header">
+    <h2 class="charger-name">Downshire Arms</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Newry Street <button class="copy-btn" data-copy="BT32 3EF">BT32 3EF</button>
   </p>
   
   <div class="charger-connections">
@@ -122,9 +159,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Barbican Centra A1, Banbridge</h2>
-  <p class="charger-address">Dromore Rd BT32 4ET
+<li class="charger-item charger-item--rapid" data-connectors="Type 2 (Socket Only),CHAdeMO,CCS (Type 2)">
+  <div class="charger-header">
+    <h2 class="charger-name">Barbican Centra A1, Banbridge</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Dromore Rd <button class="copy-btn" data-copy="BT32 4ET">BT32 4ET</button>
   </p>
   
   <div class="charger-connections">
@@ -155,9 +196,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Tesco Extra-Bridgewater</h2>
-  <p class="charger-address">Bridgewater Retail Park BT32 4LF
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Tesco Extra-Bridgewater</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Bridgewater Retail Park <button class="copy-btn" data-copy="BT32 4LF">BT32 4LF</button>
   </p>
   
   <div class="charger-connections">
@@ -179,9 +223,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Tesco Superstore-Banbridge</h2>
-  <p class="charger-address">25a Castlewellan Road BT32 4AX
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Tesco Superstore-Banbridge</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">25a Castlewellan Road <button class="copy-btn" data-copy="BT32 4AX">BT32 4AX</button>
   </p>
   
   <div class="charger-connections">
@@ -206,6 +253,23 @@
 
 <p><a href="/" class="back-link">← All UK towns</a></p>
 
+
+<div class="nearby-towns">
+  <h2 class="nearby-heading">Nearby towns</h2>
+  <ul class="nearby-list">
+  
+    <li><a href="/uk/craigavon/">Craigavon</a></li>
+  
+    <li><a href="/uk/newry/">Newry</a></li>
+  
+    <li><a href="/uk/lisburn/">Lisburn</a></li>
+  
+    <li><a href="/uk/antrim/">Antrim</a></li>
+  
+  </ul>
+</div>
+
+
 </div>
 
 <footer>
@@ -218,26 +282,61 @@
 <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 <script>
 (function () {
+  // --- Map ---
   var map = L.map('map').setView([54.343312648693164, -6.265674624394562], 12);
-
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
   }).addTo(map);
 
   var markers = L.markerClusterGroup();
-  var chargerData = [{"lat": 54.33322342055695, "lng": -6.27747601830572, "title": "McDonald's", "address": "Bridgetwater Park"}, {"lat": 54.33107298193403, "lng": -6.28055872042296, "title": "Banbridge The Boulevard", "address": "Cascum Link"}, {"lat": 54.34408329709541, "lng": -6.272890178153602, "title": "Maxol", "address": "Newry Road"}, {"lat": 54.34652316400653, "lng": -6.272488458459975, "title": "Downshire Arms", "address": "Newry Street"}, {"lat": 54.368550347799186, "lng": -6.217935696077632, "title": "Barbican Centra A1, Banbridge", "address": "Dromore Rd"}, {"lat": 54.333447039460054, "lng": -6.27394951934204, "title": "Tesco Extra-Bridgewater", "address": "Bridgewater Retail Park"}, {"lat": 54.34628829, "lng": -6.26442378, "title": "Tesco Superstore-Banbridge", "address": "25a Castlewellan Road"}];
+  var chargerData = [{"lat": 54.33322342055695, "lng": -6.27747601830572, "title": "McDonald's", "address": "Bridgetwater Park", "connectors": ["CCS (Type 2) · 47kW"]}, {"lat": 54.33107298193403, "lng": -6.28055872042296, "title": "Banbridge The Boulevard", "address": "Cascum Link", "connectors": ["CCS (Type 2) · 400kW", "CHAdeMO · 50kW"]}, {"lat": 54.34408329709541, "lng": -6.272890178153602, "title": "Maxol", "address": "Newry Road", "connectors": ["CCS (Type 2) · 150kW"]}, {"lat": 54.34652316400653, "lng": -6.272488458459975, "title": "Downshire Arms", "address": "Newry Street", "connectors": ["CCS (Type 2) · 24kW"]}, {"lat": 54.368550347799186, "lng": -6.217935696077632, "title": "Barbican Centra A1, Banbridge", "address": "Dromore Rd", "connectors": ["Type 2 (Socket Only) · 22kW", "CHAdeMO · 50kW", "CCS (Type 2) · 50kW", "CCS (Type 2) · 47kW", "CCS (Type 2) · 150kW"]}, {"lat": 54.333447039460054, "lng": -6.27394951934204, "title": "Tesco Extra-Bridgewater", "address": "Bridgewater Retail Park", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 54.34628829, "lng": -6.26442378, "title": "Tesco Superstore-Banbridge", "address": "25a Castlewellan Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}];
 
   chargerData.forEach(function (c) {
+    var connHtml = c.connectors.length
+      ? '<div style="margin-top:6px;font-size:12px;color:#475569">' + c.connectors.join(' &middot; ') + '</div>'
+      : '';
     var marker = L.marker([c.lat, c.lng]);
     marker.bindPopup(
-      '<b>' + c.title + '</b><br>' + c.address + '<br><br>' +
+      '<b>' + c.title + '</b>' +
+      '<div style="color:#64748b;font-size:13px">' + c.address + '</div>' +
+      connHtml +
       '<a href="https://www.google.com/maps/dir/?api=1&destination=' + c.lat + ',' + c.lng +
-      '" target="_blank" rel="noopener">Get directions</a>'
+      '" target="_blank" rel="noopener" style="display:inline-block;margin-top:8px;padding:4px 10px;background:#2563eb;color:white;border-radius:4px;text-decoration:none;font-size:12px">Get directions</a>'
     );
     markers.addLayer(marker);
   });
-
   map.addLayer(markers);
+
+  // --- Connector filter ---
+  var filterBtns = document.querySelectorAll('.filter-btn');
+  var chargerItems = document.querySelectorAll('.charger-item');
+
+  filterBtns.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      filterBtns.forEach(function (b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      var f = btn.dataset.filter;
+      chargerItems.forEach(function (item) {
+        var connList = item.dataset.connectors ? item.dataset.connectors.split(',') : [];
+        item.style.display = (f === 'all' || connList.indexOf(f) !== -1) ? '' : 'none';
+      });
+    });
+  });
+
+  // --- Copy postcode ---
+  document.querySelectorAll('.copy-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var original = btn.textContent;
+      navigator.clipboard.writeText(btn.dataset.copy).then(function () {
+        btn.textContent = 'Copied!';
+        btn.classList.add('copy-btn--success');
+        setTimeout(function () {
+          btn.textContent = original;
+          btn.classList.remove('copy-btn--success');
+        }, 1500);
+      });
+    });
+  });
 }());
 </script>
 

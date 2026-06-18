@@ -17,7 +17,10 @@
 
 <header>
 <div class="container">
-<a href="/" class="logo">PlugMap <span class="tagline">UK EV Charger Locator</span></a>
+<a href="/" class="logo">
+  <svg class="logo-bolt" viewBox="0 0 24 24" fill="currentColor" width="22" height="22" aria-hidden="true"><path d="M13 2L4.5 13.5H11L10 22L19.5 10.5H13Z"/></svg>
+  PlugMap <span class="tagline">UK EV Charger Locator</span>
+</a>
 </div>
 </header>
 
@@ -28,16 +31,44 @@
 </nav>
 
 <h1>EV Chargers in Peterborough</h1>
-<p class="page-intro">16 public charging stations found in Peterborough.</p>
+
+<div class="stats-bar">
+  <span class="stat-pill stat-total">16 stations</span>
+  <span class="stat-pill stat-rapid">7 rapid (50kW+)</span>
+  <span class="stat-pill stat-fast">8 fast (7–50kW)</span>
+  <span class="stat-pill stat-slow">1 slow</span>
+</div>
 
 <div id="map"></div>
 
-<ul class="charger-list">
+
+<div class="connector-filter">
+  <span class="filter-label">Filter:</span>
+  <button class="filter-btn active" data-filter="all">All</button>
+  
+  <button class="filter-btn" data-filter="BS1363 3 Pin 13 Amp">BS1363 3 Pin 13 Amp</button>
+  
+  <button class="filter-btn" data-filter="CCS (Type 2)">CCS (Type 2)</button>
+  
+  <button class="filter-btn" data-filter="CHAdeMO">CHAdeMO</button>
+  
+  <button class="filter-btn" data-filter="Type 2 (Socket Only)">Type 2 (Socket Only)</button>
+  
+  <button class="filter-btn" data-filter="Type 2 (Tethered Connector) ">Type 2 (Tethered Connector) </button>
+  
+</div>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Dobbies Peterborough</h2>
-  <p class="charger-address">Phorpres Way PE7 8NY
+<ul class="charger-list" id="charger-list">
+
+
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2),CHAdeMO">
+  <div class="charger-header">
+    <h2 class="charger-name">Dobbies Peterborough</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Phorpres Way <button class="copy-btn" data-copy="PE7 8NY">PE7 8NY</button>
   </p>
   
   <div class="charger-connections">
@@ -74,9 +105,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Railway Sidings Car Park</h2>
-  <p class="charger-address">Railway Sidings PE2 8TY
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Railway Sidings Car Park</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Railway Sidings <button class="copy-btn" data-copy="PE2 8TY">PE2 8TY</button>
   </p>
   
   <div class="charger-connections">
@@ -98,9 +132,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Castor Lodge Care Home</h2>
-  <p class="charger-address">Splash Lane PE5 7BD
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Castor Lodge Care Home</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Splash Lane <button class="copy-btn" data-copy="PE5 7BD">PE5 7BD</button>
   </p>
   
   <div class="charger-connections">
@@ -119,9 +156,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">4001342</h2>
-  <p class="charger-address">2 Bramhall Place PE1 5YS
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">4001342</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">2 Bramhall Place <button class="copy-btn" data-copy="PE1 5YS">PE1 5YS</button>
   </p>
   
   <div class="charger-connections">
@@ -138,9 +178,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Sand Martin House Car Park</h2>
-  <p class="charger-address">Bittern Way PE2 8TY
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Sand Martin House Car Park</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Bittern Way <button class="copy-btn" data-copy="PE2 8TY">PE2 8TY</button>
   </p>
   
   <div class="charger-connections">
@@ -159,9 +202,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Lidl - Peterborough</h2>
-  <p class="charger-address">Sugar Way PE2 9AY
+<li class="charger-item charger-item--rapid" data-connectors="Type 2 (Socket Only),Type 2 (Tethered Connector) ,CHAdeMO">
+  <div class="charger-header">
+    <h2 class="charger-name">Lidl - Peterborough</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Sugar Way <button class="copy-btn" data-copy="PE2 9AY">PE2 9AY</button>
   </p>
   
   <div class="charger-connections">
@@ -186,9 +233,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">BP Woodston</h2>
-  <p class="charger-address">Oundle Road PE2 9QP
+<li class="charger-item charger-item--rapid" data-connectors="Type 2 (Tethered Connector) ,CHAdeMO">
+  <div class="charger-header">
+    <h2 class="charger-name">BP Woodston</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Oundle Road <button class="copy-btn" data-copy="PE2 9QP">PE2 9QP</button>
   </p>
   
   <div class="charger-connections">
@@ -213,9 +264,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Peterborough-Riverside Car Park</h2>
-  <p class="charger-address">Riverside Car Park PE1 1EJ
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Peterborough-Riverside Car Park</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Riverside Car Park <button class="copy-btn" data-copy="PE1 1EJ">PE1 1EJ</button>
   </p>
   
   <div class="charger-connections">
@@ -240,9 +294,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Dragonfly Hotel-Peterborough</h2>
-  <p class="charger-address">Thorpe Meadows PE3 6GA
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Dragonfly Hotel-Peterborough</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Thorpe Meadows <button class="copy-btn" data-copy="PE3 6GA">PE3 6GA</button>
   </p>
   
   <div class="charger-connections">
@@ -261,9 +318,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Premier Inn-Peterborough City Centre</h2>
-  <p class="charger-address">Bridge Street PE1 1EQ
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Premier Inn-Peterborough City Centre</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Bridge Street <button class="copy-btn" data-copy="PE1 1EQ">PE1 1EQ</button>
   </p>
   
   <div class="charger-connections">
@@ -285,9 +345,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Community Centre, Market Deeping</h2>
-  <p class="charger-address">Market Deeping PE6 8PA
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Community Centre, Market Deeping</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Market Deeping <button class="copy-btn" data-copy="PE6 8PA">PE6 8PA</button>
   </p>
   
   <div class="charger-connections">
@@ -306,9 +369,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Lidl-Peterborough</h2>
-  <p class="charger-address">Sugar Way PE2 9AY
+<li class="charger-item charger-item--rapid" data-connectors="Type 2 (Socket Only),CCS (Type 2),CHAdeMO">
+  <div class="charger-header">
+    <h2 class="charger-name">Lidl-Peterborough</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Sugar Way <button class="copy-btn" data-copy="PE2 9AY">PE2 9AY</button>
   </p>
   
   <div class="charger-connections">
@@ -333,9 +400,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">BP Connect Bretton</h2>
-  <p class="charger-address">Rightwell East PE3 8DE
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2),CHAdeMO">
+  <div class="charger-header">
+    <h2 class="charger-name">BP Connect Bretton</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Rightwell East <button class="copy-btn" data-copy="PE3 8DE">PE3 8DE</button>
   </p>
   
   <div class="charger-connections">
@@ -357,9 +428,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Holiday Inn Peterborough West</h2>
-  <p class="charger-address">Thorpe Wood PE3 6SG
+<li class="charger-item charger-item--rapid" data-connectors="CHAdeMO,CCS (Type 2),Type 2 (Tethered Connector) ">
+  <div class="charger-header">
+    <h2 class="charger-name">Holiday Inn Peterborough West</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Thorpe Wood <button class="copy-btn" data-copy="PE3 6SG">PE3 6SG</button>
   </p>
   
   <div class="charger-connections">
@@ -384,9 +459,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Starbucks Ortongate</h2>
-  <p class="charger-address">Paxton Road PE2 5YA
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2),CHAdeMO">
+  <div class="charger-header">
+    <h2 class="charger-name">Starbucks Ortongate</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Paxton Road <button class="copy-btn" data-copy="PE2 5YA">PE2 5YA</button>
   </p>
   
   <div class="charger-connections">
@@ -408,9 +487,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Smiths Motor Group Nissan Dealership</h2>
-  <p class="charger-address">Bretton Way PE3 8YL
+<li class="charger-item charger-item--slow" data-connectors="BS1363 3 Pin 13 Amp">
+  <div class="charger-header">
+    <h2 class="charger-name">Smiths Motor Group Nissan Dealership</h2>
+    
+  </div>
+  <p class="charger-address">Bretton Way <button class="copy-btn" data-copy="PE3 8YL">PE3 8YL</button>
   </p>
   
   <div class="charger-connections">
@@ -435,6 +517,23 @@
 
 <p><a href="/" class="back-link">← All UK towns</a></p>
 
+
+<div class="nearby-towns">
+  <h2 class="nearby-heading">Nearby towns</h2>
+  <ul class="nearby-list">
+  
+    <li><a href="/uk/royston/">Royston</a></li>
+  
+    <li><a href="/uk/huntingdonshire/">Huntingdonshire</a></li>
+  
+    <li><a href="/uk/spalding/">Spalding</a></li>
+  
+    <li><a href="/uk/huntingdon/">Huntingdon</a></li>
+  
+  </ul>
+</div>
+
+
 </div>
 
 <footer>
@@ -447,26 +546,61 @@
 <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 <script>
 (function () {
+  // --- Map ---
   var map = L.map('map').setView([52.57394023092742, -0.2674374558073585], 12);
-
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
   }).addTo(map);
 
   var markers = L.markerClusterGroup();
-  var chargerData = [{"lat": 52.54323, "lng": -0.259314, "title": "Dobbies Peterborough", "address": "Phorpres Way"}, {"lat": 52.565794, "lng": -0.235063, "title": "Railway Sidings Car Park", "address": "Railway Sidings"}, {"lat": 52.570034, "lng": -0.340739, "title": "Castor Lodge Care Home", "address": "Splash Lane"}, {"lat": 52.577754, "lng": -0.20631, "title": "4001342", "address": "2 Bramhall Place"}, {"lat": 52.566386, "lng": -0.239101, "title": "Sand Martin House Car Park", "address": "Bittern Way"}, {"lat": 52.563393, "lng": -0.260324, "title": "Lidl - Peterborough", "address": "Sugar Way"}, {"lat": 52.562309, "lng": -0.257936, "title": "BP Woodston", "address": "Oundle Road"}, {"lat": 52.569159, "lng": -0.23963, "title": "Peterborough-Riverside Car Park", "address": "Riverside Car Park"}, {"lat": 52.57084, "lng": -0.268047, "title": "Dragonfly Hotel-Peterborough", "address": "Thorpe Meadows"}, {"lat": 52.569179, "lng": -0.241299, "title": "Premier Inn-Peterborough City Centre", "address": "Bridge Street"}, {"lat": 52.674471, "lng": -0.309075, "title": "Community Centre, Market Deeping", "address": "Market Deeping"}, {"lat": 52.5629625538185, "lng": -0.259315489441974, "title": "Lidl-Peterborough", "address": "Sugar Way"}, {"lat": 52.5886994435245, "lng": -0.285324442808133, "title": "BP Connect Bretton", "address": "Rightwell East"}, {"lat": 52.5651232151469, "lng": -0.286935015825065, "title": "Holiday Inn Peterborough West", "address": "Thorpe Wood"}, {"lat": 52.5447244823488, "lng": -0.304878344842564, "title": "Starbucks Ortongate", "address": "Paxton Road"}, {"lat": 52.588985, "lng": -0.285708, "title": "Smiths Motor Group Nissan Dealership", "address": "Bretton Way"}];
+  var chargerData = [{"lat": 52.54323, "lng": -0.259314, "title": "Dobbies Peterborough", "address": "Phorpres Way", "connectors": ["CCS (Type 2) · 350kW", "CCS (Type 2) · 350kW", "CCS (Type 2) · 350kW", "CCS (Type 2) · 350kW", "CCS (Type 2) · 350kW", "CHAdeMO · 100kW", "CCS (Type 2) · 350kW"]}, {"lat": 52.565794, "lng": -0.235063, "title": "Railway Sidings Car Park", "address": "Railway Sidings", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 52.570034, "lng": -0.340739, "title": "Castor Lodge Care Home", "address": "Splash Lane", "connectors": ["Type 2 (Socket Only) · 22kW"]}, {"lat": 52.577754, "lng": -0.20631, "title": "4001342", "address": "2 Bramhall Place", "connectors": ["Type 2 (Socket Only) · 22kW"]}, {"lat": 52.566386, "lng": -0.239101, "title": "Sand Martin House Car Park", "address": "Bittern Way", "connectors": ["Type 2 (Socket Only) · 7kW"]}, {"lat": 52.563393, "lng": -0.260324, "title": "Lidl - Peterborough", "address": "Sugar Way", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Tethered Connector)  · 50kW", "CHAdeMO · 50kW"]}, {"lat": 52.562309, "lng": -0.257936, "title": "BP Woodston", "address": "Oundle Road", "connectors": ["Type 2 (Tethered Connector)  · 43kW", "CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 50kW"]}, {"lat": 52.569159, "lng": -0.23963, "title": "Peterborough-Riverside Car Park", "address": "Riverside Car Park", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 52.57084, "lng": -0.268047, "title": "Dragonfly Hotel-Peterborough", "address": "Thorpe Meadows", "connectors": ["Type 2 (Socket Only) · 7kW"]}, {"lat": 52.569179, "lng": -0.241299, "title": "Premier Inn-Peterborough City Centre", "address": "Bridge Street", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 52.674471, "lng": -0.309075, "title": "Community Centre, Market Deeping", "address": "Market Deeping", "connectors": ["Type 2 (Socket Only) · 22kW"]}, {"lat": 52.5629625538185, "lng": -0.259315489441974, "title": "Lidl-Peterborough", "address": "Sugar Way", "connectors": ["Type 2 (Socket Only) · 22kW", "CCS (Type 2) · 50kW", "CHAdeMO · 50kW"]}, {"lat": 52.5886994435245, "lng": -0.285324442808133, "title": "BP Connect Bretton", "address": "Rightwell East", "connectors": ["CCS (Type 2) · 150kW", "CHAdeMO · 50kW"]}, {"lat": 52.5651232151469, "lng": -0.286935015825065, "title": "Holiday Inn Peterborough West", "address": "Thorpe Wood", "connectors": ["CHAdeMO · 50kW", "CCS (Type 2) · 50kW", "Type 2 (Tethered Connector)  · 43kW"]}, {"lat": 52.5447244823488, "lng": -0.304878344842564, "title": "Starbucks Ortongate", "address": "Paxton Road", "connectors": ["CCS (Type 2) · 50kW", "CHAdeMO · 50kW"]}, {"lat": 52.588985, "lng": -0.285708, "title": "Smiths Motor Group Nissan Dealership", "address": "Bretton Way", "connectors": ["BS1363 3 Pin 13 Amp · 3kW", "BS1363 3 Pin 13 Amp · 3kW"]}];
 
   chargerData.forEach(function (c) {
+    var connHtml = c.connectors.length
+      ? '<div style="margin-top:6px;font-size:12px;color:#475569">' + c.connectors.join(' &middot; ') + '</div>'
+      : '';
     var marker = L.marker([c.lat, c.lng]);
     marker.bindPopup(
-      '<b>' + c.title + '</b><br>' + c.address + '<br><br>' +
+      '<b>' + c.title + '</b>' +
+      '<div style="color:#64748b;font-size:13px">' + c.address + '</div>' +
+      connHtml +
       '<a href="https://www.google.com/maps/dir/?api=1&destination=' + c.lat + ',' + c.lng +
-      '" target="_blank" rel="noopener">Get directions</a>'
+      '" target="_blank" rel="noopener" style="display:inline-block;margin-top:8px;padding:4px 10px;background:#2563eb;color:white;border-radius:4px;text-decoration:none;font-size:12px">Get directions</a>'
     );
     markers.addLayer(marker);
   });
-
   map.addLayer(markers);
+
+  // --- Connector filter ---
+  var filterBtns = document.querySelectorAll('.filter-btn');
+  var chargerItems = document.querySelectorAll('.charger-item');
+
+  filterBtns.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      filterBtns.forEach(function (b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      var f = btn.dataset.filter;
+      chargerItems.forEach(function (item) {
+        var connList = item.dataset.connectors ? item.dataset.connectors.split(',') : [];
+        item.style.display = (f === 'all' || connList.indexOf(f) !== -1) ? '' : 'none';
+      });
+    });
+  });
+
+  // --- Copy postcode ---
+  document.querySelectorAll('.copy-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var original = btn.textContent;
+      navigator.clipboard.writeText(btn.dataset.copy).then(function () {
+        btn.textContent = 'Copied!';
+        btn.classList.add('copy-btn--success');
+        setTimeout(function () {
+          btn.textContent = original;
+          btn.classList.remove('copy-btn--success');
+        }, 1500);
+      });
+    });
+  });
 }());
 </script>
 

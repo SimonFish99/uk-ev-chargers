@@ -17,7 +17,10 @@
 
 <header>
 <div class="container">
-<a href="/" class="logo">PlugMap <span class="tagline">UK EV Charger Locator</span></a>
+<a href="/" class="logo">
+  <svg class="logo-bolt" viewBox="0 0 24 24" fill="currentColor" width="22" height="22" aria-hidden="true"><path d="M13 2L4.5 13.5H11L10 22L19.5 10.5H13Z"/></svg>
+  PlugMap <span class="tagline">UK EV Charger Locator</span>
+</a>
 </div>
 </header>
 
@@ -28,16 +31,37 @@
 </nav>
 
 <h1>EV Chargers in Limavady</h1>
-<p class="page-intro">5 public charging stations found in Limavady.</p>
+
+<div class="stats-bar">
+  <span class="stat-pill stat-total">5 stations</span>
+  
+  <span class="stat-pill stat-fast">5 fast (7–50kW)</span>
+  
+</div>
 
 <div id="map"></div>
 
-<ul class="charger-list">
+
+<div class="connector-filter">
+  <span class="filter-label">Filter:</span>
+  <button class="filter-btn active" data-filter="all">All</button>
+  
+  <button class="filter-btn" data-filter="CCS (Type 2)">CCS (Type 2)</button>
+  
+  <button class="filter-btn" data-filter="Type 2 (Socket Only)">Type 2 (Socket Only)</button>
+  
+</div>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">George Canning Spar Bellarena</h2>
-  <p class="charger-address">436 Seacoast Rd BT49 0LD
+<ul class="charger-list" id="charger-list">
+
+
+<li class="charger-item charger-item--fast" data-connectors="CCS (Type 2)">
+  <div class="charger-header">
+    <h2 class="charger-name">George Canning Spar Bellarena</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">436 Seacoast Rd <button class="copy-btn" data-copy="BT49 0LD">BT49 0LD</button>
   </p>
   
   <div class="charger-connections">
@@ -56,9 +80,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Lidl</h2>
-  <p class="charger-address"> 4 Connell Street BT49 0EA
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Lidl</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address"> 4 Connell Street <button class="copy-btn" data-copy="BT49 0EA">BT49 0EA</button>
   </p>
   
   <div class="charger-connections">
@@ -77,9 +104,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Benone Tourist Complex</h2>
-  <p class="charger-address">53 Benone Ave BT49 0LQ
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Benone Tourist Complex</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">53 Benone Ave <button class="copy-btn" data-copy="BT49 0LQ">BT49 0LQ</button>
   </p>
   
   <div class="charger-connections">
@@ -98,9 +128,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Tesco Superstore-Limavady</h2>
-  <p class="charger-address">Main Street BT49 0ET
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Tesco Superstore-Limavady</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Main Street <button class="copy-btn" data-copy="BT49 0ET">BT49 0ET</button>
   </p>
   
   <div class="charger-connections">
@@ -122,9 +155,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Roe Valley Country Park</h2>
-  <p class="charger-address">41 Dogleap Road BT49 9NN
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Roe Valley Country Park</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">41 Dogleap Road <button class="copy-btn" data-copy="BT49 9NN">BT49 9NN</button>
   </p>
   
   <div class="charger-connections">
@@ -146,6 +182,23 @@
 
 <p><a href="/" class="back-link">← All UK towns</a></p>
 
+
+<div class="nearby-towns">
+  <h2 class="nearby-heading">Nearby towns</h2>
+  <ul class="nearby-list">
+  
+    <li><a href="/uk/coleraine/">Coleraine</a></li>
+  
+    <li><a href="/uk/londonderry/">Londonderry</a></li>
+  
+    <li><a href="/uk/ballymoney/">Ballymoney</a></li>
+  
+    <li><a href="/uk/dungannon/">Dungannon</a></li>
+  
+  </ul>
+</div>
+
+
 </div>
 
 <footer>
@@ -158,26 +211,61 @@
 <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 <script>
 (function () {
+  // --- Map ---
   var map = L.map('map').setView([55.08667074517066, -6.930646841052031], 12);
-
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
   }).addTo(map);
 
   var markers = L.markerClusterGroup();
-  var chargerData = [{"lat": 55.14073670739418, "lng": -6.944193817977748, "title": "George Canning Spar Bellarena", "address": "436 Seacoast Rd"}, {"lat": 55.05198290371186, "lng": -6.9492822369352325, "title": "Lidl", "address": " 4 Connell Street"}, {"lat": 55.163873356746194, "lng": -6.871422767314044, "title": "Benone Tourist Complex", "address": "53 Benone Ave"}, {"lat": 55.05273446, "lng": -6.94852001, "title": "Tesco Superstore-Limavady", "address": "Main Street"}, {"lat": 55.024026298001075, "lng": -6.939815373033127, "title": "Roe Valley Country Park", "address": "41 Dogleap Road"}];
+  var chargerData = [{"lat": 55.14073670739418, "lng": -6.944193817977748, "title": "George Canning Spar Bellarena", "address": "436 Seacoast Rd", "connectors": ["CCS (Type 2) · 47kW"]}, {"lat": 55.05198290371186, "lng": -6.9492822369352325, "title": "Lidl", "address": " 4 Connell Street", "connectors": ["Type 2 (Socket Only) · 22kW"]}, {"lat": 55.163873356746194, "lng": -6.871422767314044, "title": "Benone Tourist Complex", "address": "53 Benone Ave", "connectors": ["Type 2 (Socket Only) · 22kW"]}, {"lat": 55.05273446, "lng": -6.94852001, "title": "Tesco Superstore-Limavady", "address": "Main Street", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 55.024026298001075, "lng": -6.939815373033127, "title": "Roe Valley Country Park", "address": "41 Dogleap Road", "connectors": ["Type 2 (Socket Only) · 11kW"]}];
 
   chargerData.forEach(function (c) {
+    var connHtml = c.connectors.length
+      ? '<div style="margin-top:6px;font-size:12px;color:#475569">' + c.connectors.join(' &middot; ') + '</div>'
+      : '';
     var marker = L.marker([c.lat, c.lng]);
     marker.bindPopup(
-      '<b>' + c.title + '</b><br>' + c.address + '<br><br>' +
+      '<b>' + c.title + '</b>' +
+      '<div style="color:#64748b;font-size:13px">' + c.address + '</div>' +
+      connHtml +
       '<a href="https://www.google.com/maps/dir/?api=1&destination=' + c.lat + ',' + c.lng +
-      '" target="_blank" rel="noopener">Get directions</a>'
+      '" target="_blank" rel="noopener" style="display:inline-block;margin-top:8px;padding:4px 10px;background:#2563eb;color:white;border-radius:4px;text-decoration:none;font-size:12px">Get directions</a>'
     );
     markers.addLayer(marker);
   });
-
   map.addLayer(markers);
+
+  // --- Connector filter ---
+  var filterBtns = document.querySelectorAll('.filter-btn');
+  var chargerItems = document.querySelectorAll('.charger-item');
+
+  filterBtns.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      filterBtns.forEach(function (b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      var f = btn.dataset.filter;
+      chargerItems.forEach(function (item) {
+        var connList = item.dataset.connectors ? item.dataset.connectors.split(',') : [];
+        item.style.display = (f === 'all' || connList.indexOf(f) !== -1) ? '' : 'none';
+      });
+    });
+  });
+
+  // --- Copy postcode ---
+  document.querySelectorAll('.copy-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var original = btn.textContent;
+      navigator.clipboard.writeText(btn.dataset.copy).then(function () {
+        btn.textContent = 'Copied!';
+        btn.classList.add('copy-btn--success');
+        setTimeout(function () {
+          btn.textContent = original;
+          btn.classList.remove('copy-btn--success');
+        }, 1500);
+      });
+    });
+  });
 }());
 </script>
 

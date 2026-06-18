@@ -17,7 +17,10 @@
 
 <header>
 <div class="container">
-<a href="/" class="logo">PlugMap <span class="tagline">UK EV Charger Locator</span></a>
+<a href="/" class="logo">
+  <svg class="logo-bolt" viewBox="0 0 24 24" fill="currentColor" width="22" height="22" aria-hidden="true"><path d="M13 2L4.5 13.5H11L10 22L19.5 10.5H13Z"/></svg>
+  PlugMap <span class="tagline">UK EV Charger Locator</span>
+</a>
 </div>
 </header>
 
@@ -28,16 +31,42 @@
 </nav>
 
 <h1>EV Chargers in Reading</h1>
-<p class="page-intro">35 public charging stations found in Reading.</p>
+
+<div class="stats-bar">
+  <span class="stat-pill stat-total">35 stations</span>
+  <span class="stat-pill stat-rapid">11 rapid (50kW+)</span>
+  <span class="stat-pill stat-fast">24 fast (7–50kW)</span>
+  
+</div>
 
 <div id="map"></div>
 
-<ul class="charger-list">
+
+<div class="connector-filter">
+  <span class="filter-label">Filter:</span>
+  <button class="filter-btn active" data-filter="all">All</button>
+  
+  <button class="filter-btn" data-filter="CCS (Type 2)">CCS (Type 2)</button>
+  
+  <button class="filter-btn" data-filter="CHAdeMO">CHAdeMO</button>
+  
+  <button class="filter-btn" data-filter="Type 2 (Socket Only)">Type 2 (Socket Only)</button>
+  
+  <button class="filter-btn" data-filter="Type 2 (Tethered Connector) ">Type 2 (Tethered Connector) </button>
+  
+</div>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Rivermead Leisure Centre</h2>
-  <p class="charger-address">Richfield Avenue RG1 8BY
+<ul class="charger-list" id="charger-list">
+
+
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2)">
+  <div class="charger-header">
+    <h2 class="charger-name">Rivermead Leisure Centre</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Richfield Avenue <button class="copy-btn" data-copy="RG1 8BY">RG1 8BY</button>
   </p>
   
   <div class="charger-connections">
@@ -56,9 +85,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Mereoak Park and Ride</h2>
-  <p class="charger-address">Mereoak Land RG7 1JY
+<li class="charger-item charger-item--rapid" data-connectors="CHAdeMO,Type 2 (Tethered Connector) ">
+  <div class="charger-header">
+    <h2 class="charger-name">Mereoak Park and Ride</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Mereoak Land <button class="copy-btn" data-copy="RG7 1JY">RG7 1JY</button>
   </p>
   
   <div class="charger-connections">
@@ -80,9 +113,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">The Sportsman</h2>
-  <p class="charger-address">201 Shinfield Road RG6 5TS
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">The Sportsman</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">201 Shinfield Road <button class="copy-btn" data-copy="RG6 5TS">RG6 5TS</button>
   </p>
   
   <div class="charger-connections">
@@ -101,9 +137,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">EVC BizSpace Theale Merlin House</h2>
-  <p class="charger-address">Merlin House RG7 4AB
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">EVC BizSpace Theale Merlin House</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Merlin House <button class="copy-btn" data-copy="RG7 4AB">RG7 4AB</button>
   </p>
   
   <div class="charger-connections">
@@ -122,9 +161,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Fox &amp; Hounds</h2>
-  <p class="charger-address">Fox &amp; Hounds RG7 4BE
+<li class="charger-item charger-item--rapid" data-connectors="CHAdeMO,CCS (Type 2)">
+  <div class="charger-header">
+    <h2 class="charger-name">Fox &amp; Hounds</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Fox &amp; Hounds <button class="copy-btn" data-copy="RG7 4BE">RG7 4BE</button>
   </p>
   
   <div class="charger-connections">
@@ -158,9 +201,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Reading FC Stadium</h2>
-  <p class="charger-address">Biscuit Way RG2 0FL
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2),CHAdeMO">
+  <div class="charger-header">
+    <h2 class="charger-name">Reading FC Stadium</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Biscuit Way <button class="copy-btn" data-copy="RG2 0FL">RG2 0FL</button>
   </p>
   
   <div class="charger-connections">
@@ -182,9 +229,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Civic Offices Bridge Street</h2>
-  <p class="charger-address">Arnold RG1 2LU
+<li class="charger-item charger-item--fast" data-connectors="CHAdeMO,Type 2 (Socket Only),Type 2 (Tethered Connector) ">
+  <div class="charger-header">
+    <h2 class="charger-name">Civic Offices Bridge Street</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Arnold <button class="copy-btn" data-copy="RG1 2LU">RG1 2LU</button>
   </p>
   
   <div class="charger-connections">
@@ -209,9 +259,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Reading Katesgrove Supercharger</h2>
-  <p class="charger-address">160 Basingstoke Road RG2 0HJ
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2)">
+  <div class="charger-header">
+    <h2 class="charger-name">Reading Katesgrove Supercharger</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">160 Basingstoke Road <button class="copy-btn" data-copy="RG2 0HJ">RG2 0HJ</button>
   </p>
   
   <div class="charger-connections">
@@ -230,9 +284,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Reading Civic Centre, outside Car Park</h2>
-  <p class="charger-address">Simmonds Street RG1 6QF
+<li class="charger-item charger-item--fast" data-connectors="CCS (Type 2),CHAdeMO,Type 2 (Tethered Connector) ">
+  <div class="charger-header">
+    <h2 class="charger-name">Reading Civic Centre, outside Car Park</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Simmonds Street <button class="copy-btn" data-copy="RG1 6QF">RG1 6QF</button>
   </p>
   
   <div class="charger-connections">
@@ -266,9 +323,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Q-Park Chatham Place, Reading 1</h2>
-  <p class="charger-address">Chatham Street RG1 7JF
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Q-Park Chatham Place, Reading 1</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Chatham Street <button class="copy-btn" data-copy="RG1 7JF">RG1 7JF</button>
   </p>
   
   <div class="charger-connections">
@@ -287,9 +347,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Q-Park Chatham Place, Reading 4</h2>
-  <p class="charger-address">Chatham Street RG1 7JF
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Q-Park Chatham Place, Reading 4</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Chatham Street <button class="copy-btn" data-copy="RG1 7JF">RG1 7JF</button>
   </p>
   
   <div class="charger-connections">
@@ -308,9 +371,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Q-Park Chatham Place, Reading 8</h2>
-  <p class="charger-address">Chatham Street RG1 7JF
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Q-Park Chatham Place, Reading 8</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Chatham Street <button class="copy-btn" data-copy="RG1 7JF">RG1 7JF</button>
   </p>
   
   <div class="charger-connections">
@@ -329,9 +395,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Q-Park Chatham Place, Reading 7</h2>
-  <p class="charger-address">Chatham Street RG1 7JF
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Q-Park Chatham Place, Reading 7</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Chatham Street <button class="copy-btn" data-copy="RG1 7JF">RG1 7JF</button>
   </p>
   
   <div class="charger-connections">
@@ -350,9 +419,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Moto Reading Eastbound Services</h2>
-  <p class="charger-address">Moto Reading Eastbound Services RG30 3UQ
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2),CHAdeMO,Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Moto Reading Eastbound Services</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Moto Reading Eastbound Services <button class="copy-btn" data-copy="RG30 3UQ">RG30 3UQ</button>
   </p>
   
   <div class="charger-connections">
@@ -458,9 +531,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">IKEA Reading</h2>
-  <p class="charger-address">Pincents Lane RG31 7SG
+<li class="charger-item charger-item--fast" data-connectors="CCS (Type 2),CHAdeMO,Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">IKEA Reading</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Pincents Lane <button class="copy-btn" data-copy="RG31 7SG">RG31 7SG</button>
   </p>
   
   <div class="charger-connections">
@@ -500,9 +576,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Moto Reading Westbound Services</h2>
-  <p class="charger-address">Moto Reading Westbound Services RG30 3UQ
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2),CHAdeMO,Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Moto Reading Westbound Services</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Moto Reading Westbound Services <button class="copy-btn" data-copy="RG30 3UQ">RG30 3UQ</button>
   </p>
   
   <div class="charger-connections">
@@ -590,9 +670,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Tesco Extra - Reading</h2>
-  <p class="charger-address">Napier Road RG1 8DF
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Tesco Extra - Reading</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Napier Road <button class="copy-btn" data-copy="RG1 8DF">RG1 8DF</button>
   </p>
   
   <div class="charger-connections">
@@ -614,9 +697,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Estates and Facilities</h2>
-  <p class="charger-address">Whiteknights RG6 6BW
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Estates and Facilities</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Whiteknights <button class="copy-btn" data-copy="RG6 6BW">RG6 6BW</button>
   </p>
   
   <div class="charger-connections">
@@ -638,9 +724,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Estates and Facilities</h2>
-  <p class="charger-address">Whiteknights RG6 6BW
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Estates and Facilities</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Whiteknights <button class="copy-btn" data-copy="RG6 6BW">RG6 6BW</button>
   </p>
   
   <div class="charger-connections">
@@ -662,9 +751,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">DRAX_00105</h2>
-  <p class="charger-address">Friar Street RG1 1DP
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">DRAX_00105</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Friar Street <button class="copy-btn" data-copy="RG1 1DP">RG1 1DP</button>
   </p>
   
   <div class="charger-connections">
@@ -686,9 +778,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">SHELL RECHARGE FAIRFIELD</h2>
-  <p class="charger-address">585 Basingstoke Road RG2 0TA
+<li class="charger-item charger-item--rapid" data-connectors="Type 2 (Tethered Connector) ,CHAdeMO">
+  <div class="charger-header">
+    <h2 class="charger-name">SHELL RECHARGE FAIRFIELD</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">585 Basingstoke Road <button class="copy-btn" data-copy="RG2 0TA">RG2 0TA</button>
   </p>
   
   <div class="charger-connections">
@@ -713,9 +809,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">MFG</h2>
-  <p class="charger-address">Shell, Shinfield Rd RG2 8HA
+<li class="charger-item charger-item--rapid" data-connectors="CHAdeMO,Type 2 (Tethered Connector) ">
+  <div class="charger-header">
+    <h2 class="charger-name">MFG</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Shell, Shinfield Rd <button class="copy-btn" data-copy="RG2 8HA">RG2 8HA</button>
   </p>
   
   <div class="charger-connections">
@@ -740,9 +840,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">WOK EV CHARGERS WOKEFIELD 2</h2>
-  <p class="charger-address">de vere wokefield estate Goodboys lane RG7 3AE
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">WOK EV CHARGERS WOKEFIELD 2</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">de vere wokefield estate Goodboys lane <button class="copy-btn" data-copy="RG7 3AE">RG7 3AE</button>
   </p>
   
   <div class="charger-connections">
@@ -764,9 +867,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Crosfield School</h2>
-  <p class="charger-address">Shinfield Road RG2 9BL
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Crosfield School</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Shinfield Road <button class="copy-btn" data-copy="RG2 9BL">RG2 9BL</button>
   </p>
   
   <div class="charger-connections">
@@ -785,9 +891,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Reading Railway Station Car Park</h2>
-  <p class="charger-address">Vastern Road RG1 8BT
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Reading Railway Station Car Park</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Vastern Road <button class="copy-btn" data-copy="RG1 8BT">RG1 8BT</button>
   </p>
   
   <div class="charger-connections">
@@ -806,9 +915,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Lidl-Basingstoke Road</h2>
-  <p class="charger-address">577 Basingstoke Road RG2 0SJ
+<li class="charger-item charger-item--rapid" data-connectors="CHAdeMO,Type 2 (Tethered Connector) ,CCS (Type 2)">
+  <div class="charger-header">
+    <h2 class="charger-name">Lidl-Basingstoke Road</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">577 Basingstoke Road <button class="copy-btn" data-copy="RG2 0SJ">RG2 0SJ</button>
   </p>
   
   <div class="charger-connections">
@@ -833,9 +946,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Turnhams Farm House</h2>
-  <p class="charger-address">Pincents Lane RG314TT
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Turnhams Farm House</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Pincents Lane <button class="copy-btn" data-copy="RG314TT">RG314TT</button>
   </p>
   
   <div class="charger-connections">
@@ -854,9 +970,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Chester Street Car Park</h2>
-  <p class="charger-address">19 Chester Street RG4 8JH
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Chester Street Car Park</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">19 Chester Street <button class="copy-btn" data-copy="RG4 8JH">RG4 8JH</button>
   </p>
   
   <div class="charger-connections">
@@ -878,9 +997,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Thames Promenade Car Park</h2>
-  <p class="charger-address">Thames Promenade Car Park RG1 8BD
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Thames Promenade Car Park</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Thames Promenade Car Park <button class="copy-btn" data-copy="RG1 8BD">RG1 8BD</button>
   </p>
   
   <div class="charger-connections">
@@ -902,9 +1024,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Kensington Road Car Park</h2>
-  <p class="charger-address">Kensington Road Car Park RG30 2SZ
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Kensington Road Car Park</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Kensington Road Car Park <button class="copy-btn" data-copy="RG30 2SZ">RG30 2SZ</button>
   </p>
   
   <div class="charger-connections">
@@ -926,9 +1051,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Aborfield C2</h2>
-  <p class="charger-address">Nine Mile Ride Extension RG2 9GB
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Aborfield C2</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Nine Mile Ride Extension <button class="copy-btn" data-copy="RG2 9GB">RG2 9GB</button>
   </p>
   
   <div class="charger-connections">
@@ -950,9 +1078,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Tesco Extra - Reading</h2>
-  <p class="charger-address"> Napier Road RG1 8DF 
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Tesco Extra - Reading</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address"> Napier Road <button class="copy-btn" data-copy="RG1 8DF ">RG1 8DF </button>
   </p>
   
   <div class="charger-connections">
@@ -974,9 +1105,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Area</h2>
-  <p class="charger-address">1 Station Hill RG1 1NB
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Area</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">1 Station Hill <button class="copy-btn" data-copy="RG1 1NB">RG1 1NB</button>
   </p>
   
   <div class="charger-connections">
@@ -998,9 +1132,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">The World Upside Down</h2>
-  <p class="charger-address">387 Basingstoke Road RG2 0JE
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2),CHAdeMO,Type 2 (Tethered Connector) ">
+  <div class="charger-header">
+    <h2 class="charger-name">The World Upside Down</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">387 Basingstoke Road <button class="copy-btn" data-copy="RG2 0JE">RG2 0JE</button>
   </p>
   
   <div class="charger-connections">
@@ -1025,9 +1163,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Tesco Extra-Reading West</h2>
-  <p class="charger-address">Portman Road RG30 1AW
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Tesco Extra-Reading West</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Portman Road <button class="copy-btn" data-copy="RG30 1AW">RG30 1AW</button>
   </p>
   
   <div class="charger-connections">
@@ -1052,6 +1193,23 @@
 
 <p><a href="/" class="back-link">← All UK towns</a></p>
 
+
+<div class="nearby-towns">
+  <h2 class="nearby-heading">Nearby towns</h2>
+  <ul class="nearby-list">
+  
+    <li><a href="/uk/wokingham/">Wokingham</a></li>
+  
+    <li><a href="/uk/henley-on-thames/">Henley-on-Thames</a></li>
+  
+    <li><a href="/uk/basingstoke/">Basingstoke</a></li>
+  
+    <li><a href="/uk/fleet/">Fleet</a></li>
+  
+  </ul>
+</div>
+
+
 </div>
 
 <footer>
@@ -1064,26 +1222,61 @@
 <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 <script>
 (function () {
+  // --- Map ---
   var map = L.map('map').setView([51.44078874771879, -0.9851643157205382], 12);
-
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
   }).addTo(map);
 
   var markers = L.markerClusterGroup();
-  var chargerData = [{"lat": 51.465317372485146, "lng": -0.9839511023766931, "title": "Rivermead Leisure Centre", "address": "Richfield Avenue"}, {"lat": 51.405361, "lng": -0.98102, "title": "Mereoak Park and Ride", "address": "Mereoak Land"}, {"lat": 51.4289981867029, "lng": -0.9455596753273312, "title": "The Sportsman", "address": "201 Shinfield Road"}, {"lat": 51.43433535, "lng": -1.07369779, "title": "EVC BizSpace Theale Merlin House", "address": "Merlin House"}, {"lat": 51.424236, "lng": -1.067394, "title": "Fox & Hounds", "address": "Fox & Hounds"}, {"lat": 51.421455, "lng": -0.983437, "title": "Reading FC Stadium", "address": "Biscuit Way"}, {"lat": 51.451876, "lng": -0.972436, "title": "Civic Offices Bridge Street", "address": "Arnold"}, {"lat": 51.43868904819041, "lng": -0.9685906596296263, "title": "Reading Katesgrove Supercharger", "address": "160 Basingstoke Road"}, {"lat": 51.4532079, "lng": -0.97441, "title": "Reading Civic Centre, outside Car Park", "address": "Simmonds Street"}, {"lat": 51.456131, "lng": -0.980571, "title": "Q-Park Chatham Place, Reading 1", "address": "Chatham Street"}, {"lat": 51.456046, "lng": -0.980552, "title": "Q-Park Chatham Place, Reading 4", "address": "Chatham Street"}, {"lat": 51.455928, "lng": -0.980515, "title": "Q-Park Chatham Place, Reading 8", "address": "Chatham Street"}, {"lat": 51.455882, "lng": -0.980518, "title": "Q-Park Chatham Place, Reading 7", "address": "Chatham Street"}, {"lat": 51.425836, "lng": -1.03482, "title": "Moto Reading Eastbound Services", "address": "Moto Reading Eastbound Services"}, {"lat": 51.441585, "lng": -1.065328, "title": "IKEA Reading", "address": "Pincents Lane"}, {"lat": 51.423283, "lng": -1.036994, "title": "Moto Reading Westbound Services", "address": "Moto Reading Westbound Services"}, {"lat": 51.4596, "lng": -0.954765, "title": "Tesco Extra - Reading", "address": "Napier Road"}, {"lat": 51.457626, "lng": -0.945636, "title": "Estates and Facilities", "address": "Whiteknights"}, {"lat": 51.457314, "lng": -0.945714, "title": "Estates and Facilities", "address": "Whiteknights"}, {"lat": 51.45674, "lng": -0.97352, "title": "DRAX_00105", "address": "Friar Street"}, {"lat": 51.417182, "lng": -0.971093, "title": "SHELL RECHARGE FAIRFIELD", "address": "585 Basingstoke Road"}, {"lat": 51.42787, "lng": -0.945597, "title": "MFG", "address": "Shell, Shinfield Rd"}, {"lat": 51.385194, "lng": -1.030479, "title": "WOK EV CHARGERS WOKEFIELD 2", "address": "de vere wokefield estate Goodboys lane"}, {"lat": 51.4207115, "lng": -0.9511469, "title": "Crosfield School", "address": "Shinfield Road"}, {"lat": 51.45995564458485, "lng": -0.9706435926951826, "title": "Reading Railway Station Car Park", "address": "Vastern Road"}, {"lat": 51.4214153, "lng": -0.96857354, "title": "Lidl-Basingstoke Road", "address": "577 Basingstoke Road"}, {"lat": 51.449779517352596, "lng": -1.0595079332208286, "title": "Turnhams Farm House", "address": "Pincents Lane"}, {"lat": 51.46856, "lng": -0.97299, "title": "Chester Street Car Park", "address": "19 Chester Street"}, {"lat": 51.46596, "lng": -0.97946, "title": "Thames Promenade Car Park", "address": "Thames Promenade Car Park"}, {"lat": 51.45412, "lng": -0.99915, "title": "Kensington Road Car Park", "address": "Kensington Road Car Park"}, {"lat": 51.37941, "lng": -0.903434, "title": "Aborfield C2", "address": "Nine Mile Ride Extension"}, {"lat": 51.4599463165781, "lng": -0.955714871435475, "title": "Tesco Extra - Reading", "address": " Napier Road"}, {"lat": 51.459167, "lng": -0.975912, "title": "Area", "address": "1 Station Hill"}, {"lat": 51.4298220342637, "lng": -0.968881985533699, "title": "The World Upside Down", "address": "387 Basingstoke Road"}, {"lat": 51.459066, "lng": -0.998738, "title": "Tesco Extra-Reading West", "address": "Portman Road"}];
+  var chargerData = [{"lat": 51.465317372485146, "lng": -0.9839511023766931, "title": "Rivermead Leisure Centre", "address": "Richfield Avenue", "connectors": ["CCS (Type 2) · 150kW"]}, {"lat": 51.405361, "lng": -0.98102, "title": "Mereoak Park and Ride", "address": "Mereoak Land", "connectors": ["CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 43kW"]}, {"lat": 51.4289981867029, "lng": -0.9455596753273312, "title": "The Sportsman", "address": "201 Shinfield Road", "connectors": ["Type 2 (Socket Only) · 21kW"]}, {"lat": 51.43433535, "lng": -1.07369779, "title": "EVC BizSpace Theale Merlin House", "address": "Merlin House", "connectors": ["Type 2 (Socket Only) · 22kW"]}, {"lat": 51.424236, "lng": -1.067394, "title": "Fox & Hounds", "address": "Fox & Hounds", "connectors": ["CHAdeMO · 50kW", "CCS (Type 2) · 75kW", "CHAdeMO · 50kW", "CCS (Type 2) · 75kW", "CHAdeMO · 50kW", "CCS (Type 2) · 75kW"]}, {"lat": 51.421455, "lng": -0.983437, "title": "Reading FC Stadium", "address": "Biscuit Way", "connectors": ["CCS (Type 2) · 160kW", "CHAdeMO · 60kW"]}, {"lat": 51.451876, "lng": -0.972436, "title": "Civic Offices Bridge Street", "address": "Arnold", "connectors": ["CHAdeMO · 22kW", "Type 2 (Socket Only) · 22kW", "Type 2 (Tethered Connector)  · 22kW"]}, {"lat": 51.43868904819041, "lng": -0.9685906596296263, "title": "Reading Katesgrove Supercharger", "address": "160 Basingstoke Road", "connectors": ["CCS (Type 2) · 250kW"]}, {"lat": 51.4532079, "lng": -0.97441, "title": "Reading Civic Centre, outside Car Park", "address": "Simmonds Street", "connectors": ["CCS (Type 2) · 44kW", "CHAdeMO · 44kW", "Type 2 (Tethered Connector)  · 22kW", "CCS (Type 2) · 44kW", "CHAdeMO · 44kW", "Type 2 (Tethered Connector)  · 22kW"]}, {"lat": 51.456131, "lng": -0.980571, "title": "Q-Park Chatham Place, Reading 1", "address": "Chatham Street", "connectors": ["Type 2 (Socket Only) · 22kW"]}, {"lat": 51.456046, "lng": -0.980552, "title": "Q-Park Chatham Place, Reading 4", "address": "Chatham Street", "connectors": ["Type 2 (Socket Only) · 22kW"]}, {"lat": 51.455928, "lng": -0.980515, "title": "Q-Park Chatham Place, Reading 8", "address": "Chatham Street", "connectors": ["Type 2 (Socket Only) · 22kW"]}, {"lat": 51.455882, "lng": -0.980518, "title": "Q-Park Chatham Place, Reading 7", "address": "Chatham Street", "connectors": ["Type 2 (Socket Only) · 22kW"]}, {"lat": 51.425836, "lng": -1.03482, "title": "Moto Reading Eastbound Services", "address": "Moto Reading Eastbound Services", "connectors": ["CCS (Type 2) · 40kW", "CHAdeMO · 40kW", "CCS (Type 2) · 40kW", "CCS (Type 2) · 40kW", "CCS (Type 2) · 350kW", "CCS (Type 2) · 350kW", "CCS (Type 2) · 350kW", "CHAdeMO · 100kW", "CCS (Type 2) · 350kW", "CHAdeMO · 100kW", "CCS (Type 2) · 350kW", "CHAdeMO · 100kW", "CCS (Type 2) · 350kW", "CHAdeMO · 100kW", "CCS (Type 2) · 350kW", "CCS (Type 2) · 350kW", "CCS (Type 2) · 350kW", "CCS (Type 2) · 350kW", "CHAdeMO · 100kW", "CCS (Type 2) · 350kW", "CHAdeMO · 100kW", "Type 2 (Socket Only) · 11kW", "Type 2 (Socket Only) · 11kW", "CCS (Type 2) · 350kW", "CCS (Type 2) · 360kW", "CCS (Type 2) · 360kW", "CCS (Type 2) · 360kW", "CCS (Type 2) · 360kW", "CCS (Type 2) · 360kW", "CCS (Type 2) · 360kW"]}, {"lat": 51.441585, "lng": -1.065328, "title": "IKEA Reading", "address": "Pincents Lane", "connectors": ["CCS (Type 2) · 40kW", "CHAdeMO · 40kW", "CCS (Type 2) · 40kW", "CCS (Type 2) · 40kW", "CCS (Type 2) · 40kW", "CCS (Type 2) · 40kW", "Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 51.423283, "lng": -1.036994, "title": "Moto Reading Westbound Services", "address": "Moto Reading Westbound Services", "connectors": ["CCS (Type 2) · 35kW", "CHAdeMO · 60kW", "CCS (Type 2) · 35kW", "CCS (Type 2) · 35kW", "CCS (Type 2) · 350kW", "CCS (Type 2) · 350kW", "CCS (Type 2) · 350kW", "CCS (Type 2) · 350kW", "CCS (Type 2) · 350kW", "CCS (Type 2) · 350kW", "Type 2 (Socket Only) · 11kW", "Type 2 (Socket Only) · 11kW", "CCS (Type 2) · 360kW", "CCS (Type 2) · 360kW", "CCS (Type 2) · 360kW", "CCS (Type 2) · 360kW", "CCS (Type 2) · 360kW", "CCS (Type 2) · 360kW", "CCS (Type 2) · 350kW", "CCS (Type 2) · 350kW", "CCS (Type 2) · 350kW", "CCS (Type 2) · 350kW", "CCS (Type 2) · 350kW", "CCS (Type 2) · 350kW"]}, {"lat": 51.4596, "lng": -0.954765, "title": "Tesco Extra - Reading", "address": "Napier Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 51.457626, "lng": -0.945636, "title": "Estates and Facilities", "address": "Whiteknights", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 51.457314, "lng": -0.945714, "title": "Estates and Facilities", "address": "Whiteknights", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 51.45674, "lng": -0.97352, "title": "DRAX_00105", "address": "Friar Street", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 51.417182, "lng": -0.971093, "title": "SHELL RECHARGE FAIRFIELD", "address": "585 Basingstoke Road", "connectors": ["Type 2 (Tethered Connector)  · 43kW", "Type 2 (Tethered Connector)  · 50kW", "CHAdeMO · 50kW"]}, {"lat": 51.42787, "lng": -0.945597, "title": "MFG", "address": "Shell, Shinfield Rd", "connectors": ["CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 43kW", "Type 2 (Tethered Connector)  · 50kW"]}, {"lat": 51.385194, "lng": -1.030479, "title": "WOK EV CHARGERS WOKEFIELD 2", "address": "de vere wokefield estate Goodboys lane", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 51.4207115, "lng": -0.9511469, "title": "Crosfield School", "address": "Shinfield Road", "connectors": ["Type 2 (Socket Only) · 7kW"]}, {"lat": 51.45995564458485, "lng": -0.9706435926951826, "title": "Reading Railway Station Car Park", "address": "Vastern Road", "connectors": ["Type 2 (Socket Only) · 7kW"]}, {"lat": 51.4214153, "lng": -0.96857354, "title": "Lidl-Basingstoke Road", "address": "577 Basingstoke Road", "connectors": ["CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 22kW", "CCS (Type 2) · 50kW"]}, {"lat": 51.449779517352596, "lng": -1.0595079332208286, "title": "Turnhams Farm House", "address": "Pincents Lane", "connectors": ["Type 2 (Socket Only) · 7.5kW"]}, {"lat": 51.46856, "lng": -0.97299, "title": "Chester Street Car Park", "address": "19 Chester Street", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 51.46596, "lng": -0.97946, "title": "Thames Promenade Car Park", "address": "Thames Promenade Car Park", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 51.45412, "lng": -0.99915, "title": "Kensington Road Car Park", "address": "Kensington Road Car Park", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 51.37941, "lng": -0.903434, "title": "Aborfield C2", "address": "Nine Mile Ride Extension", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 51.4599463165781, "lng": -0.955714871435475, "title": "Tesco Extra - Reading", "address": " Napier Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 51.459167, "lng": -0.975912, "title": "Area", "address": "1 Station Hill", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 51.4298220342637, "lng": -0.968881985533699, "title": "The World Upside Down", "address": "387 Basingstoke Road", "connectors": ["CCS (Type 2) · 50kW", "CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 43kW"]}, {"lat": 51.459066, "lng": -0.998738, "title": "Tesco Extra-Reading West", "address": "Portman Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}];
 
   chargerData.forEach(function (c) {
+    var connHtml = c.connectors.length
+      ? '<div style="margin-top:6px;font-size:12px;color:#475569">' + c.connectors.join(' &middot; ') + '</div>'
+      : '';
     var marker = L.marker([c.lat, c.lng]);
     marker.bindPopup(
-      '<b>' + c.title + '</b><br>' + c.address + '<br><br>' +
+      '<b>' + c.title + '</b>' +
+      '<div style="color:#64748b;font-size:13px">' + c.address + '</div>' +
+      connHtml +
       '<a href="https://www.google.com/maps/dir/?api=1&destination=' + c.lat + ',' + c.lng +
-      '" target="_blank" rel="noopener">Get directions</a>'
+      '" target="_blank" rel="noopener" style="display:inline-block;margin-top:8px;padding:4px 10px;background:#2563eb;color:white;border-radius:4px;text-decoration:none;font-size:12px">Get directions</a>'
     );
     markers.addLayer(marker);
   });
-
   map.addLayer(markers);
+
+  // --- Connector filter ---
+  var filterBtns = document.querySelectorAll('.filter-btn');
+  var chargerItems = document.querySelectorAll('.charger-item');
+
+  filterBtns.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      filterBtns.forEach(function (b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      var f = btn.dataset.filter;
+      chargerItems.forEach(function (item) {
+        var connList = item.dataset.connectors ? item.dataset.connectors.split(',') : [];
+        item.style.display = (f === 'all' || connList.indexOf(f) !== -1) ? '' : 'none';
+      });
+    });
+  });
+
+  // --- Copy postcode ---
+  document.querySelectorAll('.copy-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var original = btn.textContent;
+      navigator.clipboard.writeText(btn.dataset.copy).then(function () {
+        btn.textContent = 'Copied!';
+        btn.classList.add('copy-btn--success');
+        setTimeout(function () {
+          btn.textContent = original;
+          btn.classList.remove('copy-btn--success');
+        }, 1500);
+      });
+    });
+  });
 }());
 </script>
 

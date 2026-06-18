@@ -17,7 +17,10 @@
 
 <header>
 <div class="container">
-<a href="/" class="logo">PlugMap <span class="tagline">UK EV Charger Locator</span></a>
+<a href="/" class="logo">
+  <svg class="logo-bolt" viewBox="0 0 24 24" fill="currentColor" width="22" height="22" aria-hidden="true"><path d="M13 2L4.5 13.5H11L10 22L19.5 10.5H13Z"/></svg>
+  PlugMap <span class="tagline">UK EV Charger Locator</span>
+</a>
 </div>
 </header>
 
@@ -28,16 +31,41 @@
 </nav>
 
 <h1>EV Chargers in Tamworth</h1>
-<p class="page-intro">9 public charging stations found in Tamworth.</p>
+
+<div class="stats-bar">
+  <span class="stat-pill stat-total">9 stations</span>
+  <span class="stat-pill stat-rapid">6 rapid (50kW+)</span>
+  <span class="stat-pill stat-fast">3 fast (7–50kW)</span>
+  
+</div>
 
 <div id="map"></div>
 
-<ul class="charger-list">
+
+<div class="connector-filter">
+  <span class="filter-label">Filter:</span>
+  <button class="filter-btn active" data-filter="all">All</button>
+  
+  <button class="filter-btn" data-filter="CCS (Type 2)">CCS (Type 2)</button>
+  
+  <button class="filter-btn" data-filter="CHAdeMO">CHAdeMO</button>
+  
+  <button class="filter-btn" data-filter="Type 2 (Socket Only)">Type 2 (Socket Only)</button>
+  
+  <button class="filter-btn" data-filter="Type 2 (Tethered Connector) ">Type 2 (Tethered Connector) </button>
+  
+</div>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">ETB TAMWORTH</h2>
-  <p class="charger-address">ETB Autocentres Tamworth unit 1 Forties, Tame B77 5DE
+<ul class="charger-list" id="charger-list">
+
+
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">ETB TAMWORTH</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">ETB Autocentres Tamworth unit 1 Forties, Tame <button class="copy-btn" data-copy="B77 5DE">B77 5DE</button>
   </p>
   
   <div class="charger-connections">
@@ -56,9 +84,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Saba UK-Tamworth Station</h2>
-  <p class="charger-address">Tamworth Station B79 7JT
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Saba UK-Tamworth Station</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Tamworth Station <button class="copy-btn" data-copy="B79 7JT">B79 7JT</button>
   </p>
   
   <div class="charger-connections">
@@ -77,9 +108,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Longwood Pub &amp; Restaurant</h2>
-  <p class="charger-address">Fazeley B78 3QP
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2),CHAdeMO,Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Longwood Pub &amp; Restaurant</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Fazeley <button class="copy-btn" data-copy="B78 3QP">B78 3QP</button>
   </p>
   
   <div class="charger-connections">
@@ -113,9 +148,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">MOTO Tamworth Services</h2>
-  <p class="charger-address">M42 Motorway B77 5PS
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2),CHAdeMO,Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">MOTO Tamworth Services</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">M42 Motorway <button class="copy-btn" data-copy="B77 5PS">B77 5PS</button>
   </p>
   
   <div class="charger-connections">
@@ -143,9 +182,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Premier Inn Tamworth Central</h2>
-  <p class="charger-address">Bitterscote, Bonehill Road B78 3HQ
+<li class="charger-item charger-item--rapid" data-connectors="Type 2 (Tethered Connector) ,CHAdeMO,Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Premier Inn Tamworth Central</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Bitterscote, Bonehill Road <button class="copy-btn" data-copy="B78 3HQ">B78 3HQ</button>
   </p>
   
   <div class="charger-connections">
@@ -170,9 +213,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Morrisons Tamworth Marlborough Way</h2>
-  <p class="charger-address">Hilmore Way B77 2NY
+<li class="charger-item charger-item--rapid" data-connectors="Type 2 (Socket Only),CHAdeMO,Type 2 (Tethered Connector) ">
+  <div class="charger-header">
+    <h2 class="charger-name">Morrisons Tamworth Marlborough Way</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Hilmore Way <button class="copy-btn" data-copy="B77 2NY">B77 2NY</button>
   </p>
   
   <div class="charger-connections">
@@ -197,9 +244,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Willowherb Close 6</h2>
-  <p class="charger-address">Willowherb Close 6 B79 0EN
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Willowherb Close 6</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Willowherb Close 6 <button class="copy-btn" data-copy="B79 0EN">B79 0EN</button>
   </p>
   
   <div class="charger-connections">
@@ -218,9 +268,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Morrison’s Tamworth</h2>
-  <p class="charger-address">Hilmore Way B77 2NY
+<li class="charger-item charger-item--rapid" data-connectors="Type 2 (Socket Only),CHAdeMO,CCS (Type 2)">
+  <div class="charger-header">
+    <h2 class="charger-name">Morrison’s Tamworth</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Hilmore Way <button class="copy-btn" data-copy="B77 2NY">B77 2NY</button>
   </p>
   
   <div class="charger-connections">
@@ -245,9 +299,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Morrisons Tamworth Upper Gungate</h2>
-  <p class="charger-address">Upper Gungate B79 7NU
+<li class="charger-item charger-item--rapid" data-connectors="CHAdeMO,CCS (Type 2),Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Morrisons Tamworth Upper Gungate</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Upper Gungate <button class="copy-btn" data-copy="B79 7NU">B79 7NU</button>
   </p>
   
   <div class="charger-connections">
@@ -275,6 +333,23 @@
 
 <p><a href="/" class="back-link">← All UK towns</a></p>
 
+
+<div class="nearby-towns">
+  <h2 class="nearby-heading">Nearby towns</h2>
+  <ul class="nearby-list">
+  
+    <li><a href="/uk/lichfield/">Lichfield</a></li>
+  
+    <li><a href="/uk/sutton-coldfield/">Sutton Coldfield</a></li>
+  
+    <li><a href="/uk/solihull/">Solihull</a></li>
+  
+    <li><a href="/uk/nuneaton/">Nuneaton</a></li>
+  
+  </ul>
+</div>
+
+
 </div>
 
 <footer>
@@ -287,26 +362,61 @@
 <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 <script>
 (function () {
+  // --- Map ---
   var map = L.map('map').setView([52.622373072116204, -1.6825524568093189], 12);
-
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
   }).addTo(map);
 
   var markers = L.markerClusterGroup();
-  var chargerData = [{"lat": 52.606163, "lng": -1.674948, "title": "ETB TAMWORTH", "address": "ETB Autocentres Tamworth unit 1 Forties, Tame"}, {"lat": 52.637231, "lng": -1.688216, "title": "Saba UK-Tamworth Station", "address": "Tamworth Station"}, {"lat": 52.616963, "lng": -1.714398, "title": "Longwood Pub & Restaurant", "address": "Fazeley"}, {"lat": 52.607844, "lng": -1.641253, "title": "MOTO Tamworth Services", "address": "M42 Motorway"}, {"lat": 52.629215, "lng": -1.702336, "title": "Premier Inn Tamworth Central", "address": "Bitterscote, Bonehill Road"}, {"lat": 52.611771, "lng": -1.673339, "title": "Morrisons Tamworth Marlborough Way", "address": "Hilmore Way"}, {"lat": 52.643133, "lng": -1.680969, "title": "Willowherb Close 6", "address": "Willowherb Close 6"}, {"lat": 52.611759147910874, "lng": -1.6742084885776194, "title": "Morrison\u2019s Tamworth", "address": "Hilmore Way"}, {"lat": 52.63727850113497, "lng": -1.6933046227062505, "title": "Morrisons Tamworth Upper Gungate", "address": "Upper Gungate"}];
+  var chargerData = [{"lat": 52.606163, "lng": -1.674948, "title": "ETB TAMWORTH", "address": "ETB Autocentres Tamworth unit 1 Forties, Tame", "connectors": ["Type 2 (Socket Only) · 22kW"]}, {"lat": 52.637231, "lng": -1.688216, "title": "Saba UK-Tamworth Station", "address": "Tamworth Station", "connectors": ["Type 2 (Socket Only) · 7kW"]}, {"lat": 52.616963, "lng": -1.714398, "title": "Longwood Pub & Restaurant", "address": "Fazeley", "connectors": ["CCS (Type 2) · 50kW", "CCS (Type 2) · 50kW", "CHAdeMO · 50kW", "CHAdeMO · 50kW", "Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 11kW"]}, {"lat": 52.607844, "lng": -1.641253, "title": "MOTO Tamworth Services", "address": "M42 Motorway", "connectors": ["CCS (Type 2) · 50kW", "CHAdeMO · 50kW", "Type 2 (Socket Only) · 11kW", "Type 2 (Socket Only) · 11kW"]}, {"lat": 52.629215, "lng": -1.702336, "title": "Premier Inn Tamworth Central", "address": "Bitterscote, Bonehill Road", "connectors": ["Type 2 (Tethered Connector)  · 50kW", "CHAdeMO · 50kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 52.611771, "lng": -1.673339, "title": "Morrisons Tamworth Marlborough Way", "address": "Hilmore Way", "connectors": ["Type 2 (Socket Only) · 22kW", "CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 50kW"]}, {"lat": 52.643133, "lng": -1.680969, "title": "Willowherb Close 6", "address": "Willowherb Close 6", "connectors": ["Type 2 (Socket Only) · 22kW"]}, {"lat": 52.611759147910874, "lng": -1.6742084885776194, "title": "Morrison’s Tamworth", "address": "Hilmore Way", "connectors": ["Type 2 (Socket Only) · 22kW", "CHAdeMO · 50kW", "CCS (Type 2) · 50kW"]}, {"lat": 52.63727850113497, "lng": -1.6933046227062505, "title": "Morrisons Tamworth Upper Gungate", "address": "Upper Gungate", "connectors": ["CHAdeMO · 50kW", "CCS (Type 2) · 50kW", "Type 2 (Socket Only) · 22kW"]}];
 
   chargerData.forEach(function (c) {
+    var connHtml = c.connectors.length
+      ? '<div style="margin-top:6px;font-size:12px;color:#475569">' + c.connectors.join(' &middot; ') + '</div>'
+      : '';
     var marker = L.marker([c.lat, c.lng]);
     marker.bindPopup(
-      '<b>' + c.title + '</b><br>' + c.address + '<br><br>' +
+      '<b>' + c.title + '</b>' +
+      '<div style="color:#64748b;font-size:13px">' + c.address + '</div>' +
+      connHtml +
       '<a href="https://www.google.com/maps/dir/?api=1&destination=' + c.lat + ',' + c.lng +
-      '" target="_blank" rel="noopener">Get directions</a>'
+      '" target="_blank" rel="noopener" style="display:inline-block;margin-top:8px;padding:4px 10px;background:#2563eb;color:white;border-radius:4px;text-decoration:none;font-size:12px">Get directions</a>'
     );
     markers.addLayer(marker);
   });
-
   map.addLayer(markers);
+
+  // --- Connector filter ---
+  var filterBtns = document.querySelectorAll('.filter-btn');
+  var chargerItems = document.querySelectorAll('.charger-item');
+
+  filterBtns.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      filterBtns.forEach(function (b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      var f = btn.dataset.filter;
+      chargerItems.forEach(function (item) {
+        var connList = item.dataset.connectors ? item.dataset.connectors.split(',') : [];
+        item.style.display = (f === 'all' || connList.indexOf(f) !== -1) ? '' : 'none';
+      });
+    });
+  });
+
+  // --- Copy postcode ---
+  document.querySelectorAll('.copy-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var original = btn.textContent;
+      navigator.clipboard.writeText(btn.dataset.copy).then(function () {
+        btn.textContent = 'Copied!';
+        btn.classList.add('copy-btn--success');
+        setTimeout(function () {
+          btn.textContent = original;
+          btn.classList.remove('copy-btn--success');
+        }, 1500);
+      });
+    });
+  });
 }());
 </script>
 

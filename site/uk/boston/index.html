@@ -17,7 +17,10 @@
 
 <header>
 <div class="container">
-<a href="/" class="logo">PlugMap <span class="tagline">UK EV Charger Locator</span></a>
+<a href="/" class="logo">
+  <svg class="logo-bolt" viewBox="0 0 24 24" fill="currentColor" width="22" height="22" aria-hidden="true"><path d="M13 2L4.5 13.5H11L10 22L19.5 10.5H13Z"/></svg>
+  PlugMap <span class="tagline">UK EV Charger Locator</span>
+</a>
 </div>
 </header>
 
@@ -28,16 +31,39 @@
 </nav>
 
 <h1>EV Chargers in Boston</h1>
-<p class="page-intro">12 public charging stations found in Boston.</p>
+
+<div class="stats-bar">
+  <span class="stat-pill stat-total">12 stations</span>
+  <span class="stat-pill stat-rapid">2 rapid (50kW+)</span>
+  <span class="stat-pill stat-fast">10 fast (7–50kW)</span>
+  
+</div>
 
 <div id="map"></div>
 
-<ul class="charger-list">
+
+<div class="connector-filter">
+  <span class="filter-label">Filter:</span>
+  <button class="filter-btn active" data-filter="all">All</button>
+  
+  <button class="filter-btn" data-filter="CCS (Type 2)">CCS (Type 2)</button>
+  
+  <button class="filter-btn" data-filter="CHAdeMO">CHAdeMO</button>
+  
+  <button class="filter-btn" data-filter="Type 2 (Socket Only)">Type 2 (Socket Only)</button>
+  
+</div>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Port of Boston</h2>
-  <p class="charger-address">St John&#39;s Road PE21 6BN
+<ul class="charger-list" id="charger-list">
+
+
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Port of Boston</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">St John&#39;s Road <button class="copy-btn" data-copy="PE21 6BN">PE21 6BN</button>
   </p>
   
   <div class="charger-connections">
@@ -56,9 +82,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Skirbeck Road co-op</h2>
-  <p class="charger-address">Skirbeck Road PE21 6DA
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2),CHAdeMO">
+  <div class="charger-header">
+    <h2 class="charger-name">Skirbeck Road co-op</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Skirbeck Road <button class="copy-btn" data-copy="PE21 6DA">PE21 6DA</button>
   </p>
   
   <div class="charger-connections">
@@ -80,9 +110,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Staniland</h2>
-  <p class="charger-address">Staniland PE21 8SS
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Staniland</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Staniland <button class="copy-btn" data-copy="PE21 8SS">PE21 8SS</button>
   </p>
   
   <div class="charger-connections">
@@ -108,9 +141,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Cattle Market Units</h2>
-  <p class="charger-address">Cattle Market Car park PE21 6RX
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Cattle Market Units</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Cattle Market Car park <button class="copy-btn" data-copy="PE21 6RX">PE21 6RX</button>
   </p>
   
   <div class="charger-connections">
@@ -142,9 +178,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">West End</h2>
-  <p class="charger-address">West End Car Park PE21 8SS
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">West End</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">West End Car Park <button class="copy-btn" data-copy="PE21 8SS">PE21 8SS</button>
   </p>
   
   <div class="charger-connections">
@@ -164,9 +203,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Tesco Superstore - Boston</h2>
-  <p class="charger-address">New Hammond Beck Road PE21 7JD
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Tesco Superstore - Boston</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">New Hammond Beck Road <button class="copy-btn" data-copy="PE21 7JD">PE21 7JD</button>
   </p>
   
   <div class="charger-connections">
@@ -188,9 +230,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Bargate</h2>
-  <p class="charger-address">Bargate Green Car Park PE21 6RX
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Bargate</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Bargate Green Car Park <button class="copy-btn" data-copy="PE21 6RX">PE21 6RX</button>
   </p>
   
   <div class="charger-connections">
@@ -216,9 +261,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Public points</h2>
-  <p class="charger-address">Access from Fydell Crescent PE21 8QR
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Public points</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Access from Fydell Crescent <button class="copy-btn" data-copy="PE21 8QR">PE21 8QR</button>
   </p>
   
   <div class="charger-connections">
@@ -238,9 +286,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">GMLC</h2>
-  <p class="charger-address">Geoff Moulder Leisure Centre PE21 6JE
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">GMLC</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Geoff Moulder Leisure Centre <button class="copy-btn" data-copy="PE21 6JE">PE21 6JE</button>
   </p>
   
   <div class="charger-connections">
@@ -260,9 +311,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Starbucks Wyberton</h2>
-  <p class="charger-address">The Quadrant PE21 7NH
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2),CHAdeMO">
+  <div class="charger-header">
+    <h2 class="charger-name">Starbucks Wyberton</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">The Quadrant <button class="copy-btn" data-copy="PE21 7NH">PE21 7NH</button>
   </p>
   
   <div class="charger-connections">
@@ -284,9 +339,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Tesco Superstore</h2>
-  <p class="charger-address">New Hammond Beck Rd PE21 7JD
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Tesco Superstore</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">New Hammond Beck Rd <button class="copy-btn" data-copy="PE21 7JD">PE21 7JD</button>
   </p>
   
   <div class="charger-connections">
@@ -308,9 +366,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Boston West Academy ( School )</h2>
-  <p class="charger-address"> PE21 7QG
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Boston West Academy ( School )</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address"> <button class="copy-btn" data-copy="PE21 7QG">PE21 7QG</button>
   </p>
   
   <div class="charger-connections">
@@ -335,6 +396,23 @@
 
 <p><a href="/" class="back-link">← All UK towns</a></p>
 
+
+<div class="nearby-towns">
+  <h2 class="nearby-heading">Nearby towns</h2>
+  <ul class="nearby-list">
+  
+    <li><a href="/uk/spalding/">Spalding</a></li>
+  
+    <li><a href="/uk/peterborough/">Peterborough</a></li>
+  
+    <li><a href="/uk/kings-lynn/">King&#39;s Lynn</a></li>
+  
+    <li><a href="/uk/lincoln/">Lincoln</a></li>
+  
+  </ul>
+</div>
+
+
 </div>
 
 <footer>
@@ -347,26 +425,61 @@
 <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 <script>
 (function () {
+  // --- Map ---
   var map = L.map('map').setView([52.97320078589693, -0.023504771317066974], 12);
-
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
   }).addTo(map);
 
   var markers = L.markerClusterGroup();
-  var chargerData = [{"lat": 52.970096, "lng": -0.019109, "title": "Port of Boston", "address": "St John's Road"}, {"lat": 52.97146216502972, "lng": -0.017447279578476582, "title": "Skirbeck Road co-op", "address": "Skirbeck Road"}, {"lat": 52.975008, "lng": -0.027719, "title": "Staniland", "address": "Staniland"}, {"lat": 52.980704, "lng": -0.020074, "title": "Cattle Market Units", "address": "Cattle Market Car park"}, {"lat": 52.975538, "lng": -0.024951, "title": "West End", "address": "West End Car Park"}, {"lat": 52.970411, "lng": -0.061527, "title": "Tesco Superstore - Boston", "address": "New Hammond Beck Road"}, {"lat": 52.980399, "lng": 0.02054, "title": "Bargate", "address": "Bargate Green Car Park"}, {"lat": 52.975395, "lng": 0.027441, "title": "Public points", "address": "Access from Fydell Crescent"}, {"lat": 52.974842, "lng": -0.015181, "title": "GMLC", "address": "Geoff Moulder Leisure Centre"}, {"lat": 52.9556869433184, "lng": -0.0318900349799378, "title": "Starbucks Wyberton", "address": "The Quadrant"}, {"lat": 52.971157322415, "lng": -0.0607539412463893, "title": "Tesco Superstore", "address": "New Hammond Beck Rd"}, {"lat": 52.97771, "lng": -0.051386, "title": "Boston West Academy ( School )", "address": ""}];
+  var chargerData = [{"lat": 52.970096, "lng": -0.019109, "title": "Port of Boston", "address": "St John's Road", "connectors": ["Type 2 (Socket Only) · 22kW"]}, {"lat": 52.97146216502972, "lng": -0.017447279578476582, "title": "Skirbeck Road co-op", "address": "Skirbeck Road", "connectors": ["CCS (Type 2) · 150kW", "CHAdeMO · 120kW"]}, {"lat": 52.975008, "lng": -0.027719, "title": "Staniland", "address": "Staniland", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 52.980704, "lng": -0.020074, "title": "Cattle Market Units", "address": "Cattle Market Car park", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 52.975538, "lng": -0.024951, "title": "West End", "address": "West End Car Park", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 52.970411, "lng": -0.061527, "title": "Tesco Superstore - Boston", "address": "New Hammond Beck Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 52.980399, "lng": 0.02054, "title": "Bargate", "address": "Bargate Green Car Park", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 52.975395, "lng": 0.027441, "title": "Public points", "address": "Access from Fydell Crescent", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 52.974842, "lng": -0.015181, "title": "GMLC", "address": "Geoff Moulder Leisure Centre", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 52.9556869433184, "lng": -0.0318900349799378, "title": "Starbucks Wyberton", "address": "The Quadrant", "connectors": ["CCS (Type 2) · 50kW", "CHAdeMO · 50kW"]}, {"lat": 52.971157322415, "lng": -0.0607539412463893, "title": "Tesco Superstore", "address": "New Hammond Beck Rd", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 52.97771, "lng": -0.051386, "title": "Boston West Academy ( School )", "address": "", "connectors": ["Type 2 (Socket Only) · 3.7kW", "Type 2 (Socket Only) · 7kW"]}];
 
   chargerData.forEach(function (c) {
+    var connHtml = c.connectors.length
+      ? '<div style="margin-top:6px;font-size:12px;color:#475569">' + c.connectors.join(' &middot; ') + '</div>'
+      : '';
     var marker = L.marker([c.lat, c.lng]);
     marker.bindPopup(
-      '<b>' + c.title + '</b><br>' + c.address + '<br><br>' +
+      '<b>' + c.title + '</b>' +
+      '<div style="color:#64748b;font-size:13px">' + c.address + '</div>' +
+      connHtml +
       '<a href="https://www.google.com/maps/dir/?api=1&destination=' + c.lat + ',' + c.lng +
-      '" target="_blank" rel="noopener">Get directions</a>'
+      '" target="_blank" rel="noopener" style="display:inline-block;margin-top:8px;padding:4px 10px;background:#2563eb;color:white;border-radius:4px;text-decoration:none;font-size:12px">Get directions</a>'
     );
     markers.addLayer(marker);
   });
-
   map.addLayer(markers);
+
+  // --- Connector filter ---
+  var filterBtns = document.querySelectorAll('.filter-btn');
+  var chargerItems = document.querySelectorAll('.charger-item');
+
+  filterBtns.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      filterBtns.forEach(function (b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      var f = btn.dataset.filter;
+      chargerItems.forEach(function (item) {
+        var connList = item.dataset.connectors ? item.dataset.connectors.split(',') : [];
+        item.style.display = (f === 'all' || connList.indexOf(f) !== -1) ? '' : 'none';
+      });
+    });
+  });
+
+  // --- Copy postcode ---
+  document.querySelectorAll('.copy-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var original = btn.textContent;
+      navigator.clipboard.writeText(btn.dataset.copy).then(function () {
+        btn.textContent = 'Copied!';
+        btn.classList.add('copy-btn--success');
+        setTimeout(function () {
+          btn.textContent = original;
+          btn.classList.remove('copy-btn--success');
+        }, 1500);
+      });
+    });
+  });
 }());
 </script>
 

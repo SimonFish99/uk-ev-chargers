@@ -17,7 +17,10 @@
 
 <header>
 <div class="container">
-<a href="/" class="logo">PlugMap <span class="tagline">UK EV Charger Locator</span></a>
+<a href="/" class="logo">
+  <svg class="logo-bolt" viewBox="0 0 24 24" fill="currentColor" width="22" height="22" aria-hidden="true"><path d="M13 2L4.5 13.5H11L10 22L19.5 10.5H13Z"/></svg>
+  PlugMap <span class="tagline">UK EV Charger Locator</span>
+</a>
 </div>
 </header>
 
@@ -28,16 +31,38 @@
 </nav>
 
 <h1>EV Chargers in Ballymena</h1>
-<p class="page-intro">7 public charging stations found in Ballymena.</p>
+
+<div class="stats-bar">
+  <span class="stat-pill stat-total">7 stations</span>
+  <span class="stat-pill stat-rapid">3 rapid (50kW+)</span>
+  <span class="stat-pill stat-fast">4 fast (7–50kW)</span>
+  
+</div>
 
 <div id="map"></div>
 
-<ul class="charger-list">
+
+<div class="connector-filter">
+  <span class="filter-label">Filter:</span>
+  <button class="filter-btn active" data-filter="all">All</button>
+  
+  <button class="filter-btn" data-filter="CCS (Type 2)">CCS (Type 2)</button>
+  
+  <button class="filter-btn" data-filter="Type 2 (Socket Only)">Type 2 (Socket Only)</button>
+  
+</div>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">The Range</h2>
-  <p class="charger-address">Braidwater Retail Park BT42 3AG
+<ul class="charger-list" id="charger-list">
+
+
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2)">
+  <div class="charger-header">
+    <h2 class="charger-name">The Range</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Braidwater Retail Park <button class="copy-btn" data-copy="BT42 3AG">BT42 3AG</button>
   </p>
   
   <div class="charger-connections">
@@ -56,9 +81,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Dreams</h2>
-  <p class="charger-address">Larne Road Link, Ballymena BT43 5EP BT43 5EP
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2)">
+  <div class="charger-header">
+    <h2 class="charger-name">Dreams</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Larne Road Link, Ballymena BT43 5EP <button class="copy-btn" data-copy="BT43 5EP">BT43 5EP</button>
   </p>
   
   <div class="charger-connections">
@@ -77,9 +106,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Dogs Trust - Ballymena</h2>
-  <p class="charger-address">60 Teeshan Road BT43 5PN
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Dogs Trust - Ballymena</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">60 Teeshan Road <button class="copy-btn" data-copy="BT43 5PN">BT43 5PN</button>
   </p>
   
   <div class="charger-connections">
@@ -101,9 +133,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Adair Arms Hotel</h2>
-  <p class="charger-address">1-7 Ballymoney Road BT43 5BS
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Adair Arms Hotel</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">1-7 Ballymoney Road <button class="copy-btn" data-copy="BT43 5BS">BT43 5BS</button>
   </p>
   
   <div class="charger-connections">
@@ -122,9 +157,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Maxol Braid River</h2>
-  <p class="charger-address">North Road BT43 5EY
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2)">
+  <div class="charger-header">
+    <h2 class="charger-name">Maxol Braid River</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">North Road <button class="copy-btn" data-copy="BT43 5EY">BT43 5EY</button>
   </p>
   
   <div class="charger-connections">
@@ -143,9 +182,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Havelock Place Car Park</h2>
-  <p class="charger-address">Carnlough BT44 0WZ
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Havelock Place Car Park</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Carnlough <button class="copy-btn" data-copy="BT44 0WZ">BT44 0WZ</button>
   </p>
   
   <div class="charger-connections">
@@ -167,11 +209,14 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Ballee Road Park &amp; Share
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Ballee Road Park &amp; Share
 Seven Towers Roundabout
 Ballymena</h2>
-  <p class="charger-address">Ballee Road Park and Share BT42 2HD
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Ballee Road Park and Share <button class="copy-btn" data-copy="BT42 2HD">BT42 2HD</button>
   </p>
   
   <div class="charger-connections">
@@ -196,6 +241,23 @@ Ballymena</h2>
 
 <p><a href="/" class="back-link">← All UK towns</a></p>
 
+
+<div class="nearby-towns">
+  <h2 class="nearby-heading">Nearby towns</h2>
+  <ul class="nearby-list">
+  
+    <li><a href="/uk/antrim/">Antrim</a></li>
+  
+    <li><a href="/uk/ballymoney/">Ballymoney</a></li>
+  
+    <li><a href="/uk/newtownabbey/">Newtownabbey</a></li>
+  
+    <li><a href="/uk/larne/">Larne</a></li>
+  
+  </ul>
+</div>
+
+
 </div>
 
 <footer>
@@ -208,26 +270,61 @@ Ballymena</h2>
 <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 <script>
 (function () {
+  // --- Map ---
   var map = L.map('map').setView([54.895879907179584, -6.252631748124469], 12);
-
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
   }).addTo(map);
 
   var markers = L.markerClusterGroup();
-  var chargerData = [{"lat": 54.861838829150145, "lng": -6.274998227633546, "title": "The Range", "address": "Braidwater Retail Park"}, {"lat": 54.862921998265904, "lng": -6.277080906933804, "title": "Dreams", "address": "Larne Road Link, Ballymena BT43 5EP"}, {"lat": 54.89376587678461, "lng": -6.319926530105931, "title": "Dogs Trust - Ballymena", "address": "60 Teeshan Road"}, {"lat": 54.865893345043446, "lng": -6.278688822400511, "title": "Adair Arms Hotel", "address": "1-7 Ballymoney Road"}, {"lat": 54.86598130101302, "lng": -6.281511749797488, "title": "Maxol Braid River", "address": "North Road"}, {"lat": 55.07611, "lng": -6.06261, "title": "Havelock Place Car Park", "address": "Carnlough"}, {"lat": 54.844648, "lng": -6.273606, "title": "Ballee Road Park & Share\r\nSeven Towers Roundabout\r\nBallymena", "address": "Ballee Road Park and Share"}];
+  var chargerData = [{"lat": 54.861838829150145, "lng": -6.274998227633546, "title": "The Range", "address": "Braidwater Retail Park", "connectors": ["CCS (Type 2) · 120kW"]}, {"lat": 54.862921998265904, "lng": -6.277080906933804, "title": "Dreams", "address": "Larne Road Link, Ballymena BT43 5EP", "connectors": ["CCS (Type 2) · 120kW"]}, {"lat": 54.89376587678461, "lng": -6.319926530105931, "title": "Dogs Trust - Ballymena", "address": "60 Teeshan Road", "connectors": ["Type 2 (Socket Only) · 11kW", "Type 2 (Socket Only) · 3.6kW"]}, {"lat": 54.865893345043446, "lng": -6.278688822400511, "title": "Adair Arms Hotel", "address": "1-7 Ballymoney Road", "connectors": ["Type 2 (Socket Only) · 7kW"]}, {"lat": 54.86598130101302, "lng": -6.281511749797488, "title": "Maxol Braid River", "address": "North Road", "connectors": ["CCS (Type 2) · 200kW"]}, {"lat": 55.07611, "lng": -6.06261, "title": "Havelock Place Car Park", "address": "Carnlough", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 54.844648, "lng": -6.273606, "title": "Ballee Road Park & Share\r\nSeven Towers Roundabout\r\nBallymena", "address": "Ballee Road Park and Share", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}];
 
   chargerData.forEach(function (c) {
+    var connHtml = c.connectors.length
+      ? '<div style="margin-top:6px;font-size:12px;color:#475569">' + c.connectors.join(' &middot; ') + '</div>'
+      : '';
     var marker = L.marker([c.lat, c.lng]);
     marker.bindPopup(
-      '<b>' + c.title + '</b><br>' + c.address + '<br><br>' +
+      '<b>' + c.title + '</b>' +
+      '<div style="color:#64748b;font-size:13px">' + c.address + '</div>' +
+      connHtml +
       '<a href="https://www.google.com/maps/dir/?api=1&destination=' + c.lat + ',' + c.lng +
-      '" target="_blank" rel="noopener">Get directions</a>'
+      '" target="_blank" rel="noopener" style="display:inline-block;margin-top:8px;padding:4px 10px;background:#2563eb;color:white;border-radius:4px;text-decoration:none;font-size:12px">Get directions</a>'
     );
     markers.addLayer(marker);
   });
-
   map.addLayer(markers);
+
+  // --- Connector filter ---
+  var filterBtns = document.querySelectorAll('.filter-btn');
+  var chargerItems = document.querySelectorAll('.charger-item');
+
+  filterBtns.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      filterBtns.forEach(function (b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      var f = btn.dataset.filter;
+      chargerItems.forEach(function (item) {
+        var connList = item.dataset.connectors ? item.dataset.connectors.split(',') : [];
+        item.style.display = (f === 'all' || connList.indexOf(f) !== -1) ? '' : 'none';
+      });
+    });
+  });
+
+  // --- Copy postcode ---
+  document.querySelectorAll('.copy-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var original = btn.textContent;
+      navigator.clipboard.writeText(btn.dataset.copy).then(function () {
+        btn.textContent = 'Copied!';
+        btn.classList.add('copy-btn--success');
+        setTimeout(function () {
+          btn.textContent = original;
+          btn.classList.remove('copy-btn--success');
+        }, 1500);
+      });
+    });
+  });
 }());
 </script>
 

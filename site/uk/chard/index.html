@@ -17,7 +17,10 @@
 
 <header>
 <div class="container">
-<a href="/" class="logo">PlugMap <span class="tagline">UK EV Charger Locator</span></a>
+<a href="/" class="logo">
+  <svg class="logo-bolt" viewBox="0 0 24 24" fill="currentColor" width="22" height="22" aria-hidden="true"><path d="M13 2L4.5 13.5H11L10 22L19.5 10.5H13Z"/></svg>
+  PlugMap <span class="tagline">UK EV Charger Locator</span>
+</a>
 </div>
 </header>
 
@@ -28,16 +31,39 @@
 </nav>
 
 <h1>EV Chargers in Chard</h1>
-<p class="page-intro">5 public charging stations found in Chard.</p>
+
+<div class="stats-bar">
+  <span class="stat-pill stat-total">5 stations</span>
+  <span class="stat-pill stat-rapid">1 rapid (50kW+)</span>
+  <span class="stat-pill stat-fast">4 fast (7–50kW)</span>
+  
+</div>
 
 <div id="map"></div>
 
-<ul class="charger-list">
+
+<div class="connector-filter">
+  <span class="filter-label">Filter:</span>
+  <button class="filter-btn active" data-filter="all">All</button>
+  
+  <button class="filter-btn" data-filter="CCS (Type 2)">CCS (Type 2)</button>
+  
+  <button class="filter-btn" data-filter="CHAdeMO">CHAdeMO</button>
+  
+  <button class="filter-btn" data-filter="Type 2 (Socket Only)">Type 2 (Socket Only)</button>
+  
+</div>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Marketfield 1</h2>
-  <p class="charger-address">Marketfield Car Park TA20 1QD
+<ul class="charger-list" id="charger-list">
+
+
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Marketfield 1</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Marketfield Car Park <button class="copy-btn" data-copy="TA20 1QD">TA20 1QD</button>
   </p>
   
   <div class="charger-connections">
@@ -59,9 +85,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">EVC The Lordleaze Hotel</h2>
-  <p class="charger-address">Henderson Drive TA20 2HW
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">EVC The Lordleaze Hotel</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Henderson Drive <button class="copy-btn" data-copy="TA20 2HW">TA20 2HW</button>
   </p>
   
   <div class="charger-connections">
@@ -80,9 +109,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Tesco Superstore-Chard</h2>
-  <p class="charger-address">Tapstone Road TA20 2LW
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Tesco Superstore-Chard</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Tapstone Road <button class="copy-btn" data-copy="TA20 2LW">TA20 2LW</button>
   </p>
   
   <div class="charger-connections">
@@ -104,9 +136,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Warner Leisure Hotel</h2>
-  <p class="charger-address">Cricket St. Thomas Hotel TA20 4DD
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Warner Leisure Hotel</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Cricket St. Thomas Hotel <button class="copy-btn" data-copy="TA20 4DD">TA20 4DD</button>
   </p>
   
   <div class="charger-connections">
@@ -125,9 +160,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Lidl</h2>
-  <p class="charger-address">Tapstone Road TA20 2LW
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2),Type 2 (Socket Only),CHAdeMO">
+  <div class="charger-header">
+    <h2 class="charger-name">Lidl</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Tapstone Road <button class="copy-btn" data-copy="TA20 2LW">TA20 2LW</button>
   </p>
   
   <div class="charger-connections">
@@ -155,6 +194,23 @@
 
 <p><a href="/" class="back-link">← All UK towns</a></p>
 
+
+<div class="nearby-towns">
+  <h2 class="nearby-heading">Nearby towns</h2>
+  <ul class="nearby-list">
+  
+    <li><a href="/uk/taunton/">Taunton</a></li>
+  
+    <li><a href="/uk/bridgwater/">Bridgwater</a></li>
+  
+    <li><a href="/uk/street/">Street</a></li>
+  
+    <li><a href="/uk/yeovil/">Yeovil</a></li>
+  
+  </ul>
+</div>
+
+
 </div>
 
 <footer>
@@ -167,26 +223,61 @@
 <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 <script>
 (function () {
+  // --- Map ---
   var map = L.map('map').setView([50.87262292573787, -2.9426601903354883], 12);
-
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
   }).addTo(map);
 
   var markers = L.markerClusterGroup();
-  var chargerData = [{"lat": 50.87253, "lng": -2.96192, "title": "Marketfield 1", "address": "Marketfield Car Park"}, {"lat": 50.868598850595575, "lng": -2.9488625458461764, "title": "EVC The Lordleaze Hotel", "address": "Henderson Drive"}, {"lat": 50.873873, "lng": -2.95357, "title": "Tesco Superstore-Chard", "address": "Tapstone Road"}, {"lat": 50.87413794827157, "lng": -2.8927476416163245, "title": "Warner Leisure Hotel", "address": "Cricket St. Thomas Hotel"}, {"lat": 50.8739748298222, "lng": -2.95620076421494, "title": "Lidl", "address": "Tapstone Road"}];
+  var chargerData = [{"lat": 50.87253, "lng": -2.96192, "title": "Marketfield 1", "address": "Marketfield Car Park", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 50.868598850595575, "lng": -2.9488625458461764, "title": "EVC The Lordleaze Hotel", "address": "Henderson Drive", "connectors": ["Type 2 (Socket Only) · 22kW"]}, {"lat": 50.873873, "lng": -2.95357, "title": "Tesco Superstore-Chard", "address": "Tapstone Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 50.87413794827157, "lng": -2.8927476416163245, "title": "Warner Leisure Hotel", "address": "Cricket St. Thomas Hotel", "connectors": ["Type 2 (Socket Only) · 7kW"]}, {"lat": 50.8739748298222, "lng": -2.95620076421494, "title": "Lidl", "address": "Tapstone Road", "connectors": ["CCS (Type 2) · 50kW", "Type 2 (Socket Only) · 22kW", "CHAdeMO · 50kW"]}];
 
   chargerData.forEach(function (c) {
+    var connHtml = c.connectors.length
+      ? '<div style="margin-top:6px;font-size:12px;color:#475569">' + c.connectors.join(' &middot; ') + '</div>'
+      : '';
     var marker = L.marker([c.lat, c.lng]);
     marker.bindPopup(
-      '<b>' + c.title + '</b><br>' + c.address + '<br><br>' +
+      '<b>' + c.title + '</b>' +
+      '<div style="color:#64748b;font-size:13px">' + c.address + '</div>' +
+      connHtml +
       '<a href="https://www.google.com/maps/dir/?api=1&destination=' + c.lat + ',' + c.lng +
-      '" target="_blank" rel="noopener">Get directions</a>'
+      '" target="_blank" rel="noopener" style="display:inline-block;margin-top:8px;padding:4px 10px;background:#2563eb;color:white;border-radius:4px;text-decoration:none;font-size:12px">Get directions</a>'
     );
     markers.addLayer(marker);
   });
-
   map.addLayer(markers);
+
+  // --- Connector filter ---
+  var filterBtns = document.querySelectorAll('.filter-btn');
+  var chargerItems = document.querySelectorAll('.charger-item');
+
+  filterBtns.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      filterBtns.forEach(function (b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      var f = btn.dataset.filter;
+      chargerItems.forEach(function (item) {
+        var connList = item.dataset.connectors ? item.dataset.connectors.split(',') : [];
+        item.style.display = (f === 'all' || connList.indexOf(f) !== -1) ? '' : 'none';
+      });
+    });
+  });
+
+  // --- Copy postcode ---
+  document.querySelectorAll('.copy-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var original = btn.textContent;
+      navigator.clipboard.writeText(btn.dataset.copy).then(function () {
+        btn.textContent = 'Copied!';
+        btn.classList.add('copy-btn--success');
+        setTimeout(function () {
+          btn.textContent = original;
+          btn.classList.remove('copy-btn--success');
+        }, 1500);
+      });
+    });
+  });
 }());
 </script>
 

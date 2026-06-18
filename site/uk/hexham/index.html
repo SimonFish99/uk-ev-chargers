@@ -17,7 +17,10 @@
 
 <header>
 <div class="container">
-<a href="/" class="logo">PlugMap <span class="tagline">UK EV Charger Locator</span></a>
+<a href="/" class="logo">
+  <svg class="logo-bolt" viewBox="0 0 24 24" fill="currentColor" width="22" height="22" aria-hidden="true"><path d="M13 2L4.5 13.5H11L10 22L19.5 10.5H13Z"/></svg>
+  PlugMap <span class="tagline">UK EV Charger Locator</span>
+</a>
 </div>
 </header>
 
@@ -28,16 +31,44 @@
 </nav>
 
 <h1>EV Chargers in Hexham</h1>
-<p class="page-intro">17 public charging stations found in Hexham.</p>
+
+<div class="stats-bar">
+  <span class="stat-pill stat-total">17 stations</span>
+  <span class="stat-pill stat-rapid">3 rapid (50kW+)</span>
+  <span class="stat-pill stat-fast">11 fast (7–50kW)</span>
+  <span class="stat-pill stat-slow">3 slow</span>
+</div>
 
 <div id="map"></div>
 
-<ul class="charger-list">
+
+<div class="connector-filter">
+  <span class="filter-label">Filter:</span>
+  <button class="filter-btn active" data-filter="all">All</button>
+  
+  <button class="filter-btn" data-filter="BS1363 3 Pin 13 Amp">BS1363 3 Pin 13 Amp</button>
+  
+  <button class="filter-btn" data-filter="CCS (Type 2)">CCS (Type 2)</button>
+  
+  <button class="filter-btn" data-filter="CHAdeMO">CHAdeMO</button>
+  
+  <button class="filter-btn" data-filter="Type 2 (Socket Only)">Type 2 (Socket Only)</button>
+  
+  <button class="filter-btn" data-filter="Type 2 (Tethered Connector) ">Type 2 (Tethered Connector) </button>
+  
+</div>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Tyne Valley Retail Park</h2>
-  <p class="charger-address">Station Road NE46 1EZ
+<ul class="charger-list" id="charger-list">
+
+
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2),Type 2 (Socket Only),CHAdeMO">
+  <div class="charger-header">
+    <h2 class="charger-name">Tyne Valley Retail Park</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Station Road <button class="copy-btn" data-copy="NE46 1EZ">NE46 1EZ</button>
   </p>
   
   <div class="charger-connections">
@@ -68,9 +99,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Gilesgate Car Park</h2>
-  <p class="charger-address">Gilesgate NE46 3QF
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Tethered Connector) ">
+  <div class="charger-header">
+    <h2 class="charger-name">Gilesgate Car Park</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Gilesgate <button class="copy-btn" data-copy="NE46 3QF">NE46 3QF</button>
   </p>
   
   <div class="charger-connections">
@@ -89,9 +123,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Wylam Garage</h2>
-  <p class="charger-address">Wylam Garage NE46 3HN
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Wylam Garage</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Wylam Garage <button class="copy-btn" data-copy="NE46 3HN">NE46 3HN</button>
   </p>
   
   <div class="charger-connections">
@@ -110,9 +147,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Tyne Mills Industrial Estate</h2>
-  <p class="charger-address">Tyne Mills Industrial Estate NE46 1XW
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Tyne Mills Industrial Estate</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Tyne Mills Industrial Estate <button class="copy-btn" data-copy="NE46 1XW">NE46 1XW</button>
   </p>
   
   <div class="charger-connections">
@@ -131,9 +171,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Red Lion Inn</h2>
-  <p class="charger-address">Stanegate NE47 5AR
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Red Lion Inn</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Stanegate <button class="copy-btn" data-copy="NE47 5AR">NE47 5AR</button>
   </p>
   
   <div class="charger-connections">
@@ -155,9 +198,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Bellingham Centre 1</h2>
-  <p class="charger-address">Bellingham Centre 1 NE48 2BD
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Bellingham Centre 1</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Bellingham Centre 1 <button class="copy-btn" data-copy="NE48 2BD">NE48 2BD</button>
   </p>
   
   <div class="charger-connections">
@@ -179,9 +225,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Station Road</h2>
-  <p class="charger-address">Station Road NE48 2BS
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Station Road</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Station Road <button class="copy-btn" data-copy="NE48 2BS">NE48 2BS</button>
   </p>
   
   <div class="charger-connections">
@@ -200,9 +249,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Hexham, Wentworth Leisure Centre 3 (ABB)</h2>
-  <p class="charger-address">Wentworth Leisure Centre NE46 3PJ
+<li class="charger-item charger-item--rapid" data-connectors="CHAdeMO,Type 2 (Tethered Connector) ">
+  <div class="charger-header">
+    <h2 class="charger-name">Hexham, Wentworth Leisure Centre 3 (ABB)</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Wentworth Leisure Centre <button class="copy-btn" data-copy="NE46 3PJ">NE46 3PJ</button>
   </p>
   
   <div class="charger-connections">
@@ -227,9 +280,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Hexham General Hospital</h2>
-  <p class="charger-address">Corbridge Road NE46 1QJ
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Hexham General Hospital</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Corbridge Road <button class="copy-btn" data-copy="NE46 1QJ">NE46 1QJ</button>
   </p>
   
   <div class="charger-connections">
@@ -251,9 +307,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Hexham General Hospital</h2>
-  <p class="charger-address">Corbridge Road NE46 1QJ
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Hexham General Hospital</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Corbridge Road <button class="copy-btn" data-copy="NE46 1QJ">NE46 1QJ</button>
   </p>
   
   <div class="charger-connections">
@@ -275,9 +334,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Hexham General Hospital</h2>
-  <p class="charger-address">Corbridge Road NE46 1QJ
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Hexham General Hospital</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Corbridge Road <button class="copy-btn" data-copy="NE46 1QJ">NE46 1QJ</button>
   </p>
   
   <div class="charger-connections">
@@ -299,9 +361,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Wentworth Leisure Centre</h2>
-  <p class="charger-address">Alemouth Road NE46 3PD
+<li class="charger-item charger-item--rapid" data-connectors="CHAdeMO,CCS (Type 2),Type 2 (Tethered Connector) ">
+  <div class="charger-header">
+    <h2 class="charger-name">Wentworth Leisure Centre</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Alemouth Road <button class="copy-btn" data-copy="NE46 3PD">NE46 3PD</button>
   </p>
   
   <div class="charger-connections">
@@ -326,9 +392,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Housesteads Car Park</h2>
-  <p class="charger-address">Housesteads Car Park NE47 6NN
+<li class="charger-item charger-item--slow" data-connectors="BS1363 3 Pin 13 Amp">
+  <div class="charger-header">
+    <h2 class="charger-name">Housesteads Car Park</h2>
+    
+  </div>
+  <p class="charger-address">Housesteads Car Park <button class="copy-btn" data-copy="NE47 6NN">NE47 6NN</button>
   </p>
   
   <div class="charger-connections">
@@ -347,9 +416,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">The Pheasant Inn</h2>
-  <p class="charger-address">The Pheasant Inn NE48 1DD
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">The Pheasant Inn</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">The Pheasant Inn <button class="copy-btn" data-copy="NE48 1DD">NE48 1DD</button>
   </p>
   
   <div class="charger-connections">
@@ -368,9 +440,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Once Brewed Visitor Centre</h2>
-  <p class="charger-address">Once Brewed Visitor Centre NE47 7AN
+<li class="charger-item charger-item--slow" data-connectors="BS1363 3 Pin 13 Amp">
+  <div class="charger-header">
+    <h2 class="charger-name">Once Brewed Visitor Centre</h2>
+    
+  </div>
+  <p class="charger-address">Once Brewed Visitor Centre <button class="copy-btn" data-copy="NE47 7AN">NE47 7AN</button>
   </p>
   
   <div class="charger-connections">
@@ -389,9 +464,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Border House</h2>
-  <p class="charger-address">Beaufront Park NE46 4TY
+<li class="charger-item charger-item--slow" data-connectors="BS1363 3 Pin 13 Amp">
+  <div class="charger-header">
+    <h2 class="charger-name">Border House</h2>
+    
+  </div>
+  <p class="charger-address">Beaufront Park <button class="copy-btn" data-copy="NE46 4TY">NE46 4TY</button>
   </p>
   
   <div class="charger-connections">
@@ -410,9 +488,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Northumberland National Park Offices</h2>
-  <p class="charger-address">Northumberland National Park Offices NE46 1BS
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Northumberland National Park Offices</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Northumberland National Park Offices <button class="copy-btn" data-copy="NE46 1BS">NE46 1BS</button>
   </p>
   
   <div class="charger-connections">
@@ -434,6 +515,23 @@
 
 <p><a href="/" class="back-link">← All UK towns</a></p>
 
+
+<div class="nearby-towns">
+  <h2 class="nearby-heading">Nearby towns</h2>
+  <ul class="nearby-list">
+  
+    <li><a href="/uk/stanhope/">Stanhope</a></li>
+  
+    <li><a href="/uk/stanley/">Stanley</a></li>
+  
+    <li><a href="/uk/morpeth/">Morpeth</a></li>
+  
+    <li><a href="/uk/barnard-castle/">Barnard Castle</a></li>
+  
+  </ul>
+</div>
+
+
 </div>
 
 <footer>
@@ -446,26 +544,61 @@
 <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 <script>
 (function () {
+  // --- Map ---
   var map = L.map('map').setView([55.009894220846, -2.170783798026819], 12);
-
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
   }).addTo(map);
 
   var markers = L.markerClusterGroup();
-  var chargerData = [{"lat": 54.97240138870322, "lng": -2.0942799107863266, "title": "Tyne Valley Retail Park", "address": "Station Road"}, {"lat": 54.973358, "lng": -2.10438, "title": "Gilesgate Car Park", "address": "Gilesgate"}, {"lat": 54.97516, "lng": -2.105351, "title": "Wylam Garage", "address": "Wylam Garage"}, {"lat": 54.974666, "lng": -2.093695, "title": "Tyne Mills Industrial Estate", "address": "Tyne Mills Industrial Estate"}, {"lat": 55.00559771874762, "lng": -2.197584216162909, "title": "Red Lion Inn", "address": "Stanegate"}, {"lat": 55.144777, "lng": -2.25389, "title": "Bellingham Centre 1", "address": "Bellingham Centre 1"}, {"lat": 55.143994, "lng": -2.252662, "title": "Station Road", "address": "Station Road"}, {"lat": 54.97299, "lng": -2.09722, "title": "Hexham, Wentworth Leisure Centre 3 (ABB)", "address": "Wentworth Leisure Centre"}, {"lat": 54.969433, "lng": -2.092356, "title": "Hexham General Hospital", "address": "Corbridge Road"}, {"lat": 54.969334, "lng": -2.092356, "title": "Hexham General Hospital", "address": "Corbridge Road"}, {"lat": 54.969234, "lng": -2.092356, "title": "Hexham General Hospital", "address": "Corbridge Road"}, {"lat": 54.97253664693119, "lng": -2.097276439506686, "title": "Wentworth Leisure Centre", "address": "Alemouth Road"}, {"lat": 55.009783, "lng": -2.323909, "title": "Housesteads Car Park", "address": "Housesteads Car Park"}, {"lat": 55.172878, "lng": -2.437382, "title": "The Pheasant Inn", "address": "The Pheasant Inn"}, {"lat": 54.995676, "lng": -2.387882, "title": "Once Brewed Visitor Centre", "address": "Once Brewed Visitor Centre"}, {"lat": 54.980117, "lng": -2.082049, "title": "Border House", "address": "Beaufront Park"}, {"lat": 54.966266, "lng": -2.098696, "title": "Northumberland National Park Offices", "address": "Northumberland National Park Offices"}];
+  var chargerData = [{"lat": 54.97240138870322, "lng": -2.0942799107863266, "title": "Tyne Valley Retail Park", "address": "Station Road", "connectors": ["CCS (Type 2) · 150kW", "Type 2 (Socket Only) · 22kW", "CCS (Type 2) · 50kW", "CHAdeMO · 50kW", "CCS (Type 2) · 150kW"]}, {"lat": 54.973358, "lng": -2.10438, "title": "Gilesgate Car Park", "address": "Gilesgate", "connectors": ["Type 2 (Tethered Connector)  · 22kW"]}, {"lat": 54.97516, "lng": -2.105351, "title": "Wylam Garage", "address": "Wylam Garage", "connectors": ["Type 2 (Socket Only) · 7kW"]}, {"lat": 54.974666, "lng": -2.093695, "title": "Tyne Mills Industrial Estate", "address": "Tyne Mills Industrial Estate", "connectors": ["Type 2 (Socket Only) · 7kW"]}, {"lat": 55.00559771874762, "lng": -2.197584216162909, "title": "Red Lion Inn", "address": "Stanegate", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 55.144777, "lng": -2.25389, "title": "Bellingham Centre 1", "address": "Bellingham Centre 1", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 55.143994, "lng": -2.252662, "title": "Station Road", "address": "Station Road", "connectors": ["Type 2 (Socket Only) · 7kW"]}, {"lat": 54.97299, "lng": -2.09722, "title": "Hexham, Wentworth Leisure Centre 3 (ABB)", "address": "Wentworth Leisure Centre", "connectors": ["CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 50kW", "Type 2 (Tethered Connector)  · 43kW"]}, {"lat": 54.969433, "lng": -2.092356, "title": "Hexham General Hospital", "address": "Corbridge Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 54.969334, "lng": -2.092356, "title": "Hexham General Hospital", "address": "Corbridge Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 54.969234, "lng": -2.092356, "title": "Hexham General Hospital", "address": "Corbridge Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 54.97253664693119, "lng": -2.097276439506686, "title": "Wentworth Leisure Centre", "address": "Alemouth Road", "connectors": ["CHAdeMO · 50kW", "CCS (Type 2) · 50kW", "Type 2 (Tethered Connector) "]}, {"lat": 55.009783, "lng": -2.323909, "title": "Housesteads Car Park", "address": "Housesteads Car Park", "connectors": ["BS1363 3 Pin 13 Amp · 3kW"]}, {"lat": 55.172878, "lng": -2.437382, "title": "The Pheasant Inn", "address": "The Pheasant Inn", "connectors": ["Type 2 (Socket Only) · 7kW"]}, {"lat": 54.995676, "lng": -2.387882, "title": "Once Brewed Visitor Centre", "address": "Once Brewed Visitor Centre", "connectors": ["BS1363 3 Pin 13 Amp · 3kW"]}, {"lat": 54.980117, "lng": -2.082049, "title": "Border House", "address": "Beaufront Park", "connectors": ["BS1363 3 Pin 13 Amp · 3kW"]}, {"lat": 54.966266, "lng": -2.098696, "title": "Northumberland National Park Offices", "address": "Northumberland National Park Offices", "connectors": ["Type 2 (Socket Only) · 7kW"]}];
 
   chargerData.forEach(function (c) {
+    var connHtml = c.connectors.length
+      ? '<div style="margin-top:6px;font-size:12px;color:#475569">' + c.connectors.join(' &middot; ') + '</div>'
+      : '';
     var marker = L.marker([c.lat, c.lng]);
     marker.bindPopup(
-      '<b>' + c.title + '</b><br>' + c.address + '<br><br>' +
+      '<b>' + c.title + '</b>' +
+      '<div style="color:#64748b;font-size:13px">' + c.address + '</div>' +
+      connHtml +
       '<a href="https://www.google.com/maps/dir/?api=1&destination=' + c.lat + ',' + c.lng +
-      '" target="_blank" rel="noopener">Get directions</a>'
+      '" target="_blank" rel="noopener" style="display:inline-block;margin-top:8px;padding:4px 10px;background:#2563eb;color:white;border-radius:4px;text-decoration:none;font-size:12px">Get directions</a>'
     );
     markers.addLayer(marker);
   });
-
   map.addLayer(markers);
+
+  // --- Connector filter ---
+  var filterBtns = document.querySelectorAll('.filter-btn');
+  var chargerItems = document.querySelectorAll('.charger-item');
+
+  filterBtns.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      filterBtns.forEach(function (b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      var f = btn.dataset.filter;
+      chargerItems.forEach(function (item) {
+        var connList = item.dataset.connectors ? item.dataset.connectors.split(',') : [];
+        item.style.display = (f === 'all' || connList.indexOf(f) !== -1) ? '' : 'none';
+      });
+    });
+  });
+
+  // --- Copy postcode ---
+  document.querySelectorAll('.copy-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var original = btn.textContent;
+      navigator.clipboard.writeText(btn.dataset.copy).then(function () {
+        btn.textContent = 'Copied!';
+        btn.classList.add('copy-btn--success');
+        setTimeout(function () {
+          btn.textContent = original;
+          btn.classList.remove('copy-btn--success');
+        }, 1500);
+      });
+    });
+  });
 }());
 </script>
 

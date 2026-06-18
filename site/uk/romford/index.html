@@ -17,7 +17,10 @@
 
 <header>
 <div class="container">
-<a href="/" class="logo">PlugMap <span class="tagline">UK EV Charger Locator</span></a>
+<a href="/" class="logo">
+  <svg class="logo-bolt" viewBox="0 0 24 24" fill="currentColor" width="22" height="22" aria-hidden="true"><path d="M13 2L4.5 13.5H11L10 22L19.5 10.5H13Z"/></svg>
+  PlugMap <span class="tagline">UK EV Charger Locator</span>
+</a>
 </div>
 </header>
 
@@ -28,16 +31,42 @@
 </nav>
 
 <h1>EV Chargers in Romford</h1>
-<p class="page-intro">9 public charging stations found in Romford.</p>
+
+<div class="stats-bar">
+  <span class="stat-pill stat-total">9 stations</span>
+  <span class="stat-pill stat-rapid">5 rapid (50kW+)</span>
+  <span class="stat-pill stat-fast">3 fast (7–50kW)</span>
+  <span class="stat-pill stat-slow">1 slow</span>
+</div>
 
 <div id="map"></div>
 
-<ul class="charger-list">
+
+<div class="connector-filter">
+  <span class="filter-label">Filter:</span>
+  <button class="filter-btn active" data-filter="all">All</button>
+  
+  <button class="filter-btn" data-filter="CCS (Type 2)">CCS (Type 2)</button>
+  
+  <button class="filter-btn" data-filter="CHAdeMO">CHAdeMO</button>
+  
+  <button class="filter-btn" data-filter="Type 2 (Socket Only)">Type 2 (Socket Only)</button>
+  
+  <button class="filter-btn" data-filter="Type 2 (Tethered Connector) ">Type 2 (Tethered Connector) </button>
+  
+</div>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">InstaVolt Romford</h2>
-  <p class="charger-address">Gallows Corner RM3 0BZ
+<ul class="charger-list" id="charger-list">
+
+
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2),CHAdeMO">
+  <div class="charger-header">
+    <h2 class="charger-name">InstaVolt Romford</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Gallows Corner <button class="copy-btn" data-copy="RM3 0BZ">RM3 0BZ</button>
   </p>
   
   <div class="charger-connections">
@@ -59,9 +88,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Tesla Romford Supercharger</h2>
-  <p class="charger-address">The Liberty Shopping Centre RM1 3JT
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2)">
+  <div class="charger-header">
+    <h2 class="charger-name">Tesla Romford Supercharger</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">The Liberty Shopping Centre <button class="copy-btn" data-copy="RM1 3JT">RM1 3JT</button>
   </p>
   
   <div class="charger-connections">
@@ -80,9 +113,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Tesco Extra-Romford Gallows Corner</h2>
-  <p class="charger-address">Bryant Ave RM3 0LL
+<li class="charger-item charger-item--rapid" data-connectors="Type 2 (Socket Only),CCS (Type 2),CHAdeMO">
+  <div class="charger-header">
+    <h2 class="charger-name">Tesco Extra-Romford Gallows Corner</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Bryant Ave <button class="copy-btn" data-copy="RM3 0LL">RM3 0LL</button>
   </p>
   
   <div class="charger-connections">
@@ -110,9 +147,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Sytner BMW</h2>
-  <p class="charger-address">A12 Colchester Road RM3 0GX
+<li class="charger-item charger-item--rapid" data-connectors="CHAdeMO">
+  <div class="charger-header">
+    <h2 class="charger-name">Sytner BMW</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">A12 Colchester Road <button class="copy-btn" data-copy="RM3 0GX">RM3 0GX</button>
   </p>
   
   <div class="charger-connections">
@@ -134,9 +175,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">In Front Autos LTD</h2>
-  <p class="charger-address">8 Avenue Industrial Estate RM3 0BY
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">In Front Autos LTD</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">8 Avenue Industrial Estate <button class="copy-btn" data-copy="RM3 0BY">RM3 0BY</button>
   </p>
   
   <div class="charger-connections">
@@ -155,9 +199,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">SHELL RECHARGE RISE PARK</h2>
-  <p class="charger-address">Eastern Avenue RM1 4SJ
+<li class="charger-item charger-item--rapid" data-connectors="Type 2 (Tethered Connector) ,CHAdeMO">
+  <div class="charger-header">
+    <h2 class="charger-name">SHELL RECHARGE RISE PARK</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Eastern Avenue <button class="copy-btn" data-copy="RM1 4SJ">RM1 4SJ</button>
   </p>
   
   <div class="charger-connections">
@@ -179,9 +227,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Tony Levoi Vauxhall-Romford</h2>
-  <p class="charger-address">144 London Road RM7 9QL
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Tony Levoi Vauxhall-Romford</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">144 London Road <button class="copy-btn" data-copy="RM7 9QL">RM7 9QL</button>
   </p>
   
   <div class="charger-connections">
@@ -203,9 +254,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Units 7-9 Falcon Business Centre Ashton Road</h2>
-  <p class="charger-address">Units 7-9 Falcon Business Centre Ashton Road RM3 8UR
+<li class="charger-item charger-item--slow" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Units 7-9 Falcon Business Centre Ashton Road</h2>
+    
+  </div>
+  <p class="charger-address">Units 7-9 Falcon Business Centre Ashton Road <button class="copy-btn" data-copy="RM3 8UR">RM3 8UR</button>
   </p>
   
   <div class="charger-connections">
@@ -227,9 +281,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Gidea Park Station Car Park</h2>
-  <p class="charger-address"> RM2 6BX
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Gidea Park Station Car Park</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address"> <button class="copy-btn" data-copy="RM2 6BX">RM2 6BX</button>
   </p>
   
   <div class="charger-connections">
@@ -254,6 +311,23 @@
 
 <p><a href="/" class="back-link">← All UK towns</a></p>
 
+
+<div class="nearby-towns">
+  <h2 class="nearby-heading">Nearby towns</h2>
+  <ul class="nearby-list">
+  
+    <li><a href="/uk/hornchurch/">Hornchurch</a></li>
+  
+    <li><a href="/uk/ilford/">Ilford</a></li>
+  
+    <li><a href="/uk/dartford/">Dartford</a></li>
+  
+    <li><a href="/uk/bexley/">Bexley</a></li>
+  
+  </ul>
+</div>
+
+
 </div>
 
 <footer>
@@ -266,26 +340,61 @@
 <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 <script>
 (function () {
+  // --- Map ---
   var map = L.map('map').setView([51.58848871888889, 0.2041006388888889], 12);
-
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
   }).addTo(map);
 
   var markers = L.markerClusterGroup();
-  var chargerData = [{"lat": 51.5915099, "lng": 0.2152482, "title": "InstaVolt Romford", "address": "Gallows Corner"}, {"lat": 51.577596, "lng": 0.184788, "title": "Tesla Romford Supercharger", "address": "The Liberty Shopping Centre"}, {"lat": 51.59333157, "lng": 0.21925355, "title": "Tesco Extra-Romford Gallows Corner", "address": "Bryant Ave"}, {"lat": 51.596039, "lng": 0.221719, "title": "Sytner BMW", "address": "A12 Colchester Road"}, {"lat": 51.591832, "lng": 0.215242, "title": "In Front Autos LTD", "address": "8 Avenue Industrial Estate"}, {"lat": 51.591386, "lng": 0.179195, "title": "SHELL RECHARGE RISE PARK", "address": "Eastern Avenue"}, {"lat": 51.574697, "lng": 0.169778, "title": "Tony Levoi Vauxhall-Romford", "address": "144 London Road"}, {"lat": 51.598294, "lng": 0.224255, "title": "Units 7-9 Falcon Business Centre Ashton Road", "address": "Units 7-9 Falcon Business Centre Ashton Road"}, {"lat": 51.581713, "lng": 0.207427, "title": "Gidea Park Station Car Park", "address": ""}];
+  var chargerData = [{"lat": 51.5915099, "lng": 0.2152482, "title": "InstaVolt Romford", "address": "Gallows Corner", "connectors": ["CCS (Type 2) · 120kW", "CHAdeMO · 50kW"]}, {"lat": 51.577596, "lng": 0.184788, "title": "Tesla Romford Supercharger", "address": "The Liberty Shopping Centre", "connectors": ["CCS (Type 2) · 250kW"]}, {"lat": 51.59333157, "lng": 0.21925355, "title": "Tesco Extra-Romford Gallows Corner", "address": "Bryant Ave", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 7kW", "CCS (Type 2) · 50kW", "CHAdeMO · 50kW"]}, {"lat": 51.596039, "lng": 0.221719, "title": "Sytner BMW", "address": "A12 Colchester Road", "connectors": ["CHAdeMO · 50kW", "CHAdeMO · 50kW"]}, {"lat": 51.591832, "lng": 0.215242, "title": "In Front Autos LTD", "address": "8 Avenue Industrial Estate", "connectors": ["Type 2 (Socket Only) · 22kW"]}, {"lat": 51.591386, "lng": 0.179195, "title": "SHELL RECHARGE RISE PARK", "address": "Eastern Avenue", "connectors": ["Type 2 (Tethered Connector)  · 50kW", "CHAdeMO · 50kW"]}, {"lat": 51.574697, "lng": 0.169778, "title": "Tony Levoi Vauxhall-Romford", "address": "144 London Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 51.598294, "lng": 0.224255, "title": "Units 7-9 Falcon Business Centre Ashton Road", "address": "Units 7-9 Falcon Business Centre Ashton Road", "connectors": ["Type 2 (Socket Only) · 3.7kW", "Type 2 (Socket Only) · 3.7kW"]}, {"lat": 51.581713, "lng": 0.207427, "title": "Gidea Park Station Car Park", "address": "", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}];
 
   chargerData.forEach(function (c) {
+    var connHtml = c.connectors.length
+      ? '<div style="margin-top:6px;font-size:12px;color:#475569">' + c.connectors.join(' &middot; ') + '</div>'
+      : '';
     var marker = L.marker([c.lat, c.lng]);
     marker.bindPopup(
-      '<b>' + c.title + '</b><br>' + c.address + '<br><br>' +
+      '<b>' + c.title + '</b>' +
+      '<div style="color:#64748b;font-size:13px">' + c.address + '</div>' +
+      connHtml +
       '<a href="https://www.google.com/maps/dir/?api=1&destination=' + c.lat + ',' + c.lng +
-      '" target="_blank" rel="noopener">Get directions</a>'
+      '" target="_blank" rel="noopener" style="display:inline-block;margin-top:8px;padding:4px 10px;background:#2563eb;color:white;border-radius:4px;text-decoration:none;font-size:12px">Get directions</a>'
     );
     markers.addLayer(marker);
   });
-
   map.addLayer(markers);
+
+  // --- Connector filter ---
+  var filterBtns = document.querySelectorAll('.filter-btn');
+  var chargerItems = document.querySelectorAll('.charger-item');
+
+  filterBtns.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      filterBtns.forEach(function (b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      var f = btn.dataset.filter;
+      chargerItems.forEach(function (item) {
+        var connList = item.dataset.connectors ? item.dataset.connectors.split(',') : [];
+        item.style.display = (f === 'all' || connList.indexOf(f) !== -1) ? '' : 'none';
+      });
+    });
+  });
+
+  // --- Copy postcode ---
+  document.querySelectorAll('.copy-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var original = btn.textContent;
+      navigator.clipboard.writeText(btn.dataset.copy).then(function () {
+        btn.textContent = 'Copied!';
+        btn.classList.add('copy-btn--success');
+        setTimeout(function () {
+          btn.textContent = original;
+          btn.classList.remove('copy-btn--success');
+        }, 1500);
+      });
+    });
+  });
 }());
 </script>
 

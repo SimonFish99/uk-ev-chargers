@@ -17,7 +17,10 @@
 
 <header>
 <div class="container">
-<a href="/" class="logo">PlugMap <span class="tagline">UK EV Charger Locator</span></a>
+<a href="/" class="logo">
+  <svg class="logo-bolt" viewBox="0 0 24 24" fill="currentColor" width="22" height="22" aria-hidden="true"><path d="M13 2L4.5 13.5H11L10 22L19.5 10.5H13Z"/></svg>
+  PlugMap <span class="tagline">UK EV Charger Locator</span>
+</a>
 </div>
 </header>
 
@@ -28,16 +31,42 @@
 </nav>
 
 <h1>EV Chargers in Lichfield</h1>
-<p class="page-intro">10 public charging stations found in Lichfield.</p>
+
+<div class="stats-bar">
+  <span class="stat-pill stat-total">10 stations</span>
+  <span class="stat-pill stat-rapid">4 rapid (50kW+)</span>
+  <span class="stat-pill stat-fast">6 fast (7–50kW)</span>
+  
+</div>
 
 <div id="map"></div>
 
-<ul class="charger-list">
+
+<div class="connector-filter">
+  <span class="filter-label">Filter:</span>
+  <button class="filter-btn active" data-filter="all">All</button>
+  
+  <button class="filter-btn" data-filter="CCS (Type 2)">CCS (Type 2)</button>
+  
+  <button class="filter-btn" data-filter="CHAdeMO">CHAdeMO</button>
+  
+  <button class="filter-btn" data-filter="Type 2 (Socket Only)">Type 2 (Socket Only)</button>
+  
+  <button class="filter-btn" data-filter="Type 2 (Tethered Connector) ">Type 2 (Tethered Connector) </button>
+  
+</div>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Three Spires Car Park</h2>
-  <p class="charger-address">Backcester Lane WS13 6JF
+<ul class="charger-list" id="charger-list">
+
+
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2)">
+  <div class="charger-header">
+    <h2 class="charger-name">Three Spires Car Park</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Backcester Lane <button class="copy-btn" data-copy="WS13 6JF">WS13 6JF</button>
   </p>
   
   <div class="charger-connections">
@@ -89,9 +118,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Central Co-op Alexandra House</h2>
-  <p class="charger-address">Central Co-op Support Centre WS13 6QS
+<li class="charger-item charger-item--fast" data-connectors="CCS (Type 2)">
+  <div class="charger-header">
+    <h2 class="charger-name">Central Co-op Alexandra House</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Central Co-op Support Centre <button class="copy-btn" data-copy="WS13 6QS">WS13 6QS</button>
   </p>
   
   <div class="charger-connections">
@@ -110,9 +142,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Central Co-op</h2>
-  <p class="charger-address">Boley Park Centre WS14 9XU
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Central Co-op</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Boley Park Centre <button class="copy-btn" data-copy="WS14 9XU">WS14 9XU</button>
   </p>
   
   <div class="charger-connections">
@@ -131,9 +166,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Morrisons Lichfield</h2>
-  <p class="charger-address">Morrisons Lichfield WS13 7BG
+<li class="charger-item charger-item--rapid" data-connectors="Type 2 (Tethered Connector) ,CHAdeMO,Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Morrisons Lichfield</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Morrisons Lichfield <button class="copy-btn" data-copy="WS13 7BG">WS13 7BG</button>
   </p>
   
   <div class="charger-connections">
@@ -158,9 +197,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Tesco Extra - Lichfield</h2>
-  <p class="charger-address">Church Street WS13 6DZ
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Tesco Extra - Lichfield</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Church Street <button class="copy-btn" data-copy="WS13 6DZ">WS13 6DZ</button>
   </p>
   
   <div class="charger-connections">
@@ -182,9 +224,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Inkwell At Lichfield</h2>
-  <p class="charger-address">Stonneyland Drive WS13 6RX
+<li class="charger-item charger-item--rapid" data-connectors="CHAdeMO,CCS (Type 2)">
+  <div class="charger-header">
+    <h2 class="charger-name">Inkwell At Lichfield</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Stonneyland Drive <button class="copy-btn" data-copy="WS13 6RX">WS13 6RX</button>
   </p>
   
   <div class="charger-connections">
@@ -218,9 +264,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">EVC Lichfield Golf &amp; Country Club</h2>
-  <p class="charger-address">Seedy Mill Lane WS13 8HE
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">EVC Lichfield Golf &amp; Country Club</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Seedy Mill Lane <button class="copy-btn" data-copy="WS13 8HE">WS13 8HE</button>
   </p>
   
   <div class="charger-connections">
@@ -239,9 +288,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Saba UK-Lichfield Trent Valley</h2>
-  <p class="charger-address">Lichfield Trent Valley (station Side) WS13 6HE
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Saba UK-Lichfield Trent Valley</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Lichfield Trent Valley (station Side) <button class="copy-btn" data-copy="WS13 6HE">WS13 6HE</button>
   </p>
   
   <div class="charger-connections">
@@ -260,9 +312,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">SureStore - Self Storage Lichfield</h2>
-  <p class="charger-address">Industrial Estate, Trent Valley Road WS13 6UY
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">SureStore - Self Storage Lichfield</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Industrial Estate, Trent Valley Road <button class="copy-btn" data-copy="WS13 6UY">WS13 6UY</button>
   </p>
   
   <div class="charger-connections">
@@ -281,9 +336,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Waitrose Lichfield</h2>
-  <p class="charger-address">Stonnyland Drive WS13 6RX
+<li class="charger-item charger-item--rapid" data-connectors="CHAdeMO,Type 2 (Tethered Connector) ">
+  <div class="charger-header">
+    <h2 class="charger-name">Waitrose Lichfield</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Stonnyland Drive <button class="copy-btn" data-copy="WS13 6RX">WS13 6RX</button>
   </p>
   
   <div class="charger-connections">
@@ -308,6 +367,23 @@
 
 <p><a href="/" class="back-link">← All UK towns</a></p>
 
+
+<div class="nearby-towns">
+  <h2 class="nearby-heading">Nearby towns</h2>
+  <ul class="nearby-list">
+  
+    <li><a href="/uk/sutton-coldfield/">Sutton Coldfield</a></li>
+  
+    <li><a href="/uk/tamworth/">Tamworth</a></li>
+  
+    <li><a href="/uk/walsall/">Walsall</a></li>
+  
+    <li><a href="/uk/birmingham/">Birmingham</a></li>
+  
+  </ul>
+</div>
+
+
 </div>
 
 <footer>
@@ -320,26 +396,61 @@
 <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 <script>
 (function () {
+  // --- Map ---
   var map = L.map('map').setView([52.67231941281706, -1.8194989994175796], 12);
-
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
   }).addTo(map);
 
   var markers = L.markerClusterGroup();
-  var chargerData = [{"lat": 52.683399, "lng": -1.823414, "title": "Three Spires Car Park", "address": "Backcester Lane"}, {"lat": 52.6812532781834, "lng": -1.83472083700336, "title": "Central Co-op Alexandra House", "address": "Central Co-op Support Centre"}, {"lat": 52.68096232504838, "lng": -1.804712961470833, "title": "Central Co-op", "address": "Boley Park Centre"}, {"lat": 52.688599, "lng": -1.839918, "title": "Morrisons Lichfield", "address": "Morrisons Lichfield"}, {"lat": 52.684916, "lng": -1.821656, "title": "Tesco Extra - Lichfield", "address": "Church Street"}, {"lat": 52.674047, "lng": -1.841626, "title": "Inkwell At Lichfield", "address": "Stonneyland Drive"}, {"lat": 52.71745652493879, "lng": -1.850660195701602, "title": "EVC Lichfield Golf & Country Club", "address": "Seedy Mill Lane"}, {"lat": 52.686801, "lng": -1.800669, "title": "Saba UK-Lichfield Trent Valley", "address": "Lichfield Trent Valley (station Side)"}, {"lat": 52.68986, "lng": -1.808133, "title": "SureStore - Self Storage Lichfield", "address": "Industrial Estate, Trent Valley Road"}, {"lat": 52.5359, "lng": -1.76948, "title": "Waitrose Lichfield", "address": "Stonnyland Drive"}];
+  var chargerData = [{"lat": 52.683399, "lng": -1.823414, "title": "Three Spires Car Park", "address": "Backcester Lane", "connectors": ["CCS (Type 2) · 200kW", "CCS (Type 2) · 200kW", "CCS (Type 2) · 200kW", "CCS (Type 2) · 200kW", "CCS (Type 2) · 200kW", "CCS (Type 2) · 200kW", "CCS (Type 2) · 200kW", "CCS (Type 2) · 200kW", "CCS (Type 2) · 200kW", "CCS (Type 2) · 200kW", "CCS (Type 2) · 200kW", "CCS (Type 2) · 200kW"]}, {"lat": 52.6812532781834, "lng": -1.83472083700336, "title": "Central Co-op Alexandra House", "address": "Central Co-op Support Centre", "connectors": ["CCS (Type 2) · 47kW"]}, {"lat": 52.68096232504838, "lng": -1.804712961470833, "title": "Central Co-op", "address": "Boley Park Centre", "connectors": ["Type 2 (Socket Only) · 22kW"]}, {"lat": 52.688599, "lng": -1.839918, "title": "Morrisons Lichfield", "address": "Morrisons Lichfield", "connectors": ["Type 2 (Tethered Connector)  · 60kW", "CHAdeMO · 50kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 52.684916, "lng": -1.821656, "title": "Tesco Extra - Lichfield", "address": "Church Street", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 52.674047, "lng": -1.841626, "title": "Inkwell At Lichfield", "address": "Stonneyland Drive", "connectors": ["CHAdeMO · 50kW", "CHAdeMO · 50kW", "CHAdeMO · 50kW", "CCS (Type 2) · 75kW", "CCS (Type 2) · 75kW", "CCS (Type 2) · 75kW"]}, {"lat": 52.71745652493879, "lng": -1.850660195701602, "title": "EVC Lichfield Golf & Country Club", "address": "Seedy Mill Lane", "connectors": ["Type 2 (Socket Only) · 22kW"]}, {"lat": 52.686801, "lng": -1.800669, "title": "Saba UK-Lichfield Trent Valley", "address": "Lichfield Trent Valley (station Side)", "connectors": ["Type 2 (Socket Only) · 7kW"]}, {"lat": 52.68986, "lng": -1.808133, "title": "SureStore - Self Storage Lichfield", "address": "Industrial Estate, Trent Valley Road", "connectors": ["Type 2 (Socket Only) · 7kW"]}, {"lat": 52.5359, "lng": -1.76948, "title": "Waitrose Lichfield", "address": "Stonnyland Drive", "connectors": ["CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 43kW"]}];
 
   chargerData.forEach(function (c) {
+    var connHtml = c.connectors.length
+      ? '<div style="margin-top:6px;font-size:12px;color:#475569">' + c.connectors.join(' &middot; ') + '</div>'
+      : '';
     var marker = L.marker([c.lat, c.lng]);
     marker.bindPopup(
-      '<b>' + c.title + '</b><br>' + c.address + '<br><br>' +
+      '<b>' + c.title + '</b>' +
+      '<div style="color:#64748b;font-size:13px">' + c.address + '</div>' +
+      connHtml +
       '<a href="https://www.google.com/maps/dir/?api=1&destination=' + c.lat + ',' + c.lng +
-      '" target="_blank" rel="noopener">Get directions</a>'
+      '" target="_blank" rel="noopener" style="display:inline-block;margin-top:8px;padding:4px 10px;background:#2563eb;color:white;border-radius:4px;text-decoration:none;font-size:12px">Get directions</a>'
     );
     markers.addLayer(marker);
   });
-
   map.addLayer(markers);
+
+  // --- Connector filter ---
+  var filterBtns = document.querySelectorAll('.filter-btn');
+  var chargerItems = document.querySelectorAll('.charger-item');
+
+  filterBtns.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      filterBtns.forEach(function (b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      var f = btn.dataset.filter;
+      chargerItems.forEach(function (item) {
+        var connList = item.dataset.connectors ? item.dataset.connectors.split(',') : [];
+        item.style.display = (f === 'all' || connList.indexOf(f) !== -1) ? '' : 'none';
+      });
+    });
+  });
+
+  // --- Copy postcode ---
+  document.querySelectorAll('.copy-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var original = btn.textContent;
+      navigator.clipboard.writeText(btn.dataset.copy).then(function () {
+        btn.textContent = 'Copied!';
+        btn.classList.add('copy-btn--success');
+        setTimeout(function () {
+          btn.textContent = original;
+          btn.classList.remove('copy-btn--success');
+        }, 1500);
+      });
+    });
+  });
 }());
 </script>
 

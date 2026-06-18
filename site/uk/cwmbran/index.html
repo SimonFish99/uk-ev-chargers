@@ -17,7 +17,10 @@
 
 <header>
 <div class="container">
-<a href="/" class="logo">PlugMap <span class="tagline">UK EV Charger Locator</span></a>
+<a href="/" class="logo">
+  <svg class="logo-bolt" viewBox="0 0 24 24" fill="currentColor" width="22" height="22" aria-hidden="true"><path d="M13 2L4.5 13.5H11L10 22L19.5 10.5H13Z"/></svg>
+  PlugMap <span class="tagline">UK EV Charger Locator</span>
+</a>
 </div>
 </header>
 
@@ -28,15 +31,41 @@
 </nav>
 
 <h1>EV Chargers in Cwmbran</h1>
-<p class="page-intro">11 public charging stations found in Cwmbran.</p>
+
+<div class="stats-bar">
+  <span class="stat-pill stat-total">11 stations</span>
+  <span class="stat-pill stat-rapid">4 rapid (50kW+)</span>
+  <span class="stat-pill stat-fast">7 fast (7–50kW)</span>
+  
+</div>
 
 <div id="map"></div>
 
-<ul class="charger-list">
+
+<div class="connector-filter">
+  <span class="filter-label">Filter:</span>
+  <button class="filter-btn active" data-filter="all">All</button>
+  
+  <button class="filter-btn" data-filter="CCS (Type 2)">CCS (Type 2)</button>
+  
+  <button class="filter-btn" data-filter="CHAdeMO">CHAdeMO</button>
+  
+  <button class="filter-btn" data-filter="Type 2 (Socket Only)">Type 2 (Socket Only)</button>
+  
+  <button class="filter-btn" data-filter="Type 2 (Tethered Connector) ">Type 2 (Tethered Connector) </button>
+  
+</div>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">e-taxi charging point</h2>
+<ul class="charger-list" id="charger-list">
+
+
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2),CHAdeMO,Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">e-taxi charging point</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
   <p class="charger-address">Caradoc Road
   </p>
   
@@ -62,9 +91,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Cwmbran</h2>
-  <p class="charger-address">Glyndwr Road NP44 1PP
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2)">
+  <div class="charger-header">
+    <h2 class="charger-name">Cwmbran</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Glyndwr Road <button class="copy-btn" data-copy="NP44 1PP">NP44 1PP</button>
   </p>
   
   <div class="charger-connections">
@@ -101,9 +134,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Morrisons Cwmbran</h2>
-  <p class="charger-address">Grange Road NP44 3XU
+<li class="charger-item charger-item--rapid" data-connectors="CHAdeMO,Type 2 (Tethered Connector) ,Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Morrisons Cwmbran</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Grange Road <button class="copy-btn" data-copy="NP44 3XU">NP44 3XU</button>
   </p>
   
   <div class="charger-connections">
@@ -128,9 +165,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Cwmbran Village Surgery Car Park</h2>
-  <p class="charger-address">Cwmbran Village Surgery Car Park NP44 3JS
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Cwmbran Village Surgery Car Park</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Cwmbran Village Surgery Car Park <button class="copy-btn" data-copy="NP44 3JS">NP44 3JS</button>
   </p>
   
   <div class="charger-connections">
@@ -152,9 +192,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Fields Road, Torfaen</h2>
-  <p class="charger-address">Fields Road, Torfaen NP44 3EF
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Fields Road, Torfaen</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Fields Road, Torfaen <button class="copy-btn" data-copy="NP44 3EF">NP44 3EF</button>
   </p>
   
   <div class="charger-connections">
@@ -176,9 +219,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Llanyrafon Car Park</h2>
-  <p class="charger-address">Cwmbran NP44 8HS
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Llanyrafon Car Park</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Cwmbran <button class="copy-btn" data-copy="NP44 8HS">NP44 8HS</button>
   </p>
   
   <div class="charger-connections">
@@ -200,9 +246,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Neighbourhood Centre</h2>
-  <p class="charger-address">Fairwater Square NP44 4TA
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Neighbourhood Centre</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Fairwater Square <button class="copy-btn" data-copy="NP44 4TA">NP44 4TA</button>
   </p>
   
   <div class="charger-connections">
@@ -224,9 +273,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Green &amp; Co-Pembroke House</h2>
-  <p class="charger-address">Ty Coch Lane NP44 3AU
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Green &amp; Co-Pembroke House</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Ty Coch Lane <button class="copy-btn" data-copy="NP44 3AU">NP44 3AU</button>
   </p>
   
   <div class="charger-connections">
@@ -251,9 +303,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Heol Llywelyn</h2>
-  <p class="charger-address">Heol Llywelyn NP44 1PB
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Heol Llywelyn</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Heol Llywelyn <button class="copy-btn" data-copy="NP44 1PB">NP44 1PB</button>
   </p>
   
   <div class="charger-connections">
@@ -281,9 +336,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Llanyravon</h2>
-  <p class="charger-address">Llanyravon NP44 2XJ
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Llanyravon</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Llanyravon <button class="copy-btn" data-copy="NP44 2XJ">NP44 2XJ</button>
   </p>
   
   <div class="charger-connections">
@@ -317,9 +375,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Morrisons Cwmbran</h2>
-  <p class="charger-address">Grange Road NP44 3XU
+<li class="charger-item charger-item--rapid" data-connectors="Type 2 (Socket Only),CHAdeMO,CCS (Type 2)">
+  <div class="charger-header">
+    <h2 class="charger-name">Morrisons Cwmbran</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Grange Road <button class="copy-btn" data-copy="NP44 3XU">NP44 3XU</button>
   </p>
   
   <div class="charger-connections">
@@ -347,6 +409,23 @@
 
 <p><a href="/" class="back-link">← All UK towns</a></p>
 
+
+<div class="nearby-towns">
+  <h2 class="nearby-heading">Nearby towns</h2>
+  <ul class="nearby-list">
+  
+    <li><a href="/uk/pontypool/">Pontypool</a></li>
+  
+    <li><a href="/uk/abergavenny/">Abergavenny</a></li>
+  
+    <li><a href="/uk/cardiff/">Cardiff</a></li>
+  
+    <li><a href="/uk/caerphilly/">Caerphilly</a></li>
+  
+  </ul>
+</div>
+
+
 </div>
 
 <footer>
@@ -359,26 +438,61 @@
 <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 <script>
 (function () {
+  // --- Map ---
   var map = L.map('map').setView([51.64885642688751, -3.0196569621582525], 12);
-
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
   }).addTo(map);
 
   var markers = L.markerClusterGroup();
-  var chargerData = [{"lat": 51.65541469576269, "lng": -3.020840583740778, "title": "e-taxi charging point", "address": "Caradoc Road"}, {"lat": 51.654862, "lng": -3.020408, "title": "Cwmbran", "address": "Glyndwr Road"}, {"lat": 51.655068, "lng": -3.018334, "title": "Morrisons Cwmbran", "address": "Grange Road"}, {"lat": 51.648136, "lng": -3.023166, "title": "Cwmbran Village Surgery Car Park", "address": "Cwmbran Village Surgery Car Park"}, {"lat": 51.640562, "lng": -3.021, "title": "Fields Road, Torfaen", "address": "Fields Road, Torfaen"}, {"lat": 51.646106, "lng": -3.00776, "title": "Llanyrafon Car Park", "address": "Cwmbran"}, {"lat": 51.644636, "lng": -3.04825, "title": "Neighbourhood Centre", "address": "Fairwater Square"}, {"lat": 51.634475, "lng": -3.019249, "title": "Green & Co-Pembroke House", "address": "Ty Coch Lane"}, {"lat": 51.653181, "lng": -3.022232, "title": "Heol Llywelyn", "address": "Heol Llywelyn"}, {"lat": 51.649912, "lng": -2.996654, "title": "Llanyravon", "address": "Llanyravon"}, {"lat": 51.655068, "lng": -3.018333, "title": "Morrisons Cwmbran", "address": "Grange Road"}];
+  var chargerData = [{"lat": 51.65541469576269, "lng": -3.020840583740778, "title": "e-taxi charging point", "address": "Caradoc Road", "connectors": ["CCS (Type 2) · 50kW", "CHAdeMO · 50kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 51.654862, "lng": -3.020408, "title": "Cwmbran", "address": "Glyndwr Road", "connectors": ["CCS (Type 2) · 100kW", "CCS (Type 2) · 100kW", "CCS (Type 2) · 100kW", "CCS (Type 2) · 100kW", "CCS (Type 2) · 100kW", "CCS (Type 2) · 100kW", "CCS (Type 2) · 100kW"]}, {"lat": 51.655068, "lng": -3.018334, "title": "Morrisons Cwmbran", "address": "Grange Road", "connectors": ["CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 50kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 51.648136, "lng": -3.023166, "title": "Cwmbran Village Surgery Car Park", "address": "Cwmbran Village Surgery Car Park", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 51.640562, "lng": -3.021, "title": "Fields Road, Torfaen", "address": "Fields Road, Torfaen", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 51.646106, "lng": -3.00776, "title": "Llanyrafon Car Park", "address": "Cwmbran", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 51.644636, "lng": -3.04825, "title": "Neighbourhood Centre", "address": "Fairwater Square", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 51.634475, "lng": -3.019249, "title": "Green & Co-Pembroke House", "address": "Ty Coch Lane", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 51.653181, "lng": -3.022232, "title": "Heol Llywelyn", "address": "Heol Llywelyn", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 51.649912, "lng": -2.996654, "title": "Llanyravon", "address": "Llanyravon", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 51.655068, "lng": -3.018333, "title": "Morrisons Cwmbran", "address": "Grange Road", "connectors": ["Type 2 (Socket Only) · 22kW", "CHAdeMO · 50kW", "CCS (Type 2) · 50kW"]}];
 
   chargerData.forEach(function (c) {
+    var connHtml = c.connectors.length
+      ? '<div style="margin-top:6px;font-size:12px;color:#475569">' + c.connectors.join(' &middot; ') + '</div>'
+      : '';
     var marker = L.marker([c.lat, c.lng]);
     marker.bindPopup(
-      '<b>' + c.title + '</b><br>' + c.address + '<br><br>' +
+      '<b>' + c.title + '</b>' +
+      '<div style="color:#64748b;font-size:13px">' + c.address + '</div>' +
+      connHtml +
       '<a href="https://www.google.com/maps/dir/?api=1&destination=' + c.lat + ',' + c.lng +
-      '" target="_blank" rel="noopener">Get directions</a>'
+      '" target="_blank" rel="noopener" style="display:inline-block;margin-top:8px;padding:4px 10px;background:#2563eb;color:white;border-radius:4px;text-decoration:none;font-size:12px">Get directions</a>'
     );
     markers.addLayer(marker);
   });
-
   map.addLayer(markers);
+
+  // --- Connector filter ---
+  var filterBtns = document.querySelectorAll('.filter-btn');
+  var chargerItems = document.querySelectorAll('.charger-item');
+
+  filterBtns.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      filterBtns.forEach(function (b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      var f = btn.dataset.filter;
+      chargerItems.forEach(function (item) {
+        var connList = item.dataset.connectors ? item.dataset.connectors.split(',') : [];
+        item.style.display = (f === 'all' || connList.indexOf(f) !== -1) ? '' : 'none';
+      });
+    });
+  });
+
+  // --- Copy postcode ---
+  document.querySelectorAll('.copy-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var original = btn.textContent;
+      navigator.clipboard.writeText(btn.dataset.copy).then(function () {
+        btn.textContent = 'Copied!';
+        btn.classList.add('copy-btn--success');
+        setTimeout(function () {
+          btn.textContent = original;
+          btn.classList.remove('copy-btn--success');
+        }, 1500);
+      });
+    });
+  });
 }());
 </script>
 

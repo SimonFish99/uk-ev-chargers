@@ -17,7 +17,10 @@
 
 <header>
 <div class="container">
-<a href="/" class="logo">PlugMap <span class="tagline">UK EV Charger Locator</span></a>
+<a href="/" class="logo">
+  <svg class="logo-bolt" viewBox="0 0 24 24" fill="currentColor" width="22" height="22" aria-hidden="true"><path d="M13 2L4.5 13.5H11L10 22L19.5 10.5H13Z"/></svg>
+  PlugMap <span class="tagline">UK EV Charger Locator</span>
+</a>
 </div>
 </header>
 
@@ -28,16 +31,42 @@
 </nav>
 
 <h1>EV Chargers in Wigan</h1>
-<p class="page-intro">12 public charging stations found in Wigan.</p>
+
+<div class="stats-bar">
+  <span class="stat-pill stat-total">12 stations</span>
+  <span class="stat-pill stat-rapid">9 rapid (50kW+)</span>
+  <span class="stat-pill stat-fast">3 fast (7–50kW)</span>
+  
+</div>
 
 <div id="map"></div>
 
-<ul class="charger-list">
+
+<div class="connector-filter">
+  <span class="filter-label">Filter:</span>
+  <button class="filter-btn active" data-filter="all">All</button>
+  
+  <button class="filter-btn" data-filter="CCS (Type 2)">CCS (Type 2)</button>
+  
+  <button class="filter-btn" data-filter="CHAdeMO">CHAdeMO</button>
+  
+  <button class="filter-btn" data-filter="Type 2 (Socket Only)">Type 2 (Socket Only)</button>
+  
+  <button class="filter-btn" data-filter="Type 2 (Tethered Connector) ">Type 2 (Tethered Connector) </button>
+  
+</div>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Golden Days Garden Centre</h2>
-  <p class="charger-address">Back Lane WN6 8RS
+<ul class="charger-list" id="charger-list">
+
+
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2)">
+  <div class="charger-header">
+    <h2 class="charger-name">Golden Days Garden Centre</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Back Lane <button class="copy-btn" data-copy="WN6 8RS">WN6 8RS</button>
   </p>
   
   <div class="charger-connections">
@@ -56,9 +85,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Lidl-Woodhouse Lane</h2>
-  <p class="charger-address">15 Doolan Crescent WN6 7NS
+<li class="charger-item charger-item--rapid" data-connectors="Type 2 (Socket Only),CCS (Type 2),CHAdeMO">
+  <div class="charger-header">
+    <h2 class="charger-name">Lidl-Woodhouse Lane</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">15 Doolan Crescent <button class="copy-btn" data-copy="WN6 7NS">WN6 7NS</button>
   </p>
   
   <div class="charger-connections">
@@ -83,9 +116,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Lidl-Wigan Centre</h2>
-  <p class="charger-address">Darlington Street WN1 1DL
+<li class="charger-item charger-item--rapid" data-connectors="Type 2 (Socket Only),CCS (Type 2),CHAdeMO">
+  <div class="charger-header">
+    <h2 class="charger-name">Lidl-Wigan Centre</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Darlington Street <button class="copy-btn" data-copy="WN1 1DL">WN1 1DL</button>
   </p>
   
   <div class="charger-connections">
@@ -110,9 +147,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Robin Leisure Park</h2>
-  <p class="charger-address">4 Anjou Boulevard WN5 0UL
+<li class="charger-item charger-item--rapid" data-connectors="CHAdeMO,CCS (Type 2)">
+  <div class="charger-header">
+    <h2 class="charger-name">Robin Leisure Park</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">4 Anjou Boulevard <button class="copy-btn" data-copy="WN5 0UL">WN5 0UL</button>
   </p>
   
   <div class="charger-connections">
@@ -176,9 +217,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">GATWICK HOUSE HAWKLEY DC150</h2>
-  <p class="charger-address">Hawkley Brook Trading Estate Worthington Way WN3 6XE
+<li class="charger-item charger-item--rapid" data-connectors="Type 2 (Tethered Connector) ">
+  <div class="charger-header">
+    <h2 class="charger-name">GATWICK HOUSE HAWKLEY DC150</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Hawkley Brook Trading Estate Worthington Way <button class="copy-btn" data-copy="WN3 6XE">WN3 6XE</button>
   </p>
   
   <div class="charger-connections">
@@ -197,9 +242,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">GMEV PAYG Charge Point</h2>
-  <p class="charger-address">Water Street WN1 1YP
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">GMEV PAYG Charge Point</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Water Street <button class="copy-btn" data-copy="WN1 1YP">WN1 1YP</button>
   </p>
   
   <div class="charger-connections">
@@ -221,9 +269,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Chorley Group Wigan Nissan</h2>
-  <p class="charger-address">Pottery Road WN3 5AA
+<li class="charger-item charger-item--rapid" data-connectors="Type 2 (Tethered Connector) ,CHAdeMO,Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Chorley Group Wigan Nissan</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Pottery Road <button class="copy-btn" data-copy="WN3 5AA">WN3 5AA</button>
   </p>
   
   <div class="charger-connections">
@@ -251,9 +303,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">SureStore - Self Storage Wigan</h2>
-  <p class="charger-address">Brown Street WN3 4DH
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">SureStore - Self Storage Wigan</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Brown Street <button class="copy-btn" data-copy="WN3 4DH">WN3 4DH</button>
   </p>
   
   <div class="charger-connections">
@@ -272,9 +327,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Tesco Extra-Wigan</h2>
-  <p class="charger-address">Central Park Way WN1 1XS
+<li class="charger-item charger-item--rapid" data-connectors="Type 2 (Socket Only),CHAdeMO,CCS (Type 2)">
+  <div class="charger-header">
+    <h2 class="charger-name">Tesco Extra-Wigan</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Central Park Way <button class="copy-btn" data-copy="WN1 1XS">WN1 1XS</button>
   </p>
   
   <div class="charger-connections">
@@ -302,9 +361,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">MFG BP/Costa Crow Orchard Service Station</h2>
-  <p class="charger-address">Mossy Lea Road WN6 9RB
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2),CHAdeMO">
+  <div class="charger-header">
+    <h2 class="charger-name">MFG BP/Costa Crow Orchard Service Station</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Mossy Lea Road <button class="copy-btn" data-copy="WN6 9RB">WN6 9RB</button>
   </p>
   
   <div class="charger-connections">
@@ -326,9 +389,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Miller &amp; Carter Parbold</h2>
-  <p class="charger-address">Parbold WN8 7TG
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2),CHAdeMO,Type 2 (Tethered Connector) ">
+  <div class="charger-header">
+    <h2 class="charger-name">Miller &amp; Carter Parbold</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Parbold <button class="copy-btn" data-copy="WN8 7TG">WN8 7TG</button>
   </p>
   
   <div class="charger-connections">
@@ -353,9 +420,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Mona Street Pay and Display</h2>
-  <p class="charger-address">Mona Street Pay and Display WN1 1HZ
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Mona Street Pay and Display</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Mona Street Pay and Display <button class="copy-btn" data-copy="WN1 1HZ">WN1 1HZ</button>
   </p>
   
   <div class="charger-connections">
@@ -377,6 +447,23 @@
 
 <p><a href="/" class="back-link">← All UK towns</a></p>
 
+
+<div class="nearby-towns">
+  <h2 class="nearby-heading">Nearby towns</h2>
+  <ul class="nearby-list">
+  
+    <li><a href="/uk/chorley/">Chorley</a></li>
+  
+    <li><a href="/uk/skelmersdale/">Skelmersdale</a></li>
+  
+    <li><a href="/uk/leyland/">Leyland</a></li>
+  
+    <li><a href="/uk/warrington/">Warrington</a></li>
+  
+  </ul>
+</div>
+
+
 </div>
 
 <footer>
@@ -389,26 +476,61 @@
 <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 <script>
 (function () {
+  // --- Map ---
   var map = L.map('map').setView([53.555551825522656, -2.6591276625093294], 12);
-
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
   }).addTo(map);
 
   var markers = L.markerClusterGroup();
-  var chargerData = [{"lat": 53.58783204977493, "lng": -2.699204846507854, "title": "Golden Days Garden Centre", "address": "Back Lane"}, {"lat": 53.556042, "lng": -2.658832, "title": "Lidl-Woodhouse Lane", "address": "15 Doolan Crescent"}, {"lat": 53.543002, "lng": -2.625043, "title": "Lidl-Wigan Centre", "address": "Darlington Street"}, {"lat": 53.546784, "lng": -2.658493, "title": "Robin Leisure Park", "address": "4 Anjou Boulevard"}, {"lat": 53.519294, "lng": -2.657105, "title": "GATWICK HOUSE HAWKLEY DC150", "address": "Hawkley Brook Trading Estate Worthington Way"}, {"lat": 53.548226, "lng": -2.628135, "title": "GMEV PAYG Charge Point", "address": "Water Street"}, {"lat": 53.541738, "lng": -2.645141, "title": "Chorley Group Wigan Nissan", "address": "Pottery Road"}, {"lat": 53.5435, "lng": -2.636204, "title": "SureStore - Self Storage Wigan", "address": "Brown Street"}, {"lat": 53.550856, "lng": -2.625483, "title": "Tesco Extra-Wigan", "address": "Central Park Way"}, {"lat": 53.5909598564969, "lng": -2.6967191036041, "title": "MFG BP/Costa Crow Orchard Service Station", "address": "Mossy Lea Road"}, {"lat": 53.591099, "lng": -2.7422, "title": "Miller & Carter Parbold", "address": "Parbold"}, {"lat": 53.547289, "lng": -2.636972, "title": "Mona Street Pay and Display", "address": "Mona Street Pay and Display"}];
+  var chargerData = [{"lat": 53.58783204977493, "lng": -2.699204846507854, "title": "Golden Days Garden Centre", "address": "Back Lane", "connectors": ["CCS (Type 2) · 120kW"]}, {"lat": 53.556042, "lng": -2.658832, "title": "Lidl-Woodhouse Lane", "address": "15 Doolan Crescent", "connectors": ["Type 2 (Socket Only) · 22kW", "CCS (Type 2) · 50kW", "CHAdeMO · 50kW"]}, {"lat": 53.543002, "lng": -2.625043, "title": "Lidl-Wigan Centre", "address": "Darlington Street", "connectors": ["Type 2 (Socket Only) · 22kW", "CCS (Type 2) · 50kW", "CHAdeMO · 50kW"]}, {"lat": 53.546784, "lng": -2.658493, "title": "Robin Leisure Park", "address": "4 Anjou Boulevard", "connectors": ["CHAdeMO · 50kW", "CCS (Type 2) · 300kW", "CHAdeMO · 50kW", "CCS (Type 2) · 300kW", "CHAdeMO · 50kW", "CCS (Type 2) · 300kW", "CHAdeMO · 50kW", "CCS (Type 2) · 300kW", "CHAdeMO · 50kW", "CCS (Type 2) · 300kW", "CHAdeMO · 50kW", "CCS (Type 2) · 300kW", "CHAdeMO · 50kW", "CCS (Type 2) · 300kW", "CHAdeMO · 50kW", "CCS (Type 2) · 300kW"]}, {"lat": 53.519294, "lng": -2.657105, "title": "GATWICK HOUSE HAWKLEY DC150", "address": "Hawkley Brook Trading Estate Worthington Way", "connectors": ["Type 2 (Tethered Connector)  · 150kW"]}, {"lat": 53.548226, "lng": -2.628135, "title": "GMEV PAYG Charge Point", "address": "Water Street", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 53.541738, "lng": -2.645141, "title": "Chorley Group Wigan Nissan", "address": "Pottery Road", "connectors": ["Type 2 (Tethered Connector)  · 50kW", "CHAdeMO · 50kW", "Type 2 (Socket Only) · 22kW", "Type 2 (Tethered Connector)  · 43kW"]}, {"lat": 53.5435, "lng": -2.636204, "title": "SureStore - Self Storage Wigan", "address": "Brown Street", "connectors": ["Type 2 (Socket Only) · 7kW"]}, {"lat": 53.550856, "lng": -2.625483, "title": "Tesco Extra-Wigan", "address": "Central Park Way", "connectors": ["Type 2 (Socket Only) · 22kW", "CHAdeMO · 50kW", "Type 2 (Socket Only) · 7kW", "CCS (Type 2) · 50kW"]}, {"lat": 53.5909598564969, "lng": -2.6967191036041, "title": "MFG BP/Costa Crow Orchard Service Station", "address": "Mossy Lea Road", "connectors": ["CCS (Type 2) · 150kW", "CHAdeMO · 50kW"]}, {"lat": 53.591099, "lng": -2.7422, "title": "Miller & Carter Parbold", "address": "Parbold", "connectors": ["CCS (Type 2) · 50kW", "CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 43kW"]}, {"lat": 53.547289, "lng": -2.636972, "title": "Mona Street Pay and Display", "address": "Mona Street Pay and Display", "connectors": ["Type 2 (Socket Only) · 7kW"]}];
 
   chargerData.forEach(function (c) {
+    var connHtml = c.connectors.length
+      ? '<div style="margin-top:6px;font-size:12px;color:#475569">' + c.connectors.join(' &middot; ') + '</div>'
+      : '';
     var marker = L.marker([c.lat, c.lng]);
     marker.bindPopup(
-      '<b>' + c.title + '</b><br>' + c.address + '<br><br>' +
+      '<b>' + c.title + '</b>' +
+      '<div style="color:#64748b;font-size:13px">' + c.address + '</div>' +
+      connHtml +
       '<a href="https://www.google.com/maps/dir/?api=1&destination=' + c.lat + ',' + c.lng +
-      '" target="_blank" rel="noopener">Get directions</a>'
+      '" target="_blank" rel="noopener" style="display:inline-block;margin-top:8px;padding:4px 10px;background:#2563eb;color:white;border-radius:4px;text-decoration:none;font-size:12px">Get directions</a>'
     );
     markers.addLayer(marker);
   });
-
   map.addLayer(markers);
+
+  // --- Connector filter ---
+  var filterBtns = document.querySelectorAll('.filter-btn');
+  var chargerItems = document.querySelectorAll('.charger-item');
+
+  filterBtns.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      filterBtns.forEach(function (b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      var f = btn.dataset.filter;
+      chargerItems.forEach(function (item) {
+        var connList = item.dataset.connectors ? item.dataset.connectors.split(',') : [];
+        item.style.display = (f === 'all' || connList.indexOf(f) !== -1) ? '' : 'none';
+      });
+    });
+  });
+
+  // --- Copy postcode ---
+  document.querySelectorAll('.copy-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var original = btn.textContent;
+      navigator.clipboard.writeText(btn.dataset.copy).then(function () {
+        btn.textContent = 'Copied!';
+        btn.classList.add('copy-btn--success');
+        setTimeout(function () {
+          btn.textContent = original;
+          btn.classList.remove('copy-btn--success');
+        }, 1500);
+      });
+    });
+  });
 }());
 </script>
 

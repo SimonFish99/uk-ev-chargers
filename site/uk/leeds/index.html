@@ -17,7 +17,10 @@
 
 <header>
 <div class="container">
-<a href="/" class="logo">PlugMap <span class="tagline">UK EV Charger Locator</span></a>
+<a href="/" class="logo">
+  <svg class="logo-bolt" viewBox="0 0 24 24" fill="currentColor" width="22" height="22" aria-hidden="true"><path d="M13 2L4.5 13.5H11L10 22L19.5 10.5H13Z"/></svg>
+  PlugMap <span class="tagline">UK EV Charger Locator</span>
+</a>
 </div>
 </header>
 
@@ -28,16 +31,44 @@
 </nav>
 
 <h1>EV Chargers in Leeds</h1>
-<p class="page-intro">93 public charging stations found in Leeds.</p>
+
+<div class="stats-bar">
+  <span class="stat-pill stat-total">93 stations</span>
+  <span class="stat-pill stat-rapid">43 rapid (50kW+)</span>
+  <span class="stat-pill stat-fast">49 fast (7–50kW)</span>
+  <span class="stat-pill stat-slow">1 slow</span>
+</div>
 
 <div id="map"></div>
 
-<ul class="charger-list">
+
+<div class="connector-filter">
+  <span class="filter-label">Filter:</span>
+  <button class="filter-btn active" data-filter="all">All</button>
+  
+  <button class="filter-btn" data-filter="CCS (Type 2)">CCS (Type 2)</button>
+  
+  <button class="filter-btn" data-filter="CEE 3 Pin">CEE 3 Pin</button>
+  
+  <button class="filter-btn" data-filter="CHAdeMO">CHAdeMO</button>
+  
+  <button class="filter-btn" data-filter="Type 2 (Socket Only)">Type 2 (Socket Only)</button>
+  
+  <button class="filter-btn" data-filter="Type 2 (Tethered Connector) ">Type 2 (Tethered Connector) </button>
+  
+</div>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Lidl-Gipton</h2>
-  <p class="charger-address">144 Amberton Road LS9 6SR
+<ul class="charger-list" id="charger-list">
+
+
+<li class="charger-item charger-item--rapid" data-connectors="Type 2 (Tethered Connector) ,CHAdeMO,CCS (Type 2)">
+  <div class="charger-header">
+    <h2 class="charger-name">Lidl-Gipton</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">144 Amberton Road <button class="copy-btn" data-copy="LS9 6SR">LS9 6SR</button>
   </p>
   
   <div class="charger-connections">
@@ -62,9 +93,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">White Rose Shopping Centre</h2>
-  <p class="charger-address">Dewsbury Road LS11 8LU
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">White Rose Shopping Centre</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Dewsbury Road <button class="copy-btn" data-copy="LS11 8LU">LS11 8LU</button>
   </p>
   
   <div class="charger-connections">
@@ -98,9 +132,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">The Motorist</h2>
-  <p class="charger-address">Sherburn in Elmet LS25 6JE
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">The Motorist</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Sherburn in Elmet <button class="copy-btn" data-copy="LS25 6JE">LS25 6JE</button>
   </p>
   
   <div class="charger-connections">
@@ -122,9 +159,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Crisp Central Square</h2>
-  <p class="charger-address">29 Wellington Street LS1 4DL
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Crisp Central Square</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">29 Wellington Street <button class="copy-btn" data-copy="LS1 4DL">LS1 4DL</button>
   </p>
   
   <div class="charger-connections">
@@ -143,9 +183,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">The Cluster of Nuts, Wetherby</h2>
-  <p class="charger-address">Wetherby LS22 6JL
+<li class="charger-item charger-item--rapid" data-connectors="Type 2 (Tethered Connector) ,CHAdeMO">
+  <div class="charger-header">
+    <h2 class="charger-name">The Cluster of Nuts, Wetherby</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Wetherby <button class="copy-btn" data-copy="LS22 6JL">LS22 6JL</button>
   </p>
   
   <div class="charger-connections">
@@ -170,9 +214,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Aireborough Leisure Centre</h2>
-  <p class="charger-address">The Green, Guiseley LS20 9BT
+<li class="charger-item charger-item--rapid" data-connectors="Type 2 (Socket Only),CHAdeMO,Type 2 (Tethered Connector) ">
+  <div class="charger-header">
+    <h2 class="charger-name">Aireborough Leisure Centre</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">The Green, Guiseley <button class="copy-btn" data-copy="LS20 9BT">LS20 9BT</button>
   </p>
   
   <div class="charger-connections">
@@ -197,9 +245,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Church Lane Car Park 1</h2>
-  <p class="charger-address">Horseforth LS18 5LA
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Church Lane Car Park 1</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Horseforth <button class="copy-btn" data-copy="LS18 5LA">LS18 5LA</button>
   </p>
   
   <div class="charger-connections">
@@ -221,9 +272,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Castle Grove</h2>
-  <p class="charger-address">Headingley LS6 4BP
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Castle Grove</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Headingley <button class="copy-btn" data-copy="LS6 4BP">LS6 4BP</button>
   </p>
   
   <div class="charger-connections">
@@ -245,9 +299,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Evans Halshaw Leeds</h2>
-  <p class="charger-address">Roseville Road, Leeds LS8 5QP
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Evans Halshaw Leeds</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Roseville Road, Leeds <button class="copy-btn" data-copy="LS8 5QP">LS8 5QP</button>
   </p>
   
   <div class="charger-connections">
@@ -269,9 +326,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Evans Halshaw Leeds</h2>
-  <p class="charger-address">Henbury Street LS8 5QP
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Evans Halshaw Leeds</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Henbury Street <button class="copy-btn" data-copy="LS8 5QP">LS8 5QP</button>
   </p>
   
   <div class="charger-connections">
@@ -293,9 +353,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Aldi</h2>
-  <p class="charger-address">Regent Street LS2 7QA
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Aldi</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Regent Street <button class="copy-btn" data-copy="LS2 7QA">LS2 7QA</button>
   </p>
   
   <div class="charger-connections">
@@ -317,9 +380,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Kirkstall Road Car Park</h2>
-  <p class="charger-address">Kirkstall Road LS3 1JJ
+<li class="charger-item charger-item--rapid" data-connectors="Type 2 (Socket Only),CHAdeMO,Type 2 (Tethered Connector) ">
+  <div class="charger-header">
+    <h2 class="charger-name">Kirkstall Road Car Park</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Kirkstall Road <button class="copy-btn" data-copy="LS3 1JJ">LS3 1JJ</button>
   </p>
   
   <div class="charger-connections">
@@ -344,9 +411,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Thorpe Park Leeds</h2>
-  <p class="charger-address">Thorpe Park LS15 8ZA
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Thorpe Park Leeds</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Thorpe Park <button class="copy-btn" data-copy="LS15 8ZA">LS15 8ZA</button>
   </p>
   
   <div class="charger-connections">
@@ -368,9 +438,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">RAWOWNED Q-PARK WELL 1</h2>
-  <p class="charger-address">Q-Park Leeds Wellington Street LS1 4SE
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">RAWOWNED Q-PARK WELL 1</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Q-Park Leeds Wellington Street <button class="copy-btn" data-copy="LS1 4SE">LS1 4SE</button>
   </p>
   
   <div class="charger-connections">
@@ -392,9 +465,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Trinity Shopping Centre - Leeds</h2>
-  <p class="charger-address">Albion Street LS1 5AT
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Trinity Shopping Centre - Leeds</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Albion Street <button class="copy-btn" data-copy="LS1 5AT">LS1 5AT</button>
   </p>
   
   <div class="charger-connections">
@@ -416,9 +492,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Armley Leisure Centre</h2>
-  <p class="charger-address">Carr Crofts LS12 3HB
+<li class="charger-item charger-item--rapid" data-connectors="Type 2 (Socket Only),CHAdeMO,Type 2 (Tethered Connector) ">
+  <div class="charger-header">
+    <h2 class="charger-name">Armley Leisure Centre</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Carr Crofts <button class="copy-btn" data-copy="LS12 3HB">LS12 3HB</button>
   </p>
   
   <div class="charger-connections">
@@ -443,9 +523,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Barley Hill Road, Garforth</h2>
-  <p class="charger-address">Garforth LS25 1DS
+<li class="charger-item charger-item--rapid" data-connectors="Type 2 (Socket Only),CHAdeMO,Type 2 (Tethered Connector) ">
+  <div class="charger-header">
+    <h2 class="charger-name">Barley Hill Road, Garforth</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Garforth <button class="copy-btn" data-copy="LS25 1DS">LS25 1DS</button>
   </p>
   
   <div class="charger-connections">
@@ -470,9 +554,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Asda Head Office</h2>
-  <p class="charger-address">Great Wilson Street LS11 5AD
+<li class="charger-item charger-item--slow" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Asda Head Office</h2>
+    
+  </div>
+  <p class="charger-address">Great Wilson Street <button class="copy-btn" data-copy="LS11 5AD">LS11 5AD</button>
   </p>
   
   <div class="charger-connections">
@@ -494,9 +581,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Leeds Dock 01</h2>
-  <p class="charger-address">CitiPark, Leeds Dock LS101LE
+<li class="charger-item charger-item--rapid" data-connectors="Type 2 (Tethered Connector) ">
+  <div class="charger-header">
+    <h2 class="charger-name">Leeds Dock 01</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">CitiPark, Leeds Dock <button class="copy-btn" data-copy="LS101LE">LS101LE</button>
   </p>
   
   <div class="charger-connections">
@@ -515,9 +606,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">New Asda MCE Facility New Lane</h2>
-  <p class="charger-address">Off Victoria Road LS11 5UG
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">New Asda MCE Facility New Lane</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Off Victoria Road <button class="copy-btn" data-copy="LS11 5UG">LS11 5UG</button>
   </p>
   
   <div class="charger-connections">
@@ -539,9 +633,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Asda Wortley</h2>
-  <p class="charger-address">Wortley LS12 4BP
+<li class="charger-item charger-item--rapid" data-connectors="Type 2 (Socket Only),CHAdeMO,Type 2 (Tethered Connector) ">
+  <div class="charger-header">
+    <h2 class="charger-name">Asda Wortley</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Wortley <button class="copy-btn" data-copy="LS12 4BP">LS12 4BP</button>
   </p>
   
   <div class="charger-connections">
@@ -566,9 +664,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Stourton Park and Ride Fast 5</h2>
-  <p class="charger-address">Belle Island LS10 3DD
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Stourton Park and Ride Fast 5</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Belle Island <button class="copy-btn" data-copy="LS10 3DD">LS10 3DD</button>
   </p>
   
   <div class="charger-connections">
@@ -590,9 +691,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Stourton Park and Ride Rapid 4</h2>
-  <p class="charger-address">Belle island LS10 3DD
+<li class="charger-item charger-item--rapid" data-connectors="Type 2 (Tethered Connector) ,CHAdeMO,Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Stourton Park and Ride Rapid 4</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Belle island <button class="copy-btn" data-copy="LS10 3DD">LS10 3DD</button>
   </p>
   
   <div class="charger-connections">
@@ -617,9 +722,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Asda Middleton</h2>
-  <p class="charger-address">Holme Well Road LS10 4TQ
+<li class="charger-item charger-item--rapid" data-connectors="Type 2 (Socket Only),CHAdeMO,Type 2 (Tethered Connector) ">
+  <div class="charger-header">
+    <h2 class="charger-name">Asda Middleton</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Holme Well Road <button class="copy-btn" data-copy="LS10 4TQ">LS10 4TQ</button>
   </p>
   
   <div class="charger-connections">
@@ -644,9 +753,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">EG GROUP LEON</h2>
-  <p class="charger-address">1A Wakefield Rd LS27 7FP
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">EG GROUP LEON</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">1A Wakefield Rd <button class="copy-btn" data-copy="LS27 7FP">LS27 7FP</button>
   </p>
   
   <div class="charger-connections">
@@ -668,9 +780,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Asda</h2>
-  <p class="charger-address">Middleton LS10 4TQ
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Asda</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Middleton <button class="copy-btn" data-copy="LS10 4TQ">LS10 4TQ</button>
   </p>
   
   <div class="charger-connections">
@@ -692,9 +807,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Marsh Street, Rothwell</h2>
-  <p class="charger-address">Rothwell LS260AE
+<li class="charger-item charger-item--rapid" data-connectors="Type 2 (Socket Only),CHAdeMO,Type 2 (Tethered Connector) ">
+  <div class="charger-header">
+    <h2 class="charger-name">Marsh Street, Rothwell</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Rothwell <button class="copy-btn" data-copy="LS260AE">LS260AE</button>
   </p>
   
   <div class="charger-connections">
@@ -719,9 +838,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Marsh Street Car Park, Rothwell</h2>
-  <p class="charger-address">Marsh Street Car Park LS260AE
+<li class="charger-item charger-item--rapid" data-connectors="Type 2 (Tethered Connector) ,CHAdeMO">
+  <div class="charger-header">
+    <h2 class="charger-name">Marsh Street Car Park, Rothwell</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Marsh Street Car Park <button class="copy-btn" data-copy="LS260AE">LS260AE</button>
   </p>
   
   <div class="charger-connections">
@@ -746,9 +869,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Butcher Lane Car Park 2</h2>
-  <p class="charger-address">Butcher Lane Car Park LS26 0DB
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Butcher Lane Car Park 2</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Butcher Lane Car Park <button class="copy-btn" data-copy="LS26 0DB">LS26 0DB</button>
   </p>
   
   <div class="charger-connections">
@@ -770,9 +896,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Toby Carvery Leeds</h2>
-  <p class="charger-address">Oulton LS26 8EJ
+<li class="charger-item charger-item--rapid" data-connectors="CHAdeMO">
+  <div class="charger-header">
+    <h2 class="charger-name">Toby Carvery Leeds</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Oulton <button class="copy-btn" data-copy="LS26 8EJ">LS26 8EJ</button>
   </p>
   
   <div class="charger-connections">
@@ -794,9 +924,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Rothwell Leisure Centre</h2>
-  <p class="charger-address">Wakefield Road, Oulton LS268EL
+<li class="charger-item charger-item--rapid" data-connectors="Type 2 (Socket Only),CHAdeMO,Type 2 (Tethered Connector) ">
+  <div class="charger-header">
+    <h2 class="charger-name">Rothwell Leisure Centre</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Wakefield Road, Oulton <button class="copy-btn" data-copy="LS268EL">LS268EL</button>
   </p>
   
   <div class="charger-connections">
@@ -821,9 +955,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Asda Morley</h2>
-  <p class="charger-address">Morley LS270BP
+<li class="charger-item charger-item--rapid" data-connectors="Type 2 (Socket Only),CHAdeMO,Type 2 (Tethered Connector) ">
+  <div class="charger-header">
+    <h2 class="charger-name">Asda Morley</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Morley <button class="copy-btn" data-copy="LS270BP">LS270BP</button>
   </p>
   
   <div class="charger-connections">
@@ -848,9 +986,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">LeedsBeckett</h2>
-  <p class="charger-address">Woodhouse Lane LS6 3FH
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">LeedsBeckett</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Woodhouse Lane <button class="copy-btn" data-copy="LS6 3FH">LS6 3FH</button>
   </p>
   
   <div class="charger-connections">
@@ -872,9 +1013,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">SIKA LEEDS02</h2>
-  <p class="charger-address">41 Knowsthorpe Way LS9 0SW
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">SIKA LEEDS02</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">41 Knowsthorpe Way <button class="copy-btn" data-copy="LS9 0SW">LS9 0SW</button>
   </p>
   
   <div class="charger-connections">
@@ -896,9 +1040,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">GROUND CONTROL GILDERSOME 1</h2>
-  <p class="charger-address">9a Bradford Rd LS27 7HW
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">GROUND CONTROL GILDERSOME 1</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">9a Bradford Rd <button class="copy-btn" data-copy="LS27 7HW">LS27 7HW</button>
   </p>
   
   <div class="charger-connections">
@@ -917,9 +1064,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">RAWOWNED THORPE LODGE</h2>
-  <p class="charger-address">50 Long Thorpe Ln WF3 3PU
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">RAWOWNED THORPE LODGE</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">50 Long Thorpe Ln <button class="copy-btn" data-copy="WF3 3PU">WF3 3PU</button>
   </p>
   
   <div class="charger-connections">
@@ -941,9 +1091,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Genie</h2>
-  <p class="charger-address">Holtdale Approach LS16 7RX
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only),Type 2 (Tethered Connector) ">
+  <div class="charger-header">
+    <h2 class="charger-name">Genie</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Holtdale Approach <button class="copy-btn" data-copy="LS16 7RX">LS16 7RX</button>
   </p>
   
   <div class="charger-connections">
@@ -968,9 +1121,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Beech Hill Car Park 3</h2>
-  <p class="charger-address">Beech Hill Car Park LS21 3AT
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Beech Hill Car Park 3</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Beech Hill Car Park <button class="copy-btn" data-copy="LS21 3AT">LS21 3AT</button>
   </p>
   
   <div class="charger-connections">
@@ -992,9 +1148,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Asda Kirkstall</h2>
-  <p class="charger-address">385 Kirkstall Road LS42EZ
+<li class="charger-item charger-item--rapid" data-connectors="Type 2 (Socket Only),CHAdeMO,Type 2 (Tethered Connector) ">
+  <div class="charger-header">
+    <h2 class="charger-name">Asda Kirkstall</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">385 Kirkstall Road <button class="copy-btn" data-copy="LS42EZ">LS42EZ</button>
   </p>
   
   <div class="charger-connections">
@@ -1019,9 +1179,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">LCC Car Club</h2>
-  <p class="charger-address">LCC Car Club, West Yorkshire LS1 3DT
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">LCC Car Club</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">LCC Car Club, West Yorkshire <button class="copy-btn" data-copy="LS1 3DT">LS1 3DT</button>
   </p>
   
   <div class="charger-connections">
@@ -1043,9 +1206,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Queens Park, Pudsey 3</h2>
-  <p class="charger-address">Queens Park, Pudsey LS28 7FB
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Queens Park, Pudsey 3</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Queens Park, Pudsey <button class="copy-btn" data-copy="LS28 7FB">LS28 7FB</button>
   </p>
   
   <div class="charger-connections">
@@ -1067,9 +1233,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">IONITY Leeds Skelton Lakes</h2>
-  <p class="charger-address">M1 J45 Skelton Lake LS15 0BF
+<li class="charger-item charger-item--rapid" data-connectors="Type 2 (Tethered Connector) ">
+  <div class="charger-header">
+    <h2 class="charger-name">IONITY Leeds Skelton Lakes</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">M1 J45 Skelton Lake <button class="copy-btn" data-copy="LS15 0BF">LS15 0BF</button>
   </p>
   
   <div class="charger-connections">
@@ -1100,9 +1270,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">High Street Car Park 1</h2>
-  <p class="charger-address">High Street Car Park LS27 8AQ
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">High Street Car Park 1</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">High Street Car Park <button class="copy-btn" data-copy="LS27 8AQ">LS27 8AQ</button>
   </p>
   
   <div class="charger-connections">
@@ -1124,9 +1297,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Trinity Academy Leeds</h2>
-  <p class="charger-address">Torre Road LS9 7QL
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Trinity Academy Leeds</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Torre Road <button class="copy-btn" data-copy="LS9 7QL">LS9 7QL</button>
   </p>
   
   <div class="charger-connections">
@@ -1160,9 +1336,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Central Square-PWC</h2>
-  <p class="charger-address">29 Wellington Street LS1 4DL
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Central Square-PWC</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">29 Wellington Street <button class="copy-btn" data-copy="LS1 4DL">LS1 4DL</button>
   </p>
   
   <div class="charger-connections">
@@ -1181,9 +1360,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Trinity Leeds Car Park</h2>
-  <p class="charger-address">Swinegate 1.544678
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Trinity Leeds Car Park</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Swinegate <button class="copy-btn" data-copy="1.544678">1.544678</button>
   </p>
   
   <div class="charger-connections">
@@ -1238,9 +1420,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Hampton By Hilton</h2>
-  <p class="charger-address">1 Gower Street LS2 7BP
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Hampton By Hilton</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">1 Gower Street <button class="copy-btn" data-copy="LS2 7BP">LS2 7BP</button>
   </p>
   
   <div class="charger-connections">
@@ -1259,9 +1444,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Crown Point Shopping Cente Car Park</h2>
-  <p class="charger-address">Crown Point Retail Park LS10 1EW
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Crown Point Shopping Cente Car Park</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Crown Point Retail Park <button class="copy-btn" data-copy="LS10 1EW">LS10 1EW</button>
   </p>
   
   <div class="charger-connections">
@@ -1280,9 +1468,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Thorpe Park Hotel &amp; Spa</h2>
-  <p class="charger-address">1150 Century Way LS15 8ZB
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Thorpe Park Hotel &amp; Spa</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">1150 Century Way <button class="copy-btn" data-copy="LS15 8ZB">LS15 8ZB</button>
   </p>
   
   <div class="charger-connections">
@@ -1307,9 +1498,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">McDonald&#39;s</h2>
-  <p class="charger-address">38 Butt Lane LS13 4JE
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2),CHAdeMO">
+  <div class="charger-header">
+    <h2 class="charger-name">McDonald&#39;s</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">38 Butt Lane <button class="copy-btn" data-copy="LS13 4JE">LS13 4JE</button>
   </p>
   
   <div class="charger-connections">
@@ -1331,9 +1526,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Tesco Extra-Leeds Seacroft</h2>
-  <p class="charger-address">5 Seacroft Avenue LS14 6JD
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Tesco Extra-Leeds Seacroft</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">5 Seacroft Avenue <button class="copy-btn" data-copy="LS14 6JD">LS14 6JD</button>
   </p>
   
   <div class="charger-connections">
@@ -1355,9 +1553,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Tesco Superstore-Leeds</h2>
-  <p class="charger-address">361 Roundhay Road LS8 4BU
+<li class="charger-item charger-item--rapid" data-connectors="Type 2 (Socket Only),CHAdeMO,CCS (Type 2)">
+  <div class="charger-header">
+    <h2 class="charger-name">Tesco Superstore-Leeds</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">361 Roundhay Road <button class="copy-btn" data-copy="LS8 4BU">LS8 4BU</button>
   </p>
   
   <div class="charger-connections">
@@ -1385,9 +1587,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Tesco Superstore - Garforth</h2>
-  <p class="charger-address">Aberford Road LS25 2DX
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Tesco Superstore - Garforth</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Aberford Road <button class="copy-btn" data-copy="LS25 2DX">LS25 2DX</button>
   </p>
   
   <div class="charger-connections">
@@ -1409,9 +1614,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Stourton Park and Ride</h2>
-  <p class="charger-address">Unit 1 Stourton Park and Ride LS10 1FF
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2),CHAdeMO,Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Stourton Park and Ride</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Unit 1 Stourton Park and Ride <button class="copy-btn" data-copy="LS10 1FF">LS10 1FF</button>
   </p>
   
   <div class="charger-connections">
@@ -1439,9 +1648,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Marsh Street Car Park</h2>
-  <p class="charger-address">Garforth LS25 1AF
+<li class="charger-item charger-item--rapid" data-connectors="Type 2 (Socket Only),CHAdeMO,CCS (Type 2)">
+  <div class="charger-header">
+    <h2 class="charger-name">Marsh Street Car Park</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Garforth <button class="copy-btn" data-copy="LS25 1AF">LS25 1AF</button>
   </p>
   
   <div class="charger-connections">
@@ -1466,9 +1679,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Whitehall Road East</h2>
-  <p class="charger-address">Whitehall Road East LS12 4RJ
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Whitehall Road East</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Whitehall Road East <button class="copy-btn" data-copy="LS12 4RJ">LS12 4RJ</button>
   </p>
   
   <div class="charger-connections">
@@ -1490,9 +1706,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Elland Road</h2>
-  <p class="charger-address">Elland Road LS11 8TU
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Elland Road</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Elland Road <button class="copy-btn" data-copy="LS11 8TU">LS11 8TU</button>
   </p>
   
   <div class="charger-connections">
@@ -1514,9 +1733,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Asda Harehills Lane</h2>
-  <p class="charger-address">Lupton Avenue LS9 6EY
+<li class="charger-item charger-item--rapid" data-connectors="Type 2 (Socket Only),CHAdeMO,CCS (Type 2)">
+  <div class="charger-header">
+    <h2 class="charger-name">Asda Harehills Lane</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Lupton Avenue <button class="copy-btn" data-copy="LS9 6EY">LS9 6EY</button>
   </p>
   
   <div class="charger-connections">
@@ -1541,9 +1764,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Asda Wortley</h2>
-  <p class="charger-address">9 Lansdowne St LS12 4BP
+<li class="charger-item charger-item--rapid" data-connectors="Type 2 (Socket Only),CHAdeMO,CCS (Type 2)">
+  <div class="charger-header">
+    <h2 class="charger-name">Asda Wortley</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">9 Lansdowne St <button class="copy-btn" data-copy="LS12 4BP">LS12 4BP</button>
   </p>
   
   <div class="charger-connections">
@@ -1568,9 +1795,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Morrison&#39;s Morley</h2>
-  <p class="charger-address">Morley LS27 9JP
+<li class="charger-item charger-item--rapid" data-connectors="Type 2 (Socket Only),CHAdeMO,CCS (Type 2)">
+  <div class="charger-header">
+    <h2 class="charger-name">Morrison&#39;s Morley</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Morley <button class="copy-btn" data-copy="LS27 9JP">LS27 9JP</button>
   </p>
   
   <div class="charger-connections">
@@ -1595,9 +1826,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Wharfedale Hospital</h2>
-  <p class="charger-address">Newall Carr Road LS21 2LY
+<li class="charger-item charger-item--rapid" data-connectors="CHAdeMO,CCS (Type 2),Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Wharfedale Hospital</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Newall Carr Road <button class="copy-btn" data-copy="LS21 2LY">LS21 2LY</button>
   </p>
   
   <div class="charger-connections">
@@ -1622,9 +1857,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Charles Street Car Park </h2>
-  <p class="charger-address">Charles Street LS28 5JW
+<li class="charger-item charger-item--rapid" data-connectors="CHAdeMO,CCS (Type 2),Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Charles Street Car Park </h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Charles Street <button class="copy-btn" data-copy="LS28 5JW">LS28 5JW</button>
   </p>
   
   <div class="charger-connections">
@@ -1649,9 +1888,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">  Charles Street Car Park</h2>
-  <p class="charger-address">Charles Street LS28 5JW
+<li class="charger-item charger-item--rapid" data-connectors="CHAdeMO,CCS (Type 2),Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">  Charles Street Car Park</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Charles Street <button class="copy-btn" data-copy="LS28 5JW">LS28 5JW</button>
   </p>
   
   <div class="charger-connections">
@@ -1676,9 +1919,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Abaseen Superstore</h2>
-  <p class="charger-address">171 Harehills Lane LS8 3QE
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Abaseen Superstore</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">171 Harehills Lane <button class="copy-btn" data-copy="LS8 3QE">LS8 3QE</button>
   </p>
   
   <div class="charger-connections">
@@ -1697,9 +1943,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Roundhay Park Clocktower carpark</h2>
-  <p class="charger-address">1 Gledhow Lane LS8 1SD
+<li class="charger-item charger-item--rapid" data-connectors="CHAdeMO,CEE 3 Pin,Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Roundhay Park Clocktower carpark</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">1 Gledhow Lane <button class="copy-btn" data-copy="LS8 1SD">LS8 1SD</button>
   </p>
   
   <div class="charger-connections">
@@ -1724,9 +1974,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Burley Road Car Park</h2>
-  <p class="charger-address">Burley Road LS3 1JP
+<li class="charger-item charger-item--rapid" data-connectors="CHAdeMO,CCS (Type 2),Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Burley Road Car Park</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Burley Road <button class="copy-btn" data-copy="LS3 1JP">LS3 1JP</button>
   </p>
   
   <div class="charger-connections">
@@ -1751,9 +2005,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Aldi Menston</h2>
-  <p class="charger-address">Bradford Rd  LS20 8FA 
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Aldi Menston</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Bradford Rd  <button class="copy-btn" data-copy="LS20 8FA ">LS20 8FA </button>
   </p>
   
   <div class="charger-connections">
@@ -1775,9 +2032,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Armley Leisure Centre</h2>
-  <p class="charger-address">Carr Crofts LS12 3HB
+<li class="charger-item charger-item--rapid" data-connectors="CHAdeMO,CCS (Type 2),Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Armley Leisure Centre</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Carr Crofts <button class="copy-btn" data-copy="LS12 3HB">LS12 3HB</button>
   </p>
   
   <div class="charger-connections">
@@ -1802,9 +2063,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Morrisons Leeds Harehills</h2>
-  <p class="charger-address">Harehills Lane LS8 3RG
+<li class="charger-item charger-item--rapid" data-connectors="CHAdeMO,CCS (Type 2),Type 2 (Tethered Connector) ">
+  <div class="charger-header">
+    <h2 class="charger-name">Morrisons Leeds Harehills</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Harehills Lane <button class="copy-btn" data-copy="LS8 3RG">LS8 3RG</button>
   </p>
   
   <div class="charger-connections">
@@ -1829,9 +2094,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">BP Service Station</h2>
-  <p class="charger-address">53 Pontefract Road LS26
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">BP Service Station</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">53 Pontefract Road <button class="copy-btn" data-copy="LS26">LS26</button>
   </p>
   
   <div class="charger-connections">
@@ -1850,9 +2118,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Stourton BP Service Station</h2>
-  <p class="charger-address">Pontefract Road LS10 1SP
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2),CHAdeMO,Type 2 (Tethered Connector) ">
+  <div class="charger-header">
+    <h2 class="charger-name">Stourton BP Service Station</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Pontefract Road <button class="copy-btn" data-copy="LS10 1SP">LS10 1SP</button>
   </p>
   
   <div class="charger-connections">
@@ -1877,9 +2149,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Leeds-Whitehouse Street Supercharger</h2>
-  <p class="charger-address">7 Whitehouse Street LS10 1AD
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2)">
+  <div class="charger-header">
+    <h2 class="charger-name">Leeds-Whitehouse Street Supercharger</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">7 Whitehouse Street <button class="copy-btn" data-copy="LS10 1AD">LS10 1AD</button>
   </p>
   
   <div class="charger-connections">
@@ -1898,9 +2174,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Fink Hill Car Park</h2>
-  <p class="charger-address">Fink Hill LS18
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2),CHAdeMO,Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Fink Hill Car Park</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Fink Hill <button class="copy-btn" data-copy="LS18">LS18</button>
   </p>
   
   <div class="charger-connections">
@@ -1925,9 +2205,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Scott Hall Leisure Centre</h2>
-  <p class="charger-address">Scott Hall Sports Centre LS7 3DT
+<li class="charger-item charger-item--rapid" data-connectors="Type 2 (Socket Only),CHAdeMO,CCS (Type 2)">
+  <div class="charger-header">
+    <h2 class="charger-name">Scott Hall Leisure Centre</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Scott Hall Sports Centre <button class="copy-btn" data-copy="LS7 3DT">LS7 3DT</button>
   </p>
   
   <div class="charger-connections">
@@ -1952,9 +2236,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">First On Scene Training</h2>
-  <p class="charger-address">82 Headingley Lane LS6 2DH
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">First On Scene Training</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">82 Headingley Lane <button class="copy-btn" data-copy="LS6 2DH">LS6 2DH</button>
   </p>
   
   <div class="charger-connections">
@@ -1973,9 +2260,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">University of Leeds</h2>
-  <p class="charger-address">Woodhouse Lane LS2 9JT
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">University of Leeds</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Woodhouse Lane <button class="copy-btn" data-copy="LS2 9JT">LS2 9JT</button>
   </p>
   
   <div class="charger-connections">
@@ -1997,9 +2287,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">University of Leeds</h2>
-  <p class="charger-address">Devonshire Hall LS2 9JT
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">University of Leeds</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Devonshire Hall <button class="copy-btn" data-copy="LS2 9JT">LS2 9JT</button>
   </p>
   
   <div class="charger-connections">
@@ -2021,9 +2314,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">University of Leeds</h2>
-  <p class="charger-address">Cavendish Road LS2 9JT
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">University of Leeds</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Cavendish Road <button class="copy-btn" data-copy="LS2 9JT">LS2 9JT</button>
   </p>
   
   <div class="charger-connections">
@@ -2045,9 +2341,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">University of Leeds</h2>
-  <p class="charger-address">The Edge LS2 9JT
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">University of Leeds</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">The Edge <button class="copy-btn" data-copy="LS2 9JT">LS2 9JT</button>
   </p>
   
   <div class="charger-connections">
@@ -2069,9 +2368,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Ingram street car park</h2>
-  <p class="charger-address">Ingram street car park LS11 9AW
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Ingram street car park</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Ingram street car park <button class="copy-btn" data-copy="LS11 9AW">LS11 9AW</button>
   </p>
   
   <div class="charger-connections">
@@ -2093,9 +2395,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">White Rose Shopping Centre</h2>
-  <p class="charger-address">Dewsbury Road LS11 8LL
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">White Rose Shopping Centre</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Dewsbury Road <button class="copy-btn" data-copy="LS11 8LL">LS11 8LL</button>
   </p>
   
   <div class="charger-connections">
@@ -2117,9 +2422,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Toby Carvery</h2>
-  <p class="charger-address">2 Aberford Road LS26 8EJ
+<li class="charger-item charger-item--rapid" data-connectors="CHAdeMO,CCS (Type 2),Type 2 (Tethered Connector) ">
+  <div class="charger-header">
+    <h2 class="charger-name">Toby Carvery</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">2 Aberford Road <button class="copy-btn" data-copy="LS26 8EJ">LS26 8EJ</button>
   </p>
   
   <div class="charger-connections">
@@ -2144,9 +2453,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">New Street Car Park</h2>
-  <p class="charger-address">New Street LS18 4BH
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">New Street Car Park</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">New Street <button class="copy-btn" data-copy="LS18 4BH">LS18 4BH</button>
   </p>
   
   <div class="charger-connections">
@@ -2168,9 +2480,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Ionity Leeds - Skelton Lakes Services</h2>
-  <p class="charger-address">M1 Jct 45 LS15 0AE
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2)">
+  <div class="charger-header">
+    <h2 class="charger-name">Ionity Leeds - Skelton Lakes Services</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">M1 Jct 45 <button class="copy-btn" data-copy="LS15 0AE">LS15 0AE</button>
   </p>
   
   <div class="charger-connections">
@@ -2204,9 +2520,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Annie Street Car Park, Morley</h2>
-  <p class="charger-address">Annie Street LS27 8HQ
+<li class="charger-item charger-item--rapid" data-connectors="Type 2 (Socket Only),CHAdeMO,Type 2 (Tethered Connector) ">
+  <div class="charger-header">
+    <h2 class="charger-name">Annie Street Car Park, Morley</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Annie Street <button class="copy-btn" data-copy="LS27 8HQ">LS27 8HQ</button>
   </p>
   
   <div class="charger-connections">
@@ -2231,9 +2551,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Rothwell Marsh Street Car Park</h2>
-  <p class="charger-address">Marsh Street LS26 0AE
+<li class="charger-item charger-item--rapid" data-connectors="CHAdeMO,CCS (Type 2),Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Rothwell Marsh Street Car Park</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Marsh Street <button class="copy-btn" data-copy="LS26 0AE">LS26 0AE</button>
   </p>
   
   <div class="charger-connections">
@@ -2258,9 +2582,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Yeadon One Stop Centre</h2>
-  <p class="charger-address">High Street LS19 7PP
+<li class="charger-item charger-item--rapid" data-connectors="CHAdeMO,CCS (Type 2),Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Yeadon One Stop Centre</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">High Street <button class="copy-btn" data-copy="LS19 7PP">LS19 7PP</button>
   </p>
   
   <div class="charger-connections">
@@ -2285,9 +2613,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">High Street Car Park</h2>
-  <p class="charger-address">5 Bridge Rd LS23 6HB
+<li class="charger-item charger-item--rapid" data-connectors="CHAdeMO,CCS (Type 2),Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">High Street Car Park</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">5 Bridge Rd <button class="copy-btn" data-copy="LS23 6HB">LS23 6HB</button>
   </p>
   
   <div class="charger-connections">
@@ -2312,9 +2644,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">The Cluster of Nuts Car Park</h2>
-  <p class="charger-address">42 Hall field Lane LS22 6JS
+<li class="charger-item charger-item--rapid" data-connectors="CHAdeMO,CCS (Type 2),Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">The Cluster of Nuts Car Park</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">42 Hall field Lane <button class="copy-btn" data-copy="LS22 6JS">LS22 6JS</button>
   </p>
   
   <div class="charger-connections">
@@ -2339,9 +2675,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Miller &amp; Carter Garforth</h2>
-  <p class="charger-address">Selby Road LS25 1NB
+<li class="charger-item charger-item--rapid" data-connectors="CHAdeMO,CCS (Type 2),Type 2 (Tethered Connector) ">
+  <div class="charger-header">
+    <h2 class="charger-name">Miller &amp; Carter Garforth</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Selby Road <button class="copy-btn" data-copy="LS25 1NB">LS25 1NB</button>
   </p>
   
   <div class="charger-connections">
@@ -2366,9 +2706,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">The Grammar School at Leeds</h2>
-  <p class="charger-address">Harrogate Road LS17 8GS
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">The Grammar School at Leeds</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Harrogate Road <button class="copy-btn" data-copy="LS17 8GS">LS17 8GS</button>
   </p>
   
   <div class="charger-connections">
@@ -2390,9 +2733,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">New Rover Cricket Club</h2>
-  <p class="charger-address">Smithy Mills Ln LS16 8HF
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">New Rover Cricket Club</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Smithy Mills Ln <button class="copy-btn" data-copy="LS16 8HF">LS16 8HF</button>
   </p>
   
   <div class="charger-connections">
@@ -2414,9 +2760,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Whitehall Road Car Park</h2>
-  <p class="charger-address">Wellington Place LS1 4AW
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Whitehall Road Car Park</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Wellington Place <button class="copy-btn" data-copy="LS1 4AW">LS1 4AW</button>
   </p>
   
   <div class="charger-connections">
@@ -2441,6 +2790,23 @@
 
 <p><a href="/" class="back-link">← All UK towns</a></p>
 
+
+<div class="nearby-towns">
+  <h2 class="nearby-heading">Nearby towns</h2>
+  <ul class="nearby-list">
+  
+    <li><a href="/uk/wakefield/">Wakefield</a></li>
+  
+    <li><a href="/uk/dewsbury/">Dewsbury</a></li>
+  
+    <li><a href="/uk/castleford/">Castleford</a></li>
+  
+    <li><a href="/uk/wetherby/">Wetherby</a></li>
+  
+  </ul>
+</div>
+
+
 </div>
 
 <footer>
@@ -2453,26 +2819,61 @@
 <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 <script>
 (function () {
+  // --- Map ---
   var map = L.map('map').setView([53.78413215614619, -1.544345707881073], 12);
-
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
   }).addTo(map);
 
   var markers = L.markerClusterGroup();
-  var chargerData = [{"lat": 53.813721, "lng": -1.494185, "title": "Lidl-Gipton", "address": "144 Amberton Road"}, {"lat": 53.7578612, "lng": -1.5756041, "title": "White Rose Shopping Centre", "address": "Dewsbury Road"}, {"lat": 53.790744, "lng": -1.207307, "title": "The Motorist", "address": "Sherburn in Elmet"}, {"lat": 53.79589, "lng": -1.55264, "title": "Crisp Central Square", "address": "29 Wellington Street"}, {"lat": 53.92792, "lng": -1.38075, "title": "The Cluster of Nuts, Wetherby", "address": "Wetherby"}, {"lat": 53.873516, "lng": -1.706596, "title": "Aireborough Leisure Centre", "address": "The Green, Guiseley"}, {"lat": 53.840262, "lng": -1.641668, "title": "Church Lane Car Park 1", "address": "Horseforth"}, {"lat": 53.8284, "lng": -1.578, "title": "Castle Grove", "address": "Headingley"}, {"lat": 53.8067, "lng": -1.531993, "title": "Evans Halshaw Leeds", "address": "Roseville Road, Leeds"}, {"lat": 53.806336, "lng": -1.530755, "title": "Evans Halshaw Leeds", "address": "Henbury Street"}, {"lat": 53.801506, "lng": -1.532965, "title": "Aldi", "address": "Regent Street"}, {"lat": 53.801319, "lng": -1.568321, "title": "Kirkstall Road Car Park", "address": "Kirkstall Road"}, {"lat": 53.800255, "lng": -1.42268, "title": "Thorpe Park Leeds", "address": "Thorpe Park"}, {"lat": 53.797543, "lng": -1.555794, "title": "RAWOWNED Q-PARK WELL 1", "address": "Q-Park Leeds Wellington Street"}, {"lat": 53.796513, "lng": -1.544555, "title": "Trinity Shopping Centre - Leeds", "address": "Albion Street"}, {"lat": 53.79593, "lng": -1.591714, "title": "Armley Leisure Centre", "address": "Carr Crofts"}, {"lat": 53.79442, "lng": -1.38834, "title": "Barley Hill Road, Garforth", "address": "Garforth"}, {"lat": 53.791939, "lng": -1.543716, "title": "Asda Head Office", "address": "Great Wilson Street"}, {"lat": 53.791192, "lng": -1.531209, "title": "Leeds Dock 01", "address": "CitiPark, Leeds Dock"}, {"lat": 53.790867, "lng": -1.544888, "title": "New Asda MCE Facility New Lane", "address": "Off Victoria Road"}, {"lat": 53.789558, "lng": -1.584643, "title": "Asda Wortley", "address": "Wortley"}, {"lat": 53.767403, "lng": -1.518652, "title": "Stourton Park and Ride Fast 5", "address": "Belle Island"}, {"lat": 53.766648, "lng": -1.518271, "title": "Stourton Park and Ride Rapid 4", "address": "Belle island"}, {"lat": 53.748959, "lng": -1.53122, "title": "Asda Middleton", "address": "Holme Well Road"}, {"lat": 53.748678, "lng": -1.631736, "title": "EG GROUP LEON", "address": "1A Wakefield Rd"}, {"lat": 53.748486, "lng": -1.530569, "title": "Asda", "address": "Middleton"}, {"lat": 53.747774, "lng": -1.477569, "title": "Marsh Street, Rothwell", "address": "Rothwell"}, {"lat": 53.74737, "lng": -1.4777, "title": "Marsh Street Car Park, Rothwell", "address": "Marsh Street Car Park"}, {"lat": 53.74724, "lng": -1.479809, "title": "Butcher Lane Car Park 2", "address": "Butcher Lane Car Park"}, {"lat": 53.745293, "lng": -1.451642, "title": "Toby Carvery Leeds", "address": "Oulton"}, {"lat": 53.744358, "lng": -1.452687, "title": "Rothwell Leisure Centre", "address": "Wakefield Road, Oulton"}, {"lat": 53.735458, "lng": -1.609018, "title": "Asda Morley", "address": "Morley"}, {"lat": 53.82695, "lng": -1.594462, "title": "LeedsBeckett", "address": "Woodhouse Lane"}, {"lat": 53.781658, "lng": -1.501562, "title": "SIKA LEEDS02", "address": "41 Knowsthorpe Way"}, {"lat": 53.75067, "lng": -1.636342, "title": "GROUND CONTROL GILDERSOME 1", "address": "9a Bradford Rd"}, {"lat": 53.73177, "lng": -1.500296, "title": "RAWOWNED THORPE LODGE", "address": "50 Long Thorpe Ln"}, {"lat": 52.393478, "lng": -2.018098, "title": "Genie", "address": "Holtdale Approach"}, {"lat": 53.905489, "lng": -1.695724, "title": "Beech Hill Car Park 3", "address": "Beech Hill Car Park"}, {"lat": 53.807468, "lng": -1.586714, "title": "Asda Kirkstall", "address": "385 Kirkstall Road"}, {"lat": 53.801064, "lng": -1.550714, "title": "LCC Car Club", "address": "LCC Car Club, West Yorkshire"}, {"lat": 53.797712, "lng": -1.673651, "title": "Queens Park, Pudsey 3", "address": "Queens Park, Pudsey"}, {"lat": 53.77046, "lng": -1.47691, "title": "IONITY Leeds Skelton Lakes", "address": "M1 J45 Skelton Lake"}, {"lat": 53.743019, "lng": -1.598276, "title": "High Street Car Park 1", "address": "High Street Car Park"}, {"lat": 53.79988945, "lng": -1.51322253, "title": "Trinity Academy Leeds", "address": "Torre Road"}, {"lat": 53.79617675, "lng": -1.55204206, "title": "Central Square-PWC", "address": "29 Wellington Street"}, {"lat": 53.795047, "lng": -1.544678, "title": "Trinity Leeds Car Park", "address": "Swinegate"}, {"lat": 53.80058360288345, "lng": -1.535159637966558, "title": "Hampton By Hilton", "address": "1 Gower Street"}, {"lat": 53.787009122232746, "lng": -1.5400654819852662, "title": "Crown Point Shopping Cente Car Park", "address": "Crown Point Retail Park"}, {"lat": 53.79432644158376, "lng": -1.4273900388221819, "title": "Thorpe Park Hotel & Spa", "address": "1150 Century Way"}, {"lat": 53.7955363, "lng": -1.6213047, "title": "McDonald's", "address": "38 Butt Lane"}, {"lat": 53.82221, "lng": -1.460697, "title": "Tesco Extra-Leeds Seacroft", "address": "5 Seacroft Avenue"}, {"lat": 53.823268, "lng": -1.510535, "title": "Tesco Superstore-Leeds", "address": "361 Roundhay Road"}, {"lat": 53.7975627521871, "lng": -1.38219331364161, "title": "Tesco Superstore - Garforth", "address": "Aberford Road"}, {"lat": 53.7672954987961, "lng": -1.517630893316806, "title": "Stourton Park and Ride", "address": "Unit 1 Stourton Park and Ride"}, {"lat": 53.795311, "lng": -1.388816, "title": "Marsh Street Car Park", "address": "Garforth"}, {"lat": 53.782167, "lng": -1.596262, "title": "Whitehall Road East", "address": "Whitehall Road East"}, {"lat": 53.776711, "lng": -1.576236, "title": "Elland Road", "address": "Elland Road"}, {"lat": 53.80694962661198, "lng": -1.5056218447043648, "title": "Asda Harehills Lane", "address": "Lupton Avenue"}, {"lat": 53.7892851704527, "lng": -1.5855021515786802, "title": "Asda Wortley", "address": "9 Lansdowne St"}, {"lat": 53.745559, "lng": -1.605554, "title": "Morrison's Morley", "address": "Morley"}, {"lat": 53.915198558142094, "lng": -1.700898450498471, "title": "Wharfedale Hospital", "address": "Newall Carr Road"}, {"lat": 53.81349664061753, "lng": -1.6716181558244898, "title": "Charles Street Car Park ", "address": "Charles Street"}, {"lat": 53.81350868911025, "lng": -1.6715703154815174, "title": "  Charles Street Car Park", "address": "Charles Street"}, {"lat": 53.81643188059161, "lng": -1.5138245807473822, "title": "Abaseen Superstore", "address": "171 Harehills Lane"}, {"lat": 53.827351347985456, "lng": -1.5058015000004161, "title": "Roundhay Park Clocktower carpark", "address": "1 Gledhow Lane"}, {"lat": 53.80222250852907, "lng": -1.5655479731497053, "title": "Burley Road Car Park", "address": "Burley Road"}, {"lat": 53.879212262088885, "lng": -1.725541836907496, "title": "Aldi Menston", "address": "Bradford Rd "}, {"lat": 53.794794149215704, "lng": -1.59231023468692, "title": "Armley Leisure Centre", "address": "Carr Crofts"}, {"lat": 53.8127821962463, "lng": -1.5108588, "title": "Morrisons Leeds Harehills", "address": "Harehills Lane"}, {"lat": 53.77473966572097, "lng": -1.5133025021401636, "title": "BP Service Station", "address": "53 Pontefract Road"}, {"lat": 53.7744464707961, "lng": -1.51320042570228, "title": "Stourton BP Service Station", "address": "Pontefract Road"}, {"lat": 53.784556, "lng": -1.532498, "title": "Leeds-Whitehouse Street Supercharger", "address": "7 Whitehouse Street"}, {"lat": 53.83629245732743, "lng": -1.6442329629979895, "title": "Fink Hill Car Park", "address": "Fink Hill"}, {"lat": 53.825952, "lng": -1.546119, "title": "Scott Hall Leisure Centre", "address": "Scott Hall Sports Centre"}, {"lat": 53.819513078358796, "lng": -1.5748266012790282, "title": "First On Scene Training", "address": "82 Headingley Lane"}, {"lat": 53.80925, "lng": -1.554083, "title": "University of Leeds", "address": "Woodhouse Lane"}, {"lat": 53.80838, "lng": -1.55883, "title": "University of Leeds", "address": "Devonshire Hall"}, {"lat": 53.806168, "lng": -1.55295, "title": "University of Leeds", "address": "Cavendish Road"}, {"lat": 53.80365, "lng": -1.5529, "title": "University of Leeds", "address": "The Edge"}, {"lat": 53.788719, "lng": -1.549335, "title": "Ingram street car park", "address": "Ingram street car park"}, {"lat": 53.753345, "lng": -1.571942, "title": "White Rose Shopping Centre", "address": "Dewsbury Road"}, {"lat": 53.7458434307527, "lng": -1.45217171463366, "title": "Toby Carvery", "address": "2 Aberford Road"}, {"lat": 53.836497, "lng": -1.64161, "title": "New Street Car Park", "address": "New Street"}, {"lat": 53.77436865059477, "lng": -1.4703148125219059, "title": "Ionity Leeds - Skelton Lakes Services", "address": "M1 Jct 45"}, {"lat": 53.74767, "lng": -1.60268, "title": "Annie Street Car Park, Morley", "address": "Annie Street"}, {"lat": 53.747750145425925, "lng": -1.4784682716858697, "title": "Rothwell Marsh Street Car Park", "address": "Marsh Street"}, {"lat": 53.86594104579598, "lng": -1.6843845906768138, "title": "Yeadon One Stop Centre", "address": "High Street"}, {"lat": 53.90490989693566, "lng": -1.3461511408854676, "title": "High Street Car Park", "address": "5 Bridge Rd"}, {"lat": 53.92789865953495, "lng": -1.3834341588525376, "title": "The Cluster of Nuts Car Park", "address": "42 Hall field Lane"}, {"lat": 53.7868948730778, "lng": -1.40438605225222, "title": "Miller & Carter Garforth", "address": "Selby Road"}, {"lat": 53.864878, "lng": -1.518688, "title": "The Grammar School at Leeds", "address": "Harrogate Road"}, {"lat": 53.843413, "lng": -1.579911, "title": "New Rover Cricket Club", "address": "Smithy Mills Ln"}, {"lat": 53.793531, "lng": -1.556904, "title": "Whitehall Road Car Park", "address": "Wellington Place"}];
+  var chargerData = [{"lat": 53.813721, "lng": -1.494185, "title": "Lidl-Gipton", "address": "144 Amberton Road", "connectors": ["Type 2 (Tethered Connector)  · 43kW", "CHAdeMO · 50kW", "CCS (Type 2) · 50kW"]}, {"lat": 53.7578612, "lng": -1.5756041, "title": "White Rose Shopping Centre", "address": "Dewsbury Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 3kW", "Type 2 (Socket Only) · 3kW", "Type 2 (Socket Only) · 3kW", "Type 2 (Socket Only) · 3kW", "Type 2 (Socket Only) · 3kW"]}, {"lat": 53.790744, "lng": -1.207307, "title": "The Motorist", "address": "Sherburn in Elmet", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 53.79589, "lng": -1.55264, "title": "Crisp Central Square", "address": "29 Wellington Street", "connectors": ["Type 2 (Socket Only) · 7kW"]}, {"lat": 53.92792, "lng": -1.38075, "title": "The Cluster of Nuts, Wetherby", "address": "Wetherby", "connectors": ["Type 2 (Tethered Connector)  · 43kW", "CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 50kW"]}, {"lat": 53.873516, "lng": -1.706596, "title": "Aireborough Leisure Centre", "address": "The Green, Guiseley", "connectors": ["Type 2 (Socket Only) · 22kW", "CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 50kW"]}, {"lat": 53.840262, "lng": -1.641668, "title": "Church Lane Car Park 1", "address": "Horseforth", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 53.8284, "lng": -1.578, "title": "Castle Grove", "address": "Headingley", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 53.8067, "lng": -1.531993, "title": "Evans Halshaw Leeds", "address": "Roseville Road, Leeds", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 53.806336, "lng": -1.530755, "title": "Evans Halshaw Leeds", "address": "Henbury Street", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 53.801506, "lng": -1.532965, "title": "Aldi", "address": "Regent Street", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 53.801319, "lng": -1.568321, "title": "Kirkstall Road Car Park", "address": "Kirkstall Road", "connectors": ["Type 2 (Socket Only) · 22kW", "CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 50kW"]}, {"lat": 53.800255, "lng": -1.42268, "title": "Thorpe Park Leeds", "address": "Thorpe Park", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 53.797543, "lng": -1.555794, "title": "RAWOWNED Q-PARK WELL 1", "address": "Q-Park Leeds Wellington Street", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 53.796513, "lng": -1.544555, "title": "Trinity Shopping Centre - Leeds", "address": "Albion Street", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 53.79593, "lng": -1.591714, "title": "Armley Leisure Centre", "address": "Carr Crofts", "connectors": ["Type 2 (Socket Only) · 22kW", "CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 50kW"]}, {"lat": 53.79442, "lng": -1.38834, "title": "Barley Hill Road, Garforth", "address": "Garforth", "connectors": ["Type 2 (Socket Only) · 22kW", "CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 50kW"]}, {"lat": 53.791939, "lng": -1.543716, "title": "Asda Head Office", "address": "Great Wilson Street", "connectors": ["Type 2 (Socket Only) · 3.7kW", "Type 2 (Socket Only) · 3.7kW"]}, {"lat": 53.791192, "lng": -1.531209, "title": "Leeds Dock 01", "address": "CitiPark, Leeds Dock", "connectors": ["Type 2 (Tethered Connector)  · 120kW"]}, {"lat": 53.790867, "lng": -1.544888, "title": "New Asda MCE Facility New Lane", "address": "Off Victoria Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 53.789558, "lng": -1.584643, "title": "Asda Wortley", "address": "Wortley", "connectors": ["Type 2 (Socket Only) · 22kW", "CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 50kW"]}, {"lat": 53.767403, "lng": -1.518652, "title": "Stourton Park and Ride Fast 5", "address": "Belle Island", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 53.766648, "lng": -1.518271, "title": "Stourton Park and Ride Rapid 4", "address": "Belle island", "connectors": ["Type 2 (Tethered Connector)  · 50kW", "CHAdeMO · 50kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 53.748959, "lng": -1.53122, "title": "Asda Middleton", "address": "Holme Well Road", "connectors": ["Type 2 (Socket Only) · 22kW", "CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 50kW"]}, {"lat": 53.748678, "lng": -1.631736, "title": "EG GROUP LEON", "address": "1A Wakefield Rd", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 53.748486, "lng": -1.530569, "title": "Asda", "address": "Middleton", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 53.747774, "lng": -1.477569, "title": "Marsh Street, Rothwell", "address": "Rothwell", "connectors": ["Type 2 (Socket Only) · 22kW", "CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 50kW"]}, {"lat": 53.74737, "lng": -1.4777, "title": "Marsh Street Car Park, Rothwell", "address": "Marsh Street Car Park", "connectors": ["Type 2 (Tethered Connector)  · 43kW", "CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 50kW"]}, {"lat": 53.74724, "lng": -1.479809, "title": "Butcher Lane Car Park 2", "address": "Butcher Lane Car Park", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 53.745293, "lng": -1.451642, "title": "Toby Carvery Leeds", "address": "Oulton", "connectors": ["CHAdeMO · 50kW", "CHAdeMO · 50kW"]}, {"lat": 53.744358, "lng": -1.452687, "title": "Rothwell Leisure Centre", "address": "Wakefield Road, Oulton", "connectors": ["Type 2 (Socket Only) · 22kW", "CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 50kW"]}, {"lat": 53.735458, "lng": -1.609018, "title": "Asda Morley", "address": "Morley", "connectors": ["Type 2 (Socket Only) · 22kW", "CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 50kW"]}, {"lat": 53.82695, "lng": -1.594462, "title": "LeedsBeckett", "address": "Woodhouse Lane", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 53.781658, "lng": -1.501562, "title": "SIKA LEEDS02", "address": "41 Knowsthorpe Way", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 53.75067, "lng": -1.636342, "title": "GROUND CONTROL GILDERSOME 1", "address": "9a Bradford Rd", "connectors": ["Type 2 (Socket Only) · 11kW"]}, {"lat": 53.73177, "lng": -1.500296, "title": "RAWOWNED THORPE LODGE", "address": "50 Long Thorpe Ln", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 52.393478, "lng": -2.018098, "title": "Genie", "address": "Holtdale Approach", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW", "Type 2 (Tethered Connector)  · 43kW"]}, {"lat": 53.905489, "lng": -1.695724, "title": "Beech Hill Car Park 3", "address": "Beech Hill Car Park", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 53.807468, "lng": -1.586714, "title": "Asda Kirkstall", "address": "385 Kirkstall Road", "connectors": ["Type 2 (Socket Only) · 22kW", "CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 50kW"]}, {"lat": 53.801064, "lng": -1.550714, "title": "LCC Car Club", "address": "LCC Car Club, West Yorkshire", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 53.797712, "lng": -1.673651, "title": "Queens Park, Pudsey 3", "address": "Queens Park, Pudsey", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 53.77046, "lng": -1.47691, "title": "IONITY Leeds Skelton Lakes", "address": "M1 J45 Skelton Lake", "connectors": ["Type 2 (Tethered Connector)  · 350kW", "Type 2 (Tethered Connector)  · 350kW", "Type 2 (Tethered Connector)  · 350kW", "Type 2 (Tethered Connector)  · 350kW", "Type 2 (Tethered Connector)  · 350kW"]}, {"lat": 53.743019, "lng": -1.598276, "title": "High Street Car Park 1", "address": "High Street Car Park", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 53.79988945, "lng": -1.51322253, "title": "Trinity Academy Leeds", "address": "Torre Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 53.79617675, "lng": -1.55204206, "title": "Central Square-PWC", "address": "29 Wellington Street", "connectors": ["Type 2 (Socket Only) · 7kW"]}, {"lat": 53.795047, "lng": -1.544678, "title": "Trinity Leeds Car Park", "address": "Swinegate", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 53.80058360288345, "lng": -1.535159637966558, "title": "Hampton By Hilton", "address": "1 Gower Street", "connectors": ["Type 2 (Socket Only) · 7kW"]}, {"lat": 53.787009122232746, "lng": -1.5400654819852662, "title": "Crown Point Shopping Cente Car Park", "address": "Crown Point Retail Park", "connectors": ["Type 2 (Socket Only) · 7kW"]}, {"lat": 53.79432644158376, "lng": -1.4273900388221819, "title": "Thorpe Park Hotel & Spa", "address": "1150 Century Way", "connectors": ["Type 2 (Socket Only) · 11kW", "Type 2 (Socket Only) · 11kW", "Type 2 (Socket Only) · 11kW"]}, {"lat": 53.7955363, "lng": -1.6213047, "title": "McDonald's", "address": "38 Butt Lane", "connectors": ["CCS (Type 2) · 120kW", "CHAdeMO · 75kW"]}, {"lat": 53.82221, "lng": -1.460697, "title": "Tesco Extra-Leeds Seacroft", "address": "5 Seacroft Avenue", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 53.823268, "lng": -1.510535, "title": "Tesco Superstore-Leeds", "address": "361 Roundhay Road", "connectors": ["Type 2 (Socket Only) · 22kW", "CHAdeMO · 50kW", "CCS (Type 2) · 50kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 53.7975627521871, "lng": -1.38219331364161, "title": "Tesco Superstore - Garforth", "address": "Aberford Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 53.7672954987961, "lng": -1.517630893316806, "title": "Stourton Park and Ride", "address": "Unit 1 Stourton Park and Ride", "connectors": ["CCS (Type 2) · 50kW", "CHAdeMO · 50kW", "Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only)"]}, {"lat": 53.795311, "lng": -1.388816, "title": "Marsh Street Car Park", "address": "Garforth", "connectors": ["Type 2 (Socket Only) · 22kW", "CHAdeMO · 50kW", "CCS (Type 2) · 50kW"]}, {"lat": 53.782167, "lng": -1.596262, "title": "Whitehall Road East", "address": "Whitehall Road East", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 53.776711, "lng": -1.576236, "title": "Elland Road", "address": "Elland Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 53.80694962661198, "lng": -1.5056218447043648, "title": "Asda Harehills Lane", "address": "Lupton Avenue", "connectors": ["Type 2 (Socket Only) · 22kW", "CHAdeMO · 50kW", "CCS (Type 2) · 50kW"]}, {"lat": 53.7892851704527, "lng": -1.5855021515786802, "title": "Asda Wortley", "address": "9 Lansdowne St", "connectors": ["Type 2 (Socket Only) · 22kW", "CHAdeMO · 50kW", "CCS (Type 2) · 50kW"]}, {"lat": 53.745559, "lng": -1.605554, "title": "Morrison's Morley", "address": "Morley", "connectors": ["Type 2 (Socket Only) · 22kW", "CHAdeMO · 22kW", "CCS (Type 2) · 50kW"]}, {"lat": 53.915198558142094, "lng": -1.700898450498471, "title": "Wharfedale Hospital", "address": "Newall Carr Road", "connectors": ["CHAdeMO · 50kW", "CCS (Type 2) · 50kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 53.81349664061753, "lng": -1.6716181558244898, "title": "Charles Street Car Park ", "address": "Charles Street", "connectors": ["CHAdeMO · 50kW", "CCS (Type 2) · 50kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 53.81350868911025, "lng": -1.6715703154815174, "title": "  Charles Street Car Park", "address": "Charles Street", "connectors": ["CHAdeMO · 50kW", "CCS (Type 2) · 50kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 53.81643188059161, "lng": -1.5138245807473822, "title": "Abaseen Superstore", "address": "171 Harehills Lane", "connectors": ["Type 2 (Socket Only) · 22kW"]}, {"lat": 53.827351347985456, "lng": -1.5058015000004161, "title": "Roundhay Park Clocktower carpark", "address": "1 Gledhow Lane", "connectors": ["CHAdeMO · 50kW", "CEE 3 Pin · 50kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 53.80222250852907, "lng": -1.5655479731497053, "title": "Burley Road Car Park", "address": "Burley Road", "connectors": ["CHAdeMO · 50kW", "CCS (Type 2) · 50kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 53.879212262088885, "lng": -1.725541836907496, "title": "Aldi Menston", "address": "Bradford Rd ", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 53.794794149215704, "lng": -1.59231023468692, "title": "Armley Leisure Centre", "address": "Carr Crofts", "connectors": ["CHAdeMO · 50kW", "CCS (Type 2) · 50kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 53.8127821962463, "lng": -1.5108588, "title": "Morrisons Leeds Harehills", "address": "Harehills Lane", "connectors": ["CHAdeMO · 50kW", "CCS (Type 2) · 50kW", "Type 2 (Tethered Connector)  · 43kW"]}, {"lat": 53.77473966572097, "lng": -1.5133025021401636, "title": "BP Service Station", "address": "53 Pontefract Road", "connectors": ["Type 2 (Socket Only) · 7kW"]}, {"lat": 53.7744464707961, "lng": -1.51320042570228, "title": "Stourton BP Service Station", "address": "Pontefract Road", "connectors": ["CCS (Type 2) · 50kW", "CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 43kW"]}, {"lat": 53.784556, "lng": -1.532498, "title": "Leeds-Whitehouse Street Supercharger", "address": "7 Whitehouse Street", "connectors": ["CCS (Type 2) · 120kW"]}, {"lat": 53.83629245732743, "lng": -1.6442329629979895, "title": "Fink Hill Car Park", "address": "Fink Hill", "connectors": ["CCS (Type 2) · 50kW", "CHAdeMO · 50kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 53.825952, "lng": -1.546119, "title": "Scott Hall Leisure Centre", "address": "Scott Hall Sports Centre", "connectors": ["Type 2 (Socket Only) · 22kW", "CHAdeMO · 50kW", "CCS (Type 2) · 50kW"]}, {"lat": 53.819513078358796, "lng": -1.5748266012790282, "title": "First On Scene Training", "address": "82 Headingley Lane", "connectors": ["Type 2 (Socket Only) · 7kW"]}, {"lat": 53.80925, "lng": -1.554083, "title": "University of Leeds", "address": "Woodhouse Lane", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 53.80838, "lng": -1.55883, "title": "University of Leeds", "address": "Devonshire Hall", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 53.806168, "lng": -1.55295, "title": "University of Leeds", "address": "Cavendish Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 53.80365, "lng": -1.5529, "title": "University of Leeds", "address": "The Edge", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 53.788719, "lng": -1.549335, "title": "Ingram street car park", "address": "Ingram street car park", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 53.753345, "lng": -1.571942, "title": "White Rose Shopping Centre", "address": "Dewsbury Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 53.7458434307527, "lng": -1.45217171463366, "title": "Toby Carvery", "address": "2 Aberford Road", "connectors": ["CHAdeMO · 50kW", "CCS (Type 2) · 50kW", "Type 2 (Tethered Connector)  · 43kW"]}, {"lat": 53.836497, "lng": -1.64161, "title": "New Street Car Park", "address": "New Street", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 53.77436865059477, "lng": -1.4703148125219059, "title": "Ionity Leeds - Skelton Lakes Services", "address": "M1 Jct 45", "connectors": ["CCS (Type 2) · 350kW", "CCS (Type 2) · 350kW", "CCS (Type 2) · 350kW", "CCS (Type 2) · 350kW", "CCS (Type 2) · 350kW", "CCS (Type 2) · 350kW"]}, {"lat": 53.74767, "lng": -1.60268, "title": "Annie Street Car Park, Morley", "address": "Annie Street", "connectors": ["Type 2 (Socket Only) · 22kW", "CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 50kW"]}, {"lat": 53.747750145425925, "lng": -1.4784682716858697, "title": "Rothwell Marsh Street Car Park", "address": "Marsh Street", "connectors": ["CHAdeMO · 50kW", "CCS (Type 2) · 50kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 53.86594104579598, "lng": -1.6843845906768138, "title": "Yeadon One Stop Centre", "address": "High Street", "connectors": ["CHAdeMO · 50kW", "CCS (Type 2) · 50kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 53.90490989693566, "lng": -1.3461511408854676, "title": "High Street Car Park", "address": "5 Bridge Rd", "connectors": ["CHAdeMO · 50kW", "CCS (Type 2) · 50kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 53.92789865953495, "lng": -1.3834341588525376, "title": "The Cluster of Nuts Car Park", "address": "42 Hall field Lane", "connectors": ["CHAdeMO · 50kW", "CCS (Type 2) · 50kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 53.7868948730778, "lng": -1.40438605225222, "title": "Miller & Carter Garforth", "address": "Selby Road", "connectors": ["CHAdeMO · 50kW", "CCS (Type 2) · 50kW", "Type 2 (Tethered Connector)  · 43kW"]}, {"lat": 53.864878, "lng": -1.518688, "title": "The Grammar School at Leeds", "address": "Harrogate Road", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 53.843413, "lng": -1.579911, "title": "New Rover Cricket Club", "address": "Smithy Mills Ln", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 53.793531, "lng": -1.556904, "title": "Whitehall Road Car Park", "address": "Wellington Place", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}];
 
   chargerData.forEach(function (c) {
+    var connHtml = c.connectors.length
+      ? '<div style="margin-top:6px;font-size:12px;color:#475569">' + c.connectors.join(' &middot; ') + '</div>'
+      : '';
     var marker = L.marker([c.lat, c.lng]);
     marker.bindPopup(
-      '<b>' + c.title + '</b><br>' + c.address + '<br><br>' +
+      '<b>' + c.title + '</b>' +
+      '<div style="color:#64748b;font-size:13px">' + c.address + '</div>' +
+      connHtml +
       '<a href="https://www.google.com/maps/dir/?api=1&destination=' + c.lat + ',' + c.lng +
-      '" target="_blank" rel="noopener">Get directions</a>'
+      '" target="_blank" rel="noopener" style="display:inline-block;margin-top:8px;padding:4px 10px;background:#2563eb;color:white;border-radius:4px;text-decoration:none;font-size:12px">Get directions</a>'
     );
     markers.addLayer(marker);
   });
-
   map.addLayer(markers);
+
+  // --- Connector filter ---
+  var filterBtns = document.querySelectorAll('.filter-btn');
+  var chargerItems = document.querySelectorAll('.charger-item');
+
+  filterBtns.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      filterBtns.forEach(function (b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      var f = btn.dataset.filter;
+      chargerItems.forEach(function (item) {
+        var connList = item.dataset.connectors ? item.dataset.connectors.split(',') : [];
+        item.style.display = (f === 'all' || connList.indexOf(f) !== -1) ? '' : 'none';
+      });
+    });
+  });
+
+  // --- Copy postcode ---
+  document.querySelectorAll('.copy-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var original = btn.textContent;
+      navigator.clipboard.writeText(btn.dataset.copy).then(function () {
+        btn.textContent = 'Copied!';
+        btn.classList.add('copy-btn--success');
+        setTimeout(function () {
+          btn.textContent = original;
+          btn.classList.remove('copy-btn--success');
+        }, 1500);
+      });
+    });
+  });
 }());
 </script>
 

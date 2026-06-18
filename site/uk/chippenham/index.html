@@ -17,7 +17,10 @@
 
 <header>
 <div class="container">
-<a href="/" class="logo">PlugMap <span class="tagline">UK EV Charger Locator</span></a>
+<a href="/" class="logo">
+  <svg class="logo-bolt" viewBox="0 0 24 24" fill="currentColor" width="22" height="22" aria-hidden="true"><path d="M13 2L4.5 13.5H11L10 22L19.5 10.5H13Z"/></svg>
+  PlugMap <span class="tagline">UK EV Charger Locator</span>
+</a>
 </div>
 </header>
 
@@ -28,16 +31,43 @@
 </nav>
 
 <h1>EV Chargers in Chippenham</h1>
-<p class="page-intro">9 public charging stations found in Chippenham.</p>
+
+<div class="stats-bar">
+  <span class="stat-pill stat-total">9 stations</span>
+  <span class="stat-pill stat-rapid">4 rapid (50kW+)</span>
+  <span class="stat-pill stat-fast">5 fast (7–50kW)</span>
+  
+</div>
 
 <div id="map"></div>
 
-<ul class="charger-list">
+
+<div class="connector-filter">
+  <span class="filter-label">Filter:</span>
+  <button class="filter-btn active" data-filter="all">All</button>
+  
+  <button class="filter-btn" data-filter="Blue Commando (2P+E)">Blue Commando (2P+E)</button>
+  
+  <button class="filter-btn" data-filter="CCS (Type 2)">CCS (Type 2)</button>
+  
+  <button class="filter-btn" data-filter="CHAdeMO">CHAdeMO</button>
+  
+  <button class="filter-btn" data-filter="Type 2 (Socket Only)">Type 2 (Socket Only)</button>
+  
+  <button class="filter-btn" data-filter="Type 2 (Tethered Connector) ">Type 2 (Tethered Connector) </button>
+  
+</div>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">GS10075B</h2>
-  <p class="charger-address">M4 Motorway Westbound, Jct 17/18 SN14 6LB
+<ul class="charger-list" id="charger-list">
+
+
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">GS10075B</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">M4 Motorway Westbound, Jct 17/18 <button class="copy-btn" data-copy="SN14 6LB">SN14 6LB</button>
   </p>
   
   <div class="charger-connections">
@@ -56,9 +86,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Moto Leigh Delamere Westbound</h2>
-  <p class="charger-address">M4 Westbound Between Junction 17 and 18 SN14 6LB
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2),CHAdeMO,Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Moto Leigh Delamere Westbound</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">M4 Westbound Between Junction 17 and 18 <button class="copy-btn" data-copy="SN14 6LB">SN14 6LB</button>
   </p>
   
   <div class="charger-connections">
@@ -122,9 +156,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Monkton Park Car Park</h2>
-  <p class="charger-address">Sadlers Road SN15 1ER
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Monkton Park Car Park</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Sadlers Road <button class="copy-btn" data-copy="SN15 1ER">SN15 1ER</button>
   </p>
   
   <div class="charger-connections">
@@ -146,9 +183,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">HPH Limited, Bewley House Car Park</h2>
-  <p class="charger-address">Dallas Road SN15 1JW
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">HPH Limited, Bewley House Car Park</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Dallas Road <button class="copy-btn" data-copy="SN15 1JW">SN15 1JW</button>
   </p>
   
   <div class="charger-connections">
@@ -167,9 +207,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Morrisons Chippenham</h2>
-  <p class="charger-address">Stainers Way SN14 6UZ
+<li class="charger-item charger-item--rapid" data-connectors="Type 2 (Socket Only),CHAdeMO,Type 2 (Tethered Connector) ">
+  <div class="charger-header">
+    <h2 class="charger-name">Morrisons Chippenham</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Stainers Way <button class="copy-btn" data-copy="SN14 6UZ">SN14 6UZ</button>
   </p>
   
   <div class="charger-connections">
@@ -194,9 +238,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">McDonald&#39;s Chippenham</h2>
-  <p class="charger-address">Bath Road SN14 0AF
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2),CHAdeMO">
+  <div class="charger-header">
+    <h2 class="charger-name">McDonald&#39;s Chippenham</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Bath Road <button class="copy-btn" data-copy="SN14 0AF">SN14 0AF</button>
   </p>
   
   <div class="charger-connections">
@@ -218,9 +266,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">MFG Stanton St Quintin Service Station</h2>
-  <p class="charger-address">A429 SN14 6BN
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2),CHAdeMO">
+  <div class="charger-header">
+    <h2 class="charger-name">MFG Stanton St Quintin Service Station</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">A429 <button class="copy-btn" data-copy="SN14 6BN">SN14 6BN</button>
   </p>
   
   <div class="charger-connections">
@@ -242,9 +294,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Newleaze Cottages</h2>
-  <p class="charger-address">3 Newleaze Cottages SN15 5DF
+<li class="charger-item charger-item--fast" data-connectors="Blue Commando (2P+E)">
+  <div class="charger-header">
+    <h2 class="charger-name">Newleaze Cottages</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">3 Newleaze Cottages <button class="copy-btn" data-copy="SN15 5DF">SN15 5DF</button>
   </p>
   
   <div class="charger-connections">
@@ -263,9 +318,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Pewsham Garages</h2>
-  <p class="charger-address">London Road SN15 3RR
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Pewsham Garages</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">London Road <button class="copy-btn" data-copy="SN15 3RR">SN15 3RR</button>
   </p>
   
   <div class="charger-connections">
@@ -290,6 +348,23 @@
 
 <p><a href="/" class="back-link">← All UK towns</a></p>
 
+
+<div class="nearby-towns">
+  <h2 class="nearby-heading">Nearby towns</h2>
+  <ul class="nearby-list">
+  
+    <li><a href="/uk/calne/">Calne</a></li>
+  
+    <li><a href="/uk/melksham/">Melksham</a></li>
+  
+    <li><a href="/uk/cirencester/">Cirencester</a></li>
+  
+    <li><a href="/uk/stroud/">Stroud</a></li>
+  
+  </ul>
+</div>
+
+
 </div>
 
 <footer>
@@ -302,26 +377,61 @@
 <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 <script>
 (function () {
+  // --- Map ---
   var map = L.map('map').setView([51.489225818740294, -2.1123012244045416], 12);
-
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
   }).addTo(map);
 
   var markers = L.markerClusterGroup();
-  var chargerData = [{"lat": 51.5100942737801, "lng": -2.15815354224788, "title": "GS10075B", "address": "M4 Motorway Westbound, Jct 17/18"}, {"lat": 51.509924, "lng": -2.158175, "title": "Moto Leigh Delamere Westbound", "address": "M4 Westbound Between Junction 17 and 18"}, {"lat": 51.461548, "lng": -2.112661, "title": "Monkton Park Car Park", "address": "Sadlers Road"}, {"lat": 51.46157997139275, "lng": -2.1203753839638466, "title": "HPH Limited, Bewley House Car Park", "address": "Dallas Road"}, {"lat": 51.47692096755807, "lng": -2.131558213502217, "title": "Morrisons Chippenham", "address": "Stainers Way"}, {"lat": 51.45481448964097, "lng": -2.1322517850213103, "title": "McDonald's Chippenham", "address": "Bath Road"}, {"lat": 51.5243082355591, "lng": -2.12287385074634, "title": "MFG Stanton St Quintin Service Station", "address": "A429"}, {"lat": 51.563463430731645, "lng": -1.9990662441592804, "title": "Newleaze Cottages", "address": "3 Newleaze Cottages"}, {"lat": 51.440379, "lng": -2.075596, "title": "Pewsham Garages", "address": "London Road"}];
+  var chargerData = [{"lat": 51.5100942737801, "lng": -2.15815354224788, "title": "GS10075B", "address": "M4 Motorway Westbound, Jct 17/18", "connectors": ["Type 2 (Socket Only) · 22kW"]}, {"lat": 51.509924, "lng": -2.158175, "title": "Moto Leigh Delamere Westbound", "address": "M4 Westbound Between Junction 17 and 18", "connectors": ["CCS (Type 2) · 40kW", "CHAdeMO · 40kW", "CCS (Type 2) · 350kW", "CCS (Type 2) · 350kW", "CCS (Type 2) · 350kW", "Type 2 (Socket Only) · 11kW", "Type 2 (Socket Only) · 11kW", "CCS (Type 2) · 350kW", "CCS (Type 2) · 350kW", "CCS (Type 2) · 350kW", "CCS (Type 2) · 350kW", "CCS (Type 2) · 350kW", "CCS (Type 2) · 350kW", "CHAdeMO · 100kW", "CHAdeMO · 100kW", "CHAdeMO · 100kW"]}, {"lat": 51.461548, "lng": -2.112661, "title": "Monkton Park Car Park", "address": "Sadlers Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 51.46157997139275, "lng": -2.1203753839638466, "title": "HPH Limited, Bewley House Car Park", "address": "Dallas Road", "connectors": ["Type 2 (Socket Only) · 13kW"]}, {"lat": 51.47692096755807, "lng": -2.131558213502217, "title": "Morrisons Chippenham", "address": "Stainers Way", "connectors": ["Type 2 (Socket Only) · 22kW", "CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 50kW"]}, {"lat": 51.45481448964097, "lng": -2.1322517850213103, "title": "McDonald's Chippenham", "address": "Bath Road", "connectors": ["CCS (Type 2) · 120kW", "CHAdeMO · 75kW"]}, {"lat": 51.5243082355591, "lng": -2.12287385074634, "title": "MFG Stanton St Quintin Service Station", "address": "A429", "connectors": ["CCS (Type 2) · 150kW", "CHAdeMO · 50kW"]}, {"lat": 51.563463430731645, "lng": -1.9990662441592804, "title": "Newleaze Cottages", "address": "3 Newleaze Cottages", "connectors": ["Blue Commando (2P+E) · 7kW"]}, {"lat": 51.440379, "lng": -2.075596, "title": "Pewsham Garages", "address": "London Road", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}];
 
   chargerData.forEach(function (c) {
+    var connHtml = c.connectors.length
+      ? '<div style="margin-top:6px;font-size:12px;color:#475569">' + c.connectors.join(' &middot; ') + '</div>'
+      : '';
     var marker = L.marker([c.lat, c.lng]);
     marker.bindPopup(
-      '<b>' + c.title + '</b><br>' + c.address + '<br><br>' +
+      '<b>' + c.title + '</b>' +
+      '<div style="color:#64748b;font-size:13px">' + c.address + '</div>' +
+      connHtml +
       '<a href="https://www.google.com/maps/dir/?api=1&destination=' + c.lat + ',' + c.lng +
-      '" target="_blank" rel="noopener">Get directions</a>'
+      '" target="_blank" rel="noopener" style="display:inline-block;margin-top:8px;padding:4px 10px;background:#2563eb;color:white;border-radius:4px;text-decoration:none;font-size:12px">Get directions</a>'
     );
     markers.addLayer(marker);
   });
-
   map.addLayer(markers);
+
+  // --- Connector filter ---
+  var filterBtns = document.querySelectorAll('.filter-btn');
+  var chargerItems = document.querySelectorAll('.charger-item');
+
+  filterBtns.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      filterBtns.forEach(function (b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      var f = btn.dataset.filter;
+      chargerItems.forEach(function (item) {
+        var connList = item.dataset.connectors ? item.dataset.connectors.split(',') : [];
+        item.style.display = (f === 'all' || connList.indexOf(f) !== -1) ? '' : 'none';
+      });
+    });
+  });
+
+  // --- Copy postcode ---
+  document.querySelectorAll('.copy-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var original = btn.textContent;
+      navigator.clipboard.writeText(btn.dataset.copy).then(function () {
+        btn.textContent = 'Copied!';
+        btn.classList.add('copy-btn--success');
+        setTimeout(function () {
+          btn.textContent = original;
+          btn.classList.remove('copy-btn--success');
+        }, 1500);
+      });
+    });
+  });
 }());
 </script>
 

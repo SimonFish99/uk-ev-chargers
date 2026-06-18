@@ -17,7 +17,10 @@
 
 <header>
 <div class="container">
-<a href="/" class="logo">PlugMap <span class="tagline">UK EV Charger Locator</span></a>
+<a href="/" class="logo">
+  <svg class="logo-bolt" viewBox="0 0 24 24" fill="currentColor" width="22" height="22" aria-hidden="true"><path d="M13 2L4.5 13.5H11L10 22L19.5 10.5H13Z"/></svg>
+  PlugMap <span class="tagline">UK EV Charger Locator</span>
+</a>
 </div>
 </header>
 
@@ -28,16 +31,44 @@
 </nav>
 
 <h1>EV Chargers in Stockport</h1>
-<p class="page-intro">11 public charging stations found in Stockport.</p>
+
+<div class="stats-bar">
+  <span class="stat-pill stat-total">11 stations</span>
+  <span class="stat-pill stat-rapid">3 rapid (50kW+)</span>
+  <span class="stat-pill stat-fast">6 fast (7–50kW)</span>
+  <span class="stat-pill stat-slow">2 slow</span>
+</div>
 
 <div id="map"></div>
 
-<ul class="charger-list">
+
+<div class="connector-filter">
+  <span class="filter-label">Filter:</span>
+  <button class="filter-btn active" data-filter="all">All</button>
+  
+  <button class="filter-btn" data-filter="BS1363 3 Pin 13 Amp">BS1363 3 Pin 13 Amp</button>
+  
+  <button class="filter-btn" data-filter="CCS (Type 2)">CCS (Type 2)</button>
+  
+  <button class="filter-btn" data-filter="CHAdeMO">CHAdeMO</button>
+  
+  <button class="filter-btn" data-filter="Type 2 (Socket Only)">Type 2 (Socket Only)</button>
+  
+  <button class="filter-btn" data-filter="Type 2 (Tethered Connector) ">Type 2 (Tethered Connector) </button>
+  
+</div>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Manchester Road Retail Park</h2>
-  <p class="charger-address">Unnamed Road SK4 1TN
+<ul class="charger-list" id="charger-list">
+
+
+<li class="charger-item charger-item--rapid" data-connectors="CHAdeMO,CCS (Type 2),Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Manchester Road Retail Park</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Unnamed Road <button class="copy-btn" data-copy="SK4 1TN">SK4 1TN</button>
   </p>
   
   <div class="charger-connections">
@@ -119,9 +150,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Tesco Extra - Stockport</h2>
-  <p class="charger-address">Tiviot Way SK1 2BT
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Tesco Extra - Stockport</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Tiviot Way <button class="copy-btn" data-copy="SK1 2BT">SK1 2BT</button>
   </p>
   
   <div class="charger-connections">
@@ -143,9 +177,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Heaton Lane Multi Storey</h2>
-  <p class="charger-address">Heaton Lane SK4 1AQ
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Heaton Lane Multi Storey</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Heaton Lane <button class="copy-btn" data-copy="SK4 1AQ">SK4 1AQ</button>
   </p>
   
   <div class="charger-connections">
@@ -164,9 +201,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">West Way Stockport</h2>
-  <p class="charger-address">29 Buxton Street SK1 4AA
+<li class="charger-item charger-item--slow" data-connectors="BS1363 3 Pin 13 Amp">
+  <div class="charger-header">
+    <h2 class="charger-name">West Way Stockport</h2>
+    
+  </div>
+  <p class="charger-address">29 Buxton Street <button class="copy-btn" data-copy="SK1 4AA">SK1 4AA</button>
   </p>
   
   <div class="charger-connections">
@@ -188,9 +228,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Lex Autolease</h2>
-  <p class="charger-address">Cheadle, Stockport SK3 0RB
+<li class="charger-item charger-item--slow" data-connectors="BS1363 3 Pin 13 Amp">
+  <div class="charger-header">
+    <h2 class="charger-name">Lex Autolease</h2>
+    
+  </div>
+  <p class="charger-address">Cheadle, Stockport <button class="copy-btn" data-copy="SK3 0RB">SK3 0RB</button>
   </p>
   
   <div class="charger-connections">
@@ -212,9 +255,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Morrisons Stockport Reddish</h2>
-  <p class="charger-address">Wm Morrison Supermarkets PLC SK5 7AA
+<li class="charger-item charger-item--rapid" data-connectors="CHAdeMO,Type 2 (Socket Only),Type 2 (Tethered Connector) ">
+  <div class="charger-header">
+    <h2 class="charger-name">Morrisons Stockport Reddish</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Wm Morrison Supermarkets PLC <button class="copy-btn" data-copy="SK5 7AA">SK5 7AA</button>
   </p>
   
   <div class="charger-connections">
@@ -239,9 +286,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Edward Street</h2>
-  <p class="charger-address">Edward Street SK1 3NJ
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Edward Street</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Edward Street <button class="copy-btn" data-copy="SK1 3NJ">SK1 3NJ</button>
   </p>
   
   <div class="charger-connections">
@@ -260,9 +310,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Disley Community Centre Car Park</h2>
-  <p class="charger-address">Buxton Old Road SK12 2BB
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Disley Community Centre Car Park</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Buxton Old Road <button class="copy-btn" data-copy="SK12 2BB">SK12 2BB</button>
   </p>
   
   <div class="charger-connections">
@@ -284,9 +337,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Chadkirk Business Park</h2>
-  <p class="charger-address">Vale Road SK6 3NE
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Tethered Connector) ">
+  <div class="charger-header">
+    <h2 class="charger-name">Chadkirk Business Park</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Vale Road <button class="copy-btn" data-copy="SK6 3NE">SK6 3NE</button>
   </p>
   
   <div class="charger-connections">
@@ -305,9 +361,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Tesco Extra Stockport</h2>
-  <p class="charger-address">Tiviot Way SK1 2BT
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2),CHAdeMO,Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Tesco Extra Stockport</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Tiviot Way <button class="copy-btn" data-copy="SK1 2BT">SK1 2BT</button>
   </p>
   
   <div class="charger-connections">
@@ -335,9 +395,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">St Petersgate</h2>
-  <p class="charger-address">St Petersgate SK1 1HL
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">St Petersgate</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">St Petersgate <button class="copy-btn" data-copy="SK1 1HL">SK1 1HL</button>
   </p>
   
   <div class="charger-connections">
@@ -362,6 +425,23 @@
 
 <p><a href="/" class="back-link">← All UK towns</a></p>
 
+
+<div class="nearby-towns">
+  <h2 class="nearby-heading">Nearby towns</h2>
+  <ul class="nearby-list">
+  
+    <li><a href="/uk/manchester/">Manchester</a></li>
+  
+    <li><a href="/uk/macclesfield/">Macclesfield</a></li>
+  
+    <li><a href="/uk/oldham/">Oldham</a></li>
+  
+    <li><a href="/uk/salford/">Salford</a></li>
+  
+  </ul>
+</div>
+
+
 </div>
 
 <footer>
@@ -374,26 +454,61 @@
 <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 <script>
 (function () {
+  // --- Map ---
   var map = L.map('map').setView([53.40761165181937, -2.1451272535069568], 12);
-
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
   }).addTo(map);
 
   var markers = L.markerClusterGroup();
-  var chargerData = [{"lat": 53.420032, "lng": -2.162461, "title": "Manchester Road Retail Park", "address": "Unnamed Road"}, {"lat": 53.416273, "lng": -2.152592, "title": "Tesco Extra - Stockport", "address": "Tiviot Way"}, {"lat": 53.409611, "lng": -2.16538, "title": "Heaton Lane Multi Storey", "address": "Heaton Lane"}, {"lat": 53.406871, "lng": -2.155209, "title": "West Way Stockport", "address": "29 Buxton Street"}, {"lat": 53.399017, "lng": -2.200828, "title": "Lex Autolease", "address": "Cheadle, Stockport"}, {"lat": 53.437721, "lng": -2.157338, "title": "Morrisons Stockport Reddish", "address": "Wm Morrison Supermarkets PLC"}, {"lat": 53.405998, "lng": -2.15705, "title": "Edward Street", "address": "Edward Street"}, {"lat": 53.358669557001235, "lng": -2.0391586204950727, "title": "Disley Community Centre Car Park", "address": "Buxton Old Road"}, {"lat": 53.40313363816341, "lng": -2.094424980949043, "title": "Chadkirk Business Park", "address": "Vale Road"}, {"lat": 53.4163840726682, "lng": -2.15359305034008, "title": "Tesco Extra Stockport", "address": "Tiviot Way"}, {"lat": 53.41001790218033, "lng": -2.1583651367923267, "title": "St Petersgate", "address": "St Petersgate"}];
+  var chargerData = [{"lat": 53.420032, "lng": -2.162461, "title": "Manchester Road Retail Park", "address": "Unnamed Road", "connectors": ["CHAdeMO · 50kW", "CCS (Type 2) · 50kW", "CHAdeMO · 50kW", "CCS (Type 2) · 50kW", "Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW", "CHAdeMO · 50kW", "CCS (Type 2) · 300kW", "CHAdeMO · 50kW", "CHAdeMO · 50kW", "CCS (Type 2) · 300kW", "CHAdeMO · 50kW", "CCS (Type 2) · 300kW", "CHAdeMO · 50kW", "CHAdeMO · 50kW", "CCS (Type 2) · 300kW", "CCS (Type 2) · 300kW", "CCS (Type 2) · 300kW", "CCS (Type 2) · 300kW", "CHAdeMO · 50kW", "CCS (Type 2) · 300kW", "CHAdeMO · 50kW"]}, {"lat": 53.416273, "lng": -2.152592, "title": "Tesco Extra - Stockport", "address": "Tiviot Way", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 53.409611, "lng": -2.16538, "title": "Heaton Lane Multi Storey", "address": "Heaton Lane", "connectors": ["Type 2 (Socket Only) · 7kW"]}, {"lat": 53.406871, "lng": -2.155209, "title": "West Way Stockport", "address": "29 Buxton Street", "connectors": ["BS1363 3 Pin 13 Amp · 3kW", "BS1363 3 Pin 13 Amp · 3kW"]}, {"lat": 53.399017, "lng": -2.200828, "title": "Lex Autolease", "address": "Cheadle, Stockport", "connectors": ["BS1363 3 Pin 13 Amp · 3kW", "BS1363 3 Pin 13 Amp · 3kW"]}, {"lat": 53.437721, "lng": -2.157338, "title": "Morrisons Stockport Reddish", "address": "Wm Morrison Supermarkets PLC", "connectors": ["CHAdeMO · 50kW", "Type 2 (Socket Only) · 22kW", "Type 2 (Tethered Connector)  · 50kW"]}, {"lat": 53.405998, "lng": -2.15705, "title": "Edward Street", "address": "Edward Street", "connectors": ["Type 2 (Socket Only) · 7kW"]}, {"lat": 53.358669557001235, "lng": -2.0391586204950727, "title": "Disley Community Centre Car Park", "address": "Buxton Old Road", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 53.40313363816341, "lng": -2.094424980949043, "title": "Chadkirk Business Park", "address": "Vale Road", "connectors": ["Type 2 (Tethered Connector)  · 22kW"]}, {"lat": 53.4163840726682, "lng": -2.15359305034008, "title": "Tesco Extra Stockport", "address": "Tiviot Way", "connectors": ["CCS (Type 2) · 50kW", "CHAdeMO · 50kW", "Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 53.41001790218033, "lng": -2.1583651367923267, "title": "St Petersgate", "address": "St Petersgate", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}];
 
   chargerData.forEach(function (c) {
+    var connHtml = c.connectors.length
+      ? '<div style="margin-top:6px;font-size:12px;color:#475569">' + c.connectors.join(' &middot; ') + '</div>'
+      : '';
     var marker = L.marker([c.lat, c.lng]);
     marker.bindPopup(
-      '<b>' + c.title + '</b><br>' + c.address + '<br><br>' +
+      '<b>' + c.title + '</b>' +
+      '<div style="color:#64748b;font-size:13px">' + c.address + '</div>' +
+      connHtml +
       '<a href="https://www.google.com/maps/dir/?api=1&destination=' + c.lat + ',' + c.lng +
-      '" target="_blank" rel="noopener">Get directions</a>'
+      '" target="_blank" rel="noopener" style="display:inline-block;margin-top:8px;padding:4px 10px;background:#2563eb;color:white;border-radius:4px;text-decoration:none;font-size:12px">Get directions</a>'
     );
     markers.addLayer(marker);
   });
-
   map.addLayer(markers);
+
+  // --- Connector filter ---
+  var filterBtns = document.querySelectorAll('.filter-btn');
+  var chargerItems = document.querySelectorAll('.charger-item');
+
+  filterBtns.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      filterBtns.forEach(function (b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      var f = btn.dataset.filter;
+      chargerItems.forEach(function (item) {
+        var connList = item.dataset.connectors ? item.dataset.connectors.split(',') : [];
+        item.style.display = (f === 'all' || connList.indexOf(f) !== -1) ? '' : 'none';
+      });
+    });
+  });
+
+  // --- Copy postcode ---
+  document.querySelectorAll('.copy-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var original = btn.textContent;
+      navigator.clipboard.writeText(btn.dataset.copy).then(function () {
+        btn.textContent = 'Copied!';
+        btn.classList.add('copy-btn--success');
+        setTimeout(function () {
+          btn.textContent = original;
+          btn.classList.remove('copy-btn--success');
+        }, 1500);
+      });
+    });
+  });
 }());
 </script>
 

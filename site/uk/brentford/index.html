@@ -17,7 +17,10 @@
 
 <header>
 <div class="container">
-<a href="/" class="logo">PlugMap <span class="tagline">UK EV Charger Locator</span></a>
+<a href="/" class="logo">
+  <svg class="logo-bolt" viewBox="0 0 24 24" fill="currentColor" width="22" height="22" aria-hidden="true"><path d="M13 2L4.5 13.5H11L10 22L19.5 10.5H13Z"/></svg>
+  PlugMap <span class="tagline">UK EV Charger Locator</span>
+</a>
 </div>
 </header>
 
@@ -28,16 +31,39 @@
 </nav>
 
 <h1>EV Chargers in Brentford</h1>
-<p class="page-intro">9 public charging stations found in Brentford.</p>
+
+<div class="stats-bar">
+  <span class="stat-pill stat-total">9 stations</span>
+  <span class="stat-pill stat-rapid">1 rapid (50kW+)</span>
+  
+  <span class="stat-pill stat-slow">8 slow</span>
+</div>
 
 <div id="map"></div>
 
-<ul class="charger-list">
+
+<div class="connector-filter">
+  <span class="filter-label">Filter:</span>
+  <button class="filter-btn active" data-filter="all">All</button>
+  
+  <button class="filter-btn" data-filter="CCS (Type 2)">CCS (Type 2)</button>
+  
+  <button class="filter-btn" data-filter="CHAdeMO">CHAdeMO</button>
+  
+  <button class="filter-btn" data-filter="Type 2 (Socket Only)">Type 2 (Socket Only)</button>
+  
+</div>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">York Road</h2>
-  <p class="charger-address">York Road TW8 0QP
+<ul class="charger-list" id="charger-list">
+
+
+<li class="charger-item charger-item--slow" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">York Road</h2>
+    
+  </div>
+  <p class="charger-address">York Road <button class="copy-btn" data-copy="TW8 0QP">TW8 0QP</button>
   </p>
   
   <div class="charger-connections">
@@ -56,9 +82,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">York Road</h2>
-  <p class="charger-address">York Road TW8 0QP
+<li class="charger-item charger-item--slow" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">York Road</h2>
+    
+  </div>
+  <p class="charger-address">York Road <button class="copy-btn" data-copy="TW8 0QP">TW8 0QP</button>
   </p>
   
   <div class="charger-connections">
@@ -77,9 +106,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Boston Park Road</h2>
-  <p class="charger-address">Boston Park Road TW8 9JG
+<li class="charger-item charger-item--slow" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Boston Park Road</h2>
+    
+  </div>
+  <p class="charger-address">Boston Park Road <button class="copy-btn" data-copy="TW8 9JG">TW8 9JG</button>
   </p>
   
   <div class="charger-connections">
@@ -98,9 +130,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Glenhurst Road</h2>
-  <p class="charger-address">Glenhurst Road TW8 0QT
+<li class="charger-item charger-item--slow" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Glenhurst Road</h2>
+    
+  </div>
+  <p class="charger-address">Glenhurst Road <button class="copy-btn" data-copy="TW8 0QT">TW8 0QT</button>
   </p>
   
   <div class="charger-connections">
@@ -119,9 +154,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Grosvenor Road</h2>
-  <p class="charger-address">Grosvenor Road TW8 0NW
+<li class="charger-item charger-item--slow" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Grosvenor Road</h2>
+    
+  </div>
+  <p class="charger-address">Grosvenor Road <button class="copy-btn" data-copy="TW8 0NW">TW8 0NW</button>
   </p>
   
   <div class="charger-connections">
@@ -140,9 +178,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">St James Group Limited</h2>
-  <p class="charger-address">Kew Bridge Road TW8 9HF
+<li class="charger-item charger-item--slow" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">St James Group Limited</h2>
+    
+  </div>
+  <p class="charger-address">Kew Bridge Road <button class="copy-btn" data-copy="TW8 9HF">TW8 9HF</button>
   </p>
   
   <div class="charger-connections">
@@ -164,9 +205,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">McDonald&#39;s Brentford</h2>
-  <p class="charger-address">322 High Street TW8 0JS
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2),CHAdeMO">
+  <div class="charger-header">
+    <h2 class="charger-name">McDonald&#39;s Brentford</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">322 High Street <button class="copy-btn" data-copy="TW8 0JS">TW8 0JS</button>
   </p>
   
   <div class="charger-connections">
@@ -188,9 +233,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Brook Rd S 82</h2>
-  <p class="charger-address">Brook Rd S 82 TW8 0PH
+<li class="charger-item charger-item--slow" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Brook Rd S 82</h2>
+    
+  </div>
+  <p class="charger-address">Brook Rd S 82 <button class="copy-btn" data-copy="TW8 0PH">TW8 0PH</button>
   </p>
   
   <div class="charger-connections">
@@ -209,9 +257,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Dual charging post</h2>
-  <p class="charger-address">Dual charging post TW8 8BJ
+<li class="charger-item charger-item--slow" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Dual charging post</h2>
+    
+  </div>
+  <p class="charger-address">Dual charging post <button class="copy-btn" data-copy="TW8 8BJ">TW8 8BJ</button>
   </p>
   
   <div class="charger-connections">
@@ -233,6 +284,23 @@
 
 <p><a href="/" class="back-link">← All UK towns</a></p>
 
+
+<div class="nearby-towns">
+  <h2 class="nearby-heading">Nearby towns</h2>
+  <ul class="nearby-list">
+  
+    <li><a href="/uk/hounslow/">Hounslow</a></li>
+  
+    <li><a href="/uk/chiswick-london/">Chiswick, London</a></li>
+  
+    <li><a href="/uk/ealing/">Ealing</a></li>
+  
+    <li><a href="/uk/isleworth/">Isleworth</a></li>
+  
+  </ul>
+</div>
+
+
 </div>
 
 <footer>
@@ -245,26 +313,61 @@
 <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 <script>
 (function () {
+  // --- Map ---
   var map = L.map('map').setView([51.48811188888889, -0.3043184888888889], 12);
-
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
   }).addTo(map);
 
   var markers = L.markerClusterGroup();
-  var chargerData = [{"lat": 51.49022, "lng": -0.30634, "title": "York Road", "address": "York Road"}, {"lat": 51.49003, "lng": -0.30682, "title": "York Road", "address": "York Road"}, {"lat": 51.48963, "lng": -0.31126, "title": "Boston Park Road", "address": "Boston Park Road"}, {"lat": 51.48953, "lng": -0.30882, "title": "Glenhurst Road", "address": "Glenhurst Road"}, {"lat": 51.48603, "lng": -0.30232, "title": "Grosvenor Road", "address": "Grosvenor Road"}, {"lat": 51.488766, "lng": -0.292573, "title": "St James Group Limited", "address": "Kew Bridge Road"}, {"lat": 51.486095, "lng": -0.2993664, "title": "McDonald's Brentford", "address": "322 High Street"}, {"lat": 51.487497, "lng": -0.303839, "title": "Brook Rd S 82", "address": "Brook Rd S 82"}, {"lat": 51.485209, "lng": -0.307528, "title": "Dual charging post", "address": "Dual charging post"}];
+  var chargerData = [{"lat": 51.49022, "lng": -0.30634, "title": "York Road", "address": "York Road", "connectors": ["Type 2 (Socket Only) · 4.8kW"]}, {"lat": 51.49003, "lng": -0.30682, "title": "York Road", "address": "York Road", "connectors": ["Type 2 (Socket Only) · 4.8kW"]}, {"lat": 51.48963, "lng": -0.31126, "title": "Boston Park Road", "address": "Boston Park Road", "connectors": ["Type 2 (Socket Only) · 4.8kW"]}, {"lat": 51.48953, "lng": -0.30882, "title": "Glenhurst Road", "address": "Glenhurst Road", "connectors": ["Type 2 (Socket Only) · 4.8kW"]}, {"lat": 51.48603, "lng": -0.30232, "title": "Grosvenor Road", "address": "Grosvenor Road", "connectors": ["Type 2 (Socket Only) · 4.8kW"]}, {"lat": 51.488766, "lng": -0.292573, "title": "St James Group Limited", "address": "Kew Bridge Road", "connectors": ["Type 2 (Socket Only) · 3.7kW", "Type 2 (Socket Only) · 3.7kW"]}, {"lat": 51.486095, "lng": -0.2993664, "title": "McDonald's Brentford", "address": "322 High Street", "connectors": ["CCS (Type 2) · 62.5kW", "CHAdeMO · 50kW"]}, {"lat": 51.487497, "lng": -0.303839, "title": "Brook Rd S 82", "address": "Brook Rd S 82", "connectors": ["Type 2 (Socket Only) · 3.7kW"]}, {"lat": 51.485209, "lng": -0.307528, "title": "Dual charging post", "address": "Dual charging post", "connectors": ["Type 2 (Socket Only) · 3.7kW"]}];
 
   chargerData.forEach(function (c) {
+    var connHtml = c.connectors.length
+      ? '<div style="margin-top:6px;font-size:12px;color:#475569">' + c.connectors.join(' &middot; ') + '</div>'
+      : '';
     var marker = L.marker([c.lat, c.lng]);
     marker.bindPopup(
-      '<b>' + c.title + '</b><br>' + c.address + '<br><br>' +
+      '<b>' + c.title + '</b>' +
+      '<div style="color:#64748b;font-size:13px">' + c.address + '</div>' +
+      connHtml +
       '<a href="https://www.google.com/maps/dir/?api=1&destination=' + c.lat + ',' + c.lng +
-      '" target="_blank" rel="noopener">Get directions</a>'
+      '" target="_blank" rel="noopener" style="display:inline-block;margin-top:8px;padding:4px 10px;background:#2563eb;color:white;border-radius:4px;text-decoration:none;font-size:12px">Get directions</a>'
     );
     markers.addLayer(marker);
   });
-
   map.addLayer(markers);
+
+  // --- Connector filter ---
+  var filterBtns = document.querySelectorAll('.filter-btn');
+  var chargerItems = document.querySelectorAll('.charger-item');
+
+  filterBtns.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      filterBtns.forEach(function (b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      var f = btn.dataset.filter;
+      chargerItems.forEach(function (item) {
+        var connList = item.dataset.connectors ? item.dataset.connectors.split(',') : [];
+        item.style.display = (f === 'all' || connList.indexOf(f) !== -1) ? '' : 'none';
+      });
+    });
+  });
+
+  // --- Copy postcode ---
+  document.querySelectorAll('.copy-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var original = btn.textContent;
+      navigator.clipboard.writeText(btn.dataset.copy).then(function () {
+        btn.textContent = 'Copied!';
+        btn.classList.add('copy-btn--success');
+        setTimeout(function () {
+          btn.textContent = original;
+          btn.classList.remove('copy-btn--success');
+        }, 1500);
+      });
+    });
+  });
 }());
 </script>
 

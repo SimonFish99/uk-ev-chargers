@@ -17,7 +17,10 @@
 
 <header>
 <div class="container">
-<a href="/" class="logo">PlugMap <span class="tagline">UK EV Charger Locator</span></a>
+<a href="/" class="logo">
+  <svg class="logo-bolt" viewBox="0 0 24 24" fill="currentColor" width="22" height="22" aria-hidden="true"><path d="M13 2L4.5 13.5H11L10 22L19.5 10.5H13Z"/></svg>
+  PlugMap <span class="tagline">UK EV Charger Locator</span>
+</a>
 </div>
 </header>
 
@@ -28,16 +31,42 @@
 </nav>
 
 <h1>EV Chargers in Feltham</h1>
-<p class="page-intro">9 public charging stations found in Feltham.</p>
+
+<div class="stats-bar">
+  <span class="stat-pill stat-total">9 stations</span>
+  <span class="stat-pill stat-rapid">5 rapid (50kW+)</span>
+  <span class="stat-pill stat-fast">3 fast (7–50kW)</span>
+  <span class="stat-pill stat-slow">1 slow</span>
+</div>
 
 <div id="map"></div>
 
-<ul class="charger-list">
+
+<div class="connector-filter">
+  <span class="filter-label">Filter:</span>
+  <button class="filter-btn active" data-filter="all">All</button>
+  
+  <button class="filter-btn" data-filter="CCS (Type 2)">CCS (Type 2)</button>
+  
+  <button class="filter-btn" data-filter="CHAdeMO">CHAdeMO</button>
+  
+  <button class="filter-btn" data-filter="Type 2 (Socket Only)">Type 2 (Socket Only)</button>
+  
+  <button class="filter-btn" data-filter="Type 2 (Tethered Connector) ">Type 2 (Tethered Connector) </button>
+  
+</div>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">McDonalds Feltham</h2>
-  <p class="charger-address">2 Bedfont Lane TW13 4AE
+<ul class="charger-list" id="charger-list">
+
+
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2),CHAdeMO">
+  <div class="charger-header">
+    <h2 class="charger-name">McDonalds Feltham</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">2 Bedfont Lane <button class="copy-btn" data-copy="TW13 4AE">TW13 4AE</button>
   </p>
   
   <div class="charger-connections">
@@ -59,9 +88,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Power League Sunbury-on-Thames</h2>
-  <p class="charger-address">Nallhead Road TW13 6SS
+<li class="charger-item charger-item--slow" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Power League Sunbury-on-Thames</h2>
+    
+  </div>
+  <p class="charger-address">Nallhead Road <button class="copy-btn" data-copy="TW13 6SS">TW13 6SS</button>
   </p>
   
   <div class="charger-connections">
@@ -83,9 +115,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">McDonald&#39;s Hanworth</h2>
-  <p class="charger-address">Twickenham Road TW13 6HB
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2),CHAdeMO">
+  <div class="charger-header">
+    <h2 class="charger-name">McDonald&#39;s Hanworth</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Twickenham Road <button class="copy-btn" data-copy="TW13 6HB">TW13 6HB</button>
   </p>
   
   <div class="charger-connections">
@@ -107,9 +143,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Tesco Superstore-Feltham</h2>
-  <p class="charger-address">98 High Street TW13 4EX
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Tesco Superstore-Feltham</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">98 High Street <button class="copy-btn" data-copy="TW13 4EX">TW13 4EX</button>
   </p>
   
   <div class="charger-connections">
@@ -131,9 +170,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Bethany Waye Car Park</h2>
-  <p class="charger-address">East Bedfont TW14 8BU
+<li class="charger-item charger-item--rapid" data-connectors="CHAdeMO,Type 2 (Tethered Connector) ">
+  <div class="charger-header">
+    <h2 class="charger-name">Bethany Waye Car Park</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">East Bedfont <button class="copy-btn" data-copy="TW14 8BU">TW14 8BU</button>
   </p>
   
   <div class="charger-connections">
@@ -158,9 +201,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Birdseye Ltd</h2>
-  <p class="charger-address">1 New Square TW14 8HA
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Birdseye Ltd</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">1 New Square <button class="copy-btn" data-copy="TW14 8HA">TW14 8HA</button>
   </p>
   
   <div class="charger-connections">
@@ -182,9 +228,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">JK Off Licence</h2>
-  <p class="charger-address">220 Uxbridge Road TW13 5DL
+<li class="charger-item charger-item--rapid" data-connectors="CHAdeMO,CCS (Type 2),Type 2 (Tethered Connector) ">
+  <div class="charger-header">
+    <h2 class="charger-name">JK Off Licence</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">220 Uxbridge Road <button class="copy-btn" data-copy="TW13 5DL">TW13 5DL</button>
   </p>
   
   <div class="charger-connections">
@@ -209,9 +259,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">7 Market Parade</h2>
-  <p class="charger-address">Hampton Road W TW13 6AW
+<li class="charger-item charger-item--rapid" data-connectors="CHAdeMO,CCS (Type 2),Type 2 (Tethered Connector) ">
+  <div class="charger-header">
+    <h2 class="charger-name">7 Market Parade</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Hampton Road W <button class="copy-btn" data-copy="TW13 6AW">TW13 6AW</button>
   </p>
   
   <div class="charger-connections">
@@ -236,9 +290,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Tesco Superstore-Feltham Dukes Green</h2>
-  <p class="charger-address">Dukes Green Avenue TW14 0LH
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Tesco Superstore-Feltham Dukes Green</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Dukes Green Avenue <button class="copy-btn" data-copy="TW14 0LH">TW14 0LH</button>
   </p>
   
   <div class="charger-connections">
@@ -263,6 +320,23 @@
 
 <p><a href="/" class="back-link">← All UK towns</a></p>
 
+
+<div class="nearby-towns">
+  <h2 class="nearby-heading">Nearby towns</h2>
+  <ul class="nearby-list">
+  
+    <li><a href="/uk/hayes/">Hayes</a></li>
+  
+    <li><a href="/uk/middlesex/">Middlesex</a></li>
+  
+    <li><a href="/uk/richmond-upon-thames/">Richmond Upon Thames</a></li>
+  
+    <li><a href="/uk/isleworth/">Isleworth</a></li>
+  
+  </ul>
+</div>
+
+
 </div>
 
 <footer>
@@ -275,26 +349,61 @@
 <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 <script>
 (function () {
+  // --- Map ---
   var map = L.map('map').setView([51.44494745555556, -0.4086351111111111], 12);
-
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
   }).addTo(map);
 
   var markers = L.markerClusterGroup();
-  var chargerData = [{"lat": 51.4474491, "lng": -0.4102182, "title": "McDonalds Feltham", "address": "2 Bedfont Lane"}, {"lat": 51.430852, "lng": -0.398863, "title": "Power League Sunbury-on-Thames", "address": "Nallhead Road"}, {"lat": 51.436752, "lng": -0.3777978, "title": "McDonald's Hanworth", "address": "Twickenham Road"}, {"lat": 51.443383, "lng": -0.413574, "title": "Tesco Superstore-Feltham", "address": "98 High Street"}, {"lat": 51.4538, "lng": -0.428724, "title": "Bethany Waye Car Park", "address": "East Bedfont"}, {"lat": 51.446255, "lng": -0.446335, "title": "Birdseye Ltd", "address": "1 New Square"}, {"lat": 51.445683, "lng": -0.399848, "title": "JK Off Licence", "address": "220 Uxbridge Road"}, {"lat": 51.440491, "lng": -0.387877, "title": "7 Market Parade", "address": "Hampton Road W"}, {"lat": 51.459862, "lng": -0.414479, "title": "Tesco Superstore-Feltham Dukes Green", "address": "Dukes Green Avenue"}];
+  var chargerData = [{"lat": 51.4474491, "lng": -0.4102182, "title": "McDonalds Feltham", "address": "2 Bedfont Lane", "connectors": ["CCS (Type 2) · 160kW", "CHAdeMO · 60kW"]}, {"lat": 51.430852, "lng": -0.398863, "title": "Power League Sunbury-on-Thames", "address": "Nallhead Road", "connectors": ["Type 2 (Socket Only) · 3.7kW", "Type 2 (Socket Only) · 3.7kW"]}, {"lat": 51.436752, "lng": -0.3777978, "title": "McDonald's Hanworth", "address": "Twickenham Road", "connectors": ["CCS (Type 2) · 62.5kW", "CHAdeMO · 50kW"]}, {"lat": 51.443383, "lng": -0.413574, "title": "Tesco Superstore-Feltham", "address": "98 High Street", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 51.4538, "lng": -0.428724, "title": "Bethany Waye Car Park", "address": "East Bedfont", "connectors": ["CHAdeMO · 50kW", "CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 43kW"]}, {"lat": 51.446255, "lng": -0.446335, "title": "Birdseye Ltd", "address": "1 New Square", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 51.445683, "lng": -0.399848, "title": "JK Off Licence", "address": "220 Uxbridge Road", "connectors": ["CHAdeMO · 50kW", "CCS (Type 2) · 50kW", "Type 2 (Tethered Connector)  · 43kW"]}, {"lat": 51.440491, "lng": -0.387877, "title": "7 Market Parade", "address": "Hampton Road W", "connectors": ["CHAdeMO · 50kW", "CCS (Type 2) · 50kW", "Type 2 (Tethered Connector)  · 43kW"]}, {"lat": 51.459862, "lng": -0.414479, "title": "Tesco Superstore-Feltham Dukes Green", "address": "Dukes Green Avenue", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}];
 
   chargerData.forEach(function (c) {
+    var connHtml = c.connectors.length
+      ? '<div style="margin-top:6px;font-size:12px;color:#475569">' + c.connectors.join(' &middot; ') + '</div>'
+      : '';
     var marker = L.marker([c.lat, c.lng]);
     marker.bindPopup(
-      '<b>' + c.title + '</b><br>' + c.address + '<br><br>' +
+      '<b>' + c.title + '</b>' +
+      '<div style="color:#64748b;font-size:13px">' + c.address + '</div>' +
+      connHtml +
       '<a href="https://www.google.com/maps/dir/?api=1&destination=' + c.lat + ',' + c.lng +
-      '" target="_blank" rel="noopener">Get directions</a>'
+      '" target="_blank" rel="noopener" style="display:inline-block;margin-top:8px;padding:4px 10px;background:#2563eb;color:white;border-radius:4px;text-decoration:none;font-size:12px">Get directions</a>'
     );
     markers.addLayer(marker);
   });
-
   map.addLayer(markers);
+
+  // --- Connector filter ---
+  var filterBtns = document.querySelectorAll('.filter-btn');
+  var chargerItems = document.querySelectorAll('.charger-item');
+
+  filterBtns.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      filterBtns.forEach(function (b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      var f = btn.dataset.filter;
+      chargerItems.forEach(function (item) {
+        var connList = item.dataset.connectors ? item.dataset.connectors.split(',') : [];
+        item.style.display = (f === 'all' || connList.indexOf(f) !== -1) ? '' : 'none';
+      });
+    });
+  });
+
+  // --- Copy postcode ---
+  document.querySelectorAll('.copy-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var original = btn.textContent;
+      navigator.clipboard.writeText(btn.dataset.copy).then(function () {
+        btn.textContent = 'Copied!';
+        btn.classList.add('copy-btn--success');
+        setTimeout(function () {
+          btn.textContent = original;
+          btn.classList.remove('copy-btn--success');
+        }, 1500);
+      });
+    });
+  });
 }());
 </script>
 

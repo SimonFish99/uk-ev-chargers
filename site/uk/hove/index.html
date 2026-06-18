@@ -17,7 +17,10 @@
 
 <header>
 <div class="container">
-<a href="/" class="logo">PlugMap <span class="tagline">UK EV Charger Locator</span></a>
+<a href="/" class="logo">
+  <svg class="logo-bolt" viewBox="0 0 24 24" fill="currentColor" width="22" height="22" aria-hidden="true"><path d="M13 2L4.5 13.5H11L10 22L19.5 10.5H13Z"/></svg>
+  PlugMap <span class="tagline">UK EV Charger Locator</span>
+</a>
 </div>
 </header>
 
@@ -28,16 +31,39 @@
 </nav>
 
 <h1>EV Chargers in Hove</h1>
-<p class="page-intro">8 public charging stations found in Hove.</p>
+
+<div class="stats-bar">
+  <span class="stat-pill stat-total">8 stations</span>
+  <span class="stat-pill stat-rapid">1 rapid (50kW+)</span>
+  <span class="stat-pill stat-fast">2 fast (7–50kW)</span>
+  <span class="stat-pill stat-slow">5 slow</span>
+</div>
 
 <div id="map"></div>
 
-<ul class="charger-list">
+
+<div class="connector-filter">
+  <span class="filter-label">Filter:</span>
+  <button class="filter-btn active" data-filter="all">All</button>
+  
+  <button class="filter-btn" data-filter="CHAdeMO">CHAdeMO</button>
+  
+  <button class="filter-btn" data-filter="Type 2 (Socket Only)">Type 2 (Socket Only)</button>
+  
+  <button class="filter-btn" data-filter="Type 2 (Tethered Connector) ">Type 2 (Tethered Connector) </button>
+  
+</div>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">05898 Holland Road</h2>
-  <p class="charger-address">Holland Road BN3 1JF
+<ul class="charger-list" id="charger-list">
+
+
+<li class="charger-item charger-item--slow" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">05898 Holland Road</h2>
+    
+  </div>
+  <p class="charger-address">Holland Road <button class="copy-btn" data-copy="BN3 1JF">BN3 1JF</button>
   </p>
   
   <div class="charger-connections">
@@ -56,9 +82,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">05799 Clarendon Road</h2>
-  <p class="charger-address">Clarendon Road BN3 3WQ
+<li class="charger-item charger-item--slow" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">05799 Clarendon Road</h2>
+    
+  </div>
+  <p class="charger-address">Clarendon Road <button class="copy-btn" data-copy="BN3 3WQ">BN3 3WQ</button>
   </p>
   
   <div class="charger-connections">
@@ -77,9 +106,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">05750 Portland Road</h2>
-  <p class="charger-address">Portland Road BN3 5DP
+<li class="charger-item charger-item--slow" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">05750 Portland Road</h2>
+    
+  </div>
+  <p class="charger-address">Portland Road <button class="copy-btn" data-copy="BN3 5DP">BN3 5DP</button>
   </p>
   
   <div class="charger-connections">
@@ -98,9 +130,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Princes Avenue</h2>
-  <p class="charger-address">7 Princes Avenue BN3 4GW
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Princes Avenue</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">7 Princes Avenue <button class="copy-btn" data-copy="BN3 4GW">BN3 4GW</button>
   </p>
   
   <div class="charger-connections">
@@ -122,9 +157,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Adelaide Crescent</h2>
-  <p class="charger-address">Adelaide Crescent BN3 2JF
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Adelaide Crescent</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Adelaide Crescent <button class="copy-btn" data-copy="BN3 2JF">BN3 2JF</button>
   </p>
   
   <div class="charger-connections">
@@ -146,9 +184,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">SHELL RECHARGE HOVE</h2>
-  <p class="charger-address">132-134 Old Shoreham Road BN3 7BD
+<li class="charger-item charger-item--rapid" data-connectors="Type 2 (Tethered Connector) ,CHAdeMO">
+  <div class="charger-header">
+    <h2 class="charger-name">SHELL RECHARGE HOVE</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">132-134 Old Shoreham Road <button class="copy-btn" data-copy="BN3 7BD">BN3 7BD</button>
   </p>
   
   <div class="charger-connections">
@@ -170,9 +212,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">05801 Harewood Court</h2>
-  <p class="charger-address">Harewood Court BN3 3GJ
+<li class="charger-item charger-item--slow" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">05801 Harewood Court</h2>
+    
+  </div>
+  <p class="charger-address">Harewood Court <button class="copy-btn" data-copy="BN3 3GJ">BN3 3GJ</button>
   </p>
   
   <div class="charger-connections">
@@ -191,9 +236,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">05765 Salisbury Road</h2>
-  <p class="charger-address">Salisbury Road BN3 3AB
+<li class="charger-item charger-item--slow" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">05765 Salisbury Road</h2>
+    
+  </div>
+  <p class="charger-address">Salisbury Road <button class="copy-btn" data-copy="BN3 3AB">BN3 3AB</button>
   </p>
   
   <div class="charger-connections">
@@ -215,6 +263,23 @@
 
 <p><a href="/" class="back-link">← All UK towns</a></p>
 
+
+<div class="nearby-towns">
+  <h2 class="nearby-heading">Nearby towns</h2>
+  <ul class="nearby-list">
+  
+    <li><a href="/uk/brighton/">Brighton</a></li>
+  
+    <li><a href="/uk/haywards-heath/">Haywards Heath</a></li>
+  
+    <li><a href="/uk/worthing/">Worthing</a></li>
+  
+    <li><a href="/uk/crawley/">Crawley</a></li>
+  
+  </ul>
+</div>
+
+
 </div>
 
 <footer>
@@ -227,26 +292,61 @@
 <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 <script>
 (function () {
+  // --- Map ---
   var map = L.map('map').setView([50.829627375, -0.171466], 12);
-
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
   }).addTo(map);
 
   var markers = L.markerClusterGroup();
-  var chargerData = [{"lat": 50.825, "lng": -0.162, "title": "05898 Holland Road", "address": "Holland Road"}, {"lat": 50.834, "lng": -0.174, "title": "05799 Clarendon Road", "address": "Clarendon Road"}, {"lat": 50.833, "lng": -0.183, "title": "05750 Portland Road", "address": "Portland Road"}, {"lat": 50.827452, "lng": -0.181584, "title": "Princes Avenue", "address": "7 Princes Avenue"}, {"lat": 50.823966, "lng": -0.164191, "title": "Adelaide Crescent", "address": "Adelaide Crescent"}, {"lat": 50.838601, "lng": -0.175953, "title": "SHELL RECHARGE HOVE", "address": "132-134 Old Shoreham Road"}, {"lat": 50.828, "lng": -0.167, "title": "05801 Harewood Court", "address": "Harewood Court"}, {"lat": 50.827, "lng": -0.164, "title": "05765 Salisbury Road", "address": "Salisbury Road"}];
+  var chargerData = [{"lat": 50.825, "lng": -0.162, "title": "05898 Holland Road", "address": "Holland Road", "connectors": ["Type 2 (Socket Only) · 3.7kW"]}, {"lat": 50.834, "lng": -0.174, "title": "05799 Clarendon Road", "address": "Clarendon Road", "connectors": ["Type 2 (Socket Only) · 3.7kW"]}, {"lat": 50.833, "lng": -0.183, "title": "05750 Portland Road", "address": "Portland Road", "connectors": ["Type 2 (Socket Only) · 3.7kW"]}, {"lat": 50.827452, "lng": -0.181584, "title": "Princes Avenue", "address": "7 Princes Avenue", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 50.823966, "lng": -0.164191, "title": "Adelaide Crescent", "address": "Adelaide Crescent", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 50.838601, "lng": -0.175953, "title": "SHELL RECHARGE HOVE", "address": "132-134 Old Shoreham Road", "connectors": ["Type 2 (Tethered Connector)  · 50kW", "CHAdeMO · 50kW"]}, {"lat": 50.828, "lng": -0.167, "title": "05801 Harewood Court", "address": "Harewood Court", "connectors": ["Type 2 (Socket Only) · 3.7kW"]}, {"lat": 50.827, "lng": -0.164, "title": "05765 Salisbury Road", "address": "Salisbury Road", "connectors": ["Type 2 (Socket Only) · 3.7kW"]}];
 
   chargerData.forEach(function (c) {
+    var connHtml = c.connectors.length
+      ? '<div style="margin-top:6px;font-size:12px;color:#475569">' + c.connectors.join(' &middot; ') + '</div>'
+      : '';
     var marker = L.marker([c.lat, c.lng]);
     marker.bindPopup(
-      '<b>' + c.title + '</b><br>' + c.address + '<br><br>' +
+      '<b>' + c.title + '</b>' +
+      '<div style="color:#64748b;font-size:13px">' + c.address + '</div>' +
+      connHtml +
       '<a href="https://www.google.com/maps/dir/?api=1&destination=' + c.lat + ',' + c.lng +
-      '" target="_blank" rel="noopener">Get directions</a>'
+      '" target="_blank" rel="noopener" style="display:inline-block;margin-top:8px;padding:4px 10px;background:#2563eb;color:white;border-radius:4px;text-decoration:none;font-size:12px">Get directions</a>'
     );
     markers.addLayer(marker);
   });
-
   map.addLayer(markers);
+
+  // --- Connector filter ---
+  var filterBtns = document.querySelectorAll('.filter-btn');
+  var chargerItems = document.querySelectorAll('.charger-item');
+
+  filterBtns.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      filterBtns.forEach(function (b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      var f = btn.dataset.filter;
+      chargerItems.forEach(function (item) {
+        var connList = item.dataset.connectors ? item.dataset.connectors.split(',') : [];
+        item.style.display = (f === 'all' || connList.indexOf(f) !== -1) ? '' : 'none';
+      });
+    });
+  });
+
+  // --- Copy postcode ---
+  document.querySelectorAll('.copy-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var original = btn.textContent;
+      navigator.clipboard.writeText(btn.dataset.copy).then(function () {
+        btn.textContent = 'Copied!';
+        btn.classList.add('copy-btn--success');
+        setTimeout(function () {
+          btn.textContent = original;
+          btn.classList.remove('copy-btn--success');
+        }, 1500);
+      });
+    });
+  });
 }());
 </script>
 

@@ -17,7 +17,10 @@
 
 <header>
 <div class="container">
-<a href="/" class="logo">PlugMap <span class="tagline">UK EV Charger Locator</span></a>
+<a href="/" class="logo">
+  <svg class="logo-bolt" viewBox="0 0 24 24" fill="currentColor" width="22" height="22" aria-hidden="true"><path d="M13 2L4.5 13.5H11L10 22L19.5 10.5H13Z"/></svg>
+  PlugMap <span class="tagline">UK EV Charger Locator</span>
+</a>
 </div>
 </header>
 
@@ -28,16 +31,42 @@
 </nav>
 
 <h1>EV Chargers in Gloucester</h1>
-<p class="page-intro">20 public charging stations found in Gloucester.</p>
+
+<div class="stats-bar">
+  <span class="stat-pill stat-total">20 stations</span>
+  <span class="stat-pill stat-rapid">6 rapid (50kW+)</span>
+  <span class="stat-pill stat-fast">14 fast (7–50kW)</span>
+  
+</div>
 
 <div id="map"></div>
 
-<ul class="charger-list">
+
+<div class="connector-filter">
+  <span class="filter-label">Filter:</span>
+  <button class="filter-btn active" data-filter="all">All</button>
+  
+  <button class="filter-btn" data-filter="CCS (Type 2)">CCS (Type 2)</button>
+  
+  <button class="filter-btn" data-filter="CHAdeMO">CHAdeMO</button>
+  
+  <button class="filter-btn" data-filter="Type 2 (Socket Only)">Type 2 (Socket Only)</button>
+  
+  <button class="filter-btn" data-filter="Type 2 (Tethered Connector) ">Type 2 (Tethered Connector) </button>
+  
+</div>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Westmorland Gloucester Services Southbound</h2>
-  <p class="charger-address">M5 Southbound GL4 0WW
+<ul class="charger-list" id="charger-list">
+
+
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2)">
+  <div class="charger-header">
+    <h2 class="charger-name">Westmorland Gloucester Services Southbound</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">M5 Southbound <button class="copy-btn" data-copy="GL4 0WW">GL4 0WW</button>
   </p>
   
   <div class="charger-connections">
@@ -56,9 +85,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Dobbies Gloucester</h2>
-  <p class="charger-address">Bath Road GL10 3DP
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2),CHAdeMO,Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Dobbies Gloucester</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Bath Road <button class="copy-btn" data-copy="GL10 3DP">GL10 3DP</button>
   </p>
   
   <div class="charger-connections">
@@ -98,9 +131,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Tesco Superstore - Churchdown</h2>
-  <p class="charger-address">Cheltenham Road East GL3 1JN
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Tesco Superstore - Churchdown</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Cheltenham Road East <button class="copy-btn" data-copy="GL3 1JN">GL3 1JN</button>
   </p>
   
   <div class="charger-connections">
@@ -122,9 +158,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Tesco Extra - Gloucester Brockworth</h2>
-  <p class="charger-address">Gloucester Business Park GL3 4AA
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Tesco Extra - Gloucester Brockworth</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Gloucester Business Park <button class="copy-btn" data-copy="GL3 4AA">GL3 4AA</button>
   </p>
   
   <div class="charger-connections">
@@ -146,9 +185,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Tesco Extra - Gloucester Quedgeley</h2>
-  <p class="charger-address">Bristol Road GL2 4PF
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Tesco Extra - Gloucester Quedgeley</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Bristol Road <button class="copy-btn" data-copy="GL2 4PF">GL2 4PF</button>
   </p>
   
   <div class="charger-connections">
@@ -170,9 +212,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">EVC Barnwood Point Business Park</h2>
-  <p class="charger-address">Corinium Ave GL4 3HX
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">EVC Barnwood Point Business Park</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Corinium Ave <button class="copy-btn" data-copy="GL4 3HX">GL4 3HX</button>
   </p>
   
   <div class="charger-connections">
@@ -191,9 +236,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Redrow Homes- Great Oldbury-the Alders</h2>
-  <p class="charger-address">De Lisle Bush Way GL10 3WW
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Redrow Homes- Great Oldbury-the Alders</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">De Lisle Bush Way <button class="copy-btn" data-copy="GL10 3WW">GL10 3WW</button>
   </p>
   
   <div class="charger-connections">
@@ -215,9 +263,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Custodian Capital Limited-Farmfoods</h2>
-  <p class="charger-address">108 Eastern Avenue GL4 4LP
+<li class="charger-item charger-item--rapid" data-connectors="CHAdeMO,CCS (Type 2)">
+  <div class="charger-header">
+    <h2 class="charger-name">Custodian Capital Limited-Farmfoods</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">108 Eastern Avenue <button class="copy-btn" data-copy="GL4 4LP">GL4 4LP</button>
   </p>
   
   <div class="charger-connections">
@@ -245,9 +297,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Premier inn Gloucester (Little Witcombe)</h2>
-  <p class="charger-address">Little Witcombe GL3 4SS
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2),CHAdeMO,Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Premier inn Gloucester (Little Witcombe)</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Little Witcombe <button class="copy-btn" data-copy="GL3 4SS">GL3 4SS</button>
   </p>
   
   <div class="charger-connections">
@@ -272,9 +328,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">The Lock Keepers</h2>
-  <p class="charger-address">The Lock Keepers GL2 8BZ
+<li class="charger-item charger-item--rapid" data-connectors="CHAdeMO,CCS (Type 2),Type 2 (Tethered Connector) ">
+  <div class="charger-header">
+    <h2 class="charger-name">The Lock Keepers</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">The Lock Keepers <button class="copy-btn" data-copy="GL2 8BZ">GL2 8BZ</button>
   </p>
   
   <div class="charger-connections">
@@ -299,9 +359,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Tesco Superstore - Gloucester</h2>
-  <p class="charger-address">St Oswalds Road GL1 2SG
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Tesco Superstore - Gloucester</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">St Oswalds Road <button class="copy-btn" data-copy="GL1 2SG">GL1 2SG</button>
   </p>
   
   <div class="charger-connections">
@@ -323,9 +386,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Asda</h2>
-  <p class="charger-address">Kingsway GL2 2SN
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Asda</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Kingsway <button class="copy-btn" data-copy="GL2 2SN">GL2 2SN</button>
   </p>
   
   <div class="charger-connections">
@@ -347,9 +413,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Gloucester Quays MSCP</h2>
-  <p class="charger-address">St Ann Way GL2 5SH
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Gloucester Quays MSCP</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">St Ann Way <button class="copy-btn" data-copy="GL2 5SH">GL2 5SH</button>
   </p>
   
   <div class="charger-connections">
@@ -401,9 +470,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Gloucester Quays MSCP - Staff parking</h2>
-  <p class="charger-address">Baker Street GL2 5RG
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Gloucester Quays MSCP - Staff parking</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Baker Street <button class="copy-btn" data-copy="GL2 5RG">GL2 5RG</button>
   </p>
   
   <div class="charger-connections">
@@ -431,9 +503,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">The Painswick Kemps Lane</h2>
-  <p class="charger-address">Painswick GL6 6YB
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">The Painswick Kemps Lane</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Painswick <button class="copy-btn" data-copy="GL6 6YB">GL6 6YB</button>
   </p>
   
   <div class="charger-connections">
@@ -455,9 +530,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">The Edward Hotel</h2>
-  <p class="charger-address">88-92 London Road GL1 3PG
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Tethered Connector) ">
+  <div class="charger-header">
+    <h2 class="charger-name">The Edward Hotel</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">88-92 London Road <button class="copy-btn" data-copy="GL1 3PG">GL1 3PG</button>
   </p>
   
   <div class="charger-connections">
@@ -476,9 +554,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Plot 4100 Hurricane Road</h2>
-  <p class="charger-address">Plot 4100 Hurricane Road GL3 4AQ
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Plot 4100 Hurricane Road</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Plot 4100 Hurricane Road <button class="copy-btn" data-copy="GL3 4AQ">GL3 4AQ</button>
   </p>
   
   <div class="charger-connections">
@@ -515,9 +596,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Instavolt [Southbrook Retail Park Gloucester]</h2>
-  <p class="charger-address">Eastern Avenue GL4 3BU
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2),CHAdeMO">
+  <div class="charger-header">
+    <h2 class="charger-name">Instavolt [Southbrook Retail Park Gloucester]</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Eastern Avenue <button class="copy-btn" data-copy="GL4 3BU">GL4 3BU</button>
   </p>
   
   <div class="charger-connections">
@@ -539,9 +624,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Safran Landing Systems</h2>
-  <p class="charger-address">Cheltenham Road E GL2 9QH
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Safran Landing Systems</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Cheltenham Road E <button class="copy-btn" data-copy="GL2 9QH">GL2 9QH</button>
   </p>
   
   <div class="charger-connections">
@@ -563,9 +651,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Phoenix House</h2>
-  <p class="charger-address">Edison Close GL2 2AB
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Phoenix House</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Edison Close <button class="copy-btn" data-copy="GL2 2AB">GL2 2AB</button>
   </p>
   
   <div class="charger-connections">
@@ -590,6 +681,23 @@
 
 <p><a href="/" class="back-link">← All UK towns</a></p>
 
+
+<div class="nearby-towns">
+  <h2 class="nearby-heading">Nearby towns</h2>
+  <ul class="nearby-list">
+  
+    <li><a href="/uk/stroud/">Stroud</a></li>
+  
+    <li><a href="/uk/cheltenham/">Cheltenham</a></li>
+  
+    <li><a href="/uk/whitchurch/">Whitchurch</a></li>
+  
+    <li><a href="/uk/cirencester/">Cirencester</a></li>
+  
+  </ul>
+</div>
+
+
 </div>
 
 <footer>
@@ -602,26 +710,61 @@
 <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 <script>
 (function () {
+  // --- Map ---
   var map = L.map('map').setView([51.84277625643121, -2.2291553047159374], 12);
-
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
   }).addTo(map);
 
   var markers = L.markerClusterGroup();
-  var chargerData = [{"lat": 51.81888984230943, "lng": -2.2243323892222406, "title": "Westmorland Gloucester Services Southbound", "address": "M5 Southbound"}, {"lat": 51.794371, "lng": -2.288868, "title": "Dobbies Gloucester", "address": "Bath Road"}, {"lat": 51.886573, "lng": -2.188334, "title": "Tesco Superstore - Churchdown", "address": "Cheltenham Road East"}, {"lat": 51.848407, "lng": -2.172519, "title": "Tesco Extra - Gloucester Brockworth", "address": "Gloucester Business Park"}, {"lat": 51.827333, "lng": -2.278748, "title": "Tesco Extra - Gloucester Quedgeley", "address": "Bristol Road"}, {"lat": 51.8668923, "lng": -2.206875946, "title": "EVC Barnwood Point Business Park", "address": "Corinium Ave"}, {"lat": 51.757094, "lng": -2.29463, "title": "Redrow Homes- Great Oldbury-the Alders", "address": "De Lisle Bush Way"}, {"lat": 51.85591167, "lng": -2.22201257, "title": "Custodian Capital Limited-Farmfoods", "address": "108 Eastern Avenue"}, {"lat": 51.83979, "lng": -2.139585, "title": "Premier inn Gloucester (Little Witcombe)", "address": "Little Witcombe"}, {"lat": 51.875801, "lng": -2.270267, "title": "The Lock Keepers", "address": "The Lock Keepers"}, {"lat": 51.871153, "lng": -2.248832, "title": "Tesco Superstore - Gloucester", "address": "St Oswalds Road"}, {"lat": 51.822121, "lng": -2.275357, "title": "Asda", "address": "Kingsway"}, {"lat": 51.859529564820036, "lng": -2.252497881911495, "title": "Gloucester Quays MSCP", "address": "St Ann Way"}, {"lat": 51.86001290207332, "lng": -2.252027104547551, "title": "Gloucester Quays MSCP - Staff parking", "address": "Baker Street"}, {"lat": 51.78443568, "lng": -2.19340595, "title": "The Painswick Kemps Lane", "address": "Painswick"}, {"lat": 51.86864692135953, "lng": -2.2332687801106204, "title": "The Edward Hotel", "address": "88-92 London Road"}, {"lat": 51.844482, "lng": -2.173463, "title": "Plot 4100 Hurricane Road", "address": "Plot 4100 Hurricane Road"}, {"lat": 51.8612592480618, "lng": -2.21645347252684, "title": "Instavolt [Southbrook Retail Park Gloucester]", "address": "Eastern Avenue"}, {"lat": 51.897385, "lng": -2.173807, "title": "Safran Landing Systems", "address": "Cheltenham Road E"}, {"lat": 51.815437, "lng": -2.277822, "title": "Phoenix House", "address": "Edison Close"}];
+  var chargerData = [{"lat": 51.81888984230943, "lng": -2.2243323892222406, "title": "Westmorland Gloucester Services Southbound", "address": "M5 Southbound", "connectors": ["CCS (Type 2) · 250kW"]}, {"lat": 51.794371, "lng": -2.288868, "title": "Dobbies Gloucester", "address": "Bath Road", "connectors": ["CCS (Type 2) · 180kW", "CHAdeMO · 80kW", "Type 2 (Socket Only) · 22kW", "CCS (Type 2) · 180kW", "CHAdeMO · 80kW", "Type 2 (Socket Only) · 22kW", "CCS (Type 2) · 350kW", "CCS (Type 2) · 350kW"]}, {"lat": 51.886573, "lng": -2.188334, "title": "Tesco Superstore - Churchdown", "address": "Cheltenham Road East", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 51.848407, "lng": -2.172519, "title": "Tesco Extra - Gloucester Brockworth", "address": "Gloucester Business Park", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 51.827333, "lng": -2.278748, "title": "Tesco Extra - Gloucester Quedgeley", "address": "Bristol Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 51.8668923, "lng": -2.206875946, "title": "EVC Barnwood Point Business Park", "address": "Corinium Ave", "connectors": ["Type 2 (Socket Only) · 22kW"]}, {"lat": 51.757094, "lng": -2.29463, "title": "Redrow Homes- Great Oldbury-the Alders", "address": "De Lisle Bush Way", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 51.85591167, "lng": -2.22201257, "title": "Custodian Capital Limited-Farmfoods", "address": "108 Eastern Avenue", "connectors": ["CHAdeMO · 75kW", "CCS (Type 2) · 75kW", "CHAdeMO · 75kW", "CCS (Type 2) · 75kW"]}, {"lat": 51.83979, "lng": -2.139585, "title": "Premier inn Gloucester (Little Witcombe)", "address": "Little Witcombe", "connectors": ["CCS (Type 2) · 60kW", "CHAdeMO · 60kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 51.875801, "lng": -2.270267, "title": "The Lock Keepers", "address": "The Lock Keepers", "connectors": ["CHAdeMO · 50kW", "CCS (Type 2) · 50kW", "Type 2 (Tethered Connector)  · 43kW"]}, {"lat": 51.871153, "lng": -2.248832, "title": "Tesco Superstore - Gloucester", "address": "St Oswalds Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 51.822121, "lng": -2.275357, "title": "Asda", "address": "Kingsway", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 51.859529564820036, "lng": -2.252497881911495, "title": "Gloucester Quays MSCP", "address": "St Ann Way", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 51.86001290207332, "lng": -2.252027104547551, "title": "Gloucester Quays MSCP - Staff parking", "address": "Baker Street", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 51.78443568, "lng": -2.19340595, "title": "The Painswick Kemps Lane", "address": "Painswick", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 51.86864692135953, "lng": -2.2332687801106204, "title": "The Edward Hotel", "address": "88-92 London Road", "connectors": ["Type 2 (Tethered Connector)  · 7kW"]}, {"lat": 51.844482, "lng": -2.173463, "title": "Plot 4100 Hurricane Road", "address": "Plot 4100 Hurricane Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 51.8612592480618, "lng": -2.21645347252684, "title": "Instavolt [Southbrook Retail Park Gloucester]", "address": "Eastern Avenue", "connectors": ["CCS (Type 2) · 120kW", "CHAdeMO · 100kW"]}, {"lat": 51.897385, "lng": -2.173807, "title": "Safran Landing Systems", "address": "Cheltenham Road E", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 51.815437, "lng": -2.277822, "title": "Phoenix House", "address": "Edison Close", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 22kW"]}];
 
   chargerData.forEach(function (c) {
+    var connHtml = c.connectors.length
+      ? '<div style="margin-top:6px;font-size:12px;color:#475569">' + c.connectors.join(' &middot; ') + '</div>'
+      : '';
     var marker = L.marker([c.lat, c.lng]);
     marker.bindPopup(
-      '<b>' + c.title + '</b><br>' + c.address + '<br><br>' +
+      '<b>' + c.title + '</b>' +
+      '<div style="color:#64748b;font-size:13px">' + c.address + '</div>' +
+      connHtml +
       '<a href="https://www.google.com/maps/dir/?api=1&destination=' + c.lat + ',' + c.lng +
-      '" target="_blank" rel="noopener">Get directions</a>'
+      '" target="_blank" rel="noopener" style="display:inline-block;margin-top:8px;padding:4px 10px;background:#2563eb;color:white;border-radius:4px;text-decoration:none;font-size:12px">Get directions</a>'
     );
     markers.addLayer(marker);
   });
-
   map.addLayer(markers);
+
+  // --- Connector filter ---
+  var filterBtns = document.querySelectorAll('.filter-btn');
+  var chargerItems = document.querySelectorAll('.charger-item');
+
+  filterBtns.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      filterBtns.forEach(function (b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      var f = btn.dataset.filter;
+      chargerItems.forEach(function (item) {
+        var connList = item.dataset.connectors ? item.dataset.connectors.split(',') : [];
+        item.style.display = (f === 'all' || connList.indexOf(f) !== -1) ? '' : 'none';
+      });
+    });
+  });
+
+  // --- Copy postcode ---
+  document.querySelectorAll('.copy-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var original = btn.textContent;
+      navigator.clipboard.writeText(btn.dataset.copy).then(function () {
+        btn.textContent = 'Copied!';
+        btn.classList.add('copy-btn--success');
+        setTimeout(function () {
+          btn.textContent = original;
+          btn.classList.remove('copy-btn--success');
+        }, 1500);
+      });
+    });
+  });
 }());
 </script>
 

@@ -17,7 +17,10 @@
 
 <header>
 <div class="container">
-<a href="/" class="logo">PlugMap <span class="tagline">UK EV Charger Locator</span></a>
+<a href="/" class="logo">
+  <svg class="logo-bolt" viewBox="0 0 24 24" fill="currentColor" width="22" height="22" aria-hidden="true"><path d="M13 2L4.5 13.5H11L10 22L19.5 10.5H13Z"/></svg>
+  PlugMap <span class="tagline">UK EV Charger Locator</span>
+</a>
 </div>
 </header>
 
@@ -28,16 +31,27 @@
 </nav>
 
 <h1>EV Chargers in Newton Aycliffe</h1>
-<p class="page-intro">5 public charging stations found in Newton Aycliffe.</p>
+
+<div class="stats-bar">
+  <span class="stat-pill stat-total">5 stations</span>
+  
+  <span class="stat-pill stat-fast">5 fast (7–50kW)</span>
+  
+</div>
 
 <div id="map"></div>
 
-<ul class="charger-list">
 
 
-<li class="charger-item">
-  <h2 class="charger-name">DCC Pioneering Care Partnership</h2>
-  <p class="charger-address">Carer&#39;s Way DL5 4SF
+<ul class="charger-list" id="charger-list">
+
+
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">DCC Pioneering Care Partnership</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Carer&#39;s Way <button class="copy-btn" data-copy="DL5 4SF">DL5 4SF</button>
   </p>
   
   <div class="charger-connections">
@@ -59,9 +73,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">DCC Youth and Community Centre</h2>
-  <p class="charger-address">Newton Aycliffe Youth &amp; Community Centre DL5 4HX
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">DCC Youth and Community Centre</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Newton Aycliffe Youth &amp; Community Centre <button class="copy-btn" data-copy="DL5 4HX">DL5 4HX</button>
   </p>
   
   <div class="charger-connections">
@@ -83,9 +100,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Tesco Extra - Newton Aycliffe</h2>
-  <p class="charger-address">Greenwell Road DL5 4DH
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Tesco Extra - Newton Aycliffe</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Greenwell Road <button class="copy-btn" data-copy="DL5 4DH">DL5 4DH</button>
   </p>
   
   <div class="charger-connections">
@@ -107,9 +127,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Greenwell Road</h2>
-  <p class="charger-address">Greenwell Road DL5 4DP
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Greenwell Road</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Greenwell Road <button class="copy-btn" data-copy="DL5 4DP">DL5 4DP</button>
   </p>
   
   <div class="charger-connections">
@@ -131,9 +154,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Tesco Extra - Newton Aycliffe</h2>
-  <p class="charger-address"> Greenwell Road DL5 4DH
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Tesco Extra - Newton Aycliffe</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address"> Greenwell Road <button class="copy-btn" data-copy="DL5 4DH">DL5 4DH</button>
   </p>
   
   <div class="charger-connections">
@@ -158,6 +184,23 @@
 
 <p><a href="/" class="back-link">← All UK towns</a></p>
 
+
+<div class="nearby-towns">
+  <h2 class="nearby-heading">Nearby towns</h2>
+  <ul class="nearby-list">
+  
+    <li><a href="/uk/darlington/">Darlington</a></li>
+  
+    <li><a href="/uk/bishop-auckland/">Bishop Auckland</a></li>
+  
+    <li><a href="/uk/durham/">Durham</a></li>
+  
+    <li><a href="/uk/stockton-on-tees/">Stockton-on-Tees</a></li>
+  
+  </ul>
+</div>
+
+
 </div>
 
 <footer>
@@ -170,26 +213,61 @@
 <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 <script>
 (function () {
+  // --- Map ---
   var map = L.map('map').setView([54.62352624213088, -1.571794470429678], 12);
-
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
   }).addTo(map);
 
   var markers = L.markerClusterGroup();
-  var chargerData = [{"lat": 54.63012, "lng": -1.5813, "title": "DCC Pioneering Care Partnership", "address": "Carer's Way"}, {"lat": 54.622895, "lng": -1.56894, "title": "DCC Youth and Community Centre", "address": "Newton Aycliffe Youth & Community Centre"}, {"lat": 54.621904, "lng": -1.568678, "title": "Tesco Extra - Newton Aycliffe", "address": "Greenwell Road"}, {"lat": 54.620732, "lng": -1.572239, "title": "Greenwell Road", "address": "Greenwell Road"}, {"lat": 54.6219802106544, "lng": -1.56781535214839, "title": "Tesco Extra - Newton Aycliffe", "address": " Greenwell Road"}];
+  var chargerData = [{"lat": 54.63012, "lng": -1.5813, "title": "DCC Pioneering Care Partnership", "address": "Carer's Way", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 54.622895, "lng": -1.56894, "title": "DCC Youth and Community Centre", "address": "Newton Aycliffe Youth & Community Centre", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 54.621904, "lng": -1.568678, "title": "Tesco Extra - Newton Aycliffe", "address": "Greenwell Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 54.620732, "lng": -1.572239, "title": "Greenwell Road", "address": "Greenwell Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 54.6219802106544, "lng": -1.56781535214839, "title": "Tesco Extra - Newton Aycliffe", "address": " Greenwell Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}];
 
   chargerData.forEach(function (c) {
+    var connHtml = c.connectors.length
+      ? '<div style="margin-top:6px;font-size:12px;color:#475569">' + c.connectors.join(' &middot; ') + '</div>'
+      : '';
     var marker = L.marker([c.lat, c.lng]);
     marker.bindPopup(
-      '<b>' + c.title + '</b><br>' + c.address + '<br><br>' +
+      '<b>' + c.title + '</b>' +
+      '<div style="color:#64748b;font-size:13px">' + c.address + '</div>' +
+      connHtml +
       '<a href="https://www.google.com/maps/dir/?api=1&destination=' + c.lat + ',' + c.lng +
-      '" target="_blank" rel="noopener">Get directions</a>'
+      '" target="_blank" rel="noopener" style="display:inline-block;margin-top:8px;padding:4px 10px;background:#2563eb;color:white;border-radius:4px;text-decoration:none;font-size:12px">Get directions</a>'
     );
     markers.addLayer(marker);
   });
-
   map.addLayer(markers);
+
+  // --- Connector filter ---
+  var filterBtns = document.querySelectorAll('.filter-btn');
+  var chargerItems = document.querySelectorAll('.charger-item');
+
+  filterBtns.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      filterBtns.forEach(function (b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      var f = btn.dataset.filter;
+      chargerItems.forEach(function (item) {
+        var connList = item.dataset.connectors ? item.dataset.connectors.split(',') : [];
+        item.style.display = (f === 'all' || connList.indexOf(f) !== -1) ? '' : 'none';
+      });
+    });
+  });
+
+  // --- Copy postcode ---
+  document.querySelectorAll('.copy-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var original = btn.textContent;
+      navigator.clipboard.writeText(btn.dataset.copy).then(function () {
+        btn.textContent = 'Copied!';
+        btn.classList.add('copy-btn--success');
+        setTimeout(function () {
+          btn.textContent = original;
+          btn.classList.remove('copy-btn--success');
+        }, 1500);
+      });
+    });
+  });
 }());
 </script>
 

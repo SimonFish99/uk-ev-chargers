@@ -17,7 +17,10 @@
 
 <header>
 <div class="container">
-<a href="/" class="logo">PlugMap <span class="tagline">UK EV Charger Locator</span></a>
+<a href="/" class="logo">
+  <svg class="logo-bolt" viewBox="0 0 24 24" fill="currentColor" width="22" height="22" aria-hidden="true"><path d="M13 2L4.5 13.5H11L10 22L19.5 10.5H13Z"/></svg>
+  PlugMap <span class="tagline">UK EV Charger Locator</span>
+</a>
 </div>
 </header>
 
@@ -28,16 +31,42 @@
 </nav>
 
 <h1>EV Chargers in Chorley</h1>
-<p class="page-intro">6 public charging stations found in Chorley.</p>
+
+<div class="stats-bar">
+  <span class="stat-pill stat-total">6 stations</span>
+  <span class="stat-pill stat-rapid">4 rapid (50kW+)</span>
+  <span class="stat-pill stat-fast">2 fast (7–50kW)</span>
+  
+</div>
 
 <div id="map"></div>
 
-<ul class="charger-list">
+
+<div class="connector-filter">
+  <span class="filter-label">Filter:</span>
+  <button class="filter-btn active" data-filter="all">All</button>
+  
+  <button class="filter-btn" data-filter="CCS (Type 2)">CCS (Type 2)</button>
+  
+  <button class="filter-btn" data-filter="CHAdeMO">CHAdeMO</button>
+  
+  <button class="filter-btn" data-filter="Type 2 (Socket Only)">Type 2 (Socket Only)</button>
+  
+  <button class="filter-btn" data-filter="Type 2 (Tethered Connector) ">Type 2 (Tethered Connector) </button>
+  
+</div>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">EG GROUP CHORLEY SBX</h2>
-  <p class="charger-address">Starbucks PR7 1PW
+<ul class="charger-list" id="charger-list">
+
+
+<li class="charger-item charger-item--rapid" data-connectors="Type 2 (Tethered Connector) ">
+  <div class="charger-header">
+    <h2 class="charger-name">EG GROUP CHORLEY SBX</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Starbucks <button class="copy-btn" data-copy="PR7 1PW">PR7 1PW</button>
   </p>
   
   <div class="charger-connections">
@@ -56,9 +85,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Rivington Services Northbound (evPoint)</h2>
-  <p class="charger-address">M61 BL6 5UZ
+<li class="charger-item charger-item--rapid" data-connectors="CHAdeMO,CCS (Type 2)">
+  <div class="charger-header">
+    <h2 class="charger-name">Rivington Services Northbound (evPoint)</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">M61 <button class="copy-btn" data-copy="BL6 5UZ">BL6 5UZ</button>
   </p>
   
   <div class="charger-connections">
@@ -80,9 +113,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Welcome Break Charnock Richard North Services</h2>
-  <p class="charger-address">M6 Motorway Northbound PR7 5LR
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2),CHAdeMO,Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Welcome Break Charnock Richard North Services</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">M6 Motorway Northbound <button class="copy-btn" data-copy="PR7 5LR">PR7 5LR</button>
   </p>
   
   <div class="charger-connections">
@@ -113,9 +150,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Chorley &amp; South Ribble 1</h2>
-  <p class="charger-address">Preston Road PR7 1PP
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Chorley &amp; South Ribble 1</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Preston Road <button class="copy-btn" data-copy="PR7 1PP">PR7 1PP</button>
   </p>
   
   <div class="charger-connections">
@@ -137,9 +177,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Tesco Superstore-Chorley Buckshaw</h2>
-  <p class="charger-address">Buckshaw Village PR7 7EL
+<li class="charger-item charger-item--rapid" data-connectors="Type 2 (Socket Only),CCS (Type 2),CHAdeMO">
+  <div class="charger-header">
+    <h2 class="charger-name">Tesco Superstore-Chorley Buckshaw</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Buckshaw Village <button class="copy-btn" data-copy="PR7 7EL">PR7 7EL</button>
   </p>
   
   <div class="charger-connections">
@@ -167,9 +211,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Water Street</h2>
-  <p class="charger-address">Water Street PR6 8NH
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Water Street</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Water Street <button class="copy-btn" data-copy="PR6 8NH">PR6 8NH</button>
   </p>
   
   <div class="charger-connections">
@@ -191,6 +238,23 @@
 
 <p><a href="/" class="back-link">← All UK towns</a></p>
 
+
+<div class="nearby-towns">
+  <h2 class="nearby-heading">Nearby towns</h2>
+  <ul class="nearby-list">
+  
+    <li><a href="/uk/leyland/">Leyland</a></li>
+  
+    <li><a href="/uk/wigan/">Wigan</a></li>
+  
+    <li><a href="/uk/skelmersdale/">Skelmersdale</a></li>
+  
+    <li><a href="/uk/bolton/">Bolton</a></li>
+  
+  </ul>
+</div>
+
+
 </div>
 
 <footer>
@@ -203,26 +267,61 @@
 <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 <script>
 (function () {
+  // --- Map ---
   var map = L.map('map').setView([53.65734590103634, -2.633414340605737], 12);
-
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
   }).addTo(map);
 
   var markers = L.markerClusterGroup();
-  var chargerData = [{"lat": 53.66194, "lng": -2.63116, "title": "EG GROUP CHORLEY SBX", "address": "Starbucks"}, {"lat": 53.599601406218, "lng": -2.574300043634423, "title": "Rivington Services Northbound (evPoint)", "address": "M61"}, {"lat": 53.631581, "lng": -2.691614, "title": "Welcome Break Charnock Richard North Services", "address": "M6 Motorway Northbound"}, {"lat": 53.665275, "lng": -2.636207, "title": "Chorley & South Ribble 1", "address": "Preston Road"}, {"lat": 53.674716, "lng": -2.659579, "title": "Tesco Superstore-Chorley Buckshaw", "address": "Buckshaw Village"}, {"lat": 53.710962, "lng": -2.607626, "title": "Water Street", "address": "Water Street"}];
+  var chargerData = [{"lat": 53.66194, "lng": -2.63116, "title": "EG GROUP CHORLEY SBX", "address": "Starbucks", "connectors": ["Type 2 (Tethered Connector)  · 150kW"]}, {"lat": 53.599601406218, "lng": -2.574300043634423, "title": "Rivington Services Northbound (evPoint)", "address": "M61", "connectors": ["CHAdeMO · 60kW", "CCS (Type 2) · 60kW"]}, {"lat": 53.631581, "lng": -2.691614, "title": "Welcome Break Charnock Richard North Services", "address": "M6 Motorway Northbound", "connectors": ["CCS (Type 2) · 50kW", "CHAdeMO · 50kW", "CCS (Type 2) · 50kW", "CCS (Type 2) · 50kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 53.665275, "lng": -2.636207, "title": "Chorley & South Ribble 1", "address": "Preston Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 53.674716, "lng": -2.659579, "title": "Tesco Superstore-Chorley Buckshaw", "address": "Buckshaw Village", "connectors": ["Type 2 (Socket Only) · 7kW", "CCS (Type 2) · 50kW", "CHAdeMO · 50kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 53.710962, "lng": -2.607626, "title": "Water Street", "address": "Water Street", "connectors": ["Type 2 (Socket Only) · 11kW"]}];
 
   chargerData.forEach(function (c) {
+    var connHtml = c.connectors.length
+      ? '<div style="margin-top:6px;font-size:12px;color:#475569">' + c.connectors.join(' &middot; ') + '</div>'
+      : '';
     var marker = L.marker([c.lat, c.lng]);
     marker.bindPopup(
-      '<b>' + c.title + '</b><br>' + c.address + '<br><br>' +
+      '<b>' + c.title + '</b>' +
+      '<div style="color:#64748b;font-size:13px">' + c.address + '</div>' +
+      connHtml +
       '<a href="https://www.google.com/maps/dir/?api=1&destination=' + c.lat + ',' + c.lng +
-      '" target="_blank" rel="noopener">Get directions</a>'
+      '" target="_blank" rel="noopener" style="display:inline-block;margin-top:8px;padding:4px 10px;background:#2563eb;color:white;border-radius:4px;text-decoration:none;font-size:12px">Get directions</a>'
     );
     markers.addLayer(marker);
   });
-
   map.addLayer(markers);
+
+  // --- Connector filter ---
+  var filterBtns = document.querySelectorAll('.filter-btn');
+  var chargerItems = document.querySelectorAll('.charger-item');
+
+  filterBtns.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      filterBtns.forEach(function (b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      var f = btn.dataset.filter;
+      chargerItems.forEach(function (item) {
+        var connList = item.dataset.connectors ? item.dataset.connectors.split(',') : [];
+        item.style.display = (f === 'all' || connList.indexOf(f) !== -1) ? '' : 'none';
+      });
+    });
+  });
+
+  // --- Copy postcode ---
+  document.querySelectorAll('.copy-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var original = btn.textContent;
+      navigator.clipboard.writeText(btn.dataset.copy).then(function () {
+        btn.textContent = 'Copied!';
+        btn.classList.add('copy-btn--success');
+        setTimeout(function () {
+          btn.textContent = original;
+          btn.classList.remove('copy-btn--success');
+        }, 1500);
+      });
+    });
+  });
 }());
 </script>
 

@@ -17,7 +17,10 @@
 
 <header>
 <div class="container">
-<a href="/" class="logo">PlugMap <span class="tagline">UK EV Charger Locator</span></a>
+<a href="/" class="logo">
+  <svg class="logo-bolt" viewBox="0 0 24 24" fill="currentColor" width="22" height="22" aria-hidden="true"><path d="M13 2L4.5 13.5H11L10 22L19.5 10.5H13Z"/></svg>
+  PlugMap <span class="tagline">UK EV Charger Locator</span>
+</a>
 </div>
 </header>
 
@@ -28,16 +31,42 @@
 </nav>
 
 <h1>EV Chargers in Faversham</h1>
-<p class="page-intro">8 public charging stations found in Faversham.</p>
+
+<div class="stats-bar">
+  <span class="stat-pill stat-total">8 stations</span>
+  <span class="stat-pill stat-rapid">4 rapid (50kW+)</span>
+  <span class="stat-pill stat-fast">4 fast (7–50kW)</span>
+  
+</div>
 
 <div id="map"></div>
 
-<ul class="charger-list">
+
+<div class="connector-filter">
+  <span class="filter-label">Filter:</span>
+  <button class="filter-btn active" data-filter="all">All</button>
+  
+  <button class="filter-btn" data-filter="CCS (Type 2)">CCS (Type 2)</button>
+  
+  <button class="filter-btn" data-filter="CHAdeMO">CHAdeMO</button>
+  
+  <button class="filter-btn" data-filter="Type 2 (Socket Only)">Type 2 (Socket Only)</button>
+  
+  <button class="filter-btn" data-filter="Type 2 (Tethered Connector) ">Type 2 (Tethered Connector) </button>
+  
+</div>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">MFG EV Power - A2 - Dunkirk</h2>
-  <p class="charger-address">A2 ME13 9LN
+<ul class="charger-list" id="charger-list">
+
+
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2),CHAdeMO">
+  <div class="charger-header">
+    <h2 class="charger-name">MFG EV Power - A2 - Dunkirk</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">A2 <button class="copy-btn" data-copy="ME13 9LN">ME13 9LN</button>
   </p>
   
   <div class="charger-connections">
@@ -59,9 +88,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Boyd-Doug</h2>
-  <p class="charger-address">Forbes Road ME13 8PL
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Boyd-Doug</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Forbes Road <button class="copy-btn" data-copy="ME13 8PL">ME13 8PL</button>
   </p>
   
   <div class="charger-connections">
@@ -80,9 +112,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Queens Hall Car Park</h2>
-  <p class="charger-address">Forbes Road ME13 8QE
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Queens Hall Car Park</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Forbes Road <button class="copy-btn" data-copy="ME13 8QE">ME13 8QE</button>
   </p>
   
   <div class="charger-connections">
@@ -107,9 +142,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">MFG Thanet Way Service Station</h2>
-  <p class="charger-address">A299 Thanet Way ME13 9EL
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2),CHAdeMO">
+  <div class="charger-header">
+    <h2 class="charger-name">MFG Thanet Way Service Station</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">A299 Thanet Way <button class="copy-btn" data-copy="ME13 9EL">ME13 9EL</button>
   </p>
   
   <div class="charger-connections">
@@ -131,9 +170,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Central Car Park</h2>
-  <p class="charger-address">Central Car Park ME13 8PW
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Central Car Park</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Central Car Park <button class="copy-btn" data-copy="ME13 8PW">ME13 8PW</button>
   </p>
   
   <div class="charger-connections">
@@ -155,9 +197,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Tesco Superstore-Faversham</h2>
-  <p class="charger-address">Crescent Road ME13 7AS
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Tesco Superstore-Faversham</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Crescent Road <button class="copy-btn" data-copy="ME13 7AS">ME13 7AS</button>
   </p>
   
   <div class="charger-connections">
@@ -182,9 +227,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Red Lion, Faversham</h2>
-  <p class="charger-address">London Road ME13 9LL
+<li class="charger-item charger-item--rapid" data-connectors="CHAdeMO,CCS (Type 2),Type 2 (Tethered Connector) ">
+  <div class="charger-header">
+    <h2 class="charger-name">Red Lion, Faversham</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">London Road <button class="copy-btn" data-copy="ME13 9LL">ME13 9LL</button>
   </p>
   
   <div class="charger-connections">
@@ -209,9 +258,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Morrisons Faversham</h2>
-  <p class="charger-address">North Lane ME13 7DY
+<li class="charger-item charger-item--rapid" data-connectors="Type 2 (Socket Only),CHAdeMO,CCS (Type 2)">
+  <div class="charger-header">
+    <h2 class="charger-name">Morrisons Faversham</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">North Lane <button class="copy-btn" data-copy="ME13 7DY">ME13 7DY</button>
   </p>
   
   <div class="charger-connections">
@@ -239,6 +292,23 @@
 
 <p><a href="/" class="back-link">← All UK towns</a></p>
 
+
+<div class="nearby-towns">
+  <h2 class="nearby-heading">Nearby towns</h2>
+  <ul class="nearby-list">
+  
+    <li><a href="/uk/kent/">Kent</a></li>
+  
+    <li><a href="/uk/sittingbourne/">Sittingbourne</a></li>
+  
+    <li><a href="/uk/maidstone/">Maidstone</a></li>
+  
+    <li><a href="/uk/ashford/">Ashford</a></li>
+  
+  </ul>
+</div>
+
+
 </div>
 
 <footer>
@@ -251,26 +321,61 @@
 <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 <script>
 (function () {
+  // --- Map ---
   var map = L.map('map').setView([51.29397847343592, 0.7498105868675067], 12);
-
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
   }).addTo(map);
 
   var markers = L.markerClusterGroup();
-  var chargerData = [{"lat": 51.28933670851976, "lng": 0.9952083175658949, "title": "MFG EV Power - A2 - Dunkirk", "address": "A2"}, {"lat": 51.18465, "lng": -0.53197, "title": "Boyd-Doug", "address": "Forbes Road"}, {"lat": 51.31263, "lng": 0.88884, "title": "Queens Hall Car Park", "address": "Forbes Road"}, {"lat": 51.3258562790324, "lng": 0.986218601445658, "title": "MFG Thanet Way Service Station", "address": "A299 Thanet Way"}, {"lat": 51.315, "lng": 0.89012, "title": "Central Car Park", "address": "Central Car Park"}, {"lat": 51.316586, "lng": 0.893619, "title": "Tesco Superstore-Faversham", "address": "Crescent Road"}, {"lat": 51.2907, "lng": 0.988762, "title": "Red Lion, Faversham", "address": "London Road"}, {"lat": 51.317068799935186, "lng": 0.8876867759285005, "title": "Morrisons Faversham", "address": "North Lane"}];
+  var chargerData = [{"lat": 51.28933670851976, "lng": 0.9952083175658949, "title": "MFG EV Power - A2 - Dunkirk", "address": "A2", "connectors": ["CCS (Type 2) · 150kW", "CHAdeMO · 50kW"]}, {"lat": 51.18465, "lng": -0.53197, "title": "Boyd-Doug", "address": "Forbes Road", "connectors": ["Type 2 (Socket Only) · 7kW"]}, {"lat": 51.31263, "lng": 0.88884, "title": "Queens Hall Car Park", "address": "Forbes Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 51.3258562790324, "lng": 0.986218601445658, "title": "MFG Thanet Way Service Station", "address": "A299 Thanet Way", "connectors": ["CCS (Type 2) · 150kW", "CHAdeMO · 50kW"]}, {"lat": 51.315, "lng": 0.89012, "title": "Central Car Park", "address": "Central Car Park", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 51.316586, "lng": 0.893619, "title": "Tesco Superstore-Faversham", "address": "Crescent Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 51.2907, "lng": 0.988762, "title": "Red Lion, Faversham", "address": "London Road", "connectors": ["CHAdeMO · 50kW", "CCS (Type 2) · 50kW", "Type 2 (Tethered Connector)  · 43kW"]}, {"lat": 51.317068799935186, "lng": 0.8876867759285005, "title": "Morrisons Faversham", "address": "North Lane", "connectors": ["Type 2 (Socket Only) · 22kW", "CHAdeMO · 50kW", "CCS (Type 2) · 50kW"]}];
 
   chargerData.forEach(function (c) {
+    var connHtml = c.connectors.length
+      ? '<div style="margin-top:6px;font-size:12px;color:#475569">' + c.connectors.join(' &middot; ') + '</div>'
+      : '';
     var marker = L.marker([c.lat, c.lng]);
     marker.bindPopup(
-      '<b>' + c.title + '</b><br>' + c.address + '<br><br>' +
+      '<b>' + c.title + '</b>' +
+      '<div style="color:#64748b;font-size:13px">' + c.address + '</div>' +
+      connHtml +
       '<a href="https://www.google.com/maps/dir/?api=1&destination=' + c.lat + ',' + c.lng +
-      '" target="_blank" rel="noopener">Get directions</a>'
+      '" target="_blank" rel="noopener" style="display:inline-block;margin-top:8px;padding:4px 10px;background:#2563eb;color:white;border-radius:4px;text-decoration:none;font-size:12px">Get directions</a>'
     );
     markers.addLayer(marker);
   });
-
   map.addLayer(markers);
+
+  // --- Connector filter ---
+  var filterBtns = document.querySelectorAll('.filter-btn');
+  var chargerItems = document.querySelectorAll('.charger-item');
+
+  filterBtns.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      filterBtns.forEach(function (b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      var f = btn.dataset.filter;
+      chargerItems.forEach(function (item) {
+        var connList = item.dataset.connectors ? item.dataset.connectors.split(',') : [];
+        item.style.display = (f === 'all' || connList.indexOf(f) !== -1) ? '' : 'none';
+      });
+    });
+  });
+
+  // --- Copy postcode ---
+  document.querySelectorAll('.copy-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var original = btn.textContent;
+      navigator.clipboard.writeText(btn.dataset.copy).then(function () {
+        btn.textContent = 'Copied!';
+        btn.classList.add('copy-btn--success');
+        setTimeout(function () {
+          btn.textContent = original;
+          btn.classList.remove('copy-btn--success');
+        }, 1500);
+      });
+    });
+  });
 }());
 </script>
 

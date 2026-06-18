@@ -17,7 +17,10 @@
 
 <header>
 <div class="container">
-<a href="/" class="logo">PlugMap <span class="tagline">UK EV Charger Locator</span></a>
+<a href="/" class="logo">
+  <svg class="logo-bolt" viewBox="0 0 24 24" fill="currentColor" width="22" height="22" aria-hidden="true"><path d="M13 2L4.5 13.5H11L10 22L19.5 10.5H13Z"/></svg>
+  PlugMap <span class="tagline">UK EV Charger Locator</span>
+</a>
 </div>
 </header>
 
@@ -28,16 +31,44 @@
 </nav>
 
 <h1>EV Chargers in Taunton</h1>
-<p class="page-intro">17 public charging stations found in Taunton.</p>
+
+<div class="stats-bar">
+  <span class="stat-pill stat-total">17 stations</span>
+  <span class="stat-pill stat-rapid">9 rapid (50kW+)</span>
+  <span class="stat-pill stat-fast">7 fast (7–50kW)</span>
+  <span class="stat-pill stat-slow">1 slow</span>
+</div>
 
 <div id="map"></div>
 
-<ul class="charger-list">
+
+<div class="connector-filter">
+  <span class="filter-label">Filter:</span>
+  <button class="filter-btn active" data-filter="all">All</button>
+  
+  <button class="filter-btn" data-filter="CCS (Type 2)">CCS (Type 2)</button>
+  
+  <button class="filter-btn" data-filter="CHAdeMO">CHAdeMO</button>
+  
+  <button class="filter-btn" data-filter="Tesla (Model S/X)">Tesla (Model S/X)</button>
+  
+  <button class="filter-btn" data-filter="Type 2 (Socket Only)">Type 2 (Socket Only)</button>
+  
+  <button class="filter-btn" data-filter="Type 2 (Tethered Connector) ">Type 2 (Tethered Connector) </button>
+  
+</div>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Priory Fields</h2>
-  <p class="charger-address">Priory Fields TA1 1QS
+<ul class="charger-list" id="charger-list">
+
+
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2),CHAdeMO">
+  <div class="charger-header">
+    <h2 class="charger-name">Priory Fields</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Priory Fields <button class="copy-btn" data-copy="TA1 1QS">TA1 1QS</button>
   </p>
   
   <div class="charger-connections">
@@ -77,9 +108,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">MFG Taunton Deane Service Station</h2>
-  <p class="charger-address">Black Brook Park Avenue TA1 2UH
+<li class="charger-item charger-item--rapid" data-connectors="CHAdeMO,CCS (Type 2)">
+  <div class="charger-header">
+    <h2 class="charger-name">MFG Taunton Deane Service Station</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Black Brook Park Avenue <button class="copy-btn" data-copy="TA1 2UH">TA1 2UH</button>
   </p>
   
   <div class="charger-connections">
@@ -101,9 +136,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Crescent Car Pak</h2>
-  <p class="charger-address">Crescent Car Park ta1 4ed
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Crescent Car Pak</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Crescent Car Park <button class="copy-btn" data-copy="ta1 4ed">ta1 4ed</button>
   </p>
   
   <div class="charger-connections">
@@ -120,9 +158,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">The Crescent Car Park</h2>
-  <p class="charger-address">Crescent car park ta1 4ed
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">The Crescent Car Park</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Crescent car park <button class="copy-btn" data-copy="ta1 4ed">ta1 4ed</button>
   </p>
   
   <div class="charger-connections">
@@ -139,9 +180,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Belvedere Road car park</h2>
-  <p class="charger-address">Belvedere Road car park TA1 1HE
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Belvedere Road car park</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Belvedere Road car park <button class="copy-btn" data-copy="TA1 1HE">TA1 1HE</button>
   </p>
   
   <div class="charger-connections">
@@ -160,9 +204,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Morrisons Taunton</h2>
-  <p class="charger-address">Wm Morrison Supermarkets PLC TA1 1DX
+<li class="charger-item charger-item--rapid" data-connectors="Type 2 (Socket Only),CHAdeMO,Type 2 (Tethered Connector) ">
+  <div class="charger-header">
+    <h2 class="charger-name">Morrisons Taunton</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Wm Morrison Supermarkets PLC <button class="copy-btn" data-copy="TA1 1DX">TA1 1DX</button>
   </p>
   
   <div class="charger-connections">
@@ -187,9 +235,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Premier Inn Taunton Ruishton (M5, J25)</h2>
-  <p class="charger-address">Ruishton TA3 5LU
+<li class="charger-item charger-item--rapid" data-connectors="Type 2 (Tethered Connector) ,CHAdeMO,Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Premier Inn Taunton Ruishton (M5, J25)</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Ruishton <button class="copy-btn" data-copy="TA3 5LU">TA3 5LU</button>
   </p>
   
   <div class="charger-connections">
@@ -214,9 +266,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Blackbrook Leisure Centre</h2>
-  <p class="charger-address">Blackbrook Leisure Centre TA1 2RW
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2),CHAdeMO">
+  <div class="charger-header">
+    <h2 class="charger-name">Blackbrook Leisure Centre</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Blackbrook Leisure Centre <button class="copy-btn" data-copy="TA1 2RW">TA1 2RW</button>
   </p>
   
   <div class="charger-connections">
@@ -238,9 +294,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">McDonald&#39;s Heron Gate</h2>
-  <p class="charger-address">Heron Gate TA1 2LP
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2),CHAdeMO">
+  <div class="charger-header">
+    <h2 class="charger-name">McDonald&#39;s Heron Gate</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Heron Gate <button class="copy-btn" data-copy="TA1 2LP">TA1 2LP</button>
   </p>
   
   <div class="charger-connections">
@@ -262,9 +322,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Wood Street car park</h2>
-  <p class="charger-address">Wood Street TA1 1UR
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Wood Street car park</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Wood Street <button class="copy-btn" data-copy="TA1 1UR">TA1 1UR</button>
   </p>
   
   <div class="charger-connections">
@@ -283,9 +346,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Castle Street car park</h2>
-  <p class="charger-address">Castle Street TA1 4AS
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Castle Street car park</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Castle Street <button class="copy-btn" data-copy="TA1 4AS">TA1 4AS</button>
   </p>
   
   <div class="charger-connections">
@@ -304,9 +370,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Junction 25</h2>
-  <p class="charger-address">Blackbrook Park Avenue TA1 2PX
+<li class="charger-item charger-item--rapid" data-connectors="CHAdeMO,CCS (Type 2)">
+  <div class="charger-header">
+    <h2 class="charger-name">Junction 25</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Blackbrook Park Avenue <button class="copy-btn" data-copy="TA1 2PX">TA1 2PX</button>
   </p>
   
   <div class="charger-connections">
@@ -328,9 +398,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">The Deane House</h2>
-  <p class="charger-address">Belvedere Road TA1 1HE
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2),CHAdeMO">
+  <div class="charger-header">
+    <h2 class="charger-name">The Deane House</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Belvedere Road <button class="copy-btn" data-copy="TA1 1HE">TA1 1HE</button>
   </p>
   
   <div class="charger-connections">
@@ -352,9 +426,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Dark Lane</h2>
-  <p class="charger-address">Dark Lane TA3 6JG
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Dark Lane</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Dark Lane <button class="copy-btn" data-copy="TA3 6JG">TA3 6JG</button>
   </p>
   
   <div class="charger-connections">
@@ -376,9 +453,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Morrisons Taunton</h2>
-  <p class="charger-address">1 Black Horse Lane TA1 1UE
+<li class="charger-item charger-item--rapid" data-connectors="CHAdeMO,CCS (Type 2),Type 2 (Tethered Connector) ">
+  <div class="charger-header">
+    <h2 class="charger-name">Morrisons Taunton</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">1 Black Horse Lane <button class="copy-btn" data-copy="TA1 1UE">TA1 1UE</button>
   </p>
   
   <div class="charger-connections">
@@ -403,9 +484,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">The Castle Hotel</h2>
-  <p class="charger-address">Castle Green TA1 1NF
+<li class="charger-item charger-item--slow" data-connectors="Tesla (Model S/X)">
+  <div class="charger-header">
+    <h2 class="charger-name">The Castle Hotel</h2>
+    
+  </div>
+  <p class="charger-address">Castle Green <button class="copy-btn" data-copy="TA1 1NF">TA1 1NF</button>
   </p>
   
   <div class="charger-connections">
@@ -424,9 +508,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Tesco Superstore-Taunton</h2>
-  <p class="charger-address">Wellington Road TA1 4EQ
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Tesco Superstore-Taunton</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Wellington Road <button class="copy-btn" data-copy="TA1 4EQ">TA1 4EQ</button>
   </p>
   
   <div class="charger-connections">
@@ -451,6 +538,23 @@
 
 <p><a href="/" class="back-link">← All UK towns</a></p>
 
+
+<div class="nearby-towns">
+  <h2 class="nearby-heading">Nearby towns</h2>
+  <ul class="nearby-list">
+  
+    <li><a href="/uk/bridgwater/">Bridgwater</a></li>
+  
+    <li><a href="/uk/chard/">Chard</a></li>
+  
+    <li><a href="/uk/street/">Street</a></li>
+  
+    <li><a href="/uk/barry/">Barry</a></li>
+  
+  </ul>
+</div>
+
+
 </div>
 
 <footer>
@@ -463,26 +567,61 @@
 <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 <script>
 (function () {
+  // --- Map ---
   var map = L.map('map').setView([51.01877088367928, -3.103171200631021], 12);
-
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
   }).addTo(map);
 
   var markers = L.markerClusterGroup();
-  var chargerData = [{"lat": 51.021006, "lng": -3.091672, "title": "Priory Fields", "address": "Priory Fields"}, {"lat": 51.01765239817604, "lng": -3.0660507039348204, "title": "MFG Taunton Deane Service Station", "address": "Black Brook Park Avenue"}, {"lat": 51.0137, "lng": -3.10478, "title": "Crescent Car Pak", "address": "Crescent Car Park"}, {"lat": 51.0137, "lng": -3.44221, "title": "The Crescent Car Park", "address": "Crescent car park"}, {"lat": 51.02079, "lng": -3.107233, "title": "Belvedere Road car park", "address": "Belvedere Road car park"}, {"lat": 51.019451, "lng": -3.105177, "title": "Morrisons Taunton", "address": "Wm Morrison Supermarkets PLC"}, {"lat": 51.018024, "lng": -3.058323, "title": "Premier Inn Taunton Ruishton (M5, J25)", "address": "Ruishton"}, {"lat": 51.0105998, "lng": -3.0716142, "title": "Blackbrook Leisure Centre", "address": "Blackbrook Leisure Centre"}, {"lat": 51.0241529, "lng": -3.0670894, "title": "McDonald's Heron Gate", "address": "Heron Gate"}, {"lat": 51.0183, "lng": -3.10618, "title": "Wood Street car park", "address": "Wood Street"}, {"lat": 51.015382, "lng": -3.107971, "title": "Castle Street car park", "address": "Castle Street"}, {"lat": 51.013141, "lng": -3.068797, "title": "Junction 25", "address": "Blackbrook Park Avenue"}, {"lat": 51.021170787885, "lng": -3.10595216030237, "title": "The Deane House", "address": "Belvedere Road"}, {"lat": 51.041721, "lng": -2.930608, "title": "Dark Lane", "address": "Dark Lane"}, {"lat": 51.01966213648669, "lng": -3.1039019464901685, "title": "Morrisons Taunton", "address": "1 Black Horse Lane"}, {"lat": 51.015426, "lng": -3.104144, "title": "The Castle Hotel", "address": "Castle Green"}, {"lat": 51.015226, "lng": -3.112207, "title": "Tesco Superstore-Taunton", "address": "Wellington Road"}];
+  var chargerData = [{"lat": 51.021006, "lng": -3.091672, "title": "Priory Fields", "address": "Priory Fields", "connectors": ["CCS (Type 2) · 180kW", "CCS (Type 2) · 180kW", "CCS (Type 2) · 180kW", "CHAdeMO · 80kW", "CCS (Type 2) · 180kW", "CHAdeMO · 80kW", "CCS (Type 2) · 180kW", "CCS (Type 2) · 180kW"]}, {"lat": 51.01765239817604, "lng": -3.0660507039348204, "title": "MFG Taunton Deane Service Station", "address": "Black Brook Park Avenue", "connectors": ["CHAdeMO · 50kW", "CCS (Type 2) · 150kW"]}, {"lat": 51.0137, "lng": -3.10478, "title": "Crescent Car Pak", "address": "Crescent Car Park", "connectors": ["Type 2 (Socket Only) · 22kW"]}, {"lat": 51.0137, "lng": -3.44221, "title": "The Crescent Car Park", "address": "Crescent car park", "connectors": ["Type 2 (Socket Only) · 22kW"]}, {"lat": 51.02079, "lng": -3.107233, "title": "Belvedere Road car park", "address": "Belvedere Road car park", "connectors": ["Type 2 (Socket Only) · 22kW"]}, {"lat": 51.019451, "lng": -3.105177, "title": "Morrisons Taunton", "address": "Wm Morrison Supermarkets PLC", "connectors": ["Type 2 (Socket Only) · 22kW", "CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 50kW"]}, {"lat": 51.018024, "lng": -3.058323, "title": "Premier Inn Taunton Ruishton (M5, J25)", "address": "Ruishton", "connectors": ["Type 2 (Tethered Connector)  · 50kW", "CHAdeMO · 50kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 51.0105998, "lng": -3.0716142, "title": "Blackbrook Leisure Centre", "address": "Blackbrook Leisure Centre", "connectors": ["CCS (Type 2) · 50kW", "CHAdeMO · 50kW"]}, {"lat": 51.0241529, "lng": -3.0670894, "title": "McDonald's Heron Gate", "address": "Heron Gate", "connectors": ["CCS (Type 2) · 120kW", "CHAdeMO · 50kW"]}, {"lat": 51.0183, "lng": -3.10618, "title": "Wood Street car park", "address": "Wood Street", "connectors": ["Type 2 (Socket Only) · 22kW"]}, {"lat": 51.015382, "lng": -3.107971, "title": "Castle Street car park", "address": "Castle Street", "connectors": ["Type 2 (Socket Only) · 22kW"]}, {"lat": 51.013141, "lng": -3.068797, "title": "Junction 25", "address": "Blackbrook Park Avenue", "connectors": ["CHAdeMO · 75kW", "CCS (Type 2) · 75kW"]}, {"lat": 51.021170787885, "lng": -3.10595216030237, "title": "The Deane House", "address": "Belvedere Road", "connectors": ["CCS (Type 2) · 120kW", "CHAdeMO · 50kW"]}, {"lat": 51.041721, "lng": -2.930608, "title": "Dark Lane", "address": "Dark Lane", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 51.01966213648669, "lng": -3.1039019464901685, "title": "Morrisons Taunton", "address": "1 Black Horse Lane", "connectors": ["CHAdeMO · 50kW", "CCS (Type 2) · 50kW", "Type 2 (Tethered Connector)  · 43kW"]}, {"lat": 51.015426, "lng": -3.104144, "title": "The Castle Hotel", "address": "Castle Green", "connectors": ["Tesla (Model S/X) · 6kW"]}, {"lat": 51.015226, "lng": -3.112207, "title": "Tesco Superstore-Taunton", "address": "Wellington Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}];
 
   chargerData.forEach(function (c) {
+    var connHtml = c.connectors.length
+      ? '<div style="margin-top:6px;font-size:12px;color:#475569">' + c.connectors.join(' &middot; ') + '</div>'
+      : '';
     var marker = L.marker([c.lat, c.lng]);
     marker.bindPopup(
-      '<b>' + c.title + '</b><br>' + c.address + '<br><br>' +
+      '<b>' + c.title + '</b>' +
+      '<div style="color:#64748b;font-size:13px">' + c.address + '</div>' +
+      connHtml +
       '<a href="https://www.google.com/maps/dir/?api=1&destination=' + c.lat + ',' + c.lng +
-      '" target="_blank" rel="noopener">Get directions</a>'
+      '" target="_blank" rel="noopener" style="display:inline-block;margin-top:8px;padding:4px 10px;background:#2563eb;color:white;border-radius:4px;text-decoration:none;font-size:12px">Get directions</a>'
     );
     markers.addLayer(marker);
   });
-
   map.addLayer(markers);
+
+  // --- Connector filter ---
+  var filterBtns = document.querySelectorAll('.filter-btn');
+  var chargerItems = document.querySelectorAll('.charger-item');
+
+  filterBtns.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      filterBtns.forEach(function (b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      var f = btn.dataset.filter;
+      chargerItems.forEach(function (item) {
+        var connList = item.dataset.connectors ? item.dataset.connectors.split(',') : [];
+        item.style.display = (f === 'all' || connList.indexOf(f) !== -1) ? '' : 'none';
+      });
+    });
+  });
+
+  // --- Copy postcode ---
+  document.querySelectorAll('.copy-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var original = btn.textContent;
+      navigator.clipboard.writeText(btn.dataset.copy).then(function () {
+        btn.textContent = 'Copied!';
+        btn.classList.add('copy-btn--success');
+        setTimeout(function () {
+          btn.textContent = original;
+          btn.classList.remove('copy-btn--success');
+        }, 1500);
+      });
+    });
+  });
 }());
 </script>
 

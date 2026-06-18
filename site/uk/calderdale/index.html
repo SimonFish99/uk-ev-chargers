@@ -17,7 +17,10 @@
 
 <header>
 <div class="container">
-<a href="/" class="logo">PlugMap <span class="tagline">UK EV Charger Locator</span></a>
+<a href="/" class="logo">
+  <svg class="logo-bolt" viewBox="0 0 24 24" fill="currentColor" width="22" height="22" aria-hidden="true"><path d="M13 2L4.5 13.5H11L10 22L19.5 10.5H13Z"/></svg>
+  PlugMap <span class="tagline">UK EV Charger Locator</span>
+</a>
 </div>
 </header>
 
@@ -28,16 +31,39 @@
 </nav>
 
 <h1>EV Chargers in Calderdale</h1>
-<p class="page-intro">10 public charging stations found in Calderdale.</p>
+
+<div class="stats-bar">
+  <span class="stat-pill stat-total">10 stations</span>
+  <span class="stat-pill stat-rapid">3 rapid (50kW+)</span>
+  <span class="stat-pill stat-fast">7 fast (7–50kW)</span>
+  
+</div>
 
 <div id="map"></div>
 
-<ul class="charger-list">
+
+<div class="connector-filter">
+  <span class="filter-label">Filter:</span>
+  <button class="filter-btn active" data-filter="all">All</button>
+  
+  <button class="filter-btn" data-filter="CCS (Type 2)">CCS (Type 2)</button>
+  
+  <button class="filter-btn" data-filter="CHAdeMO">CHAdeMO</button>
+  
+  <button class="filter-btn" data-filter="Type 2 (Socket Only)">Type 2 (Socket Only)</button>
+  
+</div>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Acres Lane</h2>
-  <p class="charger-address">Acres Lane HX7 7LT
+<ul class="charger-list" id="charger-list">
+
+
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Acres Lane</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Acres Lane <button class="copy-btn" data-copy="HX7 7LT">HX7 7LT</button>
   </p>
   
   <div class="charger-connections">
@@ -59,9 +85,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Bridges Lane 1</h2>
-  <p class="charger-address">Bridges Lane HX7 6AQ
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Bridges Lane 1</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Bridges Lane <button class="copy-btn" data-copy="HX7 6AQ">HX7 6AQ</button>
   </p>
   
   <div class="charger-connections">
@@ -83,9 +112,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Towngate Car Park 3</h2>
-  <p class="charger-address">Towngate Car Park HX3 7EF
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Towngate Car Park 3</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Towngate Car Park <button class="copy-btn" data-copy="HX3 7EF">HX3 7EF</button>
   </p>
   
   <div class="charger-connections">
@@ -107,9 +139,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Wakefield Road Car Park 1</h2>
-  <p class="charger-address">Wakefield Road Car Park HX3 8AA
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Wakefield Road Car Park 1</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Wakefield Road Car Park <button class="copy-btn" data-copy="HX3 8AA">HX3 8AA</button>
   </p>
   
   <div class="charger-connections">
@@ -131,9 +166,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Manor Road 1</h2>
-  <p class="charger-address">Manor Road HX3 0BE
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Manor Road 1</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Manor Road <button class="copy-btn" data-copy="HX3 0BE">HX3 0BE</button>
   </p>
   
   <div class="charger-connections">
@@ -155,9 +193,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Station Road 1</h2>
-  <p class="charger-address">Station Road HX6 3AB
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Station Road 1</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Station Road <button class="copy-btn" data-copy="HX6 3AB">HX6 3AB</button>
   </p>
   
   <div class="charger-connections">
@@ -179,9 +220,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Tesco Superstore-Halifax Aachen Way</h2>
-  <p class="charger-address">Haugh Shaw Road HX1 3TU
+<li class="charger-item charger-item--rapid" data-connectors="Type 2 (Socket Only),CHAdeMO,CCS (Type 2)">
+  <div class="charger-header">
+    <h2 class="charger-name">Tesco Superstore-Halifax Aachen Way</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Haugh Shaw Road <button class="copy-btn" data-copy="HX1 3TU">HX1 3TU</button>
   </p>
   
   <div class="charger-connections">
@@ -209,9 +254,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">School Lane</h2>
-  <p class="charger-address">School Lane OL14 7AA
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2),CHAdeMO,Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">School Lane</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">School Lane <button class="copy-btn" data-copy="OL14 7AA">OL14 7AA</button>
   </p>
   
   <div class="charger-connections">
@@ -236,9 +285,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Tesco Brighouse</h2>
-  <p class="charger-address">Huddersfield Road HD6 1RZ
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Tesco Brighouse</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Huddersfield Road <button class="copy-btn" data-copy="HD6 1RZ">HD6 1RZ</button>
   </p>
   
   <div class="charger-connections">
@@ -260,9 +312,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">West Street Car Park</h2>
-  <p class="charger-address">West Street HX6 3AN
+<li class="charger-item charger-item--rapid" data-connectors="CHAdeMO,CCS (Type 2),Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">West Street Car Park</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">West Street <button class="copy-btn" data-copy="HX6 3AN">HX6 3AN</button>
   </p>
   
   <div class="charger-connections">
@@ -290,6 +346,23 @@
 
 <p><a href="/" class="back-link">← All UK towns</a></p>
 
+
+<div class="nearby-towns">
+  <h2 class="nearby-heading">Nearby towns</h2>
+  <ul class="nearby-list">
+  
+    <li><a href="/uk/halifax/">Halifax</a></li>
+  
+    <li><a href="/uk/huddersfield/">Huddersfield</a></li>
+  
+    <li><a href="/uk/keighley/">Keighley</a></li>
+  
+    <li><a href="/uk/brighouse/">Brighouse</a></li>
+  
+  </ul>
+</div>
+
+
 </div>
 
 <footer>
@@ -302,26 +375,61 @@
 <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 <script>
 (function () {
+  // --- Map ---
   var map = L.map('map').setView([53.72085861994524, -1.9124025351932623], 12);
-
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
   }).addTo(map);
 
   var markers = L.markerClusterGroup();
-  var chargerData = [{"lat": 53.745754, "lng": -2.020611, "title": "Acres Lane", "address": "Acres Lane"}, {"lat": 53.741279, "lng": -2.018849, "title": "Bridges Lane 1", "address": "Bridges Lane"}, {"lat": 53.740135, "lng": -1.832058, "title": "Towngate Car Park 3", "address": "Towngate Car Park"}, {"lat": 53.725438, "lng": -1.811008, "title": "Wakefield Road Car Park 1", "address": "Wakefield Road Car Park"}, {"lat": 53.709042, "lng": -1.866894, "title": "Manor Road 1", "address": "Manor Road"}, {"lat": 53.707254, "lng": -1.910172, "title": "Station Road 1", "address": "Station Road"}, {"lat": 53.714685, "lng": -1.877965, "title": "Tesco Superstore-Halifax Aachen Way", "address": "Haugh Shaw Road"}, {"lat": 53.71399519319306, "lng": -2.0954949294898597, "title": "School Lane", "address": "School Lane"}, {"lat": 53.7042360593402, "lng": -1.7771824168949, "title": "Tesco Brighouse", "address": "Huddersfield Road"}, {"lat": 53.70676794691917, "lng": -1.9137910055478642, "title": "West Street Car Park", "address": "West Street"}];
+  var chargerData = [{"lat": 53.745754, "lng": -2.020611, "title": "Acres Lane", "address": "Acres Lane", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 53.741279, "lng": -2.018849, "title": "Bridges Lane 1", "address": "Bridges Lane", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 53.740135, "lng": -1.832058, "title": "Towngate Car Park 3", "address": "Towngate Car Park", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 53.725438, "lng": -1.811008, "title": "Wakefield Road Car Park 1", "address": "Wakefield Road Car Park", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 53.709042, "lng": -1.866894, "title": "Manor Road 1", "address": "Manor Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 53.707254, "lng": -1.910172, "title": "Station Road 1", "address": "Station Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 53.714685, "lng": -1.877965, "title": "Tesco Superstore-Halifax Aachen Way", "address": "Haugh Shaw Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 22kW", "CHAdeMO · 50kW", "CCS (Type 2) · 50kW"]}, {"lat": 53.71399519319306, "lng": -2.0954949294898597, "title": "School Lane", "address": "School Lane", "connectors": ["CCS (Type 2) · 50kW", "CHAdeMO · 50kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 53.7042360593402, "lng": -1.7771824168949, "title": "Tesco Brighouse", "address": "Huddersfield Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 53.70676794691917, "lng": -1.9137910055478642, "title": "West Street Car Park", "address": "West Street", "connectors": ["CHAdeMO · 50kW", "CCS (Type 2) · 50kW", "Type 2 (Socket Only) · 22kW"]}];
 
   chargerData.forEach(function (c) {
+    var connHtml = c.connectors.length
+      ? '<div style="margin-top:6px;font-size:12px;color:#475569">' + c.connectors.join(' &middot; ') + '</div>'
+      : '';
     var marker = L.marker([c.lat, c.lng]);
     marker.bindPopup(
-      '<b>' + c.title + '</b><br>' + c.address + '<br><br>' +
+      '<b>' + c.title + '</b>' +
+      '<div style="color:#64748b;font-size:13px">' + c.address + '</div>' +
+      connHtml +
       '<a href="https://www.google.com/maps/dir/?api=1&destination=' + c.lat + ',' + c.lng +
-      '" target="_blank" rel="noopener">Get directions</a>'
+      '" target="_blank" rel="noopener" style="display:inline-block;margin-top:8px;padding:4px 10px;background:#2563eb;color:white;border-radius:4px;text-decoration:none;font-size:12px">Get directions</a>'
     );
     markers.addLayer(marker);
   });
-
   map.addLayer(markers);
+
+  // --- Connector filter ---
+  var filterBtns = document.querySelectorAll('.filter-btn');
+  var chargerItems = document.querySelectorAll('.charger-item');
+
+  filterBtns.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      filterBtns.forEach(function (b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      var f = btn.dataset.filter;
+      chargerItems.forEach(function (item) {
+        var connList = item.dataset.connectors ? item.dataset.connectors.split(',') : [];
+        item.style.display = (f === 'all' || connList.indexOf(f) !== -1) ? '' : 'none';
+      });
+    });
+  });
+
+  // --- Copy postcode ---
+  document.querySelectorAll('.copy-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var original = btn.textContent;
+      navigator.clipboard.writeText(btn.dataset.copy).then(function () {
+        btn.textContent = 'Copied!';
+        btn.classList.add('copy-btn--success');
+        setTimeout(function () {
+          btn.textContent = original;
+          btn.classList.remove('copy-btn--success');
+        }, 1500);
+      });
+    });
+  });
 }());
 </script>
 

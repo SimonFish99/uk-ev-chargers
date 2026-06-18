@@ -17,7 +17,10 @@
 
 <header>
 <div class="container">
-<a href="/" class="logo">PlugMap <span class="tagline">UK EV Charger Locator</span></a>
+<a href="/" class="logo">
+  <svg class="logo-bolt" viewBox="0 0 24 24" fill="currentColor" width="22" height="22" aria-hidden="true"><path d="M13 2L4.5 13.5H11L10 22L19.5 10.5H13Z"/></svg>
+  PlugMap <span class="tagline">UK EV Charger Locator</span>
+</a>
 </div>
 </header>
 
@@ -28,16 +31,41 @@
 </nav>
 
 <h1>EV Chargers in Melksham</h1>
-<p class="page-intro">7 public charging stations found in Melksham.</p>
+
+<div class="stats-bar">
+  <span class="stat-pill stat-total">7 stations</span>
+  <span class="stat-pill stat-rapid">5 rapid (50kW+)</span>
+  <span class="stat-pill stat-fast">2 fast (7–50kW)</span>
+  
+</div>
 
 <div id="map"></div>
 
-<ul class="charger-list">
+
+<div class="connector-filter">
+  <span class="filter-label">Filter:</span>
+  <button class="filter-btn active" data-filter="all">All</button>
+  
+  <button class="filter-btn" data-filter="CCS (Type 2)">CCS (Type 2)</button>
+  
+  <button class="filter-btn" data-filter="CHAdeMO">CHAdeMO</button>
+  
+  <button class="filter-btn" data-filter="Type 2 (Socket Only)">Type 2 (Socket Only)</button>
+  
+  <button class="filter-btn" data-filter="Type 2 (Tethered Connector) ">Type 2 (Tethered Connector) </button>
+  
+</div>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Melksham Campus</h2>
-  <p class="charger-address">Market Place SN12 6ES
+<ul class="charger-list" id="charger-list">
+
+
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Melksham Campus</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Market Place <button class="copy-btn" data-copy="SN12 6ES">SN12 6ES</button>
   </p>
   
   <div class="charger-connections">
@@ -59,10 +87,14 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Free to use
+<li class="charger-item charger-item--rapid" data-connectors="CHAdeMO,Type 2 (Tethered Connector) ">
+  <div class="charger-header">
+    <h2 class="charger-name">Free to use
 Must be a member of BMW Chargenow or a Polar custom..</h2>
-  <p class="charger-address">King Street SN12 6HB
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">King Street <button class="copy-btn" data-copy="SN12 6HB">SN12 6HB</button>
   </p>
   
   <div class="charger-connections">
@@ -87,9 +119,13 @@ Must be a member of BMW Chargenow or a Polar custom..</h2>
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">SSEHUB034</h2>
-  <p class="charger-address">61 Spa Road SN12 7NU
+<li class="charger-item charger-item--rapid" data-connectors="Type 2 (Tethered Connector) ">
+  <div class="charger-header">
+    <h2 class="charger-name">SSEHUB034</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">61 Spa Road <button class="copy-btn" data-copy="SN12 7NU">SN12 7NU</button>
   </p>
   
   <div class="charger-connections">
@@ -111,8 +147,12 @@ Must be a member of BMW Chargenow or a Polar custom..</h2>
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">SSE Charging EV Hub Melksham</h2>
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2)">
+  <div class="charger-header">
+    <h2 class="charger-name">SSE Charging EV Hub Melksham</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
   <p class="charger-address">Spa Road
   </p>
   
@@ -132,9 +172,13 @@ Must be a member of BMW Chargenow or a Polar custom..</h2>
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Travelodge Melksham</h2>
-  <p class="charger-address">Commerce Way SN12 6AD
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2),CHAdeMO">
+  <div class="charger-header">
+    <h2 class="charger-name">Travelodge Melksham</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Commerce Way <button class="copy-btn" data-copy="SN12 6AD">SN12 6AD</button>
   </p>
   
   <div class="charger-connections">
@@ -156,9 +200,13 @@ Must be a member of BMW Chargenow or a Polar custom..</h2>
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">McDonald&#39;s Melksham</h2>
-  <p class="charger-address">GEC Industrial Estate SN12 8RP
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2),CHAdeMO">
+  <div class="charger-header">
+    <h2 class="charger-name">McDonald&#39;s Melksham</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">GEC Industrial Estate <button class="copy-btn" data-copy="SN12 8RP">SN12 8RP</button>
   </p>
   
   <div class="charger-connections">
@@ -180,9 +228,12 @@ Must be a member of BMW Chargenow or a Polar custom..</h2>
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Melksham Hub</h2>
-  <p class="charger-address">Melksham Hub SN12 8BN
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Melksham Hub</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Melksham Hub <button class="copy-btn" data-copy="SN12 8BN">SN12 8BN</button>
   </p>
   
   <div class="charger-connections">
@@ -204,6 +255,23 @@ Must be a member of BMW Chargenow or a Polar custom..</h2>
 
 <p><a href="/" class="back-link">← All UK towns</a></p>
 
+
+<div class="nearby-towns">
+  <h2 class="nearby-heading">Nearby towns</h2>
+  <ul class="nearby-list">
+  
+    <li><a href="/uk/chippenham/">Chippenham</a></li>
+  
+    <li><a href="/uk/calne/">Calne</a></li>
+  
+    <li><a href="/uk/bath/">Bath</a></li>
+  
+    <li><a href="/uk/stroud/">Stroud</a></li>
+  
+  </ul>
+</div>
+
+
 </div>
 
 <footer>
@@ -216,26 +284,61 @@ Must be a member of BMW Chargenow or a Polar custom..</h2>
 <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 <script>
 (function () {
+  // --- Map ---
   var map = L.map('map').setView([51.37076903165528, -2.1384430783049373], 12);
-
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
   }).addTo(map);
 
   var markers = L.markerClusterGroup();
-  var chargerData = [{"lat": 51.370791, "lng": -2.14115, "title": "Melksham Campus", "address": "Market Place"}, {"lat": 51.3702, "lng": -2.13743, "title": "Free to use\r\nMust be a member of BMW Chargenow or a Polar custom..", "address": "King Street"}, {"lat": 51.368646, "lng": -2.131612, "title": "SSEHUB034", "address": "61 Spa Road"}, {"lat": 51.36811141163335, "lng": -2.1303683740732993, "title": "SSE Charging EV Hub Melksham", "address": "Spa Road"}, {"lat": 51.3558012553363, "lng": -2.1405714228963006, "title": "Travelodge Melksham", "address": "Commerce Way"}, {"lat": 51.3816775546173, "lng": -2.14345875116496, "title": "McDonald's Melksham", "address": "GEC Industrial Estate"}, {"lat": 51.380156, "lng": -2.144511, "title": "Melksham Hub", "address": "Melksham Hub"}];
+  var chargerData = [{"lat": 51.370791, "lng": -2.14115, "title": "Melksham Campus", "address": "Market Place", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 51.3702, "lng": -2.13743, "title": "Free to use\r\nMust be a member of BMW Chargenow or a Polar custom..", "address": "King Street", "connectors": ["CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 50kW", "Type 2 (Tethered Connector)  · 43kW"]}, {"lat": 51.368646, "lng": -2.131612, "title": "SSEHUB034", "address": "61 Spa Road", "connectors": ["Type 2 (Tethered Connector)  · 150kW", "Type 2 (Tethered Connector)  · 150kW"]}, {"lat": 51.36811141163335, "lng": -2.1303683740732993, "title": "SSE Charging EV Hub Melksham", "address": "Spa Road", "connectors": ["CCS (Type 2) · 150kW"]}, {"lat": 51.3558012553363, "lng": -2.1405714228963006, "title": "Travelodge Melksham", "address": "Commerce Way", "connectors": ["CCS (Type 2) · 300kW", "CHAdeMO · 50kW"]}, {"lat": 51.3816775546173, "lng": -2.14345875116496, "title": "McDonald's Melksham", "address": "GEC Industrial Estate", "connectors": ["CCS (Type 2) · 120kW", "CHAdeMO · 75kW"]}, {"lat": 51.380156, "lng": -2.144511, "title": "Melksham Hub", "address": "Melksham Hub", "connectors": ["Type 2 (Socket Only) · 7kW"]}];
 
   chargerData.forEach(function (c) {
+    var connHtml = c.connectors.length
+      ? '<div style="margin-top:6px;font-size:12px;color:#475569">' + c.connectors.join(' &middot; ') + '</div>'
+      : '';
     var marker = L.marker([c.lat, c.lng]);
     marker.bindPopup(
-      '<b>' + c.title + '</b><br>' + c.address + '<br><br>' +
+      '<b>' + c.title + '</b>' +
+      '<div style="color:#64748b;font-size:13px">' + c.address + '</div>' +
+      connHtml +
       '<a href="https://www.google.com/maps/dir/?api=1&destination=' + c.lat + ',' + c.lng +
-      '" target="_blank" rel="noopener">Get directions</a>'
+      '" target="_blank" rel="noopener" style="display:inline-block;margin-top:8px;padding:4px 10px;background:#2563eb;color:white;border-radius:4px;text-decoration:none;font-size:12px">Get directions</a>'
     );
     markers.addLayer(marker);
   });
-
   map.addLayer(markers);
+
+  // --- Connector filter ---
+  var filterBtns = document.querySelectorAll('.filter-btn');
+  var chargerItems = document.querySelectorAll('.charger-item');
+
+  filterBtns.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      filterBtns.forEach(function (b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      var f = btn.dataset.filter;
+      chargerItems.forEach(function (item) {
+        var connList = item.dataset.connectors ? item.dataset.connectors.split(',') : [];
+        item.style.display = (f === 'all' || connList.indexOf(f) !== -1) ? '' : 'none';
+      });
+    });
+  });
+
+  // --- Copy postcode ---
+  document.querySelectorAll('.copy-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var original = btn.textContent;
+      navigator.clipboard.writeText(btn.dataset.copy).then(function () {
+        btn.textContent = 'Copied!';
+        btn.classList.add('copy-btn--success');
+        setTimeout(function () {
+          btn.textContent = original;
+          btn.classList.remove('copy-btn--success');
+        }, 1500);
+      });
+    });
+  });
 }());
 </script>
 

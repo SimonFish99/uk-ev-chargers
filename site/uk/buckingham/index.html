@@ -17,7 +17,10 @@
 
 <header>
 <div class="container">
-<a href="/" class="logo">PlugMap <span class="tagline">UK EV Charger Locator</span></a>
+<a href="/" class="logo">
+  <svg class="logo-bolt" viewBox="0 0 24 24" fill="currentColor" width="22" height="22" aria-hidden="true"><path d="M13 2L4.5 13.5H11L10 22L19.5 10.5H13Z"/></svg>
+  PlugMap <span class="tagline">UK EV Charger Locator</span>
+</a>
 </div>
 </header>
 
@@ -28,16 +31,37 @@
 </nav>
 
 <h1>EV Chargers in Buckingham</h1>
-<p class="page-intro">8 public charging stations found in Buckingham.</p>
+
+<div class="stats-bar">
+  <span class="stat-pill stat-total">8 stations</span>
+  <span class="stat-pill stat-rapid">1 rapid (50kW+)</span>
+  <span class="stat-pill stat-fast">7 fast (7–50kW)</span>
+  
+</div>
 
 <div id="map"></div>
 
-<ul class="charger-list">
+
+<div class="connector-filter">
+  <span class="filter-label">Filter:</span>
+  <button class="filter-btn active" data-filter="all">All</button>
+  
+  <button class="filter-btn" data-filter="CCS (Type 2)">CCS (Type 2)</button>
+  
+  <button class="filter-btn" data-filter="Type 2 (Socket Only)">Type 2 (Socket Only)</button>
+  
+</div>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Gawcott Fields Business Park</h2>
-  <p class="charger-address">Gawcott Fields Farm MK18 1TN
+<ul class="charger-list" id="charger-list">
+
+
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Gawcott Fields Business Park</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Gawcott Fields Farm <button class="copy-btn" data-copy="MK18 1TN">MK18 1TN</button>
   </p>
   
   <div class="charger-connections">
@@ -56,9 +80,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Tesco Superstore - Buckingham</h2>
-  <p class="charger-address">London Road MK18 1AB
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Tesco Superstore - Buckingham</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">London Road <button class="copy-btn" data-copy="MK18 1AB">MK18 1AB</button>
   </p>
   
   <div class="charger-connections">
@@ -80,9 +107,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">BP Buckingham SF Connect</h2>
-  <p class="charger-address">Stratford Road MK18 1NY
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2)">
+  <div class="charger-header">
+    <h2 class="charger-name">BP Buckingham SF Connect</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Stratford Road <button class="copy-btn" data-copy="MK18 1NY">MK18 1NY</button>
   </p>
   
   <div class="charger-connections">
@@ -101,9 +132,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Western Avenue Car Park, Buckingham</h2>
-  <p class="charger-address">Western Avenue MK18 1HP
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Western Avenue Car Park, Buckingham</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Western Avenue <button class="copy-btn" data-copy="MK18 1HP">MK18 1HP</button>
   </p>
   
   <div class="charger-connections">
@@ -122,9 +156,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Bucks Council, Cornwalls Car Park</h2>
-  <p class="charger-address">Cornwalls Car Park MK18 1RP
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Bucks Council, Cornwalls Car Park</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Cornwalls Car Park <button class="copy-btn" data-copy="MK18 1RP">MK18 1RP</button>
   </p>
   
   <div class="charger-connections">
@@ -146,9 +183,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">University of Buckingham</h2>
-  <p class="charger-address">Hunter Street Mk18 1AL
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">University of Buckingham</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Hunter Street <button class="copy-btn" data-copy="Mk18 1AL">Mk18 1AL</button>
   </p>
   
   <div class="charger-connections">
@@ -170,9 +210,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">University of Buckingham</h2>
-  <p class="charger-address">Hunter House MK18 1EG
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">University of Buckingham</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Hunter House <button class="copy-btn" data-copy="MK18 1EG">MK18 1EG</button>
   </p>
   
   <div class="charger-connections">
@@ -194,9 +237,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">University of Buckingham</h2>
-  <p class="charger-address">London Road MK18 1AD
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">University of Buckingham</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">London Road <button class="copy-btn" data-copy="MK18 1AD">MK18 1AD</button>
   </p>
   
   <div class="charger-connections">
@@ -221,6 +267,23 @@
 
 <p><a href="/" class="back-link">← All UK towns</a></p>
 
+
+<div class="nearby-towns">
+  <h2 class="nearby-heading">Nearby towns</h2>
+  <ul class="nearby-list">
+  
+    <li><a href="/uk/aylesbury/">Aylesbury</a></li>
+  
+    <li><a href="/uk/bletchley/">Bletchley</a></li>
+  
+    <li><a href="/uk/milton-keynes/">Milton Keynes</a></li>
+  
+    <li><a href="/uk/buckinghamshire/">Buckinghamshire</a></li>
+  
+  </ul>
+</div>
+
+
 </div>
 
 <footer>
@@ -233,26 +296,61 @@
 <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 <script>
 (function () {
+  // --- Map ---
   var map = L.map('map').setView([51.929926934675485, -0.8823572546463315], 12);
-
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
   }).addTo(map);
 
   var markers = L.markerClusterGroup();
-  var chargerData = [{"lat": 51.462419, "lng": -0.157305, "title": "Gawcott Fields Business Park", "address": "Gawcott Fields Farm"}, {"lat": 51.989261, "lng": -0.980356, "title": "Tesco Superstore - Buckingham", "address": "London Road"}, {"lat": 52.0021784774039, "lng": -0.982776037170652, "title": "BP Buckingham SF Connect", "address": "Stratford Road"}, {"lat": 52.000824, "lng": -0.991683, "title": "Western Avenue Car Park, Buckingham", "address": "Western Avenue"}, {"lat": 52.00064, "lng": -0.983784, "title": "Bucks Council, Cornwalls Car Park", "address": "Cornwalls Car Park"}, {"lat": 51.995892, "lng": -0.989562, "title": "University of Buckingham", "address": "Hunter Street"}, {"lat": 51.994114, "lng": -0.992127, "title": "University of Buckingham", "address": "Hunter House"}, {"lat": 51.994087, "lng": -0.981265, "title": "University of Buckingham", "address": "London Road"}];
+  var chargerData = [{"lat": 51.462419, "lng": -0.157305, "title": "Gawcott Fields Business Park", "address": "Gawcott Fields Farm", "connectors": ["Type 2 (Socket Only) · 7.2kW"]}, {"lat": 51.989261, "lng": -0.980356, "title": "Tesco Superstore - Buckingham", "address": "London Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 52.0021784774039, "lng": -0.982776037170652, "title": "BP Buckingham SF Connect", "address": "Stratford Road", "connectors": ["CCS (Type 2) · 150kW"]}, {"lat": 52.000824, "lng": -0.991683, "title": "Western Avenue Car Park, Buckingham", "address": "Western Avenue", "connectors": ["Type 2 (Socket Only) · 7kW"]}, {"lat": 52.00064, "lng": -0.983784, "title": "Bucks Council, Cornwalls Car Park", "address": "Cornwalls Car Park", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 51.995892, "lng": -0.989562, "title": "University of Buckingham", "address": "Hunter Street", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 51.994114, "lng": -0.992127, "title": "University of Buckingham", "address": "Hunter House", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 51.994087, "lng": -0.981265, "title": "University of Buckingham", "address": "London Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 22kW"]}];
 
   chargerData.forEach(function (c) {
+    var connHtml = c.connectors.length
+      ? '<div style="margin-top:6px;font-size:12px;color:#475569">' + c.connectors.join(' &middot; ') + '</div>'
+      : '';
     var marker = L.marker([c.lat, c.lng]);
     marker.bindPopup(
-      '<b>' + c.title + '</b><br>' + c.address + '<br><br>' +
+      '<b>' + c.title + '</b>' +
+      '<div style="color:#64748b;font-size:13px">' + c.address + '</div>' +
+      connHtml +
       '<a href="https://www.google.com/maps/dir/?api=1&destination=' + c.lat + ',' + c.lng +
-      '" target="_blank" rel="noopener">Get directions</a>'
+      '" target="_blank" rel="noopener" style="display:inline-block;margin-top:8px;padding:4px 10px;background:#2563eb;color:white;border-radius:4px;text-decoration:none;font-size:12px">Get directions</a>'
     );
     markers.addLayer(marker);
   });
-
   map.addLayer(markers);
+
+  // --- Connector filter ---
+  var filterBtns = document.querySelectorAll('.filter-btn');
+  var chargerItems = document.querySelectorAll('.charger-item');
+
+  filterBtns.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      filterBtns.forEach(function (b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      var f = btn.dataset.filter;
+      chargerItems.forEach(function (item) {
+        var connList = item.dataset.connectors ? item.dataset.connectors.split(',') : [];
+        item.style.display = (f === 'all' || connList.indexOf(f) !== -1) ? '' : 'none';
+      });
+    });
+  });
+
+  // --- Copy postcode ---
+  document.querySelectorAll('.copy-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var original = btn.textContent;
+      navigator.clipboard.writeText(btn.dataset.copy).then(function () {
+        btn.textContent = 'Copied!';
+        btn.classList.add('copy-btn--success');
+        setTimeout(function () {
+          btn.textContent = original;
+          btn.classList.remove('copy-btn--success');
+        }, 1500);
+      });
+    });
+  });
 }());
 </script>
 

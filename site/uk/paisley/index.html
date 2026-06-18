@@ -17,7 +17,10 @@
 
 <header>
 <div class="container">
-<a href="/" class="logo">PlugMap <span class="tagline">UK EV Charger Locator</span></a>
+<a href="/" class="logo">
+  <svg class="logo-bolt" viewBox="0 0 24 24" fill="currentColor" width="22" height="22" aria-hidden="true"><path d="M13 2L4.5 13.5H11L10 22L19.5 10.5H13Z"/></svg>
+  PlugMap <span class="tagline">UK EV Charger Locator</span>
+</a>
 </div>
 </header>
 
@@ -28,16 +31,42 @@
 </nav>
 
 <h1>EV Chargers in Paisley</h1>
-<p class="page-intro">9 public charging stations found in Paisley.</p>
+
+<div class="stats-bar">
+  <span class="stat-pill stat-total">9 stations</span>
+  <span class="stat-pill stat-rapid">3 rapid (50kW+)</span>
+  <span class="stat-pill stat-fast">6 fast (7–50kW)</span>
+  
+</div>
 
 <div id="map"></div>
 
-<ul class="charger-list">
+
+<div class="connector-filter">
+  <span class="filter-label">Filter:</span>
+  <button class="filter-btn active" data-filter="all">All</button>
+  
+  <button class="filter-btn" data-filter="CCS (Type 2)">CCS (Type 2)</button>
+  
+  <button class="filter-btn" data-filter="CHAdeMO">CHAdeMO</button>
+  
+  <button class="filter-btn" data-filter="Type 2 (Socket Only)">Type 2 (Socket Only)</button>
+  
+  <button class="filter-btn" data-filter="Type 2 (Tethered Connector) ">Type 2 (Tethered Connector) </button>
+  
+</div>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Abbotsinch Retail Park</h2>
-  <p class="charger-address">Washington Road PA3 4EP
+<ul class="charger-list" id="charger-list">
+
+
+<li class="charger-item charger-item--rapid" data-connectors="CHAdeMO,CCS (Type 2),Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Abbotsinch Retail Park</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Washington Road <button class="copy-btn" data-copy="PA3 4EP">PA3 4EP</button>
   </p>
   
   <div class="charger-connections">
@@ -71,9 +100,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Morrisons</h2>
-  <p class="charger-address">Anchor Mills PA1 1GZ
+<li class="charger-item charger-item--rapid" data-connectors="CHAdeMO,Type 2 (Socket Only),Type 2 (Tethered Connector) ">
+  <div class="charger-header">
+    <h2 class="charger-name">Morrisons</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Anchor Mills <button class="copy-btn" data-copy="PA1 1GZ">PA1 1GZ</button>
   </p>
   
   <div class="charger-connections">
@@ -98,9 +131,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Bridge Street Car Park</h2>
-  <p class="charger-address">Bridge Street PA1 1XN
+<li class="charger-item charger-item--rapid" data-connectors="Type 2 (Tethered Connector) ,CHAdeMO,CCS (Type 2)">
+  <div class="charger-header">
+    <h2 class="charger-name">Bridge Street Car Park</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Bridge Street <button class="copy-btn" data-copy="PA1 1XN">PA1 1XN</button>
   </p>
   
   <div class="charger-connections">
@@ -125,9 +162,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Falcon Centre</h2>
-  <p class="charger-address">Falcon Crescent PA3 1NS
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Falcon Centre</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Falcon Crescent <button class="copy-btn" data-copy="PA3 1NS">PA3 1NS</button>
   </p>
   
   <div class="charger-connections">
@@ -146,9 +186,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Glenburn Community Centre</h2>
-  <p class="charger-address">Fairway Avenue PA2 8DX
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Glenburn Community Centre</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Fairway Avenue <button class="copy-btn" data-copy="PA2 8DX">PA2 8DX</button>
   </p>
   
   <div class="charger-connections">
@@ -167,9 +210,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Tesco Superstore-Paisley</h2>
-  <p class="charger-address">East Lane PA1 1QA
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Tesco Superstore-Paisley</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">East Lane <button class="copy-btn" data-copy="PA1 1QA">PA1 1QA</button>
   </p>
   
   <div class="charger-connections">
@@ -191,9 +237,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">1 West Avenue</h2>
-  <p class="charger-address">1 West Avenue PA1 2FB
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">1 West Avenue</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">1 West Avenue <button class="copy-btn" data-copy="PA1 2FB">PA1 2FB</button>
   </p>
   
   <div class="charger-connections">
@@ -215,9 +264,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Community Meals Service, Paisley</h2>
-  <p class="charger-address">5 Clark Street PA3 1RX
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Community Meals Service, Paisley</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">5 Clark Street <button class="copy-btn" data-copy="PA3 1RX">PA3 1RX</button>
   </p>
   
   <div class="charger-connections">
@@ -239,9 +291,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">41 Storie Street</h2>
-  <p class="charger-address">41 Storie Street PA1 2BE
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">41 Storie Street</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">41 Storie Street <button class="copy-btn" data-copy="PA1 2BE">PA1 2BE</button>
   </p>
   
   <div class="charger-connections">
@@ -266,6 +321,23 @@
 
 <p><a href="/" class="back-link">← All UK towns</a></p>
 
+
+<div class="nearby-towns">
+  <h2 class="nearby-heading">Nearby towns</h2>
+  <ul class="nearby-list">
+  
+    <li><a href="/uk/johnstone/">Johnstone</a></li>
+  
+    <li><a href="/uk/glasgow/">Glasgow</a></li>
+  
+    <li><a href="/uk/kilmarnock/">Kilmarnock</a></li>
+  
+    <li><a href="/uk/east-kilbride/">East Kilbride</a></li>
+  
+  </ul>
+</div>
+
+
 </div>
 
 <footer>
@@ -278,26 +350,61 @@
 <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 <script>
 (function () {
+  // --- Map ---
   var map = L.map('map').setView([55.845158999999995, -4.432443777777777], 12);
-
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
   }).addTo(map);
 
   var markers = L.markerClusterGroup();
-  var chargerData = [{"lat": 55.860328, "lng": -4.415917, "title": "Abbotsinch Retail Park", "address": "Washington Road"}, {"lat": 55.842129, "lng": -4.415631, "title": "Morrisons", "address": "Anchor Mills"}, {"lat": 55.843247, "lng": -4.420461, "title": "Bridge Street Car Park", "address": "Bridge Street"}, {"lat": 55.8499, "lng": -4.4532, "title": "Falcon Centre", "address": "Falcon Crescent"}, {"lat": 55.8235, "lng": -4.4429, "title": "Glenburn Community Centre", "address": "Fairway Avenue"}, {"lat": 55.846057, "lng": -4.402967, "title": "Tesco Superstore-Paisley", "address": "East Lane"}, {"lat": 55.843554, "lng": -4.477321, "title": "1 West Avenue", "address": "1 West Avenue"}, {"lat": 55.854042, "lng": -4.435102, "title": "Community Meals Service, Paisley", "address": "5 Clark Street"}, {"lat": 55.843674, "lng": -4.428495, "title": "41 Storie Street", "address": "41 Storie Street"}];
+  var chargerData = [{"lat": 55.860328, "lng": -4.415917, "title": "Abbotsinch Retail Park", "address": "Washington Road", "connectors": ["CHAdeMO · 50kW", "CHAdeMO · 50kW", "CCS (Type 2) · 50kW", "CCS (Type 2) · 50kW", "Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 55.842129, "lng": -4.415631, "title": "Morrisons", "address": "Anchor Mills", "connectors": ["CHAdeMO · 50kW", "Type 2 (Socket Only) · 22kW", "Type 2 (Tethered Connector)  · 50kW"]}, {"lat": 55.843247, "lng": -4.420461, "title": "Bridge Street Car Park", "address": "Bridge Street", "connectors": ["Type 2 (Tethered Connector)  · 43kW", "CHAdeMO · 50kW", "CCS (Type 2) · 50kW"]}, {"lat": 55.8499, "lng": -4.4532, "title": "Falcon Centre", "address": "Falcon Crescent", "connectors": ["Type 2 (Socket Only) · 7kW"]}, {"lat": 55.8235, "lng": -4.4429, "title": "Glenburn Community Centre", "address": "Fairway Avenue", "connectors": ["Type 2 (Socket Only) · 7kW"]}, {"lat": 55.846057, "lng": -4.402967, "title": "Tesco Superstore-Paisley", "address": "East Lane", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 55.843554, "lng": -4.477321, "title": "1 West Avenue", "address": "1 West Avenue", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 55.854042, "lng": -4.435102, "title": "Community Meals Service, Paisley", "address": "5 Clark Street", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 55.843674, "lng": -4.428495, "title": "41 Storie Street", "address": "41 Storie Street", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}];
 
   chargerData.forEach(function (c) {
+    var connHtml = c.connectors.length
+      ? '<div style="margin-top:6px;font-size:12px;color:#475569">' + c.connectors.join(' &middot; ') + '</div>'
+      : '';
     var marker = L.marker([c.lat, c.lng]);
     marker.bindPopup(
-      '<b>' + c.title + '</b><br>' + c.address + '<br><br>' +
+      '<b>' + c.title + '</b>' +
+      '<div style="color:#64748b;font-size:13px">' + c.address + '</div>' +
+      connHtml +
       '<a href="https://www.google.com/maps/dir/?api=1&destination=' + c.lat + ',' + c.lng +
-      '" target="_blank" rel="noopener">Get directions</a>'
+      '" target="_blank" rel="noopener" style="display:inline-block;margin-top:8px;padding:4px 10px;background:#2563eb;color:white;border-radius:4px;text-decoration:none;font-size:12px">Get directions</a>'
     );
     markers.addLayer(marker);
   });
-
   map.addLayer(markers);
+
+  // --- Connector filter ---
+  var filterBtns = document.querySelectorAll('.filter-btn');
+  var chargerItems = document.querySelectorAll('.charger-item');
+
+  filterBtns.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      filterBtns.forEach(function (b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      var f = btn.dataset.filter;
+      chargerItems.forEach(function (item) {
+        var connList = item.dataset.connectors ? item.dataset.connectors.split(',') : [];
+        item.style.display = (f === 'all' || connList.indexOf(f) !== -1) ? '' : 'none';
+      });
+    });
+  });
+
+  // --- Copy postcode ---
+  document.querySelectorAll('.copy-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var original = btn.textContent;
+      navigator.clipboard.writeText(btn.dataset.copy).then(function () {
+        btn.textContent = 'Copied!';
+        btn.classList.add('copy-btn--success');
+        setTimeout(function () {
+          btn.textContent = original;
+          btn.classList.remove('copy-btn--success');
+        }, 1500);
+      });
+    });
+  });
 }());
 </script>
 

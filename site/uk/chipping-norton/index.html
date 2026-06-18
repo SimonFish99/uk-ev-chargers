@@ -17,7 +17,10 @@
 
 <header>
 <div class="container">
-<a href="/" class="logo">PlugMap <span class="tagline">UK EV Charger Locator</span></a>
+<a href="/" class="logo">
+  <svg class="logo-bolt" viewBox="0 0 24 24" fill="currentColor" width="22" height="22" aria-hidden="true"><path d="M13 2L4.5 13.5H11L10 22L19.5 10.5H13Z"/></svg>
+  PlugMap <span class="tagline">UK EV Charger Locator</span>
+</a>
 </div>
 </header>
 
@@ -28,16 +31,41 @@
 </nav>
 
 <h1>EV Chargers in Chipping Norton</h1>
-<p class="page-intro">5 public charging stations found in Chipping Norton.</p>
+
+<div class="stats-bar">
+  <span class="stat-pill stat-total">5 stations</span>
+  <span class="stat-pill stat-rapid">1 rapid (50kW+)</span>
+  <span class="stat-pill stat-fast">4 fast (7–50kW)</span>
+  
+</div>
 
 <div id="map"></div>
 
-<ul class="charger-list">
+
+<div class="connector-filter">
+  <span class="filter-label">Filter:</span>
+  <button class="filter-btn active" data-filter="all">All</button>
+  
+  <button class="filter-btn" data-filter="CCS (Type 2)">CCS (Type 2)</button>
+  
+  <button class="filter-btn" data-filter="CHAdeMO">CHAdeMO</button>
+  
+  <button class="filter-btn" data-filter="Type 2 (Socket Only)">Type 2 (Socket Only)</button>
+  
+  <button class="filter-btn" data-filter="Type 2 (Tethered Connector) ">Type 2 (Tethered Connector) </button>
+  
+</div>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">ALDI Chipping Norton</h2>
-  <p class="charger-address">Banbury Road OX7 5SY
+<ul class="charger-list" id="charger-list">
+
+
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">ALDI Chipping Norton</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Banbury Road <button class="copy-btn" data-copy="OX7 5SY">OX7 5SY</button>
   </p>
   
   <div class="charger-connections">
@@ -65,9 +93,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">SHELL RECHARGE LITTLE WAITROSE HOLYWELL</h2>
-  <p class="charger-address">Chapel Cross Roads OX7 5SX
+<li class="charger-item charger-item--rapid" data-connectors="CHAdeMO,CCS (Type 2)">
+  <div class="charger-header">
+    <h2 class="charger-name">SHELL RECHARGE LITTLE WAITROSE HOLYWELL</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Chapel Cross Roads <button class="copy-btn" data-copy="OX7 5SX">OX7 5SX</button>
   </p>
   
   <div class="charger-connections">
@@ -89,9 +121,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Willow Gardens</h2>
-  <p class="charger-address">Russell Way OX7 5FX
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Willow Gardens</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Russell Way <button class="copy-btn" data-copy="OX7 5FX">OX7 5FX</button>
   </p>
   
   <div class="charger-connections">
@@ -119,8 +154,11 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">New Street Carpark</h2>
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only),Type 2 (Tethered Connector) ">
+  <div class="charger-header">
+    <h2 class="charger-name">New Street Carpark</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
   <p class="charger-address">New Street
   </p>
   
@@ -155,9 +193,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Owen Mumford Ltd</h2>
-  <p class="charger-address">Primsdown Industrial Estate OX7 5XP
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Owen Mumford Ltd</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Primsdown Industrial Estate <button class="copy-btn" data-copy="OX7 5XP">OX7 5XP</button>
   </p>
   
   <div class="charger-connections">
@@ -179,6 +220,23 @@
 
 <p><a href="/" class="back-link">← All UK towns</a></p>
 
+
+<div class="nearby-towns">
+  <h2 class="nearby-heading">Nearby towns</h2>
+  <ul class="nearby-list">
+  
+    <li><a href="/uk/banbury/">Banbury</a></li>
+  
+    <li><a href="/uk/stratford-on-avon/">Stratford-on-Avon</a></li>
+  
+    <li><a href="/uk/stratford-upon-avon/">Stratford-upon-Avon</a></li>
+  
+    <li><a href="/uk/cherwell/">Cherwell</a></li>
+  
+  </ul>
+</div>
+
+
 </div>
 
 <footer>
@@ -191,26 +249,61 @@
 <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 <script>
 (function () {
+  // --- Map ---
   var map = L.map('map').setView([51.9447319909288, -1.5408108185371288], 12);
-
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
   }).addTo(map);
 
   var markers = L.markerClusterGroup();
-  var chargerData = [{"lat": 51.945835366185435, "lng": -1.5379239015763915, "title": "ALDI Chipping Norton", "address": "Banbury Road"}, {"lat": 51.95121, "lng": -1.525395, "title": "SHELL RECHARGE LITTLE WAITROSE HOLYWELL", "address": "Chapel Cross Roads"}, {"lat": 51.944583, "lng": -1.535028, "title": "Willow Gardens", "address": "Russell Way"}, {"lat": 51.940587588458584, "lng": -1.547606191109253, "title": "New Street Carpark", "address": "New Street"}, {"lat": 51.941444, "lng": -1.558101, "title": "Owen Mumford Ltd", "address": "Primsdown Industrial Estate"}];
+  var chargerData = [{"lat": 51.945835366185435, "lng": -1.5379239015763915, "title": "ALDI Chipping Norton", "address": "Banbury Road", "connectors": ["Type 2 (Socket Only) · 11kW", "Type 2 (Socket Only) · 11kW", "Type 2 (Socket Only) · 11kW", "Type 2 (Socket Only) · 11kW"]}, {"lat": 51.95121, "lng": -1.525395, "title": "SHELL RECHARGE LITTLE WAITROSE HOLYWELL", "address": "Chapel Cross Roads", "connectors": ["CHAdeMO · 60kW", "CCS (Type 2) · 180kW"]}, {"lat": 51.944583, "lng": -1.535028, "title": "Willow Gardens", "address": "Russell Way", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 51.940587588458584, "lng": -1.547606191109253, "title": "New Street Carpark", "address": "New Street", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Tethered Connector)  · 22kW", "Type 2 (Tethered Connector)  · 22kW", "Type 2 (Tethered Connector)  · 22kW", "Type 2 (Tethered Connector)  · 22kW", "Type 2 (Tethered Connector)  · 22kW"]}, {"lat": 51.941444, "lng": -1.558101, "title": "Owen Mumford Ltd", "address": "Primsdown Industrial Estate", "connectors": ["Type 2 (Socket Only) · 7kW"]}];
 
   chargerData.forEach(function (c) {
+    var connHtml = c.connectors.length
+      ? '<div style="margin-top:6px;font-size:12px;color:#475569">' + c.connectors.join(' &middot; ') + '</div>'
+      : '';
     var marker = L.marker([c.lat, c.lng]);
     marker.bindPopup(
-      '<b>' + c.title + '</b><br>' + c.address + '<br><br>' +
+      '<b>' + c.title + '</b>' +
+      '<div style="color:#64748b;font-size:13px">' + c.address + '</div>' +
+      connHtml +
       '<a href="https://www.google.com/maps/dir/?api=1&destination=' + c.lat + ',' + c.lng +
-      '" target="_blank" rel="noopener">Get directions</a>'
+      '" target="_blank" rel="noopener" style="display:inline-block;margin-top:8px;padding:4px 10px;background:#2563eb;color:white;border-radius:4px;text-decoration:none;font-size:12px">Get directions</a>'
     );
     markers.addLayer(marker);
   });
-
   map.addLayer(markers);
+
+  // --- Connector filter ---
+  var filterBtns = document.querySelectorAll('.filter-btn');
+  var chargerItems = document.querySelectorAll('.charger-item');
+
+  filterBtns.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      filterBtns.forEach(function (b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      var f = btn.dataset.filter;
+      chargerItems.forEach(function (item) {
+        var connList = item.dataset.connectors ? item.dataset.connectors.split(',') : [];
+        item.style.display = (f === 'all' || connList.indexOf(f) !== -1) ? '' : 'none';
+      });
+    });
+  });
+
+  // --- Copy postcode ---
+  document.querySelectorAll('.copy-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var original = btn.textContent;
+      navigator.clipboard.writeText(btn.dataset.copy).then(function () {
+        btn.textContent = 'Copied!';
+        btn.classList.add('copy-btn--success');
+        setTimeout(function () {
+          btn.textContent = original;
+          btn.classList.remove('copy-btn--success');
+        }, 1500);
+      });
+    });
+  });
 }());
 </script>
 

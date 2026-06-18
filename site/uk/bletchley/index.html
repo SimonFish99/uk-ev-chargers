@@ -17,7 +17,10 @@
 
 <header>
 <div class="container">
-<a href="/" class="logo">PlugMap <span class="tagline">UK EV Charger Locator</span></a>
+<a href="/" class="logo">
+  <svg class="logo-bolt" viewBox="0 0 24 24" fill="currentColor" width="22" height="22" aria-hidden="true"><path d="M13 2L4.5 13.5H11L10 22L19.5 10.5H13Z"/></svg>
+  PlugMap <span class="tagline">UK EV Charger Locator</span>
+</a>
 </div>
 </header>
 
@@ -28,16 +31,39 @@
 </nav>
 
 <h1>EV Chargers in Bletchley</h1>
-<p class="page-intro">6 public charging stations found in Bletchley.</p>
+
+<div class="stats-bar">
+  <span class="stat-pill stat-total">6 stations</span>
+  <span class="stat-pill stat-rapid">1 rapid (50kW+)</span>
+  <span class="stat-pill stat-fast">5 fast (7–50kW)</span>
+  
+</div>
 
 <div id="map"></div>
 
-<ul class="charger-list">
+
+<div class="connector-filter">
+  <span class="filter-label">Filter:</span>
+  <button class="filter-btn active" data-filter="all">All</button>
+  
+  <button class="filter-btn" data-filter="CCS (Type 2)">CCS (Type 2)</button>
+  
+  <button class="filter-btn" data-filter="CHAdeMO">CHAdeMO</button>
+  
+  <button class="filter-btn" data-filter="Type 2 (Socket Only)">Type 2 (Socket Only)</button>
+  
+</div>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Saba UK-Bletchley Station</h2>
-  <p class="charger-address">Bletchley Station MK2 6DZ
+<ul class="charger-list" id="charger-list">
+
+
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Saba UK-Bletchley Station</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Bletchley Station <button class="copy-btn" data-copy="MK2 6DZ">MK2 6DZ</button>
   </p>
   
   <div class="charger-connections">
@@ -56,9 +82,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Westminster Drive 1</h2>
-  <p class="charger-address">Westminster Drive 1 MK3 6LG
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Westminster Drive 1</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Westminster Drive 1 <button class="copy-btn" data-copy="MK3 6LG">MK3 6LG</button>
   </p>
   
   <div class="charger-connections">
@@ -80,9 +109,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Tees Way 1</h2>
-  <p class="charger-address">Tees Way 1 MK3 7PU
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Tees Way 1</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Tees Way 1 <button class="copy-btn" data-copy="MK3 7PU">MK3 7PU</button>
   </p>
   
   <div class="charger-connections">
@@ -104,9 +136,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Kennet Drive 2</h2>
-  <p class="charger-address">Kennet Drive 2 MK3 7KW
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Kennet Drive 2</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Kennet Drive 2 <button class="copy-btn" data-copy="MK3 7KW">MK3 7KW</button>
   </p>
   
   <div class="charger-connections">
@@ -128,9 +163,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Lancaster Gate 1</h2>
-  <p class="charger-address">Lancaster Gate 1 MK3 6AA
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Lancaster Gate 1</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Lancaster Gate 1 <button class="copy-btn" data-copy="MK3 6AA">MK3 6AA</button>
   </p>
   
   <div class="charger-connections">
@@ -152,9 +190,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Tesco Extra Milton Keynes Bletchley</h2>
-  <p class="charger-address"> Watling Street MK1 1DD
+<li class="charger-item charger-item--rapid" data-connectors="Type 2 (Socket Only),CCS (Type 2),CHAdeMO">
+  <div class="charger-header">
+    <h2 class="charger-name">Tesco Extra Milton Keynes Bletchley</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address"> Watling Street <button class="copy-btn" data-copy="MK1 1DD">MK1 1DD</button>
   </p>
   
   <div class="charger-connections">
@@ -185,6 +227,23 @@
 
 <p><a href="/" class="back-link">← All UK towns</a></p>
 
+
+<div class="nearby-towns">
+  <h2 class="nearby-heading">Nearby towns</h2>
+  <ul class="nearby-list">
+  
+    <li><a href="/uk/milton-keynes/">Milton Keynes</a></li>
+  
+    <li><a href="/uk/lutterworth/">Lutterworth</a></li>
+  
+    <li><a href="/uk/leighton-buzzard/">Leighton Buzzard</a></li>
+  
+    <li><a href="/uk/buckingham/">Buckingham</a></li>
+  
+  </ul>
+</div>
+
+
 </div>
 
 <footer>
@@ -197,26 +256,61 @@
 <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 <script>
 (function () {
+  // --- Map ---
   var map = L.map('map').setView([51.997795165784, -0.7485866418701197], 12);
-
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
   }).addTo(map);
 
   var markers = L.markerClusterGroup();
-  var chargerData = [{"lat": 51.9955856, "lng": -0.7372719, "title": "Saba UK-Bletchley Station", "address": "Bletchley Station"}, {"lat": 52.001207, "lng": -0.749183, "title": "Westminster Drive 1", "address": "Westminster Drive 1"}, {"lat": 51.99937, "lng": -0.763406, "title": "Tees Way 1", "address": "Tees Way 1"}, {"lat": 51.997231, "lng": -0.756844, "title": "Kennet Drive 2", "address": "Kennet Drive 2"}, {"lat": 51.992332, "lng": -0.759126, "title": "Lancaster Gate 1", "address": "Lancaster Gate 1"}, {"lat": 52.001045394704, "lng": -0.725688951220718, "title": "Tesco Extra Milton Keynes Bletchley", "address": " Watling Street"}];
+  var chargerData = [{"lat": 51.9955856, "lng": -0.7372719, "title": "Saba UK-Bletchley Station", "address": "Bletchley Station", "connectors": ["Type 2 (Socket Only) · 7kW"]}, {"lat": 52.001207, "lng": -0.749183, "title": "Westminster Drive 1", "address": "Westminster Drive 1", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 51.99937, "lng": -0.763406, "title": "Tees Way 1", "address": "Tees Way 1", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 51.997231, "lng": -0.756844, "title": "Kennet Drive 2", "address": "Kennet Drive 2", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 51.992332, "lng": -0.759126, "title": "Lancaster Gate 1", "address": "Lancaster Gate 1", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 52.001045394704, "lng": -0.725688951220718, "title": "Tesco Extra Milton Keynes Bletchley", "address": " Watling Street", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 7kW", "CCS (Type 2) · 50kW", "CHAdeMO · 50kW"]}];
 
   chargerData.forEach(function (c) {
+    var connHtml = c.connectors.length
+      ? '<div style="margin-top:6px;font-size:12px;color:#475569">' + c.connectors.join(' &middot; ') + '</div>'
+      : '';
     var marker = L.marker([c.lat, c.lng]);
     marker.bindPopup(
-      '<b>' + c.title + '</b><br>' + c.address + '<br><br>' +
+      '<b>' + c.title + '</b>' +
+      '<div style="color:#64748b;font-size:13px">' + c.address + '</div>' +
+      connHtml +
       '<a href="https://www.google.com/maps/dir/?api=1&destination=' + c.lat + ',' + c.lng +
-      '" target="_blank" rel="noopener">Get directions</a>'
+      '" target="_blank" rel="noopener" style="display:inline-block;margin-top:8px;padding:4px 10px;background:#2563eb;color:white;border-radius:4px;text-decoration:none;font-size:12px">Get directions</a>'
     );
     markers.addLayer(marker);
   });
-
   map.addLayer(markers);
+
+  // --- Connector filter ---
+  var filterBtns = document.querySelectorAll('.filter-btn');
+  var chargerItems = document.querySelectorAll('.charger-item');
+
+  filterBtns.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      filterBtns.forEach(function (b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      var f = btn.dataset.filter;
+      chargerItems.forEach(function (item) {
+        var connList = item.dataset.connectors ? item.dataset.connectors.split(',') : [];
+        item.style.display = (f === 'all' || connList.indexOf(f) !== -1) ? '' : 'none';
+      });
+    });
+  });
+
+  // --- Copy postcode ---
+  document.querySelectorAll('.copy-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var original = btn.textContent;
+      navigator.clipboard.writeText(btn.dataset.copy).then(function () {
+        btn.textContent = 'Copied!';
+        btn.classList.add('copy-btn--success');
+        setTimeout(function () {
+          btn.textContent = original;
+          btn.classList.remove('copy-btn--success');
+        }, 1500);
+      });
+    });
+  });
 }());
 </script>
 

@@ -17,7 +17,10 @@
 
 <header>
 <div class="container">
-<a href="/" class="logo">PlugMap <span class="tagline">UK EV Charger Locator</span></a>
+<a href="/" class="logo">
+  <svg class="logo-bolt" viewBox="0 0 24 24" fill="currentColor" width="22" height="22" aria-hidden="true"><path d="M13 2L4.5 13.5H11L10 22L19.5 10.5H13Z"/></svg>
+  PlugMap <span class="tagline">UK EV Charger Locator</span>
+</a>
 </div>
 </header>
 
@@ -28,16 +31,44 @@
 </nav>
 
 <h1>EV Chargers in Sutton</h1>
-<p class="page-intro">13 public charging stations found in Sutton.</p>
+
+<div class="stats-bar">
+  <span class="stat-pill stat-total">13 stations</span>
+  <span class="stat-pill stat-rapid">7 rapid (50kW+)</span>
+  <span class="stat-pill stat-fast">6 fast (7–50kW)</span>
+  
+</div>
 
 <div id="map"></div>
 
-<ul class="charger-list">
+
+<div class="connector-filter">
+  <span class="filter-label">Filter:</span>
+  <button class="filter-btn active" data-filter="all">All</button>
+  
+  <button class="filter-btn" data-filter="CCS (Type 2)">CCS (Type 2)</button>
+  
+  <button class="filter-btn" data-filter="CHAdeMO">CHAdeMO</button>
+  
+  <button class="filter-btn" data-filter="Type 1 (J1772)">Type 1 (J1772)</button>
+  
+  <button class="filter-btn" data-filter="Type 2 (Socket Only)">Type 2 (Socket Only)</button>
+  
+  <button class="filter-btn" data-filter="Type 2 (Tethered Connector) ">Type 2 (Tethered Connector) </button>
+  
+</div>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">MFG Sutton Court</h2>
-  <p class="charger-address">Brighton Road SM2 5BN
+<ul class="charger-list" id="charger-list">
+
+
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2),CHAdeMO">
+  <div class="charger-header">
+    <h2 class="charger-name">MFG Sutton Court</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Brighton Road <button class="copy-btn" data-copy="SM2 5BN">SM2 5BN</button>
   </p>
   
   <div class="charger-connections">
@@ -59,9 +90,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Saint Helier Hospital</h2>
-  <p class="charger-address">Carshalton SM5 1AA
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Saint Helier Hospital</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Carshalton <button class="copy-btn" data-copy="SM5 1AA">SM5 1AA</button>
   </p>
   
   <div class="charger-connections">
@@ -83,9 +117,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Gibson Road Car Park</h2>
-  <p class="charger-address">Gibson Road Car Park SM1 2RF
+<li class="charger-item charger-item--fast" data-connectors="Type 1 (J1772),Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Gibson Road Car Park</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Gibson Road Car Park <button class="copy-btn" data-copy="SM1 2RF">SM1 2RF</button>
   </p>
   
   <div class="charger-connections">
@@ -107,9 +144,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">SHELL RECHARGE LITTLE WAITROSE SUTTON</h2>
-  <p class="charger-address">56-58 Cheam Road SM1 2SS
+<li class="charger-item charger-item--rapid" data-connectors="CHAdeMO,CCS (Type 2)">
+  <div class="charger-header">
+    <h2 class="charger-name">SHELL RECHARGE LITTLE WAITROSE SUTTON</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">56-58 Cheam Road <button class="copy-btn" data-copy="SM1 2SS">SM1 2SS</button>
   </p>
   
   <div class="charger-connections">
@@ -131,9 +172,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Morrisons Sutton</h2>
-  <p class="charger-address">31 High Street SM1 1DD
+<li class="charger-item charger-item--rapid" data-connectors="Type 2 (Socket Only),CHAdeMO,Type 2 (Tethered Connector) ">
+  <div class="charger-header">
+    <h2 class="charger-name">Morrisons Sutton</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">31 High Street <button class="copy-btn" data-copy="SM1 1DD">SM1 1DD</button>
   </p>
   
   <div class="charger-connections">
@@ -158,9 +203,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Wallington Library (Shotfield)</h2>
-  <p class="charger-address">Wallington Library (Shotfield) SM6 0HY
+<li class="charger-item charger-item--fast" data-connectors="Type 1 (J1772),Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Wallington Library (Shotfield)</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Wallington Library (Shotfield) <button class="copy-btn" data-copy="SM6 0HY">SM6 0HY</button>
   </p>
   
   <div class="charger-connections">
@@ -182,9 +230,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Kingsway Road Car Park (site 2)</h2>
-  <p class="charger-address">Kingsway Road Car Park (site 2) SM3 8DR
+<li class="charger-item charger-item--fast" data-connectors="Type 1 (J1772),Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Kingsway Road Car Park (site 2)</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Kingsway Road Car Park (site 2) <button class="copy-btn" data-copy="SM3 8DR">SM3 8DR</button>
   </p>
   
   <div class="charger-connections">
@@ -206,9 +257,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Sainsbury&#39;s North Cheam</h2>
-  <p class="charger-address">566 London Road SM3 9AA
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Sainsbury&#39;s North Cheam</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">566 London Road <button class="copy-btn" data-copy="SM3 9AA">SM3 9AA</button>
   </p>
   
   <div class="charger-connections">
@@ -227,9 +281,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Cheam Road 56-58</h2>
-  <p class="charger-address">Cheam Road 56-58 SM1 2SS
+<li class="charger-item charger-item--rapid" data-connectors="CHAdeMO,CCS (Type 2)">
+  <div class="charger-header">
+    <h2 class="charger-name">Cheam Road 56-58</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Cheam Road 56-58 <button class="copy-btn" data-copy="SM1 2SS">SM1 2SS</button>
   </p>
   
   <div class="charger-connections">
@@ -257,9 +315,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Sainsbury&#39;s North Cheam</h2>
-  <p class="charger-address">566 London Road SM3 9AA
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Sainsbury&#39;s North Cheam</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">566 London Road <button class="copy-btn" data-copy="SM3 9AA">SM3 9AA</button>
   </p>
   
   <div class="charger-connections">
@@ -278,9 +339,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">716-702 London Road</h2>
-  <p class="charger-address">716-702 London Road SM3 9BY
+<li class="charger-item charger-item--rapid" data-connectors="CHAdeMO,CCS (Type 2),Type 2 (Tethered Connector) ">
+  <div class="charger-header">
+    <h2 class="charger-name">716-702 London Road</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">716-702 London Road <button class="copy-btn" data-copy="SM3 9BY">SM3 9BY</button>
   </p>
   
   <div class="charger-connections">
@@ -305,9 +370,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">St Dunstan&#39;s Hill Parking/Charging</h2>
-  <p class="charger-address">2 Saint Dunstan&#39;s Hill SM1 2UE
+<li class="charger-item charger-item--rapid" data-connectors="CHAdeMO,CCS (Type 2),Type 2 (Tethered Connector) ">
+  <div class="charger-header">
+    <h2 class="charger-name">St Dunstan&#39;s Hill Parking/Charging</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">2 Saint Dunstan&#39;s Hill <button class="copy-btn" data-copy="SM1 2UE">SM1 2UE</button>
   </p>
   
   <div class="charger-connections">
@@ -332,9 +401,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">A232 High Street</h2>
-  <p class="charger-address">62 Grove Road SM1 1BT
+<li class="charger-item charger-item--rapid" data-connectors="CHAdeMO">
+  <div class="charger-header">
+    <h2 class="charger-name">A232 High Street</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">62 Grove Road <button class="copy-btn" data-copy="SM1 1BT">SM1 1BT</button>
   </p>
   
   <div class="charger-connections">
@@ -359,6 +432,23 @@
 
 <p><a href="/" class="back-link">← All UK towns</a></p>
 
+
+<div class="nearby-towns">
+  <h2 class="nearby-heading">Nearby towns</h2>
+  <ul class="nearby-list">
+  
+    <li><a href="/uk/lower-morden/">Lower Morden</a></li>
+  
+    <li><a href="/uk/morden/">Morden</a></li>
+  
+    <li><a href="/uk/merton/">Merton</a></li>
+  
+    <li><a href="/uk/wimbledon-town-and-dundonald/">Wimbledon Town &amp; Dundonald</a></li>
+  
+  </ul>
+</div>
+
+
 </div>
 
 <footer>
@@ -371,26 +461,61 @@
 <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 <script>
 (function () {
+  // --- Map ---
   var map = L.map('map').setView([51.36546738386207, -0.20051477654792269], 12);
-
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
   }).addTo(map);
 
   var markers = L.markerClusterGroup();
-  var chargerData = [{"lat": 51.3575529902069, "lng": -0.191653095122995, "title": "MFG Sutton Court", "address": "Brighton Road"}, {"lat": 51.380474, "lng": -0.184104, "title": "Saint Helier Hospital", "address": "Carshalton"}, {"lat": 51.362125, "lng": -0.1967, "title": "Gibson Road Car Park", "address": "Gibson Road Car Park"}, {"lat": 51.361435, "lng": -0.197464, "title": "SHELL RECHARGE LITTLE WAITROSE SUTTON", "address": "56-58 Cheam Road"}, {"lat": 51.36079, "lng": -0.194311, "title": "Morrisons Sutton", "address": "31 High Street"}, {"lat": 51.358314, "lng": -0.151261, "title": "Wallington Library (Shotfield)", "address": "Wallington Library (Shotfield)"}, {"lat": 51.35691, "lng": -0.217904, "title": "Kingsway Road Car Park (site 2)", "address": "Kingsway Road Car Park (site 2)"}, {"lat": 51.372056, "lng": -0.223934, "title": "Sainsbury's North Cheam", "address": "566 London Road"}, {"lat": 51.361651, "lng": -0.200196, "title": "Cheam Road 56-58", "address": "Cheam Road 56-58"}, {"lat": 51.372056, "lng": -0.223934, "title": "Sainsbury's North Cheam", "address": "566 London Road"}, {"lat": 51.376366, "lng": -0.222026, "title": "716-702 London Road", "address": "716-702 London Road"}, {"lat": 51.371315, "lng": -0.209089, "title": "St Dunstan's Hill Parking/Charging", "address": "2 Saint Dunstan's Hill"}, {"lat": 51.360031, "lng": -0.194116, "title": "A232 High Street", "address": "62 Grove Road"}];
+  var chargerData = [{"lat": 51.3575529902069, "lng": -0.191653095122995, "title": "MFG Sutton Court", "address": "Brighton Road", "connectors": ["CCS (Type 2) · 150kW", "CHAdeMO · 50kW"]}, {"lat": 51.380474, "lng": -0.184104, "title": "Saint Helier Hospital", "address": "Carshalton", "connectors": ["Type 2 (Socket Only) · 3.7kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 51.362125, "lng": -0.1967, "title": "Gibson Road Car Park", "address": "Gibson Road Car Park", "connectors": ["Type 1 (J1772) · 3kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 51.361435, "lng": -0.197464, "title": "SHELL RECHARGE LITTLE WAITROSE SUTTON", "address": "56-58 Cheam Road", "connectors": ["CHAdeMO · 50kW", "CCS (Type 2) · 150kW"]}, {"lat": 51.36079, "lng": -0.194311, "title": "Morrisons Sutton", "address": "31 High Street", "connectors": ["Type 2 (Socket Only) · 22kW", "CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 50kW"]}, {"lat": 51.358314, "lng": -0.151261, "title": "Wallington Library (Shotfield)", "address": "Wallington Library (Shotfield)", "connectors": ["Type 1 (J1772) · 3kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 51.35691, "lng": -0.217904, "title": "Kingsway Road Car Park (site 2)", "address": "Kingsway Road Car Park (site 2)", "connectors": ["Type 1 (J1772) · 3kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 51.372056, "lng": -0.223934, "title": "Sainsbury's North Cheam", "address": "566 London Road", "connectors": ["Type 2 (Socket Only) · 7kW"]}, {"lat": 51.361651, "lng": -0.200196, "title": "Cheam Road 56-58", "address": "Cheam Road 56-58", "connectors": ["CHAdeMO · 50kW", "CCS (Type 2) · 175kW", "CHAdeMO · 50kW", "CCS (Type 2) · 175kW"]}, {"lat": 51.372056, "lng": -0.223934, "title": "Sainsbury's North Cheam", "address": "566 London Road", "connectors": ["Type 2 (Socket Only) · 7kW"]}, {"lat": 51.376366, "lng": -0.222026, "title": "716-702 London Road", "address": "716-702 London Road", "connectors": ["CHAdeMO · 50kW", "CCS (Type 2) · 50kW", "Type 2 (Tethered Connector)  · 43kW"]}, {"lat": 51.371315, "lng": -0.209089, "title": "St Dunstan's Hill Parking/Charging", "address": "2 Saint Dunstan's Hill", "connectors": ["CHAdeMO · 50kW", "CCS (Type 2) · 50kW", "Type 2 (Tethered Connector)  · 43kW"]}, {"lat": 51.360031, "lng": -0.194116, "title": "A232 High Street", "address": "62 Grove Road", "connectors": ["CHAdeMO · 50kW", "CHAdeMO · 50kW"]}];
 
   chargerData.forEach(function (c) {
+    var connHtml = c.connectors.length
+      ? '<div style="margin-top:6px;font-size:12px;color:#475569">' + c.connectors.join(' &middot; ') + '</div>'
+      : '';
     var marker = L.marker([c.lat, c.lng]);
     marker.bindPopup(
-      '<b>' + c.title + '</b><br>' + c.address + '<br><br>' +
+      '<b>' + c.title + '</b>' +
+      '<div style="color:#64748b;font-size:13px">' + c.address + '</div>' +
+      connHtml +
       '<a href="https://www.google.com/maps/dir/?api=1&destination=' + c.lat + ',' + c.lng +
-      '" target="_blank" rel="noopener">Get directions</a>'
+      '" target="_blank" rel="noopener" style="display:inline-block;margin-top:8px;padding:4px 10px;background:#2563eb;color:white;border-radius:4px;text-decoration:none;font-size:12px">Get directions</a>'
     );
     markers.addLayer(marker);
   });
-
   map.addLayer(markers);
+
+  // --- Connector filter ---
+  var filterBtns = document.querySelectorAll('.filter-btn');
+  var chargerItems = document.querySelectorAll('.charger-item');
+
+  filterBtns.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      filterBtns.forEach(function (b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      var f = btn.dataset.filter;
+      chargerItems.forEach(function (item) {
+        var connList = item.dataset.connectors ? item.dataset.connectors.split(',') : [];
+        item.style.display = (f === 'all' || connList.indexOf(f) !== -1) ? '' : 'none';
+      });
+    });
+  });
+
+  // --- Copy postcode ---
+  document.querySelectorAll('.copy-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var original = btn.textContent;
+      navigator.clipboard.writeText(btn.dataset.copy).then(function () {
+        btn.textContent = 'Copied!';
+        btn.classList.add('copy-btn--success');
+        setTimeout(function () {
+          btn.textContent = original;
+          btn.classList.remove('copy-btn--success');
+        }, 1500);
+      });
+    });
+  });
 }());
 </script>
 

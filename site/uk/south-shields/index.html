@@ -17,7 +17,10 @@
 
 <header>
 <div class="container">
-<a href="/" class="logo">PlugMap <span class="tagline">UK EV Charger Locator</span></a>
+<a href="/" class="logo">
+  <svg class="logo-bolt" viewBox="0 0 24 24" fill="currentColor" width="22" height="22" aria-hidden="true"><path d="M13 2L4.5 13.5H11L10 22L19.5 10.5H13Z"/></svg>
+  PlugMap <span class="tagline">UK EV Charger Locator</span>
+</a>
 </div>
 </header>
 
@@ -28,16 +31,44 @@
 </nav>
 
 <h1>EV Chargers in South Shields</h1>
-<p class="page-intro">19 public charging stations found in South Shields.</p>
+
+<div class="stats-bar">
+  <span class="stat-pill stat-total">19 stations</span>
+  <span class="stat-pill stat-rapid">4 rapid (50kW+)</span>
+  <span class="stat-pill stat-fast">12 fast (7–50kW)</span>
+  <span class="stat-pill stat-slow">3 slow</span>
+</div>
 
 <div id="map"></div>
 
-<ul class="charger-list">
+
+<div class="connector-filter">
+  <span class="filter-label">Filter:</span>
+  <button class="filter-btn active" data-filter="all">All</button>
+  
+  <button class="filter-btn" data-filter="BS1363 3 Pin 13 Amp">BS1363 3 Pin 13 Amp</button>
+  
+  <button class="filter-btn" data-filter="CCS (Type 2)">CCS (Type 2)</button>
+  
+  <button class="filter-btn" data-filter="CHAdeMO">CHAdeMO</button>
+  
+  <button class="filter-btn" data-filter="Type 2 (Socket Only)">Type 2 (Socket Only)</button>
+  
+  <button class="filter-btn" data-filter="Type 2 (Tethered Connector) ">Type 2 (Tethered Connector) </button>
+  
+</div>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Pier Parade Car Park</h2>
-  <p class="charger-address">Pier Parade Car Park NE33 2LD
+<ul class="charger-list" id="charger-list">
+
+
+<li class="charger-item charger-item--rapid" data-connectors="CHAdeMO,Type 2 (Tethered Connector) ">
+  <div class="charger-header">
+    <h2 class="charger-name">Pier Parade Car Park</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Pier Parade Car Park <button class="copy-btn" data-copy="NE33 2LD">NE33 2LD</button>
   </p>
   
   <div class="charger-connections">
@@ -62,9 +93,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Whiteleas Way</h2>
-  <p class="charger-address">Public Car Park NE33 1HD
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Whiteleas Way</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Public Car Park <button class="copy-btn" data-copy="NE33 1HD">NE33 1HD</button>
   </p>
   
   <div class="charger-connections">
@@ -86,9 +120,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Pier Parade Car Park</h2>
-  <p class="charger-address">Pier Parade Car Park NE33 2JS
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Pier Parade Car Park</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Pier Parade Car Park <button class="copy-btn" data-copy="NE33 2JS">NE33 2JS</button>
   </p>
   
   <div class="charger-connections">
@@ -110,9 +147,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">South Promenade South</h2>
-  <p class="charger-address">South Promenade South Car Park NE33 3NB
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">South Promenade South</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">South Promenade South Car Park <button class="copy-btn" data-copy="NE33 3NB">NE33 3NB</button>
   </p>
   
   <div class="charger-connections">
@@ -134,9 +174,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Oyston Street Car Park</h2>
-  <p class="charger-address">Oyston Street Car Park NE33 1AP
+<li class="charger-item charger-item--slow" data-connectors="BS1363 3 Pin 13 Amp">
+  <div class="charger-header">
+    <h2 class="charger-name">Oyston Street Car Park</h2>
+    
+  </div>
+  <p class="charger-address">Oyston Street Car Park <button class="copy-btn" data-copy="NE33 1AP">NE33 1AP</button>
   </p>
   
   <div class="charger-connections">
@@ -155,9 +198,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Charlotte Street</h2>
-  <p class="charger-address">Charlotte Street Car Park NE33 1PX
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Charlotte Street</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Charlotte Street Car Park <button class="copy-btn" data-copy="NE33 1PX">NE33 1PX</button>
   </p>
   
   <div class="charger-connections">
@@ -179,9 +225,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Broughton Road</h2>
-  <p class="charger-address">Broughton Road NE33 2RR
+<li class="charger-item charger-item--slow" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Broughton Road</h2>
+    
+  </div>
+  <p class="charger-address">Broughton Road <button class="copy-btn" data-copy="NE33 2RR">NE33 2RR</button>
   </p>
   
   <div class="charger-connections">
@@ -203,9 +252,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">New George Street 1</h2>
-  <p class="charger-address">New George Street NE33 5DU
+<li class="charger-item charger-item--rapid" data-connectors="CHAdeMO,Type 2 (Tethered Connector) ">
+  <div class="charger-header">
+    <h2 class="charger-name">New George Street 1</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">New George Street <button class="copy-btn" data-copy="NE33 5DU">NE33 5DU</button>
   </p>
   
   <div class="charger-connections">
@@ -230,9 +283,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Simonside Outdoor Adventure</h2>
-  <p class="charger-address">Simonside Outdoor Adventure NE34 9SD
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Simonside Outdoor Adventure</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Simonside Outdoor Adventure <button class="copy-btn" data-copy="NE34 9SD">NE34 9SD</button>
   </p>
   
   <div class="charger-connections">
@@ -254,9 +310,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Wawn Street</h2>
-  <p class="charger-address">Wawn Street Car Park NE33 4EB
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Wawn Street</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Wawn Street Car Park <button class="copy-btn" data-copy="NE33 4EB">NE33 4EB</button>
   </p>
   
   <div class="charger-connections">
@@ -278,9 +337,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Horsely Hill Square 2</h2>
-  <p class="charger-address">Horsely Hill Square NE34 7HE
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Horsely Hill Square 2</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Horsely Hill Square <button class="copy-btn" data-copy="NE34 7HE">NE34 7HE</button>
   </p>
   
   <div class="charger-connections">
@@ -302,9 +364,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Beacon Street</h2>
-  <p class="charger-address">Beacon Street NE33 2AQ
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Beacon Street</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Beacon Street <button class="copy-btn" data-copy="NE33 2AQ">NE33 2AQ</button>
   </p>
   
   <div class="charger-connections">
@@ -326,9 +391,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Ocean Road 1</h2>
-  <p class="charger-address">Ocean Road Car Park NE33 2DW
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Ocean Road 1</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Ocean Road Car Park <button class="copy-btn" data-copy="NE33 2DW">NE33 2DW</button>
   </p>
   
   <div class="charger-connections">
@@ -350,9 +418,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">The Word</h2>
-  <p class="charger-address">The Word NE33 1JF
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">The Word</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">The Word <button class="copy-btn" data-copy="NE33 1JF">NE33 1JF</button>
   </p>
   
   <div class="charger-connections">
@@ -374,9 +445,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">New George Street</h2>
-  <p class="charger-address">New George Street  NE33 5RG
+<li class="charger-item charger-item--rapid" data-connectors="CHAdeMO,CCS (Type 2),Type 2 (Tethered Connector) ">
+  <div class="charger-header">
+    <h2 class="charger-name">New George Street</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">New George Street  <button class="copy-btn" data-copy="NE33 5RG">NE33 5RG</button>
   </p>
   
   <div class="charger-connections">
@@ -401,9 +476,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">N/A</h2>
-  <p class="charger-address">N/A NE33 1RF
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2),Type 2 (Socket Only),CHAdeMO">
+  <div class="charger-header">
+    <h2 class="charger-name">N/A</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">N/A <button class="copy-btn" data-copy="NE33 1RF">NE33 1RF</button>
   </p>
   
   <div class="charger-connections">
@@ -428,9 +507,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Quarry Lane</h2>
-  <p class="charger-address">Car Park NE34 8ET
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Quarry Lane</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Car Park <button class="copy-btn" data-copy="NE34 8ET">NE34 8ET</button>
   </p>
   
   <div class="charger-connections">
@@ -452,9 +534,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Galsworthy Road</h2>
-  <p class="charger-address">Galsworthy Road NE34 9JD
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Galsworthy Road</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Galsworthy Road <button class="copy-btn" data-copy="NE34 9JD">NE34 9JD</button>
   </p>
   
   <div class="charger-connections">
@@ -476,9 +561,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Maritime House</h2>
-  <p class="charger-address">Maritime House NE34 9PT
+<li class="charger-item charger-item--slow" data-connectors="BS1363 3 Pin 13 Amp">
+  <div class="charger-header">
+    <h2 class="charger-name">Maritime House</h2>
+    
+  </div>
+  <p class="charger-address">Maritime House <button class="copy-btn" data-copy="NE34 9PT">NE34 9PT</button>
   </p>
   
   <div class="charger-connections">
@@ -500,6 +588,23 @@
 
 <p><a href="/" class="back-link">← All UK towns</a></p>
 
+
+<div class="nearby-towns">
+  <h2 class="nearby-heading">Nearby towns</h2>
+  <ul class="nearby-list">
+  
+    <li><a href="/uk/jarrow/">Jarrow</a></li>
+  
+    <li><a href="/uk/sunderland/">Sunderland</a></li>
+  
+    <li><a href="/uk/washington/">Washington</a></li>
+  
+    <li><a href="/uk/newcastle-upon-tyne/">Newcastle Upon Tyne</a></li>
+  
+  </ul>
+</div>
+
+
 </div>
 
 <footer>
@@ -512,26 +617,61 @@
 <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 <script>
 (function () {
+  // --- Map ---
   var map = L.map('map').setView([54.98649257894737, -1.4298455263157894], 12);
-
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
   }).addTo(map);
 
   var markers = L.markerClusterGroup();
-  var chargerData = [{"lat": 55.000364, "lng": -1.415722, "title": "Pier Parade Car Park", "address": "Pier Parade Car Park"}, {"lat": 54.963967, "lng": -1.434874, "title": "Whiteleas Way", "address": "Public Car Park"}, {"lat": 55.001398, "lng": -1.420283, "title": "Pier Parade Car Park", "address": "Pier Parade Car Park"}, {"lat": 54.996968, "lng": -1.409898, "title": "South Promenade South", "address": "South Promenade South Car Park"}, {"lat": 54.996343, "lng": -1.434204, "title": "Oyston Street Car Park", "address": "Oyston Street Car Park"}, {"lat": 54.995454, "lng": -1.434896, "title": "Charlotte Street", "address": "Charlotte Street Car Park"}, {"lat": 54.995361, "lng": -1.427354, "title": "Broughton Road", "address": "Broughton Road"}, {"lat": 54.988141, "lng": -1.436849, "title": "New George Street 1", "address": "New George Street"}, {"lat": 54.965591, "lng": -1.451401, "title": "Simonside Outdoor Adventure", "address": "Simonside Outdoor Adventure"}, {"lat": 54.987329, "lng": -1.426248, "title": "Wawn Street", "address": "Wawn Street Car Park"}, {"lat": 54.980705, "lng": -1.397774, "title": "Horsely Hill Square 2", "address": "Horsely Hill Square"}, {"lat": 55.005656, "lng": -1.43069, "title": "Beacon Street", "address": "Beacon Street"}, {"lat": 54.999786, "lng": -1.425712, "title": "Ocean Road 1", "address": "Ocean Road Car Park"}, {"lat": 54.996513, "lng": -1.439123, "title": "The Word", "address": "The Word"}, {"lat": 54.987623, "lng": -1.437171, "title": "New George Street", "address": "New George Street "}, {"lat": 54.973673, "lng": -1.439381, "title": "N/A", "address": "N/A"}, {"lat": 54.96866, "lng": -1.409061, "title": "Quarry Lane", "address": "Car Park"}, {"lat": 54.961355, "lng": -1.448126, "title": "Galsworthy Road", "address": "Galsworthy Road"}, {"lat": 54.978472, "lng": -1.448298, "title": "Maritime House", "address": "Maritime House"}];
+  var chargerData = [{"lat": 55.000364, "lng": -1.415722, "title": "Pier Parade Car Park", "address": "Pier Parade Car Park", "connectors": ["CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 50kW", "Type 2 (Tethered Connector)  · 43kW"]}, {"lat": 54.963967, "lng": -1.434874, "title": "Whiteleas Way", "address": "Public Car Park", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 55.001398, "lng": -1.420283, "title": "Pier Parade Car Park", "address": "Pier Parade Car Park", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 54.996968, "lng": -1.409898, "title": "South Promenade South", "address": "South Promenade South Car Park", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 54.996343, "lng": -1.434204, "title": "Oyston Street Car Park", "address": "Oyston Street Car Park", "connectors": ["BS1363 3 Pin 13 Amp · 3kW"]}, {"lat": 54.995454, "lng": -1.434896, "title": "Charlotte Street", "address": "Charlotte Street Car Park", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 54.995361, "lng": -1.427354, "title": "Broughton Road", "address": "Broughton Road", "connectors": ["Type 2 (Socket Only) · 3.7kW", "Type 2 (Socket Only) · 3.7kW"]}, {"lat": 54.988141, "lng": -1.436849, "title": "New George Street 1", "address": "New George Street", "connectors": ["CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 50kW", "Type 2 (Tethered Connector)  · 43kW"]}, {"lat": 54.965591, "lng": -1.451401, "title": "Simonside Outdoor Adventure", "address": "Simonside Outdoor Adventure", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 54.987329, "lng": -1.426248, "title": "Wawn Street", "address": "Wawn Street Car Park", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 54.980705, "lng": -1.397774, "title": "Horsely Hill Square 2", "address": "Horsely Hill Square", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 55.005656, "lng": -1.43069, "title": "Beacon Street", "address": "Beacon Street", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 54.999786, "lng": -1.425712, "title": "Ocean Road 1", "address": "Ocean Road Car Park", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 54.996513, "lng": -1.439123, "title": "The Word", "address": "The Word", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 54.987623, "lng": -1.437171, "title": "New George Street", "address": "New George Street ", "connectors": ["CHAdeMO · 50kW", "CCS (Type 2) · 50kW", "Type 2 (Tethered Connector)  · 22kW"]}, {"lat": 54.973673, "lng": -1.439381, "title": "N/A", "address": "N/A", "connectors": ["CCS (Type 2) · 50kW", "Type 2 (Socket Only) · 22kW", "CHAdeMO · 50kW"]}, {"lat": 54.96866, "lng": -1.409061, "title": "Quarry Lane", "address": "Car Park", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 54.961355, "lng": -1.448126, "title": "Galsworthy Road", "address": "Galsworthy Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 54.978472, "lng": -1.448298, "title": "Maritime House", "address": "Maritime House", "connectors": ["BS1363 3 Pin 13 Amp · 3kW"]}];
 
   chargerData.forEach(function (c) {
+    var connHtml = c.connectors.length
+      ? '<div style="margin-top:6px;font-size:12px;color:#475569">' + c.connectors.join(' &middot; ') + '</div>'
+      : '';
     var marker = L.marker([c.lat, c.lng]);
     marker.bindPopup(
-      '<b>' + c.title + '</b><br>' + c.address + '<br><br>' +
+      '<b>' + c.title + '</b>' +
+      '<div style="color:#64748b;font-size:13px">' + c.address + '</div>' +
+      connHtml +
       '<a href="https://www.google.com/maps/dir/?api=1&destination=' + c.lat + ',' + c.lng +
-      '" target="_blank" rel="noopener">Get directions</a>'
+      '" target="_blank" rel="noopener" style="display:inline-block;margin-top:8px;padding:4px 10px;background:#2563eb;color:white;border-radius:4px;text-decoration:none;font-size:12px">Get directions</a>'
     );
     markers.addLayer(marker);
   });
-
   map.addLayer(markers);
+
+  // --- Connector filter ---
+  var filterBtns = document.querySelectorAll('.filter-btn');
+  var chargerItems = document.querySelectorAll('.charger-item');
+
+  filterBtns.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      filterBtns.forEach(function (b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      var f = btn.dataset.filter;
+      chargerItems.forEach(function (item) {
+        var connList = item.dataset.connectors ? item.dataset.connectors.split(',') : [];
+        item.style.display = (f === 'all' || connList.indexOf(f) !== -1) ? '' : 'none';
+      });
+    });
+  });
+
+  // --- Copy postcode ---
+  document.querySelectorAll('.copy-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var original = btn.textContent;
+      navigator.clipboard.writeText(btn.dataset.copy).then(function () {
+        btn.textContent = 'Copied!';
+        btn.classList.add('copy-btn--success');
+        setTimeout(function () {
+          btn.textContent = original;
+          btn.classList.remove('copy-btn--success');
+        }, 1500);
+      });
+    });
+  });
 }());
 </script>
 

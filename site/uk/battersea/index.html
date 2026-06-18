@@ -17,7 +17,10 @@
 
 <header>
 <div class="container">
-<a href="/" class="logo">PlugMap <span class="tagline">UK EV Charger Locator</span></a>
+<a href="/" class="logo">
+  <svg class="logo-bolt" viewBox="0 0 24 24" fill="currentColor" width="22" height="22" aria-hidden="true"><path d="M13 2L4.5 13.5H11L10 22L19.5 10.5H13Z"/></svg>
+  PlugMap <span class="tagline">UK EV Charger Locator</span>
+</a>
 </div>
 </header>
 
@@ -28,16 +31,27 @@
 </nav>
 
 <h1>EV Chargers in Battersea</h1>
-<p class="page-intro">5 public charging stations found in Battersea.</p>
+
+<div class="stats-bar">
+  <span class="stat-pill stat-total">5 stations</span>
+  
+  <span class="stat-pill stat-fast">5 fast (7–50kW)</span>
+  
+</div>
 
 <div id="map"></div>
 
-<ul class="charger-list">
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Wycliffe Road</h2>
-  <p class="charger-address">Wycliffe Road SW11 5TD
+<ul class="charger-list" id="charger-list">
+
+
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Wycliffe Road</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Wycliffe Road <button class="copy-btn" data-copy="SW11 5TD">SW11 5TD</button>
   </p>
   
   <div class="charger-connections">
@@ -59,9 +73,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Lavender Road</h2>
-  <p class="charger-address">Lavender Road SW11 2BN
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Lavender Road</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Lavender Road <button class="copy-btn" data-copy="SW11 2BN">SW11 2BN</button>
   </p>
   
   <div class="charger-connections">
@@ -83,9 +100,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Bolingbroke Grove</h2>
-  <p class="charger-address">Bolingbroke Grove SW11 1DA
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Bolingbroke Grove</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Bolingbroke Grove <button class="copy-btn" data-copy="SW11 1DA">SW11 1DA</button>
   </p>
   
   <div class="charger-connections">
@@ -107,9 +127,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Lurline Gardens</h2>
-  <p class="charger-address">Lurline Gardens SW11 4DP
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Lurline Gardens</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Lurline Gardens <button class="copy-btn" data-copy="SW11 4DP">SW11 4DP</button>
   </p>
   
   <div class="charger-connections">
@@ -131,9 +154,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Bullen Street</h2>
-  <p class="charger-address">Bullen Street SW11 3HH
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Bullen Street</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Bullen Street <button class="copy-btn" data-copy="SW11 3HH">SW11 3HH</button>
   </p>
   
   <div class="charger-connections">
@@ -158,6 +184,23 @@
 
 <p><a href="/" class="back-link">← All UK towns</a></p>
 
+
+<div class="nearby-towns">
+  <h2 class="nearby-heading">Nearby towns</h2>
+  <ul class="nearby-list">
+  
+    <li><a href="/uk/fulham/">Fulham</a></li>
+  
+    <li><a href="/uk/wandsworth/">Wandsworth</a></li>
+  
+    <li><a href="/uk/chelsea/">Chelsea</a></li>
+  
+    <li><a href="/uk/kandc/">K&amp;C</a></li>
+  
+  </ul>
+</div>
+
+
 </div>
 
 <footer>
@@ -170,26 +213,61 @@
 <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 <script>
 (function () {
+  // --- Map ---
   var map = L.map('map').setView([51.4692964, -0.1635776], 12);
-
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
   }).addTo(map);
 
   var markers = L.markerClusterGroup();
-  var chargerData = [{"lat": 51.470234, "lng": -0.153256, "title": "Wycliffe Road", "address": "Wycliffe Road"}, {"lat": 51.46729, "lng": -0.175666, "title": "Lavender Road", "address": "Lavender Road"}, {"lat": 51.459114, "lng": -0.170898, "title": "Bolingbroke Grove", "address": "Bolingbroke Grove"}, {"lat": 51.47719, "lng": -0.14862, "title": "Lurline Gardens", "address": "Lurline Gardens"}, {"lat": 51.472654, "lng": -0.169448, "title": "Bullen Street", "address": "Bullen Street"}];
+  var chargerData = [{"lat": 51.470234, "lng": -0.153256, "title": "Wycliffe Road", "address": "Wycliffe Road", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 51.46729, "lng": -0.175666, "title": "Lavender Road", "address": "Lavender Road", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 51.459114, "lng": -0.170898, "title": "Bolingbroke Grove", "address": "Bolingbroke Grove", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 51.47719, "lng": -0.14862, "title": "Lurline Gardens", "address": "Lurline Gardens", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 51.472654, "lng": -0.169448, "title": "Bullen Street", "address": "Bullen Street", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}];
 
   chargerData.forEach(function (c) {
+    var connHtml = c.connectors.length
+      ? '<div style="margin-top:6px;font-size:12px;color:#475569">' + c.connectors.join(' &middot; ') + '</div>'
+      : '';
     var marker = L.marker([c.lat, c.lng]);
     marker.bindPopup(
-      '<b>' + c.title + '</b><br>' + c.address + '<br><br>' +
+      '<b>' + c.title + '</b>' +
+      '<div style="color:#64748b;font-size:13px">' + c.address + '</div>' +
+      connHtml +
       '<a href="https://www.google.com/maps/dir/?api=1&destination=' + c.lat + ',' + c.lng +
-      '" target="_blank" rel="noopener">Get directions</a>'
+      '" target="_blank" rel="noopener" style="display:inline-block;margin-top:8px;padding:4px 10px;background:#2563eb;color:white;border-radius:4px;text-decoration:none;font-size:12px">Get directions</a>'
     );
     markers.addLayer(marker);
   });
-
   map.addLayer(markers);
+
+  // --- Connector filter ---
+  var filterBtns = document.querySelectorAll('.filter-btn');
+  var chargerItems = document.querySelectorAll('.charger-item');
+
+  filterBtns.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      filterBtns.forEach(function (b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      var f = btn.dataset.filter;
+      chargerItems.forEach(function (item) {
+        var connList = item.dataset.connectors ? item.dataset.connectors.split(',') : [];
+        item.style.display = (f === 'all' || connList.indexOf(f) !== -1) ? '' : 'none';
+      });
+    });
+  });
+
+  // --- Copy postcode ---
+  document.querySelectorAll('.copy-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var original = btn.textContent;
+      navigator.clipboard.writeText(btn.dataset.copy).then(function () {
+        btn.textContent = 'Copied!';
+        btn.classList.add('copy-btn--success');
+        setTimeout(function () {
+          btn.textContent = original;
+          btn.classList.remove('copy-btn--success');
+        }, 1500);
+      });
+    });
+  });
 }());
 </script>
 

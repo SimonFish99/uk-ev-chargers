@@ -17,7 +17,10 @@
 
 <header>
 <div class="container">
-<a href="/" class="logo">PlugMap <span class="tagline">UK EV Charger Locator</span></a>
+<a href="/" class="logo">
+  <svg class="logo-bolt" viewBox="0 0 24 24" fill="currentColor" width="22" height="22" aria-hidden="true"><path d="M13 2L4.5 13.5H11L10 22L19.5 10.5H13Z"/></svg>
+  PlugMap <span class="tagline">UK EV Charger Locator</span>
+</a>
 </div>
 </header>
 
@@ -28,15 +31,41 @@
 </nav>
 
 <h1>EV Chargers in Canterbury</h1>
-<p class="page-intro">10 public charging stations found in Canterbury.</p>
+
+<div class="stats-bar">
+  <span class="stat-pill stat-total">10 stations</span>
+  <span class="stat-pill stat-rapid">3 rapid (50kW+)</span>
+  <span class="stat-pill stat-fast">7 fast (7–50kW)</span>
+  
+</div>
 
 <div id="map"></div>
 
-<ul class="charger-list">
+
+<div class="connector-filter">
+  <span class="filter-label">Filter:</span>
+  <button class="filter-btn active" data-filter="all">All</button>
+  
+  <button class="filter-btn" data-filter="CCS (Type 2)">CCS (Type 2)</button>
+  
+  <button class="filter-btn" data-filter="CHAdeMO">CHAdeMO</button>
+  
+  <button class="filter-btn" data-filter="Type 2 (Socket Only)">Type 2 (Socket Only)</button>
+  
+  <button class="filter-btn" data-filter="Type 2 (Tethered Connector) ">Type 2 (Tethered Connector) </button>
+  
+</div>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">(e-Taxis Only) St George&#39;s Lane</h2>
+<ul class="charger-list" id="charger-list">
+
+
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2),CHAdeMO">
+  <div class="charger-header">
+    <h2 class="charger-name">(e-Taxis Only) St George&#39;s Lane</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
   <p class="charger-address">St Georges Lane
   </p>
   
@@ -59,8 +88,11 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Ev Dot Watling Street Car Park</h2>
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Ev Dot Watling Street Car Park</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
   <p class="charger-address">Watling Street
   </p>
   
@@ -80,8 +112,11 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Castle Row Car Park</h2>
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Castle Row Car Park</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
   <p class="charger-address">Castle Street
   </p>
   
@@ -104,9 +139,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">MFG Lakeside</h2>
-  <p class="charger-address">Sturry Road CT1 1DS
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2),CHAdeMO">
+  <div class="charger-header">
+    <h2 class="charger-name">MFG Lakeside</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Sturry Road <button class="copy-btn" data-copy="CT1 1DS">CT1 1DS</button>
   </p>
   
   <div class="charger-connections">
@@ -128,9 +167,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">EVC Broome Park</h2>
-  <p class="charger-address">Broome Park Hotel CT4 6QX
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">EVC Broome Park</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Broome Park Hotel <button class="copy-btn" data-copy="CT4 6QX">CT4 6QX</button>
   </p>
   
   <div class="charger-connections">
@@ -149,9 +191,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Ash Parish Hall</h2>
-  <p class="charger-address">Ash CT3 2BG
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Ash Parish Hall</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Ash <button class="copy-btn" data-copy="CT3 2BG">CT3 2BG</button>
   </p>
   
   <div class="charger-connections">
@@ -173,9 +218,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">CT4 7HZ</h2>
-  <p class="charger-address"> CT4 7HZ
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">CT4 7HZ</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address"> <button class="copy-btn" data-copy="CT4 7HZ">CT4 7HZ</button>
   </p>
   
   <div class="charger-connections">
@@ -195,9 +243,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Multi-Storey Car Park</h2>
-  <p class="charger-address">Station Road West CT2 8AN
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Multi-Storey Car Park</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Station Road West <button class="copy-btn" data-copy="CT2 8AN">CT2 8AN</button>
   </p>
   
   <div class="charger-connections">
@@ -216,9 +267,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Morrisons Canterbury</h2>
-  <p class="charger-address">Ten Perch Road CT1 3TQ
+<li class="charger-item charger-item--rapid" data-connectors="CHAdeMO,CCS (Type 2),Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Morrisons Canterbury</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Ten Perch Road <button class="copy-btn" data-copy="CT1 3TQ">CT1 3TQ</button>
   </p>
   
   <div class="charger-connections">
@@ -243,9 +298,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Sunnymead</h2>
-  <p class="charger-address">Sunnymead CT2 9NE
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Tethered Connector) ">
+  <div class="charger-header">
+    <h2 class="charger-name">Sunnymead</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Sunnymead <button class="copy-btn" data-copy="CT2 9NE">CT2 9NE</button>
   </p>
   
   <div class="charger-connections">
@@ -270,6 +328,23 @@
 
 <p><a href="/" class="back-link">← All UK towns</a></p>
 
+
+<div class="nearby-towns">
+  <h2 class="nearby-heading">Nearby towns</h2>
+  <ul class="nearby-list">
+  
+    <li><a href="/uk/folkestone/">Folkestone</a></li>
+  
+    <li><a href="/uk/sandwich/">Sandwich</a></li>
+  
+    <li><a href="/uk/dover/">Dover</a></li>
+  
+    <li><a href="/uk/deal/">Deal</a></li>
+  
+  </ul>
+</div>
+
+
 </div>
 
 <footer>
@@ -282,26 +357,61 @@
 <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 <script>
 (function () {
+  // --- Map ---
   var map = L.map('map').setView([51.270885704702685, 1.1016714617342689], 12);
-
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
   }).addTo(map);
 
   var markers = L.markerClusterGroup();
-  var chargerData = [{"lat": 51.27630953482898, "lng": 1.0809356848135394, "title": "(e-Taxis Only) St George's Lane", "address": "St Georges Lane"}, {"lat": 51.27636805391066, "lng": 1.079648659585473, "title": "Ev Dot Watling Street Car Park", "address": "Watling Street"}, {"lat": 51.275299601011284, "lng": 1.0759109027325735, "title": "Castle Row Car Park", "address": "Castle Street"}, {"lat": 51.2906505280916, "lng": 1.10038147113888, "title": "MFG Lakeside", "address": "Sturry Road"}, {"lat": 51.190871416622905, "lng": 1.1758473153787783, "title": "EVC Broome Park", "address": "Broome Park Hotel"}, {"lat": 51.279886, "lng": 1.280559, "title": "Ash Parish Hall", "address": "Ash"}, {"lat": 51.255799, "lng": 1.01909, "title": "CT4 7HZ", "address": ""}, {"lat": 51.28359, "lng": 1.074741, "title": "Multi-Storey Car Park", "address": "Station Road West"}, {"lat": 51.27143005525622, "lng": 1.0626519240046264, "title": "Morrisons Canterbury", "address": "Ten Perch Road"}, {"lat": 51.30865285730525, "lng": 1.0669486596888191, "title": "Sunnymead", "address": "Sunnymead"}];
+  var chargerData = [{"lat": 51.27630953482898, "lng": 1.0809356848135394, "title": "(e-Taxis Only) St George's Lane", "address": "St Georges Lane", "connectors": ["CCS (Type 2) · 50kW", "CHAdeMO · 50kW"]}, {"lat": 51.27636805391066, "lng": 1.079648659585473, "title": "Ev Dot Watling Street Car Park", "address": "Watling Street", "connectors": ["Type 2 (Socket Only) · 22kW"]}, {"lat": 51.275299601011284, "lng": 1.0759109027325735, "title": "Castle Row Car Park", "address": "Castle Street", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 51.2906505280916, "lng": 1.10038147113888, "title": "MFG Lakeside", "address": "Sturry Road", "connectors": ["CCS (Type 2) · 150kW", "CHAdeMO · 50kW"]}, {"lat": 51.190871416622905, "lng": 1.1758473153787783, "title": "EVC Broome Park", "address": "Broome Park Hotel", "connectors": ["Type 2 (Socket Only) · 22kW"]}, {"lat": 51.279886, "lng": 1.280559, "title": "Ash Parish Hall", "address": "Ash", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 51.255799, "lng": 1.01909, "title": "CT4 7HZ", "address": "", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 51.28359, "lng": 1.074741, "title": "Multi-Storey Car Park", "address": "Station Road West", "connectors": ["Type 2 (Socket Only) · 22kW"]}, {"lat": 51.27143005525622, "lng": 1.0626519240046264, "title": "Morrisons Canterbury", "address": "Ten Perch Road", "connectors": ["CHAdeMO · 50kW", "CCS (Type 2) · 50kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 51.30865285730525, "lng": 1.0669486596888191, "title": "Sunnymead", "address": "Sunnymead", "connectors": ["Type 2 (Tethered Connector)  · 7kW", "Type 2 (Tethered Connector)  · 7kW"]}];
 
   chargerData.forEach(function (c) {
+    var connHtml = c.connectors.length
+      ? '<div style="margin-top:6px;font-size:12px;color:#475569">' + c.connectors.join(' &middot; ') + '</div>'
+      : '';
     var marker = L.marker([c.lat, c.lng]);
     marker.bindPopup(
-      '<b>' + c.title + '</b><br>' + c.address + '<br><br>' +
+      '<b>' + c.title + '</b>' +
+      '<div style="color:#64748b;font-size:13px">' + c.address + '</div>' +
+      connHtml +
       '<a href="https://www.google.com/maps/dir/?api=1&destination=' + c.lat + ',' + c.lng +
-      '" target="_blank" rel="noopener">Get directions</a>'
+      '" target="_blank" rel="noopener" style="display:inline-block;margin-top:8px;padding:4px 10px;background:#2563eb;color:white;border-radius:4px;text-decoration:none;font-size:12px">Get directions</a>'
     );
     markers.addLayer(marker);
   });
-
   map.addLayer(markers);
+
+  // --- Connector filter ---
+  var filterBtns = document.querySelectorAll('.filter-btn');
+  var chargerItems = document.querySelectorAll('.charger-item');
+
+  filterBtns.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      filterBtns.forEach(function (b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      var f = btn.dataset.filter;
+      chargerItems.forEach(function (item) {
+        var connList = item.dataset.connectors ? item.dataset.connectors.split(',') : [];
+        item.style.display = (f === 'all' || connList.indexOf(f) !== -1) ? '' : 'none';
+      });
+    });
+  });
+
+  // --- Copy postcode ---
+  document.querySelectorAll('.copy-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var original = btn.textContent;
+      navigator.clipboard.writeText(btn.dataset.copy).then(function () {
+        btn.textContent = 'Copied!';
+        btn.classList.add('copy-btn--success');
+        setTimeout(function () {
+          btn.textContent = original;
+          btn.classList.remove('copy-btn--success');
+        }, 1500);
+      });
+    });
+  });
 }());
 </script>
 

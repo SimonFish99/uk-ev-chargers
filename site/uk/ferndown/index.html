@@ -17,7 +17,10 @@
 
 <header>
 <div class="container">
-<a href="/" class="logo">PlugMap <span class="tagline">UK EV Charger Locator</span></a>
+<a href="/" class="logo">
+  <svg class="logo-bolt" viewBox="0 0 24 24" fill="currentColor" width="22" height="22" aria-hidden="true"><path d="M13 2L4.5 13.5H11L10 22L19.5 10.5H13Z"/></svg>
+  PlugMap <span class="tagline">UK EV Charger Locator</span>
+</a>
 </div>
 </header>
 
@@ -28,16 +31,42 @@
 </nav>
 
 <h1>EV Chargers in Ferndown</h1>
-<p class="page-intro">7 public charging stations found in Ferndown.</p>
+
+<div class="stats-bar">
+  <span class="stat-pill stat-total">7 stations</span>
+  <span class="stat-pill stat-rapid">5 rapid (50kW+)</span>
+  <span class="stat-pill stat-fast">2 fast (7–50kW)</span>
+  
+</div>
 
 <div id="map"></div>
 
-<ul class="charger-list">
+
+<div class="connector-filter">
+  <span class="filter-label">Filter:</span>
+  <button class="filter-btn active" data-filter="all">All</button>
+  
+  <button class="filter-btn" data-filter="CCS (Type 2)">CCS (Type 2)</button>
+  
+  <button class="filter-btn" data-filter="CHAdeMO">CHAdeMO</button>
+  
+  <button class="filter-btn" data-filter="Type 2 (Socket Only)">Type 2 (Socket Only)</button>
+  
+  <button class="filter-btn" data-filter="Type 2 (Tethered Connector) ">Type 2 (Tethered Connector) </button>
+  
+</div>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Smart Charge</h2>
-  <p class="charger-address">597 Ringwood Rd BH22 9AL
+<ul class="charger-list" id="charger-list">
+
+
+<li class="charger-item charger-item--rapid" data-connectors="CHAdeMO,CCS (Type 2)">
+  <div class="charger-header">
+    <h2 class="charger-name">Smart Charge</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">597 Ringwood Rd <button class="copy-btn" data-copy="BH22 9AL">BH22 9AL</button>
   </p>
   
   <div class="charger-connections">
@@ -59,9 +88,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Lidl West Parley</h2>
-  <p class="charger-address">Christchurch Road BH22 8SG
+<li class="charger-item charger-item--rapid" data-connectors="Type 2 (Socket Only),CCS (Type 2),CHAdeMO">
+  <div class="charger-header">
+    <h2 class="charger-name">Lidl West Parley</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Christchurch Road <button class="copy-btn" data-copy="BH22 8SG">BH22 8SG</button>
   </p>
   
   <div class="charger-connections">
@@ -86,9 +119,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Lidl Ferndown</h2>
-  <p class="charger-address">Ringwood Road BH22 9BB
+<li class="charger-item charger-item--rapid" data-connectors="Type 2 (Socket Only),CCS (Type 2)">
+  <div class="charger-header">
+    <h2 class="charger-name">Lidl Ferndown</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Ringwood Road <button class="copy-btn" data-copy="BH22 9BB">BH22 9BB</button>
   </p>
   
   <div class="charger-connections">
@@ -113,9 +150,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">DRC Penny&#39;s Lodge Car Park</h2>
-  <p class="charger-address">Library Road BH22 9JP
+<li class="charger-item charger-item--rapid" data-connectors="CHAdeMO,Type 2 (Tethered Connector) ">
+  <div class="charger-header">
+    <h2 class="charger-name">DRC Penny&#39;s Lodge Car Park</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Library Road <button class="copy-btn" data-copy="BH22 9JP">BH22 9JP</button>
   </p>
   
   <div class="charger-connections">
@@ -137,9 +178,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">InstaVolt Glenmoor Road</h2>
-  <p class="charger-address">35A Glenmoor Road BH22 8QE
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2),CHAdeMO">
+  <div class="charger-header">
+    <h2 class="charger-name">InstaVolt Glenmoor Road</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">35A Glenmoor Road <button class="copy-btn" data-copy="BH22 8QE">BH22 8QE</button>
   </p>
   
   <div class="charger-connections">
@@ -161,9 +206,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">EVC The Bridge House Hotel</h2>
-  <p class="charger-address">The Bridge House Hotel, 2 Ringwood Road BH22 9AN
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">EVC The Bridge House Hotel</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">The Bridge House Hotel, 2 Ringwood Road <button class="copy-btn" data-copy="BH22 9AN">BH22 9AN</button>
   </p>
   
   <div class="charger-connections">
@@ -182,9 +230,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Tesco Superstore-Ferndown</h2>
-  <p class="charger-address">Pennys Walk BH22 9TH
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Tesco Superstore-Ferndown</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Pennys Walk <button class="copy-btn" data-copy="BH22 9TH">BH22 9TH</button>
   </p>
   
   <div class="charger-connections">
@@ -209,6 +260,23 @@
 
 <p><a href="/" class="back-link">← All UK towns</a></p>
 
+
+<div class="nearby-towns">
+  <h2 class="nearby-heading">Nearby towns</h2>
+  <ul class="nearby-list">
+  
+    <li><a href="/uk/bournemouth/">Bournemouth</a></li>
+  
+    <li><a href="/uk/poole/">Poole</a></li>
+  
+    <li><a href="/uk/christchurch/">Christchurch</a></li>
+  
+    <li><a href="/uk/new-milton/">New Milton</a></li>
+  
+  </ul>
+</div>
+
+
 </div>
 
 <footer>
@@ -221,26 +289,61 @@
 <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 <script>
 (function () {
+  // --- Map ---
   var map = L.map('map').setView([50.79680465475104, -1.887712502389944], 12);
-
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
   }).addTo(map);
 
   var markers = L.markerClusterGroup();
-  var chargerData = [{"lat": 50.81155997610645, "lng": -1.8770046245410867, "title": "Smart Charge", "address": "597 Ringwood Rd"}, {"lat": 50.78082208984111, "lng": -1.8794095693718873, "title": "Lidl West Parley", "address": "Christchurch Road"}, {"lat": 50.811748512315205, "lng": -1.8718092733686547, "title": "Lidl Ferndown", "address": "Ringwood Road"}, {"lat": 50.802347, "lng": -1.891852, "title": "DRC Penny's Lodge Car Park", "address": "Library Road"}, {"lat": 50.793123, "lng": -1.8925903, "title": "InstaVolt Glenmoor Road", "address": "35A Glenmoor Road"}, {"lat": 50.776902004994554, "lng": -1.9081817494479787, "title": "EVC The Bridge House Hotel", "address": "The Bridge House Hotel, 2 Ringwood Road"}, {"lat": 50.80113, "lng": -1.89314, "title": "Tesco Superstore-Ferndown", "address": "Pennys Walk"}];
+  var chargerData = [{"lat": 50.81155997610645, "lng": -1.8770046245410867, "title": "Smart Charge", "address": "597 Ringwood Rd", "connectors": ["CHAdeMO · 50kW", "CCS (Type 2) · 150kW"]}, {"lat": 50.78082208984111, "lng": -1.8794095693718873, "title": "Lidl West Parley", "address": "Christchurch Road", "connectors": ["Type 2 (Socket Only) · 22kW", "CCS (Type 2) · 50kW", "CHAdeMO · 50kW"]}, {"lat": 50.811748512315205, "lng": -1.8718092733686547, "title": "Lidl Ferndown", "address": "Ringwood Road", "connectors": ["Type 2 (Socket Only) · 22kW", "CCS (Type 2) · 60kW", "CCS (Type 2) · 60kW"]}, {"lat": 50.802347, "lng": -1.891852, "title": "DRC Penny's Lodge Car Park", "address": "Library Road", "connectors": ["CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 50kW"]}, {"lat": 50.793123, "lng": -1.8925903, "title": "InstaVolt Glenmoor Road", "address": "35A Glenmoor Road", "connectors": ["CCS (Type 2) · 120kW", "CHAdeMO · 50kW"]}, {"lat": 50.776902004994554, "lng": -1.9081817494479787, "title": "EVC The Bridge House Hotel", "address": "The Bridge House Hotel, 2 Ringwood Road", "connectors": ["Type 2 (Socket Only) · 22kW"]}, {"lat": 50.80113, "lng": -1.89314, "title": "Tesco Superstore-Ferndown", "address": "Pennys Walk", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}];
 
   chargerData.forEach(function (c) {
+    var connHtml = c.connectors.length
+      ? '<div style="margin-top:6px;font-size:12px;color:#475569">' + c.connectors.join(' &middot; ') + '</div>'
+      : '';
     var marker = L.marker([c.lat, c.lng]);
     marker.bindPopup(
-      '<b>' + c.title + '</b><br>' + c.address + '<br><br>' +
+      '<b>' + c.title + '</b>' +
+      '<div style="color:#64748b;font-size:13px">' + c.address + '</div>' +
+      connHtml +
       '<a href="https://www.google.com/maps/dir/?api=1&destination=' + c.lat + ',' + c.lng +
-      '" target="_blank" rel="noopener">Get directions</a>'
+      '" target="_blank" rel="noopener" style="display:inline-block;margin-top:8px;padding:4px 10px;background:#2563eb;color:white;border-radius:4px;text-decoration:none;font-size:12px">Get directions</a>'
     );
     markers.addLayer(marker);
   });
-
   map.addLayer(markers);
+
+  // --- Connector filter ---
+  var filterBtns = document.querySelectorAll('.filter-btn');
+  var chargerItems = document.querySelectorAll('.charger-item');
+
+  filterBtns.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      filterBtns.forEach(function (b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      var f = btn.dataset.filter;
+      chargerItems.forEach(function (item) {
+        var connList = item.dataset.connectors ? item.dataset.connectors.split(',') : [];
+        item.style.display = (f === 'all' || connList.indexOf(f) !== -1) ? '' : 'none';
+      });
+    });
+  });
+
+  // --- Copy postcode ---
+  document.querySelectorAll('.copy-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var original = btn.textContent;
+      navigator.clipboard.writeText(btn.dataset.copy).then(function () {
+        btn.textContent = 'Copied!';
+        btn.classList.add('copy-btn--success');
+        setTimeout(function () {
+          btn.textContent = original;
+          btn.classList.remove('copy-btn--success');
+        }, 1500);
+      });
+    });
+  });
 }());
 </script>
 

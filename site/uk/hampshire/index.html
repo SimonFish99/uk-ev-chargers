@@ -17,7 +17,10 @@
 
 <header>
 <div class="container">
-<a href="/" class="logo">PlugMap <span class="tagline">UK EV Charger Locator</span></a>
+<a href="/" class="logo">
+  <svg class="logo-bolt" viewBox="0 0 24 24" fill="currentColor" width="22" height="22" aria-hidden="true"><path d="M13 2L4.5 13.5H11L10 22L19.5 10.5H13Z"/></svg>
+  PlugMap <span class="tagline">UK EV Charger Locator</span>
+</a>
 </div>
 </header>
 
@@ -28,16 +31,39 @@
 </nav>
 
 <h1>EV Chargers in Hampshire</h1>
-<p class="page-intro">6 public charging stations found in Hampshire.</p>
+
+<div class="stats-bar">
+  <span class="stat-pill stat-total">6 stations</span>
+  <span class="stat-pill stat-rapid">1 rapid (50kW+)</span>
+  <span class="stat-pill stat-fast">5 fast (7–50kW)</span>
+  
+</div>
 
 <div id="map"></div>
 
-<ul class="charger-list">
+
+<div class="connector-filter">
+  <span class="filter-label">Filter:</span>
+  <button class="filter-btn active" data-filter="all">All</button>
+  
+  <button class="filter-btn" data-filter="CCS (Type 2)">CCS (Type 2)</button>
+  
+  <button class="filter-btn" data-filter="CHAdeMO">CHAdeMO</button>
+  
+  <button class="filter-btn" data-filter="Type 2 (Socket Only)">Type 2 (Socket Only)</button>
+  
+</div>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Tesco Extra - Havant</h2>
-  <p class="charger-address">Solent Road PO9 1TR
+<ul class="charger-list" id="charger-list">
+
+
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Tesco Extra - Havant</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Solent Road <button class="copy-btn" data-copy="PO9 1TR">PO9 1TR</button>
   </p>
   
   <div class="charger-connections">
@@ -59,9 +85,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">BDBC Eastlands Car Park 1</h2>
-  <p class="charger-address">London Road RG21 4AW
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">BDBC Eastlands Car Park 1</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">London Road <button class="copy-btn" data-copy="RG21 4AW">RG21 4AW</button>
   </p>
   
   <div class="charger-connections">
@@ -83,9 +112,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Whiteley Shopping Centre, East car park</h2>
-  <p class="charger-address">Whiteley Shopping Centre PO15 7PD
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Whiteley Shopping Centre, East car park</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Whiteley Shopping Centre <button class="copy-btn" data-copy="PO15 7PD">PO15 7PD</button>
   </p>
   
   <div class="charger-connections">
@@ -107,9 +139,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">St. Leonards</h2>
-  <p class="charger-address">St. Leonards BH24 2RZ
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">St. Leonards</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">St. Leonards <button class="copy-btn" data-copy="BH24 2RZ">BH24 2RZ</button>
   </p>
   
   <div class="charger-connections">
@@ -131,9 +166,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Shorefield Country Park</h2>
-  <p class="charger-address">Milford on Sea SO41 0LH 
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Shorefield Country Park</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Milford on Sea <button class="copy-btn" data-copy="SO41 0LH ">SO41 0LH </button>
   </p>
   
   <div class="charger-connections">
@@ -152,9 +190,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Emsworth BP</h2>
-  <p class="charger-address">A27 Westbound PO10 7RB
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2),CHAdeMO">
+  <div class="charger-header">
+    <h2 class="charger-name">Emsworth BP</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">A27 Westbound <button class="copy-btn" data-copy="PO10 7RB">PO10 7RB</button>
   </p>
   
   <div class="charger-connections">
@@ -179,6 +221,23 @@
 
 <p><a href="/" class="back-link">← All UK towns</a></p>
 
+
+<div class="nearby-towns">
+  <h2 class="nearby-heading">Nearby towns</h2>
+  <ul class="nearby-list">
+  
+    <li><a href="/uk/southampton/">Southampton</a></li>
+  
+    <li><a href="/uk/eastleigh/">Eastleigh</a></li>
+  
+    <li><a href="/uk/winchester/">Winchester</a></li>
+  
+    <li><a href="/uk/gosport/">Gosport</a></li>
+  
+  </ul>
+</div>
+
+
 </div>
 
 <footer>
@@ -191,26 +250,61 @@
 <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 <script>
 (function () {
+  // --- Map ---
   var map = L.map('map').setView([50.89945169852814, -1.28887506440266], 12);
-
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
   }).addTo(map);
 
   var markers = L.markerClusterGroup();
-  var chargerData = [{"lat": 50.849388, "lng": -0.986354, "title": "Tesco Extra - Havant", "address": "Solent Road"}, {"lat": 51.262995, "lng": -1.083749, "title": "BDBC Eastlands Car Park 1", "address": "London Road"}, {"lat": 50.88546, "lng": -1.244983, "title": "Whiteley Shopping Centre, East car park", "address": "Whiteley Shopping Centre"}, {"lat": 50.812702, "lng": -1.858628, "title": "St. Leonards", "address": "St. Leonards"}, {"lat": 50.733683191168836, "lng": -1.6138903864159602, "title": "Shorefield Country Park", "address": "Milford on Sea"}, {"lat": 50.852482, "lng": -0.945646, "title": "Emsworth BP", "address": "A27 Westbound"}];
+  var chargerData = [{"lat": 50.849388, "lng": -0.986354, "title": "Tesco Extra - Havant", "address": "Solent Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 51.262995, "lng": -1.083749, "title": "BDBC Eastlands Car Park 1", "address": "London Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 50.88546, "lng": -1.244983, "title": "Whiteley Shopping Centre, East car park", "address": "Whiteley Shopping Centre", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 50.812702, "lng": -1.858628, "title": "St. Leonards", "address": "St. Leonards", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 50.733683191168836, "lng": -1.6138903864159602, "title": "Shorefield Country Park", "address": "Milford on Sea", "connectors": ["Type 2 (Socket Only) · 22kW"]}, {"lat": 50.852482, "lng": -0.945646, "title": "Emsworth BP", "address": "A27 Westbound", "connectors": ["CCS (Type 2) · 150kW", "CHAdeMO · 50kW"]}];
 
   chargerData.forEach(function (c) {
+    var connHtml = c.connectors.length
+      ? '<div style="margin-top:6px;font-size:12px;color:#475569">' + c.connectors.join(' &middot; ') + '</div>'
+      : '';
     var marker = L.marker([c.lat, c.lng]);
     marker.bindPopup(
-      '<b>' + c.title + '</b><br>' + c.address + '<br><br>' +
+      '<b>' + c.title + '</b>' +
+      '<div style="color:#64748b;font-size:13px">' + c.address + '</div>' +
+      connHtml +
       '<a href="https://www.google.com/maps/dir/?api=1&destination=' + c.lat + ',' + c.lng +
-      '" target="_blank" rel="noopener">Get directions</a>'
+      '" target="_blank" rel="noopener" style="display:inline-block;margin-top:8px;padding:4px 10px;background:#2563eb;color:white;border-radius:4px;text-decoration:none;font-size:12px">Get directions</a>'
     );
     markers.addLayer(marker);
   });
-
   map.addLayer(markers);
+
+  // --- Connector filter ---
+  var filterBtns = document.querySelectorAll('.filter-btn');
+  var chargerItems = document.querySelectorAll('.charger-item');
+
+  filterBtns.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      filterBtns.forEach(function (b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      var f = btn.dataset.filter;
+      chargerItems.forEach(function (item) {
+        var connList = item.dataset.connectors ? item.dataset.connectors.split(',') : [];
+        item.style.display = (f === 'all' || connList.indexOf(f) !== -1) ? '' : 'none';
+      });
+    });
+  });
+
+  // --- Copy postcode ---
+  document.querySelectorAll('.copy-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var original = btn.textContent;
+      navigator.clipboard.writeText(btn.dataset.copy).then(function () {
+        btn.textContent = 'Copied!';
+        btn.classList.add('copy-btn--success');
+        setTimeout(function () {
+          btn.textContent = original;
+          btn.classList.remove('copy-btn--success');
+        }, 1500);
+      });
+    });
+  });
 }());
 </script>
 

@@ -17,7 +17,10 @@
 
 <header>
 <div class="container">
-<a href="/" class="logo">PlugMap <span class="tagline">UK EV Charger Locator</span></a>
+<a href="/" class="logo">
+  <svg class="logo-bolt" viewBox="0 0 24 24" fill="currentColor" width="22" height="22" aria-hidden="true"><path d="M13 2L4.5 13.5H11L10 22L19.5 10.5H13Z"/></svg>
+  PlugMap <span class="tagline">UK EV Charger Locator</span>
+</a>
 </div>
 </header>
 
@@ -28,16 +31,40 @@
 </nav>
 
 <h1>EV Chargers in Salisbury</h1>
-<p class="page-intro">20 public charging stations found in Salisbury.</p>
+
+<div class="stats-bar">
+  <span class="stat-pill stat-total">20 stations</span>
+  <span class="stat-pill stat-rapid">5 rapid (50kW+)</span>
+  <span class="stat-pill stat-fast">13 fast (7–50kW)</span>
+  <span class="stat-pill stat-slow">2 slow</span>
+</div>
 
 <div id="map"></div>
 
-<ul class="charger-list">
+
+<div class="connector-filter">
+  <span class="filter-label">Filter:</span>
+  <button class="filter-btn active" data-filter="all">All</button>
+  
+  <button class="filter-btn" data-filter="CCS (Type 2)">CCS (Type 2)</button>
+  
+  <button class="filter-btn" data-filter="CHAdeMO">CHAdeMO</button>
+  
+  <button class="filter-btn" data-filter="Type 2 (Socket Only)">Type 2 (Socket Only)</button>
+  
+</div>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Old George Mall Car Park</h2>
-  <p class="charger-address">New Street SP1 2PH
+<ul class="charger-list" id="charger-list">
+
+
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2)">
+  <div class="charger-header">
+    <h2 class="charger-name">Old George Mall Car Park</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">New Street <button class="copy-btn" data-copy="SP1 2PH">SP1 2PH</button>
   </p>
   
   <div class="charger-connections">
@@ -59,9 +86,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Salisbury Council Fleet chargers</h2>
-  <p class="charger-address">Avon Approach SP2 7RW
+<li class="charger-item charger-item--slow" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Salisbury Council Fleet chargers</h2>
+    
+  </div>
+  <p class="charger-address">Avon Approach <button class="copy-btn" data-copy="SP2 7RW">SP2 7RW</button>
   </p>
   
   <div class="charger-connections">
@@ -95,9 +125,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Shell Wilton Road</h2>
-  <p class="charger-address">133 Wilton Road SP2 7JB
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2),CHAdeMO">
+  <div class="charger-header">
+    <h2 class="charger-name">Shell Wilton Road</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">133 Wilton Road <button class="copy-btn" data-copy="SP2 7JB">SP2 7JB</button>
   </p>
   
   <div class="charger-connections">
@@ -119,9 +153,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">BP Pulse Salisbury SF Connect</h2>
-  <p class="charger-address">Salisbury SF Connect SP2 8AR
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2)">
+  <div class="charger-header">
+    <h2 class="charger-name">BP Pulse Salisbury SF Connect</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Salisbury SF Connect <button class="copy-btn" data-copy="SP2 8AR">SP2 8AR</button>
   </p>
   
   <div class="charger-connections">
@@ -140,9 +178,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Five Rivers Leisure Centre 1</h2>
-  <p class="charger-address">88 Hulse Road SP1 3NR
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Five Rivers Leisure Centre 1</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">88 Hulse Road <button class="copy-btn" data-copy="SP1 3NR">SP1 3NR</button>
   </p>
   
   <div class="charger-connections">
@@ -164,9 +205,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Five Rivers (Campus)</h2>
-  <p class="charger-address">Hulse Road SP1 3NR
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Five Rivers (Campus)</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Hulse Road <button class="copy-btn" data-copy="SP1 3NR">SP1 3NR</button>
   </p>
   
   <div class="charger-connections">
@@ -188,9 +232,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Bourne Hill</h2>
-  <p class="charger-address">Bourne Hill SP1 3UZ
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Bourne Hill</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Bourne Hill <button class="copy-btn" data-copy="SP1 3UZ">SP1 3UZ</button>
   </p>
   
   <div class="charger-connections">
@@ -212,9 +259,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Tisbury Community Campus</h2>
-  <p class="charger-address">Weaveland Road SP3 6HU
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Tisbury Community Campus</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Weaveland Road <button class="copy-btn" data-copy="SP3 6HU">SP3 6HU</button>
   </p>
   
   <div class="charger-connections">
@@ -236,9 +286,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Tesco Extra - Salisbury</h2>
-  <p class="charger-address">Bourne Centre SP1 2NY
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Tesco Extra - Salisbury</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Bourne Centre <button class="copy-btn" data-copy="SP1 2NY">SP1 2NY</button>
   </p>
   
   <div class="charger-connections">
@@ -260,9 +313,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Petersfinger (Park and Ride)</h2>
-  <p class="charger-address">A36 Southampton Road SP5 3BZ
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Petersfinger (Park and Ride)</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">A36 Southampton Road <button class="copy-btn" data-copy="SP5 3BZ">SP5 3BZ</button>
   </p>
   
   <div class="charger-connections">
@@ -284,9 +340,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Britford</h2>
-  <p class="charger-address">3 High Road SP5 4DS
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Britford</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">3 High Road <button class="copy-btn" data-copy="SP5 4DS">SP5 4DS</button>
   </p>
   
   <div class="charger-connections">
@@ -308,9 +367,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Five Rivers Leisure Centre</h2>
-  <p class="charger-address">Hulse Road SP1 3NA
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Five Rivers Leisure Centre</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Hulse Road <button class="copy-btn" data-copy="SP1 3NA">SP1 3NA</button>
   </p>
   
   <div class="charger-connections">
@@ -329,9 +391,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Five Rivers Leisure Centre</h2>
-  <p class="charger-address">Hulse Road SP1 3NA
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Five Rivers Leisure Centre</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Hulse Road <button class="copy-btn" data-copy="SP1 3NA">SP1 3NA</button>
   </p>
   
   <div class="charger-connections">
@@ -359,9 +424,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Salisbury District Hospital</h2>
-  <p class="charger-address">Odstock Road SP2 8BJ
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Salisbury District Hospital</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Odstock Road <button class="copy-btn" data-copy="SP2 8BJ">SP2 8BJ</button>
   </p>
   
   <div class="charger-connections">
@@ -389,9 +457,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">EVC Gray Manor Hotel</h2>
-  <p class="charger-address">Parkhouse Cross SP4 0EG
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">EVC Gray Manor Hotel</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Parkhouse Cross <button class="copy-btn" data-copy="SP4 0EG">SP4 0EG</button>
   </p>
   
   <div class="charger-connections">
@@ -410,9 +481,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">London Road Car Park</h2>
-  <p class="charger-address">London Road SP1 3HP
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">London Road Car Park</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">London Road <button class="copy-btn" data-copy="SP1 3HP">SP1 3HP</button>
   </p>
   
   <div class="charger-connections">
@@ -434,9 +508,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Beehive Park and Ride</h2>
-  <p class="charger-address">The Portway SP4 6BG
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Beehive Park and Ride</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">The Portway <button class="copy-btn" data-copy="SP4 6BG">SP4 6BG</button>
   </p>
   
   <div class="charger-connections">
@@ -458,9 +535,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Dolphin Retail Park Salisbury</h2>
-  <p class="charger-address">Southampton Road Retail Park SP1 2FE
+<li class="charger-item charger-item--slow" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Dolphin Retail Park Salisbury</h2>
+    
+  </div>
+  <p class="charger-address">Southampton Road Retail Park <button class="copy-btn" data-copy="SP1 2FE">SP1 2FE</button>
   </p>
   
   <div class="charger-connections">
@@ -482,9 +562,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Bourne Retail Park</h2>
-  <p class="charger-address">Southampton Road SP1 2LB
+<li class="charger-item charger-item--rapid" data-connectors="CHAdeMO,CCS (Type 2)">
+  <div class="charger-header">
+    <h2 class="charger-name">Bourne Retail Park</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Southampton Road <button class="copy-btn" data-copy="SP1 2LB">SP1 2LB</button>
   </p>
   
   <div class="charger-connections">
@@ -506,9 +590,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Brown Street (West) Car Park</h2>
-  <p class="charger-address">Brown Street SP1 2DQ
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2),CHAdeMO">
+  <div class="charger-header">
+    <h2 class="charger-name">Brown Street (West) Car Park</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Brown Street <button class="copy-btn" data-copy="SP1 2DQ">SP1 2DQ</button>
   </p>
   
   <div class="charger-connections">
@@ -533,6 +621,23 @@
 
 <p><a href="/" class="back-link">← All UK towns</a></p>
 
+
+<div class="nearby-towns">
+  <h2 class="nearby-heading">Nearby towns</h2>
+  <ul class="nearby-list">
+  
+    <li><a href="/uk/amesbury/">Amesbury</a></li>
+  
+    <li><a href="/uk/ferndown/">Ferndown</a></li>
+  
+    <li><a href="/uk/christchurch/">Christchurch</a></li>
+  
+    <li><a href="/uk/andover/">Andover</a></li>
+  
+  </ul>
+</div>
+
+
 </div>
 
 <footer>
@@ -545,26 +650,61 @@
 <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 <script>
 (function () {
+  // --- Map ---
   var map = L.map('map').setView([51.075506021656665, -1.799556415756371], 12);
-
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
   }).addTo(map);
 
   var markers = L.markerClusterGroup();
-  var chargerData = [{"lat": 51.06723516594158, "lng": -1.7947619425035555, "title": "Old George Mall Car Park", "address": "New Street"}, {"lat": 51.0712897295312, "lng": -1.798526923124541, "title": "Salisbury Council Fleet chargers", "address": "Avon Approach"}, {"lat": 51.07399958668455, "lng": -1.8167666670625806, "title": "Shell Wilton Road", "address": "133 Wilton Road"}, {"lat": 51.05684579803449, "lng": -1.7929700274374056, "title": "BP Pulse Salisbury SF Connect", "address": "Salisbury SF Connect"}, {"lat": 51.078536, "lng": -1.803527, "title": "Five Rivers Leisure Centre 1", "address": "88 Hulse Road"}, {"lat": 51.078026, "lng": -1.803645, "title": "Five Rivers (Campus)", "address": "Hulse Road"}, {"lat": 51.072337, "lng": -1.79105, "title": "Bourne Hill", "address": "Bourne Hill"}, {"lat": 51.067167, "lng": -2.085186, "title": "Tisbury Community Campus", "address": "Weaveland Road"}, {"lat": 51.062444, "lng": -1.773421, "title": "Tesco Extra - Salisbury", "address": "Bourne Centre"}, {"lat": 51.06257816045908, "lng": -1.7715930116473828, "title": "Petersfinger (Park and Ride)", "address": "A36 Southampton Road"}, {"lat": 51.049436, "lng": -1.777814, "title": "Britford", "address": "3 High Road"}, {"lat": 51.07837650464111, "lng": -1.8019259231576825, "title": "Five Rivers Leisure Centre", "address": "Hulse Road"}, {"lat": 51.07838059048842, "lng": -1.8022965480145388, "title": "Five Rivers Leisure Centre", "address": "Hulse Road"}, {"lat": 51.04424174140581, "lng": -1.7876382528814645, "title": "Salisbury District Hospital", "address": "Odstock Road"}, {"lat": 51.19135722554175, "lng": -1.6678794663969492, "title": "EVC Gray Manor Hotel", "address": "Parkhouse Cross"}, {"lat": 51.0846187, "lng": -1.776408, "title": "London Road Car Park", "address": "London Road"}, {"lat": 51.09954104333491, "lng": -1.7956213215868502, "title": "Beehive Park and Ride", "address": "The Portway"}, {"lat": 51.063851, "lng": -1.778708, "title": "Dolphin Retail Park Salisbury", "address": "Southampton Road Retail Park"}, {"lat": 51.0624636560095, "lng": -1.77847520159301, "title": "Bourne Retail Park", "address": "Southampton Road"}, {"lat": 51.06739553106078, "lng": -1.7929140297214587, "title": "Brown Street (West) Car Park", "address": "Brown Street"}];
+  var chargerData = [{"lat": 51.06723516594158, "lng": -1.7947619425035555, "title": "Old George Mall Car Park", "address": "New Street", "connectors": ["CCS (Type 2) · 150kW", "CCS (Type 2) · 150kW"]}, {"lat": 51.0712897295312, "lng": -1.798526923124541, "title": "Salisbury Council Fleet chargers", "address": "Avon Approach", "connectors": ["Type 2 (Socket Only)", "Type 2 (Socket Only)", "Type 2 (Socket Only)", "Type 2 (Socket Only)", "Type 2 (Socket Only)", "Type 2 (Socket Only)"]}, {"lat": 51.07399958668455, "lng": -1.8167666670625806, "title": "Shell Wilton Road", "address": "133 Wilton Road", "connectors": ["CCS (Type 2) · 175kW", "CHAdeMO · 70kW"]}, {"lat": 51.05684579803449, "lng": -1.7929700274374056, "title": "BP Pulse Salisbury SF Connect", "address": "Salisbury SF Connect", "connectors": ["CCS (Type 2) · 150kW"]}, {"lat": 51.078536, "lng": -1.803527, "title": "Five Rivers Leisure Centre 1", "address": "88 Hulse Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 51.078026, "lng": -1.803645, "title": "Five Rivers (Campus)", "address": "Hulse Road", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 51.072337, "lng": -1.79105, "title": "Bourne Hill", "address": "Bourne Hill", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 51.067167, "lng": -2.085186, "title": "Tisbury Community Campus", "address": "Weaveland Road", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 51.062444, "lng": -1.773421, "title": "Tesco Extra - Salisbury", "address": "Bourne Centre", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 51.06257816045908, "lng": -1.7715930116473828, "title": "Petersfinger (Park and Ride)", "address": "A36 Southampton Road", "connectors": ["Type 2 (Socket Only) · 7.4kW", "Type 2 (Socket Only) · 7.4kW"]}, {"lat": 51.049436, "lng": -1.777814, "title": "Britford", "address": "3 High Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 51.07837650464111, "lng": -1.8019259231576825, "title": "Five Rivers Leisure Centre", "address": "Hulse Road", "connectors": ["Type 2 (Socket Only) · 22kW"]}, {"lat": 51.07838059048842, "lng": -1.8022965480145388, "title": "Five Rivers Leisure Centre", "address": "Hulse Road", "connectors": ["Type 2 (Socket Only) · 7.4kW", "Type 2 (Socket Only) · 7.4kW", "Type 2 (Socket Only) · 7.4kW", "Type 2 (Socket Only) · 7.4kW"]}, {"lat": 51.04424174140581, "lng": -1.7876382528814645, "title": "Salisbury District Hospital", "address": "Odstock Road", "connectors": ["Type 2 (Socket Only) · 3.6kW", "Type 2 (Socket Only) · 7.4kW", "Type 2 (Socket Only) · 7.4kW", "Type 2 (Socket Only) · 7.4kW"]}, {"lat": 51.19135722554175, "lng": -1.6678794663969492, "title": "EVC Gray Manor Hotel", "address": "Parkhouse Cross", "connectors": ["Type 2 (Socket Only) · 22kW"]}, {"lat": 51.0846187, "lng": -1.776408, "title": "London Road Car Park", "address": "London Road", "connectors": ["Type 2 (Socket Only) · 7.4kW", "Type 2 (Socket Only) · 7.4kW"]}, {"lat": 51.09954104333491, "lng": -1.7956213215868502, "title": "Beehive Park and Ride", "address": "The Portway", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 51.063851, "lng": -1.778708, "title": "Dolphin Retail Park Salisbury", "address": "Southampton Road Retail Park", "connectors": ["Type 2 (Socket Only) · 3.7kW", "Type 2 (Socket Only) · 3.7kW"]}, {"lat": 51.0624636560095, "lng": -1.77847520159301, "title": "Bourne Retail Park", "address": "Southampton Road", "connectors": ["CHAdeMO · 120kW", "CCS (Type 2) · 100kW"]}, {"lat": 51.06739553106078, "lng": -1.7929140297214587, "title": "Brown Street (West) Car Park", "address": "Brown Street", "connectors": ["CCS (Type 2) · 50kW", "CHAdeMO · 50kW"]}];
 
   chargerData.forEach(function (c) {
+    var connHtml = c.connectors.length
+      ? '<div style="margin-top:6px;font-size:12px;color:#475569">' + c.connectors.join(' &middot; ') + '</div>'
+      : '';
     var marker = L.marker([c.lat, c.lng]);
     marker.bindPopup(
-      '<b>' + c.title + '</b><br>' + c.address + '<br><br>' +
+      '<b>' + c.title + '</b>' +
+      '<div style="color:#64748b;font-size:13px">' + c.address + '</div>' +
+      connHtml +
       '<a href="https://www.google.com/maps/dir/?api=1&destination=' + c.lat + ',' + c.lng +
-      '" target="_blank" rel="noopener">Get directions</a>'
+      '" target="_blank" rel="noopener" style="display:inline-block;margin-top:8px;padding:4px 10px;background:#2563eb;color:white;border-radius:4px;text-decoration:none;font-size:12px">Get directions</a>'
     );
     markers.addLayer(marker);
   });
-
   map.addLayer(markers);
+
+  // --- Connector filter ---
+  var filterBtns = document.querySelectorAll('.filter-btn');
+  var chargerItems = document.querySelectorAll('.charger-item');
+
+  filterBtns.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      filterBtns.forEach(function (b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      var f = btn.dataset.filter;
+      chargerItems.forEach(function (item) {
+        var connList = item.dataset.connectors ? item.dataset.connectors.split(',') : [];
+        item.style.display = (f === 'all' || connList.indexOf(f) !== -1) ? '' : 'none';
+      });
+    });
+  });
+
+  // --- Copy postcode ---
+  document.querySelectorAll('.copy-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var original = btn.textContent;
+      navigator.clipboard.writeText(btn.dataset.copy).then(function () {
+        btn.textContent = 'Copied!';
+        btn.classList.add('copy-btn--success');
+        setTimeout(function () {
+          btn.textContent = original;
+          btn.classList.remove('copy-btn--success');
+        }, 1500);
+      });
+    });
+  });
 }());
 </script>
 

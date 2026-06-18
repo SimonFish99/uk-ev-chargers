@@ -17,7 +17,10 @@
 
 <header>
 <div class="container">
-<a href="/" class="logo">PlugMap <span class="tagline">UK EV Charger Locator</span></a>
+<a href="/" class="logo">
+  <svg class="logo-bolt" viewBox="0 0 24 24" fill="currentColor" width="22" height="22" aria-hidden="true"><path d="M13 2L4.5 13.5H11L10 22L19.5 10.5H13Z"/></svg>
+  PlugMap <span class="tagline">UK EV Charger Locator</span>
+</a>
 </div>
 </header>
 
@@ -28,16 +31,27 @@
 </nav>
 
 <h1>EV Chargers in Wigston</h1>
-<p class="page-intro">5 public charging stations found in Wigston.</p>
+
+<div class="stats-bar">
+  <span class="stat-pill stat-total">5 stations</span>
+  
+  <span class="stat-pill stat-fast">5 fast (7–50kW)</span>
+  
+</div>
 
 <div id="map"></div>
 
-<ul class="charger-list">
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Wigston Pool Fitness Centre 1</h2>
-  <p class="charger-address">Wigston Pool Fitness Centre 1 LE18 2DP
+<ul class="charger-list" id="charger-list">
+
+
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Wigston Pool Fitness Centre 1</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Wigston Pool Fitness Centre 1 <button class="copy-btn" data-copy="LE18 2DP">LE18 2DP</button>
   </p>
   
   <div class="charger-connections">
@@ -59,9 +73,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Countesthorpe Car Park 10</h2>
-  <p class="charger-address">Countesthorpe Road LE18 4PF
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Countesthorpe Car Park 10</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Countesthorpe Road <button class="copy-btn" data-copy="LE18 4PF">LE18 4PF</button>
   </p>
   
   <div class="charger-connections">
@@ -83,9 +100,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Station Road</h2>
-  <p class="charger-address">Station Road LE18 2DP
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Station Road</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Station Road <button class="copy-btn" data-copy="LE18 2DP">LE18 2DP</button>
   </p>
   
   <div class="charger-connections">
@@ -107,9 +127,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Aylestone Lane Car Park 1</h2>
-  <p class="charger-address">Aylestone Lane Car Park LE18 1AH
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Aylestone Lane Car Park 1</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Aylestone Lane Car Park <button class="copy-btn" data-copy="LE18 1AH">LE18 1AH</button>
   </p>
   
   <div class="charger-connections">
@@ -131,9 +154,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Station Road</h2>
-  <p class="charger-address">Station Road LE18 2DP
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Station Road</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Station Road <button class="copy-btn" data-copy="LE18 2DP">LE18 2DP</button>
   </p>
   
   <div class="charger-connections">
@@ -158,6 +184,23 @@
 
 <p><a href="/" class="back-link">← All UK towns</a></p>
 
+
+<div class="nearby-towns">
+  <h2 class="nearby-heading">Nearby towns</h2>
+  <ul class="nearby-list">
+  
+    <li><a href="/uk/leicester/">Leicester</a></li>
+  
+    <li><a href="/uk/loughborough/">Loughborough</a></li>
+  
+    <li><a href="/uk/rugby/">Rugby</a></li>
+  
+    <li><a href="/uk/market-harborough/">Market Harborough</a></li>
+  
+  </ul>
+</div>
+
+
 </div>
 
 <footer>
@@ -170,26 +213,61 @@
 <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 <script>
 (function () {
+  // --- Map ---
   var map = L.map('map').setView([52.6287906, -1.1576347999999999], 12);
-
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
   }).addTo(map);
 
   var markers = L.markerClusterGroup();
-  var chargerData = [{"lat": 52.581523, "lng": -1.121434, "title": "Wigston Pool Fitness Centre 1", "address": "Wigston Pool Fitness Centre 1"}, {"lat": 52.57811, "lng": -1.13545, "title": "Countesthorpe Car Park 10", "address": "Countesthorpe Road"}, {"lat": 52.8161, "lng": -1.2116, "title": "Station Road", "address": "Station Road"}, {"lat": 52.58661, "lng": -1.10809, "title": "Aylestone Lane Car Park 1", "address": "Aylestone Lane Car Park"}, {"lat": 52.58161, "lng": -1.2116, "title": "Station Road", "address": "Station Road"}];
+  var chargerData = [{"lat": 52.581523, "lng": -1.121434, "title": "Wigston Pool Fitness Centre 1", "address": "Wigston Pool Fitness Centre 1", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 52.57811, "lng": -1.13545, "title": "Countesthorpe Car Park 10", "address": "Countesthorpe Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 52.8161, "lng": -1.2116, "title": "Station Road", "address": "Station Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 52.58661, "lng": -1.10809, "title": "Aylestone Lane Car Park 1", "address": "Aylestone Lane Car Park", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 52.58161, "lng": -1.2116, "title": "Station Road", "address": "Station Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}];
 
   chargerData.forEach(function (c) {
+    var connHtml = c.connectors.length
+      ? '<div style="margin-top:6px;font-size:12px;color:#475569">' + c.connectors.join(' &middot; ') + '</div>'
+      : '';
     var marker = L.marker([c.lat, c.lng]);
     marker.bindPopup(
-      '<b>' + c.title + '</b><br>' + c.address + '<br><br>' +
+      '<b>' + c.title + '</b>' +
+      '<div style="color:#64748b;font-size:13px">' + c.address + '</div>' +
+      connHtml +
       '<a href="https://www.google.com/maps/dir/?api=1&destination=' + c.lat + ',' + c.lng +
-      '" target="_blank" rel="noopener">Get directions</a>'
+      '" target="_blank" rel="noopener" style="display:inline-block;margin-top:8px;padding:4px 10px;background:#2563eb;color:white;border-radius:4px;text-decoration:none;font-size:12px">Get directions</a>'
     );
     markers.addLayer(marker);
   });
-
   map.addLayer(markers);
+
+  // --- Connector filter ---
+  var filterBtns = document.querySelectorAll('.filter-btn');
+  var chargerItems = document.querySelectorAll('.charger-item');
+
+  filterBtns.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      filterBtns.forEach(function (b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      var f = btn.dataset.filter;
+      chargerItems.forEach(function (item) {
+        var connList = item.dataset.connectors ? item.dataset.connectors.split(',') : [];
+        item.style.display = (f === 'all' || connList.indexOf(f) !== -1) ? '' : 'none';
+      });
+    });
+  });
+
+  // --- Copy postcode ---
+  document.querySelectorAll('.copy-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var original = btn.textContent;
+      navigator.clipboard.writeText(btn.dataset.copy).then(function () {
+        btn.textContent = 'Copied!';
+        btn.classList.add('copy-btn--success');
+        setTimeout(function () {
+          btn.textContent = original;
+          btn.classList.remove('copy-btn--success');
+        }, 1500);
+      });
+    });
+  });
 }());
 </script>
 

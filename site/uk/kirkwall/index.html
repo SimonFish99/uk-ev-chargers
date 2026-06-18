@@ -17,7 +17,10 @@
 
 <header>
 <div class="container">
-<a href="/" class="logo">PlugMap <span class="tagline">UK EV Charger Locator</span></a>
+<a href="/" class="logo">
+  <svg class="logo-bolt" viewBox="0 0 24 24" fill="currentColor" width="22" height="22" aria-hidden="true"><path d="M13 2L4.5 13.5H11L10 22L19.5 10.5H13Z"/></svg>
+  PlugMap <span class="tagline">UK EV Charger Locator</span>
+</a>
 </div>
 </header>
 
@@ -28,16 +31,43 @@
 </nav>
 
 <h1>EV Chargers in Kirkwall</h1>
-<p class="page-intro">10 public charging stations found in Kirkwall.</p>
+
+<div class="stats-bar">
+  <span class="stat-pill stat-total">10 stations</span>
+  <span class="stat-pill stat-rapid">3 rapid (50kW+)</span>
+  <span class="stat-pill stat-fast">6 fast (7–50kW)</span>
+  <span class="stat-pill stat-slow">1 slow</span>
+</div>
 
 <div id="map"></div>
 
-<ul class="charger-list">
+
+<div class="connector-filter">
+  <span class="filter-label">Filter:</span>
+  <button class="filter-btn active" data-filter="all">All</button>
+  
+  <button class="filter-btn" data-filter="BS1363 3 Pin 13 Amp">BS1363 3 Pin 13 Amp</button>
+  
+  <button class="filter-btn" data-filter="CCS (Type 2)">CCS (Type 2)</button>
+  
+  <button class="filter-btn" data-filter="CHAdeMO">CHAdeMO</button>
+  
+  <button class="filter-btn" data-filter="Type 2 (Socket Only)">Type 2 (Socket Only)</button>
+  
+  <button class="filter-btn" data-filter="Type 2 (Tethered Connector) ">Type 2 (Tethered Connector) </button>
+  
+</div>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Kirkwall - Great Western Road CP</h2>
-  <p class="charger-address">Great Western Road KW15 1AN
+<ul class="charger-list" id="charger-list">
+
+
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Kirkwall - Great Western Road CP</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Great Western Road <button class="copy-btn" data-copy="KW15 1AN">KW15 1AN</button>
   </p>
   
   <div class="charger-connections">
@@ -59,9 +89,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Pickaquoy Centre Car Park</h2>
-  <p class="charger-address">Muddisdale Road KW15 1LR
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Pickaquoy Centre Car Park</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Muddisdale Road <button class="copy-btn" data-copy="KW15 1LR">KW15 1LR</button>
   </p>
   
   <div class="charger-connections">
@@ -83,9 +116,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Orkney Islands Council</h2>
-  <p class="charger-address">1 School Place KW15 1NY
+<li class="charger-item charger-item--slow" data-connectors="BS1363 3 Pin 13 Amp">
+  <div class="charger-header">
+    <h2 class="charger-name">Orkney Islands Council</h2>
+    
+  </div>
+  <p class="charger-address">1 School Place <button class="copy-btn" data-copy="KW15 1NY">KW15 1NY</button>
   </p>
   
   <div class="charger-connections">
@@ -107,9 +143,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">St. Rognvalds House, Orkney (1)</h2>
-  <p class="charger-address">Old Scapa Road KW15 1BB
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">St. Rognvalds House, Orkney (1)</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Old Scapa Road <button class="copy-btn" data-copy="KW15 1BB">KW15 1BB</button>
   </p>
   
   <div class="charger-connections">
@@ -131,9 +170,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Tesco Superstore-Kirkwall</h2>
-  <p class="charger-address">Pickaquoy RD KW15 1RP
+<li class="charger-item charger-item--rapid" data-connectors="Type 2 (Socket Only),CCS (Type 2),CHAdeMO">
+  <div class="charger-header">
+    <h2 class="charger-name">Tesco Superstore-Kirkwall</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Pickaquoy RD <button class="copy-btn" data-copy="KW15 1RP">KW15 1RP</button>
   </p>
   
   <div class="charger-connections">
@@ -161,9 +204,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Lynnfield Hotel</h2>
-  <p class="charger-address">2 Lynn Road KW15 1SU
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Lynnfield Hotel</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">2 Lynn Road <button class="copy-btn" data-copy="KW15 1SU">KW15 1SU</button>
   </p>
   
   <div class="charger-connections">
@@ -185,9 +231,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Lidl-Kirkwall</h2>
-  <p class="charger-address">Pickaquoy Road KW15 1RP
+<li class="charger-item charger-item--rapid" data-connectors="CHAdeMO,Type 2 (Socket Only),CCS (Type 2)">
+  <div class="charger-header">
+    <h2 class="charger-name">Lidl-Kirkwall</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Pickaquoy Road <button class="copy-btn" data-copy="KW15 1RP">KW15 1RP</button>
   </p>
   
   <div class="charger-connections">
@@ -212,9 +262,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Great Western Road Car Park Ac22 Dual (4)</h2>
-  <p class="charger-address">Great Western Road Car Park KW15 1BX
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Great Western Road Car Park Ac22 Dual (4)</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Great Western Road Car Park <button class="copy-btn" data-copy="KW15 1BX">KW15 1BX</button>
   </p>
   
   <div class="charger-connections">
@@ -233,9 +286,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Great Western Road Car Park Rapid (2)</h2>
-  <p class="charger-address">Great Western Road Car Park KW15 1BX
+<li class="charger-item charger-item--rapid" data-connectors="CHAdeMO,CCS (Type 2),Type 2 (Tethered Connector) ">
+  <div class="charger-header">
+    <h2 class="charger-name">Great Western Road Car Park Rapid (2)</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Great Western Road Car Park <button class="copy-btn" data-copy="KW15 1BX">KW15 1BX</button>
   </p>
   
   <div class="charger-connections">
@@ -260,9 +317,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Great Western Road Car Park Ac22 Dual (3)</h2>
-  <p class="charger-address">Great Western Road Car Park KW15 1BX
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Great Western Road Car Park Ac22 Dual (3)</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Great Western Road Car Park <button class="copy-btn" data-copy="KW15 1BX">KW15 1BX</button>
   </p>
   
   <div class="charger-connections">
@@ -284,6 +344,23 @@
 
 <p><a href="/" class="back-link">← All UK towns</a></p>
 
+
+<div class="nearby-towns">
+  <h2 class="nearby-heading">Nearby towns</h2>
+  <ul class="nearby-list">
+  
+    <li><a href="/uk/inverurie/">Inverurie</a></li>
+  
+    <li><a href="/uk/inverness/">Inverness</a></li>
+  
+    <li><a href="/uk/aviemore/">Aviemore</a></li>
+  
+    <li><a href="/uk/aberdeen/">Aberdeen</a></li>
+  
+  </ul>
+</div>
+
+
 </div>
 
 <footer>
@@ -296,26 +373,61 @@
 <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 <script>
 (function () {
+  // --- Map ---
   var map = L.map('map').setView([58.979116889, -2.964245453], 12);
-
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
   }).addTo(map);
 
   var markers = L.markerClusterGroup();
-  var chargerData = [{"lat": 58.981588, "lng": -2.964169, "title": "Kirkwall - Great Western Road CP", "address": "Great Western Road"}, {"lat": 58.982253, "lng": -2.973739, "title": "Pickaquoy Centre Car Park", "address": "Muddisdale Road"}, {"lat": 58.980574, "lng": -2.956374, "title": "Orkney Islands Council", "address": "1 School Place"}, {"lat": 58.9757, "lng": -2.9696, "title": "St. Rognvalds House, Orkney (1)", "address": "Old Scapa Road"}, {"lat": 58.98065549, "lng": -2.96686093, "title": "Tesco Superstore-Kirkwall", "address": "Pickaquoy RD"}, {"lat": 58.966865, "lng": -2.952437, "title": "Lynnfield Hotel", "address": "2 Lynn Road"}, {"lat": 58.9802094, "lng": -2.9643476, "title": "Lidl-Kirkwall", "address": "Pickaquoy Road"}, {"lat": 58.981114, "lng": -2.965007, "title": "Great Western Road Car Park Ac22 Dual (4)", "address": "Great Western Road Car Park"}, {"lat": 58.98111, "lng": -2.965, "title": "Great Western Road Car Park Rapid (2)", "address": "Great Western Road Car Park"}, {"lat": 58.9811, "lng": -2.96492, "title": "Great Western Road Car Park Ac22 Dual (3)", "address": "Great Western Road Car Park"}];
+  var chargerData = [{"lat": 58.981588, "lng": -2.964169, "title": "Kirkwall - Great Western Road CP", "address": "Great Western Road", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 58.982253, "lng": -2.973739, "title": "Pickaquoy Centre Car Park", "address": "Muddisdale Road", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 58.980574, "lng": -2.956374, "title": "Orkney Islands Council", "address": "1 School Place", "connectors": ["BS1363 3 Pin 13 Amp · 3kW", "BS1363 3 Pin 13 Amp · 3kW"]}, {"lat": 58.9757, "lng": -2.9696, "title": "St. Rognvalds House, Orkney (1)", "address": "Old Scapa Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 58.98065549, "lng": -2.96686093, "title": "Tesco Superstore-Kirkwall", "address": "Pickaquoy RD", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 7kW", "CCS (Type 2) · 50kW", "CHAdeMO · 50kW"]}, {"lat": 58.966865, "lng": -2.952437, "title": "Lynnfield Hotel", "address": "2 Lynn Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 58.9802094, "lng": -2.9643476, "title": "Lidl-Kirkwall", "address": "Pickaquoy Road", "connectors": ["CHAdeMO · 50kW", "Type 2 (Socket Only) · 22kW", "CCS (Type 2) · 50kW"]}, {"lat": 58.981114, "lng": -2.965007, "title": "Great Western Road Car Park Ac22 Dual (4)", "address": "Great Western Road Car Park", "connectors": ["Type 2 (Socket Only) · 22kW"]}, {"lat": 58.98111, "lng": -2.965, "title": "Great Western Road Car Park Rapid (2)", "address": "Great Western Road Car Park", "connectors": ["CHAdeMO · 50kW", "CCS (Type 2) · 50kW", "Type 2 (Tethered Connector)  · 43kW"]}, {"lat": 58.9811, "lng": -2.96492, "title": "Great Western Road Car Park Ac22 Dual (3)", "address": "Great Western Road Car Park", "connectors": ["Type 2 (Socket Only) · 22kW"]}];
 
   chargerData.forEach(function (c) {
+    var connHtml = c.connectors.length
+      ? '<div style="margin-top:6px;font-size:12px;color:#475569">' + c.connectors.join(' &middot; ') + '</div>'
+      : '';
     var marker = L.marker([c.lat, c.lng]);
     marker.bindPopup(
-      '<b>' + c.title + '</b><br>' + c.address + '<br><br>' +
+      '<b>' + c.title + '</b>' +
+      '<div style="color:#64748b;font-size:13px">' + c.address + '</div>' +
+      connHtml +
       '<a href="https://www.google.com/maps/dir/?api=1&destination=' + c.lat + ',' + c.lng +
-      '" target="_blank" rel="noopener">Get directions</a>'
+      '" target="_blank" rel="noopener" style="display:inline-block;margin-top:8px;padding:4px 10px;background:#2563eb;color:white;border-radius:4px;text-decoration:none;font-size:12px">Get directions</a>'
     );
     markers.addLayer(marker);
   });
-
   map.addLayer(markers);
+
+  // --- Connector filter ---
+  var filterBtns = document.querySelectorAll('.filter-btn');
+  var chargerItems = document.querySelectorAll('.charger-item');
+
+  filterBtns.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      filterBtns.forEach(function (b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      var f = btn.dataset.filter;
+      chargerItems.forEach(function (item) {
+        var connList = item.dataset.connectors ? item.dataset.connectors.split(',') : [];
+        item.style.display = (f === 'all' || connList.indexOf(f) !== -1) ? '' : 'none';
+      });
+    });
+  });
+
+  // --- Copy postcode ---
+  document.querySelectorAll('.copy-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var original = btn.textContent;
+      navigator.clipboard.writeText(btn.dataset.copy).then(function () {
+        btn.textContent = 'Copied!';
+        btn.classList.add('copy-btn--success');
+        setTimeout(function () {
+          btn.textContent = original;
+          btn.classList.remove('copy-btn--success');
+        }, 1500);
+      });
+    });
+  });
 }());
 </script>
 

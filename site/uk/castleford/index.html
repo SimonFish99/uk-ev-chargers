@@ -17,7 +17,10 @@
 
 <header>
 <div class="container">
-<a href="/" class="logo">PlugMap <span class="tagline">UK EV Charger Locator</span></a>
+<a href="/" class="logo">
+  <svg class="logo-bolt" viewBox="0 0 24 24" fill="currentColor" width="22" height="22" aria-hidden="true"><path d="M13 2L4.5 13.5H11L10 22L19.5 10.5H13Z"/></svg>
+  PlugMap <span class="tagline">UK EV Charger Locator</span>
+</a>
 </div>
 </header>
 
@@ -28,16 +31,42 @@
 </nav>
 
 <h1>EV Chargers in Castleford</h1>
-<p class="page-intro">9 public charging stations found in Castleford.</p>
+
+<div class="stats-bar">
+  <span class="stat-pill stat-total">9 stations</span>
+  <span class="stat-pill stat-rapid">5 rapid (50kW+)</span>
+  <span class="stat-pill stat-fast">4 fast (7–50kW)</span>
+  
+</div>
 
 <div id="map"></div>
 
-<ul class="charger-list">
+
+<div class="connector-filter">
+  <span class="filter-label">Filter:</span>
+  <button class="filter-btn active" data-filter="all">All</button>
+  
+  <button class="filter-btn" data-filter="CCS (Type 2)">CCS (Type 2)</button>
+  
+  <button class="filter-btn" data-filter="CHAdeMO">CHAdeMO</button>
+  
+  <button class="filter-btn" data-filter="Type 2 (Socket Only)">Type 2 (Socket Only)</button>
+  
+  <button class="filter-btn" data-filter="Type 2 (Tethered Connector) ">Type 2 (Tethered Connector) </button>
+  
+</div>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Tap Zap Go - Castleford</h2>
-  <p class="charger-address">Willowbridge Lane WF10 5NW  
+<ul class="charger-list" id="charger-list">
+
+
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2)">
+  <div class="charger-header">
+    <h2 class="charger-name">Tap Zap Go - Castleford</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Willowbridge Lane <button class="copy-btn" data-copy="WF10 5NW  ">WF10 5NW  </button>
   </p>
   
   <div class="charger-connections">
@@ -56,9 +85,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Birchwood Farm</h2>
-  <p class="charger-address">Colorado Way WF10 4TS
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2),CHAdeMO">
+  <div class="charger-header">
+    <h2 class="charger-name">Birchwood Farm</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Colorado Way <button class="copy-btn" data-copy="WF10 4TS">WF10 4TS</button>
   </p>
   
   <div class="charger-connections">
@@ -86,9 +119,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">EVC Whitwood Golf Course</h2>
-  <p class="charger-address">Altofts Ln, Whitwood Ln WF10 5PZ
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">EVC Whitwood Golf Course</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Altofts Ln, Whitwood Ln <button class="copy-btn" data-copy="WF10 5PZ">WF10 5PZ</button>
   </p>
   
   <div class="charger-connections">
@@ -107,9 +143,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">PETER AMBROSE CARPARK 1</h2>
-  <p class="charger-address">5 Methley Rd WF10 1NE
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">PETER AMBROSE CARPARK 1</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">5 Methley Rd <button class="copy-btn" data-copy="WF10 1NE">WF10 1NE</button>
   </p>
   
   <div class="charger-connections">
@@ -131,9 +170,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Xscape Yorkshire</h2>
-  <p class="charger-address">Colorado Way WF10 4TA
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Xscape Yorkshire</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Colorado Way <button class="copy-btn" data-copy="WF10 4TA">WF10 4TA</button>
   </p>
   
   <div class="charger-connections">
@@ -155,9 +197,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Asda Glasshoughton</h2>
-  <p class="charger-address">Glasshoughton WF10 5EL
+<li class="charger-item charger-item--rapid" data-connectors="Type 2 (Socket Only),CHAdeMO,Type 2 (Tethered Connector) ">
+  <div class="charger-header">
+    <h2 class="charger-name">Asda Glasshoughton</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Glasshoughton <button class="copy-btn" data-copy="WF10 5EL">WF10 5EL</button>
   </p>
   
   <div class="charger-connections">
@@ -182,9 +228,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Junction 32 Retail Outlet : Blue Car Park</h2>
-  <p class="charger-address">Tomahawk Trail WF10 4FR
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Junction 32 Retail Outlet : Blue Car Park</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Tomahawk Trail <button class="copy-btn" data-copy="WF10 4FR">WF10 4FR</button>
   </p>
   
   <div class="charger-connections">
@@ -203,9 +252,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">McDonald&#39;s Glasshoughton</h2>
-  <p class="charger-address">Colorado Way WF10 4TA
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2),CHAdeMO">
+  <div class="charger-header">
+    <h2 class="charger-name">McDonald&#39;s Glasshoughton</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Colorado Way <button class="copy-btn" data-copy="WF10 4TA">WF10 4TA</button>
   </p>
   
   <div class="charger-connections">
@@ -227,9 +280,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Welbeck Street</h2>
-  <p class="charger-address">Welbeck Street WF10 1HB
+<li class="charger-item charger-item--rapid" data-connectors="Type 2 (Socket Only),CHAdeMO,CCS (Type 2)">
+  <div class="charger-header">
+    <h2 class="charger-name">Welbeck Street</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Welbeck Street <button class="copy-btn" data-copy="WF10 1HB">WF10 1HB</button>
   </p>
   
   <div class="charger-connections">
@@ -257,6 +314,23 @@
 
 <p><a href="/" class="back-link">← All UK towns</a></p>
 
+
+<div class="nearby-towns">
+  <h2 class="nearby-heading">Nearby towns</h2>
+  <ul class="nearby-list">
+  
+    <li><a href="/uk/wakefield/">Wakefield</a></li>
+  
+    <li><a href="/uk/wetherby/">Wetherby</a></li>
+  
+    <li><a href="/uk/leeds/">Leeds</a></li>
+  
+    <li><a href="/uk/barnsley/">Barnsley</a></li>
+  
+  </ul>
+</div>
+
+
 </div>
 
 <footer>
@@ -269,26 +343,61 @@
 <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 <script>
 (function () {
+  // --- Map ---
   var map = L.map('map').setView([53.71619757419287, -1.3571410923752592], 12);
-
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
   }).addTo(map);
 
   var markers = L.markerClusterGroup();
-  var chargerData = [{"lat": 53.715887, "lng": -1.382661, "title": "Tap Zap Go - Castleford", "address": "Willowbridge Lane"}, {"lat": 53.7147377781576, "lng": -1.3491883557226174, "title": "Birchwood Farm", "address": "Colorado Way"}, {"lat": 53.71784391, "lng": -1.394816071, "title": "EVC Whitwood Golf Course", "address": "Altofts Ln, Whitwood Ln"}, {"lat": 53.726627, "lng": -1.363725, "title": "PETER AMBROSE CARPARK 1", "address": "5 Methley Rd"}, {"lat": 53.70986178, "lng": -1.3399258, "title": "Xscape Yorkshire", "address": "Colorado Way"}, {"lat": 53.714512, "lng": -1.351551, "title": "Asda Glasshoughton", "address": "Glasshoughton"}, {"lat": 53.71185838443719, "lng": -1.3408038229654267, "title": "Junction 32 Retail Outlet : Blue Car Park", "address": "Tomahawk Trail"}, {"lat": 53.709185315141, "lng": -1.33570178168929, "title": "McDonald's Glasshoughton", "address": "Colorado Way"}, {"lat": 53.725265, "lng": -1.355897, "title": "Welbeck Street", "address": "Welbeck Street"}];
+  var chargerData = [{"lat": 53.715887, "lng": -1.382661, "title": "Tap Zap Go - Castleford", "address": "Willowbridge Lane", "connectors": ["CCS (Type 2) · 120kW"]}, {"lat": 53.7147377781576, "lng": -1.3491883557226174, "title": "Birchwood Farm", "address": "Colorado Way", "connectors": ["CCS (Type 2) · 75kW", "CCS (Type 2) · 73kW", "CHAdeMO · 75kW", "CCS (Type 2) · 75kW"]}, {"lat": 53.71784391, "lng": -1.394816071, "title": "EVC Whitwood Golf Course", "address": "Altofts Ln, Whitwood Ln", "connectors": ["Type 2 (Socket Only) · 22kW"]}, {"lat": 53.726627, "lng": -1.363725, "title": "PETER AMBROSE CARPARK 1", "address": "5 Methley Rd", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 53.70986178, "lng": -1.3399258, "title": "Xscape Yorkshire", "address": "Colorado Way", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 53.714512, "lng": -1.351551, "title": "Asda Glasshoughton", "address": "Glasshoughton", "connectors": ["Type 2 (Socket Only) · 22kW", "CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 50kW"]}, {"lat": 53.71185838443719, "lng": -1.3408038229654267, "title": "Junction 32 Retail Outlet : Blue Car Park", "address": "Tomahawk Trail", "connectors": ["Type 2 (Socket Only) · 7kW"]}, {"lat": 53.709185315141, "lng": -1.33570178168929, "title": "McDonald's Glasshoughton", "address": "Colorado Way", "connectors": ["CCS (Type 2) · 50kW", "CHAdeMO · 50kW"]}, {"lat": 53.725265, "lng": -1.355897, "title": "Welbeck Street", "address": "Welbeck Street", "connectors": ["Type 2 (Socket Only) · 22kW", "CHAdeMO · 50kW", "CCS (Type 2) · 50kW"]}];
 
   chargerData.forEach(function (c) {
+    var connHtml = c.connectors.length
+      ? '<div style="margin-top:6px;font-size:12px;color:#475569">' + c.connectors.join(' &middot; ') + '</div>'
+      : '';
     var marker = L.marker([c.lat, c.lng]);
     marker.bindPopup(
-      '<b>' + c.title + '</b><br>' + c.address + '<br><br>' +
+      '<b>' + c.title + '</b>' +
+      '<div style="color:#64748b;font-size:13px">' + c.address + '</div>' +
+      connHtml +
       '<a href="https://www.google.com/maps/dir/?api=1&destination=' + c.lat + ',' + c.lng +
-      '" target="_blank" rel="noopener">Get directions</a>'
+      '" target="_blank" rel="noopener" style="display:inline-block;margin-top:8px;padding:4px 10px;background:#2563eb;color:white;border-radius:4px;text-decoration:none;font-size:12px">Get directions</a>'
     );
     markers.addLayer(marker);
   });
-
   map.addLayer(markers);
+
+  // --- Connector filter ---
+  var filterBtns = document.querySelectorAll('.filter-btn');
+  var chargerItems = document.querySelectorAll('.charger-item');
+
+  filterBtns.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      filterBtns.forEach(function (b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      var f = btn.dataset.filter;
+      chargerItems.forEach(function (item) {
+        var connList = item.dataset.connectors ? item.dataset.connectors.split(',') : [];
+        item.style.display = (f === 'all' || connList.indexOf(f) !== -1) ? '' : 'none';
+      });
+    });
+  });
+
+  // --- Copy postcode ---
+  document.querySelectorAll('.copy-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var original = btn.textContent;
+      navigator.clipboard.writeText(btn.dataset.copy).then(function () {
+        btn.textContent = 'Copied!';
+        btn.classList.add('copy-btn--success');
+        setTimeout(function () {
+          btn.textContent = original;
+          btn.classList.remove('copy-btn--success');
+        }, 1500);
+      });
+    });
+  });
 }());
 </script>
 

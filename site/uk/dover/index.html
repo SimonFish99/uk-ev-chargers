@@ -17,7 +17,10 @@
 
 <header>
 <div class="container">
-<a href="/" class="logo">PlugMap <span class="tagline">UK EV Charger Locator</span></a>
+<a href="/" class="logo">
+  <svg class="logo-bolt" viewBox="0 0 24 24" fill="currentColor" width="22" height="22" aria-hidden="true"><path d="M13 2L4.5 13.5H11L10 22L19.5 10.5H13Z"/></svg>
+  PlugMap <span class="tagline">UK EV Charger Locator</span>
+</a>
 </div>
 </header>
 
@@ -28,16 +31,41 @@
 </nav>
 
 <h1>EV Chargers in Dover</h1>
-<p class="page-intro">13 public charging stations found in Dover.</p>
+
+<div class="stats-bar">
+  <span class="stat-pill stat-total">13 stations</span>
+  <span class="stat-pill stat-rapid">3 rapid (50kW+)</span>
+  <span class="stat-pill stat-fast">10 fast (7–50kW)</span>
+  
+</div>
 
 <div id="map"></div>
 
-<ul class="charger-list">
+
+<div class="connector-filter">
+  <span class="filter-label">Filter:</span>
+  <button class="filter-btn active" data-filter="all">All</button>
+  
+  <button class="filter-btn" data-filter="CCS (Type 2)">CCS (Type 2)</button>
+  
+  <button class="filter-btn" data-filter="CHAdeMO">CHAdeMO</button>
+  
+  <button class="filter-btn" data-filter="Type 2 (Socket Only)">Type 2 (Socket Only)</button>
+  
+  <button class="filter-btn" data-filter="Type 2 (Tethered Connector) ">Type 2 (Tethered Connector) </button>
+  
+</div>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Charger only available to members of the public at evenings and weekends</h2>
-  <p class="charger-address">Vale View Road CT17 9NR
+<ul class="charger-list" id="charger-list">
+
+
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Charger only available to members of the public at evenings and weekends</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Vale View Road <button class="copy-btn" data-copy="CT17 9NR">CT17 9NR</button>
   </p>
   
   <div class="charger-connections">
@@ -59,9 +87,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Tesco Extra Dover</h2>
-  <p class="charger-address">Honeywood Parkway CT16 3PS
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Tesco Extra Dover</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Honeywood Parkway <button class="copy-btn" data-copy="CT16 3PS">CT16 3PS</button>
   </p>
   
   <div class="charger-connections">
@@ -83,9 +114,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">St James Retail and Leisure Park</h2>
-  <p class="charger-address">St James Street CT16 1QD
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">St James Retail and Leisure Park</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">St James Street <button class="copy-btn" data-copy="CT16 1QD">CT16 1QD</button>
   </p>
   
   <div class="charger-connections">
@@ -110,9 +144,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Dover Police Station</h2>
-  <p class="charger-address">6 Park Place CT16 1DJ
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Dover Police Station</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">6 Park Place <button class="copy-btn" data-copy="CT16 1DJ">CT16 1DJ</button>
   </p>
   
   <div class="charger-connections">
@@ -134,9 +171,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Waterloo Crescent</h2>
-  <p class="charger-address">13 Waterloo Crescent CT17 9BP
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Waterloo Crescent</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">13 Waterloo Crescent <button class="copy-btn" data-copy="CT17 9BP">CT17 9BP</button>
   </p>
   
   <div class="charger-connections">
@@ -161,9 +201,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">MFG Dover Forecourt</h2>
-  <p class="charger-address">Limekiln Street CT17 9EF
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2),CHAdeMO">
+  <div class="charger-header">
+    <h2 class="charger-name">MFG Dover Forecourt</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Limekiln Street <button class="copy-btn" data-copy="CT17 9EF">CT17 9EF</button>
   </p>
   
   <div class="charger-connections">
@@ -185,9 +229,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">GAZEN SALTS CAR PARK 1</h2>
-  <p class="charger-address">Sandwich CT13 9HN
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">GAZEN SALTS CAR PARK 1</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Sandwich <button class="copy-btn" data-copy="CT13 9HN">CT13 9HN</button>
   </p>
   
   <div class="charger-connections">
@@ -209,9 +256,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">169 Lewisham Road (Car Park)</h2>
-  <p class="charger-address">169 Lewisham Road CT17 0PP
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">169 Lewisham Road (Car Park)</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">169 Lewisham Road <button class="copy-btn" data-copy="CT17 0PP">CT17 0PP</button>
   </p>
   
   <div class="charger-connections">
@@ -233,9 +283,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Maison Dieu Car Park</h2>
-  <p class="charger-address">Maison Dieu Road CT16 1RL
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Maison Dieu Car Park</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Maison Dieu Road <button class="copy-btn" data-copy="CT16 1RL">CT16 1RL</button>
   </p>
   
   <div class="charger-connections">
@@ -263,9 +316,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">81 Folkestone Road</h2>
-  <p class="charger-address">81 Folkestone Road CT17 9SD
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">81 Folkestone Road</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">81 Folkestone Road <button class="copy-btn" data-copy="CT17 9SD">CT17 9SD</button>
   </p>
   
   <div class="charger-connections">
@@ -287,9 +343,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Albany Place Car Park</h2>
-  <p class="charger-address">Albany Place CT17 9AS
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Albany Place Car Park</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Albany Place <button class="copy-btn" data-copy="CT17 9AS">CT17 9AS</button>
   </p>
   
   <div class="charger-connections">
@@ -311,9 +370,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Shell Guston Road</h2>
-  <p class="charger-address">Guston Road CT15 5FA
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2),CHAdeMO">
+  <div class="charger-header">
+    <h2 class="charger-name">Shell Guston Road</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Guston Road <button class="copy-btn" data-copy="CT15 5FA">CT15 5FA</button>
   </p>
   
   <div class="charger-connections">
@@ -341,9 +404,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Discovery Park Sandwich</h2>
-  <p class="charger-address">Ramsgate Road CT13 9ND
+<li class="charger-item charger-item--rapid" data-connectors="CHAdeMO,Type 2 (Tethered Connector) ,CCS (Type 2)">
+  <div class="charger-header">
+    <h2 class="charger-name">Discovery Park Sandwich</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Ramsgate Road <button class="copy-btn" data-copy="CT13 9ND">CT13 9ND</button>
   </p>
   
   <div class="charger-connections">
@@ -371,6 +438,23 @@
 
 <p><a href="/" class="back-link">← All UK towns</a></p>
 
+
+<div class="nearby-towns">
+  <h2 class="nearby-heading">Nearby towns</h2>
+  <ul class="nearby-list">
+  
+    <li><a href="/uk/deal/">Deal</a></li>
+  
+    <li><a href="/uk/sandwich/">Sandwich</a></li>
+  
+    <li><a href="/uk/folkestone/">Folkestone</a></li>
+  
+    <li><a href="/uk/canterbury/">Canterbury</a></li>
+  
+  </ul>
+</div>
+
+
 </div>
 
 <footer>
@@ -383,26 +467,61 @@
 <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 <script>
 (function () {
+  // --- Map ---
   var map = L.map('map').setView([51.153138731346225, 1.312086725810785], 12);
-
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
   }).addTo(map);
 
   var markers = L.markerClusterGroup();
-  var chargerData = [{"lat": 51.124371, "lng": 1.294852, "title": "Charger only available to members of the public at evenings and weekends", "address": "Vale View Road"}, {"lat": 51.1540720789193, "lng": 1.29939767103181, "title": "Tesco Extra Dover", "address": "Honeywood Parkway"}, {"lat": 51.11281, "lng": 1.31552, "title": "St James Retail and Leisure Park", "address": "St James Street"}, {"lat": 51.128985169899416, "lng": 1.3096731170586375, "title": "Dover Police Station", "address": "6 Park Place"}, {"lat": 51.12281, "lng": 1.31552, "title": "Waterloo Crescent", "address": "13 Waterloo Crescent"}, {"lat": 51.1180228584967, "lng": 1.3071460292129, "title": "MFG Dover Forecourt", "address": "Limekiln Street"}, {"lat": 51.278282, "lng": 1.33839, "title": "GAZEN SALTS CAR PARK 1", "address": "Sandwich"}, {"lat": 51.14401804691737, "lng": 1.273850390409955, "title": "169 Lewisham Road (Car Park)", "address": "169 Lewisham Road"}, {"lat": 51.12871449364174, "lng": 1.311413747254271, "title": "Maison Dieu Car Park", "address": "Maison Dieu Road"}, {"lat": 51.12503890395585, "lng": 1.3048697877249624, "title": "81 Folkestone Road", "address": "81 Folkestone Road"}, {"lat": 51.12361904389009, "lng": 1.3115949512182132, "title": "Albany Place Car Park", "address": "Albany Place"}, {"lat": 51.145237620318916, "lng": 1.3293921819208443, "title": "Shell Guston Road", "address": "Guston Road"}, {"lat": 51.2848222914615, "lng": 1.34550755970861, "title": "Discovery Park Sandwich", "address": "Ramsgate Road"}];
+  var chargerData = [{"lat": 51.124371, "lng": 1.294852, "title": "Charger only available to members of the public at evenings and weekends", "address": "Vale View Road", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 51.1540720789193, "lng": 1.29939767103181, "title": "Tesco Extra Dover", "address": "Honeywood Parkway", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 51.11281, "lng": 1.31552, "title": "St James Retail and Leisure Park", "address": "St James Street", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 51.128985169899416, "lng": 1.3096731170586375, "title": "Dover Police Station", "address": "6 Park Place", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 51.12281, "lng": 1.31552, "title": "Waterloo Crescent", "address": "13 Waterloo Crescent", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 51.1180228584967, "lng": 1.3071460292129, "title": "MFG Dover Forecourt", "address": "Limekiln Street", "connectors": ["CCS (Type 2) · 150kW", "CHAdeMO · 100kW"]}, {"lat": 51.278282, "lng": 1.33839, "title": "GAZEN SALTS CAR PARK 1", "address": "Sandwich", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 51.14401804691737, "lng": 1.273850390409955, "title": "169 Lewisham Road (Car Park)", "address": "169 Lewisham Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 51.12871449364174, "lng": 1.311413747254271, "title": "Maison Dieu Car Park", "address": "Maison Dieu Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 51.12503890395585, "lng": 1.3048697877249624, "title": "81 Folkestone Road", "address": "81 Folkestone Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 51.12361904389009, "lng": 1.3115949512182132, "title": "Albany Place Car Park", "address": "Albany Place", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 51.145237620318916, "lng": 1.3293921819208443, "title": "Shell Guston Road", "address": "Guston Road", "connectors": ["CCS (Type 2) · 175kW", "CHAdeMO · 70kW", "CCS (Type 2) · 175kW", "CHAdeMO · 70kW"]}, {"lat": 51.2848222914615, "lng": 1.34550755970861, "title": "Discovery Park Sandwich", "address": "Ramsgate Road", "connectors": ["CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 43kW", "CCS (Type 2) · 50kW"]}];
 
   chargerData.forEach(function (c) {
+    var connHtml = c.connectors.length
+      ? '<div style="margin-top:6px;font-size:12px;color:#475569">' + c.connectors.join(' &middot; ') + '</div>'
+      : '';
     var marker = L.marker([c.lat, c.lng]);
     marker.bindPopup(
-      '<b>' + c.title + '</b><br>' + c.address + '<br><br>' +
+      '<b>' + c.title + '</b>' +
+      '<div style="color:#64748b;font-size:13px">' + c.address + '</div>' +
+      connHtml +
       '<a href="https://www.google.com/maps/dir/?api=1&destination=' + c.lat + ',' + c.lng +
-      '" target="_blank" rel="noopener">Get directions</a>'
+      '" target="_blank" rel="noopener" style="display:inline-block;margin-top:8px;padding:4px 10px;background:#2563eb;color:white;border-radius:4px;text-decoration:none;font-size:12px">Get directions</a>'
     );
     markers.addLayer(marker);
   });
-
   map.addLayer(markers);
+
+  // --- Connector filter ---
+  var filterBtns = document.querySelectorAll('.filter-btn');
+  var chargerItems = document.querySelectorAll('.charger-item');
+
+  filterBtns.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      filterBtns.forEach(function (b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      var f = btn.dataset.filter;
+      chargerItems.forEach(function (item) {
+        var connList = item.dataset.connectors ? item.dataset.connectors.split(',') : [];
+        item.style.display = (f === 'all' || connList.indexOf(f) !== -1) ? '' : 'none';
+      });
+    });
+  });
+
+  // --- Copy postcode ---
+  document.querySelectorAll('.copy-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var original = btn.textContent;
+      navigator.clipboard.writeText(btn.dataset.copy).then(function () {
+        btn.textContent = 'Copied!';
+        btn.classList.add('copy-btn--success');
+        setTimeout(function () {
+          btn.textContent = original;
+          btn.classList.remove('copy-btn--success');
+        }, 1500);
+      });
+    });
+  });
 }());
 </script>
 

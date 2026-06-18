@@ -17,7 +17,10 @@
 
 <header>
 <div class="container">
-<a href="/" class="logo">PlugMap <span class="tagline">UK EV Charger Locator</span></a>
+<a href="/" class="logo">
+  <svg class="logo-bolt" viewBox="0 0 24 24" fill="currentColor" width="22" height="22" aria-hidden="true"><path d="M13 2L4.5 13.5H11L10 22L19.5 10.5H13Z"/></svg>
+  PlugMap <span class="tagline">UK EV Charger Locator</span>
+</a>
 </div>
 </header>
 
@@ -28,16 +31,42 @@
 </nav>
 
 <h1>EV Chargers in Ipswich</h1>
-<p class="page-intro">28 public charging stations found in Ipswich.</p>
+
+<div class="stats-bar">
+  <span class="stat-pill stat-total">28 stations</span>
+  <span class="stat-pill stat-rapid">11 rapid (50kW+)</span>
+  <span class="stat-pill stat-fast">15 fast (7–50kW)</span>
+  <span class="stat-pill stat-slow">2 slow</span>
+</div>
 
 <div id="map"></div>
 
-<ul class="charger-list">
+
+<div class="connector-filter">
+  <span class="filter-label">Filter:</span>
+  <button class="filter-btn active" data-filter="all">All</button>
+  
+  <button class="filter-btn" data-filter="CCS (Type 2)">CCS (Type 2)</button>
+  
+  <button class="filter-btn" data-filter="CHAdeMO">CHAdeMO</button>
+  
+  <button class="filter-btn" data-filter="Type 2 (Socket Only)">Type 2 (Socket Only)</button>
+  
+  <button class="filter-btn" data-filter="Type 2 (Tethered Connector) ">Type 2 (Tethered Connector) </button>
+  
+</div>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Anglia Parkway South</h2>
-  <p class="charger-address">Anglia Parkway South IP1 5QP
+<ul class="charger-list" id="charger-list">
+
+
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2)">
+  <div class="charger-header">
+    <h2 class="charger-name">Anglia Parkway South</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Anglia Parkway South <button class="copy-btn" data-copy="IP1 5QP">IP1 5QP</button>
   </p>
   
   <div class="charger-connections">
@@ -56,9 +85,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Ipswich Greenways</h2>
-  <p class="charger-address">Hening Ave 32 IP3 9QJ
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2)">
+  <div class="charger-header">
+    <h2 class="charger-name">Ipswich Greenways</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Hening Ave 32 <button class="copy-btn" data-copy="IP3 9QJ">IP3 9QJ</button>
   </p>
   
   <div class="charger-connections">
@@ -98,8 +131,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">SSE Euro Retail Park</h2>
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2)">
+  <div class="charger-header">
+    <h2 class="charger-name">SSE Euro Retail Park</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
   <p class="charger-address">James Bennett Avenue 
   </p>
   
@@ -119,9 +156,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Euro Retail Park</h2>
-  <p class="charger-address">West Road IP3 9FG
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2)">
+  <div class="charger-header">
+    <h2 class="charger-name">Euro Retail Park</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">West Road <button class="copy-btn" data-copy="IP3 9FG">IP3 9FG</button>
   </p>
   
   <div class="charger-connections">
@@ -140,9 +181,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">SCC Phoenix House</h2>
-  <p class="charger-address">3 Goddard Road IP1 5NP
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">SCC Phoenix House</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">3 Goddard Road <button class="copy-btn" data-copy="IP1 5NP">IP1 5NP</button>
   </p>
   
   <div class="charger-connections">
@@ -161,9 +205,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Landmark</h2>
-  <p class="charger-address">Egerton Road IP1 5PB
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Landmark</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Egerton Road <button class="copy-btn" data-copy="IP1 5PB">IP1 5PB</button>
   </p>
   
   <div class="charger-connections">
@@ -215,9 +262,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Morrisons Ipswich</h2>
-  <p class="charger-address">Morrisons Ipswich IP1 5AH
+<li class="charger-item charger-item--rapid" data-connectors="Type 2 (Tethered Connector) ,CHAdeMO">
+  <div class="charger-header">
+    <h2 class="charger-name">Morrisons Ipswich</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Morrisons Ipswich <button class="copy-btn" data-copy="IP1 5AH">IP1 5AH</button>
   </p>
   
   <div class="charger-connections">
@@ -242,9 +293,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">SCC Saxon House</h2>
-  <p class="charger-address">Hadleigh Road Ind Est IP2 0UF
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">SCC Saxon House</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Hadleigh Road Ind Est <button class="copy-btn" data-copy="IP2 0UF">IP2 0UF</button>
   </p>
   
   <div class="charger-connections">
@@ -266,9 +320,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Endeavour House</h2>
-  <p class="charger-address">Russell Road IP1 2BX
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Endeavour House</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Russell Road <button class="copy-btn" data-copy="IP1 2BX">IP1 2BX</button>
   </p>
   
   <div class="charger-connections">
@@ -296,9 +353,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Waitrose Ipswich 1</h2>
-  <p class="charger-address">Crane Boulevard IP3 9SQ
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Waitrose Ipswich 1</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Crane Boulevard <button class="copy-btn" data-copy="IP3 9SQ">IP3 9SQ</button>
   </p>
   
   <div class="charger-connections">
@@ -320,9 +380,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Trinity Park</h2>
-  <p class="charger-address">Felixstowe Road IP3 8UH
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Trinity Park</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Felixstowe Road <button class="copy-btn" data-copy="IP3 8UH">IP3 8UH</button>
   </p>
   
   <div class="charger-connections">
@@ -344,9 +407,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Rackhams Auto Body Centre</h2>
-  <p class="charger-address">47 Boss Hall Road IP1 5BN
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Rackhams Auto Body Centre</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">47 Boss Hall Road <button class="copy-btn" data-copy="IP1 5BN">IP1 5BN</button>
   </p>
   
   <div class="charger-connections">
@@ -365,9 +431,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Capelgate North</h2>
-  <p class="charger-address">A12 Northbound IP9 2JJ
+<li class="charger-item charger-item--rapid" data-connectors="CHAdeMO,Type 2 (Tethered Connector) ">
+  <div class="charger-header">
+    <h2 class="charger-name">Capelgate North</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">A12 Northbound <button class="copy-btn" data-copy="IP9 2JJ">IP9 2JJ</button>
   </p>
   
   <div class="charger-connections">
@@ -392,9 +462,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">EG Capel St Mary Starbucks</h2>
-  <p class="charger-address">A12 Southbound IP9 2JP
+<li class="charger-item charger-item--rapid" data-connectors="CHAdeMO,Type 2 (Socket Only),CCS (Type 2)">
+  <div class="charger-header">
+    <h2 class="charger-name">EG Capel St Mary Starbucks</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">A12 Southbound <button class="copy-btn" data-copy="IP9 2JP">IP9 2JP</button>
   </p>
   
   <div class="charger-connections">
@@ -419,9 +493,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">The Hold Car Park</h2>
-  <p class="charger-address">Fore Street IP4 1QH
+<li class="charger-item charger-item--slow" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">The Hold Car Park</h2>
+    
+  </div>
+  <p class="charger-address">Fore Street <button class="copy-btn" data-copy="IP4 1QH">IP4 1QH</button>
   </p>
   
   <div class="charger-connections">
@@ -440,9 +517,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Upper Orwell Street North Car Park</h2>
-  <p class="charger-address">Upper Barclay Street IP4 1HU
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Upper Orwell Street North Car Park</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Upper Barclay Street <button class="copy-btn" data-copy="IP4 1HU">IP4 1HU</button>
   </p>
   
   <div class="charger-connections">
@@ -461,9 +541,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">University of Suffolk Car Park</h2>
-  <p class="charger-address">Long Street IP4 1LQ
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">University of Suffolk Car Park</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Long Street <button class="copy-btn" data-copy="IP4 1LQ">IP4 1LQ</button>
   </p>
   
   <div class="charger-connections">
@@ -482,9 +565,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">COOP Needham Market</h2>
-  <p class="charger-address">Horsepond Place COOP IP6 8FS
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">COOP Needham Market</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Horsepond Place COOP <button class="copy-btn" data-copy="IP6 8FS">IP6 8FS</button>
   </p>
   
   <div class="charger-connections">
@@ -506,9 +592,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Ipswich Park &amp; Ride Hub</h2>
-  <p class="charger-address">London Road IP8 3TQ
+<li class="charger-item charger-item--rapid" data-connectors="CHAdeMO,CCS (Type 2)">
+  <div class="charger-header">
+    <h2 class="charger-name">Ipswich Park &amp; Ride Hub</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">London Road <button class="copy-btn" data-copy="IP8 3TQ">IP8 3TQ</button>
   </p>
   
   <div class="charger-connections">
@@ -560,9 +650,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Fastned Charging Station</h2>
-  <p class="charger-address">Park &amp; Ride Martlesham Heath IP5 3QN
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2),CHAdeMO">
+  <div class="charger-header">
+    <h2 class="charger-name">Fastned Charging Station</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Park &amp; Ride Martlesham Heath <button class="copy-btn" data-copy="IP5 3QN">IP5 3QN</button>
   </p>
   
   <div class="charger-connections">
@@ -584,9 +678,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">BT Advanced Communiction Technology</h2>
-  <p class="charger-address">Central Adastral Park IP5 3RE
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">BT Advanced Communiction Technology</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Central Adastral Park <button class="copy-btn" data-copy="IP5 3RE">IP5 3RE</button>
   </p>
   
   <div class="charger-connections">
@@ -608,9 +705,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Ipswich Hospital Staff Car Park</h2>
-  <p class="charger-address">Car Park U Heath Road IP4 5PD
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Ipswich Hospital Staff Car Park</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Car Park U Heath Road <button class="copy-btn" data-copy="IP4 5PD">IP4 5PD</button>
   </p>
   
   <div class="charger-connections">
@@ -632,9 +732,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Tesco Extra - Ipswich</h2>
-  <p class="charger-address">Copdock Interchange IP8 3TS
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Tesco Extra - Ipswich</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Copdock Interchange <button class="copy-btn" data-copy="IP8 3TS">IP8 3TS</button>
   </p>
   
   <div class="charger-connections">
@@ -656,9 +759,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Coddenham Centre </h2>
-  <p class="charger-address">Mary Day Close IP6 9SR
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Coddenham Centre </h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Mary Day Close <button class="copy-btn" data-copy="IP6 9SR">IP6 9SR</button>
   </p>
   
   <div class="charger-connections">
@@ -677,9 +783,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name"> Clip &#39;n Climb Ipswich</h2>
-  <p class="charger-address">2 Berwick Road IP3 9ST
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name"> Clip &#39;n Climb Ipswich</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">2 Berwick Road <button class="copy-btn" data-copy="IP3 9ST">IP3 9ST</button>
   </p>
   
   <div class="charger-connections">
@@ -698,9 +807,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Adastral park</h2>
-  <p class="charger-address">Car park X IP5 3RF
+<li class="charger-item charger-item--slow" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Adastral park</h2>
+    
+  </div>
+  <p class="charger-address">Car park X <button class="copy-btn" data-copy="IP5 3RF">IP5 3RF</button>
   </p>
   
   <div class="charger-connections">
@@ -719,9 +831,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Morrisons Hadleigh</h2>
-  <p class="charger-address">Wm Morrison Supermarkets PLC IP7 6LB
+<li class="charger-item charger-item--rapid" data-connectors="Type 2 (Tethered Connector) ,CHAdeMO,Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Morrisons Hadleigh</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Wm Morrison Supermarkets PLC <button class="copy-btn" data-copy="IP7 6LB">IP7 6LB</button>
   </p>
   
   <div class="charger-connections">
@@ -746,9 +862,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Morrisons - Sproughton Road</h2>
-  <p class="charger-address">Sproughton Road IP1 5AH
+<li class="charger-item charger-item--rapid" data-connectors="Type 2 (Socket Only),CHAdeMO,CCS (Type 2)">
+  <div class="charger-header">
+    <h2 class="charger-name">Morrisons - Sproughton Road</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Sproughton Road <button class="copy-btn" data-copy="IP1 5AH">IP1 5AH</button>
   </p>
   
   <div class="charger-connections">
@@ -776,6 +896,23 @@
 
 <p><a href="/" class="back-link">← All UK towns</a></p>
 
+
+<div class="nearby-towns">
+  <h2 class="nearby-heading">Nearby towns</h2>
+  <ul class="nearby-list">
+  
+    <li><a href="/uk/stowmarket/">Stowmarket</a></li>
+  
+    <li><a href="/uk/colchester/">Colchester</a></li>
+  
+    <li><a href="/uk/diss/">Diss</a></li>
+  
+    <li><a href="/uk/bury-st-edmunds/">Bury St Edmunds</a></li>
+  
+  </ul>
+</div>
+
+
 </div>
 
 <footer>
@@ -788,26 +925,61 @@
 <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 <script>
 (function () {
+  // --- Map ---
   var map = L.map('map').setView([52.056866488542205, 1.1495512091766826], 12);
-
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
   }).addTo(map);
 
   var markers = L.markerClusterGroup();
-  var chargerData = [{"lat": 52.08400694103537, "lng": 1.1175951538476738, "title": "Anglia Parkway South", "address": "Anglia Parkway South"}, {"lat": 52.030925, "lng": 1.200001, "title": "Ipswich Greenways", "address": "Hening Ave 32"}, {"lat": 52.03349756803294, "lng": 1.2044277489325168, "title": "SSE Euro Retail Park", "address": "James Bennett Avenue "}, {"lat": 52.034336393020624, "lng": 1.2073457116023292, "title": "Euro Retail Park", "address": "West Road"}, {"lat": 52.0838, "lng": 1.1134, "title": "SCC Phoenix House", "address": "3 Goddard Road"}, {"lat": 52.0801, "lng": 1.1118, "title": "Landmark", "address": "Egerton Road"}, {"lat": 52.064176, "lng": 1.119581, "title": "Morrisons Ipswich", "address": "Morrisons Ipswich"}, {"lat": 52.0586, "lng": 1.1292, "title": "SCC Saxon House", "address": "Hadleigh Road Ind Est"}, {"lat": 52.0538, "lng": 1.1432, "title": "Endeavour House", "address": "Russell Road"}, {"lat": 52.034329, "lng": 1.203293, "title": "Waitrose Ipswich 1", "address": "Crane Boulevard"}, {"lat": 52.033378, "lng": 1.224189, "title": "Trinity Park", "address": "Felixstowe Road"}, {"lat": 52.062568, "lng": 1.122051, "title": "Rackhams Auto Body Centre", "address": "47 Boss Hall Road"}, {"lat": 52.00349, "lng": 1.057531, "title": "Capelgate North", "address": "A12 Northbound"}, {"lat": 52.00335, "lng": 1.059199, "title": "EG Capel St Mary Starbucks", "address": "A12 Southbound"}, {"lat": 52.053581736975275, "lng": 1.1639862721569898, "title": "The Hold Car Park", "address": "Fore Street"}, {"lat": 52.05599521823464, "lng": 1.1593312074037385, "title": "Upper Orwell Street North Car Park", "address": "Upper Barclay Street"}, {"lat": 52.053765408985754, "lng": 1.1649273767668546, "title": "University of Suffolk Car Park", "address": "Long Street"}, {"lat": 52.155818, "lng": 1.046987, "title": "COOP Needham Market", "address": "Horsepond Place COOP"}, {"lat": 52.0408104072853, "lng": 1.09684546625817, "title": "Ipswich Park & Ride Hub", "address": "London Road"}, {"lat": 52.07005126158464, "lng": 1.267750418598439, "title": "Fastned Charging Station", "address": "Park & Ride Martlesham Heath"}, {"lat": 52.059025, "lng": 1.280566, "title": "BT Advanced Communiction Technology", "address": "Central Adastral Park"}, {"lat": 52.055832, "lng": 1.201333, "title": "Ipswich Hospital Staff Car Park", "address": "Car Park U Heath Road"}, {"lat": 52.040309166818, "lng": 1.09884210449366, "title": "Tesco Extra - Ipswich", "address": "Copdock Interchange"}, {"lat": 52.148237322918675, "lng": 1.1190464331498902, "title": "Coddenham Centre ", "address": "Mary Day Close"}, {"lat": 52.02767021077747, "lng": 1.2189236111710215, "title": " Clip 'n Climb Ipswich", "address": "2 Berwick Road"}, {"lat": 52.05679688575091, "lng": 1.2790437167459459, "title": "Adastral park", "address": "Car park X"}, {"lat": 52.050422, "lng": 0.954732, "title": "Morrisons Hadleigh", "address": "Wm Morrison Supermarkets PLC"}, {"lat": 52.063590157762206, "lng": 1.1223056358198846, "title": "Morrisons - Sproughton Road", "address": "Sproughton Road"}];
+  var chargerData = [{"lat": 52.08400694103537, "lng": 1.1175951538476738, "title": "Anglia Parkway South", "address": "Anglia Parkway South", "connectors": ["CCS (Type 2) · 250kW"]}, {"lat": 52.030925, "lng": 1.200001, "title": "Ipswich Greenways", "address": "Hening Ave 32", "connectors": ["CCS (Type 2) · 360kW", "CCS (Type 2) · 360kW", "CCS (Type 2) · 360kW", "CCS (Type 2) · 360kW", "CCS (Type 2) · 360kW", "CCS (Type 2) · 360kW", "CCS (Type 2) · 360kW", "CCS (Type 2) · 360kW"]}, {"lat": 52.03349756803294, "lng": 1.2044277489325168, "title": "SSE Euro Retail Park", "address": "James Bennett Avenue ", "connectors": ["CCS (Type 2) · 150kW"]}, {"lat": 52.034336393020624, "lng": 1.2073457116023292, "title": "Euro Retail Park", "address": "West Road", "connectors": ["CCS (Type 2) · 150kW"]}, {"lat": 52.0838, "lng": 1.1134, "title": "SCC Phoenix House", "address": "3 Goddard Road", "connectors": ["Type 2 (Socket Only) · 7kW"]}, {"lat": 52.0801, "lng": 1.1118, "title": "Landmark", "address": "Egerton Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 52.064176, "lng": 1.119581, "title": "Morrisons Ipswich", "address": "Morrisons Ipswich", "connectors": ["Type 2 (Tethered Connector)  · 43kW", "CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 50kW"]}, {"lat": 52.0586, "lng": 1.1292, "title": "SCC Saxon House", "address": "Hadleigh Road Ind Est", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 52.0538, "lng": 1.1432, "title": "Endeavour House", "address": "Russell Road", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 52.034329, "lng": 1.203293, "title": "Waitrose Ipswich 1", "address": "Crane Boulevard", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 52.033378, "lng": 1.224189, "title": "Trinity Park", "address": "Felixstowe Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 52.062568, "lng": 1.122051, "title": "Rackhams Auto Body Centre", "address": "47 Boss Hall Road", "connectors": ["Type 2 (Socket Only) · 7kW"]}, {"lat": 52.00349, "lng": 1.057531, "title": "Capelgate North", "address": "A12 Northbound", "connectors": ["CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 43kW", "Type 2 (Tethered Connector)  · 50kW"]}, {"lat": 52.00335, "lng": 1.059199, "title": "EG Capel St Mary Starbucks", "address": "A12 Southbound", "connectors": ["CHAdeMO · 50kW", "Type 2 (Socket Only) · 22kW", "CCS (Type 2) · 50kW"]}, {"lat": 52.053581736975275, "lng": 1.1639862721569898, "title": "The Hold Car Park", "address": "Fore Street", "connectors": ["Type 2 (Socket Only)"]}, {"lat": 52.05599521823464, "lng": 1.1593312074037385, "title": "Upper Orwell Street North Car Park", "address": "Upper Barclay Street", "connectors": ["Type 2 (Socket Only) · 7kW"]}, {"lat": 52.053765408985754, "lng": 1.1649273767668546, "title": "University of Suffolk Car Park", "address": "Long Street", "connectors": ["Type 2 (Socket Only) · 7kW"]}, {"lat": 52.155818, "lng": 1.046987, "title": "COOP Needham Market", "address": "Horsepond Place COOP", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 52.0408104072853, "lng": 1.09684546625817, "title": "Ipswich Park & Ride Hub", "address": "London Road", "connectors": ["CHAdeMO · 50kW", "CHAdeMO · 50kW", "CHAdeMO · 50kW", "CHAdeMO · 50kW", "CHAdeMO · 50kW", "CHAdeMO · 50kW", "CCS (Type 2) · 150kW", "CCS (Type 2) · 150kW", "CCS (Type 2) · 150kW", "CCS (Type 2) · 150kW", "CCS (Type 2) · 150kW", "CCS (Type 2) · 150kW"]}, {"lat": 52.07005126158464, "lng": 1.267750418598439, "title": "Fastned Charging Station", "address": "Park & Ride Martlesham Heath", "connectors": ["CCS (Type 2) · 175kW", "CHAdeMO · 50kW"]}, {"lat": 52.059025, "lng": 1.280566, "title": "BT Advanced Communiction Technology", "address": "Central Adastral Park", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 52.055832, "lng": 1.201333, "title": "Ipswich Hospital Staff Car Park", "address": "Car Park U Heath Road", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 52.040309166818, "lng": 1.09884210449366, "title": "Tesco Extra - Ipswich", "address": "Copdock Interchange", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 52.148237322918675, "lng": 1.1190464331498902, "title": "Coddenham Centre ", "address": "Mary Day Close", "connectors": ["Type 2 (Socket Only) · 7.2kW"]}, {"lat": 52.02767021077747, "lng": 1.2189236111710215, "title": " Clip 'n Climb Ipswich", "address": "2 Berwick Road", "connectors": ["Type 2 (Socket Only) · 22kW"]}, {"lat": 52.05679688575091, "lng": 1.2790437167459459, "title": "Adastral park", "address": "Car park X", "connectors": ["Type 2 (Socket Only) · 3kW"]}, {"lat": 52.050422, "lng": 0.954732, "title": "Morrisons Hadleigh", "address": "Wm Morrison Supermarkets PLC", "connectors": ["Type 2 (Tethered Connector)  · 60kW", "CHAdeMO · 50kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 52.063590157762206, "lng": 1.1223056358198846, "title": "Morrisons - Sproughton Road", "address": "Sproughton Road", "connectors": ["Type 2 (Socket Only) · 22kW", "CHAdeMO · 50kW", "CCS (Type 2) · 50kW"]}];
 
   chargerData.forEach(function (c) {
+    var connHtml = c.connectors.length
+      ? '<div style="margin-top:6px;font-size:12px;color:#475569">' + c.connectors.join(' &middot; ') + '</div>'
+      : '';
     var marker = L.marker([c.lat, c.lng]);
     marker.bindPopup(
-      '<b>' + c.title + '</b><br>' + c.address + '<br><br>' +
+      '<b>' + c.title + '</b>' +
+      '<div style="color:#64748b;font-size:13px">' + c.address + '</div>' +
+      connHtml +
       '<a href="https://www.google.com/maps/dir/?api=1&destination=' + c.lat + ',' + c.lng +
-      '" target="_blank" rel="noopener">Get directions</a>'
+      '" target="_blank" rel="noopener" style="display:inline-block;margin-top:8px;padding:4px 10px;background:#2563eb;color:white;border-radius:4px;text-decoration:none;font-size:12px">Get directions</a>'
     );
     markers.addLayer(marker);
   });
-
   map.addLayer(markers);
+
+  // --- Connector filter ---
+  var filterBtns = document.querySelectorAll('.filter-btn');
+  var chargerItems = document.querySelectorAll('.charger-item');
+
+  filterBtns.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      filterBtns.forEach(function (b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      var f = btn.dataset.filter;
+      chargerItems.forEach(function (item) {
+        var connList = item.dataset.connectors ? item.dataset.connectors.split(',') : [];
+        item.style.display = (f === 'all' || connList.indexOf(f) !== -1) ? '' : 'none';
+      });
+    });
+  });
+
+  // --- Copy postcode ---
+  document.querySelectorAll('.copy-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var original = btn.textContent;
+      navigator.clipboard.writeText(btn.dataset.copy).then(function () {
+        btn.textContent = 'Copied!';
+        btn.classList.add('copy-btn--success');
+        setTimeout(function () {
+          btn.textContent = original;
+          btn.classList.remove('copy-btn--success');
+        }, 1500);
+      });
+    });
+  });
 }());
 </script>
 

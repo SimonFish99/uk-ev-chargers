@@ -17,7 +17,10 @@
 
 <header>
 <div class="container">
-<a href="/" class="logo">PlugMap <span class="tagline">UK EV Charger Locator</span></a>
+<a href="/" class="logo">
+  <svg class="logo-bolt" viewBox="0 0 24 24" fill="currentColor" width="22" height="22" aria-hidden="true"><path d="M13 2L4.5 13.5H11L10 22L19.5 10.5H13Z"/></svg>
+  PlugMap <span class="tagline">UK EV Charger Locator</span>
+</a>
 </div>
 </header>
 
@@ -28,16 +31,42 @@
 </nav>
 
 <h1>EV Chargers in Carmarthen</h1>
-<p class="page-intro">13 public charging stations found in Carmarthen.</p>
+
+<div class="stats-bar">
+  <span class="stat-pill stat-total">13 stations</span>
+  <span class="stat-pill stat-rapid">3 rapid (50kW+)</span>
+  <span class="stat-pill stat-fast">10 fast (7–50kW)</span>
+  
+</div>
 
 <div id="map"></div>
 
-<ul class="charger-list">
+
+<div class="connector-filter">
+  <span class="filter-label">Filter:</span>
+  <button class="filter-btn active" data-filter="all">All</button>
+  
+  <button class="filter-btn" data-filter="CCS (Type 2)">CCS (Type 2)</button>
+  
+  <button class="filter-btn" data-filter="CHAdeMO">CHAdeMO</button>
+  
+  <button class="filter-btn" data-filter="Type 2 (Socket Only)">Type 2 (Socket Only)</button>
+  
+  <button class="filter-btn" data-filter="Type 2 (Tethered Connector) ">Type 2 (Tethered Connector) </button>
+  
+</div>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Carmarthen Garden Centre Hub</h2>
-  <p class="charger-address">Myrtle Hill SA31 2NG
+<ul class="charger-list" id="charger-list">
+
+
+<li class="charger-item charger-item--rapid" data-connectors="CHAdeMO,CCS (Type 2)">
+  <div class="charger-header">
+    <h2 class="charger-name">Carmarthen Garden Centre Hub</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Myrtle Hill <button class="copy-btn" data-copy="SA31 2NG">SA31 2NG</button>
   </p>
   
   <div class="charger-connections">
@@ -101,9 +130,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Priory Street Car Park</h2>
-  <p class="charger-address">Priory Street Car Park SA31 1ND
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Priory Street Car Park</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Priory Street Car Park <button class="copy-btn" data-copy="SA31 1ND">SA31 1ND</button>
   </p>
   
   <div class="charger-connections">
@@ -122,9 +154,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Nant y Ci P &amp; R</h2>
-  <p class="charger-address">Llysonnen Road SA33 5DR
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Nant y Ci P &amp; R</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Llysonnen Road <button class="copy-btn" data-copy="SA33 5DR">SA33 5DR</button>
   </p>
   
   <div class="charger-connections">
@@ -146,9 +181,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Tesco Extra-Carmarthen</h2>
-  <p class="charger-address">Morfa Lane SA31 3AX
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Tesco Extra-Carmarthen</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Morfa Lane <button class="copy-btn" data-copy="SA31 3AX">SA31 3AX</button>
   </p>
   
   <div class="charger-connections">
@@ -167,9 +205,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Xcel Bowl, Llansteffan Road,</h2>
-  <p class="charger-address">Llansteffan Road SA31 3QR
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Xcel Bowl, Llansteffan Road,</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Llansteffan Road <button class="copy-btn" data-copy="SA31 3QR">SA31 3QR</button>
   </p>
   
   <div class="charger-connections">
@@ -191,9 +232,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Tesla Carmarthen Supercharger</h2>
-  <p class="charger-address">Heol y Gŵyddau SA31 1GA
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2)">
+  <div class="charger-header">
+    <h2 class="charger-name">Tesla Carmarthen Supercharger</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Heol y Gŵyddau <button class="copy-btn" data-copy="SA31 1GA">SA31 1GA</button>
   </p>
   
   <div class="charger-connections">
@@ -212,9 +257,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Morrisons</h2>
-  <p class="charger-address">Wm Morrison Supermarkets PLC SA31 2NF
+<li class="charger-item charger-item--rapid" data-connectors="CHAdeMO,Type 2 (Socket Only),Type 2 (Tethered Connector) ">
+  <div class="charger-header">
+    <h2 class="charger-name">Morrisons</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Wm Morrison Supermarkets PLC <button class="copy-btn" data-copy="SA31 2NF">SA31 2NF</button>
   </p>
   
   <div class="charger-connections">
@@ -239,9 +288,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Old Oak Dental Practice</h2>
-  <p class="charger-address">Parc Pensarn SA31 2NF
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Old Oak Dental Practice</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Parc Pensarn <button class="copy-btn" data-copy="SA31 2NF">SA31 2NF</button>
   </p>
   
   <div class="charger-connections">
@@ -260,9 +312,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Xcel Bowl</h2>
-  <p class="charger-address">Old Llansteffan Road SA31
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Xcel Bowl</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Old Llansteffan Road <button class="copy-btn" data-copy="SA31">SA31</button>
   </p>
   
   <div class="charger-connections">
@@ -281,9 +336,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">St Peter&#39;s Street Car Park</h2>
-  <p class="charger-address">St Peter&#39;s Street SA31 1LN
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">St Peter&#39;s Street Car Park</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">St Peter&#39;s Street <button class="copy-btn" data-copy="SA31 1LN">SA31 1LN</button>
   </p>
   
   <div class="charger-connections">
@@ -302,9 +360,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">John Street Car Park</h2>
-  <p class="charger-address">36-53 Orchard Street SA31 1QT
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">John Street Car Park</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">36-53 Orchard Street <button class="copy-btn" data-copy="SA31 1QT">SA31 1QT</button>
   </p>
   
   <div class="charger-connections">
@@ -326,9 +387,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Friars Park Car Park</h2>
-  <p class="charger-address">Friars Park SA31 3BN
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Friars Park Car Park</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Friars Park <button class="copy-btn" data-copy="SA31 3BN">SA31 3BN</button>
   </p>
   
   <div class="charger-connections">
@@ -350,9 +414,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Old Oak Dental Practice</h2>
-  <p class="charger-address">Parc Pensarn SA31 2NF
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Tethered Connector) ">
+  <div class="charger-header">
+    <h2 class="charger-name">Old Oak Dental Practice</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Parc Pensarn <button class="copy-btn" data-copy="SA31 2NF">SA31 2NF</button>
   </p>
   
   <div class="charger-connections">
@@ -374,6 +441,23 @@
 
 <p><a href="/" class="back-link">← All UK towns</a></p>
 
+
+<div class="nearby-towns">
+  <h2 class="nearby-heading">Nearby towns</h2>
+  <ul class="nearby-list">
+  
+    <li><a href="/uk/llanelli/">Llanelli</a></li>
+  
+    <li><a href="/uk/swansea/">Swansea</a></li>
+  
+    <li><a href="/uk/cardigan/">Cardigan</a></li>
+  
+    <li><a href="/uk/aberystwyth/">Aberystwyth</a></li>
+  
+  </ul>
+</div>
+
+
 </div>
 
 <footer>
@@ -386,26 +470,61 @@
 <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 <script>
 (function () {
+  // --- Map ---
   var map = L.map('map').setView([51.851346976050124, -4.313440548061956], 12);
-
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
   }).addTo(map);
 
   var markers = L.markerClusterGroup();
-  var chargerData = [{"lat": 51.845871, "lng": -4.309961, "title": "Carmarthen Garden Centre Hub", "address": "Myrtle Hill"}, {"lat": 51.860361, "lng": -4.301413, "title": "Priory Street Car Park", "address": "Priory Street Car Park"}, {"lat": 51.846806, "lng": -4.352596, "title": "Nant y Ci P & R", "address": "Llysonnen Road"}, {"lat": 51.85345232, "lng": -4.31692096, "title": "Tesco Extra-Carmarthen", "address": "Morfa Lane"}, {"lat": 51.84808, "lng": -4.3236, "title": "Xcel Bowl, Llansteffan Road,", "address": "Llansteffan Road"}, {"lat": 51.85835305607105, "lng": -4.311615089085194, "title": "Tesla Carmarthen Supercharger", "address": "Heol y G\u0175yddau"}, {"lat": 51.845131, "lng": -4.30712, "title": "Morrisons", "address": "Wm Morrison Supermarkets PLC"}, {"lat": 51.844162, "lng": -4.304553, "title": "Old Oak Dental Practice", "address": "Parc Pensarn"}, {"lat": 51.848680042804915, "lng": -4.323100434076423, "title": "Xcel Bowl", "address": "Old Llansteffan Road"}, {"lat": 51.858517, "lng": -4.303042, "title": "St Peter's Street Car Park", "address": "St Peter's Street"}, {"lat": 51.858071, "lng": -4.305678, "title": "John Street Car Park", "address": "36-53 Orchard Street"}, {"lat": 51.855833, "lng": -4.310714, "title": "Friars Park Car Park", "address": "Friars Park"}, {"lat": 51.844193269775616, "lng": -4.304413641643805, "title": "Old Oak Dental Practice", "address": "Parc Pensarn"}];
+  var chargerData = [{"lat": 51.845871, "lng": -4.309961, "title": "Carmarthen Garden Centre Hub", "address": "Myrtle Hill", "connectors": ["CHAdeMO · 50kW", "CCS (Type 2) · 300kW", "CHAdeMO · 50kW", "CCS (Type 2) · 300kW", "CHAdeMO · 50kW", "CCS (Type 2) · 300kW", "CHAdeMO · 50kW", "CCS (Type 2) · 300kW", "CHAdeMO · 50kW", "CCS (Type 2) · 300kW", "CHAdeMO · 50kW", "CCS (Type 2) · 300kW", "CHAdeMO · 50kW", "CCS (Type 2) · 300kW", "CHAdeMO · 50kW", "CCS (Type 2) · 300kW"]}, {"lat": 51.860361, "lng": -4.301413, "title": "Priory Street Car Park", "address": "Priory Street Car Park", "connectors": ["Type 2 (Socket Only) · 22kW"]}, {"lat": 51.846806, "lng": -4.352596, "title": "Nant y Ci P & R", "address": "Llysonnen Road", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 51.85345232, "lng": -4.31692096, "title": "Tesco Extra-Carmarthen", "address": "Morfa Lane", "connectors": ["Type 2 (Socket Only) · 22kW"]}, {"lat": 51.84808, "lng": -4.3236, "title": "Xcel Bowl, Llansteffan Road,", "address": "Llansteffan Road", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 51.85835305607105, "lng": -4.311615089085194, "title": "Tesla Carmarthen Supercharger", "address": "Heol y Gŵyddau", "connectors": ["CCS (Type 2) · 250kW"]}, {"lat": 51.845131, "lng": -4.30712, "title": "Morrisons", "address": "Wm Morrison Supermarkets PLC", "connectors": ["CHAdeMO · 50kW", "Type 2 (Socket Only) · 22kW", "Type 2 (Tethered Connector)  · 50kW"]}, {"lat": 51.844162, "lng": -4.304553, "title": "Old Oak Dental Practice", "address": "Parc Pensarn", "connectors": ["Type 2 (Socket Only) · 22kW"]}, {"lat": 51.848680042804915, "lng": -4.323100434076423, "title": "Xcel Bowl", "address": "Old Llansteffan Road", "connectors": ["Type 2 (Socket Only) · 22kW"]}, {"lat": 51.858517, "lng": -4.303042, "title": "St Peter's Street Car Park", "address": "St Peter's Street", "connectors": ["Type 2 (Socket Only) · 22kW"]}, {"lat": 51.858071, "lng": -4.305678, "title": "John Street Car Park", "address": "36-53 Orchard Street", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 51.855833, "lng": -4.310714, "title": "Friars Park Car Park", "address": "Friars Park", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 51.844193269775616, "lng": -4.304413641643805, "title": "Old Oak Dental Practice", "address": "Parc Pensarn", "connectors": ["Type 2 (Tethered Connector)  · 22kW"]}];
 
   chargerData.forEach(function (c) {
+    var connHtml = c.connectors.length
+      ? '<div style="margin-top:6px;font-size:12px;color:#475569">' + c.connectors.join(' &middot; ') + '</div>'
+      : '';
     var marker = L.marker([c.lat, c.lng]);
     marker.bindPopup(
-      '<b>' + c.title + '</b><br>' + c.address + '<br><br>' +
+      '<b>' + c.title + '</b>' +
+      '<div style="color:#64748b;font-size:13px">' + c.address + '</div>' +
+      connHtml +
       '<a href="https://www.google.com/maps/dir/?api=1&destination=' + c.lat + ',' + c.lng +
-      '" target="_blank" rel="noopener">Get directions</a>'
+      '" target="_blank" rel="noopener" style="display:inline-block;margin-top:8px;padding:4px 10px;background:#2563eb;color:white;border-radius:4px;text-decoration:none;font-size:12px">Get directions</a>'
     );
     markers.addLayer(marker);
   });
-
   map.addLayer(markers);
+
+  // --- Connector filter ---
+  var filterBtns = document.querySelectorAll('.filter-btn');
+  var chargerItems = document.querySelectorAll('.charger-item');
+
+  filterBtns.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      filterBtns.forEach(function (b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      var f = btn.dataset.filter;
+      chargerItems.forEach(function (item) {
+        var connList = item.dataset.connectors ? item.dataset.connectors.split(',') : [];
+        item.style.display = (f === 'all' || connList.indexOf(f) !== -1) ? '' : 'none';
+      });
+    });
+  });
+
+  // --- Copy postcode ---
+  document.querySelectorAll('.copy-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var original = btn.textContent;
+      navigator.clipboard.writeText(btn.dataset.copy).then(function () {
+        btn.textContent = 'Copied!';
+        btn.classList.add('copy-btn--success');
+        setTimeout(function () {
+          btn.textContent = original;
+          btn.classList.remove('copy-btn--success');
+        }, 1500);
+      });
+    });
+  });
 }());
 </script>
 

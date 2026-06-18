@@ -17,7 +17,10 @@
 
 <header>
 <div class="container">
-<a href="/" class="logo">PlugMap <span class="tagline">UK EV Charger Locator</span></a>
+<a href="/" class="logo">
+  <svg class="logo-bolt" viewBox="0 0 24 24" fill="currentColor" width="22" height="22" aria-hidden="true"><path d="M13 2L4.5 13.5H11L10 22L19.5 10.5H13Z"/></svg>
+  PlugMap <span class="tagline">UK EV Charger Locator</span>
+</a>
 </div>
 </header>
 
@@ -28,16 +31,40 @@
 </nav>
 
 <h1>EV Chargers in Hungerford</h1>
-<p class="page-intro">15 public charging stations found in Hungerford.</p>
+
+<div class="stats-bar">
+  <span class="stat-pill stat-total">15 stations</span>
+  <span class="stat-pill stat-rapid">3 rapid (50kW+)</span>
+  <span class="stat-pill stat-fast">3 fast (7–50kW)</span>
+  <span class="stat-pill stat-slow">9 slow</span>
+</div>
 
 <div id="map"></div>
 
-<ul class="charger-list">
+
+<div class="connector-filter">
+  <span class="filter-label">Filter:</span>
+  <button class="filter-btn active" data-filter="all">All</button>
+  
+  <button class="filter-btn" data-filter="CCS (Type 2)">CCS (Type 2)</button>
+  
+  <button class="filter-btn" data-filter="CHAdeMO">CHAdeMO</button>
+  
+  <button class="filter-btn" data-filter="Type 2 (Socket Only)">Type 2 (Socket Only)</button>
+  
+</div>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Tap Zap Go - Membury Services at Lambourn Woodlands</h2>
-  <p class="charger-address">Aerial Business Park  RG17 7TJ
+<ul class="charger-list" id="charger-list">
+
+
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2)">
+  <div class="charger-header">
+    <h2 class="charger-name">Tap Zap Go - Membury Services at Lambourn Woodlands</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Aerial Business Park <button class="copy-btn" data-copy=" RG17 7TJ"> RG17 7TJ</button>
   </p>
   
   <div class="charger-connections">
@@ -56,9 +83,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">2 Gainsborough Avenue, RG17 9XJ</h2>
-  <p class="charger-address">Gainsborough Avenue RG17 9XJ
+<li class="charger-item charger-item--slow" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">2 Gainsborough Avenue, RG17 9XJ</h2>
+    
+  </div>
+  <p class="charger-address">Gainsborough Avenue <button class="copy-btn" data-copy="RG17 9XJ">RG17 9XJ</button>
   </p>
   
   <div class="charger-connections">
@@ -77,9 +107,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">64 Priory Road</h2>
-  <p class="charger-address">64 Priory Road RG17 0DF
+<li class="charger-item charger-item--slow" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">64 Priory Road</h2>
+    
+  </div>
+  <p class="charger-address">64 Priory Road <button class="copy-btn" data-copy="RG17 0DF">RG17 0DF</button>
   </p>
   
   <div class="charger-connections">
@@ -98,9 +131,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Church Street Short Stay Car Park</h2>
-  <p class="charger-address">Church Street RG17 0NF
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2),CHAdeMO,Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Church Street Short Stay Car Park</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Church Street <button class="copy-btn" data-copy="RG17 0NF">RG17 0NF</button>
   </p>
   
   <div class="charger-connections">
@@ -128,9 +165,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Cobbs Farm Shop (Instavolt)</h2>
-  <p class="charger-address">Bath Road RG17 0SN
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2),CHAdeMO">
+  <div class="charger-header">
+    <h2 class="charger-name">Cobbs Farm Shop (Instavolt)</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Bath Road <button class="copy-btn" data-copy="RG17 0SN">RG17 0SN</button>
   </p>
   
   <div class="charger-connections">
@@ -152,9 +193,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Littlecote House Hotel</h2>
-  <p class="charger-address">Littlecote House RG17 0SU
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Littlecote House Hotel</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Littlecote House <button class="copy-btn" data-copy="RG17 0SU">RG17 0SU</button>
   </p>
   
   <div class="charger-connections">
@@ -173,9 +217,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">High Street</h2>
-  <p class="charger-address">40 High Street RG17 0NF
+<li class="charger-item charger-item--slow" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">High Street</h2>
+    
+  </div>
+  <p class="charger-address">40 High Street <button class="copy-btn" data-copy="RG17 0NF">RG17 0NF</button>
   </p>
   
   <div class="charger-connections">
@@ -194,9 +241,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Unit 1, Station Yard</h2>
-  <p class="charger-address">Station Road RG17 0DY
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Unit 1, Station Yard</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Station Road <button class="copy-btn" data-copy="RG17 0DY">RG17 0DY</button>
   </p>
   
   <div class="charger-connections">
@@ -218,9 +268,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">High Street</h2>
-  <p class="charger-address">High Street RG17 0ND
+<li class="charger-item charger-item--slow" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">High Street</h2>
+    
+  </div>
+  <p class="charger-address">High Street <button class="copy-btn" data-copy="RG17 0ND">RG17 0ND</button>
   </p>
   
   <div class="charger-connections">
@@ -239,9 +292,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">34 Charnham Street</h2>
-  <p class="charger-address">34 Charnham Street RG17 0EJ
+<li class="charger-item charger-item--slow" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">34 Charnham Street</h2>
+    
+  </div>
+  <p class="charger-address">34 Charnham Street <button class="copy-btn" data-copy="RG17 0EJ">RG17 0EJ</button>
   </p>
   
   <div class="charger-connections">
@@ -260,9 +316,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">27 Charnham Street</h2>
-  <p class="charger-address">27 Charnham Street RG17 0EJ
+<li class="charger-item charger-item--slow" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">27 Charnham Street</h2>
+    
+  </div>
+  <p class="charger-address">27 Charnham Street <button class="copy-btn" data-copy="RG17 0EJ">RG17 0EJ</button>
   </p>
   
   <div class="charger-connections">
@@ -281,9 +340,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Cobbs Farm Company LTD-Hungerford</h2>
-  <p class="charger-address">Bath Road RG17 0SP
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Cobbs Farm Company LTD-Hungerford</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Bath Road <button class="copy-btn" data-copy="RG17 0SP">RG17 0SP</button>
   </p>
   
   <div class="charger-connections">
@@ -302,9 +364,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Bridge Street</h2>
-  <p class="charger-address">Bridge Street RG17 0EH
+<li class="charger-item charger-item--slow" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Bridge Street</h2>
+    
+  </div>
+  <p class="charger-address">Bridge Street <button class="copy-btn" data-copy="RG17 0EH">RG17 0EH</button>
   </p>
   
   <div class="charger-connections">
@@ -323,9 +388,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">30 Park Street</h2>
-  <p class="charger-address">30 Park Street RG17 0EA
+<li class="charger-item charger-item--slow" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">30 Park Street</h2>
+    
+  </div>
+  <p class="charger-address">30 Park Street <button class="copy-btn" data-copy="RG17 0EA">RG17 0EA</button>
   </p>
   
   <div class="charger-connections">
@@ -344,9 +412,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">40 High Street</h2>
-  <p class="charger-address">40 High Street RG17 0NA
+<li class="charger-item charger-item--slow" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">40 High Street</h2>
+    
+  </div>
+  <p class="charger-address">40 High Street <button class="copy-btn" data-copy="RG17 0NA">RG17 0NA</button>
   </p>
   
   <div class="charger-connections">
@@ -368,6 +439,23 @@
 
 <p><a href="/" class="back-link">← All UK towns</a></p>
 
+
+<div class="nearby-towns">
+  <h2 class="nearby-heading">Nearby towns</h2>
+  <ul class="nearby-list">
+  
+    <li><a href="/uk/newbury/">Newbury</a></li>
+  
+    <li><a href="/uk/andover/">Andover</a></li>
+  
+    <li><a href="/uk/swindon/">Swindon</a></li>
+  
+    <li><a href="/uk/abingdon/">Abingdon</a></li>
+  
+  </ul>
+</div>
+
+
 </div>
 
 <footer>
@@ -380,26 +468,61 @@
 <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 <script>
 (function () {
+  // --- Map ---
   var map = L.map('map').setView([51.418717277748904, -1.5193409169119414], 12);
-
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
   }).addTo(map);
 
   var markers = L.markerClusterGroup();
-  var chargerData = [{"lat": 51.4781406313864, "lng": -1.55327402795323, "title": "Tap Zap Go - Membury Services at Lambourn Woodlands", "address": "Aerial Business Park"}, {"lat": 51.39780957681057, "lng": -1.4456307242497815, "title": "2 Gainsborough Avenue, RG17 9XJ", "address": "Gainsborough Avenue"}, {"lat": 51.40733165666228, "lng": -1.5174894713754838, "title": "64 Priory Road", "address": "64 Priory Road"}, {"lat": 51.41512377800123, "lng": -1.5166753927945251, "title": "Church Street Short Stay Car Park", "address": "Church Street"}, {"lat": 51.41475408989817, "lng": -1.541757894815163, "title": "Cobbs Farm Shop (Instavolt)", "address": "Bath Road"}, {"lat": 51.43071, "lng": -1.56018, "title": "Littlecote House Hotel", "address": "Littlecote House"}, {"lat": 51.413148, "lng": -1.516248, "title": "High Street", "address": "40 High Street"}, {"lat": 51.41404134213977, "lng": -1.5098242534650126, "title": "Unit 1, Station Yard", "address": "Station Road"}, {"lat": 51.41430383584583, "lng": -1.5156340501904424, "title": "High Street", "address": "High Street"}, {"lat": 51.41855565973373, "lng": -1.5144986020649185, "title": "34 Charnham Street", "address": "34 Charnham Street"}, {"lat": 51.41848259575565, "lng": -1.5138593367705653, "title": "27 Charnham Street", "address": "27 Charnham Street"}, {"lat": 51.4148, "lng": -1.5419, "title": "Cobbs Farm Company LTD-Hungerford", "address": "Bath Road"}, {"lat": 51.416992, "lng": -1.514723, "title": "Bridge Street", "address": "Bridge Street"}, {"lat": 51.413895, "lng": -1.512, "title": "30 Park Street", "address": "30 Park Street"}, {"lat": 51.412671, "lng": -1.516419, "title": "40 High Street", "address": "40 High Street"}];
+  var chargerData = [{"lat": 51.4781406313864, "lng": -1.55327402795323, "title": "Tap Zap Go - Membury Services at Lambourn Woodlands", "address": "Aerial Business Park", "connectors": ["CCS (Type 2) · 120kW"]}, {"lat": 51.39780957681057, "lng": -1.4456307242497815, "title": "2 Gainsborough Avenue, RG17 9XJ", "address": "Gainsborough Avenue", "connectors": ["Type 2 (Socket Only) · 5kW"]}, {"lat": 51.40733165666228, "lng": -1.5174894713754838, "title": "64 Priory Road", "address": "64 Priory Road", "connectors": ["Type 2 (Socket Only) · 5kW"]}, {"lat": 51.41512377800123, "lng": -1.5166753927945251, "title": "Church Street Short Stay Car Park", "address": "Church Street", "connectors": ["CCS (Type 2) · 50kW", "CHAdeMO · 50kW", "Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 51.41475408989817, "lng": -1.541757894815163, "title": "Cobbs Farm Shop (Instavolt)", "address": "Bath Road", "connectors": ["CCS (Type 2) · 160kW", "CHAdeMO · 60kW"]}, {"lat": 51.43071, "lng": -1.56018, "title": "Littlecote House Hotel", "address": "Littlecote House", "connectors": ["Type 2 (Socket Only) · 7kW"]}, {"lat": 51.413148, "lng": -1.516248, "title": "High Street", "address": "40 High Street", "connectors": ["Type 2 (Socket Only) · 3.7kW"]}, {"lat": 51.41404134213977, "lng": -1.5098242534650126, "title": "Unit 1, Station Yard", "address": "Station Road", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 51.41430383584583, "lng": -1.5156340501904424, "title": "High Street", "address": "High Street", "connectors": ["Type 2 (Socket Only) · 5kW"]}, {"lat": 51.41855565973373, "lng": -1.5144986020649185, "title": "34 Charnham Street", "address": "34 Charnham Street", "connectors": ["Type 2 (Socket Only) · 3.7kW"]}, {"lat": 51.41848259575565, "lng": -1.5138593367705653, "title": "27 Charnham Street", "address": "27 Charnham Street", "connectors": ["Type 2 (Socket Only) · 3.7kW"]}, {"lat": 51.4148, "lng": -1.5419, "title": "Cobbs Farm Company LTD-Hungerford", "address": "Bath Road", "connectors": ["Type 2 (Socket Only) · 7kW"]}, {"lat": 51.416992, "lng": -1.514723, "title": "Bridge Street", "address": "Bridge Street", "connectors": ["Type 2 (Socket Only) · 3.7kW"]}, {"lat": 51.413895, "lng": -1.512, "title": "30 Park Street", "address": "30 Park Street", "connectors": ["Type 2 (Socket Only) · 3.7kW"]}, {"lat": 51.412671, "lng": -1.516419, "title": "40 High Street", "address": "40 High Street", "connectors": ["Type 2 (Socket Only) · 5kW"]}];
 
   chargerData.forEach(function (c) {
+    var connHtml = c.connectors.length
+      ? '<div style="margin-top:6px;font-size:12px;color:#475569">' + c.connectors.join(' &middot; ') + '</div>'
+      : '';
     var marker = L.marker([c.lat, c.lng]);
     marker.bindPopup(
-      '<b>' + c.title + '</b><br>' + c.address + '<br><br>' +
+      '<b>' + c.title + '</b>' +
+      '<div style="color:#64748b;font-size:13px">' + c.address + '</div>' +
+      connHtml +
       '<a href="https://www.google.com/maps/dir/?api=1&destination=' + c.lat + ',' + c.lng +
-      '" target="_blank" rel="noopener">Get directions</a>'
+      '" target="_blank" rel="noopener" style="display:inline-block;margin-top:8px;padding:4px 10px;background:#2563eb;color:white;border-radius:4px;text-decoration:none;font-size:12px">Get directions</a>'
     );
     markers.addLayer(marker);
   });
-
   map.addLayer(markers);
+
+  // --- Connector filter ---
+  var filterBtns = document.querySelectorAll('.filter-btn');
+  var chargerItems = document.querySelectorAll('.charger-item');
+
+  filterBtns.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      filterBtns.forEach(function (b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      var f = btn.dataset.filter;
+      chargerItems.forEach(function (item) {
+        var connList = item.dataset.connectors ? item.dataset.connectors.split(',') : [];
+        item.style.display = (f === 'all' || connList.indexOf(f) !== -1) ? '' : 'none';
+      });
+    });
+  });
+
+  // --- Copy postcode ---
+  document.querySelectorAll('.copy-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var original = btn.textContent;
+      navigator.clipboard.writeText(btn.dataset.copy).then(function () {
+        btn.textContent = 'Copied!';
+        btn.classList.add('copy-btn--success');
+        setTimeout(function () {
+          btn.textContent = original;
+          btn.classList.remove('copy-btn--success');
+        }, 1500);
+      });
+    });
+  });
 }());
 </script>
 

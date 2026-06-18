@@ -17,7 +17,10 @@
 
 <header>
 <div class="container">
-<a href="/" class="logo">PlugMap <span class="tagline">UK EV Charger Locator</span></a>
+<a href="/" class="logo">
+  <svg class="logo-bolt" viewBox="0 0 24 24" fill="currentColor" width="22" height="22" aria-hidden="true"><path d="M13 2L4.5 13.5H11L10 22L19.5 10.5H13Z"/></svg>
+  PlugMap <span class="tagline">UK EV Charger Locator</span>
+</a>
 </div>
 </header>
 
@@ -28,16 +31,40 @@
 </nav>
 
 <h1>EV Chargers in Prestonpans</h1>
-<p class="page-intro">5 public charging stations found in Prestonpans.</p>
+
+<div class="stats-bar">
+  <span class="stat-pill stat-total">5 stations</span>
+  <span class="stat-pill stat-rapid">1 rapid (50kW+)</span>
+  <span class="stat-pill stat-fast">4 fast (7–50kW)</span>
+  
+</div>
 
 <div id="map"></div>
 
-<ul class="charger-list">
+
+<div class="connector-filter">
+  <span class="filter-label">Filter:</span>
+  <button class="filter-btn active" data-filter="all">All</button>
+  
+  <button class="filter-btn" data-filter="CCS (Type 2)">CCS (Type 2)</button>
+  
+  <button class="filter-btn" data-filter="CHAdeMO">CHAdeMO</button>
+  
+  <button class="filter-btn" data-filter="Type 2 (Socket Only)">Type 2 (Socket Only)</button>
+  
+</div>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Lidl-Prestonpans</h2>
-  <p class="charger-address">High Street EH32 9AN
+<ul class="charger-list" id="charger-list">
+
+
+<li class="charger-item charger-item--rapid" data-connectors="Type 2 (Socket Only),CCS (Type 2),CHAdeMO">
+  <div class="charger-header">
+    <h2 class="charger-name">Lidl-Prestonpans</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">High Street <button class="copy-btn" data-copy="EH32 9AN">EH32 9AN</button>
   </p>
   
   <div class="charger-connections">
@@ -62,9 +89,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Pennypit Centre, Prestonpans</h2>
-  <p class="charger-address">Pennypit Centre EH329BN
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Pennypit Centre, Prestonpans</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Pennypit Centre <button class="copy-btn" data-copy="EH329BN">EH329BN</button>
   </p>
   
   <div class="charger-connections">
@@ -84,9 +114,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">North Grange Avenue, Prestonpans</h2>
-  <p class="charger-address">North Grange Avenue EH329NQ
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">North Grange Avenue, Prestonpans</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">North Grange Avenue <button class="copy-btn" data-copy="EH329NQ">EH329NQ</button>
   </p>
   
   <div class="charger-connections">
@@ -106,9 +139,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Community Centre, Prestonpans</h2>
-  <p class="charger-address">Community Centre EH32 9JA
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Community Centre, Prestonpans</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Community Centre <button class="copy-btn" data-copy="EH32 9JA">EH32 9JA</button>
   </p>
   
   <div class="charger-connections">
@@ -130,9 +166,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Prestonpans Railway Station, Prestonpans</h2>
-  <p class="charger-address">Johnnie Cope&#39;s Road EH33 1NG
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Prestonpans Railway Station, Prestonpans</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Johnnie Cope&#39;s Road <button class="copy-btn" data-copy="EH33 1NG">EH33 1NG</button>
   </p>
   
   <div class="charger-connections">
@@ -154,6 +193,23 @@
 
 <p><a href="/" class="back-link">← All UK towns</a></p>
 
+
+<div class="nearby-towns">
+  <h2 class="nearby-heading">Nearby towns</h2>
+  <ul class="nearby-list">
+  
+    <li><a href="/uk/tranent/">Tranent</a></li>
+  
+    <li><a href="/uk/dalkeith/">Dalkeith</a></li>
+  
+    <li><a href="/uk/haddington/">Haddington</a></li>
+  
+    <li><a href="/uk/edinburgh/">Edinburgh</a></li>
+  
+  </ul>
+</div>
+
+
 </div>
 
 <footer>
@@ -166,26 +222,61 @@
 <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 <script>
 (function () {
+  // --- Map ---
   var map = L.map('map').setView([55.95729606, -2.9799632], 12);
-
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
   }).addTo(map);
 
   var markers = L.markerClusterGroup();
-  var chargerData = [{"lat": 55.9629873, "lng": -2.977212, "title": "Lidl-Prestonpans", "address": "High Street"}, {"lat": 55.957944, "lng": -2.987167, "title": "Pennypit Centre, Prestonpans", "address": "Pennypit Centre"}, {"lat": 55.956333, "lng": -2.986361, "title": "North Grange Avenue, Prestonpans", "address": "North Grange Avenue"}, {"lat": 55.955936, "lng": -2.974856, "title": "Community Centre, Prestonpans", "address": "Community Centre"}, {"lat": 55.95328, "lng": -2.97422, "title": "Prestonpans Railway Station, Prestonpans", "address": "Johnnie Cope's Road"}];
+  var chargerData = [{"lat": 55.9629873, "lng": -2.977212, "title": "Lidl-Prestonpans", "address": "High Street", "connectors": ["Type 2 (Socket Only) · 22kW", "CCS (Type 2) · 50kW", "CHAdeMO · 50kW"]}, {"lat": 55.957944, "lng": -2.987167, "title": "Pennypit Centre, Prestonpans", "address": "Pennypit Centre", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 55.956333, "lng": -2.986361, "title": "North Grange Avenue, Prestonpans", "address": "North Grange Avenue", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 55.955936, "lng": -2.974856, "title": "Community Centre, Prestonpans", "address": "Community Centre", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 55.95328, "lng": -2.97422, "title": "Prestonpans Railway Station, Prestonpans", "address": "Johnnie Cope's Road", "connectors": ["Type 2 (Socket Only) · 7kW"]}];
 
   chargerData.forEach(function (c) {
+    var connHtml = c.connectors.length
+      ? '<div style="margin-top:6px;font-size:12px;color:#475569">' + c.connectors.join(' &middot; ') + '</div>'
+      : '';
     var marker = L.marker([c.lat, c.lng]);
     marker.bindPopup(
-      '<b>' + c.title + '</b><br>' + c.address + '<br><br>' +
+      '<b>' + c.title + '</b>' +
+      '<div style="color:#64748b;font-size:13px">' + c.address + '</div>' +
+      connHtml +
       '<a href="https://www.google.com/maps/dir/?api=1&destination=' + c.lat + ',' + c.lng +
-      '" target="_blank" rel="noopener">Get directions</a>'
+      '" target="_blank" rel="noopener" style="display:inline-block;margin-top:8px;padding:4px 10px;background:#2563eb;color:white;border-radius:4px;text-decoration:none;font-size:12px">Get directions</a>'
     );
     markers.addLayer(marker);
   });
-
   map.addLayer(markers);
+
+  // --- Connector filter ---
+  var filterBtns = document.querySelectorAll('.filter-btn');
+  var chargerItems = document.querySelectorAll('.charger-item');
+
+  filterBtns.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      filterBtns.forEach(function (b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      var f = btn.dataset.filter;
+      chargerItems.forEach(function (item) {
+        var connList = item.dataset.connectors ? item.dataset.connectors.split(',') : [];
+        item.style.display = (f === 'all' || connList.indexOf(f) !== -1) ? '' : 'none';
+      });
+    });
+  });
+
+  // --- Copy postcode ---
+  document.querySelectorAll('.copy-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var original = btn.textContent;
+      navigator.clipboard.writeText(btn.dataset.copy).then(function () {
+        btn.textContent = 'Copied!';
+        btn.classList.add('copy-btn--success');
+        setTimeout(function () {
+          btn.textContent = original;
+          btn.classList.remove('copy-btn--success');
+        }, 1500);
+      });
+    });
+  });
 }());
 </script>
 

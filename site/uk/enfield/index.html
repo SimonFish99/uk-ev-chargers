@@ -17,7 +17,10 @@
 
 <header>
 <div class="container">
-<a href="/" class="logo">PlugMap <span class="tagline">UK EV Charger Locator</span></a>
+<a href="/" class="logo">
+  <svg class="logo-bolt" viewBox="0 0 24 24" fill="currentColor" width="22" height="22" aria-hidden="true"><path d="M13 2L4.5 13.5H11L10 22L19.5 10.5H13Z"/></svg>
+  PlugMap <span class="tagline">UK EV Charger Locator</span>
+</a>
 </div>
 </header>
 
@@ -28,16 +31,41 @@
 </nav>
 
 <h1>EV Chargers in Enfield</h1>
-<p class="page-intro">11 public charging stations found in Enfield.</p>
+
+<div class="stats-bar">
+  <span class="stat-pill stat-total">11 stations</span>
+  <span class="stat-pill stat-rapid">4 rapid (50kW+)</span>
+  <span class="stat-pill stat-fast">4 fast (7–50kW)</span>
+  <span class="stat-pill stat-slow">3 slow</span>
+</div>
 
 <div id="map"></div>
 
-<ul class="charger-list">
+
+<div class="connector-filter">
+  <span class="filter-label">Filter:</span>
+  <button class="filter-btn active" data-filter="all">All</button>
+  
+  <button class="filter-btn" data-filter="CCS (Type 2)">CCS (Type 2)</button>
+  
+  <button class="filter-btn" data-filter="CHAdeMO">CHAdeMO</button>
+  
+  <button class="filter-btn" data-filter="Type 2 (Socket Only)">Type 2 (Socket Only)</button>
+  
+  <button class="filter-btn" data-filter="Type 2 (Tethered Connector) ">Type 2 (Tethered Connector) </button>
+  
+</div>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">SEGRO AREAS CAMBRIDGE EST 3</h2>
-  <p class="charger-address">Cambridge Industrial Estate Great Cambridge R EN1 1SH
+<ul class="charger-list" id="charger-list">
+
+
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">SEGRO AREAS CAMBRIDGE EST 3</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Cambridge Industrial Estate Great Cambridge R <button class="copy-btn" data-copy="EN1 1SH">EN1 1SH</button>
   </p>
   
   <div class="charger-connections">
@@ -56,9 +84,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">SEGRO AREAS CAMBRIDGE EST 4</h2>
-  <p class="charger-address">Cambridge Industrial Estate Great Cambridge R EN1 1SH
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Tethered Connector) ">
+  <div class="charger-header">
+    <h2 class="charger-name">SEGRO AREAS CAMBRIDGE EST 4</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Cambridge Industrial Estate Great Cambridge R <button class="copy-btn" data-copy="EN1 1SH">EN1 1SH</button>
   </p>
   
   <div class="charger-connections">
@@ -77,9 +108,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Shell Recharge/Ubitricity</h2>
-  <p class="charger-address">null EN1 1BG
+<li class="charger-item charger-item--slow" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Shell Recharge/Ubitricity</h2>
+    
+  </div>
+  <p class="charger-address">null <button class="copy-btn" data-copy="EN1 1BG">EN1 1BG</button>
   </p>
   
   <div class="charger-connections">
@@ -98,9 +132,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">SHELL RECHARGE BUDGENS BULLSMOOR</h2>
-  <p class="charger-address">233 Bullsmoor Lane EN1 4SB
+<li class="charger-item charger-item--rapid" data-connectors="Type 2 (Tethered Connector) ,CHAdeMO">
+  <div class="charger-header">
+    <h2 class="charger-name">SHELL RECHARGE BUDGENS BULLSMOOR</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">233 Bullsmoor Lane <button class="copy-btn" data-copy="EN1 4SB">EN1 4SB</button>
   </p>
   
   <div class="charger-connections">
@@ -122,9 +160,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Palace Gardens Shop Centre</h2>
-  <p class="charger-address">Palace Gardens Shop Centre EN2 6SN
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Palace Gardens Shop Centre</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Palace Gardens Shop Centre <button class="copy-btn" data-copy="EN2 6SN">EN2 6SN</button>
   </p>
   
   <div class="charger-connections">
@@ -146,9 +187,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Morrisons Enfield</h2>
-  <p class="charger-address">Morrisons Enfield EN1 1TW
+<li class="charger-item charger-item--rapid" data-connectors="Type 2 (Tethered Connector) ,CHAdeMO,Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Morrisons Enfield</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Morrisons Enfield <button class="copy-btn" data-copy="EN1 1TW">EN1 1TW</button>
   </p>
   
   <div class="charger-connections">
@@ -173,9 +218,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">opp. 82 Glenville Avenue</h2>
-  <p class="charger-address">opp. 82 Glenville Avenue EN2 0ES
+<li class="charger-item charger-item--slow" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">opp. 82 Glenville Avenue</h2>
+    
+  </div>
+  <p class="charger-address">opp. 82 Glenville Avenue <button class="copy-btn" data-copy="EN2 0ES">EN2 0ES</button>
   </p>
   
   <div class="charger-connections">
@@ -194,9 +242,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Shell Recharge/Ubitricity</h2>
-  <p class="charger-address">null EN2 0PX
+<li class="charger-item charger-item--slow" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Shell Recharge/Ubitricity</h2>
+    
+  </div>
+  <p class="charger-address">null <button class="copy-btn" data-copy="EN2 0PX">EN2 0PX</button>
   </p>
   
   <div class="charger-connections">
@@ -215,9 +266,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Tooled Up</h2>
-  <p class="charger-address">78 Suez Road EN3 7PS
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Tooled Up</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">78 Suez Road <button class="copy-btn" data-copy="EN3 7PS">EN3 7PS</button>
   </p>
   
   <div class="charger-connections">
@@ -239,9 +293,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Lidl-Enfield Wash</h2>
-  <p class="charger-address">654-658 Hertford Road EN3 6LZ
+<li class="charger-item charger-item--rapid" data-connectors="Type 2 (Socket Only),CCS (Type 2),CHAdeMO">
+  <div class="charger-header">
+    <h2 class="charger-name">Lidl-Enfield Wash</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">654-658 Hertford Road <button class="copy-btn" data-copy="EN3 6LZ">EN3 6LZ</button>
   </p>
   
   <div class="charger-connections">
@@ -266,9 +324,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Bowes Road (on North Circular Rd - A406)</h2>
-  <p class="charger-address">Bowes Road (on North Circular Rd - A406), Arnos Grove N11 2JG
+<li class="charger-item charger-item--rapid" data-connectors="CHAdeMO,Type 2 (Tethered Connector) ">
+  <div class="charger-header">
+    <h2 class="charger-name">Bowes Road (on North Circular Rd - A406)</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Bowes Road (on North Circular Rd - A406), Arnos Grove <button class="copy-btn" data-copy="N11 2JG">N11 2JG</button>
   </p>
   
   <div class="charger-connections">
@@ -296,6 +358,23 @@
 
 <p><a href="/" class="back-link">← All UK towns</a></p>
 
+
+<div class="nearby-towns">
+  <h2 class="nearby-heading">Nearby towns</h2>
+  <ul class="nearby-list">
+  
+    <li><a href="/uk/waltham-cross/">Waltham Cross</a></li>
+  
+    <li><a href="/uk/cheshunt/">Cheshunt</a></li>
+  
+    <li><a href="/uk/chingford/">Chingford</a></li>
+  
+    <li><a href="/uk/walthamstow/">Walthamstow</a></li>
+  
+  </ul>
+</div>
+
+
 </div>
 
 <footer>
@@ -308,26 +387,61 @@
 <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 <script>
 (function () {
+  // --- Map ---
   var map = L.map('map').setView([51.65190163636364, -0.06658481818181818], 12);
-
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
   }).addTo(map);
 
   var markers = L.markerClusterGroup();
-  var chargerData = [{"lat": 51.642232, "lng": -0.057567, "title": "SEGRO AREAS CAMBRIDGE EST 3", "address": "Cambridge Industrial Estate Great Cambridge R"}, {"lat": 51.64191, "lng": -0.056613, "title": "SEGRO AREAS CAMBRIDGE EST 4", "address": "Cambridge Industrial Estate Great Cambridge R"}, {"lat": 51.645048, "lng": -0.067072, "title": "Shell Recharge/Ubitricity", "address": "null"}, {"lat": 51.680289, "lng": -0.049476, "title": "SHELL RECHARGE BUDGENS BULLSMOOR", "address": "233 Bullsmoor Lane"}, {"lat": 51.651646, "lng": -0.084142, "title": "Palace Gardens Shop Centre", "address": "Palace Gardens Shop Centre"}, {"lat": 51.648499, "lng": -0.05599, "title": "Morrisons Enfield", "address": "Morrisons Enfield"}, {"lat": 51.666267, "lng": -0.083295, "title": "opp. 82 Glenville Avenue", "address": "opp. 82 Glenville Avenue"}, {"lat": 51.660568, "lng": -0.083947, "title": "Shell Recharge/Ubitricity", "address": "null"}, {"lat": 51.649109, "lng": -0.030325, "title": "Tooled Up", "address": "78 Suez Road"}, {"lat": 51.6717, "lng": -0.0404, "title": "Lidl-Enfield Wash", "address": "654-658 Hertford Road"}, {"lat": 51.61365, "lng": -0.123606, "title": "Bowes Road (on North Circular Rd - A406)", "address": "Bowes Road (on North Circular Rd - A406), Arnos Grove"}];
+  var chargerData = [{"lat": 51.642232, "lng": -0.057567, "title": "SEGRO AREAS CAMBRIDGE EST 3", "address": "Cambridge Industrial Estate Great Cambridge R", "connectors": ["Type 2 (Socket Only) · 22kW"]}, {"lat": 51.64191, "lng": -0.056613, "title": "SEGRO AREAS CAMBRIDGE EST 4", "address": "Cambridge Industrial Estate Great Cambridge R", "connectors": ["Type 2 (Tethered Connector)  · 43kW"]}, {"lat": 51.645048, "lng": -0.067072, "title": "Shell Recharge/Ubitricity", "address": "null", "connectors": ["Type 2 (Socket Only) · 5kW"]}, {"lat": 51.680289, "lng": -0.049476, "title": "SHELL RECHARGE BUDGENS BULLSMOOR", "address": "233 Bullsmoor Lane", "connectors": ["Type 2 (Tethered Connector)  · 50kW", "CHAdeMO · 50kW"]}, {"lat": 51.651646, "lng": -0.084142, "title": "Palace Gardens Shop Centre", "address": "Palace Gardens Shop Centre", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 51.648499, "lng": -0.05599, "title": "Morrisons Enfield", "address": "Morrisons Enfield", "connectors": ["Type 2 (Tethered Connector)  · 60kW", "CHAdeMO · 50kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 51.666267, "lng": -0.083295, "title": "opp. 82 Glenville Avenue", "address": "opp. 82 Glenville Avenue", "connectors": ["Type 2 (Socket Only) · 5kW"]}, {"lat": 51.660568, "lng": -0.083947, "title": "Shell Recharge/Ubitricity", "address": "null", "connectors": ["Type 2 (Socket Only) · 5kW"]}, {"lat": 51.649109, "lng": -0.030325, "title": "Tooled Up", "address": "78 Suez Road", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 51.6717, "lng": -0.0404, "title": "Lidl-Enfield Wash", "address": "654-658 Hertford Road", "connectors": ["Type 2 (Socket Only) · 22kW", "CCS (Type 2) · 50kW", "CHAdeMO · 50kW"]}, {"lat": 51.61365, "lng": -0.123606, "title": "Bowes Road (on North Circular Rd - A406)", "address": "Bowes Road (on North Circular Rd - A406), Arnos Grove", "connectors": ["CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 50kW", "Type 2 (Tethered Connector)  · 43kW"]}];
 
   chargerData.forEach(function (c) {
+    var connHtml = c.connectors.length
+      ? '<div style="margin-top:6px;font-size:12px;color:#475569">' + c.connectors.join(' &middot; ') + '</div>'
+      : '';
     var marker = L.marker([c.lat, c.lng]);
     marker.bindPopup(
-      '<b>' + c.title + '</b><br>' + c.address + '<br><br>' +
+      '<b>' + c.title + '</b>' +
+      '<div style="color:#64748b;font-size:13px">' + c.address + '</div>' +
+      connHtml +
       '<a href="https://www.google.com/maps/dir/?api=1&destination=' + c.lat + ',' + c.lng +
-      '" target="_blank" rel="noopener">Get directions</a>'
+      '" target="_blank" rel="noopener" style="display:inline-block;margin-top:8px;padding:4px 10px;background:#2563eb;color:white;border-radius:4px;text-decoration:none;font-size:12px">Get directions</a>'
     );
     markers.addLayer(marker);
   });
-
   map.addLayer(markers);
+
+  // --- Connector filter ---
+  var filterBtns = document.querySelectorAll('.filter-btn');
+  var chargerItems = document.querySelectorAll('.charger-item');
+
+  filterBtns.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      filterBtns.forEach(function (b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      var f = btn.dataset.filter;
+      chargerItems.forEach(function (item) {
+        var connList = item.dataset.connectors ? item.dataset.connectors.split(',') : [];
+        item.style.display = (f === 'all' || connList.indexOf(f) !== -1) ? '' : 'none';
+      });
+    });
+  });
+
+  // --- Copy postcode ---
+  document.querySelectorAll('.copy-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var original = btn.textContent;
+      navigator.clipboard.writeText(btn.dataset.copy).then(function () {
+        btn.textContent = 'Copied!';
+        btn.classList.add('copy-btn--success');
+        setTimeout(function () {
+          btn.textContent = original;
+          btn.classList.remove('copy-btn--success');
+        }, 1500);
+      });
+    });
+  });
 }());
 </script>
 

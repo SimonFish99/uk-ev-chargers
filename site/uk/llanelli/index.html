@@ -17,7 +17,10 @@
 
 <header>
 <div class="container">
-<a href="/" class="logo">PlugMap <span class="tagline">UK EV Charger Locator</span></a>
+<a href="/" class="logo">
+  <svg class="logo-bolt" viewBox="0 0 24 24" fill="currentColor" width="22" height="22" aria-hidden="true"><path d="M13 2L4.5 13.5H11L10 22L19.5 10.5H13Z"/></svg>
+  PlugMap <span class="tagline">UK EV Charger Locator</span>
+</a>
 </div>
 </header>
 
@@ -28,16 +31,42 @@
 </nav>
 
 <h1>EV Chargers in Llanelli</h1>
-<p class="page-intro">9 public charging stations found in Llanelli.</p>
+
+<div class="stats-bar">
+  <span class="stat-pill stat-total">9 stations</span>
+  <span class="stat-pill stat-rapid">2 rapid (50kW+)</span>
+  <span class="stat-pill stat-fast">7 fast (7–50kW)</span>
+  
+</div>
 
 <div id="map"></div>
 
-<ul class="charger-list">
+
+<div class="connector-filter">
+  <span class="filter-label">Filter:</span>
+  <button class="filter-btn active" data-filter="all">All</button>
+  
+  <button class="filter-btn" data-filter="CCS (Type 2)">CCS (Type 2)</button>
+  
+  <button class="filter-btn" data-filter="CHAdeMO">CHAdeMO</button>
+  
+  <button class="filter-btn" data-filter="Type 2 (Socket Only)">Type 2 (Socket Only)</button>
+  
+  <button class="filter-btn" data-filter="Type 2 (Tethered Connector) ">Type 2 (Tethered Connector) </button>
+  
+</div>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Premier inn Llanelli Central East</h2>
-  <p class="charger-address">Premier inn Llanelli Central E SA14 9BD
+<ul class="charger-list" id="charger-list">
+
+
+<li class="charger-item charger-item--rapid" data-connectors="CHAdeMO,Type 2 (Socket Only),Type 2 (Tethered Connector) ">
+  <div class="charger-header">
+    <h2 class="charger-name">Premier inn Llanelli Central East</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Premier inn Llanelli Central E <button class="copy-btn" data-copy="SA14 9BD">SA14 9BD</button>
   </p>
   
   <div class="charger-connections">
@@ -62,9 +91,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">The Beacon Enterprise Centre</h2>
-  <p class="charger-address">Heol Aur SA14 8LQ
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">The Beacon Enterprise Centre</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Heol Aur <button class="copy-btn" data-copy="SA14 8LQ">SA14 8LQ</button>
   </p>
   
   <div class="charger-connections">
@@ -86,9 +118,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Parc Trostre Retail Park</h2>
-  <p class="charger-address">Trostre Road SA14 9UY
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Parc Trostre Retail Park</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Trostre Road <button class="copy-btn" data-copy="SA14 9UY">SA14 9UY</button>
   </p>
   
   <div class="charger-connections">
@@ -110,9 +145,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Sessile Oak Pub &amp; Restaurant</h2>
-  <p class="charger-address">Pemberton Park SA14 9WA
+<li class="charger-item charger-item--rapid" data-connectors="CHAdeMO,CCS (Type 2),Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Sessile Oak Pub &amp; Restaurant</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Pemberton Park <button class="copy-btn" data-copy="SA14 9WA">SA14 9WA</button>
   </p>
   
   <div class="charger-connections">
@@ -146,9 +185,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Edgar Street Car Park</h2>
-  <p class="charger-address">Edgar Street SA15 3JH
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Edgar Street Car Park</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Edgar Street <button class="copy-btn" data-copy="SA15 3JH">SA15 3JH</button>
   </p>
   
   <div class="charger-connections">
@@ -170,9 +212,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Tesco Extra - Llanelli</h2>
-  <p class="charger-address">Parc Trostre SA14 9UY
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Tesco Extra - Llanelli</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Parc Trostre <button class="copy-btn" data-copy="SA14 9UY">SA14 9UY</button>
   </p>
   
   <div class="charger-connections">
@@ -194,9 +239,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Church Street Car Park</h2>
-  <p class="charger-address">Church Street SA15 3BD
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Church Street Car Park</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Church Street <button class="copy-btn" data-copy="SA15 3BD">SA15 3BD</button>
   </p>
   
   <div class="charger-connections">
@@ -218,9 +266,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Eastgate Car Park</h2>
-  <p class="charger-address">Stepney Place SA15 1SE
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Eastgate Car Park</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Stepney Place <button class="copy-btn" data-copy="SA15 1SE">SA15 1SE</button>
   </p>
   
   <div class="charger-connections">
@@ -242,9 +293,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Tesco Extra - Llanelli</h2>
-  <p class="charger-address"> Parc Trostre SA14 9UY 
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Tesco Extra - Llanelli</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address"> Parc Trostre <button class="copy-btn" data-copy="SA14 9UY ">SA14 9UY </button>
   </p>
   
   <div class="charger-connections">
@@ -269,6 +323,23 @@
 
 <p><a href="/" class="back-link">← All UK towns</a></p>
 
+
+<div class="nearby-towns">
+  <h2 class="nearby-heading">Nearby towns</h2>
+  <ul class="nearby-list">
+  
+    <li><a href="/uk/swansea/">Swansea</a></li>
+  
+    <li><a href="/uk/carmarthen/">Carmarthen</a></li>
+  
+    <li><a href="/uk/bridgend/">Bridgend</a></li>
+  
+    <li><a href="/uk/cardigan/">Cardigan</a></li>
+  
+  </ul>
+</div>
+
+
 </div>
 
 <footer>
@@ -281,26 +352,61 @@
 <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 <script>
 (function () {
+  // --- Map ---
   var map = L.map('map').setView([51.68226340637389, -4.141984715476076], 12);
-
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
   }).addTo(map);
 
   var markers = L.markerClusterGroup();
-  var chargerData = [{"lat": 51.682049, "lng": -4.13133, "title": "Premier inn Llanelli Central East", "address": "Premier inn Llanelli Central E"}, {"lat": 51.697917, "lng": -4.119859, "title": "The Beacon Enterprise Centre", "address": "Heol Aur"}, {"lat": 51.67628, "lng": -4.140133, "title": "Parc Trostre Retail Park", "address": "Trostre Road"}, {"lat": 51.678077, "lng": -4.131347, "title": "Sessile Oak Pub & Restaurant", "address": "Pemberton Park"}, {"lat": 51.684574, "lng": -4.162147, "title": "Edgar Street Car Park", "address": "Edgar Street"}, {"lat": 51.677032, "lng": -4.136141, "title": "Tesco Extra - Llanelli", "address": "Parc Trostre"}, {"lat": 51.683705, "lng": -4.162802, "title": "Church Street Car Park", "address": "Church Street"}, {"lat": 51.683421, "lng": -4.157256, "title": "Eastgate Car Park", "address": "Stepney Place"}, {"lat": 51.677315657365, "lng": -4.13684743928468, "title": "Tesco Extra - Llanelli", "address": " Parc Trostre"}];
+  var chargerData = [{"lat": 51.682049, "lng": -4.13133, "title": "Premier inn Llanelli Central East", "address": "Premier inn Llanelli Central E", "connectors": ["CHAdeMO · 50kW", "Type 2 (Socket Only) · 22kW", "Type 2 (Tethered Connector)  · 60kW"]}, {"lat": 51.697917, "lng": -4.119859, "title": "The Beacon Enterprise Centre", "address": "Heol Aur", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 51.67628, "lng": -4.140133, "title": "Parc Trostre Retail Park", "address": "Trostre Road", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 51.678077, "lng": -4.131347, "title": "Sessile Oak Pub & Restaurant", "address": "Pemberton Park", "connectors": ["CHAdeMO · 50kW", "CCS (Type 2) · 50kW", "CHAdeMO · 50kW", "CCS (Type 2) · 50kW", "Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 16kW"]}, {"lat": 51.684574, "lng": -4.162147, "title": "Edgar Street Car Park", "address": "Edgar Street", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 51.677032, "lng": -4.136141, "title": "Tesco Extra - Llanelli", "address": "Parc Trostre", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 51.683705, "lng": -4.162802, "title": "Church Street Car Park", "address": "Church Street", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 51.683421, "lng": -4.157256, "title": "Eastgate Car Park", "address": "Stepney Place", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 51.677315657365, "lng": -4.13684743928468, "title": "Tesco Extra - Llanelli", "address": " Parc Trostre", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}];
 
   chargerData.forEach(function (c) {
+    var connHtml = c.connectors.length
+      ? '<div style="margin-top:6px;font-size:12px;color:#475569">' + c.connectors.join(' &middot; ') + '</div>'
+      : '';
     var marker = L.marker([c.lat, c.lng]);
     marker.bindPopup(
-      '<b>' + c.title + '</b><br>' + c.address + '<br><br>' +
+      '<b>' + c.title + '</b>' +
+      '<div style="color:#64748b;font-size:13px">' + c.address + '</div>' +
+      connHtml +
       '<a href="https://www.google.com/maps/dir/?api=1&destination=' + c.lat + ',' + c.lng +
-      '" target="_blank" rel="noopener">Get directions</a>'
+      '" target="_blank" rel="noopener" style="display:inline-block;margin-top:8px;padding:4px 10px;background:#2563eb;color:white;border-radius:4px;text-decoration:none;font-size:12px">Get directions</a>'
     );
     markers.addLayer(marker);
   });
-
   map.addLayer(markers);
+
+  // --- Connector filter ---
+  var filterBtns = document.querySelectorAll('.filter-btn');
+  var chargerItems = document.querySelectorAll('.charger-item');
+
+  filterBtns.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      filterBtns.forEach(function (b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      var f = btn.dataset.filter;
+      chargerItems.forEach(function (item) {
+        var connList = item.dataset.connectors ? item.dataset.connectors.split(',') : [];
+        item.style.display = (f === 'all' || connList.indexOf(f) !== -1) ? '' : 'none';
+      });
+    });
+  });
+
+  // --- Copy postcode ---
+  document.querySelectorAll('.copy-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var original = btn.textContent;
+      navigator.clipboard.writeText(btn.dataset.copy).then(function () {
+        btn.textContent = 'Copied!';
+        btn.classList.add('copy-btn--success');
+        setTimeout(function () {
+          btn.textContent = original;
+          btn.classList.remove('copy-btn--success');
+        }, 1500);
+      });
+    });
+  });
 }());
 </script>
 

@@ -17,7 +17,10 @@
 
 <header>
 <div class="container">
-<a href="/" class="logo">PlugMap <span class="tagline">UK EV Charger Locator</span></a>
+<a href="/" class="logo">
+  <svg class="logo-bolt" viewBox="0 0 24 24" fill="currentColor" width="22" height="22" aria-hidden="true"><path d="M13 2L4.5 13.5H11L10 22L19.5 10.5H13Z"/></svg>
+  PlugMap <span class="tagline">UK EV Charger Locator</span>
+</a>
 </div>
 </header>
 
@@ -28,16 +31,44 @@
 </nav>
 
 <h1>EV Chargers in Grimsby</h1>
-<p class="page-intro">9 public charging stations found in Grimsby.</p>
+
+<div class="stats-bar">
+  <span class="stat-pill stat-total">9 stations</span>
+  <span class="stat-pill stat-rapid">6 rapid (50kW+)</span>
+  <span class="stat-pill stat-fast">3 fast (7–50kW)</span>
+  
+</div>
 
 <div id="map"></div>
 
-<ul class="charger-list">
+
+<div class="connector-filter">
+  <span class="filter-label">Filter:</span>
+  <button class="filter-btn active" data-filter="all">All</button>
+  
+  <button class="filter-btn" data-filter="CCS (Type 2)">CCS (Type 2)</button>
+  
+  <button class="filter-btn" data-filter="CHAdeMO">CHAdeMO</button>
+  
+  <button class="filter-btn" data-filter="Type 2 (Socket Only)">Type 2 (Socket Only)</button>
+  
+  <button class="filter-btn" data-filter="Type 2 (Tethered Connector) ">Type 2 (Tethered Connector) </button>
+  
+  <button class="filter-btn" data-filter="Unknown">Unknown</button>
+  
+</div>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Lidl-Cromwell Road</h2>
-  <p class="charger-address">Cromwell Road DN31 2BB
+<ul class="charger-list" id="charger-list">
+
+
+<li class="charger-item charger-item--rapid" data-connectors="Type 2 (Socket Only),CCS (Type 2),CHAdeMO">
+  <div class="charger-header">
+    <h2 class="charger-name">Lidl-Cromwell Road</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Cromwell Road <button class="copy-btn" data-copy="DN31 2BB">DN31 2BB</button>
   </p>
   
   <div class="charger-connections">
@@ -62,9 +93,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Wellington Street</h2>
-  <p class="charger-address">Wellington Street DN32 7EA
+<li class="charger-item charger-item--fast" data-connectors="Unknown">
+  <div class="charger-header">
+    <h2 class="charger-name">Wellington Street</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Wellington Street <button class="copy-btn" data-copy="DN32 7EA">DN32 7EA</button>
   </p>
   
   <div class="charger-connections">
@@ -83,9 +117,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Woad Lane</h2>
-  <p class="charger-address">Woad Lane DN37 9PH
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2)">
+  <div class="charger-header">
+    <h2 class="charger-name">Woad Lane</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Woad Lane <button class="copy-btn" data-copy="DN37 9PH">DN37 9PH</button>
   </p>
   
   <div class="charger-connections">
@@ -104,9 +142,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Tesco Extra-Grimsby</h2>
-  <p class="charger-address">Market Street DN31 1PG
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Tesco Extra-Grimsby</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Market Street <button class="copy-btn" data-copy="DN31 1PG">DN31 1PG</button>
   </p>
   
   <div class="charger-connections">
@@ -125,9 +166,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Morrisons Cleethorpes</h2>
-  <p class="charger-address">Hilmore Road, Laceby DN37 7SQ
+<li class="charger-item charger-item--rapid" data-connectors="Type 2 (Socket Only),CHAdeMO,Type 2 (Tethered Connector) ">
+  <div class="charger-header">
+    <h2 class="charger-name">Morrisons Cleethorpes</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Hilmore Road, Laceby <button class="copy-btn" data-copy="DN37 7SQ">DN37 7SQ</button>
   </p>
   
   <div class="charger-connections">
@@ -152,9 +197,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Morrisons Grimsby</h2>
-  <p class="charger-address">Hilmore Rd DN37 7SQ
+<li class="charger-item charger-item--rapid" data-connectors="Type 2 (Socket Only),CHAdeMO,CCS (Type 2)">
+  <div class="charger-header">
+    <h2 class="charger-name">Morrisons Grimsby</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Hilmore Rd <button class="copy-btn" data-copy="DN37 7SQ">DN37 7SQ</button>
   </p>
   
   <div class="charger-connections">
@@ -179,9 +228,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Miller &amp; Carter Grimsby</h2>
-  <p class="charger-address">Weelsby Road DN32 9RT
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2),CHAdeMO,Type 2 (Tethered Connector) ">
+  <div class="charger-header">
+    <h2 class="charger-name">Miller &amp; Carter Grimsby</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Weelsby Road <button class="copy-btn" data-copy="DN32 9RT">DN32 9RT</button>
   </p>
   
   <div class="charger-connections">
@@ -206,9 +259,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Millfields Hotel</h2>
-  <p class="charger-address">53 Bargate DN34 5AD
+<li class="charger-item charger-item--rapid" data-connectors="Type 2 (Socket Only),CCS (Type 2),Type 2 (Tethered Connector) ,CHAdeMO">
+  <div class="charger-header">
+    <h2 class="charger-name">Millfields Hotel</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">53 Bargate <button class="copy-btn" data-copy="DN34 5AD">DN34 5AD</button>
   </p>
   
   <div class="charger-connections">
@@ -236,9 +293,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Side of Nissan showroom</h2>
-  <p class="charger-address">Corporation Road DN31 1UH
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Side of Nissan showroom</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Corporation Road <button class="copy-btn" data-copy="DN31 1UH">DN31 1UH</button>
   </p>
   
   <div class="charger-connections">
@@ -263,6 +323,23 @@
 
 <p><a href="/" class="back-link">← All UK towns</a></p>
 
+
+<div class="nearby-towns">
+  <h2 class="nearby-heading">Nearby towns</h2>
+  <ul class="nearby-list">
+  
+    <li><a href="/uk/hull/">Hull</a></li>
+  
+    <li><a href="/uk/beverley/">Beverley</a></li>
+  
+    <li><a href="/uk/bridlington/">Bridlington</a></li>
+  
+    <li><a href="/uk/scunthorpe/">Scunthorpe</a></li>
+  
+  </ul>
+</div>
+
+
 </div>
 
 <footer>
@@ -275,26 +352,61 @@
 <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 <script>
 (function () {
+  // --- Map ---
   var map = L.map('map').setView([53.563244321740555, -0.10078665739297624], 12);
-
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
   }).addTo(map);
 
   var markers = L.markerClusterGroup();
-  var chargerData = [{"lat": 53.56527, "lng": -0.103091, "title": "Lidl-Cromwell Road", "address": "Cromwell Road"}, {"lat": 53.567737, "lng": -0.073629, "title": "Wellington Street", "address": "Wellington Street"}, {"lat": 53.58307258800943, "lng": -0.11843275923069996, "title": "Woad Lane", "address": "Woad Lane"}, {"lat": 53.57006542, "lng": -0.07985169, "title": "Tesco Extra-Grimsby", "address": "Market Street"}, {"lat": 53.55024, "lng": -0.137955, "title": "Morrisons Cleethorpes", "address": "Hilmore Road, Laceby"}, {"lat": 53.55081204751349, "lng": -0.14022371374528575, "title": "Morrisons Grimsby", "address": "Hilmore Rd"}, {"lat": 53.5538262788832, "lng": -0.0740418635042488, "title": "Miller & Carter Grimsby", "address": "Weelsby Road"}, {"lat": 53.5569665612589, "lng": -0.0906788900565516, "title": "Millfields Hotel", "address": "53 Bargate"}, {"lat": 53.571209, "lng": -0.089176, "title": "Side of Nissan showroom", "address": "Corporation Road"}];
+  var chargerData = [{"lat": 53.56527, "lng": -0.103091, "title": "Lidl-Cromwell Road", "address": "Cromwell Road", "connectors": ["Type 2 (Socket Only) · 22kW", "CCS (Type 2) · 50kW", "CHAdeMO · 50kW"]}, {"lat": 53.567737, "lng": -0.073629, "title": "Wellington Street", "address": "Wellington Street", "connectors": ["Unknown · 7kW"]}, {"lat": 53.58307258800943, "lng": -0.11843275923069996, "title": "Woad Lane", "address": "Woad Lane", "connectors": ["CCS (Type 2) · 50kW"]}, {"lat": 53.57006542, "lng": -0.07985169, "title": "Tesco Extra-Grimsby", "address": "Market Street", "connectors": ["Type 2 (Socket Only) · 22kW"]}, {"lat": 53.55024, "lng": -0.137955, "title": "Morrisons Cleethorpes", "address": "Hilmore Road, Laceby", "connectors": ["Type 2 (Socket Only) · 22kW", "CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 50kW"]}, {"lat": 53.55081204751349, "lng": -0.14022371374528575, "title": "Morrisons Grimsby", "address": "Hilmore Rd", "connectors": ["Type 2 (Socket Only) · 22kW", "CHAdeMO · 50kW", "CCS (Type 2) · 50kW"]}, {"lat": 53.5538262788832, "lng": -0.0740418635042488, "title": "Miller & Carter Grimsby", "address": "Weelsby Road", "connectors": ["CCS (Type 2) · 50kW", "CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 43kW"]}, {"lat": 53.5569665612589, "lng": -0.0906788900565516, "title": "Millfields Hotel", "address": "53 Bargate", "connectors": ["Type 2 (Socket Only) · 7kW", "CCS (Type 2) · 50kW", "Type 2 (Tethered Connector)  · 43kW", "CHAdeMO · 50kW"]}, {"lat": 53.571209, "lng": -0.089176, "title": "Side of Nissan showroom", "address": "Corporation Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}];
 
   chargerData.forEach(function (c) {
+    var connHtml = c.connectors.length
+      ? '<div style="margin-top:6px;font-size:12px;color:#475569">' + c.connectors.join(' &middot; ') + '</div>'
+      : '';
     var marker = L.marker([c.lat, c.lng]);
     marker.bindPopup(
-      '<b>' + c.title + '</b><br>' + c.address + '<br><br>' +
+      '<b>' + c.title + '</b>' +
+      '<div style="color:#64748b;font-size:13px">' + c.address + '</div>' +
+      connHtml +
       '<a href="https://www.google.com/maps/dir/?api=1&destination=' + c.lat + ',' + c.lng +
-      '" target="_blank" rel="noopener">Get directions</a>'
+      '" target="_blank" rel="noopener" style="display:inline-block;margin-top:8px;padding:4px 10px;background:#2563eb;color:white;border-radius:4px;text-decoration:none;font-size:12px">Get directions</a>'
     );
     markers.addLayer(marker);
   });
-
   map.addLayer(markers);
+
+  // --- Connector filter ---
+  var filterBtns = document.querySelectorAll('.filter-btn');
+  var chargerItems = document.querySelectorAll('.charger-item');
+
+  filterBtns.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      filterBtns.forEach(function (b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      var f = btn.dataset.filter;
+      chargerItems.forEach(function (item) {
+        var connList = item.dataset.connectors ? item.dataset.connectors.split(',') : [];
+        item.style.display = (f === 'all' || connList.indexOf(f) !== -1) ? '' : 'none';
+      });
+    });
+  });
+
+  // --- Copy postcode ---
+  document.querySelectorAll('.copy-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var original = btn.textContent;
+      navigator.clipboard.writeText(btn.dataset.copy).then(function () {
+        btn.textContent = 'Copied!';
+        btn.classList.add('copy-btn--success');
+        setTimeout(function () {
+          btn.textContent = original;
+          btn.classList.remove('copy-btn--success');
+        }, 1500);
+      });
+    });
+  });
 }());
 </script>
 

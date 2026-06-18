@@ -17,7 +17,10 @@
 
 <header>
 <div class="container">
-<a href="/" class="logo">PlugMap <span class="tagline">UK EV Charger Locator</span></a>
+<a href="/" class="logo">
+  <svg class="logo-bolt" viewBox="0 0 24 24" fill="currentColor" width="22" height="22" aria-hidden="true"><path d="M13 2L4.5 13.5H11L10 22L19.5 10.5H13Z"/></svg>
+  PlugMap <span class="tagline">UK EV Charger Locator</span>
+</a>
 </div>
 </header>
 
@@ -28,16 +31,40 @@
 </nav>
 
 <h1>EV Chargers in Inverurie</h1>
-<p class="page-intro">6 public charging stations found in Inverurie.</p>
+
+<div class="stats-bar">
+  <span class="stat-pill stat-total">6 stations</span>
+  <span class="stat-pill stat-rapid">1 rapid (50kW+)</span>
+  <span class="stat-pill stat-fast">5 fast (7–50kW)</span>
+  
+</div>
 
 <div id="map"></div>
 
-<ul class="charger-list">
+
+<div class="connector-filter">
+  <span class="filter-label">Filter:</span>
+  <button class="filter-btn active" data-filter="all">All</button>
+  
+  <button class="filter-btn" data-filter="CCS (Type 2)">CCS (Type 2)</button>
+  
+  <button class="filter-btn" data-filter="Type 2 (Socket Only)">Type 2 (Socket Only)</button>
+  
+  <button class="filter-btn" data-filter="Type 2 (Tethered Connector) ">Type 2 (Tethered Connector) </button>
+  
+</div>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Midmill Parade</h2>
-  <p class="charger-address">Kintore AB51 0UY
+<ul class="charger-list" id="charger-list">
+
+
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2)">
+  <div class="charger-header">
+    <h2 class="charger-name">Midmill Parade</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Kintore <button class="copy-btn" data-copy="AB51 0UY">AB51 0UY</button>
   </p>
   
   <div class="charger-connections">
@@ -56,9 +83,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Burn Lane Shopping Centre</h2>
-  <p class="charger-address">12 Burnside Court AB51 3SH
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only),Type 2 (Tethered Connector) ">
+  <div class="charger-header">
+    <h2 class="charger-name">Burn Lane Shopping Centre</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">12 Burnside Court <button class="copy-btn" data-copy="AB51 3SH">AB51 3SH</button>
   </p>
   
   <div class="charger-connections">
@@ -80,9 +110,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Gordon House, Blackhall Road, Inverurie</h2>
-  <p class="charger-address">Blackhall Road AB51 3WA
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Gordon House, Blackhall Road, Inverurie</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Blackhall Road <button class="copy-btn" data-copy="AB51 3WA">AB51 3WA</button>
   </p>
   
   <div class="charger-connections">
@@ -101,9 +134,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Andrew Cowie Construction, Oldmeldrum, Inverurie</h2>
-  <p class="charger-address">Mounie Drive AB51 0GX
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Andrew Cowie Construction, Oldmeldrum, Inverurie</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Mounie Drive <button class="copy-btn" data-copy="AB51 0GX">AB51 0GX</button>
   </p>
   
   <div class="charger-connections">
@@ -125,9 +161,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Laings</h2>
-  <p class="charger-address">Oldmeldrum Road AB51 0ZJ
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Laings</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Oldmeldrum Road <button class="copy-btn" data-copy="AB51 0ZJ">AB51 0ZJ</button>
   </p>
   
   <div class="charger-connections">
@@ -149,9 +188,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">North East Steel Services, Inverurie</h2>
-  <p class="charger-address">Burghmuir Place AB51 4EW
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">North East Steel Services, Inverurie</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Burghmuir Place <button class="copy-btn" data-copy="AB51 4EW">AB51 4EW</button>
   </p>
   
   <div class="charger-connections">
@@ -182,6 +224,23 @@
 
 <p><a href="/" class="back-link">← All UK towns</a></p>
 
+
+<div class="nearby-towns">
+  <h2 class="nearby-heading">Nearby towns</h2>
+  <ul class="nearby-list">
+  
+    <li><a href="/uk/aberdeen/">Aberdeen</a></li>
+  
+    <li><a href="/uk/dundee/">Dundee</a></li>
+  
+    <li><a href="/uk/st-andrews/">St Andrews</a></li>
+  
+    <li><a href="/uk/dunbar/">Dunbar</a></li>
+  
+  </ul>
+</div>
+
+
 </div>
 
 <footer>
@@ -194,26 +253,61 @@
 <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 <script>
 (function () {
+  // --- Map ---
   var map = L.map('map').setView([57.28328161919308, -2.36880131813255], 12);
-
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
   }).addTo(map);
 
   var markers = L.markerClusterGroup();
-  var chargerData = [{"lat": 57.2262587151585, "lng": -2.3461499087953, "title": "Midmill Parade", "address": "Kintore"}, {"lat": 57.284847, "lng": -2.376448, "title": "Burn Lane Shopping Centre", "address": "12 Burnside Court"}, {"lat": 57.2837, "lng": -2.3897, "title": "Gordon House, Blackhall Road, Inverurie", "address": "Blackhall Road"}, {"lat": 57.331466, "lng": -2.332413, "title": "Andrew Cowie Construction, Oldmeldrum, Inverurie", "address": "Mounie Drive"}, {"lat": 57.286949, "lng": -2.369967, "title": "Laings", "address": "Oldmeldrum Road"}, {"lat": 57.286469, "lng": -2.39813, "title": "North East Steel Services, Inverurie", "address": "Burghmuir Place"}];
+  var chargerData = [{"lat": 57.2262587151585, "lng": -2.3461499087953, "title": "Midmill Parade", "address": "Kintore", "connectors": ["CCS (Type 2) · 100kW"]}, {"lat": 57.284847, "lng": -2.376448, "title": "Burn Lane Shopping Centre", "address": "12 Burnside Court", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Tethered Connector)  · 22kW"]}, {"lat": 57.2837, "lng": -2.3897, "title": "Gordon House, Blackhall Road, Inverurie", "address": "Blackhall Road", "connectors": ["Type 2 (Socket Only) · 7kW"]}, {"lat": 57.331466, "lng": -2.332413, "title": "Andrew Cowie Construction, Oldmeldrum, Inverurie", "address": "Mounie Drive", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 57.286949, "lng": -2.369967, "title": "Laings", "address": "Oldmeldrum Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 57.286469, "lng": -2.39813, "title": "North East Steel Services, Inverurie", "address": "Burghmuir Place", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}];
 
   chargerData.forEach(function (c) {
+    var connHtml = c.connectors.length
+      ? '<div style="margin-top:6px;font-size:12px;color:#475569">' + c.connectors.join(' &middot; ') + '</div>'
+      : '';
     var marker = L.marker([c.lat, c.lng]);
     marker.bindPopup(
-      '<b>' + c.title + '</b><br>' + c.address + '<br><br>' +
+      '<b>' + c.title + '</b>' +
+      '<div style="color:#64748b;font-size:13px">' + c.address + '</div>' +
+      connHtml +
       '<a href="https://www.google.com/maps/dir/?api=1&destination=' + c.lat + ',' + c.lng +
-      '" target="_blank" rel="noopener">Get directions</a>'
+      '" target="_blank" rel="noopener" style="display:inline-block;margin-top:8px;padding:4px 10px;background:#2563eb;color:white;border-radius:4px;text-decoration:none;font-size:12px">Get directions</a>'
     );
     markers.addLayer(marker);
   });
-
   map.addLayer(markers);
+
+  // --- Connector filter ---
+  var filterBtns = document.querySelectorAll('.filter-btn');
+  var chargerItems = document.querySelectorAll('.charger-item');
+
+  filterBtns.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      filterBtns.forEach(function (b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      var f = btn.dataset.filter;
+      chargerItems.forEach(function (item) {
+        var connList = item.dataset.connectors ? item.dataset.connectors.split(',') : [];
+        item.style.display = (f === 'all' || connList.indexOf(f) !== -1) ? '' : 'none';
+      });
+    });
+  });
+
+  // --- Copy postcode ---
+  document.querySelectorAll('.copy-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var original = btn.textContent;
+      navigator.clipboard.writeText(btn.dataset.copy).then(function () {
+        btn.textContent = 'Copied!';
+        btn.classList.add('copy-btn--success');
+        setTimeout(function () {
+          btn.textContent = original;
+          btn.classList.remove('copy-btn--success');
+        }, 1500);
+      });
+    });
+  });
 }());
 </script>
 

@@ -17,7 +17,10 @@
 
 <header>
 <div class="container">
-<a href="/" class="logo">PlugMap <span class="tagline">UK EV Charger Locator</span></a>
+<a href="/" class="logo">
+  <svg class="logo-bolt" viewBox="0 0 24 24" fill="currentColor" width="22" height="22" aria-hidden="true"><path d="M13 2L4.5 13.5H11L10 22L19.5 10.5H13Z"/></svg>
+  PlugMap <span class="tagline">UK EV Charger Locator</span>
+</a>
 </div>
 </header>
 
@@ -28,16 +31,42 @@
 </nav>
 
 <h1>EV Chargers in Telford</h1>
-<p class="page-intro">9 public charging stations found in Telford.</p>
+
+<div class="stats-bar">
+  <span class="stat-pill stat-total">9 stations</span>
+  <span class="stat-pill stat-rapid">2 rapid (50kW+)</span>
+  <span class="stat-pill stat-fast">6 fast (7–50kW)</span>
+  <span class="stat-pill stat-slow">1 slow</span>
+</div>
 
 <div id="map"></div>
 
-<ul class="charger-list">
+
+<div class="connector-filter">
+  <span class="filter-label">Filter:</span>
+  <button class="filter-btn active" data-filter="all">All</button>
+  
+  <button class="filter-btn" data-filter="CCS (Type 2)">CCS (Type 2)</button>
+  
+  <button class="filter-btn" data-filter="CHAdeMO">CHAdeMO</button>
+  
+  <button class="filter-btn" data-filter="Type 2 (Socket Only)">Type 2 (Socket Only)</button>
+  
+  <button class="filter-btn" data-filter="Type 2 (Tethered Connector) ">Type 2 (Tethered Connector) </button>
+  
+</div>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">EVC Telford Hotel, Spa &amp; Golf Resort</h2>
-  <p class="charger-address">Great Hay Drive TF7 4DT
+<ul class="charger-list" id="charger-list">
+
+
+<li class="charger-item charger-item--rapid" data-connectors="Type 2 (Socket Only),CCS (Type 2)">
+  <div class="charger-header">
+    <h2 class="charger-name">EVC Telford Hotel, Spa &amp; Golf Resort</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Great Hay Drive <button class="copy-btn" data-copy="TF7 4DT">TF7 4DT</button>
   </p>
   
   <div class="charger-connections">
@@ -59,9 +88,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Saba UK-Telford Central</h2>
-  <p class="charger-address">Telford Central TF3 4LZ
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Saba UK-Telford Central</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Telford Central <button class="copy-btn" data-copy="TF3 4LZ">TF3 4LZ</button>
   </p>
   
   <div class="charger-connections">
@@ -80,9 +112,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">ST James House, Telford</h2>
-  <p class="charger-address">St James House TF2 9TW
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">ST James House, Telford</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">St James House <button class="copy-btn" data-copy="TF2 9TW">TF2 9TW</button>
   </p>
   
   <div class="charger-connections">
@@ -101,9 +136,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Asda</h2>
-  <p class="charger-address">Malinsgate TF3 4HZ
+<li class="charger-item charger-item--slow" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Asda</h2>
+    
+  </div>
+  <p class="charger-address">Malinsgate <button class="copy-btn" data-copy="TF3 4HZ">TF3 4HZ</button>
   </p>
   
   <div class="charger-connections">
@@ -125,9 +163,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Morrisons Telford Wellington</h2>
-  <p class="charger-address">Springhill, Wellington TF1 1RP
+<li class="charger-item charger-item--rapid" data-connectors="Type 2 (Socket Only),CHAdeMO,Type 2 (Tethered Connector) ">
+  <div class="charger-header">
+    <h2 class="charger-name">Morrisons Telford Wellington</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Springhill, Wellington <button class="copy-btn" data-copy="TF1 1RP">TF1 1RP</button>
   </p>
   
   <div class="charger-connections">
@@ -152,9 +194,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">EAC Telford Ltd</h2>
-  <p class="charger-address">Unit A TF7 4PL
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">EAC Telford Ltd</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Unit A <button class="copy-btn" data-copy="TF7 4PL">TF7 4PL</button>
   </p>
   
   <div class="charger-connections">
@@ -173,9 +218,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Wellington Fire Station - Shropshire FRS</h2>
-  <p class="charger-address">Fire Station TF1 2NW
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Wellington Fire Station - Shropshire FRS</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Fire Station <button class="copy-btn" data-copy="TF1 2NW">TF1 2NW</button>
   </p>
   
   <div class="charger-connections">
@@ -197,9 +245,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Restricted access to Toyota customers</h2>
-  <p class="charger-address">Stafford Park 1 TF3 3BD
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Restricted access to Toyota customers</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Stafford Park 1 <button class="copy-btn" data-copy="TF3 3BD">TF3 3BD</button>
   </p>
   
   <div class="charger-connections">
@@ -221,9 +272,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Nissan customer parking next to rapid service area</h2>
-  <p class="charger-address">1 TF1 3BD
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Nissan customer parking next to rapid service area</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">1 <button class="copy-btn" data-copy="TF1 3BD">TF1 3BD</button>
   </p>
   
   <div class="charger-connections">
@@ -248,6 +302,23 @@
 
 <p><a href="/" class="back-link">← All UK towns</a></p>
 
+
+<div class="nearby-towns">
+  <h2 class="nearby-heading">Nearby towns</h2>
+  <ul class="nearby-list">
+  
+    <li><a href="/uk/shrewsbury/">Shrewsbury</a></li>
+  
+    <li><a href="/uk/wolverhampton/">Wolverhampton</a></li>
+  
+    <li><a href="/uk/kidderminster/">Kidderminster</a></li>
+  
+    <li><a href="/uk/stafford/">Stafford</a></li>
+  
+  </ul>
+</div>
+
+
 </div>
 
 <footer>
@@ -260,26 +331,61 @@
 <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 <script>
 (function () {
+  // --- Map ---
   var map = L.map('map').setView([52.67351708513613, -2.4561753068255254], 12);
-
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
   }).addTo(map);
 
   var markers = L.markerClusterGroup();
-  var chargerData = [{"lat": 52.6238498662252, "lng": -2.44882876142973, "title": "EVC Telford Hotel, Spa & Golf Resort", "address": "Great Hay Drive"}, {"lat": 52.6810099, "lng": -2.440741, "title": "Saba UK-Telford Central", "address": "Telford Central"}, {"lat": 52.685913, "lng": -2.4435, "title": "ST James House, Telford", "address": "St James House"}, {"lat": 52.675552, "lng": -2.451066, "title": "Asda", "address": "Malinsgate"}, {"lat": 52.702351, "lng": -2.522811, "title": "Morrisons Telford Wellington", "address": "Springhill, Wellington"}, {"lat": 52.636733, "lng": -2.431792, "title": "EAC Telford Ltd", "address": "Unit A"}, {"lat": 52.698429, "lng": -2.498364, "title": "Wellington Fire Station - Shropshire FRS", "address": "Fire Station"}, {"lat": 52.679556, "lng": -2.433975, "title": "Restricted access to Toyota customers", "address": "Stafford Park 1"}, {"lat": 52.67826, "lng": -2.4345, "title": "Nissan customer parking next to rapid service area", "address": "1"}];
+  var chargerData = [{"lat": 52.6238498662252, "lng": -2.44882876142973, "title": "EVC Telford Hotel, Spa & Golf Resort", "address": "Great Hay Drive", "connectors": ["Type 2 (Socket Only) · 22kW", "CCS (Type 2) · 100kW"]}, {"lat": 52.6810099, "lng": -2.440741, "title": "Saba UK-Telford Central", "address": "Telford Central", "connectors": ["Type 2 (Socket Only) · 7kW"]}, {"lat": 52.685913, "lng": -2.4435, "title": "ST James House, Telford", "address": "St James House", "connectors": ["Type 2 (Socket Only) · 22kW"]}, {"lat": 52.675552, "lng": -2.451066, "title": "Asda", "address": "Malinsgate", "connectors": ["Type 2 (Socket Only) · 3.7kW", "Type 2 (Socket Only) · 3.7kW"]}, {"lat": 52.702351, "lng": -2.522811, "title": "Morrisons Telford Wellington", "address": "Springhill, Wellington", "connectors": ["Type 2 (Socket Only) · 22kW", "CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 50kW"]}, {"lat": 52.636733, "lng": -2.431792, "title": "EAC Telford Ltd", "address": "Unit A", "connectors": ["Type 2 (Socket Only) · 7kW"]}, {"lat": 52.698429, "lng": -2.498364, "title": "Wellington Fire Station - Shropshire FRS", "address": "Fire Station", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 52.679556, "lng": -2.433975, "title": "Restricted access to Toyota customers", "address": "Stafford Park 1", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 52.67826, "lng": -2.4345, "title": "Nissan customer parking next to rapid service area", "address": "1", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}];
 
   chargerData.forEach(function (c) {
+    var connHtml = c.connectors.length
+      ? '<div style="margin-top:6px;font-size:12px;color:#475569">' + c.connectors.join(' &middot; ') + '</div>'
+      : '';
     var marker = L.marker([c.lat, c.lng]);
     marker.bindPopup(
-      '<b>' + c.title + '</b><br>' + c.address + '<br><br>' +
+      '<b>' + c.title + '</b>' +
+      '<div style="color:#64748b;font-size:13px">' + c.address + '</div>' +
+      connHtml +
       '<a href="https://www.google.com/maps/dir/?api=1&destination=' + c.lat + ',' + c.lng +
-      '" target="_blank" rel="noopener">Get directions</a>'
+      '" target="_blank" rel="noopener" style="display:inline-block;margin-top:8px;padding:4px 10px;background:#2563eb;color:white;border-radius:4px;text-decoration:none;font-size:12px">Get directions</a>'
     );
     markers.addLayer(marker);
   });
-
   map.addLayer(markers);
+
+  // --- Connector filter ---
+  var filterBtns = document.querySelectorAll('.filter-btn');
+  var chargerItems = document.querySelectorAll('.charger-item');
+
+  filterBtns.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      filterBtns.forEach(function (b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      var f = btn.dataset.filter;
+      chargerItems.forEach(function (item) {
+        var connList = item.dataset.connectors ? item.dataset.connectors.split(',') : [];
+        item.style.display = (f === 'all' || connList.indexOf(f) !== -1) ? '' : 'none';
+      });
+    });
+  });
+
+  // --- Copy postcode ---
+  document.querySelectorAll('.copy-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var original = btn.textContent;
+      navigator.clipboard.writeText(btn.dataset.copy).then(function () {
+        btn.textContent = 'Copied!';
+        btn.classList.add('copy-btn--success');
+        setTimeout(function () {
+          btn.textContent = original;
+          btn.classList.remove('copy-btn--success');
+        }, 1500);
+      });
+    });
+  });
 }());
 </script>
 

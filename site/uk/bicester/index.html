@@ -17,7 +17,10 @@
 
 <header>
 <div class="container">
-<a href="/" class="logo">PlugMap <span class="tagline">UK EV Charger Locator</span></a>
+<a href="/" class="logo">
+  <svg class="logo-bolt" viewBox="0 0 24 24" fill="currentColor" width="22" height="22" aria-hidden="true"><path d="M13 2L4.5 13.5H11L10 22L19.5 10.5H13Z"/></svg>
+  PlugMap <span class="tagline">UK EV Charger Locator</span>
+</a>
 </div>
 </header>
 
@@ -28,16 +31,44 @@
 </nav>
 
 <h1>EV Chargers in Bicester</h1>
-<p class="page-intro">15 public charging stations found in Bicester.</p>
+
+<div class="stats-bar">
+  <span class="stat-pill stat-total">15 stations</span>
+  <span class="stat-pill stat-rapid">4 rapid (50kW+)</span>
+  <span class="stat-pill stat-fast">10 fast (7–50kW)</span>
+  <span class="stat-pill stat-slow">1 slow</span>
+</div>
 
 <div id="map"></div>
 
-<ul class="charger-list">
+
+<div class="connector-filter">
+  <span class="filter-label">Filter:</span>
+  <button class="filter-btn active" data-filter="all">All</button>
+  
+  <button class="filter-btn" data-filter="BS1363 3 Pin 13 Amp">BS1363 3 Pin 13 Amp</button>
+  
+  <button class="filter-btn" data-filter="CCS (Type 2)">CCS (Type 2)</button>
+  
+  <button class="filter-btn" data-filter="CHAdeMO">CHAdeMO</button>
+  
+  <button class="filter-btn" data-filter="Type 2 (Socket Only)">Type 2 (Socket Only)</button>
+  
+  <button class="filter-btn" data-filter="Type 2 (Tethered Connector) ">Type 2 (Tethered Connector) </button>
+  
+</div>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">GS10043</h2>
-  <p class="charger-address">M40 Motorway, Jct 10, Northampton Road, Ardley OX27 7RD
+<ul class="charger-list" id="charger-list">
+
+
+<li class="charger-item charger-item--rapid" data-connectors="Type 2 (Tethered Connector) ,CHAdeMO">
+  <div class="charger-header">
+    <h2 class="charger-name">GS10043</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">M40 Motorway, Jct 10, Northampton Road, Ardley <button class="copy-btn" data-copy="OX27 7RD">OX27 7RD</button>
   </p>
   
   <div class="charger-connections">
@@ -59,9 +90,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Tesco Superstore-Bicester (75KW)</h2>
-  <p class="charger-address">Lakeview Drive OX26 1DE
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2)">
+  <div class="charger-header">
+    <h2 class="charger-name">Tesco Superstore-Bicester (75KW)</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Lakeview Drive <button class="copy-btn" data-copy="OX26 1DE">OX26 1DE</button>
   </p>
   
   <div class="charger-connections">
@@ -80,9 +115,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Shell Layby</h2>
-  <p class="charger-address">A34 OX25 3QQ
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2),CHAdeMO">
+  <div class="charger-header">
+    <h2 class="charger-name">Shell Layby</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">A34 <button class="copy-btn" data-copy="OX25 3QQ">OX25 3QQ</button>
   </p>
   
   <div class="charger-connections">
@@ -122,9 +161,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Sainsbury&#39;s Bicester</h2>
-  <p class="charger-address">Bure Place OX26 6FA
+<li class="charger-item charger-item--slow" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Sainsbury&#39;s Bicester</h2>
+    
+  </div>
+  <p class="charger-address">Bure Place <button class="copy-btn" data-copy="OX26 6FA">OX26 6FA</button>
   </p>
   
   <div class="charger-connections">
@@ -146,9 +188,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Little Chef</h2>
-  <p class="charger-address">Oxford Road OX26 1BT
+<li class="charger-item charger-item--fast" data-connectors="BS1363 3 Pin 13 Amp,Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Little Chef</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Oxford Road <button class="copy-btn" data-copy="OX26 1BT">OX26 1BT</button>
   </p>
   
   <div class="charger-connections">
@@ -170,9 +215,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Little Chef A34 North</h2>
-  <p class="charger-address">Little Chef A34 North OX25 3QQ
+<li class="charger-item charger-item--fast" data-connectors="BS1363 3 Pin 13 Amp,Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Little Chef A34 North</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Little Chef A34 North <button class="copy-btn" data-copy="OX25 3QQ">OX25 3QQ</button>
   </p>
   
   <div class="charger-connections">
@@ -194,9 +242,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Pippin Close</h2>
-  <p class="charger-address">Elmsbrook OX27 8TG
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Pippin Close</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Elmsbrook <button class="copy-btn" data-copy="OX27 8TG">OX27 8TG</button>
   </p>
   
   <div class="charger-connections">
@@ -218,9 +269,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Bicester Shopping Village Car Park</h2>
-  <p class="charger-address">Station Approach OX26 6WD
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Bicester Shopping Village Car Park</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Station Approach <button class="copy-btn" data-copy="OX26 6WD">OX26 6WD</button>
   </p>
   
   <div class="charger-connections">
@@ -239,9 +293,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Bicester Shopping Village</h2>
-  <p class="charger-address">144a Pingle Drive OX26 6EU
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Bicester Shopping Village</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">144a Pingle Drive <button class="copy-btn" data-copy="OX26 6EU">OX26 6EU</button>
   </p>
   
   <div class="charger-connections">
@@ -260,9 +317,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">McDonald&#39;s Baynards Green</h2>
-  <p class="charger-address">Baynards Green Roundabout OX27 7SG
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2),CHAdeMO">
+  <div class="charger-header">
+    <h2 class="charger-name">McDonald&#39;s Baynards Green</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Baynards Green Roundabout <button class="copy-btn" data-copy="OX27 7SG">OX27 7SG</button>
   </p>
   
   <div class="charger-connections">
@@ -284,9 +345,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Bicester</h2>
-  <p class="charger-address">Wendlebury Road, Bicester Gateway OX25 2BX
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Bicester</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Wendlebury Road, Bicester Gateway <button class="copy-btn" data-copy="OX25 2BX">OX25 2BX</button>
   </p>
   
   <div class="charger-connections">
@@ -305,9 +369,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Cattle Market Car Park</h2>
-  <p class="charger-address">Victoria Road OX26 6QB
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Tethered Connector) ,Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Cattle Market Car Park</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Victoria Road <button class="copy-btn" data-copy="OX26 6QB">OX26 6QB</button>
   </p>
   
   <div class="charger-connections">
@@ -329,9 +396,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Bicester Gateway</h2>
-  <p class="charger-address">Bicester Gateway OX25 2BX
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Bicester Gateway</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Bicester Gateway <button class="copy-btn" data-copy="OX25 2BX">OX25 2BX</button>
   </p>
   
   <div class="charger-connections">
@@ -350,9 +420,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Holiday Inn Express Bicester</h2>
-  <p class="charger-address">Gateway Business Park OX25 2BX
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Holiday Inn Express Bicester</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Gateway Business Park <button class="copy-btn" data-copy="OX25 2BX">OX25 2BX</button>
   </p>
   
   <div class="charger-connections">
@@ -371,9 +444,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Tesco Superstore-Bicester</h2>
-  <p class="charger-address">Lakeview Drive OX26 1DE
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Tesco Superstore-Bicester</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Lakeview Drive <button class="copy-btn" data-copy="OX26 1DE">OX26 1DE</button>
   </p>
   
   <div class="charger-connections">
@@ -398,6 +474,23 @@
 
 <p><a href="/" class="back-link">← All UK towns</a></p>
 
+
+<div class="nearby-towns">
+  <h2 class="nearby-heading">Nearby towns</h2>
+  <ul class="nearby-list">
+  
+    <li><a href="/uk/cherwell/">Cherwell</a></li>
+  
+    <li><a href="/uk/oxford/">Oxford</a></li>
+  
+    <li><a href="/uk/banbury/">Banbury</a></li>
+  
+    <li><a href="/uk/towcester/">Towcester</a></li>
+  
+  </ul>
+</div>
+
+
 </div>
 
 <footer>
@@ -410,26 +503,61 @@
 <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 <script>
 (function () {
+  // --- Map ---
   var map = L.map('map').setView([51.896618474148134, -1.1728177789885639], 12);
-
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
   }).addTo(map);
 
   var markers = L.markerClusterGroup();
-  var chargerData = [{"lat": 51.949654, "lng": -1.198057, "title": "GS10043", "address": "M40 Motorway, Jct 10, Northampton Road, Ardley"}, {"lat": 51.891133, "lng": -1.159868, "title": "Tesco Superstore-Bicester (75KW)", "address": "Lakeview Drive"}, {"lat": 51.852018, "lng": -1.224851, "title": "Shell Layby", "address": "A34"}, {"lat": 51.898695, "lng": -1.153264, "title": "Sainsbury's Bicester", "address": "Bure Place"}, {"lat": 51.8936, "lng": -1.16269, "title": "Little Chef", "address": "Oxford Road"}, {"lat": 51.849998, "lng": -1.2295, "title": "Little Chef A34 North", "address": "Little Chef A34 North"}, {"lat": 51.9190497362585, "lng": -1.15942217453471, "title": "Pippin Close", "address": "Elmsbrook"}, {"lat": 51.89324306010596, "lng": -1.150558940325709, "title": "Bicester Shopping Village Car Park", "address": "Station Approach"}, {"lat": 51.89328630760849, "lng": -1.1608701227904703, "title": "Bicester Shopping Village", "address": "144a Pingle Drive"}, {"lat": 51.9591047079117, "lng": -1.20252694943372, "title": "McDonald's Baynards Green", "address": "Baynards Green Roundabout"}, {"lat": 51.882091, "lng": -1.150491, "title": "Bicester", "address": "Wendlebury Road, Bicester Gateway"}, {"lat": 51.89875229553789, "lng": -1.1478156583920054, "title": "Cattle Market Car Park", "address": "Victoria Road"}, {"lat": 51.89125, "lng": -1.164444, "title": "Bicester Gateway", "address": "Bicester Gateway"}, {"lat": 51.886296004799476, "lng": -1.1681428393518445, "title": "Holiday Inn Express Bicester", "address": "Gateway Business Park"}, {"lat": 51.891106, "lng": -1.159765, "title": "Tesco Superstore-Bicester", "address": "Lakeview Drive"}];
+  var chargerData = [{"lat": 51.949654, "lng": -1.198057, "title": "GS10043", "address": "M40 Motorway, Jct 10, Northampton Road, Ardley", "connectors": ["Type 2 (Tethered Connector)  · 60kW", "CHAdeMO · 50kW"]}, {"lat": 51.891133, "lng": -1.159868, "title": "Tesco Superstore-Bicester (75KW)", "address": "Lakeview Drive", "connectors": ["CCS (Type 2) · 75kW"]}, {"lat": 51.852018, "lng": -1.224851, "title": "Shell Layby", "address": "A34", "connectors": ["CCS (Type 2) · 175kW", "CHAdeMO · 70kW", "CCS (Type 2) · 175kW", "CCS (Type 2) · 300kW", "CCS (Type 2) · 175kW", "CHAdeMO · 70kW", "CHAdeMO · 70kW", "CHAdeMO · 70kW"]}, {"lat": 51.898695, "lng": -1.153264, "title": "Sainsbury's Bicester", "address": "Bure Place", "connectors": ["Type 2 (Socket Only) · 3.7kW", "Type 2 (Socket Only) · 3.7kW"]}, {"lat": 51.8936, "lng": -1.16269, "title": "Little Chef", "address": "Oxford Road", "connectors": ["BS1363 3 Pin 13 Amp · 3kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 51.849998, "lng": -1.2295, "title": "Little Chef A34 North", "address": "Little Chef A34 North", "connectors": ["BS1363 3 Pin 13 Amp · 3kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 51.9190497362585, "lng": -1.15942217453471, "title": "Pippin Close", "address": "Elmsbrook", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 51.89324306010596, "lng": -1.150558940325709, "title": "Bicester Shopping Village Car Park", "address": "Station Approach", "connectors": ["Type 2 (Socket Only) · 7kW"]}, {"lat": 51.89328630760849, "lng": -1.1608701227904703, "title": "Bicester Shopping Village", "address": "144a Pingle Drive", "connectors": ["Type 2 (Socket Only) · 7kW"]}, {"lat": 51.9591047079117, "lng": -1.20252694943372, "title": "McDonald's Baynards Green", "address": "Baynards Green Roundabout", "connectors": ["CCS (Type 2) · 120kW", "CHAdeMO · 100kW"]}, {"lat": 51.882091, "lng": -1.150491, "title": "Bicester", "address": "Wendlebury Road, Bicester Gateway", "connectors": ["Type 2 (Socket Only) · 7kW"]}, {"lat": 51.89875229553789, "lng": -1.1478156583920054, "title": "Cattle Market Car Park", "address": "Victoria Road", "connectors": ["Type 2 (Tethered Connector)  · 22kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 51.89125, "lng": -1.164444, "title": "Bicester Gateway", "address": "Bicester Gateway", "connectors": ["Type 2 (Socket Only) · 7kW"]}, {"lat": 51.886296004799476, "lng": -1.1681428393518445, "title": "Holiday Inn Express Bicester", "address": "Gateway Business Park", "connectors": ["Type 2 (Socket Only) · 7kW"]}, {"lat": 51.891106, "lng": -1.159765, "title": "Tesco Superstore-Bicester", "address": "Lakeview Drive", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}];
 
   chargerData.forEach(function (c) {
+    var connHtml = c.connectors.length
+      ? '<div style="margin-top:6px;font-size:12px;color:#475569">' + c.connectors.join(' &middot; ') + '</div>'
+      : '';
     var marker = L.marker([c.lat, c.lng]);
     marker.bindPopup(
-      '<b>' + c.title + '</b><br>' + c.address + '<br><br>' +
+      '<b>' + c.title + '</b>' +
+      '<div style="color:#64748b;font-size:13px">' + c.address + '</div>' +
+      connHtml +
       '<a href="https://www.google.com/maps/dir/?api=1&destination=' + c.lat + ',' + c.lng +
-      '" target="_blank" rel="noopener">Get directions</a>'
+      '" target="_blank" rel="noopener" style="display:inline-block;margin-top:8px;padding:4px 10px;background:#2563eb;color:white;border-radius:4px;text-decoration:none;font-size:12px">Get directions</a>'
     );
     markers.addLayer(marker);
   });
-
   map.addLayer(markers);
+
+  // --- Connector filter ---
+  var filterBtns = document.querySelectorAll('.filter-btn');
+  var chargerItems = document.querySelectorAll('.charger-item');
+
+  filterBtns.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      filterBtns.forEach(function (b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      var f = btn.dataset.filter;
+      chargerItems.forEach(function (item) {
+        var connList = item.dataset.connectors ? item.dataset.connectors.split(',') : [];
+        item.style.display = (f === 'all' || connList.indexOf(f) !== -1) ? '' : 'none';
+      });
+    });
+  });
+
+  // --- Copy postcode ---
+  document.querySelectorAll('.copy-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var original = btn.textContent;
+      navigator.clipboard.writeText(btn.dataset.copy).then(function () {
+        btn.textContent = 'Copied!';
+        btn.classList.add('copy-btn--success');
+        setTimeout(function () {
+          btn.textContent = original;
+          btn.classList.remove('copy-btn--success');
+        }, 1500);
+      });
+    });
+  });
 }());
 </script>
 

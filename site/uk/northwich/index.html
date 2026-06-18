@@ -17,7 +17,10 @@
 
 <header>
 <div class="container">
-<a href="/" class="logo">PlugMap <span class="tagline">UK EV Charger Locator</span></a>
+<a href="/" class="logo">
+  <svg class="logo-bolt" viewBox="0 0 24 24" fill="currentColor" width="22" height="22" aria-hidden="true"><path d="M13 2L4.5 13.5H11L10 22L19.5 10.5H13Z"/></svg>
+  PlugMap <span class="tagline">UK EV Charger Locator</span>
+</a>
 </div>
 </header>
 
@@ -28,16 +31,40 @@
 </nav>
 
 <h1>EV Chargers in Northwich</h1>
-<p class="page-intro">5 public charging stations found in Northwich.</p>
+
+<div class="stats-bar">
+  <span class="stat-pill stat-total">5 stations</span>
+  <span class="stat-pill stat-rapid">1 rapid (50kW+)</span>
+  <span class="stat-pill stat-fast">4 fast (7–50kW)</span>
+  
+</div>
 
 <div id="map"></div>
 
-<ul class="charger-list">
+
+<div class="connector-filter">
+  <span class="filter-label">Filter:</span>
+  <button class="filter-btn active" data-filter="all">All</button>
+  
+  <button class="filter-btn" data-filter="CCS (Type 2)">CCS (Type 2)</button>
+  
+  <button class="filter-btn" data-filter="CHAdeMO">CHAdeMO</button>
+  
+  <button class="filter-btn" data-filter="Type 2 (Socket Only)">Type 2 (Socket Only)</button>
+  
+</div>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Weaver&#39;s Whistle Pub &amp; Restaurant</h2>
-  <p class="charger-address">471 Manchester Road CW9 7QD
+<ul class="charger-list" id="charger-list">
+
+
+<li class="charger-item charger-item--rapid" data-connectors="CHAdeMO,CCS (Type 2),Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Weaver&#39;s Whistle Pub &amp; Restaurant</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">471 Manchester Road <button class="copy-btn" data-copy="CW9 7QD">CW9 7QD</button>
   </p>
   
   <div class="charger-connections">
@@ -71,9 +98,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">EVC Nunsmere Hall Hotel</h2>
-  <p class="charger-address">Nunsmere Hall Hotel CW8 2ES
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">EVC Nunsmere Hall Hotel</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Nunsmere Hall Hotel <button class="copy-btn" data-copy="CW8 2ES">CW8 2ES</button>
   </p>
   
   <div class="charger-connections">
@@ -92,9 +122,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">SureStore - Self Storage Northwich</h2>
-  <p class="charger-address">Unit 1 &amp; 2 CW9 5JF
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">SureStore - Self Storage Northwich</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Unit 1 &amp; 2 <button class="copy-btn" data-copy="CW9 5JF">CW9 5JF</button>
   </p>
   
   <div class="charger-connections">
@@ -113,9 +146,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Park Street Car Park</h2>
-  <p class="charger-address">Park Street CW8 1HQ
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Park Street Car Park</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Park Street <button class="copy-btn" data-copy="CW8 1HQ">CW8 1HQ</button>
   </p>
   
   <div class="charger-connections">
@@ -137,9 +173,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Tesco Superstore-Northwich</h2>
-  <p class="charger-address">Manchester Road CW9 5LY
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Tesco Superstore-Northwich</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Manchester Road <button class="copy-btn" data-copy="CW9 5LY">CW9 5LY</button>
   </p>
   
   <div class="charger-connections">
@@ -164,6 +203,23 @@
 
 <p><a href="/" class="back-link">← All UK towns</a></p>
 
+
+<div class="nearby-towns">
+  <h2 class="nearby-heading">Nearby towns</h2>
+  <ul class="nearby-list">
+  
+    <li><a href="/uk/warrington/">Warrington</a></li>
+  
+    <li><a href="/uk/crewe/">Crewe</a></li>
+  
+    <li><a href="/uk/widnes/">Widnes</a></li>
+  
+    <li><a href="/uk/bolton/">Bolton</a></li>
+  
+  </ul>
+</div>
+
+
 </div>
 
 <footer>
@@ -176,26 +232,61 @@
 <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 <script>
 (function () {
+  // --- Map ---
   var map = L.map('map').setView([53.253154254, -2.5187079592], 12);
-
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
   }).addTo(map);
 
   var markers = L.markerClusterGroup();
-  var chargerData = [{"lat": 53.271761, "lng": -2.455043, "title": "Weaver's Whistle Pub & Restaurant", "address": "471 Manchester Road"}, {"lat": 53.21452327, "lng": -2.614139796, "title": "EVC Nunsmere Hall Hotel", "address": "Nunsmere Hall Hotel"}, {"lat": 53.261075, "lng": -2.505586, "title": "SureStore - Self Storage Northwich", "address": "Unit 1 & 2"}, {"lat": 53.255859, "lng": -2.52349, "title": "Park Street Car Park", "address": "Park Street"}, {"lat": 53.262553, "lng": -2.495281, "title": "Tesco Superstore-Northwich", "address": "Manchester Road"}];
+  var chargerData = [{"lat": 53.271761, "lng": -2.455043, "title": "Weaver's Whistle Pub & Restaurant", "address": "471 Manchester Road", "connectors": ["CHAdeMO · 50kW", "CCS (Type 2) · 50kW", "CHAdeMO · 50kW", "CCS (Type 2) · 50kW", "Type 2 (Socket Only) · 11kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 53.21452327, "lng": -2.614139796, "title": "EVC Nunsmere Hall Hotel", "address": "Nunsmere Hall Hotel", "connectors": ["Type 2 (Socket Only) · 22kW"]}, {"lat": 53.261075, "lng": -2.505586, "title": "SureStore - Self Storage Northwich", "address": "Unit 1 & 2", "connectors": ["Type 2 (Socket Only) · 7kW"]}, {"lat": 53.255859, "lng": -2.52349, "title": "Park Street Car Park", "address": "Park Street", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 53.262553, "lng": -2.495281, "title": "Tesco Superstore-Northwich", "address": "Manchester Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}];
 
   chargerData.forEach(function (c) {
+    var connHtml = c.connectors.length
+      ? '<div style="margin-top:6px;font-size:12px;color:#475569">' + c.connectors.join(' &middot; ') + '</div>'
+      : '';
     var marker = L.marker([c.lat, c.lng]);
     marker.bindPopup(
-      '<b>' + c.title + '</b><br>' + c.address + '<br><br>' +
+      '<b>' + c.title + '</b>' +
+      '<div style="color:#64748b;font-size:13px">' + c.address + '</div>' +
+      connHtml +
       '<a href="https://www.google.com/maps/dir/?api=1&destination=' + c.lat + ',' + c.lng +
-      '" target="_blank" rel="noopener">Get directions</a>'
+      '" target="_blank" rel="noopener" style="display:inline-block;margin-top:8px;padding:4px 10px;background:#2563eb;color:white;border-radius:4px;text-decoration:none;font-size:12px">Get directions</a>'
     );
     markers.addLayer(marker);
   });
-
   map.addLayer(markers);
+
+  // --- Connector filter ---
+  var filterBtns = document.querySelectorAll('.filter-btn');
+  var chargerItems = document.querySelectorAll('.charger-item');
+
+  filterBtns.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      filterBtns.forEach(function (b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      var f = btn.dataset.filter;
+      chargerItems.forEach(function (item) {
+        var connList = item.dataset.connectors ? item.dataset.connectors.split(',') : [];
+        item.style.display = (f === 'all' || connList.indexOf(f) !== -1) ? '' : 'none';
+      });
+    });
+  });
+
+  // --- Copy postcode ---
+  document.querySelectorAll('.copy-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var original = btn.textContent;
+      navigator.clipboard.writeText(btn.dataset.copy).then(function () {
+        btn.textContent = 'Copied!';
+        btn.classList.add('copy-btn--success');
+        setTimeout(function () {
+          btn.textContent = original;
+          btn.classList.remove('copy-btn--success');
+        }, 1500);
+      });
+    });
+  });
 }());
 </script>
 

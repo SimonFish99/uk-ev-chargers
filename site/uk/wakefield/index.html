@@ -17,7 +17,10 @@
 
 <header>
 <div class="container">
-<a href="/" class="logo">PlugMap <span class="tagline">UK EV Charger Locator</span></a>
+<a href="/" class="logo">
+  <svg class="logo-bolt" viewBox="0 0 24 24" fill="currentColor" width="22" height="22" aria-hidden="true"><path d="M13 2L4.5 13.5H11L10 22L19.5 10.5H13Z"/></svg>
+  PlugMap <span class="tagline">UK EV Charger Locator</span>
+</a>
 </div>
 </header>
 
@@ -28,16 +31,42 @@
 </nav>
 
 <h1>EV Chargers in Wakefield</h1>
-<p class="page-intro">15 public charging stations found in Wakefield.</p>
+
+<div class="stats-bar">
+  <span class="stat-pill stat-total">15 stations</span>
+  <span class="stat-pill stat-rapid">13 rapid (50kW+)</span>
+  <span class="stat-pill stat-fast">2 fast (7–50kW)</span>
+  
+</div>
 
 <div id="map"></div>
 
-<ul class="charger-list">
+
+<div class="connector-filter">
+  <span class="filter-label">Filter:</span>
+  <button class="filter-btn active" data-filter="all">All</button>
+  
+  <button class="filter-btn" data-filter="CCS (Type 2)">CCS (Type 2)</button>
+  
+  <button class="filter-btn" data-filter="CHAdeMO">CHAdeMO</button>
+  
+  <button class="filter-btn" data-filter="Type 2 (Socket Only)">Type 2 (Socket Only)</button>
+  
+  <button class="filter-btn" data-filter="Type 2 (Tethered Connector) ">Type 2 (Tethered Connector) </button>
+  
+</div>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">The College</h2>
-  <p class="charger-address">138 Northgate WF1 3QT
+<ul class="charger-list" id="charger-list">
+
+
+<li class="charger-item charger-item--rapid" data-connectors="CHAdeMO,CCS (Type 2)">
+  <div class="charger-header">
+    <h2 class="charger-name">The College</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">138 Northgate <button class="copy-btn" data-copy="WF1 3QT">WF1 3QT</button>
   </p>
   
   <div class="charger-connections">
@@ -71,9 +100,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Moto Woolley Edge Northbound Services</h2>
-  <p class="charger-address">Motorway Northbound, Jct 38/39, West Bretton WF4 4LQ
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2),CHAdeMO,Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Moto Woolley Edge Northbound Services</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Motorway Northbound, Jct 38/39, West Bretton <button class="copy-btn" data-copy="WF4 4LQ">WF4 4LQ</button>
   </p>
   
   <div class="charger-connections">
@@ -137,9 +170,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Starbucks Snowhill</h2>
-  <p class="charger-address">Starbucks Snowhill WF1 2ZE
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Starbucks Snowhill</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Starbucks Snowhill <button class="copy-btn" data-copy="WF1 2ZE">WF1 2ZE</button>
   </p>
   
   <div class="charger-connections">
@@ -161,9 +197,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Denby Dale Rd</h2>
-  <p class="charger-address">Denby Dale Road WF2 7AW
+<li class="charger-item charger-item--rapid" data-connectors="CHAdeMO">
+  <div class="charger-header">
+    <h2 class="charger-name">Denby Dale Rd</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Denby Dale Road <button class="copy-btn" data-copy="WF2 7AW">WF2 7AW</button>
   </p>
   
   <div class="charger-connections">
@@ -185,9 +225,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Genie</h2>
-  <p class="charger-address">High street Car Park WF4 5LE
+<li class="charger-item charger-item--rapid" data-connectors="Type 2 (Socket Only),CHAdeMO,Type 2 (Tethered Connector) ">
+  <div class="charger-header">
+    <h2 class="charger-name">Genie</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">High street Car Park <button class="copy-btn" data-copy="WF4 5LE">WF4 5LE</button>
   </p>
   
   <div class="charger-connections">
@@ -212,9 +256,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Asda Wakefield</h2>
-  <p class="charger-address">Asdale Road WF2 7EQ
+<li class="charger-item charger-item--rapid" data-connectors="Type 2 (Socket Only),CHAdeMO,Type 2 (Tethered Connector) ">
+  <div class="charger-header">
+    <h2 class="charger-name">Asda Wakefield</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Asdale Road <button class="copy-btn" data-copy="WF2 7EQ">WF2 7EQ</button>
   </p>
   
   <div class="charger-connections">
@@ -239,9 +287,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Asda Wakefield Dewsbury Road</h2>
-  <p class="charger-address">105 Dewsbury Road WF2 9BL
+<li class="charger-item charger-item--rapid" data-connectors="Type 2 (Socket Only),CHAdeMO,Type 2 (Tethered Connector) ">
+  <div class="charger-header">
+    <h2 class="charger-name">Asda Wakefield Dewsbury Road</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">105 Dewsbury Road <button class="copy-btn" data-copy="WF2 9BL">WF2 9BL</button>
   </p>
   
   <div class="charger-connections">
@@ -266,9 +318,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Rodney Yard</h2>
-  <p class="charger-address">George Street WF1 1LW
+<li class="charger-item charger-item--rapid" data-connectors="CHAdeMO,CCS (Type 2),Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Rodney Yard</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">George Street <button class="copy-btn" data-copy="WF1 1LW">WF1 1LW</button>
   </p>
   
   <div class="charger-connections">
@@ -293,9 +349,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Cheapside Car Park</h2>
-  <p class="charger-address">Cheapside WF1 2TF
+<li class="charger-item charger-item--rapid" data-connectors="Type 2 (Socket Only),CHAdeMO,CCS (Type 2)">
+  <div class="charger-header">
+    <h2 class="charger-name">Cheapside Car Park</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Cheapside <button class="copy-btn" data-copy="WF1 2TF">WF1 2TF</button>
   </p>
   
   <div class="charger-connections">
@@ -320,9 +380,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Turton Street Car Park</h2>
-  <p class="charger-address">Turton Street WF1 4DR
+<li class="charger-item charger-item--rapid" data-connectors="Type 2 (Socket Only),CHAdeMO,CCS (Type 2)">
+  <div class="charger-header">
+    <h2 class="charger-name">Turton Street Car Park</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Turton Street <button class="copy-btn" data-copy="WF1 4DR">WF1 4DR</button>
   </p>
   
   <div class="charger-connections">
@@ -347,9 +411,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Unity House</h2>
-  <p class="charger-address">Smyth Street WF1 1ER
+<li class="charger-item charger-item--rapid" data-connectors="Type 2 (Socket Only),CHAdeMO,Type 2 (Tethered Connector) ">
+  <div class="charger-header">
+    <h2 class="charger-name">Unity House</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Smyth Street <button class="copy-btn" data-copy="WF1 1ER">WF1 1ER</button>
   </p>
   
   <div class="charger-connections">
@@ -374,9 +442,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Toby Carvery Wakefield</h2>
-  <p class="charger-address">Calder Island WF2 7AL
+<li class="charger-item charger-item--rapid" data-connectors="CHAdeMO,CCS (Type 2),Type 2 (Tethered Connector) ">
+  <div class="charger-header">
+    <h2 class="charger-name">Toby Carvery Wakefield</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Calder Island <button class="copy-btn" data-copy="WF2 7AL">WF2 7AL</button>
   </p>
   
   <div class="charger-connections">
@@ -401,9 +473,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Waterton Park Hotel</h2>
-  <p class="charger-address">Walton WF2 6PW
+<li class="charger-item charger-item--rapid" data-connectors="CHAdeMO,CCS (Type 2),Type 2 (Tethered Connector) ">
+  <div class="charger-header">
+    <h2 class="charger-name">Waterton Park Hotel</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Walton <button class="copy-btn" data-copy="WF2 6PW">WF2 6PW</button>
   </p>
   
   <div class="charger-connections">
@@ -428,9 +504,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Ossett Ventnor Way Car Park</h2>
-  <p class="charger-address">Ventnor Way WF5 8PA
+<li class="charger-item charger-item--rapid" data-connectors="CHAdeMO,CCS (Type 2),Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Ossett Ventnor Way Car Park</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Ventnor Way <button class="copy-btn" data-copy="WF5 8PA">WF5 8PA</button>
   </p>
   
   <div class="charger-connections">
@@ -455,9 +535,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Normanton Golf Club</h2>
-  <p class="charger-address">Stanley WF3 4JP
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Normanton Golf Club</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Stanley <button class="copy-btn" data-copy="WF3 4JP">WF3 4JP</button>
   </p>
   
   <div class="charger-connections">
@@ -482,6 +565,23 @@
 
 <p><a href="/" class="back-link">← All UK towns</a></p>
 
+
+<div class="nearby-towns">
+  <h2 class="nearby-heading">Nearby towns</h2>
+  <ul class="nearby-list">
+  
+    <li><a href="/uk/dewsbury/">Dewsbury</a></li>
+  
+    <li><a href="/uk/leeds/">Leeds</a></li>
+  
+    <li><a href="/uk/barnsley/">Barnsley</a></li>
+  
+    <li><a href="/uk/castleford/">Castleford</a></li>
+  
+  </ul>
+</div>
+
+
 </div>
 
 <footer>
@@ -494,26 +594,61 @@
 <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 <script>
 (function () {
+  // --- Map ---
   var map = L.map('map').setView([53.67176460774803, -1.5103063174487623], 12);
-
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
   }).addTo(map);
 
   var markers = L.markerClusterGroup();
-  var chargerData = [{"lat": 53.687166, "lng": -1.500564, "title": "The College", "address": "138 Northgate"}, {"lat": 53.622022, "lng": -1.550189, "title": "Moto Woolley Edge Northbound Services", "address": "Motorway Northbound, Jct 38/39, West Bretton"}, {"lat": 53.696173, "lng": -1.504228, "title": "Starbucks Snowhill", "address": "Starbucks Snowhill"}, {"lat": 53.664398, "lng": -1.5072, "title": "Denby Dale Rd", "address": "Denby Dale Road"}, {"lat": 53.659805, "lng": -1.556793, "title": "Genie", "address": "High street Car Park"}, {"lat": 53.649189, "lng": -1.502141, "title": "Asda Wakefield", "address": "Asdale Road"}, {"lat": 53.678471, "lng": -1.517573, "title": "Asda Wakefield Dewsbury Road", "address": "105 Dewsbury Road"}, {"lat": 53.68101285541155, "lng": -1.4976969186553788, "title": "Rodney Yard", "address": "George Street"}, {"lat": 53.682812, "lng": -1.501122, "title": "Cheapside Car Park", "address": "Cheapside"}, {"lat": 53.681671, "lng": -1.491544, "title": "Turton Street Car Park", "address": "Turton Street"}, {"lat": 53.681306, "lng": -1.501969, "title": "Unity House", "address": "Smyth Street"}, {"lat": 53.6641950396785, "lng": -1.50651852700673, "title": "Toby Carvery Wakefield", "address": "Calder Island"}, {"lat": 53.642548, "lng": -1.451184, "title": "Waterton Park Hotel", "address": "Walton"}, {"lat": 53.678884221130374, "lng": -1.5814933160693272, "title": "Ossett Ventnor Way Car Park", "address": "Ventnor Way"}, {"lat": 53.706816, "lng": -1.484379, "title": "Normanton Golf Club", "address": "Stanley"}];
+  var chargerData = [{"lat": 53.687166, "lng": -1.500564, "title": "The College", "address": "138 Northgate", "connectors": ["CHAdeMO · 50kW", "CCS (Type 2) · 75kW", "CHAdeMO · 50kW", "CCS (Type 2) · 75kW", "CHAdeMO · 50kW", "CCS (Type 2) · 75kW"]}, {"lat": 53.622022, "lng": -1.550189, "title": "Moto Woolley Edge Northbound Services", "address": "Motorway Northbound, Jct 38/39, West Bretton", "connectors": ["CCS (Type 2) · 50kW", "CHAdeMO · 50kW", "Type 2 (Socket Only) · 11kW", "Type 2 (Socket Only) · 11kW", "CCS (Type 2) · 200kW", "CCS (Type 2) · 200kW", "CCS (Type 2) · 200kW", "CCS (Type 2) · 200kW", "CCS (Type 2) · 200kW", "CCS (Type 2) · 200kW", "CCS (Type 2) · 200kW", "CCS (Type 2) · 200kW", "CCS (Type 2) · 200kW", "CCS (Type 2) · 200kW", "CCS (Type 2) · 200kW", "CCS (Type 2) · 200kW"]}, {"lat": 53.696173, "lng": -1.504228, "title": "Starbucks Snowhill", "address": "Starbucks Snowhill", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 53.664398, "lng": -1.5072, "title": "Denby Dale Rd", "address": "Denby Dale Road", "connectors": ["CHAdeMO · 50kW", "CHAdeMO · 50kW"]}, {"lat": 53.659805, "lng": -1.556793, "title": "Genie", "address": "High street Car Park", "connectors": ["Type 2 (Socket Only) · 22kW", "CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 50kW"]}, {"lat": 53.649189, "lng": -1.502141, "title": "Asda Wakefield", "address": "Asdale Road", "connectors": ["Type 2 (Socket Only) · 22kW", "CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 50kW"]}, {"lat": 53.678471, "lng": -1.517573, "title": "Asda Wakefield Dewsbury Road", "address": "105 Dewsbury Road", "connectors": ["Type 2 (Socket Only) · 22kW", "CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 50kW"]}, {"lat": 53.68101285541155, "lng": -1.4976969186553788, "title": "Rodney Yard", "address": "George Street", "connectors": ["CHAdeMO · 50kW", "CCS (Type 2) · 50kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 53.682812, "lng": -1.501122, "title": "Cheapside Car Park", "address": "Cheapside", "connectors": ["Type 2 (Socket Only) · 22kW", "CHAdeMO · 50kW", "CCS (Type 2) · 50kW"]}, {"lat": 53.681671, "lng": -1.491544, "title": "Turton Street Car Park", "address": "Turton Street", "connectors": ["Type 2 (Socket Only) · 22kW", "CHAdeMO · 50kW", "CCS (Type 2) · 50kW"]}, {"lat": 53.681306, "lng": -1.501969, "title": "Unity House", "address": "Smyth Street", "connectors": ["Type 2 (Socket Only) · 22kW", "CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 50kW"]}, {"lat": 53.6641950396785, "lng": -1.50651852700673, "title": "Toby Carvery Wakefield", "address": "Calder Island", "connectors": ["CHAdeMO · 50kW", "CCS (Type 2) · 50kW", "Type 2 (Tethered Connector)  · 43kW"]}, {"lat": 53.642548, "lng": -1.451184, "title": "Waterton Park Hotel", "address": "Walton", "connectors": ["CHAdeMO · 50kW", "CCS (Type 2) · 50kW", "Type 2 (Tethered Connector)  · 43kW"]}, {"lat": 53.678884221130374, "lng": -1.5814933160693272, "title": "Ossett Ventnor Way Car Park", "address": "Ventnor Way", "connectors": ["CHAdeMO · 50kW", "CCS (Type 2) · 50kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 53.706816, "lng": -1.484379, "title": "Normanton Golf Club", "address": "Stanley", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}];
 
   chargerData.forEach(function (c) {
+    var connHtml = c.connectors.length
+      ? '<div style="margin-top:6px;font-size:12px;color:#475569">' + c.connectors.join(' &middot; ') + '</div>'
+      : '';
     var marker = L.marker([c.lat, c.lng]);
     marker.bindPopup(
-      '<b>' + c.title + '</b><br>' + c.address + '<br><br>' +
+      '<b>' + c.title + '</b>' +
+      '<div style="color:#64748b;font-size:13px">' + c.address + '</div>' +
+      connHtml +
       '<a href="https://www.google.com/maps/dir/?api=1&destination=' + c.lat + ',' + c.lng +
-      '" target="_blank" rel="noopener">Get directions</a>'
+      '" target="_blank" rel="noopener" style="display:inline-block;margin-top:8px;padding:4px 10px;background:#2563eb;color:white;border-radius:4px;text-decoration:none;font-size:12px">Get directions</a>'
     );
     markers.addLayer(marker);
   });
-
   map.addLayer(markers);
+
+  // --- Connector filter ---
+  var filterBtns = document.querySelectorAll('.filter-btn');
+  var chargerItems = document.querySelectorAll('.charger-item');
+
+  filterBtns.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      filterBtns.forEach(function (b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      var f = btn.dataset.filter;
+      chargerItems.forEach(function (item) {
+        var connList = item.dataset.connectors ? item.dataset.connectors.split(',') : [];
+        item.style.display = (f === 'all' || connList.indexOf(f) !== -1) ? '' : 'none';
+      });
+    });
+  });
+
+  // --- Copy postcode ---
+  document.querySelectorAll('.copy-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var original = btn.textContent;
+      navigator.clipboard.writeText(btn.dataset.copy).then(function () {
+        btn.textContent = 'Copied!';
+        btn.classList.add('copy-btn--success');
+        setTimeout(function () {
+          btn.textContent = original;
+          btn.classList.remove('copy-btn--success');
+        }, 1500);
+      });
+    });
+  });
 }());
 </script>
 

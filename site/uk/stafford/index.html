@@ -17,7 +17,10 @@
 
 <header>
 <div class="container">
-<a href="/" class="logo">PlugMap <span class="tagline">UK EV Charger Locator</span></a>
+<a href="/" class="logo">
+  <svg class="logo-bolt" viewBox="0 0 24 24" fill="currentColor" width="22" height="22" aria-hidden="true"><path d="M13 2L4.5 13.5H11L10 22L19.5 10.5H13Z"/></svg>
+  PlugMap <span class="tagline">UK EV Charger Locator</span>
+</a>
 </div>
 </header>
 
@@ -28,16 +31,40 @@
 </nav>
 
 <h1>EV Chargers in Stafford</h1>
-<p class="page-intro">14 public charging stations found in Stafford.</p>
+
+<div class="stats-bar">
+  <span class="stat-pill stat-total">14 stations</span>
+  <span class="stat-pill stat-rapid">3 rapid (50kW+)</span>
+  <span class="stat-pill stat-fast">11 fast (7–50kW)</span>
+  
+</div>
 
 <div id="map"></div>
 
-<ul class="charger-list">
+
+<div class="connector-filter">
+  <span class="filter-label">Filter:</span>
+  <button class="filter-btn active" data-filter="all">All</button>
+  
+  <button class="filter-btn" data-filter="CCS (Type 2)">CCS (Type 2)</button>
+  
+  <button class="filter-btn" data-filter="CHAdeMO">CHAdeMO</button>
+  
+  <button class="filter-btn" data-filter="Type 2 (Socket Only)">Type 2 (Socket Only)</button>
+  
+</div>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Wolseley Bridge Garden Centre</h2>
-  <p class="charger-address">A51 ST17 0YA
+<ul class="charger-list" id="charger-list">
+
+
+<li class="charger-item charger-item--rapid" data-connectors="CHAdeMO,CCS (Type 2)">
+  <div class="charger-header">
+    <h2 class="charger-name">Wolseley Bridge Garden Centre</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">A51 <button class="copy-btn" data-copy="ST17 0YA">ST17 0YA</button>
   </p>
   
   <div class="charger-connections">
@@ -71,9 +98,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Knot &amp; Plough Pub &amp; Restaurant</h2>
-  <p class="charger-address">Weston Road ST18 0WL
+<li class="charger-item charger-item--rapid" data-connectors="CHAdeMO,CCS (Type 2),Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Knot &amp; Plough Pub &amp; Restaurant</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Weston Road <button class="copy-btn" data-copy="ST18 0WL">ST18 0WL</button>
   </p>
   
   <div class="charger-connections">
@@ -98,9 +129,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Gaol Road Car Park</h2>
-  <p class="charger-address">Gaol Road Car Park ST16 3AW
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Gaol Road Car Park</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Gaol Road Car Park <button class="copy-btn" data-copy="ST16 3AW">ST16 3AW</button>
   </p>
   
   <div class="charger-connections">
@@ -122,9 +156,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Stafford Hospital</h2>
-  <p class="charger-address">Weston Road ST16 3SA
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Stafford Hospital</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Weston Road <button class="copy-btn" data-copy="ST16 3SA">ST16 3SA</button>
   </p>
   
   <div class="charger-connections">
@@ -146,9 +183,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Gaol Road Car Park</h2>
-  <p class="charger-address">Gaol Road Car Park ST16 3AW
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Gaol Road Car Park</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Gaol Road Car Park <button class="copy-btn" data-copy="ST16 3AW">ST16 3AW</button>
   </p>
   
   <div class="charger-connections">
@@ -170,9 +210,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Doxey Road</h2>
-  <p class="charger-address">Doxey Road ST16 2TF
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Doxey Road</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Doxey Road <button class="copy-btn" data-copy="ST16 2TF">ST16 2TF</button>
   </p>
   
   <div class="charger-connections">
@@ -194,9 +237,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">North Walls Car Park</h2>
-  <p class="charger-address">North Walls Car Park ST16 3AD
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">North Walls Car Park</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">North Walls Car Park <button class="copy-btn" data-copy="ST16 3AD">ST16 3AD</button>
   </p>
   
   <div class="charger-connections">
@@ -218,9 +264,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Access for visitors and staff only</h2>
-  <p class="charger-address">Tixall Road ST16 3UB
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Access for visitors and staff only</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Tixall Road <button class="copy-btn" data-copy="ST16 3UB">ST16 3UB</button>
   </p>
   
   <div class="charger-connections">
@@ -240,9 +289,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Tesco Extra-Stafford</h2>
-  <p class="charger-address">Newport Road ST16 2HE
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Tesco Extra-Stafford</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Newport Road <button class="copy-btn" data-copy="ST16 2HE">ST16 2HE</button>
   </p>
   
   <div class="charger-connections">
@@ -264,9 +316,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">IONITY Stafford</h2>
-  <p class="charger-address">Prime Point Business Park  ST16 1GX
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2)">
+  <div class="charger-header">
+    <h2 class="charger-name">IONITY Stafford</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Prime Point Business Park  <button class="copy-btn" data-copy="ST16 1GX">ST16 1GX</button>
   </p>
   
   <div class="charger-connections">
@@ -285,9 +341,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">SureStore - Self Storage Stafford</h2>
-  <p class="charger-address">Unit 2, Staples Close ST16 1WQ
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">SureStore - Self Storage Stafford</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Unit 2, Staples Close <button class="copy-btn" data-copy="ST16 1WQ">ST16 1WQ</button>
   </p>
   
   <div class="charger-connections">
@@ -309,9 +368,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Midlands Partnership NHS Foundation Trust</h2>
-  <p class="charger-address">Corporation Street ST16 3SR
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Midlands Partnership NHS Foundation Trust</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Corporation Street <button class="copy-btn" data-copy="ST16 3SR">ST16 3SR</button>
   </p>
   
   <div class="charger-connections">
@@ -333,9 +395,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Stafford Borough Council Civic Centre</h2>
-  <p class="charger-address">Riverside ST16 3AQ
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Stafford Borough Council Civic Centre</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Riverside <button class="copy-btn" data-copy="ST16 3AQ">ST16 3AQ</button>
   </p>
   
   <div class="charger-connections">
@@ -357,9 +422,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Alstom Grid</h2>
-  <p class="charger-address">St Leonards Avenue ST17 4LX
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Alstom Grid</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">St Leonards Avenue <button class="copy-btn" data-copy="ST17 4LX">ST17 4LX</button>
   </p>
   
   <div class="charger-connections">
@@ -382,6 +450,23 @@
 
 <p><a href="/" class="back-link">← All UK towns</a></p>
 
+
+<div class="nearby-towns">
+  <h2 class="nearby-heading">Nearby towns</h2>
+  <ul class="nearby-list">
+  
+    <li><a href="/uk/staffordshire/">Staffordshire</a></li>
+  
+    <li><a href="/uk/stoke-on-trent/">Stoke-on-Trent</a></li>
+  
+    <li><a href="/uk/wolverhampton/">Wolverhampton</a></li>
+  
+    <li><a href="/uk/walsall/">Walsall</a></li>
+  
+  </ul>
+</div>
+
+
 </div>
 
 <footer>
@@ -394,26 +479,61 @@
 <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 <script>
 (function () {
+  // --- Map ---
   var map = L.map('map').setView([52.80911365785715, -2.102313799285714], 12);
-
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
   }).addTo(map);
 
   var markers = L.markerClusterGroup();
-  var chargerData = [{"lat": 52.780498, "lng": -1.969411, "title": "Wolseley Bridge Garden Centre", "address": "A51"}, {"lat": 52.816621, "lng": -2.074954, "title": "Knot & Plough Pub & Restaurant", "address": "Weston Road"}, {"lat": 52.811135, "lng": -2.118799, "title": "Gaol Road Car Park", "address": "Gaol Road Car Park"}, {"lat": 52.811131, "lng": -2.0954, "title": "Stafford Hospital", "address": "Weston Road"}, {"lat": 52.811112, "lng": -2.118865, "title": "Gaol Road Car Park", "address": "Gaol Road Car Park"}, {"lat": 52.808072, "lng": -2.123879, "title": "Doxey Road", "address": "Doxey Road"}, {"lat": 52.807108, "lng": -2.112463, "title": "North Walls Car Park", "address": "North Walls Car Park"}, {"lat": 52.80616, "lng": -2.09471, "title": "Access for visitors and staff only", "address": "Tixall Road"}, {"lat": 52.80223121, "lng": -2.11834219, "title": "Tesco Extra-Stafford", "address": "Newport Road"}, {"lat": 52.831457, "lng": -2.135726, "title": "IONITY Stafford", "address": "Prime Point Business Park "}, {"lat": 52.837464, "lng": -2.136303, "title": "SureStore - Self Storage Stafford", "address": "Unit 2, Staples Close"}, {"lat": 52.810562, "lng": -2.110011, "title": "Midlands Partnership NHS Foundation Trust", "address": "Corporation Street"}, {"lat": 52.80493, "lng": -2.11504, "title": "Stafford Borough Council Civic Centre", "address": "Riverside"}, {"lat": 52.78911, "lng": -2.10849, "title": "Alstom Grid", "address": "St Leonards Avenue"}];
+  var chargerData = [{"lat": 52.780498, "lng": -1.969411, "title": "Wolseley Bridge Garden Centre", "address": "A51", "connectors": ["CHAdeMO · 50kW", "CCS (Type 2) · 75kW", "CHAdeMO · 50kW", "CCS (Type 2) · 75kW", "CHAdeMO · 50kW", "CCS (Type 2) · 75kW"]}, {"lat": 52.816621, "lng": -2.074954, "title": "Knot & Plough Pub & Restaurant", "address": "Weston Road", "connectors": ["CHAdeMO · 50kW", "CCS (Type 2) · 50kW", "Type 2 (Socket Only) · 11kW"]}, {"lat": 52.811135, "lng": -2.118799, "title": "Gaol Road Car Park", "address": "Gaol Road Car Park", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 52.811131, "lng": -2.0954, "title": "Stafford Hospital", "address": "Weston Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 52.811112, "lng": -2.118865, "title": "Gaol Road Car Park", "address": "Gaol Road Car Park", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 52.808072, "lng": -2.123879, "title": "Doxey Road", "address": "Doxey Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 52.807108, "lng": -2.112463, "title": "North Walls Car Park", "address": "North Walls Car Park", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 52.80616, "lng": -2.09471, "title": "Access for visitors and staff only", "address": "Tixall Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 52.80223121, "lng": -2.11834219, "title": "Tesco Extra-Stafford", "address": "Newport Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 52.831457, "lng": -2.135726, "title": "IONITY Stafford", "address": "Prime Point Business Park ", "connectors": ["CCS (Type 2) · 350kW"]}, {"lat": 52.837464, "lng": -2.136303, "title": "SureStore - Self Storage Stafford", "address": "Unit 2, Staples Close", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 52.810562, "lng": -2.110011, "title": "Midlands Partnership NHS Foundation Trust", "address": "Corporation Street", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 52.80493, "lng": -2.11504, "title": "Stafford Borough Council Civic Centre", "address": "Riverside", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 52.78911, "lng": -2.10849, "title": "Alstom Grid", "address": "St Leonards Avenue", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}];
 
   chargerData.forEach(function (c) {
+    var connHtml = c.connectors.length
+      ? '<div style="margin-top:6px;font-size:12px;color:#475569">' + c.connectors.join(' &middot; ') + '</div>'
+      : '';
     var marker = L.marker([c.lat, c.lng]);
     marker.bindPopup(
-      '<b>' + c.title + '</b><br>' + c.address + '<br><br>' +
+      '<b>' + c.title + '</b>' +
+      '<div style="color:#64748b;font-size:13px">' + c.address + '</div>' +
+      connHtml +
       '<a href="https://www.google.com/maps/dir/?api=1&destination=' + c.lat + ',' + c.lng +
-      '" target="_blank" rel="noopener">Get directions</a>'
+      '" target="_blank" rel="noopener" style="display:inline-block;margin-top:8px;padding:4px 10px;background:#2563eb;color:white;border-radius:4px;text-decoration:none;font-size:12px">Get directions</a>'
     );
     markers.addLayer(marker);
   });
-
   map.addLayer(markers);
+
+  // --- Connector filter ---
+  var filterBtns = document.querySelectorAll('.filter-btn');
+  var chargerItems = document.querySelectorAll('.charger-item');
+
+  filterBtns.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      filterBtns.forEach(function (b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      var f = btn.dataset.filter;
+      chargerItems.forEach(function (item) {
+        var connList = item.dataset.connectors ? item.dataset.connectors.split(',') : [];
+        item.style.display = (f === 'all' || connList.indexOf(f) !== -1) ? '' : 'none';
+      });
+    });
+  });
+
+  // --- Copy postcode ---
+  document.querySelectorAll('.copy-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var original = btn.textContent;
+      navigator.clipboard.writeText(btn.dataset.copy).then(function () {
+        btn.textContent = 'Copied!';
+        btn.classList.add('copy-btn--success');
+        setTimeout(function () {
+          btn.textContent = original;
+          btn.classList.remove('copy-btn--success');
+        }, 1500);
+      });
+    });
+  });
 }());
 </script>
 

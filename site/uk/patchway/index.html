@@ -17,7 +17,10 @@
 
 <header>
 <div class="container">
-<a href="/" class="logo">PlugMap <span class="tagline">UK EV Charger Locator</span></a>
+<a href="/" class="logo">
+  <svg class="logo-bolt" viewBox="0 0 24 24" fill="currentColor" width="22" height="22" aria-hidden="true"><path d="M13 2L4.5 13.5H11L10 22L19.5 10.5H13Z"/></svg>
+  PlugMap <span class="tagline">UK EV Charger Locator</span>
+</a>
 </div>
 </header>
 
@@ -28,16 +31,44 @@
 </nav>
 
 <h1>EV Chargers in Patchway</h1>
-<p class="page-intro">10 public charging stations found in Patchway.</p>
+
+<div class="stats-bar">
+  <span class="stat-pill stat-total">10 stations</span>
+  <span class="stat-pill stat-rapid">3 rapid (50kW+)</span>
+  <span class="stat-pill stat-fast">7 fast (7–50kW)</span>
+  
+</div>
 
 <div id="map"></div>
 
-<ul class="charger-list">
+
+<div class="connector-filter">
+  <span class="filter-label">Filter:</span>
+  <button class="filter-btn active" data-filter="all">All</button>
+  
+  <button class="filter-btn" data-filter="BS1363 3 Pin 13 Amp">BS1363 3 Pin 13 Amp</button>
+  
+  <button class="filter-btn" data-filter="CCS (Type 2)">CCS (Type 2)</button>
+  
+  <button class="filter-btn" data-filter="CHAdeMO">CHAdeMO</button>
+  
+  <button class="filter-btn" data-filter="Type 2 (Socket Only)">Type 2 (Socket Only)</button>
+  
+  <button class="filter-btn" data-filter="Type 2 (Tethered Connector) ">Type 2 (Tethered Connector) </button>
+  
+</div>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Lidl Patchway</h2>
-  <p class="charger-address">Hayes Way BS34 5GJ
+<ul class="charger-list" id="charger-list">
+
+
+<li class="charger-item charger-item--rapid" data-connectors="Type 2 (Socket Only),CCS (Type 2),CHAdeMO">
+  <div class="charger-header">
+    <h2 class="charger-name">Lidl Patchway</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Hayes Way <button class="copy-btn" data-copy="BS34 5GJ">BS34 5GJ</button>
   </p>
   
   <div class="charger-connections">
@@ -62,9 +93,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Coniston Road Car Park</h2>
-  <p class="charger-address">Coniston Road Car Park BS34 5JA
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Coniston Road Car Park</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Coniston Road Car Park <button class="copy-btn" data-copy="BS34 5JA">BS34 5JA</button>
   </p>
   
   <div class="charger-connections">
@@ -86,9 +120,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">ROLLS_ROYCE BRISTOL AC</h2>
-  <p class="charger-address">Rolls Royce Gloucester Road BS34 6QA
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Tethered Connector) ">
+  <div class="charger-header">
+    <h2 class="charger-name">ROLLS_ROYCE BRISTOL AC</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Rolls Royce Gloucester Road <button class="copy-btn" data-copy="BS34 6QA">BS34 6QA</button>
   </p>
   
   <div class="charger-connections">
@@ -107,9 +144,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Centaurus Retail Park</h2>
-  <p class="charger-address">Cribbs Causeway BS34 5TS
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Centaurus Retail Park</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Cribbs Causeway <button class="copy-btn" data-copy="BS34 5TS">BS34 5TS</button>
   </p>
   
   <div class="charger-connections">
@@ -131,9 +171,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Car Park</h2>
-  <p class="charger-address">Lysander Road BS34 5TX
+<li class="charger-item charger-item--rapid" data-connectors="CHAdeMO,Type 2 (Tethered Connector) ,Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Car Park</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Lysander Road <button class="copy-btn" data-copy="BS34 5TX">BS34 5TX</button>
   </p>
   
   <div class="charger-connections">
@@ -158,9 +202,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">MFG Filton Service Station</h2>
-  <p class="charger-address">First Field Way BS34 5TN
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2),CHAdeMO">
+  <div class="charger-header">
+    <h2 class="charger-name">MFG Filton Service Station</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">First Field Way <button class="copy-btn" data-copy="BS34 5TN">BS34 5TN</button>
   </p>
   
   <div class="charger-connections">
@@ -182,9 +230,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Cribbs Causeway Retail Park</h2>
-  <p class="charger-address">Lysander Road BS34 5TX
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Cribbs Causeway Retail Park</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Lysander Road <button class="copy-btn" data-copy="BS34 5TX">BS34 5TX</button>
   </p>
   
   <div class="charger-connections">
@@ -203,9 +254,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Hewlett Packard Bristol Office 3</h2>
-  <p class="charger-address">Long Down Avenue BS34 8QZ
+<li class="charger-item charger-item--fast" data-connectors="BS1363 3 Pin 13 Amp,Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Hewlett Packard Bristol Office 3</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Long Down Avenue <button class="copy-btn" data-copy="BS34 8QZ">BS34 8QZ</button>
   </p>
   
   <div class="charger-connections">
@@ -227,9 +281,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Business Car Park</h2>
-  <p class="charger-address">Longdown Avenue BS34 8QZ
+<li class="charger-item charger-item--fast" data-connectors="BS1363 3 Pin 13 Amp,Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Business Car Park</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Longdown Avenue <button class="copy-btn" data-copy="BS34 8QZ">BS34 8QZ</button>
   </p>
   
   <div class="charger-connections">
@@ -251,9 +308,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Hewlett Packard Bristol Office 2</h2>
-  <p class="charger-address">Long Down Avenue BS34 8QZ
+<li class="charger-item charger-item--fast" data-connectors="BS1363 3 Pin 13 Amp,Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Hewlett Packard Bristol Office 2</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Long Down Avenue <button class="copy-btn" data-copy="BS34 8QZ">BS34 8QZ</button>
   </p>
   
   <div class="charger-connections">
@@ -278,6 +338,23 @@
 
 <p><a href="/" class="back-link">← All UK towns</a></p>
 
+
+<div class="nearby-towns">
+  <h2 class="nearby-heading">Nearby towns</h2>
+  <ul class="nearby-list">
+  
+    <li><a href="/uk/bristol/">Bristol</a></li>
+  
+    <li><a href="/uk/preston/">Preston</a></li>
+  
+    <li><a href="/uk/bath/">Bath</a></li>
+  
+    <li><a href="/uk/newport/">Newport</a></li>
+  
+  </ul>
+</div>
+
+
 </div>
 
 <footer>
@@ -290,26 +367,61 @@
 <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 <script>
 (function () {
+  // --- Map ---
   var map = L.map('map').setView([51.51874328437017, -2.576215884077171], 12);
-
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
   }).addTo(map);
 
   var markers = L.markerClusterGroup();
-  var chargerData = [{"lat": 51.52514484277822, "lng": -2.575196831409187, "title": "Lidl Patchway", "address": "Hayes Way"}, {"lat": 51.533531, "lng": -2.571271, "title": "Coniston Road Car Park", "address": "Coniston Road Car Park"}, {"lat": 51.525502, "lng": -2.570349, "title": "ROLLS_ROYCE BRISTOL AC", "address": "Rolls Royce Gloucester Road"}, {"lat": 51.52629, "lng": -2.59919, "title": "Centaurus Retail Park", "address": "Cribbs Causeway"}, {"lat": 51.525213, "lng": -2.594085, "title": "Car Park", "address": "Lysander Road"}, {"lat": 51.5223920009235, "lng": -2.58831800936252, "title": "MFG Filton Service Station", "address": "First Field Way"}, {"lat": 51.52614, "lng": -2.6006, "title": "Cribbs Causeway Retail Park", "address": "Lysander Road"}, {"lat": 51.501138, "lng": -2.55421, "title": "Hewlett Packard Bristol Office 3", "address": "Long Down Avenue"}, {"lat": 51.501078, "lng": -2.554901, "title": "Business Car Park", "address": "Longdown Avenue"}, {"lat": 51.501004, "lng": -2.554038, "title": "Hewlett Packard Bristol Office 2", "address": "Long Down Avenue"}];
+  var chargerData = [{"lat": 51.52514484277822, "lng": -2.575196831409187, "title": "Lidl Patchway", "address": "Hayes Way", "connectors": ["Type 2 (Socket Only) · 22kW", "CCS (Type 2) · 50kW", "CHAdeMO · 50kW"]}, {"lat": 51.533531, "lng": -2.571271, "title": "Coniston Road Car Park", "address": "Coniston Road Car Park", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 51.525502, "lng": -2.570349, "title": "ROLLS_ROYCE BRISTOL AC", "address": "Rolls Royce Gloucester Road", "connectors": ["Type 2 (Tethered Connector)  · 43kW"]}, {"lat": 51.52629, "lng": -2.59919, "title": "Centaurus Retail Park", "address": "Cribbs Causeway", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 51.525213, "lng": -2.594085, "title": "Car Park", "address": "Lysander Road", "connectors": ["CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 50kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 51.5223920009235, "lng": -2.58831800936252, "title": "MFG Filton Service Station", "address": "First Field Way", "connectors": ["CCS (Type 2) · 150kW", "CHAdeMO · 50kW"]}, {"lat": 51.52614, "lng": -2.6006, "title": "Cribbs Causeway Retail Park", "address": "Lysander Road", "connectors": ["Type 2 (Socket Only) · 7kW"]}, {"lat": 51.501138, "lng": -2.55421, "title": "Hewlett Packard Bristol Office 3", "address": "Long Down Avenue", "connectors": ["BS1363 3 Pin 13 Amp · 3kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 51.501078, "lng": -2.554901, "title": "Business Car Park", "address": "Longdown Avenue", "connectors": ["BS1363 3 Pin 13 Amp · 3kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 51.501004, "lng": -2.554038, "title": "Hewlett Packard Bristol Office 2", "address": "Long Down Avenue", "connectors": ["BS1363 3 Pin 13 Amp · 3kW", "Type 2 (Socket Only) · 7kW"]}];
 
   chargerData.forEach(function (c) {
+    var connHtml = c.connectors.length
+      ? '<div style="margin-top:6px;font-size:12px;color:#475569">' + c.connectors.join(' &middot; ') + '</div>'
+      : '';
     var marker = L.marker([c.lat, c.lng]);
     marker.bindPopup(
-      '<b>' + c.title + '</b><br>' + c.address + '<br><br>' +
+      '<b>' + c.title + '</b>' +
+      '<div style="color:#64748b;font-size:13px">' + c.address + '</div>' +
+      connHtml +
       '<a href="https://www.google.com/maps/dir/?api=1&destination=' + c.lat + ',' + c.lng +
-      '" target="_blank" rel="noopener">Get directions</a>'
+      '" target="_blank" rel="noopener" style="display:inline-block;margin-top:8px;padding:4px 10px;background:#2563eb;color:white;border-radius:4px;text-decoration:none;font-size:12px">Get directions</a>'
     );
     markers.addLayer(marker);
   });
-
   map.addLayer(markers);
+
+  // --- Connector filter ---
+  var filterBtns = document.querySelectorAll('.filter-btn');
+  var chargerItems = document.querySelectorAll('.charger-item');
+
+  filterBtns.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      filterBtns.forEach(function (b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      var f = btn.dataset.filter;
+      chargerItems.forEach(function (item) {
+        var connList = item.dataset.connectors ? item.dataset.connectors.split(',') : [];
+        item.style.display = (f === 'all' || connList.indexOf(f) !== -1) ? '' : 'none';
+      });
+    });
+  });
+
+  // --- Copy postcode ---
+  document.querySelectorAll('.copy-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var original = btn.textContent;
+      navigator.clipboard.writeText(btn.dataset.copy).then(function () {
+        btn.textContent = 'Copied!';
+        btn.classList.add('copy-btn--success');
+        setTimeout(function () {
+          btn.textContent = original;
+          btn.classList.remove('copy-btn--success');
+        }, 1500);
+      });
+    });
+  });
 }());
 </script>
 

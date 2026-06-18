@@ -17,7 +17,10 @@
 
 <header>
 <div class="container">
-<a href="/" class="logo">PlugMap <span class="tagline">UK EV Charger Locator</span></a>
+<a href="/" class="logo">
+  <svg class="logo-bolt" viewBox="0 0 24 24" fill="currentColor" width="22" height="22" aria-hidden="true"><path d="M13 2L4.5 13.5H11L10 22L19.5 10.5H13Z"/></svg>
+  PlugMap <span class="tagline">UK EV Charger Locator</span>
+</a>
 </div>
 </header>
 
@@ -28,16 +31,44 @@
 </nav>
 
 <h1>EV Chargers in Rotherham</h1>
-<p class="page-intro">23 public charging stations found in Rotherham.</p>
+
+<div class="stats-bar">
+  <span class="stat-pill stat-total">23 stations</span>
+  <span class="stat-pill stat-rapid">7 rapid (50kW+)</span>
+  <span class="stat-pill stat-fast">16 fast (7–50kW)</span>
+  
+</div>
 
 <div id="map"></div>
 
-<ul class="charger-list">
+
+<div class="connector-filter">
+  <span class="filter-label">Filter:</span>
+  <button class="filter-btn active" data-filter="all">All</button>
+  
+  <button class="filter-btn" data-filter="CCS (Type 2)">CCS (Type 2)</button>
+  
+  <button class="filter-btn" data-filter="CHAdeMO">CHAdeMO</button>
+  
+  <button class="filter-btn" data-filter="Type 2 (Socket Only)">Type 2 (Socket Only)</button>
+  
+  <button class="filter-btn" data-filter="Type 2 (Tethered Connector) ">Type 2 (Tethered Connector) </button>
+  
+  <button class="filter-btn" data-filter="Unknown">Unknown</button>
+  
+</div>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">M1 Woodall Southbound Services</h2>
-  <p class="charger-address">M1 S26 7XR
+<ul class="charger-list" id="charger-list">
+
+
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2)">
+  <div class="charger-header">
+    <h2 class="charger-name">M1 Woodall Southbound Services</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">M1 <button class="copy-btn" data-copy="S26 7XR">S26 7XR</button>
   </p>
   
   <div class="charger-connections">
@@ -56,9 +87,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Tesco Extra - Rotherham</h2>
-  <p class="charger-address">Drummond Street S65 1HY
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Tesco Extra - Rotherham</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Drummond Street <button class="copy-btn" data-copy="S65 1HY">S65 1HY</button>
   </p>
   
   <div class="charger-connections">
@@ -80,9 +114,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Aldi - Maltby</h2>
-  <p class="charger-address">Muglet Lane, Maltby S66 7JU
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Aldi - Maltby</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Muglet Lane, Maltby <button class="copy-btn" data-copy="S66 7JU">S66 7JU</button>
   </p>
   
   <div class="charger-connections">
@@ -104,9 +141,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">DRAX00234</h2>
-  <p class="charger-address">Moorhead Way S66 1YY
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">DRAX00234</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Moorhead Way <button class="copy-btn" data-copy="S66 1YY">S66 1YY</button>
   </p>
   
   <div class="charger-connections">
@@ -128,9 +168,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Thrybergh Country Park (83448R024)</h2>
-  <p class="charger-address">Doncaster Road, Thrybergh S65 4NU
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Thrybergh Country Park (83448R024)</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Doncaster Road, Thrybergh <button class="copy-btn" data-copy="S65 4NU">S65 4NU</button>
   </p>
   
   <div class="charger-connections">
@@ -152,9 +195,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Morrison Rotherham Bramley</h2>
-  <p class="charger-address">Bramley S66 1YZ
+<li class="charger-item charger-item--rapid" data-connectors="Type 2 (Tethered Connector) ,CHAdeMO,Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Morrison Rotherham Bramley</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Bramley <button class="copy-btn" data-copy="S66 1YZ">S66 1YZ</button>
   </p>
   
   <div class="charger-connections">
@@ -179,9 +226,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Rother Valley Country Park-Visitor Centre</h2>
-  <p class="charger-address">Rother Valley Country Park-Visitor Centre S26 5RN
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Rother Valley Country Park-Visitor Centre</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Rother Valley Country Park-Visitor Centre <button class="copy-btn" data-copy="S26 5RN">S26 5RN</button>
   </p>
   
   <div class="charger-connections">
@@ -203,9 +253,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Lidl-Doncaster Road</h2>
-  <p class="charger-address">Doncaster Road S65 3ET
+<li class="charger-item charger-item--rapid" data-connectors="Type 2 (Socket Only),CCS (Type 2),CHAdeMO">
+  <div class="charger-header">
+    <h2 class="charger-name">Lidl-Doncaster Road</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Doncaster Road <button class="copy-btn" data-copy="S65 3ET">S65 3ET</button>
   </p>
   
   <div class="charger-connections">
@@ -230,9 +284,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Rotherham General Hospital-Public Carpark</h2>
-  <p class="charger-address">Moorgate Road S60 2UD
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Rotherham General Hospital-Public Carpark</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Moorgate Road <button class="copy-btn" data-copy="S60 2UD">S60 2UD</button>
   </p>
   
   <div class="charger-connections">
@@ -251,9 +308,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">McDonald&#39;s, Aldwarke Lane</h2>
-  <p class="charger-address">Aldwarke Lane S65 3SR
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2),CHAdeMO">
+  <div class="charger-header">
+    <h2 class="charger-name">McDonald&#39;s, Aldwarke Lane</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Aldwarke Lane <button class="copy-btn" data-copy="S65 3SR">S65 3SR</button>
   </p>
   
   <div class="charger-connections">
@@ -275,9 +336,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">McDonald&#39;s Rotherham</h2>
-  <p class="charger-address">Parkgate S60 1SG
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2),CHAdeMO">
+  <div class="charger-header">
+    <h2 class="charger-name">McDonald&#39;s Rotherham</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Parkgate <button class="copy-btn" data-copy="S60 1SG">S60 1SG</button>
   </p>
   
   <div class="charger-connections">
@@ -299,9 +364,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Morrisons Rotherham Catcliffe</h2>
-  <p class="charger-address">Poplar Way, Catcliffe S60 5TR
+<li class="charger-item charger-item--rapid" data-connectors="Type 2 (Socket Only),CHAdeMO,Type 2 (Tethered Connector) ">
+  <div class="charger-header">
+    <h2 class="charger-name">Morrisons Rotherham Catcliffe</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Poplar Way, Catcliffe <button class="copy-btn" data-copy="S60 5TR">S60 5TR</button>
   </p>
   
   <div class="charger-connections">
@@ -326,9 +395,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Tesco Extra - Rotherham Wath-upon-Dearne</h2>
-  <p class="charger-address">Biscay Way S63 7DA
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Tesco Extra - Rotherham Wath-upon-Dearne</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Biscay Way <button class="copy-btn" data-copy="S63 7DA">S63 7DA</button>
   </p>
   
   <div class="charger-connections">
@@ -350,9 +422,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Tesco Superstore</h2>
-  <p class="charger-address">Tesco Superstore S25 2PF
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Tesco Superstore</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Tesco Superstore <button class="copy-btn" data-copy="S25 2PF">S25 2PF</button>
   </p>
   
   <div class="charger-connections">
@@ -374,9 +449,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Grange Wood</h2>
-  <p class="charger-address">Grange Wood S66
+<li class="charger-item charger-item--fast" data-connectors="Unknown">
+  <div class="charger-header">
+    <h2 class="charger-name">Grange Wood</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Grange Wood <button class="copy-btn" data-copy="S66">S66</button>
   </p>
   
   <div class="charger-connections">
@@ -395,9 +473,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Montgomery Road</h2>
-  <p class="charger-address">Montgomery Road/Wath Bus Station 1 S62
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Montgomery Road</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Montgomery Road/Wath Bus Station 1 <button class="copy-btn" data-copy="S62">S62</button>
   </p>
   
   <div class="charger-connections">
@@ -419,9 +500,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Walker Street</h2>
-  <p class="charger-address">Walker Street S64 8AE
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Walker Street</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Walker Street <button class="copy-btn" data-copy="S64 8AE">S64 8AE</button>
   </p>
   
   <div class="charger-connections">
@@ -443,8 +527,11 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Doncaster Road/Thrybergh Country Park</h2>
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Doncaster Road/Thrybergh Country Park</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
   <p class="charger-address">Doncaster Road/Thrybergh Country Park
   </p>
   
@@ -467,9 +554,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Barbers Avenue</h2>
-  <p class="charger-address">Barbers Avenue S62 6AE
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Barbers Avenue</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Barbers Avenue <button class="copy-btn" data-copy="S62 6AE">S62 6AE</button>
   </p>
   
   <div class="charger-connections">
@@ -491,9 +581,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">4 Corporation Street</h2>
-  <p class="charger-address">4 Corporation Street S60 1NG
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">4 Corporation Street</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">4 Corporation Street <button class="copy-btn" data-copy="S60 1NG">S60 1NG</button>
   </p>
   
   <div class="charger-connections">
@@ -515,9 +608,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Clifton Park &amp; Museum</h2>
-  <p class="charger-address">49 Clifton Lane S65 2AH
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Clifton Park &amp; Museum</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">49 Clifton Lane <button class="copy-btn" data-copy="S65 2AH">S65 2AH</button>
   </p>
   
   <div class="charger-connections">
@@ -539,9 +635,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Wellgate Car Park</h2>
-  <p class="charger-address">Wellgate Car Park S60 2LT
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Wellgate Car Park</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Wellgate Car Park <button class="copy-btn" data-copy="S60 2LT">S60 2LT</button>
   </p>
   
   <div class="charger-connections">
@@ -563,9 +662,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Sycamore Road</h2>
-  <p class="charger-address">Sycamore Road S65 1EN
+<li class="charger-item charger-item--rapid" data-connectors="CHAdeMO,CCS (Type 2)">
+  <div class="charger-header">
+    <h2 class="charger-name">Sycamore Road</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Sycamore Road <button class="copy-btn" data-copy="S65 1EN">S65 1EN</button>
   </p>
   
   <div class="charger-connections">
@@ -596,6 +699,23 @@
 
 <p><a href="/" class="back-link">← All UK towns</a></p>
 
+
+<div class="nearby-towns">
+  <h2 class="nearby-heading">Nearby towns</h2>
+  <ul class="nearby-list">
+  
+    <li><a href="/uk/sheffield/">Sheffield</a></li>
+  
+    <li><a href="/uk/barnsley/">Barnsley</a></li>
+  
+    <li><a href="/uk/chesterfield/">Chesterfield</a></li>
+  
+    <li><a href="/uk/worksop/">Worksop</a></li>
+  
+  </ul>
+</div>
+
+
 </div>
 
 <footer>
@@ -608,26 +728,61 @@
 <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 <script>
 (function () {
+  // --- Map ---
   var map = L.map('map').setView([53.428767932645066, -1.306638608885808], 12);
-
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
   }).addTo(map);
 
   var markers = L.markerClusterGroup();
-  var chargerData = [{"lat": 53.31614044589014, "lng": -1.2814129367635019, "title": "M1 Woodall Southbound Services", "address": "M1"}, {"lat": 53.434517, "lng": -1.352677, "title": "Tesco Extra - Rotherham", "address": "Drummond Street"}, {"lat": 53.420085, "lng": -1.193762, "title": "Aldi - Maltby", "address": "Muglet Lane, Maltby"}, {"lat": 53.4227, "lng": -1.25567, "title": "DRAX00234", "address": "Moorhead Way"}, {"lat": 53.45937, "lng": -1.287399, "title": "Thrybergh Country Park (83448R024)", "address": "Doncaster Road, Thrybergh"}, {"lat": 53.423382, "lng": -1.255981, "title": "Morrison Rotherham Bramley", "address": "Bramley"}, {"lat": 53.340021, "lng": -1.320378, "title": "Rother Valley Country Park-Visitor Centre", "address": "Rother Valley Country Park-Visitor Centre"}, {"lat": 53.44359, "lng": -1.31551, "title": "Lidl-Doncaster Road", "address": "Doncaster Road"}, {"lat": 53.413502, "lng": -1.345689, "title": "Rotherham General Hospital-Public Carpark", "address": "Moorgate Road"}, {"lat": 53.4428044, "lng": -1.3210055, "title": "McDonald's, Aldwarke Lane", "address": "Aldwarke Lane"}, {"lat": 53.441891680996, "lng": -1.34885812214083, "title": "McDonald's Rotherham", "address": "Parkgate"}, {"lat": 53.389975, "lng": -1.372662, "title": "Morrisons Rotherham Catcliffe", "address": "Poplar Way, Catcliffe"}, {"lat": 53.5044518239504, "lng": -1.34485494546925, "title": "Tesco Extra - Rotherham Wath-upon-Dearne", "address": "Biscay Way"}, {"lat": 53.3705601, "lng": -1.2110165, "title": "Tesco Superstore", "address": "Tesco Superstore"}, {"lat": 53.4, "lng": -1.19, "title": "Grange Wood", "address": "Grange Wood"}, {"lat": 53.502878, "lng": -1.344798, "title": "Montgomery Road", "address": "Montgomery Road/Wath Bus Station 1"}, {"lat": 53.488097, "lng": -1.302033, "title": "Walker Street", "address": "Walker Street"}, {"lat": 53.459054, "lng": -1.28827, "title": "Doncaster Road/Thrybergh Country Park", "address": "Doncaster Road/Thrybergh Country Park"}, {"lat": 53.456675, "lng": -1.338076, "title": "Barbers Avenue", "address": "Barbers Avenue"}, {"lat": 53.432117, "lng": -1.358381, "title": "4 Corporation Street", "address": "4 Corporation Street"}, {"lat": 53.4291, "lng": -1.346627, "title": "Clifton Park & Museum", "address": "49 Clifton Lane"}, {"lat": 53.428835, "lng": -1.353408, "title": "Wellgate Car Park", "address": "Wellgate Car Park"}, {"lat": 53.441916, "lng": -1.324219, "title": "Sycamore Road", "address": "Sycamore Road"}];
+  var chargerData = [{"lat": 53.31614044589014, "lng": -1.2814129367635019, "title": "M1 Woodall Southbound Services", "address": "M1", "connectors": ["CCS (Type 2) · 180kW"]}, {"lat": 53.434517, "lng": -1.352677, "title": "Tesco Extra - Rotherham", "address": "Drummond Street", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 53.420085, "lng": -1.193762, "title": "Aldi - Maltby", "address": "Muglet Lane, Maltby", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 53.4227, "lng": -1.25567, "title": "DRAX00234", "address": "Moorhead Way", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 53.45937, "lng": -1.287399, "title": "Thrybergh Country Park (83448R024)", "address": "Doncaster Road, Thrybergh", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 53.423382, "lng": -1.255981, "title": "Morrison Rotherham Bramley", "address": "Bramley", "connectors": ["Type 2 (Tethered Connector)  · 60kW", "CHAdeMO · 50kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 53.340021, "lng": -1.320378, "title": "Rother Valley Country Park-Visitor Centre", "address": "Rother Valley Country Park-Visitor Centre", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 53.44359, "lng": -1.31551, "title": "Lidl-Doncaster Road", "address": "Doncaster Road", "connectors": ["Type 2 (Socket Only) · 22kW", "CCS (Type 2) · 50kW", "CHAdeMO · 50kW"]}, {"lat": 53.413502, "lng": -1.345689, "title": "Rotherham General Hospital-Public Carpark", "address": "Moorgate Road", "connectors": ["Type 2 (Socket Only) · 7kW"]}, {"lat": 53.4428044, "lng": -1.3210055, "title": "McDonald's, Aldwarke Lane", "address": "Aldwarke Lane", "connectors": ["CCS (Type 2) · 120kW", "CHAdeMO · 100kW"]}, {"lat": 53.441891680996, "lng": -1.34885812214083, "title": "McDonald's Rotherham", "address": "Parkgate", "connectors": ["CCS (Type 2) · 120kW", "CHAdeMO · 75kW"]}, {"lat": 53.389975, "lng": -1.372662, "title": "Morrisons Rotherham Catcliffe", "address": "Poplar Way, Catcliffe", "connectors": ["Type 2 (Socket Only) · 22kW", "CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 50kW"]}, {"lat": 53.5044518239504, "lng": -1.34485494546925, "title": "Tesco Extra - Rotherham Wath-upon-Dearne", "address": "Biscay Way", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 53.3705601, "lng": -1.2110165, "title": "Tesco Superstore", "address": "Tesco Superstore", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 53.4, "lng": -1.19, "title": "Grange Wood", "address": "Grange Wood", "connectors": ["Unknown · 7.4kW"]}, {"lat": 53.502878, "lng": -1.344798, "title": "Montgomery Road", "address": "Montgomery Road/Wath Bus Station 1", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 53.488097, "lng": -1.302033, "title": "Walker Street", "address": "Walker Street", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 53.459054, "lng": -1.28827, "title": "Doncaster Road/Thrybergh Country Park", "address": "Doncaster Road/Thrybergh Country Park", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 53.456675, "lng": -1.338076, "title": "Barbers Avenue", "address": "Barbers Avenue", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 53.432117, "lng": -1.358381, "title": "4 Corporation Street", "address": "4 Corporation Street", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 53.4291, "lng": -1.346627, "title": "Clifton Park & Museum", "address": "49 Clifton Lane", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 53.428835, "lng": -1.353408, "title": "Wellgate Car Park", "address": "Wellgate Car Park", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 53.441916, "lng": -1.324219, "title": "Sycamore Road", "address": "Sycamore Road", "connectors": ["CHAdeMO · 50kW", "CCS (Type 2) · 50kW", "CCS (Type 2) · 50kW", "CHAdeMO · 50kW"]}];
 
   chargerData.forEach(function (c) {
+    var connHtml = c.connectors.length
+      ? '<div style="margin-top:6px;font-size:12px;color:#475569">' + c.connectors.join(' &middot; ') + '</div>'
+      : '';
     var marker = L.marker([c.lat, c.lng]);
     marker.bindPopup(
-      '<b>' + c.title + '</b><br>' + c.address + '<br><br>' +
+      '<b>' + c.title + '</b>' +
+      '<div style="color:#64748b;font-size:13px">' + c.address + '</div>' +
+      connHtml +
       '<a href="https://www.google.com/maps/dir/?api=1&destination=' + c.lat + ',' + c.lng +
-      '" target="_blank" rel="noopener">Get directions</a>'
+      '" target="_blank" rel="noopener" style="display:inline-block;margin-top:8px;padding:4px 10px;background:#2563eb;color:white;border-radius:4px;text-decoration:none;font-size:12px">Get directions</a>'
     );
     markers.addLayer(marker);
   });
-
   map.addLayer(markers);
+
+  // --- Connector filter ---
+  var filterBtns = document.querySelectorAll('.filter-btn');
+  var chargerItems = document.querySelectorAll('.charger-item');
+
+  filterBtns.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      filterBtns.forEach(function (b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      var f = btn.dataset.filter;
+      chargerItems.forEach(function (item) {
+        var connList = item.dataset.connectors ? item.dataset.connectors.split(',') : [];
+        item.style.display = (f === 'all' || connList.indexOf(f) !== -1) ? '' : 'none';
+      });
+    });
+  });
+
+  // --- Copy postcode ---
+  document.querySelectorAll('.copy-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var original = btn.textContent;
+      navigator.clipboard.writeText(btn.dataset.copy).then(function () {
+        btn.textContent = 'Copied!';
+        btn.classList.add('copy-btn--success');
+        setTimeout(function () {
+          btn.textContent = original;
+          btn.classList.remove('copy-btn--success');
+        }, 1500);
+      });
+    });
+  });
 }());
 </script>
 

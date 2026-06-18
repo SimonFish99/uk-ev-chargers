@@ -17,7 +17,10 @@
 
 <header>
 <div class="container">
-<a href="/" class="logo">PlugMap <span class="tagline">UK EV Charger Locator</span></a>
+<a href="/" class="logo">
+  <svg class="logo-bolt" viewBox="0 0 24 24" fill="currentColor" width="22" height="22" aria-hidden="true"><path d="M13 2L4.5 13.5H11L10 22L19.5 10.5H13Z"/></svg>
+  PlugMap <span class="tagline">UK EV Charger Locator</span>
+</a>
 </div>
 </header>
 
@@ -28,16 +31,43 @@
 </nav>
 
 <h1>EV Chargers in Halifax</h1>
-<p class="page-intro">9 public charging stations found in Halifax.</p>
+
+<div class="stats-bar">
+  <span class="stat-pill stat-total">9 stations</span>
+  <span class="stat-pill stat-rapid">6 rapid (50kW+)</span>
+  <span class="stat-pill stat-fast">1 fast (7–50kW)</span>
+  <span class="stat-pill stat-slow">2 slow</span>
+</div>
 
 <div id="map"></div>
 
-<ul class="charger-list">
+
+<div class="connector-filter">
+  <span class="filter-label">Filter:</span>
+  <button class="filter-btn active" data-filter="all">All</button>
+  
+  <button class="filter-btn" data-filter="BS1363 3 Pin 13 Amp">BS1363 3 Pin 13 Amp</button>
+  
+  <button class="filter-btn" data-filter="CCS (Type 2)">CCS (Type 2)</button>
+  
+  <button class="filter-btn" data-filter="CHAdeMO">CHAdeMO</button>
+  
+  <button class="filter-btn" data-filter="Type 2 (Socket Only)">Type 2 (Socket Only)</button>
+  
+  <button class="filter-btn" data-filter="Type 2 (Tethered Connector) ">Type 2 (Tethered Connector) </button>
+  
+</div>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Evology Charging - Queens Road Retail Park</h2>
-  <p class="charger-address">Queens Road HX1 3XY
+<ul class="charger-list" id="charger-list">
+
+
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Evology Charging - Queens Road Retail Park</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Queens Road <button class="copy-btn" data-copy="HX1 3XY">HX1 3XY</button>
   </p>
   
   <div class="charger-connections">
@@ -68,9 +98,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Sainsburys Halifax</h2>
-  <p class="charger-address">Sainsburys Halifax, Wade Street, Halifax HX1 1SB
+<li class="charger-item charger-item--slow" data-connectors="BS1363 3 Pin 13 Amp">
+  <div class="charger-header">
+    <h2 class="charger-name">Sainsburys Halifax</h2>
+    
+  </div>
+  <p class="charger-address">Sainsburys Halifax, Wade Street, Halifax <button class="copy-btn" data-copy="HX1 1SB">HX1 1SB</button>
   </p>
   
   <div class="charger-connections">
@@ -92,9 +125,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Genie</h2>
-  <p class="charger-address">North Bridge HX3 5WP
+<li class="charger-item charger-item--rapid" data-connectors="Type 2 (Socket Only),CHAdeMO,Type 2 (Tethered Connector) ">
+  <div class="charger-header">
+    <h2 class="charger-name">Genie</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">North Bridge <button class="copy-btn" data-copy="HX3 5WP">HX3 5WP</button>
   </p>
   
   <div class="charger-connections">
@@ -119,9 +156,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Sainsbury&#39;s Halifax</h2>
-  <p class="charger-address">Wade Street HX1 1SB
+<li class="charger-item charger-item--slow" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Sainsbury&#39;s Halifax</h2>
+    
+  </div>
+  <p class="charger-address">Wade Street <button class="copy-btn" data-copy="HX1 1SB">HX1 1SB</button>
   </p>
   
   <div class="charger-connections">
@@ -143,9 +183,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">St Johns Lane</h2>
-  <p class="charger-address">St. Johns Lane HX1 2JD
+<li class="charger-item charger-item--rapid" data-connectors="Type 2 (Socket Only),CHAdeMO,Type 2 (Tethered Connector) ">
+  <div class="charger-header">
+    <h2 class="charger-name">St Johns Lane</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">St. Johns Lane <button class="copy-btn" data-copy="HX1 2JD">HX1 2JD</button>
   </p>
   
   <div class="charger-connections">
@@ -170,9 +214,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Haugh Shaw Road Car Park</h2>
-  <p class="charger-address">Haugh Shaw Road HX1 3LW
+<li class="charger-item charger-item--rapid" data-connectors="Type 2 (Socket Only),CHAdeMO,Type 2 (Tethered Connector) ">
+  <div class="charger-header">
+    <h2 class="charger-name">Haugh Shaw Road Car Park</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Haugh Shaw Road <button class="copy-btn" data-copy="HX1 3LW">HX1 3LW</button>
   </p>
   
   <div class="charger-connections">
@@ -197,9 +245,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">St Johns Lane Car Park</h2>
-  <p class="charger-address">St. Johns Lane HX1 2JD
+<li class="charger-item charger-item--rapid" data-connectors="Type 2 (Socket Only),CHAdeMO,CCS (Type 2)">
+  <div class="charger-header">
+    <h2 class="charger-name">St Johns Lane Car Park</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">St. Johns Lane <button class="copy-btn" data-copy="HX1 2JD">HX1 2JD</button>
   </p>
   
   <div class="charger-connections">
@@ -224,9 +276,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">North Bridge Halifax</h2>
-  <p class="charger-address">North Bridge HX3 6TE
+<li class="charger-item charger-item--rapid" data-connectors="Type 2 (Socket Only),CHAdeMO,CCS (Type 2)">
+  <div class="charger-header">
+    <h2 class="charger-name">North Bridge Halifax</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">North Bridge <button class="copy-btn" data-copy="HX3 6TE">HX3 6TE</button>
   </p>
   
   <div class="charger-connections">
@@ -251,9 +307,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">High Street Car Park</h2>
-  <p class="charger-address">High Street HX1 2SY
+<li class="charger-item charger-item--rapid" data-connectors="Type 2 (Socket Only),CHAdeMO,CCS (Type 2)">
+  <div class="charger-header">
+    <h2 class="charger-name">High Street Car Park</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">High Street <button class="copy-btn" data-copy="HX1 2SY">HX1 2SY</button>
   </p>
   
   <div class="charger-connections">
@@ -281,6 +341,23 @@
 
 <p><a href="/" class="back-link">← All UK towns</a></p>
 
+
+<div class="nearby-towns">
+  <h2 class="nearby-heading">Nearby towns</h2>
+  <ul class="nearby-list">
+  
+    <li><a href="/uk/calderdale/">Calderdale</a></li>
+  
+    <li><a href="/uk/huddersfield/">Huddersfield</a></li>
+  
+    <li><a href="/uk/brighouse/">Brighouse</a></li>
+  
+    <li><a href="/uk/bradford/">Bradford</a></li>
+  
+  </ul>
+</div>
+
+
 </div>
 
 <footer>
@@ -293,26 +370,61 @@
 <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 <script>
 (function () {
+  // --- Map ---
   var map = L.map('map').setView([53.722286105062516, -1.8646373449321818], 12);
-
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
   }).addTo(map);
 
   var markers = L.markerClusterGroup();
-  var chargerData = [{"lat": 53.718451412541725, "lng": -1.8815729679513424, "title": "Evology Charging - Queens Road Retail Park", "address": "Queens Road"}, {"lat": 53.726284, "lng": -1.856518, "title": "Sainsburys Halifax", "address": "Sainsburys Halifax, Wade Street, Halifax"}, {"lat": 53.727747, "lng": -1.860173, "title": "Genie", "address": "North Bridge"}, {"lat": 53.726322, "lng": -1.855734, "title": "Sainsbury's Halifax", "address": "Wade Street"}, {"lat": 53.719521, "lng": -1.860552, "title": "St Johns Lane", "address": "St. Johns Lane"}, {"lat": 53.714723, "lng": -1.881182, "title": "Haugh Shaw Road Car Park", "address": "Haugh Shaw Road"}, {"lat": 53.720212, "lng": -1.859821, "title": "St Johns Lane Car Park", "address": "St. Johns Lane"}, {"lat": 53.72722, "lng": -1.85969, "title": "North Bridge Halifax", "address": "North Bridge"}, {"lat": 53.7200945330209, "lng": -1.8664931364382937, "title": "High Street Car Park", "address": "High Street"}];
+  var chargerData = [{"lat": 53.718451412541725, "lng": -1.8815729679513424, "title": "Evology Charging - Queens Road Retail Park", "address": "Queens Road", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 53.726284, "lng": -1.856518, "title": "Sainsburys Halifax", "address": "Sainsburys Halifax, Wade Street, Halifax", "connectors": ["BS1363 3 Pin 13 Amp · 3kW", "BS1363 3 Pin 13 Amp · 3kW"]}, {"lat": 53.727747, "lng": -1.860173, "title": "Genie", "address": "North Bridge", "connectors": ["Type 2 (Socket Only) · 22kW", "CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 50kW"]}, {"lat": 53.726322, "lng": -1.855734, "title": "Sainsbury's Halifax", "address": "Wade Street", "connectors": ["Type 2 (Socket Only) · 3.7kW", "Type 2 (Socket Only) · 3.7kW"]}, {"lat": 53.719521, "lng": -1.860552, "title": "St Johns Lane", "address": "St. Johns Lane", "connectors": ["Type 2 (Socket Only) · 22kW", "CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 50kW"]}, {"lat": 53.714723, "lng": -1.881182, "title": "Haugh Shaw Road Car Park", "address": "Haugh Shaw Road", "connectors": ["Type 2 (Socket Only) · 22kW", "CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 50kW"]}, {"lat": 53.720212, "lng": -1.859821, "title": "St Johns Lane Car Park", "address": "St. Johns Lane", "connectors": ["Type 2 (Socket Only) · 22kW", "CHAdeMO · 50kW", "CCS (Type 2) · 50kW"]}, {"lat": 53.72722, "lng": -1.85969, "title": "North Bridge Halifax", "address": "North Bridge", "connectors": ["Type 2 (Socket Only) · 22kW", "CHAdeMO · 50kW", "CCS (Type 2) · 50kW"]}, {"lat": 53.7200945330209, "lng": -1.8664931364382937, "title": "High Street Car Park", "address": "High Street", "connectors": ["Type 2 (Socket Only) · 22kW", "CHAdeMO · 50kW", "CCS (Type 2) · 50kW"]}];
 
   chargerData.forEach(function (c) {
+    var connHtml = c.connectors.length
+      ? '<div style="margin-top:6px;font-size:12px;color:#475569">' + c.connectors.join(' &middot; ') + '</div>'
+      : '';
     var marker = L.marker([c.lat, c.lng]);
     marker.bindPopup(
-      '<b>' + c.title + '</b><br>' + c.address + '<br><br>' +
+      '<b>' + c.title + '</b>' +
+      '<div style="color:#64748b;font-size:13px">' + c.address + '</div>' +
+      connHtml +
       '<a href="https://www.google.com/maps/dir/?api=1&destination=' + c.lat + ',' + c.lng +
-      '" target="_blank" rel="noopener">Get directions</a>'
+      '" target="_blank" rel="noopener" style="display:inline-block;margin-top:8px;padding:4px 10px;background:#2563eb;color:white;border-radius:4px;text-decoration:none;font-size:12px">Get directions</a>'
     );
     markers.addLayer(marker);
   });
-
   map.addLayer(markers);
+
+  // --- Connector filter ---
+  var filterBtns = document.querySelectorAll('.filter-btn');
+  var chargerItems = document.querySelectorAll('.charger-item');
+
+  filterBtns.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      filterBtns.forEach(function (b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      var f = btn.dataset.filter;
+      chargerItems.forEach(function (item) {
+        var connList = item.dataset.connectors ? item.dataset.connectors.split(',') : [];
+        item.style.display = (f === 'all' || connList.indexOf(f) !== -1) ? '' : 'none';
+      });
+    });
+  });
+
+  // --- Copy postcode ---
+  document.querySelectorAll('.copy-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var original = btn.textContent;
+      navigator.clipboard.writeText(btn.dataset.copy).then(function () {
+        btn.textContent = 'Copied!';
+        btn.classList.add('copy-btn--success');
+        setTimeout(function () {
+          btn.textContent = original;
+          btn.classList.remove('copy-btn--success');
+        }, 1500);
+      });
+    });
+  });
 }());
 </script>
 

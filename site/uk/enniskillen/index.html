@@ -17,7 +17,10 @@
 
 <header>
 <div class="container">
-<a href="/" class="logo">PlugMap <span class="tagline">UK EV Charger Locator</span></a>
+<a href="/" class="logo">
+  <svg class="logo-bolt" viewBox="0 0 24 24" fill="currentColor" width="22" height="22" aria-hidden="true"><path d="M13 2L4.5 13.5H11L10 22L19.5 10.5H13Z"/></svg>
+  PlugMap <span class="tagline">UK EV Charger Locator</span>
+</a>
 </div>
 </header>
 
@@ -28,16 +31,39 @@
 </nav>
 
 <h1>EV Chargers in Enniskillen</h1>
-<p class="page-intro">9 public charging stations found in Enniskillen.</p>
+
+<div class="stats-bar">
+  <span class="stat-pill stat-total">9 stations</span>
+  <span class="stat-pill stat-rapid">1 rapid (50kW+)</span>
+  <span class="stat-pill stat-fast">8 fast (7–50kW)</span>
+  
+</div>
 
 <div id="map"></div>
 
-<ul class="charger-list">
+
+<div class="connector-filter">
+  <span class="filter-label">Filter:</span>
+  <button class="filter-btn active" data-filter="all">All</button>
+  
+  <button class="filter-btn" data-filter="CCS (Type 2)">CCS (Type 2)</button>
+  
+  <button class="filter-btn" data-filter="CHAdeMO">CHAdeMO</button>
+  
+  <button class="filter-btn" data-filter="Type 2 (Socket Only)">Type 2 (Socket Only)</button>
+  
+</div>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Enniskilleen Hotel</h2>
-  <p class="charger-address">72 Forthill Street BT74 6AJ
+<ul class="charger-list" id="charger-list">
+
+
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Enniskilleen Hotel</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">72 Forthill Street <button class="copy-btn" data-copy="BT74 6AJ">BT74 6AJ</button>
   </p>
   
   <div class="charger-connections">
@@ -56,9 +82,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">College of Agriculture Food and Rural Enterprise (CAFRE)</h2>
-  <p class="charger-address">Mullaghmeen Road BT74 4GF
+<li class="charger-item charger-item--fast" data-connectors="CCS (Type 2),CHAdeMO">
+  <div class="charger-header">
+    <h2 class="charger-name">College of Agriculture Food and Rural Enterprise (CAFRE)</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Mullaghmeen Road <button class="copy-btn" data-copy="BT74 4GF">BT74 4GF</button>
   </p>
   
   <div class="charger-connections">
@@ -80,9 +109,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Enniskillen Business Centre</h2>
-  <p class="charger-address">21 Lackaghboy Road BT74 4RL
+<li class="charger-item charger-item--fast" data-connectors="CCS (Type 2),Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Enniskillen Business Centre</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">21 Lackaghboy Road <button class="copy-btn" data-copy="BT74 4RL">BT74 4RL</button>
   </p>
   
   <div class="charger-connections">
@@ -104,9 +136,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Killyhevlin Business Centre</h2>
-  <p class="charger-address">3 Black Stick Road BT74 4EB
+<li class="charger-item charger-item--fast" data-connectors="CCS (Type 2),Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Killyhevlin Business Centre</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">3 Black Stick Road <button class="copy-btn" data-copy="BT74 4EB">BT74 4EB</button>
   </p>
   
   <div class="charger-connections">
@@ -128,9 +163,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Killyhevlin Lakeside Hotel &amp; Lodges</h2>
-  <p class="charger-address">Dublin Road  BT74 6RW
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2),Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Killyhevlin Lakeside Hotel &amp; Lodges</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Dublin Road <button class="copy-btn" data-copy=" BT74 6RW"> BT74 6RW</button>
   </p>
   
   <div class="charger-connections">
@@ -152,9 +191,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Bawnacre Centre Irvinestown</h2>
-  <p class="charger-address">85 Marble Arch Road BT92 1EW
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Bawnacre Centre Irvinestown</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">85 Marble Arch Road <button class="copy-btn" data-copy="BT92 1EW">BT92 1EW</button>
   </p>
   
   <div class="charger-connections">
@@ -174,9 +216,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">DRD Car Park, Main St, Maguiresbridge</h2>
-  <p class="charger-address">36 Main Street BT94 4RZ
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">DRD Car Park, Main St, Maguiresbridge</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">36 Main Street <button class="copy-btn" data-copy="BT94 4RZ">BT94 4RZ</button>
   </p>
   
   <div class="charger-connections">
@@ -198,9 +243,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Marble Arch Caves Florencecourt</h2>
-  <p class="charger-address">Marble Arch Caves BT94 1EE
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Marble Arch Caves Florencecourt</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Marble Arch Caves <button class="copy-btn" data-copy="BT94 1EE">BT94 1EE</button>
   </p>
   
   <div class="charger-connections">
@@ -217,9 +265,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Castle Park Leisure Centre</h2>
-  <p class="charger-address">Castle Park Leisure Centre BT92 0LZ
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Castle Park Leisure Centre</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Castle Park Leisure Centre <button class="copy-btn" data-copy="BT92 0LZ">BT92 0LZ</button>
   </p>
   
   <div class="charger-connections">
@@ -242,6 +293,23 @@
 
 <p><a href="/" class="back-link">← All UK towns</a></p>
 
+
+<div class="nearby-towns">
+  <h2 class="nearby-heading">Nearby towns</h2>
+  <ul class="nearby-list">
+  
+    <li><a href="/uk/londonderry/">Londonderry</a></li>
+  
+    <li><a href="/uk/dungannon/">Dungannon</a></li>
+  
+    <li><a href="/uk/limavady/">Limavady</a></li>
+  
+    <li><a href="/uk/craigavon/">Craigavon</a></li>
+  
+  </ul>
+</div>
+
+
 </div>
 
 <footer>
@@ -254,26 +322,61 @@
 <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 <script>
 (function () {
+  // --- Map ---
   var map = L.map('map').setView([54.334754380198646, -7.606628253868276], 12);
-
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
   }).addTo(map);
 
   var markers = L.markerClusterGroup();
-  var chargerData = [{"lat": 54.34652290846017, "lng": -7.631129910708296, "title": "Enniskilleen Hotel", "address": "72 Forthill Street"}, {"lat": 54.37133243503982, "lng": -7.628692760453788, "title": "College of Agriculture Food and Rural Enterprise (CAFRE)", "address": "Mullaghmeen Road"}, {"lat": 54.35549599710342, "lng": -7.596646961625424, "title": "Enniskillen Business Centre", "address": "21 Lackaghboy Road"}, {"lat": 54.334207223883396, "lng": -7.62040987791238, "title": "Killyhevlin Business Centre", "address": "3 Black Stick Road"}, {"lat": 54.32887774155765, "lng": -7.618484042835689, "title": "Killyhevlin Lakeside Hotel & Lodges", "address": "Dublin Road"}, {"lat": 54.470137, "lng": -7.640219, "title": "Bawnacre Centre Irvinestown", "address": "85 Marble Arch Road"}, {"lat": 54.29431211574337, "lng": -7.464007731278912, "title": "DRD Car Park, Main St, Maguiresbridge", "address": "36 Main Street"}, {"lat": 54.258321, "lng": -7.813347, "title": "Marble Arch Caves Florencecourt", "address": "Marble Arch Caves"}, {"lat": 54.253583, "lng": -7.446717, "title": "Castle Park Leisure Centre", "address": "Castle Park Leisure Centre"}];
+  var chargerData = [{"lat": 54.34652290846017, "lng": -7.631129910708296, "title": "Enniskilleen Hotel", "address": "72 Forthill Street", "connectors": ["Type 2 (Socket Only) · 22kW"]}, {"lat": 54.37133243503982, "lng": -7.628692760453788, "title": "College of Agriculture Food and Rural Enterprise (CAFRE)", "address": "Mullaghmeen Road", "connectors": ["CCS (Type 2) · 24kW", "CHAdeMO · 24kW"]}, {"lat": 54.35549599710342, "lng": -7.596646961625424, "title": "Enniskillen Business Centre", "address": "21 Lackaghboy Road", "connectors": ["CCS (Type 2) · 24kW", "Type 2 (Socket Only) · 11kW"]}, {"lat": 54.334207223883396, "lng": -7.62040987791238, "title": "Killyhevlin Business Centre", "address": "3 Black Stick Road", "connectors": ["CCS (Type 2) · 24kW", "Type 2 (Socket Only) · 11kW"]}, {"lat": 54.32887774155765, "lng": -7.618484042835689, "title": "Killyhevlin Lakeside Hotel & Lodges", "address": "Dublin Road", "connectors": ["CCS (Type 2) · 60kW", "Type 2 (Socket Only) · 11kW"]}, {"lat": 54.470137, "lng": -7.640219, "title": "Bawnacre Centre Irvinestown", "address": "85 Marble Arch Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 54.29431211574337, "lng": -7.464007731278912, "title": "DRD Car Park, Main St, Maguiresbridge", "address": "36 Main Street", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 54.258321, "lng": -7.813347, "title": "Marble Arch Caves Florencecourt", "address": "Marble Arch Caves", "connectors": ["Type 2 (Socket Only) · 7kW"]}, {"lat": 54.253583, "lng": -7.446717, "title": "Castle Park Leisure Centre", "address": "Castle Park Leisure Centre", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}];
 
   chargerData.forEach(function (c) {
+    var connHtml = c.connectors.length
+      ? '<div style="margin-top:6px;font-size:12px;color:#475569">' + c.connectors.join(' &middot; ') + '</div>'
+      : '';
     var marker = L.marker([c.lat, c.lng]);
     marker.bindPopup(
-      '<b>' + c.title + '</b><br>' + c.address + '<br><br>' +
+      '<b>' + c.title + '</b>' +
+      '<div style="color:#64748b;font-size:13px">' + c.address + '</div>' +
+      connHtml +
       '<a href="https://www.google.com/maps/dir/?api=1&destination=' + c.lat + ',' + c.lng +
-      '" target="_blank" rel="noopener">Get directions</a>'
+      '" target="_blank" rel="noopener" style="display:inline-block;margin-top:8px;padding:4px 10px;background:#2563eb;color:white;border-radius:4px;text-decoration:none;font-size:12px">Get directions</a>'
     );
     markers.addLayer(marker);
   });
-
   map.addLayer(markers);
+
+  // --- Connector filter ---
+  var filterBtns = document.querySelectorAll('.filter-btn');
+  var chargerItems = document.querySelectorAll('.charger-item');
+
+  filterBtns.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      filterBtns.forEach(function (b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      var f = btn.dataset.filter;
+      chargerItems.forEach(function (item) {
+        var connList = item.dataset.connectors ? item.dataset.connectors.split(',') : [];
+        item.style.display = (f === 'all' || connList.indexOf(f) !== -1) ? '' : 'none';
+      });
+    });
+  });
+
+  // --- Copy postcode ---
+  document.querySelectorAll('.copy-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var original = btn.textContent;
+      navigator.clipboard.writeText(btn.dataset.copy).then(function () {
+        btn.textContent = 'Copied!';
+        btn.classList.add('copy-btn--success');
+        setTimeout(function () {
+          btn.textContent = original;
+          btn.classList.remove('copy-btn--success');
+        }, 1500);
+      });
+    });
+  });
 }());
 </script>
 

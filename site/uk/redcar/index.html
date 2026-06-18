@@ -17,7 +17,10 @@
 
 <header>
 <div class="container">
-<a href="/" class="logo">PlugMap <span class="tagline">UK EV Charger Locator</span></a>
+<a href="/" class="logo">
+  <svg class="logo-bolt" viewBox="0 0 24 24" fill="currentColor" width="22" height="22" aria-hidden="true"><path d="M13 2L4.5 13.5H11L10 22L19.5 10.5H13Z"/></svg>
+  PlugMap <span class="tagline">UK EV Charger Locator</span>
+</a>
 </div>
 </header>
 
@@ -28,16 +31,42 @@
 </nav>
 
 <h1>EV Chargers in Redcar</h1>
-<p class="page-intro">14 public charging stations found in Redcar.</p>
+
+<div class="stats-bar">
+  <span class="stat-pill stat-total">14 stations</span>
+  <span class="stat-pill stat-rapid">4 rapid (50kW+)</span>
+  <span class="stat-pill stat-fast">9 fast (7–50kW)</span>
+  <span class="stat-pill stat-slow">1 slow</span>
+</div>
 
 <div id="map"></div>
 
-<ul class="charger-list">
+
+<div class="connector-filter">
+  <span class="filter-label">Filter:</span>
+  <button class="filter-btn active" data-filter="all">All</button>
+  
+  <button class="filter-btn" data-filter="CCS (Type 2)">CCS (Type 2)</button>
+  
+  <button class="filter-btn" data-filter="CHAdeMO">CHAdeMO</button>
+  
+  <button class="filter-btn" data-filter="Type 2 (Socket Only)">Type 2 (Socket Only)</button>
+  
+  <button class="filter-btn" data-filter="Type 2 (Tethered Connector) ">Type 2 (Tethered Connector) </button>
+  
+</div>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Graffenburg Street Car Park, Redcar 1</h2>
-  <p class="charger-address">7 Graffenburg Street TS10 3DB
+<ul class="charger-list" id="charger-list">
+
+
+<li class="charger-item charger-item--rapid" data-connectors="Type 2 (Tethered Connector) ,CHAdeMO,Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Graffenburg Street Car Park, Redcar 1</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">7 Graffenburg Street <button class="copy-btn" data-copy="TS10 3DB">TS10 3DB</button>
   </p>
   
   <div class="charger-connections">
@@ -62,9 +91,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">EVC Wilton Centre</h2>
-  <p class="charger-address">Wilton TS10 4RF
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">EVC Wilton Centre</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Wilton <button class="copy-btn" data-copy="TS10 4RF">TS10 4RF</button>
   </p>
   
   <div class="charger-connections">
@@ -83,9 +115,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Fishermans Square Car Park, Redcar 6</h2>
-  <p class="charger-address">Lord Street TS10 3BJ
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Fishermans Square Car Park, Redcar 6</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Lord Street <button class="copy-btn" data-copy="TS10 3BJ">TS10 3BJ</button>
   </p>
   
   <div class="charger-connections">
@@ -104,9 +139,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Redcar Central Rail Station Car Park 2</h2>
-  <p class="charger-address">West Dyke Road TS10 1EJ
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Redcar Central Rail Station Car Park 2</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">West Dyke Road <button class="copy-btn" data-copy="TS10 1EJ">TS10 1EJ</button>
   </p>
   
   <div class="charger-connections">
@@ -128,9 +166,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">J. Murphy and Sons-Redcar</h2>
-  <p class="charger-address">Acacia Court TS10 2TY
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">J. Murphy and Sons-Redcar</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Acacia Court <button class="copy-btn" data-copy="TS10 2TY">TS10 2TY</button>
   </p>
   
   <div class="charger-connections">
@@ -152,9 +193,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">McDonald&#39;s Redcar Retail Park</h2>
-  <p class="charger-address">Redcar Retail Park TS10 2AT
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2),CHAdeMO">
+  <div class="charger-header">
+    <h2 class="charger-name">McDonald&#39;s Redcar Retail Park</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Redcar Retail Park <button class="copy-btn" data-copy="TS10 2AT">TS10 2AT</button>
   </p>
   
   <div class="charger-connections">
@@ -176,9 +221,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Tesco Superstore-Redcar</h2>
-  <p class="charger-address">West Dyke Road TS10 2AA
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Tesco Superstore-Redcar</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">West Dyke Road <button class="copy-btn" data-copy="TS10 2AA">TS10 2AA</button>
   </p>
   
   <div class="charger-connections">
@@ -200,9 +248,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Morrisons Redcar</h2>
-  <p class="charger-address">Lord Street TS10 3ER
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2),CHAdeMO,Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Morrisons Redcar</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Lord Street <button class="copy-btn" data-copy="TS10 3ER">TS10 3ER</button>
   </p>
   
   <div class="charger-connections">
@@ -227,9 +279,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Drive Vauxhall</h2>
-  <p class="charger-address">Trunk Road TS10 5BW
+<li class="charger-item charger-item--rapid" data-connectors="Type 2 (Socket Only),CCS (Type 2)">
+  <div class="charger-header">
+    <h2 class="charger-name">Drive Vauxhall</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Trunk Road <button class="copy-btn" data-copy="TS10 5BW">TS10 5BW</button>
   </p>
   
   <div class="charger-connections">
@@ -254,9 +310,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Geocore Site Investigations</h2>
-  <p class="charger-address">Tralee Close TS10 5SG
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Geocore Site Investigations</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Tralee Close <button class="copy-btn" data-copy="TS10 5SG">TS10 5SG</button>
   </p>
   
   <div class="charger-connections">
@@ -275,9 +334,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">The Innovation Centre</h2>
-  <p class="charger-address">Vienna Court  TS10 5SH
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">The Innovation Centre</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Vienna Court <button class="copy-btn" data-copy=" TS10 5SH"> TS10 5SH</button>
   </p>
   
   <div class="charger-connections">
@@ -296,9 +358,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Coatham Surgery</h2>
-  <p class="charger-address">Coatham Health Village TS10 1SR
+<li class="charger-item charger-item--slow" data-connectors="">
+  <div class="charger-header">
+    <h2 class="charger-name">Coatham Surgery</h2>
+    
+  </div>
+  <p class="charger-address">Coatham Health Village <button class="copy-btn" data-copy="TS10 1SR">TS10 1SR</button>
   </p>
   
   
@@ -310,9 +375,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Beyond Housing</h2>
-  <p class="charger-address">14 Ennis Square TS10 5JR
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Beyond Housing</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">14 Ennis Square <button class="copy-btn" data-copy="TS10 5JR">TS10 5JR</button>
   </p>
   
   <div class="charger-connections">
@@ -334,9 +402,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Kirkleatham Walled Garden</h2>
-  <p class="charger-address">Plantation Road TS10 4QT
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Kirkleatham Walled Garden</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Plantation Road <button class="copy-btn" data-copy="TS10 4QT">TS10 4QT</button>
   </p>
   
   <div class="charger-connections">
@@ -361,6 +432,23 @@
 
 <p><a href="/" class="back-link">← All UK towns</a></p>
 
+
+<div class="nearby-towns">
+  <h2 class="nearby-heading">Nearby towns</h2>
+  <ul class="nearby-list">
+  
+    <li><a href="/uk/hartlepool/">Hartlepool</a></li>
+  
+    <li><a href="/uk/middlesbrough/">Middlesbrough</a></li>
+  
+    <li><a href="/uk/billingham/">Billingham</a></li>
+  
+    <li><a href="/uk/stockton-on-tees/">Stockton-on-Tees</a></li>
+  
+  </ul>
+</div>
+
+
 </div>
 
 <footer>
@@ -373,26 +461,61 @@
 <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 <script>
 (function () {
+  // --- Map ---
   var map = L.map('map').setView([54.60541538965998, -1.0750052984816667], 12);
-
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
   }).addTo(map);
 
   var markers = L.markerClusterGroup();
-  var chargerData = [{"lat": 54.617907, "lng": -1.060863, "title": "Graffenburg Street Car Park, Redcar 1", "address": "7 Graffenburg Street"}, {"lat": 54.57611288096236, "lng": -1.099406020486193, "title": "EVC Wilton Centre", "address": "Wilton"}, {"lat": 54.61609, "lng": -1.056821, "title": "Fishermans Square Car Park, Redcar 6", "address": "Lord Street"}, {"lat": 54.615598, "lng": -1.068503, "title": "Redcar Central Rail Station Car Park 2", "address": "West Dyke Road"}, {"lat": 54.593118, "lng": -1.051787, "title": "J. Murphy and Sons-Redcar", "address": "Acacia Court"}, {"lat": 54.6144741, "lng": -1.0661131, "title": "McDonald's Redcar Retail Park", "address": "Redcar Retail Park"}, {"lat": 54.613524, "lng": -1.066035, "title": "Tesco Superstore-Redcar", "address": "West Dyke Road"}, {"lat": 54.617108457239226, "lng": -1.0669979850952132, "title": "Morrisons Redcar", "address": "Lord Street"}, {"lat": 54.61304384157674, "lng": -1.0861671068339547, "title": "Drive Vauxhall", "address": "Trunk Road"}, {"lat": 54.59227300803525, "lng": -1.0881980071761745, "title": "Geocore Site Investigations", "address": "Tralee Close"}, {"lat": 54.59392150874953, "lng": -1.08818854695528, "title": "The Innovation Centre", "address": "Vienna Court"}, {"lat": 54.61724184113868, "lng": -1.0718268616482192, "title": "Coatham Surgery", "address": "Coatham Health Village"}, {"lat": 54.60850318420691, "lng": -1.09819421843099, "title": "Beyond Housing", "address": "14 Ennis Square"}, {"lat": 54.58689963333106, "lng": -1.0809733321173098, "title": "Kirkleatham Walled Garden", "address": "Plantation Road"}];
+  var chargerData = [{"lat": 54.617907, "lng": -1.060863, "title": "Graffenburg Street Car Park, Redcar 1", "address": "7 Graffenburg Street", "connectors": ["Type 2 (Tethered Connector)  · 50kW", "CHAdeMO · 50kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 54.57611288096236, "lng": -1.099406020486193, "title": "EVC Wilton Centre", "address": "Wilton", "connectors": ["Type 2 (Socket Only) · 22kW"]}, {"lat": 54.61609, "lng": -1.056821, "title": "Fishermans Square Car Park, Redcar 6", "address": "Lord Street", "connectors": ["Type 2 (Socket Only) · 22kW"]}, {"lat": 54.615598, "lng": -1.068503, "title": "Redcar Central Rail Station Car Park 2", "address": "West Dyke Road", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 54.593118, "lng": -1.051787, "title": "J. Murphy and Sons-Redcar", "address": "Acacia Court", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 54.6144741, "lng": -1.0661131, "title": "McDonald's Redcar Retail Park", "address": "Redcar Retail Park", "connectors": ["CCS (Type 2) · 120kW", "CHAdeMO · 100kW"]}, {"lat": 54.613524, "lng": -1.066035, "title": "Tesco Superstore-Redcar", "address": "West Dyke Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 54.617108457239226, "lng": -1.0669979850952132, "title": "Morrisons Redcar", "address": "Lord Street", "connectors": ["CCS (Type 2) · 50kW", "CHAdeMO · 50kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 54.61304384157674, "lng": -1.0861671068339547, "title": "Drive Vauxhall", "address": "Trunk Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW", "CCS (Type 2) · 50kW"]}, {"lat": 54.59227300803525, "lng": -1.0881980071761745, "title": "Geocore Site Investigations", "address": "Tralee Close", "connectors": ["Type 2 (Socket Only) · 22kW"]}, {"lat": 54.59392150874953, "lng": -1.08818854695528, "title": "The Innovation Centre", "address": "Vienna Court", "connectors": ["Type 2 (Socket Only) · 7kW"]}, {"lat": 54.61724184113868, "lng": -1.0718268616482192, "title": "Coatham Surgery", "address": "Coatham Health Village", "connectors": []}, {"lat": 54.60850318420691, "lng": -1.09819421843099, "title": "Beyond Housing", "address": "14 Ennis Square", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 54.58689963333106, "lng": -1.0809733321173098, "title": "Kirkleatham Walled Garden", "address": "Plantation Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}];
 
   chargerData.forEach(function (c) {
+    var connHtml = c.connectors.length
+      ? '<div style="margin-top:6px;font-size:12px;color:#475569">' + c.connectors.join(' &middot; ') + '</div>'
+      : '';
     var marker = L.marker([c.lat, c.lng]);
     marker.bindPopup(
-      '<b>' + c.title + '</b><br>' + c.address + '<br><br>' +
+      '<b>' + c.title + '</b>' +
+      '<div style="color:#64748b;font-size:13px">' + c.address + '</div>' +
+      connHtml +
       '<a href="https://www.google.com/maps/dir/?api=1&destination=' + c.lat + ',' + c.lng +
-      '" target="_blank" rel="noopener">Get directions</a>'
+      '" target="_blank" rel="noopener" style="display:inline-block;margin-top:8px;padding:4px 10px;background:#2563eb;color:white;border-radius:4px;text-decoration:none;font-size:12px">Get directions</a>'
     );
     markers.addLayer(marker);
   });
-
   map.addLayer(markers);
+
+  // --- Connector filter ---
+  var filterBtns = document.querySelectorAll('.filter-btn');
+  var chargerItems = document.querySelectorAll('.charger-item');
+
+  filterBtns.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      filterBtns.forEach(function (b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      var f = btn.dataset.filter;
+      chargerItems.forEach(function (item) {
+        var connList = item.dataset.connectors ? item.dataset.connectors.split(',') : [];
+        item.style.display = (f === 'all' || connList.indexOf(f) !== -1) ? '' : 'none';
+      });
+    });
+  });
+
+  // --- Copy postcode ---
+  document.querySelectorAll('.copy-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var original = btn.textContent;
+      navigator.clipboard.writeText(btn.dataset.copy).then(function () {
+        btn.textContent = 'Copied!';
+        btn.classList.add('copy-btn--success');
+        setTimeout(function () {
+          btn.textContent = original;
+          btn.classList.remove('copy-btn--success');
+        }, 1500);
+      });
+    });
+  });
 }());
 </script>
 

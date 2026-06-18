@@ -17,7 +17,10 @@
 
 <header>
 <div class="container">
-<a href="/" class="logo">PlugMap <span class="tagline">UK EV Charger Locator</span></a>
+<a href="/" class="logo">
+  <svg class="logo-bolt" viewBox="0 0 24 24" fill="currentColor" width="22" height="22" aria-hidden="true"><path d="M13 2L4.5 13.5H11L10 22L19.5 10.5H13Z"/></svg>
+  PlugMap <span class="tagline">UK EV Charger Locator</span>
+</a>
 </div>
 </header>
 
@@ -28,16 +31,41 @@
 </nav>
 
 <h1>EV Chargers in Penrith</h1>
-<p class="page-intro">11 public charging stations found in Penrith.</p>
+
+<div class="stats-bar">
+  <span class="stat-pill stat-total">11 stations</span>
+  <span class="stat-pill stat-rapid">4 rapid (50kW+)</span>
+  <span class="stat-pill stat-fast">7 fast (7–50kW)</span>
+  
+</div>
 
 <div id="map"></div>
 
-<ul class="charger-list">
+
+<div class="connector-filter">
+  <span class="filter-label">Filter:</span>
+  <button class="filter-btn active" data-filter="all">All</button>
+  
+  <button class="filter-btn" data-filter="CCS (Type 2)">CCS (Type 2)</button>
+  
+  <button class="filter-btn" data-filter="CHAdeMO">CHAdeMO</button>
+  
+  <button class="filter-btn" data-filter="Type 2 (Socket Only)">Type 2 (Socket Only)</button>
+  
+  <button class="filter-btn" data-filter="Type 2 (Tethered Connector) ">Type 2 (Tethered Connector) </button>
+  
+</div>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Shap Village Hall</h2>
-  <p class="charger-address">Shap Village Hall CA10 3NL
+<ul class="charger-list" id="charger-list">
+
+
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Shap Village Hall</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Shap Village Hall <button class="copy-btn" data-copy="CA10 3NL">CA10 3NL</button>
   </p>
   
   <div class="charger-connections">
@@ -59,9 +87,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Westmorland Rheged Centre Services</h2>
-  <p class="charger-address">Redhills Lane CA11 0DQ
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2),CHAdeMO,Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Westmorland Rheged Centre Services</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Redhills Lane <button class="copy-btn" data-copy="CA11 0DQ">CA11 0DQ</button>
   </p>
   
   <div class="charger-connections">
@@ -92,9 +124,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Morrisons Penrith</h2>
-  <p class="charger-address">Wm Morrison Supermarkets PLC CA11 7JU
+<li class="charger-item charger-item--rapid" data-connectors="Type 2 (Tethered Connector) ,CHAdeMO">
+  <div class="charger-header">
+    <h2 class="charger-name">Morrisons Penrith</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Wm Morrison Supermarkets PLC <button class="copy-btn" data-copy="CA11 7JU">CA11 7JU</button>
   </p>
   
   <div class="charger-connections">
@@ -119,9 +155,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">The Inn on the Lake</h2>
-  <p class="charger-address">Glenridding CA11 0PE
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">The Inn on the Lake</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Glenridding <button class="copy-btn" data-copy="CA11 0PE">CA11 0PE</button>
   </p>
   
   <div class="charger-connections">
@@ -143,9 +182,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Center Parcs-Whinfell Forest (for Center Parcs Guests Only)</h2>
-  <p class="charger-address">Whinfell Forest CA10 2DW
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Center Parcs-Whinfell Forest (for Center Parcs Guests Only)</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Whinfell Forest <button class="copy-btn" data-copy="CA10 2DW">CA10 2DW</button>
   </p>
   
   <div class="charger-connections">
@@ -170,9 +212,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Ullswater Rd Garage</h2>
-  <p class="charger-address">10 Ullswater Rd, CA11 7EH
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Ullswater Rd Garage</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">10 Ullswater Rd, <button class="copy-btn" data-copy="CA11 7EH">CA11 7EH</button>
   </p>
   
   <div class="charger-connections">
@@ -194,9 +239,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Lowther Castle and Gardens</h2>
-  <p class="charger-address">Lowther Castle CA10 2HH
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Lowther Castle and Gardens</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Lowther Castle <button class="copy-btn" data-copy="CA10 2HH">CA10 2HH</button>
   </p>
   
   <div class="charger-connections">
@@ -215,9 +263,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Eden Housing Association CMS</h2>
-  <p class="charger-address">Blain House  CA11 8JB
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Eden Housing Association CMS</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Blain House  <button class="copy-btn" data-copy="CA11 8JB">CA11 8JB</button>
   </p>
   
   <div class="charger-connections">
@@ -239,9 +290,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Morland and Newby Village Hall</h2>
-  <p class="charger-address">Morland and Newby Village Hall CA10 3AS
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Morland and Newby Village Hall</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Morland and Newby Village Hall <button class="copy-btn" data-copy="CA10 3AS">CA10 3AS</button>
   </p>
   
   <div class="charger-connections">
@@ -263,9 +317,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Booths Penrith</h2>
-  <p class="charger-address">Booths Car Park CA11 7LU
+<li class="charger-item charger-item--rapid" data-connectors="CHAdeMO,CCS (Type 2)">
+  <div class="charger-header">
+    <h2 class="charger-name">Booths Penrith</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Booths Car Park <button class="copy-btn" data-copy="CA11 7LU">CA11 7LU</button>
   </p>
   
   <div class="charger-connections">
@@ -287,9 +345,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Morrisons Penrith</h2>
-  <p class="charger-address">Brunswick Road CA11 7JU
+<li class="charger-item charger-item--rapid" data-connectors="Type 2 (Tethered Connector) ,CHAdeMO,CCS (Type 2)">
+  <div class="charger-header">
+    <h2 class="charger-name">Morrisons Penrith</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Brunswick Road <button class="copy-btn" data-copy="CA11 7JU">CA11 7JU</button>
   </p>
   
   <div class="charger-connections">
@@ -317,6 +379,23 @@
 
 <p><a href="/" class="back-link">← All UK towns</a></p>
 
+
+<div class="nearby-towns">
+  <h2 class="nearby-heading">Nearby towns</h2>
+  <ul class="nearby-list">
+  
+    <li><a href="/uk/newcastle/">Newcastle</a></li>
+  
+    <li><a href="/uk/kendal/">Kendal</a></li>
+  
+    <li><a href="/uk/carlisle/">Carlisle</a></li>
+  
+    <li><a href="/uk/lancaster/">Lancaster</a></li>
+  
+  </ul>
+</div>
+
+
 </div>
 
 <footer>
@@ -329,26 +408,61 @@
 <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 <script>
 (function () {
+  // --- Map ---
   var map = L.map('map').setView([54.62471629002437, -2.745638333794567], 12);
-
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
   }).addTo(map);
 
   var markers = L.markerClusterGroup();
-  var chargerData = [{"lat": 54.529137, "lng": -2.67602, "title": "Shap Village Hall", "address": "Shap Village Hall"}, {"lat": 54.64700167, "lng": -2.78151868, "title": "Westmorland Rheged Centre Services", "address": "Redhills Lane"}, {"lat": 54.663616, "lng": -2.756512, "title": "Morrisons Penrith", "address": "Wm Morrison Supermarkets PLC"}, {"lat": 54.545391, "lng": -2.949612, "title": "The Inn on the Lake", "address": "Glenridding"}, {"lat": 54.6412, "lng": -2.6568, "title": "Center Parcs-Whinfell Forest (for Center Parcs Guests Only)", "address": "Whinfell Forest"}, {"lat": 54.6570998167212, "lng": -2.76092322140357, "title": "Ullswater Rd Garage", "address": "10 Ullswater Rd,"}, {"lat": 54.60790424640109, "lng": -2.7376993333158453, "title": "Lowther Castle and Gardens", "address": "Lowther Castle"}, {"lat": 54.658288431027245, "lng": -2.745184138733805, "title": "Eden Housing Association CMS", "address": "Blain House "}, {"lat": 54.593685, "lng": -2.624575, "title": "Morland and Newby Village Hall", "address": "Morland and Newby Village Hall"}, {"lat": 54.6647076752547, "lng": -2.75753887957899, "title": "Booths Penrith", "address": "Booths Car Park"}, {"lat": 54.66384835086379, "lng": -2.755638418708031, "title": "Morrisons Penrith", "address": "Brunswick Road"}];
+  var chargerData = [{"lat": 54.529137, "lng": -2.67602, "title": "Shap Village Hall", "address": "Shap Village Hall", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 54.64700167, "lng": -2.78151868, "title": "Westmorland Rheged Centre Services", "address": "Redhills Lane", "connectors": ["CCS (Type 2) · 60kW", "CHAdeMO · 60kW", "CCS (Type 2) · 60kW", "CCS (Type 2) · 60kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 54.663616, "lng": -2.756512, "title": "Morrisons Penrith", "address": "Wm Morrison Supermarkets PLC", "connectors": ["Type 2 (Tethered Connector)  · 43kW", "CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 50kW"]}, {"lat": 54.545391, "lng": -2.949612, "title": "The Inn on the Lake", "address": "Glenridding", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 54.6412, "lng": -2.6568, "title": "Center Parcs-Whinfell Forest (for Center Parcs Guests Only)", "address": "Whinfell Forest", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 54.6570998167212, "lng": -2.76092322140357, "title": "Ullswater Rd Garage", "address": "10 Ullswater Rd,", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 54.60790424640109, "lng": -2.7376993333158453, "title": "Lowther Castle and Gardens", "address": "Lowther Castle", "connectors": ["Type 2 (Socket Only) · 7kW"]}, {"lat": 54.658288431027245, "lng": -2.745184138733805, "title": "Eden Housing Association CMS", "address": "Blain House ", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 54.593685, "lng": -2.624575, "title": "Morland and Newby Village Hall", "address": "Morland and Newby Village Hall", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 54.6647076752547, "lng": -2.75753887957899, "title": "Booths Penrith", "address": "Booths Car Park", "connectors": ["CHAdeMO · 50kW", "CCS (Type 2) · 50kW"]}, {"lat": 54.66384835086379, "lng": -2.755638418708031, "title": "Morrisons Penrith", "address": "Brunswick Road", "connectors": ["Type 2 (Tethered Connector)  · 22kW", "CHAdeMO · 50kW", "CCS (Type 2) · 50kW"]}];
 
   chargerData.forEach(function (c) {
+    var connHtml = c.connectors.length
+      ? '<div style="margin-top:6px;font-size:12px;color:#475569">' + c.connectors.join(' &middot; ') + '</div>'
+      : '';
     var marker = L.marker([c.lat, c.lng]);
     marker.bindPopup(
-      '<b>' + c.title + '</b><br>' + c.address + '<br><br>' +
+      '<b>' + c.title + '</b>' +
+      '<div style="color:#64748b;font-size:13px">' + c.address + '</div>' +
+      connHtml +
       '<a href="https://www.google.com/maps/dir/?api=1&destination=' + c.lat + ',' + c.lng +
-      '" target="_blank" rel="noopener">Get directions</a>'
+      '" target="_blank" rel="noopener" style="display:inline-block;margin-top:8px;padding:4px 10px;background:#2563eb;color:white;border-radius:4px;text-decoration:none;font-size:12px">Get directions</a>'
     );
     markers.addLayer(marker);
   });
-
   map.addLayer(markers);
+
+  // --- Connector filter ---
+  var filterBtns = document.querySelectorAll('.filter-btn');
+  var chargerItems = document.querySelectorAll('.charger-item');
+
+  filterBtns.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      filterBtns.forEach(function (b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      var f = btn.dataset.filter;
+      chargerItems.forEach(function (item) {
+        var connList = item.dataset.connectors ? item.dataset.connectors.split(',') : [];
+        item.style.display = (f === 'all' || connList.indexOf(f) !== -1) ? '' : 'none';
+      });
+    });
+  });
+
+  // --- Copy postcode ---
+  document.querySelectorAll('.copy-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var original = btn.textContent;
+      navigator.clipboard.writeText(btn.dataset.copy).then(function () {
+        btn.textContent = 'Copied!';
+        btn.classList.add('copy-btn--success');
+        setTimeout(function () {
+          btn.textContent = original;
+          btn.classList.remove('copy-btn--success');
+        }, 1500);
+      });
+    });
+  });
 }());
 </script>
 

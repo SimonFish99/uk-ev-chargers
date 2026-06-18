@@ -17,7 +17,10 @@
 
 <header>
 <div class="container">
-<a href="/" class="logo">PlugMap <span class="tagline">UK EV Charger Locator</span></a>
+<a href="/" class="logo">
+  <svg class="logo-bolt" viewBox="0 0 24 24" fill="currentColor" width="22" height="22" aria-hidden="true"><path d="M13 2L4.5 13.5H11L10 22L19.5 10.5H13Z"/></svg>
+  PlugMap <span class="tagline">UK EV Charger Locator</span>
+</a>
 </div>
 </header>
 
@@ -28,16 +31,41 @@
 </nav>
 
 <h1>EV Chargers in Preston</h1>
-<p class="page-intro">26 public charging stations found in Preston.</p>
+
+<div class="stats-bar">
+  <span class="stat-pill stat-total">26 stations</span>
+  <span class="stat-pill stat-rapid">8 rapid (50kW+)</span>
+  <span class="stat-pill stat-fast">16 fast (7–50kW)</span>
+  <span class="stat-pill stat-slow">2 slow</span>
+</div>
 
 <div id="map"></div>
 
-<ul class="charger-list">
+
+<div class="connector-filter">
+  <span class="filter-label">Filter:</span>
+  <button class="filter-btn active" data-filter="all">All</button>
+  
+  <button class="filter-btn" data-filter="CCS (Type 2)">CCS (Type 2)</button>
+  
+  <button class="filter-btn" data-filter="CHAdeMO">CHAdeMO</button>
+  
+  <button class="filter-btn" data-filter="Type 2 (Socket Only)">Type 2 (Socket Only)</button>
+  
+  <button class="filter-btn" data-filter="Type 2 (Tethered Connector) ">Type 2 (Tethered Connector) </button>
+  
+</div>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">James Street</h2>
-  <p class="charger-address">James Street PR1 4JU
+<ul class="charger-list" id="charger-list">
+
+
+<li class="charger-item charger-item--slow" data-connectors="CHAdeMO">
+  <div class="charger-header">
+    <h2 class="charger-name">James Street</h2>
+    
+  </div>
+  <p class="charger-address">James Street <button class="copy-btn" data-copy="PR1 4JU">PR1 4JU</button>
   </p>
   
   <div class="charger-connections">
@@ -56,9 +84,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">James Street</h2>
-  <p class="charger-address">James Street PR1 4JU
+<li class="charger-item charger-item--slow" data-connectors="">
+  <div class="charger-header">
+    <h2 class="charger-name">James Street</h2>
+    
+  </div>
+  <p class="charger-address">James Street <button class="copy-btn" data-copy="PR1 4JU">PR1 4JU</button>
   </p>
   
   
@@ -70,9 +101,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Tickled Trout Hotel</h2>
-  <p class="charger-address">Preston New Road PR5 0UJ
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2),Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Tickled Trout Hotel</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Preston New Road <button class="copy-btn" data-copy="PR5 0UJ">PR5 0UJ</button>
   </p>
   
   <div class="charger-connections">
@@ -94,9 +129,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Kingsway Car Park, Bamber Bridge 1</h2>
-  <p class="charger-address">Bamber Bridge PR5 6UJ
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Kingsway Car Park, Bamber Bridge 1</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Bamber Bridge <button class="copy-btn" data-copy="PR5 6UJ">PR5 6UJ</button>
   </p>
   
   <div class="charger-connections">
@@ -118,9 +156,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">EVC Tickled Trout Hotel</h2>
-  <p class="charger-address">Preston New Road PR5 0UJ
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">EVC Tickled Trout Hotel</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Preston New Road <button class="copy-btn" data-copy="PR5 0UJ">PR5 0UJ</button>
   </p>
   
   <div class="charger-connections">
@@ -139,9 +180,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">High Street Car Park, Garstang 3</h2>
-  <p class="charger-address">High Street, Garstang PR3 1EB
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">High Street Car Park, Garstang 3</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">High Street, Garstang <button class="copy-btn" data-copy="PR3 1EB">PR3 1EB</button>
   </p>
   
   <div class="charger-connections">
@@ -163,9 +207,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">ICUEVEMINI900134</h2>
-  <p class="charger-address">Walton Summit Centre PR5 6AW
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">ICUEVEMINI900134</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Walton Summit Centre <button class="copy-btn" data-copy="PR5 6AW">PR5 6AW</button>
   </p>
   
   <div class="charger-connections">
@@ -182,9 +229,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">SIKA PRESTON 1</h2>
-  <p class="charger-address">Miller St PR1 1EA
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">SIKA PRESTON 1</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Miller St <button class="copy-btn" data-copy="PR1 1EA">PR1 1EA</button>
   </p>
   
   <div class="charger-connections">
@@ -206,9 +256,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">MFG</h2>
-  <p class="charger-address">Wigan Road PR25 5UD
+<li class="charger-item charger-item--rapid" data-connectors="CHAdeMO,Type 2 (Tethered Connector) ">
+  <div class="charger-header">
+    <h2 class="charger-name">MFG</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Wigan Road <button class="copy-btn" data-copy="PR25 5UD">PR25 5UD</button>
   </p>
   
   <div class="charger-connections">
@@ -233,9 +287,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Central Drive, Royal Preston Hospital, Sharoe Green Lane, Fulwood, Preston</h2>
-  <p class="charger-address">Royal Preston Hospital PR2 9HT
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Central Drive, Royal Preston Hospital, Sharoe Green Lane, Fulwood, Preston</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Royal Preston Hospital <button class="copy-btn" data-copy="PR2 9HT">PR2 9HT</button>
   </p>
   
   <div class="charger-connections">
@@ -257,9 +314,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Royal Preston Hospital 2</h2>
-  <p class="charger-address">Sharoe Green Lane PR2 9HT
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Royal Preston Hospital 2</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Sharoe Green Lane <button class="copy-btn" data-copy="PR2 9HT">PR2 9HT</button>
   </p>
   
   <div class="charger-connections">
@@ -281,9 +341,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Preston Business Centre</h2>
-  <p class="charger-address">Fulwood PR2 8DY
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Preston Business Centre</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Fulwood <button class="copy-btn" data-copy="PR2 8DY">PR2 8DY</button>
   </p>
   
   <div class="charger-connections">
@@ -305,9 +368,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Capitol Way</h2>
-  <p class="charger-address">Capitol Way PR5
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Capitol Way</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Capitol Way <button class="copy-btn" data-copy="PR5">PR5</button>
   </p>
   
   <div class="charger-connections">
@@ -338,9 +404,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">South Ribble - Community Centre CP</h2>
-  <p class="charger-address">Kingsfold Drive PR1 9EQ
+<li class="charger-item charger-item--rapid" data-connectors="Type 2 (Tethered Connector) ,CHAdeMO,Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">South Ribble - Community Centre CP</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Kingsfold Drive <button class="copy-btn" data-copy="PR1 9EQ">PR1 9EQ</button>
   </p>
   
   <div class="charger-connections">
@@ -365,9 +435,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">South Ribble - Bamber Bridge CP</h2>
-  <p class="charger-address">Brindle Road PR5 6YJ
+<li class="charger-item charger-item--rapid" data-connectors="Type 2 (Tethered Connector) ,CHAdeMO,Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">South Ribble - Bamber Bridge CP</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Brindle Road <button class="copy-btn" data-copy="PR5 6YJ">PR5 6YJ</button>
   </p>
   
   <div class="charger-connections">
@@ -392,9 +466,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Frank Whittle Partnership</h2>
-  <p class="charger-address">Regent Street PR1 3LX
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Frank Whittle Partnership</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Regent Street <button class="copy-btn" data-copy="PR1 3LX">PR1 3LX</button>
   </p>
   
   <div class="charger-connections">
@@ -416,9 +493,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Royal Preston Hospital Car Park A</h2>
-  <p class="charger-address">Sharoe Green Lane PR2 9HT
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Royal Preston Hospital Car Park A</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Sharoe Green Lane <button class="copy-btn" data-copy="PR2 9HT">PR2 9HT</button>
   </p>
   
   <div class="charger-connections">
@@ -437,9 +517,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Lidl-Eastway Retail Hub</h2>
-  <p class="charger-address">Eastway Retail Hub PR2 3FB
+<li class="charger-item charger-item--rapid" data-connectors="Type 2 (Socket Only),CHAdeMO,CCS (Type 2)">
+  <div class="charger-header">
+    <h2 class="charger-name">Lidl-Eastway Retail Hub</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Eastway Retail Hub <button class="copy-btn" data-copy="PR2 3FB">PR2 3FB</button>
   </p>
   
   <div class="charger-connections">
@@ -464,9 +548,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Lockside Road, Riversway</h2>
-  <p class="charger-address">Lockside Road, Riversway PR2 2YS
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Lockside Road, Riversway</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Lockside Road, Riversway <button class="copy-btn" data-copy="PR2 2YS">PR2 2YS</button>
   </p>
   
   <div class="charger-connections">
@@ -488,9 +575,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Eurogarages Preston East Starbucks</h2>
-  <p class="charger-address">Starbucks PR2 5RX
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2),CHAdeMO">
+  <div class="charger-header">
+    <h2 class="charger-name">Eurogarages Preston East Starbucks</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Starbucks <button class="copy-btn" data-copy="PR2 5RX">PR2 5RX</button>
   </p>
   
   <div class="charger-connections">
@@ -518,9 +609,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">ICUEVE900236</h2>
-  <p class="charger-address">77 Cumeragh Lane PR3 2AN
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">ICUEVE900236</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">77 Cumeragh Lane <button class="copy-btn" data-copy="PR3 2AN">PR3 2AN</button>
   </p>
   
   <div class="charger-connections">
@@ -537,9 +631,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Ancient Oak</h2>
-  <p class="charger-address">Merry Trees Lane PR4 0NZ
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2),CHAdeMO,Type 2 (Tethered Connector) ">
+  <div class="charger-header">
+    <h2 class="charger-name">Ancient Oak</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Merry Trees Lane <button class="copy-btn" data-copy="PR4 0NZ">PR4 0NZ</button>
   </p>
   
   <div class="charger-connections">
@@ -564,9 +662,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Lawson St Parking/Charging</h2>
-  <p class="charger-address">2-4 Lawson Street PR1 2HS
+<li class="charger-item charger-item--rapid" data-connectors="CHAdeMO,Type 2 (Tethered Connector) ">
+  <div class="charger-header">
+    <h2 class="charger-name">Lawson St Parking/Charging</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">2-4 Lawson Street <button class="copy-btn" data-copy="PR1 2HS">PR1 2HS</button>
   </p>
   
   <div class="charger-connections">
@@ -591,9 +693,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">ICUEVE900244</h2>
-  <p class="charger-address">Strand Road PR1 8PQ
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">ICUEVE900244</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Strand Road <button class="copy-btn" data-copy="PR1 8PQ">PR1 8PQ</button>
   </p>
   
   <div class="charger-connections">
@@ -610,9 +715,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">ICUEVE900381</h2>
-  <p class="charger-address">487 Holly Place PR5 8AX
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">ICUEVE900381</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">487 Holly Place <button class="copy-btn" data-copy="PR5 8AX">PR5 8AX</button>
   </p>
   
   <div class="charger-connections">
@@ -629,9 +737,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Ainsworth &amp; Parkinson LTD (A&amp;p)</h2>
-  <p class="charger-address">Sceptre Way PR5 6AW
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Ainsworth &amp; Parkinson LTD (A&amp;p)</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Sceptre Way <button class="copy-btn" data-copy="PR5 6AW">PR5 6AW</button>
   </p>
   
   <div class="charger-connections">
@@ -653,6 +764,23 @@
 
 <p><a href="/" class="back-link">← All UK towns</a></p>
 
+
+<div class="nearby-towns">
+  <h2 class="nearby-heading">Nearby towns</h2>
+  <ul class="nearby-list">
+  
+    <li><a href="/uk/patchway/">Patchway</a></li>
+  
+    <li><a href="/uk/bristol/">Bristol</a></li>
+  
+    <li><a href="/uk/newport/">Newport</a></li>
+  
+    <li><a href="/uk/stroud/">Stroud</a></li>
+  
+  </ul>
+</div>
+
+
 </div>
 
 <footer>
@@ -665,26 +793,61 @@
 <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 <script>
 (function () {
+  // --- Map ---
   var map = L.map('map').setView([51.69702691725474, -2.584179687216194], 12);
-
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
   }).addTo(map);
 
   var markers = L.markerClusterGroup();
-  var chargerData = [{"lat": -5.866583099134459e-05, "lng": -2.2496442852570908e-05, "title": "James Street", "address": "James Street"}, {"lat": 53.75750069459906, "lng": -2.6846444235922036, "title": "James Street", "address": "James Street"}, {"lat": 53.76508305, "lng": -2.640782058, "title": "Tickled Trout Hotel", "address": "Preston New Road"}, {"lat": 53.728405, "lng": -2.661709, "title": "Kingsway Car Park, Bamber Bridge 1", "address": "Bamber Bridge"}, {"lat": 53.76508305, "lng": -2.640782058, "title": "EVC Tickled Trout Hotel", "address": "Preston New Road"}, {"lat": 53.902379, "lng": -2.772537, "title": "High Street Car Park, Garstang 3", "address": "High Street, Garstang"}, {"lat": 53.718891, "lng": -2.639711, "title": "ICUEVEMINI900134", "address": "Walton Summit Centre"}, {"lat": 53.759883, "lng": -2.682831, "title": "SIKA PRESTON 1", "address": "Miller St"}, {"lat": 53.69252, "lng": -2.67483, "title": "MFG", "address": "Wigan Road"}, {"lat": 53.789643, "lng": -2.704535, "title": "Central Drive, Royal Preston Hospital, Sharoe Green Lane, Fulwood, Preston", "address": "Royal Preston Hospital"}, {"lat": 53.789011, "lng": -2.708097, "title": "Royal Preston Hospital 2", "address": "Sharoe Green Lane"}, {"lat": 53.779391, "lng": -2.69113, "title": "Preston Business Centre", "address": "Fulwood"}, {"lat": 53.748631, "lng": -2.675916, "title": "Capitol Way", "address": "Capitol Way"}, {"lat": 53.73296, "lng": -2.71716, "title": "South Ribble - Community Centre CP", "address": "Kingsfold Drive"}, {"lat": 53.730537, "lng": -2.65131, "title": "South Ribble - Bamber Bridge CP", "address": "Brindle Road"}, {"lat": 53.755276, "lng": -2.6998382, "title": "Frank Whittle Partnership", "address": "Regent Street"}, {"lat": 53.79106533467561, "lng": -2.709543184370659, "title": "Royal Preston Hospital Car Park A", "address": "Sharoe Green Lane"}, {"lat": 53.7992039, "lng": -2.7228277, "title": "Lidl-Eastway Retail Hub", "address": "Eastway Retail Hub"}, {"lat": 53.760723613821284, "lng": -2.746551038903931, "title": "Lockside Road, Riversway", "address": "Lockside Road, Riversway"}, {"lat": 53.79123587135817, "lng": -2.6534852083113947, "title": "Eurogarages Preston East Starbucks", "address": "Starbucks"}, {"lat": 53.820627, "lng": -2.655542, "title": "ICUEVE900236", "address": "77 Cumeragh Lane"}, {"lat": 53.784958, "lng": -2.752015, "title": "Ancient Oak", "address": "Merry Trees Lane"}, {"lat": 53.761604, "lng": -2.701257, "title": "Lawson St Parking/Charging", "address": "2-4 Lawson Street"}, {"lat": 53.759342, "lng": -2.718506, "title": "ICUEVE900244", "address": "Strand Road"}, {"lat": 53.719582, "lng": -2.644137, "title": "ICUEVE900381", "address": "487 Holly Place"}, {"lat": 53.719223, "lng": -2.6389725, "title": "Ainsworth & Parkinson LTD (A&p)", "address": "Sceptre Way"}];
+  var chargerData = [{"lat": -5.866583099134459e-05, "lng": -2.2496442852570908e-05, "title": "James Street", "address": "James Street", "connectors": ["CHAdeMO"]}, {"lat": 53.75750069459906, "lng": -2.6846444235922036, "title": "James Street", "address": "James Street", "connectors": []}, {"lat": 53.76508305, "lng": -2.640782058, "title": "Tickled Trout Hotel", "address": "Preston New Road", "connectors": ["CCS (Type 2) · 100kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 53.728405, "lng": -2.661709, "title": "Kingsway Car Park, Bamber Bridge 1", "address": "Bamber Bridge", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 53.76508305, "lng": -2.640782058, "title": "EVC Tickled Trout Hotel", "address": "Preston New Road", "connectors": ["Type 2 (Socket Only) · 22kW"]}, {"lat": 53.902379, "lng": -2.772537, "title": "High Street Car Park, Garstang 3", "address": "High Street, Garstang", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 53.718891, "lng": -2.639711, "title": "ICUEVEMINI900134", "address": "Walton Summit Centre", "connectors": ["Type 2 (Socket Only) · 7kW"]}, {"lat": 53.759883, "lng": -2.682831, "title": "SIKA PRESTON 1", "address": "Miller St", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 53.69252, "lng": -2.67483, "title": "MFG", "address": "Wigan Road", "connectors": ["CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 43kW", "Type 2 (Tethered Connector)  · 50kW"]}, {"lat": 53.789643, "lng": -2.704535, "title": "Central Drive, Royal Preston Hospital, Sharoe Green Lane, Fulwood, Preston", "address": "Royal Preston Hospital", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 53.789011, "lng": -2.708097, "title": "Royal Preston Hospital 2", "address": "Sharoe Green Lane", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 53.779391, "lng": -2.69113, "title": "Preston Business Centre", "address": "Fulwood", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 53.748631, "lng": -2.675916, "title": "Capitol Way", "address": "Capitol Way", "connectors": ["Type 2 (Socket Only) · 11kW", "Type 2 (Socket Only) · 11kW", "Type 2 (Socket Only) · 11kW", "Type 2 (Socket Only) · 11kW", "Type 2 (Socket Only) · 11kW"]}, {"lat": 53.73296, "lng": -2.71716, "title": "South Ribble - Community Centre CP", "address": "Kingsfold Drive", "connectors": ["Type 2 (Tethered Connector)  · 50kW", "CHAdeMO · 50kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 53.730537, "lng": -2.65131, "title": "South Ribble - Bamber Bridge CP", "address": "Brindle Road", "connectors": ["Type 2 (Tethered Connector)  · 50kW", "CHAdeMO · 50kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 53.755276, "lng": -2.6998382, "title": "Frank Whittle Partnership", "address": "Regent Street", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 53.79106533467561, "lng": -2.709543184370659, "title": "Royal Preston Hospital Car Park A", "address": "Sharoe Green Lane", "connectors": ["Type 2 (Socket Only) · 7kW"]}, {"lat": 53.7992039, "lng": -2.7228277, "title": "Lidl-Eastway Retail Hub", "address": "Eastway Retail Hub", "connectors": ["Type 2 (Socket Only) · 22kW", "CHAdeMO · 50kW", "CCS (Type 2) · 50kW"]}, {"lat": 53.760723613821284, "lng": -2.746551038903931, "title": "Lockside Road, Riversway", "address": "Lockside Road, Riversway", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 53.79123587135817, "lng": -2.6534852083113947, "title": "Eurogarages Preston East Starbucks", "address": "Starbucks", "connectors": ["CCS (Type 2) · 175kW", "CHAdeMO · 100kW", "CCS (Type 2) · 175kW", "CHAdeMO · 100kW"]}, {"lat": 53.820627, "lng": -2.655542, "title": "ICUEVE900236", "address": "77 Cumeragh Lane", "connectors": ["Type 2 (Socket Only) · 7kW"]}, {"lat": 53.784958, "lng": -2.752015, "title": "Ancient Oak", "address": "Merry Trees Lane", "connectors": ["CCS (Type 2) · 50kW", "CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 43kW"]}, {"lat": 53.761604, "lng": -2.701257, "title": "Lawson St Parking/Charging", "address": "2-4 Lawson Street", "connectors": ["CHAdeMO · 50kW", "CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 43kW"]}, {"lat": 53.759342, "lng": -2.718506, "title": "ICUEVE900244", "address": "Strand Road", "connectors": ["Type 2 (Socket Only) · 7kW"]}, {"lat": 53.719582, "lng": -2.644137, "title": "ICUEVE900381", "address": "487 Holly Place", "connectors": ["Type 2 (Socket Only) · 7kW"]}, {"lat": 53.719223, "lng": -2.6389725, "title": "Ainsworth & Parkinson LTD (A&p)", "address": "Sceptre Way", "connectors": ["Type 2 (Socket Only) · 7kW"]}];
 
   chargerData.forEach(function (c) {
+    var connHtml = c.connectors.length
+      ? '<div style="margin-top:6px;font-size:12px;color:#475569">' + c.connectors.join(' &middot; ') + '</div>'
+      : '';
     var marker = L.marker([c.lat, c.lng]);
     marker.bindPopup(
-      '<b>' + c.title + '</b><br>' + c.address + '<br><br>' +
+      '<b>' + c.title + '</b>' +
+      '<div style="color:#64748b;font-size:13px">' + c.address + '</div>' +
+      connHtml +
       '<a href="https://www.google.com/maps/dir/?api=1&destination=' + c.lat + ',' + c.lng +
-      '" target="_blank" rel="noopener">Get directions</a>'
+      '" target="_blank" rel="noopener" style="display:inline-block;margin-top:8px;padding:4px 10px;background:#2563eb;color:white;border-radius:4px;text-decoration:none;font-size:12px">Get directions</a>'
     );
     markers.addLayer(marker);
   });
-
   map.addLayer(markers);
+
+  // --- Connector filter ---
+  var filterBtns = document.querySelectorAll('.filter-btn');
+  var chargerItems = document.querySelectorAll('.charger-item');
+
+  filterBtns.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      filterBtns.forEach(function (b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      var f = btn.dataset.filter;
+      chargerItems.forEach(function (item) {
+        var connList = item.dataset.connectors ? item.dataset.connectors.split(',') : [];
+        item.style.display = (f === 'all' || connList.indexOf(f) !== -1) ? '' : 'none';
+      });
+    });
+  });
+
+  // --- Copy postcode ---
+  document.querySelectorAll('.copy-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var original = btn.textContent;
+      navigator.clipboard.writeText(btn.dataset.copy).then(function () {
+        btn.textContent = 'Copied!';
+        btn.classList.add('copy-btn--success');
+        setTimeout(function () {
+          btn.textContent = original;
+          btn.classList.remove('copy-btn--success');
+        }, 1500);
+      });
+    });
+  });
 }());
 </script>
 

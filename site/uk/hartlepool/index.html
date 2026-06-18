@@ -17,7 +17,10 @@
 
 <header>
 <div class="container">
-<a href="/" class="logo">PlugMap <span class="tagline">UK EV Charger Locator</span></a>
+<a href="/" class="logo">
+  <svg class="logo-bolt" viewBox="0 0 24 24" fill="currentColor" width="22" height="22" aria-hidden="true"><path d="M13 2L4.5 13.5H11L10 22L19.5 10.5H13Z"/></svg>
+  PlugMap <span class="tagline">UK EV Charger Locator</span>
+</a>
 </div>
 </header>
 
@@ -28,16 +31,44 @@
 </nav>
 
 <h1>EV Chargers in Hartlepool</h1>
-<p class="page-intro">10 public charging stations found in Hartlepool.</p>
+
+<div class="stats-bar">
+  <span class="stat-pill stat-total">10 stations</span>
+  <span class="stat-pill stat-rapid">4 rapid (50kW+)</span>
+  <span class="stat-pill stat-fast">5 fast (7–50kW)</span>
+  <span class="stat-pill stat-slow">1 slow</span>
+</div>
 
 <div id="map"></div>
 
-<ul class="charger-list">
+
+<div class="connector-filter">
+  <span class="filter-label">Filter:</span>
+  <button class="filter-btn active" data-filter="all">All</button>
+  
+  <button class="filter-btn" data-filter="BS1363 3 Pin 13 Amp">BS1363 3 Pin 13 Amp</button>
+  
+  <button class="filter-btn" data-filter="CCS (Type 2)">CCS (Type 2)</button>
+  
+  <button class="filter-btn" data-filter="CHAdeMO">CHAdeMO</button>
+  
+  <button class="filter-btn" data-filter="Type 2 (Socket Only)">Type 2 (Socket Only)</button>
+  
+  <button class="filter-btn" data-filter="Type 2 (Tethered Connector) ">Type 2 (Tethered Connector) </button>
+  
+</div>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Royal Navy Museum</h2>
-  <p class="charger-address">Maritime Avenue TS24 0XZ
+<ul class="charger-list" id="charger-list">
+
+
+<li class="charger-item charger-item--rapid" data-connectors="Type 2 (Tethered Connector) ,CHAdeMO,Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Royal Navy Museum</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Maritime Avenue <button class="copy-btn" data-copy="TS24 0XZ">TS24 0XZ</button>
   </p>
   
   <div class="charger-connections">
@@ -62,9 +93,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Teesbay Retail Park 1</h2>
-  <p class="charger-address">16 Brenda Road TS25 1XJ
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2),CHAdeMO">
+  <div class="charger-header">
+    <h2 class="charger-name">Teesbay Retail Park 1</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">16 Brenda Road <button class="copy-btn" data-copy="TS25 1XJ">TS25 1XJ</button>
   </p>
   
   <div class="charger-connections">
@@ -89,9 +124,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Middleton Grange Shopping Centre</h2>
-  <p class="charger-address">Middleton Grange Shopping Centre TS24 7RZ
+<li class="charger-item charger-item--slow" data-connectors="BS1363 3 Pin 13 Amp">
+  <div class="charger-header">
+    <h2 class="charger-name">Middleton Grange Shopping Centre</h2>
+    
+  </div>
+  <p class="charger-address">Middleton Grange Shopping Centre <button class="copy-btn" data-copy="TS24 7RZ">TS24 7RZ</button>
   </p>
   
   <div class="charger-connections">
@@ -110,9 +148,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Hartlepool Civic Centre</h2>
-  <p class="charger-address">Hartlepool Civic Centre TS24 8AY
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Hartlepool Civic Centre</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Hartlepool Civic Centre <button class="copy-btn" data-copy="TS24 8AY">TS24 8AY</button>
   </p>
   
   <div class="charger-connections">
@@ -131,9 +172,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">West Side Car Park 3</h2>
-  <p class="charger-address">Villiers Street TS24 7SA
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">West Side Car Park 3</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Villiers Street <button class="copy-btn" data-copy="TS24 7SA">TS24 7SA</button>
   </p>
   
   <div class="charger-connections">
@@ -155,9 +199,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Walden Street Car Park 3</h2>
-  <p class="charger-address">Villers Street TS24 7RR
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Walden Street Car Park 3</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Villers Street <button class="copy-btn" data-copy="TS24 7RR">TS24 7RR</button>
   </p>
   
   <div class="charger-connections">
@@ -179,9 +226,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Housing Hartlepool Front Car Park</h2>
-  <p class="charger-address">Greenbank TS24 7QS
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Housing Hartlepool Front Car Park</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Greenbank <button class="copy-btn" data-copy="TS24 7QS">TS24 7QS</button>
   </p>
   
   <div class="charger-connections">
@@ -200,9 +250,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Seaton Carew Coach Park 6</h2>
-  <p class="charger-address">Tees Road, Seaton Carew TS25 1DD
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Seaton Carew Coach Park 6</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Tees Road, Seaton Carew <button class="copy-btn" data-copy="TS25 1DD">TS25 1DD</button>
   </p>
   
   <div class="charger-connections">
@@ -224,9 +277,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Tesco Extra-Hartlepool</h2>
-  <p class="charger-address">Belle Vue Way TS25 1UP
+<li class="charger-item charger-item--rapid" data-connectors="Type 2 (Socket Only),CHAdeMO,CCS (Type 2)">
+  <div class="charger-header">
+    <h2 class="charger-name">Tesco Extra-Hartlepool</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Belle Vue Way <button class="copy-btn" data-copy="TS25 1UP">TS25 1UP</button>
   </p>
   
   <div class="charger-connections">
@@ -254,9 +311,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Morrisons Hartlepool</h2>
-  <p class="charger-address">Clarence Road TS24 8BZ
+<li class="charger-item charger-item--rapid" data-connectors="Type 2 (Socket Only),CHAdeMO,CCS (Type 2)">
+  <div class="charger-header">
+    <h2 class="charger-name">Morrisons Hartlepool</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Clarence Road <button class="copy-btn" data-copy="TS24 8BZ">TS24 8BZ</button>
   </p>
   
   <div class="charger-connections">
@@ -284,6 +345,23 @@
 
 <p><a href="/" class="back-link">← All UK towns</a></p>
 
+
+<div class="nearby-towns">
+  <h2 class="nearby-heading">Nearby towns</h2>
+  <ul class="nearby-list">
+  
+    <li><a href="/uk/billingham/">Billingham</a></li>
+  
+    <li><a href="/uk/middlesbrough/">Middlesbrough</a></li>
+  
+    <li><a href="/uk/stockton-on-tees/">Stockton-on-Tees</a></li>
+  
+    <li><a href="/uk/redcar/">Redcar</a></li>
+  
+  </ul>
+</div>
+
+
 </div>
 
 <footer>
@@ -296,26 +374,61 @@
 <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 <script>
 (function () {
+  // --- Map ---
   var map = L.map('map').setView([54.679490337000004, -1.2097626670000001], 12);
-
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
   }).addTo(map);
 
   var markers = L.markerClusterGroup();
-  var chargerData = [{"lat": 54.68996, "lng": -1.20855, "title": "Royal Navy Museum", "address": "Maritime Avenue"}, {"lat": 54.665278, "lng": -1.208947, "title": "Teesbay Retail Park 1", "address": "16 Brenda Road"}, {"lat": 54.684182, "lng": -1.215038, "title": "Middleton Grange Shopping Centre", "address": "Middleton Grange Shopping Centre"}, {"lat": 54.685975, "lng": -1.214915, "title": "Hartlepool Civic Centre", "address": "Hartlepool Civic Centre"}, {"lat": 54.684408, "lng": -1.215985, "title": "West Side Car Park 3", "address": "Villiers Street"}, {"lat": 54.682808, "lng": -1.214883, "title": "Walden Street Car Park 3", "address": "Villers Street"}, {"lat": 54.680323, "lng": -1.213973, "title": "Housing Hartlepool Front Car Park", "address": "Greenbank"}, {"lat": 54.65634, "lng": -1.18464, "title": "Seaton Carew Coach Park 6", "address": "Tees Road, Seaton Carew"}, {"lat": 54.67755037, "lng": -1.20881267, "title": "Tesco Extra-Hartlepool", "address": "Belle Vue Way"}, {"lat": 54.688079, "lng": -1.211883, "title": "Morrisons Hartlepool", "address": "Clarence Road"}];
+  var chargerData = [{"lat": 54.68996, "lng": -1.20855, "title": "Royal Navy Museum", "address": "Maritime Avenue", "connectors": ["Type 2 (Tethered Connector)  · 50kW", "CHAdeMO · 50kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 54.665278, "lng": -1.208947, "title": "Teesbay Retail Park 1", "address": "16 Brenda Road", "connectors": ["CCS (Type 2) · 300kW", "CHAdeMO · 60kW", "CCS (Type 2) · 300kW"]}, {"lat": 54.684182, "lng": -1.215038, "title": "Middleton Grange Shopping Centre", "address": "Middleton Grange Shopping Centre", "connectors": ["BS1363 3 Pin 13 Amp · 3kW"]}, {"lat": 54.685975, "lng": -1.214915, "title": "Hartlepool Civic Centre", "address": "Hartlepool Civic Centre", "connectors": ["Type 2 (Socket Only) · 7kW"]}, {"lat": 54.684408, "lng": -1.215985, "title": "West Side Car Park 3", "address": "Villiers Street", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 54.682808, "lng": -1.214883, "title": "Walden Street Car Park 3", "address": "Villers Street", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 54.680323, "lng": -1.213973, "title": "Housing Hartlepool Front Car Park", "address": "Greenbank", "connectors": ["Type 2 (Socket Only) · 7kW"]}, {"lat": 54.65634, "lng": -1.18464, "title": "Seaton Carew Coach Park 6", "address": "Tees Road, Seaton Carew", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 54.67755037, "lng": -1.20881267, "title": "Tesco Extra-Hartlepool", "address": "Belle Vue Way", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 7kW", "CHAdeMO · 50kW", "CCS (Type 2) · 50kW"]}, {"lat": 54.688079, "lng": -1.211883, "title": "Morrisons Hartlepool", "address": "Clarence Road", "connectors": ["Type 2 (Socket Only) · 22kW", "CHAdeMO · 50kW", "CCS (Type 2) · 50kW"]}];
 
   chargerData.forEach(function (c) {
+    var connHtml = c.connectors.length
+      ? '<div style="margin-top:6px;font-size:12px;color:#475569">' + c.connectors.join(' &middot; ') + '</div>'
+      : '';
     var marker = L.marker([c.lat, c.lng]);
     marker.bindPopup(
-      '<b>' + c.title + '</b><br>' + c.address + '<br><br>' +
+      '<b>' + c.title + '</b>' +
+      '<div style="color:#64748b;font-size:13px">' + c.address + '</div>' +
+      connHtml +
       '<a href="https://www.google.com/maps/dir/?api=1&destination=' + c.lat + ',' + c.lng +
-      '" target="_blank" rel="noopener">Get directions</a>'
+      '" target="_blank" rel="noopener" style="display:inline-block;margin-top:8px;padding:4px 10px;background:#2563eb;color:white;border-radius:4px;text-decoration:none;font-size:12px">Get directions</a>'
     );
     markers.addLayer(marker);
   });
-
   map.addLayer(markers);
+
+  // --- Connector filter ---
+  var filterBtns = document.querySelectorAll('.filter-btn');
+  var chargerItems = document.querySelectorAll('.charger-item');
+
+  filterBtns.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      filterBtns.forEach(function (b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      var f = btn.dataset.filter;
+      chargerItems.forEach(function (item) {
+        var connList = item.dataset.connectors ? item.dataset.connectors.split(',') : [];
+        item.style.display = (f === 'all' || connList.indexOf(f) !== -1) ? '' : 'none';
+      });
+    });
+  });
+
+  // --- Copy postcode ---
+  document.querySelectorAll('.copy-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var original = btn.textContent;
+      navigator.clipboard.writeText(btn.dataset.copy).then(function () {
+        btn.textContent = 'Copied!';
+        btn.classList.add('copy-btn--success');
+        setTimeout(function () {
+          btn.textContent = original;
+          btn.classList.remove('copy-btn--success');
+        }, 1500);
+      });
+    });
+  });
 }());
 </script>
 

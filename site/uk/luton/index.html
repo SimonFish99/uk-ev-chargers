@@ -17,7 +17,10 @@
 
 <header>
 <div class="container">
-<a href="/" class="logo">PlugMap <span class="tagline">UK EV Charger Locator</span></a>
+<a href="/" class="logo">
+  <svg class="logo-bolt" viewBox="0 0 24 24" fill="currentColor" width="22" height="22" aria-hidden="true"><path d="M13 2L4.5 13.5H11L10 22L19.5 10.5H13Z"/></svg>
+  PlugMap <span class="tagline">UK EV Charger Locator</span>
+</a>
 </div>
 </header>
 
@@ -28,16 +31,42 @@
 </nav>
 
 <h1>EV Chargers in Luton</h1>
-<p class="page-intro">15 public charging stations found in Luton.</p>
+
+<div class="stats-bar">
+  <span class="stat-pill stat-total">15 stations</span>
+  <span class="stat-pill stat-rapid">2 rapid (50kW+)</span>
+  <span class="stat-pill stat-fast">10 fast (7–50kW)</span>
+  <span class="stat-pill stat-slow">3 slow</span>
+</div>
 
 <div id="map"></div>
 
-<ul class="charger-list">
+
+<div class="connector-filter">
+  <span class="filter-label">Filter:</span>
+  <button class="filter-btn active" data-filter="all">All</button>
+  
+  <button class="filter-btn" data-filter="BS1363 3 Pin 13 Amp">BS1363 3 Pin 13 Amp</button>
+  
+  <button class="filter-btn" data-filter="CCS (Type 2)">CCS (Type 2)</button>
+  
+  <button class="filter-btn" data-filter="CHAdeMO">CHAdeMO</button>
+  
+  <button class="filter-btn" data-filter="Type 2 (Socket Only)">Type 2 (Socket Only)</button>
+  
+</div>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Tesla Luton Gipsy Lane Retail Park</h2>
-  <p class="charger-address">Gipsy Lane LU1 3JH
+<ul class="charger-list" id="charger-list">
+
+
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2)">
+  <div class="charger-header">
+    <h2 class="charger-name">Tesla Luton Gipsy Lane Retail Park</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Gipsy Lane <button class="copy-btn" data-copy="LU1 3JH">LU1 3JH</button>
   </p>
   
   <div class="charger-connections">
@@ -56,9 +85,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Luton Station</h2>
-  <p class="charger-address">Midland Road LU2 0HR
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Luton Station</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Midland Road <button class="copy-btn" data-copy="LU2 0HR">LU2 0HR</button>
   </p>
   
   <div class="charger-connections">
@@ -80,9 +112,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">InstaVolt Wigmore Shopping Centre</h2>
-  <p class="charger-address">Wigmore Lane LU2 9XG
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2),CHAdeMO">
+  <div class="charger-header">
+    <h2 class="charger-name">InstaVolt Wigmore Shopping Centre</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Wigmore Lane <button class="copy-btn" data-copy="LU2 9XG">LU2 9XG</button>
   </p>
   
   <div class="charger-connections">
@@ -104,9 +140,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Basepoint Business Centre</h2>
-  <p class="charger-address">Great Marlings LU2 8DL
+<li class="charger-item charger-item--fast" data-connectors="BS1363 3 Pin 13 Amp,Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Basepoint Business Centre</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Great Marlings <button class="copy-btn" data-copy="LU2 8DL">LU2 8DL</button>
   </p>
   
   <div class="charger-connections">
@@ -128,9 +167,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Whitecroft Rd 9</h2>
-  <p class="charger-address">Whitecroft Rd 9 LU2 0JS
+<li class="charger-item charger-item--slow" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Whitecroft Rd 9</h2>
+    
+  </div>
+  <p class="charger-address">Whitecroft Rd 9 <button class="copy-btn" data-copy="LU2 0JS">LU2 0JS</button>
   </p>
   
   <div class="charger-connections">
@@ -149,9 +191,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Central Car Park The Mall</h2>
-  <p class="charger-address">Silver Street LU1 2LJ
+<li class="charger-item charger-item--slow" data-connectors="BS1363 3 Pin 13 Amp,Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Central Car Park The Mall</h2>
+    
+  </div>
+  <p class="charger-address">Silver Street <button class="copy-btn" data-copy="LU1 2LJ">LU1 2LJ</button>
   </p>
   
   <div class="charger-connections">
@@ -173,9 +218,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Upper George Street</h2>
-  <p class="charger-address">Upper George Street LU12RD
+<li class="charger-item charger-item--fast" data-connectors="BS1363 3 Pin 13 Amp,Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Upper George Street</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Upper George Street <button class="copy-btn" data-copy="LU12RD">LU12RD</button>
   </p>
   
   <div class="charger-connections">
@@ -197,9 +245,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Luton Campus</h2>
-  <p class="charger-address">Vicarage Street LU1 3JU
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Luton Campus</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Vicarage Street <button class="copy-btn" data-copy="LU1 3JU">LU1 3JU</button>
   </p>
   
   <div class="charger-connections">
@@ -221,9 +272,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">GM Griffin House Park Street Car Park</h2>
-  <p class="charger-address">Park Street LU1 3YT
+<li class="charger-item charger-item--fast" data-connectors="BS1363 3 Pin 13 Amp,Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">GM Griffin House Park Street Car Park</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Park Street <button class="copy-btn" data-copy="LU1 3YT">LU1 3YT</button>
   </p>
   
   <div class="charger-connections">
@@ -245,9 +299,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">GM Plant</h2>
-  <p class="charger-address">Kimpton Road LU1 0TY
+<li class="charger-item charger-item--fast" data-connectors="BS1363 3 Pin 13 Amp,Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">GM Plant</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Kimpton Road <button class="copy-btn" data-copy="LU1 0TY">LU1 0TY</button>
   </p>
   
   <div class="charger-connections">
@@ -269,9 +326,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Stockwood Park Discovery Centre</h2>
-  <p class="charger-address">London Road LU1 4BH
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Stockwood Park Discovery Centre</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">London Road <button class="copy-btn" data-copy="LU1 4BH">LU1 4BH</button>
   </p>
   
   <div class="charger-connections">
@@ -293,9 +353,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">GM Griffin House</h2>
-  <p class="charger-address">Osborne Road LU1 3YT
+<li class="charger-item charger-item--fast" data-connectors="BS1363 3 Pin 13 Amp,Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">GM Griffin House</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Osborne Road <button class="copy-btn" data-copy="LU1 3YT">LU1 3YT</button>
   </p>
   
   <div class="charger-connections">
@@ -317,9 +380,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Inspire: Luton Sports Village</h2>
-  <p class="charger-address">Butterfield Green Road LU2 8DD
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Inspire: Luton Sports Village</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Butterfield Green Road <button class="copy-btn" data-copy="LU2 8DD">LU2 8DD</button>
   </p>
   
   <div class="charger-connections">
@@ -338,9 +404,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Whitecroft Rd 57</h2>
-  <p class="charger-address">Whitecroft Rd 57 LU2 0JS
+<li class="charger-item charger-item--slow" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Whitecroft Rd 57</h2>
+    
+  </div>
+  <p class="charger-address">Whitecroft Rd 57 <button class="copy-btn" data-copy="LU2 0JS">LU2 0JS</button>
   </p>
   
   <div class="charger-connections">
@@ -359,9 +428,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">GM Gate 1 visitors Car Park</h2>
-  <p class="charger-address">Osbourne Road LU1 0TY
+<li class="charger-item charger-item--fast" data-connectors="BS1363 3 Pin 13 Amp,Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">GM Gate 1 visitors Car Park</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Osbourne Road <button class="copy-btn" data-copy="LU1 0TY">LU1 0TY</button>
   </p>
   
   <div class="charger-connections">
@@ -386,6 +458,23 @@
 
 <p><a href="/" class="back-link">← All UK towns</a></p>
 
+
+<div class="nearby-towns">
+  <h2 class="nearby-heading">Nearby towns</h2>
+  <ul class="nearby-list">
+  
+    <li><a href="/uk/dunstable/">Dunstable</a></li>
+  
+    <li><a href="/uk/hemel-hempstead/">Hemel Hempstead</a></li>
+  
+    <li><a href="/uk/st-albans/">St Albans</a></li>
+  
+    <li><a href="/uk/hitchin/">Hitchin</a></li>
+  
+  </ul>
+</div>
+
+
 </div>
 
 <footer>
@@ -398,26 +487,61 @@
 <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 <script>
 (function () {
+  // --- Map ---
   var map = L.map('map').setView([51.88153351751093, -0.4019361964378997], 12);
-
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
   }).addTo(map);
 
   var markers = L.markerClusterGroup();
-  var chargerData = [{"lat": 51.87167566266399, "lng": -0.39699594656849513, "title": "Tesla Luton Gipsy Lane Retail Park", "address": "Gipsy Lane"}, {"lat": 51.88223, "lng": -0.41579, "title": "Luton Station", "address": "Midland Road"}, {"lat": 51.8879881, "lng": -0.371189, "title": "InstaVolt Wigmore Shopping Centre", "address": "Wigmore Lane"}, {"lat": 51.911073, "lng": -0.388534, "title": "Basepoint Business Centre", "address": "Great Marlings"}, {"lat": 51.882306, "lng": -0.400465, "title": "Whitecroft Rd 9", "address": "Whitecroft Rd 9"}, {"lat": 51.879834, "lng": -0.414105, "title": "Central Car Park The Mall", "address": "Silver Street"}, {"lat": 51.879738, "lng": -0.419869, "title": "Upper George Street", "address": "Upper George Street"}, {"lat": 51.87803, "lng": -0.40928, "title": "Luton Campus", "address": "Vicarage Street"}, {"lat": 51.87415, "lng": -0.40523, "title": "GM Griffin House Park Street Car Park", "address": "Park Street"}, {"lat": 51.873901, "lng": -0.391388, "title": "GM Plant", "address": "Kimpton Road"}, {"lat": 51.8657, "lng": -0.422652, "title": "Stockwood Park Discovery Centre", "address": "London Road"}, {"lat": 51.873302, "lng": -0.40465, "title": "GM Griffin House", "address": "Osborne Road"}, {"lat": 51.906429, "lng": -0.39294, "title": "Inspire: Luton Sports Village", "address": "Butterfield Green Road"}, {"lat": 51.881459, "lng": -0.401875, "title": "Whitecroft Rd 57", "address": "Whitecroft Rd 57"}, {"lat": 51.875187, "lng": -0.39408, "title": "GM Gate 1 visitors Car Park", "address": "Osbourne Road"}];
+  var chargerData = [{"lat": 51.87167566266399, "lng": -0.39699594656849513, "title": "Tesla Luton Gipsy Lane Retail Park", "address": "Gipsy Lane", "connectors": ["CCS (Type 2) · 250kW"]}, {"lat": 51.88223, "lng": -0.41579, "title": "Luton Station", "address": "Midland Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 51.8879881, "lng": -0.371189, "title": "InstaVolt Wigmore Shopping Centre", "address": "Wigmore Lane", "connectors": ["CCS (Type 2) · 120kW", "CHAdeMO · 50kW"]}, {"lat": 51.911073, "lng": -0.388534, "title": "Basepoint Business Centre", "address": "Great Marlings", "connectors": ["BS1363 3 Pin 13 Amp · 3kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 51.882306, "lng": -0.400465, "title": "Whitecroft Rd 9", "address": "Whitecroft Rd 9", "connectors": ["Type 2 (Socket Only) · 3.7kW"]}, {"lat": 51.879834, "lng": -0.414105, "title": "Central Car Park The Mall", "address": "Silver Street", "connectors": ["BS1363 3 Pin 13 Amp · 3kW", "Type 2 (Socket Only) · 3.7kW"]}, {"lat": 51.879738, "lng": -0.419869, "title": "Upper George Street", "address": "Upper George Street", "connectors": ["BS1363 3 Pin 13 Amp · 3kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 51.87803, "lng": -0.40928, "title": "Luton Campus", "address": "Vicarage Street", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 51.87415, "lng": -0.40523, "title": "GM Griffin House Park Street Car Park", "address": "Park Street", "connectors": ["BS1363 3 Pin 13 Amp · 3kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 51.873901, "lng": -0.391388, "title": "GM Plant", "address": "Kimpton Road", "connectors": ["BS1363 3 Pin 13 Amp · 3kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 51.8657, "lng": -0.422652, "title": "Stockwood Park Discovery Centre", "address": "London Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 3.7kW"]}, {"lat": 51.873302, "lng": -0.40465, "title": "GM Griffin House", "address": "Osborne Road", "connectors": ["BS1363 3 Pin 13 Amp · 3kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 51.906429, "lng": -0.39294, "title": "Inspire: Luton Sports Village", "address": "Butterfield Green Road", "connectors": ["Type 2 (Socket Only) · 7kW"]}, {"lat": 51.881459, "lng": -0.401875, "title": "Whitecroft Rd 57", "address": "Whitecroft Rd 57", "connectors": ["Type 2 (Socket Only) · 3.7kW"]}, {"lat": 51.875187, "lng": -0.39408, "title": "GM Gate 1 visitors Car Park", "address": "Osbourne Road", "connectors": ["BS1363 3 Pin 13 Amp · 3kW", "Type 2 (Socket Only) · 7kW"]}];
 
   chargerData.forEach(function (c) {
+    var connHtml = c.connectors.length
+      ? '<div style="margin-top:6px;font-size:12px;color:#475569">' + c.connectors.join(' &middot; ') + '</div>'
+      : '';
     var marker = L.marker([c.lat, c.lng]);
     marker.bindPopup(
-      '<b>' + c.title + '</b><br>' + c.address + '<br><br>' +
+      '<b>' + c.title + '</b>' +
+      '<div style="color:#64748b;font-size:13px">' + c.address + '</div>' +
+      connHtml +
       '<a href="https://www.google.com/maps/dir/?api=1&destination=' + c.lat + ',' + c.lng +
-      '" target="_blank" rel="noopener">Get directions</a>'
+      '" target="_blank" rel="noopener" style="display:inline-block;margin-top:8px;padding:4px 10px;background:#2563eb;color:white;border-radius:4px;text-decoration:none;font-size:12px">Get directions</a>'
     );
     markers.addLayer(marker);
   });
-
   map.addLayer(markers);
+
+  // --- Connector filter ---
+  var filterBtns = document.querySelectorAll('.filter-btn');
+  var chargerItems = document.querySelectorAll('.charger-item');
+
+  filterBtns.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      filterBtns.forEach(function (b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      var f = btn.dataset.filter;
+      chargerItems.forEach(function (item) {
+        var connList = item.dataset.connectors ? item.dataset.connectors.split(',') : [];
+        item.style.display = (f === 'all' || connList.indexOf(f) !== -1) ? '' : 'none';
+      });
+    });
+  });
+
+  // --- Copy postcode ---
+  document.querySelectorAll('.copy-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var original = btn.textContent;
+      navigator.clipboard.writeText(btn.dataset.copy).then(function () {
+        btn.textContent = 'Copied!';
+        btn.classList.add('copy-btn--success');
+        setTimeout(function () {
+          btn.textContent = original;
+          btn.classList.remove('copy-btn--success');
+        }, 1500);
+      });
+    });
+  });
 }());
 </script>
 

@@ -17,7 +17,10 @@
 
 <header>
 <div class="container">
-<a href="/" class="logo">PlugMap <span class="tagline">UK EV Charger Locator</span></a>
+<a href="/" class="logo">
+  <svg class="logo-bolt" viewBox="0 0 24 24" fill="currentColor" width="22" height="22" aria-hidden="true"><path d="M13 2L4.5 13.5H11L10 22L19.5 10.5H13Z"/></svg>
+  PlugMap <span class="tagline">UK EV Charger Locator</span>
+</a>
 </div>
 </header>
 
@@ -28,16 +31,42 @@
 </nav>
 
 <h1>EV Chargers in Dalkeith</h1>
-<p class="page-intro">13 public charging stations found in Dalkeith.</p>
+
+<div class="stats-bar">
+  <span class="stat-pill stat-total">13 stations</span>
+  <span class="stat-pill stat-rapid">5 rapid (50kW+)</span>
+  <span class="stat-pill stat-fast">8 fast (7–50kW)</span>
+  
+</div>
 
 <div id="map"></div>
 
-<ul class="charger-list">
+
+<div class="connector-filter">
+  <span class="filter-label">Filter:</span>
+  <button class="filter-btn active" data-filter="all">All</button>
+  
+  <button class="filter-btn" data-filter="CCS (Type 2)">CCS (Type 2)</button>
+  
+  <button class="filter-btn" data-filter="CHAdeMO">CHAdeMO</button>
+  
+  <button class="filter-btn" data-filter="Type 2 (Socket Only)">Type 2 (Socket Only)</button>
+  
+  <button class="filter-btn" data-filter="Type 2 (Tethered Connector) ">Type 2 (Tethered Connector) </button>
+  
+</div>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Lidl-Dalkeith</h2>
-  <p class="charger-address">5a Newmilles Road EH22 1DU
+<ul class="charger-list" id="charger-list">
+
+
+<li class="charger-item charger-item--rapid" data-connectors="Type 2 (Socket Only),CCS (Type 2),CHAdeMO">
+  <div class="charger-header">
+    <h2 class="charger-name">Lidl-Dalkeith</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">5a Newmilles Road <button class="copy-btn" data-copy="EH22 1DU">EH22 1DU</button>
   </p>
   
   <div class="charger-connections">
@@ -62,9 +91,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Mcdonalds Car Park</h2>
-  <p class="charger-address">Bonnyrigg Road EH22 3PP
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2),CHAdeMO,Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Mcdonalds Car Park</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Bonnyrigg Road <button class="copy-btn" data-copy="EH22 3PP">EH22 3PP</button>
   </p>
   
   <div class="charger-connections">
@@ -98,9 +131,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Shawfair Station</h2>
-  <p class="charger-address">Shawfair Station EH22 1SB
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Shawfair Station</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Shawfair Station <button class="copy-btn" data-copy="EH22 1SB">EH22 1SB</button>
   </p>
   
   <div class="charger-connections">
@@ -122,9 +158,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Sheriffhall P &amp; R</h2>
-  <p class="charger-address">2 Sheriffhall Roundabout EH22 1RU
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Sheriffhall P &amp; R</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">2 Sheriffhall Roundabout <button class="copy-btn" data-copy="EH22 1RU">EH22 1RU</button>
   </p>
   
   <div class="charger-connections">
@@ -146,9 +185,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Dalkeith Retail Park</h2>
-  <p class="charger-address">Bonnyrigg Road EH22 3PP
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2),CHAdeMO">
+  <div class="charger-header">
+    <h2 class="charger-name">Dalkeith Retail Park</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Bonnyrigg Road <button class="copy-btn" data-copy="EH22 3PP">EH22 3PP</button>
   </p>
   
   <div class="charger-connections">
@@ -176,9 +219,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Old Colliery Pub &amp; Restaurant A7</h2>
-  <p class="charger-address">Danderhall EH22 1FD
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2),CHAdeMO,Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Old Colliery Pub &amp; Restaurant A7</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Danderhall <button class="copy-btn" data-copy="EH22 1FD">EH22 1FD</button>
   </p>
   
   <div class="charger-connections">
@@ -212,9 +259,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Edinburgh College, Midlothian Campus</h2>
-  <p class="charger-address">Dalhousie Road EH22 3FR
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Edinburgh College, Midlothian Campus</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Dalhousie Road <button class="copy-btn" data-copy="EH22 3FR">EH22 3FR</button>
   </p>
   
   <div class="charger-connections">
@@ -236,9 +286,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Midlothian Campus, Edinburgh</h2>
-  <p class="charger-address">Midlothian Campus EH22 3FR
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Midlothian Campus, Edinburgh</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Midlothian Campus <button class="copy-btn" data-copy="EH22 3FR">EH22 3FR</button>
   </p>
   
   <div class="charger-connections">
@@ -260,9 +313,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Eskbank Station</h2>
-  <p class="charger-address">32 Hardengreen Lane EH22 3JY
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Eskbank Station</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">32 Hardengreen Lane <button class="copy-btn" data-copy="EH22 3JY">EH22 3JY</button>
   </p>
   
   <div class="charger-connections">
@@ -284,9 +340,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Newtongrange Station</h2>
-  <p class="charger-address">37 Murderdean Road EH22 4PE
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Newtongrange Station</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">37 Murderdean Road <button class="copy-btn" data-copy="EH22 4PE">EH22 4PE</button>
   </p>
   
   <div class="charger-connections">
@@ -308,9 +367,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Sheriffhall Park and Ride</h2>
-  <p class="charger-address">698 Old Dalkeith Road EH22 1RT
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only),Type 2 (Tethered Connector) ,CHAdeMO">
+  <div class="charger-header">
+    <h2 class="charger-name">Sheriffhall Park and Ride</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">698 Old Dalkeith Road <button class="copy-btn" data-copy="EH22 1RT">EH22 1RT</button>
   </p>
   
   <div class="charger-connections">
@@ -335,9 +397,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Sheriffhall P &amp; R</h2>
-  <p class="charger-address">2 Sheriffhall Roundabout EH22 1RU
+<li class="charger-item charger-item--rapid" data-connectors="Type 2 (Tethered Connector) ,CHAdeMO">
+  <div class="charger-header">
+    <h2 class="charger-name">Sheriffhall P &amp; R</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">2 Sheriffhall Roundabout <button class="copy-btn" data-copy="EH22 1RU">EH22 1RU</button>
   </p>
   
   <div class="charger-connections">
@@ -362,9 +428,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Tesco Superstore-Dalkeith Hardengreen</h2>
-  <p class="charger-address">Bonnyrigg Road EH22 3PP
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Tesco Superstore-Dalkeith Hardengreen</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Bonnyrigg Road <button class="copy-btn" data-copy="EH22 3PP">EH22 3PP</button>
   </p>
   
   <div class="charger-connections">
@@ -389,6 +458,23 @@
 
 <p><a href="/" class="back-link">← All UK towns</a></p>
 
+
+<div class="nearby-towns">
+  <h2 class="nearby-heading">Nearby towns</h2>
+  <ul class="nearby-list">
+  
+    <li><a href="/uk/edinburgh/">Edinburgh</a></li>
+  
+    <li><a href="/uk/prestonpans/">Prestonpans</a></li>
+  
+    <li><a href="/uk/tranent/">Tranent</a></li>
+  
+    <li><a href="/uk/city-of-edinburgh/">City of Edinburgh</a></li>
+  
+  </ul>
+</div>
+
+
 </div>
 
 <footer>
@@ -401,26 +487,61 @@
 <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 <script>
 (function () {
+  // --- Map ---
   var map = L.map('map').setView([55.88919156923077, -3.0840055538461537], 12);
-
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
   }).addTo(map);
 
   var markers = L.markerClusterGroup();
-  var chargerData = [{"lat": 55.8934844, "lng": -3.0681182, "title": "Lidl-Dalkeith", "address": "5a Newmilles Road"}, {"lat": 55.881446, "lng": -3.086375, "title": "Mcdonalds Car Park", "address": "Bonnyrigg Road"}, {"lat": 55.920016, "lng": -3.078725, "title": "Shawfair Station", "address": "Shawfair Station"}, {"lat": 55.880229, "lng": -3.090126, "title": "Sheriffhall P & R", "address": "2 Sheriffhall Roundabout"}, {"lat": 55.881133, "lng": -3.086771, "title": "Dalkeith Retail Park", "address": "Bonnyrigg Road"}, {"lat": 55.906862, "lng": -3.101645, "title": "Old Colliery Pub & Restaurant A7", "address": "Danderhall"}, {"lat": 55.88348, "lng": -3.077125, "title": "Edinburgh College, Midlothian Campus", "address": "Dalhousie Road"}, {"lat": 55.882421, "lng": -3.079255, "title": "Midlothian Campus, Edinburgh", "address": "Midlothian Campus"}, {"lat": 55.881986, "lng": -3.08554, "title": "Eskbank Station", "address": "32 Hardengreen Lane"}, {"lat": 55.864919, "lng": -3.068526, "title": "Newtongrange Station", "address": "37 Murderdean Road"}, {"lat": 55.901211, "lng": -3.095113, "title": "Sheriffhall Park and Ride", "address": "698 Old Dalkeith Road"}, {"lat": 55.899639, "lng": -3.088976, "title": "Sheriffhall P & R", "address": "2 Sheriffhall Roundabout"}, {"lat": 55.882664, "lng": -3.085777, "title": "Tesco Superstore-Dalkeith Hardengreen", "address": "Bonnyrigg Road"}];
+  var chargerData = [{"lat": 55.8934844, "lng": -3.0681182, "title": "Lidl-Dalkeith", "address": "5a Newmilles Road", "connectors": ["Type 2 (Socket Only) · 22kW", "CCS (Type 2) · 50kW", "CHAdeMO · 50kW"]}, {"lat": 55.881446, "lng": -3.086375, "title": "Mcdonalds Car Park", "address": "Bonnyrigg Road", "connectors": ["CCS (Type 2) · 50kW", "CHAdeMO · 50kW", "Type 2 (Socket Only) · 22kW", "CCS (Type 2) · 50kW", "CHAdeMO · 50kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 55.920016, "lng": -3.078725, "title": "Shawfair Station", "address": "Shawfair Station", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 55.880229, "lng": -3.090126, "title": "Sheriffhall P & R", "address": "2 Sheriffhall Roundabout", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 55.881133, "lng": -3.086771, "title": "Dalkeith Retail Park", "address": "Bonnyrigg Road", "connectors": ["CCS (Type 2) · 75kW", "CCS (Type 2) · 75kW", "CHAdeMO · 50kW", "CHAdeMO · 50kW"]}, {"lat": 55.906862, "lng": -3.101645, "title": "Old Colliery Pub & Restaurant A7", "address": "Danderhall", "connectors": ["CCS (Type 2) · 50kW", "CHAdeMO · 50kW", "Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW", "CCS (Type 2) · 50kW", "CHAdeMO · 50kW"]}, {"lat": 55.88348, "lng": -3.077125, "title": "Edinburgh College, Midlothian Campus", "address": "Dalhousie Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 55.882421, "lng": -3.079255, "title": "Midlothian Campus, Edinburgh", "address": "Midlothian Campus", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 55.881986, "lng": -3.08554, "title": "Eskbank Station", "address": "32 Hardengreen Lane", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 55.864919, "lng": -3.068526, "title": "Newtongrange Station", "address": "37 Murderdean Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 55.901211, "lng": -3.095113, "title": "Sheriffhall Park and Ride", "address": "698 Old Dalkeith Road", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Tethered Connector)  · 22kW", "CHAdeMO · 22kW"]}, {"lat": 55.899639, "lng": -3.088976, "title": "Sheriffhall P & R", "address": "2 Sheriffhall Roundabout", "connectors": ["Type 2 (Tethered Connector)  · 43kW", "Type 2 (Tethered Connector)  · 50kW", "CHAdeMO · 50kW"]}, {"lat": 55.882664, "lng": -3.085777, "title": "Tesco Superstore-Dalkeith Hardengreen", "address": "Bonnyrigg Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}];
 
   chargerData.forEach(function (c) {
+    var connHtml = c.connectors.length
+      ? '<div style="margin-top:6px;font-size:12px;color:#475569">' + c.connectors.join(' &middot; ') + '</div>'
+      : '';
     var marker = L.marker([c.lat, c.lng]);
     marker.bindPopup(
-      '<b>' + c.title + '</b><br>' + c.address + '<br><br>' +
+      '<b>' + c.title + '</b>' +
+      '<div style="color:#64748b;font-size:13px">' + c.address + '</div>' +
+      connHtml +
       '<a href="https://www.google.com/maps/dir/?api=1&destination=' + c.lat + ',' + c.lng +
-      '" target="_blank" rel="noopener">Get directions</a>'
+      '" target="_blank" rel="noopener" style="display:inline-block;margin-top:8px;padding:4px 10px;background:#2563eb;color:white;border-radius:4px;text-decoration:none;font-size:12px">Get directions</a>'
     );
     markers.addLayer(marker);
   });
-
   map.addLayer(markers);
+
+  // --- Connector filter ---
+  var filterBtns = document.querySelectorAll('.filter-btn');
+  var chargerItems = document.querySelectorAll('.charger-item');
+
+  filterBtns.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      filterBtns.forEach(function (b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      var f = btn.dataset.filter;
+      chargerItems.forEach(function (item) {
+        var connList = item.dataset.connectors ? item.dataset.connectors.split(',') : [];
+        item.style.display = (f === 'all' || connList.indexOf(f) !== -1) ? '' : 'none';
+      });
+    });
+  });
+
+  // --- Copy postcode ---
+  document.querySelectorAll('.copy-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var original = btn.textContent;
+      navigator.clipboard.writeText(btn.dataset.copy).then(function () {
+        btn.textContent = 'Copied!';
+        btn.classList.add('copy-btn--success');
+        setTimeout(function () {
+          btn.textContent = original;
+          btn.classList.remove('copy-btn--success');
+        }, 1500);
+      });
+    });
+  });
 }());
 </script>
 

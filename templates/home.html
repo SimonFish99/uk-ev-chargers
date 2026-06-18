@@ -14,20 +14,43 @@
 
 <header>
 <div class="container">
-<a href="/" class="logo">PlugMap <span class="tagline">UK EV Charger Locator</span></a>
+<a href="/" class="logo">
+  <svg class="logo-bolt" viewBox="0 0 24 24" fill="currentColor" width="22" height="22" aria-hidden="true"><path d="M13 2L4.5 13.5H11L10 22L19.5 10.5H13Z"/></svg>
+  PlugMap <span class="tagline">UK EV Charger Locator</span>
+</a>
 </div>
 </header>
 
+<div class="hero">
+<div class="container">
+  <h1>Find EV Chargers Across the UK</h1>
+  <p>Public charge point locations, connection types, and directions — free, no login needed.</p>
+  <div class="hero-stats">
+    <span class="hero-stat"><strong>{{ total_towns }}</strong> towns</span>
+    <span class="hero-stat"><strong>{{ total_chargers }}+</strong> charge points</span>
+  </div>
+</div>
+</div>
+
 <div class="container">
 
-<h1>UK EV Charger Locations</h1>
-<p class="page-intro">Browse public EV charging stations across hundreds of UK towns and cities. Select a location to see charge point addresses, connection types, and get directions.</p>
+<div class="search-bar">
+  <input type="search" id="town-search" placeholder="Search for a town or city..." autocomplete="off" spellcheck="false">
+</div>
+
+<p id="search-count" class="search-count" hidden></p>
 
 <ul class="town-list">
 {% for town in towns %}
-<li><a href="/uk/{{ town.slug }}/">{{ town.name }}</a></li>
+<li data-town="{{ town.name | lower }}">
+  <a href="/uk/{{ town.slug }}/">
+    {{ town.name }}<span class="town-count">{{ town.count }}</span>
+  </a>
+</li>
 {% endfor %}
 </ul>
+
+<p class="no-results" id="no-results" hidden>No towns found. Try a different spelling.</p>
 
 </div>
 
@@ -36,6 +59,33 @@
 <p>Data sourced from <a href="https://openchargemap.org" rel="nofollow noopener">OpenChargeMap</a> under <a href="https://creativecommons.org/licenses/by/4.0/" rel="nofollow noopener">CC BY 4.0</a>.</p>
 </div>
 </footer>
+
+<script>
+(function () {
+  var input = document.getElementById('town-search');
+  var items = document.querySelectorAll('.town-list li');
+  var countEl = document.getElementById('search-count');
+  var noResults = document.getElementById('no-results');
+
+  input.addEventListener('input', function () {
+    var q = this.value.toLowerCase().trim();
+    var visible = 0;
+    items.forEach(function (li) {
+      var show = !q || li.dataset.town.indexOf(q) !== -1;
+      li.style.display = show ? '' : 'none';
+      if (show) visible++;
+    });
+    if (q) {
+      countEl.textContent = visible + (visible === 1 ? ' town' : ' towns') + ' found';
+      countEl.hidden = false;
+      noResults.hidden = visible > 0;
+    } else {
+      countEl.hidden = true;
+      noResults.hidden = true;
+    }
+  });
+}());
+</script>
 
 </body>
 </html>

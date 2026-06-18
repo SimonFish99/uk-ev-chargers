@@ -17,7 +17,10 @@
 
 <header>
 <div class="container">
-<a href="/" class="logo">PlugMap <span class="tagline">UK EV Charger Locator</span></a>
+<a href="/" class="logo">
+  <svg class="logo-bolt" viewBox="0 0 24 24" fill="currentColor" width="22" height="22" aria-hidden="true"><path d="M13 2L4.5 13.5H11L10 22L19.5 10.5H13Z"/></svg>
+  PlugMap <span class="tagline">UK EV Charger Locator</span>
+</a>
 </div>
 </header>
 
@@ -28,16 +31,42 @@
 </nav>
 
 <h1>EV Chargers in Hull</h1>
-<p class="page-intro">9 public charging stations found in Hull.</p>
+
+<div class="stats-bar">
+  <span class="stat-pill stat-total">9 stations</span>
+  <span class="stat-pill stat-rapid">5 rapid (50kW+)</span>
+  <span class="stat-pill stat-fast">4 fast (7–50kW)</span>
+  
+</div>
 
 <div id="map"></div>
 
-<ul class="charger-list">
+
+<div class="connector-filter">
+  <span class="filter-label">Filter:</span>
+  <button class="filter-btn active" data-filter="all">All</button>
+  
+  <button class="filter-btn" data-filter="CCS (Type 2)">CCS (Type 2)</button>
+  
+  <button class="filter-btn" data-filter="CHAdeMO">CHAdeMO</button>
+  
+  <button class="filter-btn" data-filter="Type 2 (Socket Only)">Type 2 (Socket Only)</button>
+  
+  <button class="filter-btn" data-filter="Type 2 (Tethered Connector) ">Type 2 (Tethered Connector) </button>
+  
+</div>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Lidl-Brighton Street</h2>
-  <p class="charger-address">Brighton Street HU3 4UW
+<ul class="charger-list" id="charger-list">
+
+
+<li class="charger-item charger-item--rapid" data-connectors="Type 2 (Socket Only),CCS (Type 2),CHAdeMO">
+  <div class="charger-header">
+    <h2 class="charger-name">Lidl-Brighton Street</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Brighton Street <button class="copy-btn" data-copy="HU3 4UW">HU3 4UW</button>
   </p>
   
   <div class="charger-connections">
@@ -62,9 +91,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">RAW GREENE KING KINGSTOWN 4</h2>
-  <p class="charger-address">Kingstown Hotel Pub Hull Road HU12 8DJ
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">RAW GREENE KING KINGSTOWN 4</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Kingstown Hotel Pub Hull Road <button class="copy-btn" data-copy="HU12 8DJ">HU12 8DJ</button>
   </p>
   
   <div class="charger-connections">
@@ -86,9 +118,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">EG GROUP HULL 2</h2>
-  <p class="charger-address">24 Littlefair Rd Shell Garage HU9 5LP
+<li class="charger-item charger-item--rapid" data-connectors="Type 2 (Tethered Connector) ,CHAdeMO">
+  <div class="charger-header">
+    <h2 class="charger-name">EG GROUP HULL 2</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">24 Littlefair Rd Shell Garage <button class="copy-btn" data-copy="HU9 5LP">HU9 5LP</button>
   </p>
   
   <div class="charger-connections">
@@ -116,9 +152,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">St Stephen&#39;s Shopping Centre</h2>
-  <p class="charger-address">110 Ferensway HU2 8LN
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">St Stephen&#39;s Shopping Centre</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">110 Ferensway <button class="copy-btn" data-copy="HU2 8LN">HU2 8LN</button>
   </p>
   
   <div class="charger-connections">
@@ -152,9 +191,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">EG GROUP HULL 1</h2>
-  <p class="charger-address">Shell garage, Littlefair Road HU9 5LP
+<li class="charger-item charger-item--rapid" data-connectors="CHAdeMO,Type 2 (Tethered Connector) ">
+  <div class="charger-header">
+    <h2 class="charger-name">EG GROUP HULL 1</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Shell garage, Littlefair Road <button class="copy-btn" data-copy="HU9 5LP">HU9 5LP</button>
   </p>
   
   <div class="charger-connections">
@@ -182,9 +225,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Kingston Shopping Centre</h2>
-  <p class="charger-address">Holderness Road HU8 8SR
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2),CHAdeMO">
+  <div class="charger-header">
+    <h2 class="charger-name">Kingston Shopping Centre</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Holderness Road <button class="copy-btn" data-copy="HU8 8SR">HU8 8SR</button>
   </p>
   
   <div class="charger-connections">
@@ -206,9 +253,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Cowden Holiday Park</h2>
-  <p class="charger-address">Cowden HU11 4UD
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Cowden Holiday Park</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Cowden <button class="copy-btn" data-copy="HU11 4UD">HU11 4UD</button>
   </p>
   
   <div class="charger-connections">
@@ -227,9 +277,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Tesco Superstore Hull</h2>
-  <p class="charger-address">Hall Rd HU6 7XP
+<li class="charger-item charger-item--rapid" data-connectors="Type 2 (Socket Only),CCS (Type 2),CHAdeMO">
+  <div class="charger-header">
+    <h2 class="charger-name">Tesco Superstore Hull</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Hall Rd <button class="copy-btn" data-copy="HU6 7XP">HU6 7XP</button>
   </p>
   
   <div class="charger-connections">
@@ -257,9 +311,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Jordans &amp; Co. Hull Workshop</h2>
-  <p class="charger-address">45-52 Witham HU9 1BS
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Jordans &amp; Co. Hull Workshop</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">45-52 Witham <button class="copy-btn" data-copy="HU9 1BS">HU9 1BS</button>
   </p>
   
   <div class="charger-connections">
@@ -287,6 +344,23 @@
 
 <p><a href="/" class="back-link">← All UK towns</a></p>
 
+
+<div class="nearby-towns">
+  <h2 class="nearby-heading">Nearby towns</h2>
+  <ul class="nearby-list">
+  
+    <li><a href="/uk/beverley/">Beverley</a></li>
+  
+    <li><a href="/uk/grimsby/">Grimsby</a></li>
+  
+    <li><a href="/uk/bridlington/">Bridlington</a></li>
+  
+    <li><a href="/uk/scunthorpe/">Scunthorpe</a></li>
+  
+  </ul>
+</div>
+
+
 </div>
 
 <footer>
@@ -299,26 +373,61 @@
 <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 <script>
 (function () {
+  // --- Map ---
   var map = L.map('map').setView([53.764215335465785, -0.2936757390553666], 12);
-
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
   }).addTo(map);
 
   var markers = L.markerClusterGroup();
-  var chargerData = [{"lat": 53.73315911, "lng": -0.37681738, "title": "Lidl-Brighton Street", "address": "Brighton Street"}, {"lat": 53.74125, "lng": -0.218073, "title": "RAW GREENE KING KINGSTOWN 4", "address": "Kingstown Hotel Pub Hull Road"}, {"lat": 53.74944, "lng": -0.283412, "title": "EG GROUP HULL 2", "address": "24 Littlefair Rd Shell Garage"}, {"lat": 53.745441, "lng": -0.347555, "title": "St Stephen's Shopping Centre", "address": "110 Ferensway"}, {"lat": 53.749096, "lng": -0.284237, "title": "EG GROUP HULL 1", "address": "Shell garage, Littlefair Road"}, {"lat": 53.7534378, "lng": -0.3137668, "title": "Kingston Shopping Centre", "address": "Holderness Road"}, {"lat": 53.86875455, "lng": -0.13203046, "title": "Cowden Holiday Park", "address": "Cowden"}, {"lat": 53.7885163, "lng": -0.3637755, "title": "Tesco Superstore Hull", "address": "Hall Rd"}, {"lat": 53.748843259192085, "lng": -0.32341451149829936, "title": "Jordans & Co. Hull Workshop", "address": "45-52 Witham"}];
+  var chargerData = [{"lat": 53.73315911, "lng": -0.37681738, "title": "Lidl-Brighton Street", "address": "Brighton Street", "connectors": ["Type 2 (Socket Only) · 22kW", "CCS (Type 2) · 50kW", "CHAdeMO · 50kW"]}, {"lat": 53.74125, "lng": -0.218073, "title": "RAW GREENE KING KINGSTOWN 4", "address": "Kingstown Hotel Pub Hull Road", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 53.74944, "lng": -0.283412, "title": "EG GROUP HULL 2", "address": "24 Littlefair Rd Shell Garage", "connectors": ["Type 2 (Tethered Connector)  · 150kW", "CHAdeMO · 100kW", "Type 2 (Tethered Connector)  · 150kW", "CHAdeMO · 100kW"]}, {"lat": 53.745441, "lng": -0.347555, "title": "St Stephen's Shopping Centre", "address": "110 Ferensway", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 53.749096, "lng": -0.284237, "title": "EG GROUP HULL 1", "address": "Shell garage, Littlefair Road", "connectors": ["CHAdeMO · 100kW", "CHAdeMO · 100kW", "Type 2 (Tethered Connector)  · 150kW", "Type 2 (Tethered Connector)  · 150kW"]}, {"lat": 53.7534378, "lng": -0.3137668, "title": "Kingston Shopping Centre", "address": "Holderness Road", "connectors": ["CCS (Type 2) · 120kW", "CHAdeMO · 100kW"]}, {"lat": 53.86875455, "lng": -0.13203046, "title": "Cowden Holiday Park", "address": "Cowden", "connectors": ["Type 2 (Socket Only) · 7kW"]}, {"lat": 53.7885163, "lng": -0.3637755, "title": "Tesco Superstore Hull", "address": "Hall Rd", "connectors": ["Type 2 (Socket Only) · 7kW", "CCS (Type 2) · 50kW", "Type 2 (Socket Only) · 22kW", "CHAdeMO · 50kW"]}, {"lat": 53.748843259192085, "lng": -0.32341451149829936, "title": "Jordans & Co. Hull Workshop", "address": "45-52 Witham", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}];
 
   chargerData.forEach(function (c) {
+    var connHtml = c.connectors.length
+      ? '<div style="margin-top:6px;font-size:12px;color:#475569">' + c.connectors.join(' &middot; ') + '</div>'
+      : '';
     var marker = L.marker([c.lat, c.lng]);
     marker.bindPopup(
-      '<b>' + c.title + '</b><br>' + c.address + '<br><br>' +
+      '<b>' + c.title + '</b>' +
+      '<div style="color:#64748b;font-size:13px">' + c.address + '</div>' +
+      connHtml +
       '<a href="https://www.google.com/maps/dir/?api=1&destination=' + c.lat + ',' + c.lng +
-      '" target="_blank" rel="noopener">Get directions</a>'
+      '" target="_blank" rel="noopener" style="display:inline-block;margin-top:8px;padding:4px 10px;background:#2563eb;color:white;border-radius:4px;text-decoration:none;font-size:12px">Get directions</a>'
     );
     markers.addLayer(marker);
   });
-
   map.addLayer(markers);
+
+  // --- Connector filter ---
+  var filterBtns = document.querySelectorAll('.filter-btn');
+  var chargerItems = document.querySelectorAll('.charger-item');
+
+  filterBtns.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      filterBtns.forEach(function (b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      var f = btn.dataset.filter;
+      chargerItems.forEach(function (item) {
+        var connList = item.dataset.connectors ? item.dataset.connectors.split(',') : [];
+        item.style.display = (f === 'all' || connList.indexOf(f) !== -1) ? '' : 'none';
+      });
+    });
+  });
+
+  // --- Copy postcode ---
+  document.querySelectorAll('.copy-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var original = btn.textContent;
+      navigator.clipboard.writeText(btn.dataset.copy).then(function () {
+        btn.textContent = 'Copied!';
+        btn.classList.add('copy-btn--success');
+        setTimeout(function () {
+          btn.textContent = original;
+          btn.classList.remove('copy-btn--success');
+        }, 1500);
+      });
+    });
+  });
 }());
 </script>
 

@@ -17,7 +17,10 @@
 
 <header>
 <div class="container">
-<a href="/" class="logo">PlugMap <span class="tagline">UK EV Charger Locator</span></a>
+<a href="/" class="logo">
+  <svg class="logo-bolt" viewBox="0 0 24 24" fill="currentColor" width="22" height="22" aria-hidden="true"><path d="M13 2L4.5 13.5H11L10 22L19.5 10.5H13Z"/></svg>
+  PlugMap <span class="tagline">UK EV Charger Locator</span>
+</a>
 </div>
 </header>
 
@@ -28,16 +31,46 @@
 </nav>
 
 <h1>EV Chargers in Uxbridge</h1>
-<p class="page-intro">11 public charging stations found in Uxbridge.</p>
+
+<div class="stats-bar">
+  <span class="stat-pill stat-total">11 stations</span>
+  <span class="stat-pill stat-rapid">4 rapid (50kW+)</span>
+  <span class="stat-pill stat-fast">7 fast (7–50kW)</span>
+  
+</div>
 
 <div id="map"></div>
 
-<ul class="charger-list">
+
+<div class="connector-filter">
+  <span class="filter-label">Filter:</span>
+  <button class="filter-btn active" data-filter="all">All</button>
+  
+  <button class="filter-btn" data-filter="BS1363 3 Pin 13 Amp">BS1363 3 Pin 13 Amp</button>
+  
+  <button class="filter-btn" data-filter="CCS (Type 2)">CCS (Type 2)</button>
+  
+  <button class="filter-btn" data-filter="CHAdeMO">CHAdeMO</button>
+  
+  <button class="filter-btn" data-filter="NACS / Tesla Supercharger">NACS / Tesla Supercharger</button>
+  
+  <button class="filter-btn" data-filter="Type 2 (Socket Only)">Type 2 (Socket Only)</button>
+  
+  <button class="filter-btn" data-filter="Type 2 (Tethered Connector) ">Type 2 (Tethered Connector) </button>
+  
+</div>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">SHELL RECHARGE LITTLE WAITROSE ICKENHAM</h2>
-  <p class="charger-address">55 High Road UB10 8LF
+<ul class="charger-list" id="charger-list">
+
+
+<li class="charger-item charger-item--rapid" data-connectors="Type 2 (Tethered Connector) ,CHAdeMO">
+  <div class="charger-header">
+    <h2 class="charger-name">SHELL RECHARGE LITTLE WAITROSE ICKENHAM</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">55 High Road <button class="copy-btn" data-copy="UB10 8LF">UB10 8LF</button>
   </p>
   
   <div class="charger-connections">
@@ -62,9 +95,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Brunel University London</h2>
-  <p class="charger-address">Kingston Lane UB8 3PH
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Brunel University London</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Kingston Lane <button class="copy-btn" data-copy="UB8 3PH">UB8 3PH</button>
   </p>
   
   <div class="charger-connections">
@@ -95,9 +131,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Anoopam Mission</h2>
-  <p class="charger-address">Anoopam Mission UB9 4NA
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Anoopam Mission</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Anoopam Mission <button class="copy-btn" data-copy="UB9 4NA">UB9 4NA</button>
   </p>
   
   <div class="charger-connections">
@@ -116,9 +155,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Esso - Swakeleys</h2>
-  <p class="charger-address">Ickenham UB10 8TB
+<li class="charger-item charger-item--rapid" data-connectors="CHAdeMO,Type 2 (Tethered Connector) ">
+  <div class="charger-header">
+    <h2 class="charger-name">Esso - Swakeleys</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Ickenham <button class="copy-btn" data-copy="UB10 8TB">UB10 8TB</button>
   </p>
   
   <div class="charger-connections">
@@ -143,9 +186,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Hillingdon Sports and Leisure Complex</h2>
-  <p class="charger-address">Gatting Way UB8 1ES
+<li class="charger-item charger-item--fast" data-connectors="BS1363 3 Pin 13 Amp,Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Hillingdon Sports and Leisure Complex</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Gatting Way <button class="copy-btn" data-copy="UB8 1ES">UB8 1ES</button>
   </p>
   
   <div class="charger-connections">
@@ -167,9 +213,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">INTU</h2>
-  <p class="charger-address">Chippendale Waye UB8 1LA
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">INTU</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Chippendale Waye <button class="copy-btn" data-copy="UB8 1LA">UB8 1LA</button>
   </p>
   
   <div class="charger-connections">
@@ -191,9 +240,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">INTU</h2>
-  <p class="charger-address">Chippendale Waye UB8 1LA
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">INTU</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Chippendale Waye <button class="copy-btn" data-copy="UB8 1LA">UB8 1LA</button>
   </p>
   
   <div class="charger-connections">
@@ -215,9 +267,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">ICUEVE900213</h2>
-  <p class="charger-address">92 Pield Heath Road UB8 3NJ
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">ICUEVE900213</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">92 Pield Heath Road <button class="copy-btn" data-copy="UB8 3NJ">UB8 3NJ</button>
   </p>
   
   <div class="charger-connections">
@@ -234,9 +289,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Uxbridge Supercharger</h2>
-  <p class="charger-address">Chippendale Waye UB8 1QJ
+<li class="charger-item charger-item--rapid" data-connectors="NACS / Tesla Supercharger,CCS (Type 2)">
+  <div class="charger-header">
+    <h2 class="charger-name">Uxbridge Supercharger</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Chippendale Waye <button class="copy-btn" data-copy="UB8 1QJ">UB8 1QJ</button>
   </p>
   
   <div class="charger-connections">
@@ -258,9 +317,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Premier Inn</h2>
-  <p class="charger-address">Riverside Way UB8 2YF
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Premier Inn</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Riverside Way <button class="copy-btn" data-copy="UB8 2YF">UB8 2YF</button>
   </p>
   
   <div class="charger-connections">
@@ -282,9 +344,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">North Orbital Road</h2>
-  <p class="charger-address">North Orbital Road UB9 5EY
+<li class="charger-item charger-item--rapid" data-connectors="Type 2 (Tethered Connector) ,CCS (Type 2),CHAdeMO">
+  <div class="charger-header">
+    <h2 class="charger-name">North Orbital Road</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">North Orbital Road <button class="copy-btn" data-copy="UB9 5EY">UB9 5EY</button>
   </p>
   
   <div class="charger-connections">
@@ -312,6 +378,23 @@
 
 <p><a href="/" class="back-link">← All UK towns</a></p>
 
+
+<div class="nearby-towns">
+  <h2 class="nearby-heading">Nearby towns</h2>
+  <ul class="nearby-list">
+  
+    <li><a href="/uk/middlesex/">Middlesex</a></li>
+  
+    <li><a href="/uk/hayes/">Hayes</a></li>
+  
+    <li><a href="/uk/rickmansworth/">Rickmansworth</a></li>
+  
+    <li><a href="/uk/slough/">Slough</a></li>
+  
+  </ul>
+</div>
+
+
 </div>
 
 <footer>
@@ -324,26 +407,61 @@
 <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 <script>
 (function () {
+  // --- Map ---
   var map = L.map('map').setView([51.55150222649724, -0.4712984704908681], 12);
-
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
   }).addTo(map);
 
   var markers = L.markerClusterGroup();
-  var chargerData = [{"lat": 51.566432, "lng": -0.442686, "title": "SHELL RECHARGE LITTLE WAITROSE ICKENHAM", "address": "55 High Road"}, {"lat": 51.531987, "lng": -0.466996, "title": "Brunel University London", "address": "Kingston Lane"}, {"lat": 51.563146, "lng": -0.486534, "title": "Anoopam Mission", "address": "Anoopam Mission"}, {"lat": 51.56398, "lng": -0.444185, "title": "Esso - Swakeleys", "address": "Ickenham"}, {"lat": 51.551201, "lng": -0.469587, "title": "Hillingdon Sports and Leisure Complex", "address": "Gatting Way"}, {"lat": 51.54607, "lng": -0.47483, "title": "INTU", "address": "Chippendale Waye"}, {"lat": 51.546021, "lng": -0.474787, "title": "INTU", "address": "Chippendale Waye"}, {"lat": 51.526054, "lng": -0.458714, "title": "ICUEVE900213", "address": "92 Pield Heath Road"}, {"lat": 51.545284491469566, "lng": -0.47596417539954844, "title": "Uxbridge Supercharger", "address": "Chippendale Waye"}, {"lat": 51.54451, "lng": -0.489718, "title": "Premier Inn", "address": "Riverside Way"}, {"lat": 51.581839, "lng": -0.500282, "title": "North Orbital Road", "address": "North Orbital Road"}];
+  var chargerData = [{"lat": 51.566432, "lng": -0.442686, "title": "SHELL RECHARGE LITTLE WAITROSE ICKENHAM", "address": "55 High Road", "connectors": ["Type 2 (Tethered Connector)  · 43kW", "Type 2 (Tethered Connector)  · 50kW", "CHAdeMO · 50kW"]}, {"lat": 51.531987, "lng": -0.466996, "title": "Brunel University London", "address": "Kingston Lane", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 3kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 51.563146, "lng": -0.486534, "title": "Anoopam Mission", "address": "Anoopam Mission", "connectors": ["Type 2 (Socket Only) · 22kW"]}, {"lat": 51.56398, "lng": -0.444185, "title": "Esso - Swakeleys", "address": "Ickenham", "connectors": ["CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 50kW", "Type 2 (Tethered Connector)  · 43kW"]}, {"lat": 51.551201, "lng": -0.469587, "title": "Hillingdon Sports and Leisure Complex", "address": "Gatting Way", "connectors": ["BS1363 3 Pin 13 Amp · 3kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 51.54607, "lng": -0.47483, "title": "INTU", "address": "Chippendale Waye", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 51.546021, "lng": -0.474787, "title": "INTU", "address": "Chippendale Waye", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 51.526054, "lng": -0.458714, "title": "ICUEVE900213", "address": "92 Pield Heath Road", "connectors": ["Type 2 (Socket Only) · 7kW"]}, {"lat": 51.545284491469566, "lng": -0.47596417539954844, "title": "Uxbridge Supercharger", "address": "Chippendale Waye", "connectors": ["NACS / Tesla Supercharger · 150kW", "CCS (Type 2) · 150kW"]}, {"lat": 51.54451, "lng": -0.489718, "title": "Premier Inn", "address": "Riverside Way", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 51.581839, "lng": -0.500282, "title": "North Orbital Road", "address": "North Orbital Road", "connectors": ["Type 2 (Tethered Connector)  · 43kW", "CCS (Type 2) · 50kW", "CHAdeMO · 50kW"]}];
 
   chargerData.forEach(function (c) {
+    var connHtml = c.connectors.length
+      ? '<div style="margin-top:6px;font-size:12px;color:#475569">' + c.connectors.join(' &middot; ') + '</div>'
+      : '';
     var marker = L.marker([c.lat, c.lng]);
     marker.bindPopup(
-      '<b>' + c.title + '</b><br>' + c.address + '<br><br>' +
+      '<b>' + c.title + '</b>' +
+      '<div style="color:#64748b;font-size:13px">' + c.address + '</div>' +
+      connHtml +
       '<a href="https://www.google.com/maps/dir/?api=1&destination=' + c.lat + ',' + c.lng +
-      '" target="_blank" rel="noopener">Get directions</a>'
+      '" target="_blank" rel="noopener" style="display:inline-block;margin-top:8px;padding:4px 10px;background:#2563eb;color:white;border-radius:4px;text-decoration:none;font-size:12px">Get directions</a>'
     );
     markers.addLayer(marker);
   });
-
   map.addLayer(markers);
+
+  // --- Connector filter ---
+  var filterBtns = document.querySelectorAll('.filter-btn');
+  var chargerItems = document.querySelectorAll('.charger-item');
+
+  filterBtns.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      filterBtns.forEach(function (b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      var f = btn.dataset.filter;
+      chargerItems.forEach(function (item) {
+        var connList = item.dataset.connectors ? item.dataset.connectors.split(',') : [];
+        item.style.display = (f === 'all' || connList.indexOf(f) !== -1) ? '' : 'none';
+      });
+    });
+  });
+
+  // --- Copy postcode ---
+  document.querySelectorAll('.copy-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var original = btn.textContent;
+      navigator.clipboard.writeText(btn.dataset.copy).then(function () {
+        btn.textContent = 'Copied!';
+        btn.classList.add('copy-btn--success');
+        setTimeout(function () {
+          btn.textContent = original;
+          btn.classList.remove('copy-btn--success');
+        }, 1500);
+      });
+    });
+  });
 }());
 </script>
 

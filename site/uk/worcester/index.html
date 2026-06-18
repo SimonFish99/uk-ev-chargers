@@ -17,7 +17,10 @@
 
 <header>
 <div class="container">
-<a href="/" class="logo">PlugMap <span class="tagline">UK EV Charger Locator</span></a>
+<a href="/" class="logo">
+  <svg class="logo-bolt" viewBox="0 0 24 24" fill="currentColor" width="22" height="22" aria-hidden="true"><path d="M13 2L4.5 13.5H11L10 22L19.5 10.5H13Z"/></svg>
+  PlugMap <span class="tagline">UK EV Charger Locator</span>
+</a>
 </div>
 </header>
 
@@ -28,16 +31,41 @@
 </nav>
 
 <h1>EV Chargers in Worcester</h1>
-<p class="page-intro">13 public charging stations found in Worcester.</p>
+
+<div class="stats-bar">
+  <span class="stat-pill stat-total">13 stations</span>
+  <span class="stat-pill stat-rapid">7 rapid (50kW+)</span>
+  <span class="stat-pill stat-fast">6 fast (7–50kW)</span>
+  
+</div>
 
 <div id="map"></div>
 
-<ul class="charger-list">
+
+<div class="connector-filter">
+  <span class="filter-label">Filter:</span>
+  <button class="filter-btn active" data-filter="all">All</button>
+  
+  <button class="filter-btn" data-filter="CCS (Type 2)">CCS (Type 2)</button>
+  
+  <button class="filter-btn" data-filter="CHAdeMO">CHAdeMO</button>
+  
+  <button class="filter-btn" data-filter="Type 2 (Socket Only)">Type 2 (Socket Only)</button>
+  
+  <button class="filter-btn" data-filter="Type 2 (Tethered Connector) ">Type 2 (Tethered Connector) </button>
+  
+</div>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Malvern View Holiday Homes</h2>
-  <p class="charger-address">Stanford Bishop WR6 5UB
+<ul class="charger-list" id="charger-list">
+
+
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Malvern View Holiday Homes</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Stanford Bishop <button class="copy-btn" data-copy="WR6 5UB">WR6 5UB</button>
   </p>
   
   <div class="charger-connections">
@@ -56,9 +84,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Roadchef Strensham Southbound Services</h2>
-  <p class="charger-address">Junction 8 M5 WR8 0BZ
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2),CHAdeMO,Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Roadchef Strensham Southbound Services</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Junction 8 M5 <button class="copy-btn" data-copy="WR8 0BZ">WR8 0BZ</button>
   </p>
   
   <div class="charger-connections">
@@ -107,9 +139,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Tesco Superstore - Worcester</h2>
-  <p class="charger-address">St Peters Drive WR5 3SW
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Tesco Superstore - Worcester</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">St Peters Drive <button class="copy-btn" data-copy="WR5 3SW">WR5 3SW</button>
   </p>
   
   <div class="charger-connections">
@@ -131,9 +166,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Blackpole Inn Pub &amp; Restaurant</h2>
-  <p class="charger-address">Blackpole Road WR3 8SQ
+<li class="charger-item charger-item--rapid" data-connectors="CHAdeMO,CCS (Type 2),Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Blackpole Inn Pub &amp; Restaurant</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Blackpole Road <button class="copy-btn" data-copy="WR3 8SQ">WR3 8SQ</button>
   </p>
   
   <div class="charger-connections">
@@ -167,9 +206,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Crowngate 1</h2>
-  <p class="charger-address">Crowngate Shopping Centre Car park WR1 3LX
+<li class="charger-item charger-item--rapid" data-connectors="CHAdeMO,Type 2 (Tethered Connector) ">
+  <div class="charger-header">
+    <h2 class="charger-name">Crowngate 1</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Crowngate Shopping Centre Car park <button class="copy-btn" data-copy="WR1 3LX">WR1 3LX</button>
   </p>
   
   <div class="charger-connections">
@@ -194,9 +237,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Crowngate Shopping Centre</h2>
-  <p class="charger-address">Friary Walk WR1 3LE
+<li class="charger-item charger-item--rapid" data-connectors="CHAdeMO,Type 2 (Tethered Connector) ">
+  <div class="charger-header">
+    <h2 class="charger-name">Crowngate Shopping Centre</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Friary Walk <button class="copy-btn" data-copy="WR1 3LE">WR1 3LE</button>
   </p>
   
   <div class="charger-connections">
@@ -218,9 +265,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">St Martins Gate</h2>
-  <p class="charger-address">Spring Gardens WR1 2BS
+<li class="charger-item charger-item--rapid" data-connectors="CHAdeMO,Type 2 (Tethered Connector) ">
+  <div class="charger-header">
+    <h2 class="charger-name">St Martins Gate</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Spring Gardens <button class="copy-btn" data-copy="WR1 2BS">WR1 2BS</button>
   </p>
   
   <div class="charger-connections">
@@ -245,9 +296,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">WCC County Hall</h2>
-  <p class="charger-address">County Hall Spetchley Road WR5 2NP
+<li class="charger-item charger-item--rapid" data-connectors="CHAdeMO,Type 2 (Tethered Connector) ">
+  <div class="charger-header">
+    <h2 class="charger-name">WCC County Hall</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">County Hall Spetchley Road <button class="copy-btn" data-copy="WR5 2NP">WR5 2NP</button>
   </p>
   
   <div class="charger-connections">
@@ -272,9 +327,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Redrow Homes Group-Kensington Gate</h2>
-  <p class="charger-address">Bromyard Road WR2 5TT
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Redrow Homes Group-Kensington Gate</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Bromyard Road <button class="copy-btn" data-copy="WR2 5TT">WR2 5TT</button>
   </p>
   
   <div class="charger-connections">
@@ -296,9 +354,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">MFG Nunnery Park</h2>
-  <p class="charger-address">Nunnery Park WR4 0SX
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2),CHAdeMO">
+  <div class="charger-header">
+    <h2 class="charger-name">MFG Nunnery Park</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Nunnery Park <button class="copy-btn" data-copy="WR4 0SX">WR4 0SX</button>
   </p>
   
   <div class="charger-connections">
@@ -320,9 +382,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Mercedes-Benz of Worcester</h2>
-  <p class="charger-address">Hindlip Lane Blackpole Road WR 3 8SB
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Mercedes-Benz of Worcester</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Hindlip Lane Blackpole Road <button class="copy-btn" data-copy="WR 3 8SB">WR 3 8SB</button>
   </p>
   
   <div class="charger-connections">
@@ -344,9 +409,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Worcestershire Parkway Railway Station</h2>
-  <p class="charger-address">Whittington Road WR7 4RD
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Tethered Connector) ">
+  <div class="charger-header">
+    <h2 class="charger-name">Worcestershire Parkway Railway Station</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Whittington Road <button class="copy-btn" data-copy="WR7 4RD">WR7 4RD</button>
   </p>
   
   <div class="charger-connections">
@@ -365,9 +433,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Restricted access to Nissan and Renault customers</h2>
-  <p class="charger-address"> WR2 5HW
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Restricted access to Nissan and Renault customers</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address"> <button class="copy-btn" data-copy="WR2 5HW">WR2 5HW</button>
   </p>
   
   <div class="charger-connections">
@@ -392,6 +463,23 @@
 
 <p><a href="/" class="back-link">← All UK towns</a></p>
 
+
+<div class="nearby-towns">
+  <h2 class="nearby-heading">Nearby towns</h2>
+  <ul class="nearby-list">
+  
+    <li><a href="/uk/whitchurch/">Whitchurch</a></li>
+  
+    <li><a href="/uk/kidderminster/">Kidderminster</a></li>
+  
+    <li><a href="/uk/bromsgrove/">Bromsgrove</a></li>
+  
+    <li><a href="/uk/evesham/">Evesham</a></li>
+  
+  </ul>
+</div>
+
+
 </div>
 
 <footer>
@@ -404,26 +492,61 @@
 <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 <script>
 (function () {
+  // --- Map ---
   var map = L.map('map').setView([52.17848019250774, -2.22099042688342], 12);
-
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
   }).addTo(map);
 
   var markers = L.markerClusterGroup();
-  var chargerData = [{"lat": 52.171523021183, "lng": -2.44546698282117, "title": "Malvern View Holiday Homes", "address": "Stanford Bishop"}, {"lat": 52.057379, "lng": -2.140795, "title": "Roadchef Strensham Southbound Services", "address": "Junction 8 M5"}, {"lat": 52.170837, "lng": -2.20462, "title": "Tesco Superstore - Worcester", "address": "St Peters Drive"}, {"lat": 52.213147, "lng": -2.1980712, "title": "Blackpole Inn Pub & Restaurant", "address": "Blackpole Road"}, {"lat": 52.193115, "lng": -2.223942, "title": "Crowngate 1", "address": "Crowngate Shopping Centre Car park"}, {"lat": 52.192879, "lng": -2.225538, "title": "Crowngate Shopping Centre", "address": "Friary Walk"}, {"lat": 52.191664, "lng": -2.216371, "title": "St Martins Gate", "address": "Spring Gardens"}, {"lat": 52.185554, "lng": -2.182539, "title": "WCC County Hall", "address": "County Hall Spetchley Road"}, {"lat": 52.189475, "lng": -2.262663, "title": "Redrow Homes Group-Kensington Gate", "address": "Bromyard Road"}, {"lat": 52.1884935470461, "lng": -2.17251287777776, "title": "MFG Nunnery Park", "address": "Nunnery Park"}, {"lat": 52.222271, "lng": -2.193829, "title": "Mercedes-Benz of Worcester", "address": "Hindlip Lane Blackpole Road"}, {"lat": 52.15689993437161, "lng": -2.158879488885532, "title": "Worcestershire Parkway Railway Station", "address": "Whittington Road"}, {"lat": 52.187005, "lng": -2.247648, "title": "Restricted access to Nissan and Renault customers", "address": ""}];
+  var chargerData = [{"lat": 52.171523021183, "lng": -2.44546698282117, "title": "Malvern View Holiday Homes", "address": "Stanford Bishop", "connectors": ["Type 2 (Socket Only) · 22kW"]}, {"lat": 52.057379, "lng": -2.140795, "title": "Roadchef Strensham Southbound Services", "address": "Junction 8 M5", "connectors": ["CCS (Type 2) · 100kW", "CCS (Type 2) · 100kW", "CCS (Type 2) · 100kW", "CHAdeMO · 80kW", "Type 2 (Socket Only) · 22kW", "CCS (Type 2) · 360kW", "CCS (Type 2) · 360kW", "CCS (Type 2) · 360kW", "CCS (Type 2) · 360kW", "CCS (Type 2) · 360kW", "CCS (Type 2) · 360kW"]}, {"lat": 52.170837, "lng": -2.20462, "title": "Tesco Superstore - Worcester", "address": "St Peters Drive", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 52.213147, "lng": -2.1980712, "title": "Blackpole Inn Pub & Restaurant", "address": "Blackpole Road", "connectors": ["CHAdeMO · 50kW", "CHAdeMO · 50kW", "CCS (Type 2) · 50kW", "CCS (Type 2) · 50kW", "Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 52.193115, "lng": -2.223942, "title": "Crowngate 1", "address": "Crowngate Shopping Centre Car park", "connectors": ["CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 43kW", "Type 2 (Tethered Connector)  · 50kW"]}, {"lat": 52.192879, "lng": -2.225538, "title": "Crowngate Shopping Centre", "address": "Friary Walk", "connectors": ["CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 43kW"]}, {"lat": 52.191664, "lng": -2.216371, "title": "St Martins Gate", "address": "Spring Gardens", "connectors": ["CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 43kW", "Type 2 (Tethered Connector)  · 50kW"]}, {"lat": 52.185554, "lng": -2.182539, "title": "WCC County Hall", "address": "County Hall Spetchley Road", "connectors": ["CHAdeMO · 50kW", "Type 2 (Tethered Connector)  · 50kW", "Type 2 (Tethered Connector)  · 50kW"]}, {"lat": 52.189475, "lng": -2.262663, "title": "Redrow Homes Group-Kensington Gate", "address": "Bromyard Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 52.1884935470461, "lng": -2.17251287777776, "title": "MFG Nunnery Park", "address": "Nunnery Park", "connectors": ["CCS (Type 2) · 150kW", "CHAdeMO · 50kW"]}, {"lat": 52.222271, "lng": -2.193829, "title": "Mercedes-Benz of Worcester", "address": "Hindlip Lane Blackpole Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 22kW"]}, {"lat": 52.15689993437161, "lng": -2.158879488885532, "title": "Worcestershire Parkway Railway Station", "address": "Whittington Road", "connectors": ["Type 2 (Tethered Connector)  · 22kW"]}, {"lat": 52.187005, "lng": -2.247648, "title": "Restricted access to Nissan and Renault customers", "address": "", "connectors": ["Type 2 (Socket Only) · 22kW", "Type 2 (Socket Only) · 22kW"]}];
 
   chargerData.forEach(function (c) {
+    var connHtml = c.connectors.length
+      ? '<div style="margin-top:6px;font-size:12px;color:#475569">' + c.connectors.join(' &middot; ') + '</div>'
+      : '';
     var marker = L.marker([c.lat, c.lng]);
     marker.bindPopup(
-      '<b>' + c.title + '</b><br>' + c.address + '<br><br>' +
+      '<b>' + c.title + '</b>' +
+      '<div style="color:#64748b;font-size:13px">' + c.address + '</div>' +
+      connHtml +
       '<a href="https://www.google.com/maps/dir/?api=1&destination=' + c.lat + ',' + c.lng +
-      '" target="_blank" rel="noopener">Get directions</a>'
+      '" target="_blank" rel="noopener" style="display:inline-block;margin-top:8px;padding:4px 10px;background:#2563eb;color:white;border-radius:4px;text-decoration:none;font-size:12px">Get directions</a>'
     );
     markers.addLayer(marker);
   });
-
   map.addLayer(markers);
+
+  // --- Connector filter ---
+  var filterBtns = document.querySelectorAll('.filter-btn');
+  var chargerItems = document.querySelectorAll('.charger-item');
+
+  filterBtns.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      filterBtns.forEach(function (b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      var f = btn.dataset.filter;
+      chargerItems.forEach(function (item) {
+        var connList = item.dataset.connectors ? item.dataset.connectors.split(',') : [];
+        item.style.display = (f === 'all' || connList.indexOf(f) !== -1) ? '' : 'none';
+      });
+    });
+  });
+
+  // --- Copy postcode ---
+  document.querySelectorAll('.copy-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var original = btn.textContent;
+      navigator.clipboard.writeText(btn.dataset.copy).then(function () {
+        btn.textContent = 'Copied!';
+        btn.classList.add('copy-btn--success');
+        setTimeout(function () {
+          btn.textContent = original;
+          btn.classList.remove('copy-btn--success');
+        }, 1500);
+      });
+    });
+  });
 }());
 </script>
 

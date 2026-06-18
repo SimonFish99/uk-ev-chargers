@@ -17,7 +17,10 @@
 
 <header>
 <div class="container">
-<a href="/" class="logo">PlugMap <span class="tagline">UK EV Charger Locator</span></a>
+<a href="/" class="logo">
+  <svg class="logo-bolt" viewBox="0 0 24 24" fill="currentColor" width="22" height="22" aria-hidden="true"><path d="M13 2L4.5 13.5H11L10 22L19.5 10.5H13Z"/></svg>
+  PlugMap <span class="tagline">UK EV Charger Locator</span>
+</a>
 </div>
 </header>
 
@@ -28,16 +31,39 @@
 </nav>
 
 <h1>EV Chargers in Haddington</h1>
-<p class="page-intro">6 public charging stations found in Haddington.</p>
+
+<div class="stats-bar">
+  <span class="stat-pill stat-total">6 stations</span>
+  <span class="stat-pill stat-rapid">2 rapid (50kW+)</span>
+  <span class="stat-pill stat-fast">4 fast (7–50kW)</span>
+  
+</div>
 
 <div id="map"></div>
 
-<ul class="charger-list">
+
+<div class="connector-filter">
+  <span class="filter-label">Filter:</span>
+  <button class="filter-btn active" data-filter="all">All</button>
+  
+  <button class="filter-btn" data-filter="CCS (Type 2)">CCS (Type 2)</button>
+  
+  <button class="filter-btn" data-filter="CHAdeMO">CHAdeMO</button>
+  
+  <button class="filter-btn" data-filter="Type 2 (Socket Only)">Type 2 (Socket Only)</button>
+  
+</div>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Abbot&#39;s View, Haddington</h2>
-  <p class="charger-address">Abbot&#39;s View EH413QH
+<ul class="charger-list" id="charger-list">
+
+
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Abbot&#39;s View, Haddington</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Abbot&#39;s View <button class="copy-btn" data-copy="EH413QH">EH413QH</button>
   </p>
   
   <div class="charger-connections">
@@ -56,9 +82,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Haddington Retail Park</h2>
-  <p class="charger-address">Commerce Park EH41 3EA
+<li class="charger-item charger-item--rapid" data-connectors="CHAdeMO,CCS (Type 2)">
+  <div class="charger-header">
+    <h2 class="charger-name">Haddington Retail Park</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Commerce Park <button class="copy-btn" data-copy="EH41 3EA">EH41 3EA</button>
   </p>
   
   <div class="charger-connections">
@@ -92,9 +122,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">John Muir House (Electric Car Park)</h2>
-  <p class="charger-address">John Muir House EH41 3HA
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">John Muir House (Electric Car Park)</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">John Muir House <button class="copy-btn" data-copy="EH41 3HA">EH41 3HA</button>
   </p>
   
   <div class="charger-connections">
@@ -116,9 +149,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Knox Academy, Haddington</h2>
-  <p class="charger-address">Knox Academy EH41 4DT
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Knox Academy, Haddington</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Knox Academy <button class="copy-btn" data-copy="EH41 4DT">EH41 4DT</button>
   </p>
   
   <div class="charger-connections">
@@ -140,9 +176,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Seggarsdean Court</h2>
-  <p class="charger-address">Seggarsdean Court EH41 4L
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Seggarsdean Court</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Seggarsdean Court <button class="copy-btn" data-copy="EH41 4L">EH41 4L</button>
   </p>
   
   <div class="charger-connections">
@@ -164,9 +203,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">John Muir House Rapid Charger</h2>
-  <p class="charger-address">Brewery Park EH41 3HA
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2),CHAdeMO">
+  <div class="charger-header">
+    <h2 class="charger-name">John Muir House Rapid Charger</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Brewery Park <button class="copy-btn" data-copy="EH41 3HA">EH41 3HA</button>
   </p>
   
   <div class="charger-connections">
@@ -191,6 +234,23 @@
 
 <p><a href="/" class="back-link">← All UK towns</a></p>
 
+
+<div class="nearby-towns">
+  <h2 class="nearby-heading">Nearby towns</h2>
+  <ul class="nearby-list">
+  
+    <li><a href="/uk/tranent/">Tranent</a></li>
+  
+    <li><a href="/uk/prestonpans/">Prestonpans</a></li>
+  
+    <li><a href="/uk/dunbar/">Dunbar</a></li>
+  
+    <li><a href="/uk/dalkeith/">Dalkeith</a></li>
+  
+  </ul>
+</div>
+
+
 </div>
 
 <footer>
@@ -203,26 +263,61 @@
 <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 <script>
 (function () {
+  // --- Map ---
   var map = L.map('map').setView([55.955497333333334, -2.782360166666667], 12);
-
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
   }).addTo(map);
 
   var markers = L.markerClusterGroup();
-  var chargerData = [{"lat": 55.961363, "lng": -2.769913, "title": "Abbot's View, Haddington", "address": "Abbot's View"}, {"lat": 55.954994, "lng": -2.812622, "title": "Haddington Retail Park", "address": "Commerce Park"}, {"lat": 55.95408, "lng": -2.77999, "title": "John Muir House (Electric Car Park)", "address": "John Muir House"}, {"lat": 55.954174, "lng": -2.786755, "title": "Knox Academy, Haddington", "address": "Knox Academy"}, {"lat": 55.953303, "lng": -2.763611, "title": "Seggarsdean Court", "address": "Seggarsdean Court"}, {"lat": 55.95507, "lng": -2.78127, "title": "John Muir House Rapid Charger", "address": "Brewery Park"}];
+  var chargerData = [{"lat": 55.961363, "lng": -2.769913, "title": "Abbot's View, Haddington", "address": "Abbot's View", "connectors": ["Type 2 (Socket Only) · 7kW"]}, {"lat": 55.954994, "lng": -2.812622, "title": "Haddington Retail Park", "address": "Commerce Park", "connectors": ["CHAdeMO · 50kW", "CHAdeMO · 50kW", "CHAdeMO · 50kW", "CCS (Type 2) · 75kW", "CCS (Type 2) · 75kW", "CCS (Type 2) · 75kW"]}, {"lat": 55.95408, "lng": -2.77999, "title": "John Muir House (Electric Car Park)", "address": "John Muir House", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 55.954174, "lng": -2.786755, "title": "Knox Academy, Haddington", "address": "Knox Academy", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 55.953303, "lng": -2.763611, "title": "Seggarsdean Court", "address": "Seggarsdean Court", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 55.95507, "lng": -2.78127, "title": "John Muir House Rapid Charger", "address": "Brewery Park", "connectors": ["CCS (Type 2) · 50kW", "CHAdeMO · 50kW"]}];
 
   chargerData.forEach(function (c) {
+    var connHtml = c.connectors.length
+      ? '<div style="margin-top:6px;font-size:12px;color:#475569">' + c.connectors.join(' &middot; ') + '</div>'
+      : '';
     var marker = L.marker([c.lat, c.lng]);
     marker.bindPopup(
-      '<b>' + c.title + '</b><br>' + c.address + '<br><br>' +
+      '<b>' + c.title + '</b>' +
+      '<div style="color:#64748b;font-size:13px">' + c.address + '</div>' +
+      connHtml +
       '<a href="https://www.google.com/maps/dir/?api=1&destination=' + c.lat + ',' + c.lng +
-      '" target="_blank" rel="noopener">Get directions</a>'
+      '" target="_blank" rel="noopener" style="display:inline-block;margin-top:8px;padding:4px 10px;background:#2563eb;color:white;border-radius:4px;text-decoration:none;font-size:12px">Get directions</a>'
     );
     markers.addLayer(marker);
   });
-
   map.addLayer(markers);
+
+  // --- Connector filter ---
+  var filterBtns = document.querySelectorAll('.filter-btn');
+  var chargerItems = document.querySelectorAll('.charger-item');
+
+  filterBtns.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      filterBtns.forEach(function (b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      var f = btn.dataset.filter;
+      chargerItems.forEach(function (item) {
+        var connList = item.dataset.connectors ? item.dataset.connectors.split(',') : [];
+        item.style.display = (f === 'all' || connList.indexOf(f) !== -1) ? '' : 'none';
+      });
+    });
+  });
+
+  // --- Copy postcode ---
+  document.querySelectorAll('.copy-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var original = btn.textContent;
+      navigator.clipboard.writeText(btn.dataset.copy).then(function () {
+        btn.textContent = 'Copied!';
+        btn.classList.add('copy-btn--success');
+        setTimeout(function () {
+          btn.textContent = original;
+          btn.classList.remove('copy-btn--success');
+        }, 1500);
+      });
+    });
+  });
 }());
 </script>
 

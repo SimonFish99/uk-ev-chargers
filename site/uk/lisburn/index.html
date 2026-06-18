@@ -17,7 +17,10 @@
 
 <header>
 <div class="container">
-<a href="/" class="logo">PlugMap <span class="tagline">UK EV Charger Locator</span></a>
+<a href="/" class="logo">
+  <svg class="logo-bolt" viewBox="0 0 24 24" fill="currentColor" width="22" height="22" aria-hidden="true"><path d="M13 2L4.5 13.5H11L10 22L19.5 10.5H13Z"/></svg>
+  PlugMap <span class="tagline">UK EV Charger Locator</span>
+</a>
 </div>
 </header>
 
@@ -28,16 +31,40 @@
 </nav>
 
 <h1>EV Chargers in Lisburn</h1>
-<p class="page-intro">9 public charging stations found in Lisburn.</p>
+
+<div class="stats-bar">
+  <span class="stat-pill stat-total">9 stations</span>
+  <span class="stat-pill stat-rapid">3 rapid (50kW+)</span>
+  <span class="stat-pill stat-fast">6 fast (7–50kW)</span>
+  
+</div>
 
 <div id="map"></div>
 
-<ul class="charger-list">
+
+<div class="connector-filter">
+  <span class="filter-label">Filter:</span>
+  <button class="filter-btn active" data-filter="all">All</button>
+  
+  <button class="filter-btn" data-filter="CCS (Type 2)">CCS (Type 2)</button>
+  
+  <button class="filter-btn" data-filter="CHAdeMO">CHAdeMO</button>
+  
+  <button class="filter-btn" data-filter="Type 2 (Socket Only)">Type 2 (Socket Only)</button>
+  
+</div>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Sprucefield Supercharger</h2>
-  <p class="charger-address">Sprucefield Shopping Centre BT27 5RA
+<ul class="charger-list" id="charger-list">
+
+
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2)">
+  <div class="charger-header">
+    <h2 class="charger-name">Sprucefield Supercharger</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Sprucefield Shopping Centre <button class="copy-btn" data-copy="BT27 5RA">BT27 5RA</button>
   </p>
   
   <div class="charger-connections">
@@ -56,9 +83,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Andrew Ingredients</h2>
-  <p class="charger-address">27 Ferguson Drive BT28 2EX
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Andrew Ingredients</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">27 Ferguson Drive <button class="copy-btn" data-copy="BT28 2EX">BT28 2EX</button>
   </p>
   
   <div class="charger-connections">
@@ -77,9 +107,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Lagan Valley Hospital</h2>
-  <p class="charger-address">3 Hillsborough Road BT28 1JP
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Lagan Valley Hospital</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">3 Hillsborough Road <button class="copy-btn" data-copy="BT28 1JP">BT28 1JP</button>
   </p>
   
   <div class="charger-connections">
@@ -98,9 +131,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Sprucefield Centre</h2>
-  <p class="charger-address">Hillsborough Rd BT27 5UJ
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2),CHAdeMO">
+  <div class="charger-header">
+    <h2 class="charger-name">Sprucefield Centre</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">Hillsborough Rd <button class="copy-btn" data-copy="BT27 5UJ">BT27 5UJ</button>
   </p>
   
   <div class="charger-connections">
@@ -122,9 +159,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Lisburn Enterprise Organisation</h2>
-  <p class="charger-address">6 Enterprise Crescent BT28 2BP
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Lisburn Enterprise Organisation</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">6 Enterprise Crescent <button class="copy-btn" data-copy="BT28 2BP">BT28 2BP</button>
   </p>
   
   <div class="charger-connections">
@@ -143,9 +183,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Ballymac Hotel</h2>
-  <p class="charger-address">Rock Rd BT28 3SU
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Ballymac Hotel</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Rock Rd <button class="copy-btn" data-copy="BT28 3SU">BT28 3SU</button>
   </p>
   
   <div class="charger-connections">
@@ -164,9 +207,13 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">HRL Lagan Valley</h2>
-  <p class="charger-address">75-81 Hillsborough Road BT28 1JN
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2)">
+  <div class="charger-header">
+    <h2 class="charger-name">HRL Lagan Valley</h2>
+    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+  </div>
+  <p class="charger-address">75-81 Hillsborough Road <button class="copy-btn" data-copy="BT28 1JN">BT28 1JN</button>
   </p>
   
   <div class="charger-connections">
@@ -185,9 +232,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Lisburn Bowl</h2>
-  <p class="charger-address">12 Governors Rd BT28 1JJ
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Lisburn Bowl</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">12 Governors Rd <button class="copy-btn" data-copy="BT28 1JJ">BT28 1JJ</button>
   </p>
   
   <div class="charger-connections">
@@ -206,9 +256,12 @@
 </li>
 
 
-<li class="charger-item">
-  <h2 class="charger-name">Tesco Superstore-Lisburn Bentrim Road</h2>
-  <p class="charger-address">Bentrim Road BT28 2GB
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Tesco Superstore-Lisburn Bentrim Road</h2>
+    <span class="speed-badge speed-badge--fast">Fast</span>
+  </div>
+  <p class="charger-address">Bentrim Road <button class="copy-btn" data-copy="BT28 2GB">BT28 2GB</button>
   </p>
   
   <div class="charger-connections">
@@ -233,6 +286,23 @@
 
 <p><a href="/" class="back-link">← All UK towns</a></p>
 
+
+<div class="nearby-towns">
+  <h2 class="nearby-heading">Nearby towns</h2>
+  <ul class="nearby-list">
+  
+    <li><a href="/uk/belfast/">Belfast</a></li>
+  
+    <li><a href="/uk/newtownabbey/">Newtownabbey</a></li>
+  
+    <li><a href="/uk/banbridge/">Banbridge</a></li>
+  
+    <li><a href="/uk/antrim/">Antrim</a></li>
+  
+  </ul>
+</div>
+
+
 </div>
 
 <footer>
@@ -245,26 +315,61 @@
 <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 <script>
 (function () {
+  // --- Map ---
   var map = L.map('map').setView([54.51346417250623, -6.067137401008957], 12);
-
   L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
   }).addTo(map);
 
   var markers = L.markerClusterGroup();
-  var chargerData = [{"lat": 54.492515314823265, "lng": -6.067680410544597, "title": "Sprucefield Supercharger", "address": "Sprucefield Shopping Centre"}, {"lat": 54.51053577837695, "lng": -6.091195018763528, "title": "Andrew Ingredients", "address": "27 Ferguson Drive"}, {"lat": 54.505569776187315, "lng": -6.044251280198978, "title": "Lagan Valley Hospital", "address": "3 Hillsborough Road"}, {"lat": 54.49203217028344, "lng": -6.057906052828031, "title": "Sprucefield Centre", "address": "Hillsborough Rd"}, {"lat": 54.513034640133185, "lng": -6.075054428295971, "title": "Lisburn Enterprise Organisation", "address": "6 Enterprise Crescent"}, {"lat": 54.58157487276216, "lng": -6.109824533897267, "title": "Ballymac Hotel", "address": "Rock Rd"}, {"lat": 54.5036856499898, "lng": -6.04819464455224, "title": "HRL Lagan Valley", "address": "75-81 Hillsborough Road"}, {"lat": 54.507107, "lng": -6.053091, "title": "Lisburn Bowl", "address": "12 Governors Rd"}, {"lat": 54.51512235, "lng": -6.05703924, "title": "Tesco Superstore-Lisburn Bentrim Road", "address": "Bentrim Road"}];
+  var chargerData = [{"lat": 54.492515314823265, "lng": -6.067680410544597, "title": "Sprucefield Supercharger", "address": "Sprucefield Shopping Centre", "connectors": ["CCS (Type 2) · 250kW"]}, {"lat": 54.51053577837695, "lng": -6.091195018763528, "title": "Andrew Ingredients", "address": "27 Ferguson Drive", "connectors": ["Type 2 (Socket Only) · 11kW"]}, {"lat": 54.505569776187315, "lng": -6.044251280198978, "title": "Lagan Valley Hospital", "address": "3 Hillsborough Road", "connectors": ["Type 2 (Socket Only) · 11kW"]}, {"lat": 54.49203217028344, "lng": -6.057906052828031, "title": "Sprucefield Centre", "address": "Hillsborough Rd", "connectors": ["CCS (Type 2) · 50kW", "CHAdeMO · 50kW"]}, {"lat": 54.513034640133185, "lng": -6.075054428295971, "title": "Lisburn Enterprise Organisation", "address": "6 Enterprise Crescent", "connectors": ["Type 2 (Socket Only) · 22kW"]}, {"lat": 54.58157487276216, "lng": -6.109824533897267, "title": "Ballymac Hotel", "address": "Rock Rd", "connectors": ["Type 2 (Socket Only) · 11kW"]}, {"lat": 54.5036856499898, "lng": -6.04819464455224, "title": "HRL Lagan Valley", "address": "75-81 Hillsborough Road", "connectors": ["CCS (Type 2) · 150kW"]}, {"lat": 54.507107, "lng": -6.053091, "title": "Lisburn Bowl", "address": "12 Governors Rd", "connectors": ["Type 2 (Socket Only) · 22kW"]}, {"lat": 54.51512235, "lng": -6.05703924, "title": "Tesco Superstore-Lisburn Bentrim Road", "address": "Bentrim Road", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}];
 
   chargerData.forEach(function (c) {
+    var connHtml = c.connectors.length
+      ? '<div style="margin-top:6px;font-size:12px;color:#475569">' + c.connectors.join(' &middot; ') + '</div>'
+      : '';
     var marker = L.marker([c.lat, c.lng]);
     marker.bindPopup(
-      '<b>' + c.title + '</b><br>' + c.address + '<br><br>' +
+      '<b>' + c.title + '</b>' +
+      '<div style="color:#64748b;font-size:13px">' + c.address + '</div>' +
+      connHtml +
       '<a href="https://www.google.com/maps/dir/?api=1&destination=' + c.lat + ',' + c.lng +
-      '" target="_blank" rel="noopener">Get directions</a>'
+      '" target="_blank" rel="noopener" style="display:inline-block;margin-top:8px;padding:4px 10px;background:#2563eb;color:white;border-radius:4px;text-decoration:none;font-size:12px">Get directions</a>'
     );
     markers.addLayer(marker);
   });
-
   map.addLayer(markers);
+
+  // --- Connector filter ---
+  var filterBtns = document.querySelectorAll('.filter-btn');
+  var chargerItems = document.querySelectorAll('.charger-item');
+
+  filterBtns.forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      filterBtns.forEach(function (b) { b.classList.remove('active'); });
+      btn.classList.add('active');
+      var f = btn.dataset.filter;
+      chargerItems.forEach(function (item) {
+        var connList = item.dataset.connectors ? item.dataset.connectors.split(',') : [];
+        item.style.display = (f === 'all' || connList.indexOf(f) !== -1) ? '' : 'none';
+      });
+    });
+  });
+
+  // --- Copy postcode ---
+  document.querySelectorAll('.copy-btn').forEach(function (btn) {
+    btn.addEventListener('click', function () {
+      var original = btn.textContent;
+      navigator.clipboard.writeText(btn.dataset.copy).then(function () {
+        btn.textContent = 'Copied!';
+        btn.classList.add('copy-btn--success');
+        setTimeout(function () {
+          btn.textContent = original;
+          btn.classList.remove('copy-btn--success');
+        }, 1500);
+      });
+    });
+  });
 }());
 </script>
 
