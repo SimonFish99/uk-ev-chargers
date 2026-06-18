@@ -87,6 +87,14 @@ def augment_charger(c):
     return {**c, "_speed": speed, "_conn_names": conn_names, "_max_kw": max_kw}
 
 
+SPEED_RANK = {"rapid": 0, "fast": 1, "slow": 2}
+
+
+def charger_speed(c):
+    max_kw = max(((conn.get("PowerKW") or 0) for conn in (c.get("Connections") or [])), default=0)
+    return "rapid" if max_kw >= 50 else ("fast" if max_kw >= 7 else "slow")
+
+
 def build_map_data(chargers):
     items = []
     for c in chargers:
@@ -105,6 +113,7 @@ def build_map_data(chargers):
             "title": addr.get("Title", ""),
             "address": addr.get("AddressLine1", ""),
             "connectors": connectors,
+            "speed": charger_speed(c),
         })
     return json.dumps(items, ensure_ascii=False)
 
@@ -148,9 +157,31 @@ def build_jsonld(town, chargers, base_url, slug):
 
 
 def load_towns():
+    """Load towns, merging case/whitespace-duplicate names and de-duping chargers by ID."""
     with open(INPUT_FILE, "r", encoding="utf-8") as f:
         raw = json.load(f)
-    return {k.strip(): v for k, v in raw.items() if k.strip()}
+    # Group variants that differ only by case/whitespace (they collide on slug)
+    groups = {}
+    for name, chargers in raw.items():
+        name = re.sub(r"\s+", " ", name).strip()
+        if not name:
+            continue
+        groups.setdefault(name.lower(), []).append((name, chargers))
+    towns = {}
+    for variants in groups.values():
+        # Display name = variant with most chargers, tie-break alphabetically
+        variants.sort(key=lambda v: (-len(v[1]), v[0]))
+        display = variants[0][0]
+        seen, merged = set(), []
+        for _, chargers in variants:
+            for c in chargers:
+                cid = c.get("ID")
+                if cid is not None and cid in seen:
+                    continue
+                seen.add(cid)
+                merged.append(c)
+        towns[display] = merged
+    return towns
 
 
 def generate_pages(towns, centroids):
@@ -159,18 +190,23 @@ def generate_pages(towns, centroids):
         slug = slugify(town)
         os.makedirs(os.path.join(OUTPUT_DIR, slug), exist_ok=True)
 
-        augmented = [augment_charger(c) for c in chargers]
+        # Rapid chargers first (most valuable to a hurried driver), then by power desc
+        augmented = sorted(
+            (augment_charger(c) for c in chargers),
+            key=lambda c: (SPEED_RANK[c["_speed"]], -c["_max_kw"]),
+        )
         connector_types = sorted(set(
             name for c in augmented for name in c["_conn_names"]
         ))
+        center_lat, center_lng = map_center(chargers)
 
         html = template.render(
             town=town,
             chargers=augmented,
             slug=slug,
             base_url=BASE_URL,
-            center_lat=map_center(chargers)[0],
-            center_lng=map_center(chargers)[1],
+            center_lat=center_lat,
+            center_lng=center_lng,
             map_data=build_map_data(chargers),
             jsonld=build_jsonld(town, chargers, BASE_URL, slug),
             stats=town_stats(chargers),
@@ -222,10 +258,10 @@ def generate_homepage(towns, centroids):
     print("Generated homepage")
 
 
-def generate_about():
+def generate_about(total_towns, total_chargers):
     template = env.get_template("about.html")
     os.makedirs("site/about", exist_ok=True)
-    html = template.render(base_url=BASE_URL)
+    html = template.render(base_url=BASE_URL, total_towns=total_towns, total_chargers=total_chargers)
     with open("site/about/index.html", "w", encoding="utf-8") as f:
         f.write(html)
     print("Generated about page")
@@ -240,6 +276,15 @@ def generate_contact():
     print("Generated contact page")
 
 
+def generate_privacy():
+    template = env.get_template("privacy.html")
+    os.makedirs("site/privacy", exist_ok=True)
+    html = template.render(base_url=BASE_URL)
+    with open("site/privacy/index.html", "w", encoding="utf-8") as f:
+        f.write(html)
+    print("Generated privacy page")
+
+
 def generate_robots():
     with open("site/robots.txt", "w", encoding="utf-8") as f:
         f.write(f"User-agent: *\nAllow: /\nSitemap: {BASE_URL}/sitemap.xml\n")
@@ -252,6 +297,7 @@ def generate_sitemap(towns):
         (f"{BASE_URL}/", "1.0", "weekly"),
         (f"{BASE_URL}/about/", "0.6", "monthly"),
         (f"{BASE_URL}/contact/", "0.4", "yearly"),
+        (f"{BASE_URL}/privacy/", "0.3", "yearly"),
     ]
     for town in towns.keys():
         urls.append((f"{BASE_URL}/uk/{slugify(town)}/", "0.8", "monthly"))
@@ -275,12 +321,14 @@ def generate_sitemap(towns):
 def main():
     towns = load_towns()
     centroids = compute_centroids(towns)
+    total_chargers = sum(len(c) for c in towns.values())
     generate_pages(towns, centroids)
     generate_homepage(towns, centroids)
     generate_sitemap(towns)
     generate_robots()
-    generate_about()
+    generate_about(len(towns), total_chargers)
     generate_contact()
+    generate_privacy()
 
 
 if __name__ == "__main__":

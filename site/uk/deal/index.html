@@ -6,6 +6,9 @@
 <title>Deal EV Chargers – 7 Public Charge Points | PlugMap</title>
 <meta name="description" content="Find 7 public EV charging stations in Deal, UK. View locations on a map, see connection types and charging speeds, and get directions.">
 <link rel="canonical" href="https://uk-ev-chargers.pages.dev/uk/deal/">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;700&display=swap">
 <link rel="stylesheet" href="/style.css">
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
 <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css"/>
@@ -23,11 +26,12 @@
       PlugMap
     </span>
   </a>
-  <button class="hamburger" id="hamburger" aria-label="Menu" aria-expanded="false">
+  <button class="hamburger" id="hamburger" aria-label="Menu" aria-expanded="false" aria-controls="nav-drawer">
     <span></span><span></span><span></span>
   </button>
 </header>
 
+<div class="nav-shell">
 <nav class="nav-drawer" id="nav-drawer" aria-hidden="true">
   <button class="nav-close" id="nav-close" aria-label="Close menu">&times;</button>
   <a href="/" class="nav-item">All Locations</a>
@@ -38,8 +42,13 @@
   <a href="/contact/" class="nav-item">Contact us</a>
 </nav>
 <div class="nav-overlay" id="nav-overlay"></div>
+</div>
 
-<div class="container">
+<div class="page-shell">
+
+<aside class="ad-rail ad-rail--left" aria-hidden="true"><div class="ad-slot">Advertisement</div></aside>
+
+<main class="container">
 
 <nav class="breadcrumb" aria-label="Breadcrumb">
 <a href="/">Home</a> › Deal
@@ -75,13 +84,14 @@
 <ul class="charger-list" id="charger-list">
 
 
-<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2),CHAdeMO">
+<li class="charger-item charger-item--rapid" data-connectors="CCS (Type 2)|CHAdeMO">
   <div class="charger-header">
     <h2 class="charger-name">EV Aldi</h2>
-    <span class="speed-badge speed-badge--rapid">Rapid</span>
+    
+    <span class="speed-badge speed-badge--rapid"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M13 2L4.5 13.5H11L10 22L19.5 10.5H13Z"/></svg>Rapid</span>
     
   </div>
-  <p class="charger-address">West Street <button class="copy-btn" data-copy="CT14 6HD">CT14 6HD</button>
+  <p class="charger-address">West Street <button class="copy-btn" data-copy="CT14 6HD" aria-label="Copy postcode CT14 6HD">CT14 6HD</button>
   </p>
   
   <div class="charger-connections">
@@ -118,10 +128,48 @@
 
 <li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
   <div class="charger-header">
-    <h2 class="charger-name">Union Road Car Park 1</h2>
-    <span class="speed-badge speed-badge--fast">Fast</span>
+    <h2 class="charger-name">Aldi Deal</h2>
+    
+    <span class="speed-badge speed-badge--fast"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true"><polyline points="6 5 13 12 6 19"/><polyline points="13 5 20 12 13 19"/></svg>Fast</span>
+    
   </div>
-  <p class="charger-address">Union Road Car Park 1 <button class="copy-btn" data-copy="CT14 6B">CT14 6B</button>
+  <p class="charger-address">27 West St <button class="copy-btn" data-copy="CT14 6FN" aria-label="Copy postcode CT14 6FN">CT14 6FN</button>
+  </p>
+  
+  <div class="charger-connections">
+    
+    <span class="connection-badge">Type 2 (Socket Only) · 7kW
+    </span>
+    
+    <span class="connection-badge">Type 2 (Socket Only) · 22kW
+    </span>
+    
+  </div>
+  
+  
+  <p class="charger-meta">Operator: Chargemaster</p>
+  
+  
+  <details class="directions-wrap">
+    <summary class="directions-summary">Get directions &#9660;</summary>
+    <div class="directions-options">
+      <a class="dir-opt dir-google" href="https://www.google.com/maps/dir/?api=1&destination=51.223579,1.401017" target="_blank" rel="noopener">Google Maps</a>
+      <a class="dir-opt dir-apple" href="https://maps.apple.com/?daddr=51.223579,1.401017" target="_blank" rel="noopener">Apple Maps</a>
+      <a class="dir-opt dir-waze" href="https://waze.com/ul?ll=51.223579,1.401017&navigate=yes" target="_blank" rel="noopener">Waze</a>
+    </div>
+  </details>
+  
+</li>
+
+
+<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
+  <div class="charger-header">
+    <h2 class="charger-name">Union Road Car Park 1</h2>
+    
+    <span class="speed-badge speed-badge--fast"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true"><polyline points="6 5 13 12 6 19"/><polyline points="13 5 20 12 13 19"/></svg>Fast</span>
+    
+  </div>
+  <p class="charger-address">Union Road Car Park 1 <button class="copy-btn" data-copy="CT14 6B" aria-label="Copy postcode CT14 6B">CT14 6B</button>
   </p>
   
   <div class="charger-connections">
@@ -150,12 +198,14 @@
 </li>
 
 
-<li class="charger-item charger-item--fast" data-connectors="Type 1 (J1772),Type 2 (Socket Only)">
+<li class="charger-item charger-item--fast" data-connectors="Type 1 (J1772)|Type 2 (Socket Only)">
   <div class="charger-header">
     <h2 class="charger-name">Beach Street Car Park</h2>
-    <span class="speed-badge speed-badge--fast">Fast</span>
+    
+    <span class="speed-badge speed-badge--fast"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true"><polyline points="6 5 13 12 6 19"/><polyline points="13 5 20 12 13 19"/></svg>Fast</span>
+    
   </div>
-  <p class="charger-address">Beach Street Car Park <button class="copy-btn" data-copy="CT14 6J">CT14 6J</button>
+  <p class="charger-address">Beach Street Car Park <button class="copy-btn" data-copy="CT14 6J" aria-label="Copy postcode CT14 6J">CT14 6J</button>
   </p>
   
   <div class="charger-connections">
@@ -187,9 +237,11 @@
 <li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
   <div class="charger-header">
     <h2 class="charger-name">DEAL RUGBY CLUB, WALMER 1</h2>
-    <span class="speed-badge speed-badge--fast">Fast</span>
+    
+    <span class="speed-badge speed-badge--fast"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true"><polyline points="6 5 13 12 6 19"/><polyline points="13 5 20 12 13 19"/></svg>Fast</span>
+    
   </div>
-  <p class="charger-address">Walmer <button class="copy-btn" data-copy="CT14 7EQ">CT14 7EQ</button>
+  <p class="charger-address">Walmer <button class="copy-btn" data-copy="CT14 7EQ" aria-label="Copy postcode CT14 7EQ">CT14 7EQ</button>
   </p>
   
   <div class="charger-connections">
@@ -221,9 +273,11 @@
 <li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
   <div class="charger-header">
     <h2 class="charger-name">CT14 6EA</h2>
-    <span class="speed-badge speed-badge--fast">Fast</span>
+    
+    <span class="speed-badge speed-badge--fast"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true"><polyline points="6 5 13 12 6 19"/><polyline points="13 5 20 12 13 19"/></svg>Fast</span>
+    
   </div>
-  <p class="charger-address"> <button class="copy-btn" data-copy="CT14 6EA">CT14 6EA</button>
+  <p class="charger-address"> <button class="copy-btn" data-copy="CT14 6EA" aria-label="Copy postcode CT14 6EA">CT14 6EA</button>
   </p>
   
   <div class="charger-connections">
@@ -253,9 +307,11 @@
 <li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
   <div class="charger-header">
     <h2 class="charger-name">CT14 7EQ</h2>
-    <span class="speed-badge speed-badge--fast">Fast</span>
+    
+    <span class="speed-badge speed-badge--fast"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" aria-hidden="true"><polyline points="6 5 13 12 6 19"/><polyline points="13 5 20 12 13 19"/></svg>Fast</span>
+    
   </div>
-  <p class="charger-address"> <button class="copy-btn" data-copy="CT14 7EQ">CT14 7EQ</button>
+  <p class="charger-address"> <button class="copy-btn" data-copy="CT14 7EQ" aria-label="Copy postcode CT14 7EQ">CT14 7EQ</button>
   </p>
   
   <div class="charger-connections">
@@ -276,40 +332,6 @@
       <a class="dir-opt dir-google" href="https://www.google.com/maps/dir/?api=1&destination=51.213285,1.399984" target="_blank" rel="noopener">Google Maps</a>
       <a class="dir-opt dir-apple" href="https://maps.apple.com/?daddr=51.213285,1.399984" target="_blank" rel="noopener">Apple Maps</a>
       <a class="dir-opt dir-waze" href="https://waze.com/ul?ll=51.213285,1.399984&navigate=yes" target="_blank" rel="noopener">Waze</a>
-    </div>
-  </details>
-  
-</li>
-
-
-<li class="charger-item charger-item--fast" data-connectors="Type 2 (Socket Only)">
-  <div class="charger-header">
-    <h2 class="charger-name">Aldi Deal</h2>
-    <span class="speed-badge speed-badge--fast">Fast</span>
-  </div>
-  <p class="charger-address">27 West St <button class="copy-btn" data-copy="CT14 6FN">CT14 6FN</button>
-  </p>
-  
-  <div class="charger-connections">
-    
-    <span class="connection-badge">Type 2 (Socket Only) · 7kW
-    </span>
-    
-    <span class="connection-badge">Type 2 (Socket Only) · 22kW
-    </span>
-    
-  </div>
-  
-  
-  <p class="charger-meta">Operator: Chargemaster</p>
-  
-  
-  <details class="directions-wrap">
-    <summary class="directions-summary">Get directions &#9660;</summary>
-    <div class="directions-options">
-      <a class="dir-opt dir-google" href="https://www.google.com/maps/dir/?api=1&destination=51.223579,1.401017" target="_blank" rel="noopener">Google Maps</a>
-      <a class="dir-opt dir-apple" href="https://maps.apple.com/?daddr=51.223579,1.401017" target="_blank" rel="noopener">Apple Maps</a>
-      <a class="dir-opt dir-waze" href="https://waze.com/ul?ll=51.223579,1.401017&navigate=yes" target="_blank" rel="noopener">Waze</a>
     </div>
   </details>
   
@@ -336,11 +358,17 @@
 </div>
 
 
+</main>
+
+<aside class="ad-rail ad-rail--right" aria-hidden="true"><div class="ad-slot">Advertisement</div></aside>
+
 </div>
 
 <footer>
 <div class="container">
-<p>Data sourced from <a href="https://openchargemap.org" rel="nofollow noopener">OpenChargeMap</a> under <a href="https://creativecommons.org/licenses/by/4.0/" rel="nofollow noopener">CC BY 4.0</a>.</p>
+<p class="footer-links"><a href="/about/">About</a> &nbsp;·&nbsp; <a href="/contact/">Contact</a> &nbsp;·&nbsp; <a href="/privacy/">Privacy Policy</a></p>
+<p class="footer-meta">Data sourced from <a href="https://openchargemap.org" rel="nofollow noopener">OpenChargeMap</a> under <a href="https://creativecommons.org/licenses/by/4.0/" rel="nofollow noopener">CC BY 4.0</a>.</p>
+<p class="footer-copy">&copy; 2026 PlugMap — UK EV Charger Locator</p>
 </div>
 </footer>
 
@@ -348,6 +376,8 @@
 <script src="https://unpkg.com/leaflet.markercluster@1.5.3/dist/leaflet.markercluster.js"></script>
 <script>
 (function () {
+  function esc(s) { return String(s).replace(/[&<>"']/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]; }); }
+
   // --- Map ---
   var map = L.map('map').setView([51.22167707100868, 1.4009530438278426], 12);
   L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
@@ -356,17 +386,26 @@
     maxZoom: 20,
   }).addTo(map);
 
+  function speedIcon(s) {
+    var sz = s === 'rapid' ? 18 : (s === 'fast' ? 14 : 12);
+    return L.divIcon({
+      className: 'pm-divicon',
+      html: '<span class="pm-marker pm-marker--' + s + '"></span>',
+      iconSize: [sz, sz], iconAnchor: [sz / 2, sz / 2], popupAnchor: [0, -sz / 2],
+    });
+  }
+
   var markers = L.markerClusterGroup();
-  var chargerData = [{"lat": 51.223581497060735, "lng": 1.4004993067948988, "title": "EV Aldi", "address": "West Street", "connectors": ["CCS (Type 2) · 150kW", "CHAdeMO · 75kW", "CCS (Type 2) · 150kW", "CCS (Type 2) · 150kW"]}, {"lat": 51.226626, "lng": 1.4017, "title": "Union Road Car Park 1", "address": "Union Road Car Park 1", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 51.225205, "lng": 1.404302, "title": "Beach Street Car Park", "address": "Beach Street Car Park", "connectors": ["Type 1 (J1772) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 51.213492, "lng": 1.398439, "title": "DEAL RUGBY CLUB, WALMER 1", "address": "Walmer", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 51.225971, "lng": 1.40073, "title": "CT14 6EA", "address": "", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 51.213285, "lng": 1.399984, "title": "CT14 7EQ", "address": "", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"]}, {"lat": 51.223579, "lng": 1.401017, "title": "Aldi Deal", "address": "27 West St", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 22kW"]}];
+  var chargerData = [{"lat": 51.223581497060735, "lng": 1.4004993067948988, "title": "EV Aldi", "address": "West Street", "connectors": ["CCS (Type 2) · 150kW", "CHAdeMO · 75kW", "CCS (Type 2) · 150kW", "CCS (Type 2) · 150kW"], "speed": "rapid"}, {"lat": 51.226626, "lng": 1.4017, "title": "Union Road Car Park 1", "address": "Union Road Car Park 1", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.225205, "lng": 1.404302, "title": "Beach Street Car Park", "address": "Beach Street Car Park", "connectors": ["Type 1 (J1772) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.213492, "lng": 1.398439, "title": "DEAL RUGBY CLUB, WALMER 1", "address": "Walmer", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.225971, "lng": 1.40073, "title": "CT14 6EA", "address": "", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.213285, "lng": 1.399984, "title": "CT14 7EQ", "address": "", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 7kW"], "speed": "fast"}, {"lat": 51.223579, "lng": 1.401017, "title": "Aldi Deal", "address": "27 West St", "connectors": ["Type 2 (Socket Only) · 7kW", "Type 2 (Socket Only) · 22kW"], "speed": "fast"}];
 
   chargerData.forEach(function (c) {
     var connHtml = c.connectors.length
-      ? '<div style="margin-top:6px;font-size:12px;color:#475569">' + c.connectors.join(' &middot; ') + '</div>'
+      ? '<div style="margin-top:6px;font-size:12px;color:#475569">' + c.connectors.map(esc).join(' &middot; ') + '</div>'
       : '';
-    var marker = L.marker([c.lat, c.lng]);
+    var marker = L.marker([c.lat, c.lng], { icon: speedIcon(c.speed) });
     marker.bindPopup(
-      '<b>' + c.title + '</b>' +
-      '<div style="color:#64748b;font-size:13px">' + c.address + '</div>' +
+      '<b>' + esc(c.title) + '</b>' +
+      '<div style="color:#64748b;font-size:13px">' + esc(c.address) + '</div>' +
       connHtml +
       '<a href="https://www.google.com/maps/dir/?api=1&destination=' + c.lat + ',' + c.lng +
       '" target="_blank" rel="noopener" style="display:inline-block;margin-top:8px;padding:4px 10px;background:#2563eb;color:white;border-radius:4px;text-decoration:none;font-size:12px">Get directions</a>'
@@ -385,7 +424,7 @@
       btn.classList.add('active');
       var f = btn.dataset.filter;
       chargerItems.forEach(function (item) {
-        var connList = item.dataset.connectors ? item.dataset.connectors.split(',') : [];
+        var connList = item.dataset.connectors ? item.dataset.connectors.split('|') : [];
         item.style.display = (f === 'all' || connList.indexOf(f) !== -1) ? '' : 'none';
       });
     });
@@ -413,11 +452,12 @@
   var drawer = document.getElementById('nav-drawer');
   var overlay = document.getElementById('nav-overlay');
   var closeBtn = document.getElementById('nav-close');
-  function open()  { drawer.classList.add('open'); overlay.classList.add('open'); btn.setAttribute('aria-expanded','true'); }
-  function close() { drawer.classList.remove('open'); overlay.classList.remove('open'); btn.setAttribute('aria-expanded','false'); }
+  function open()  { drawer.classList.add('open'); overlay.classList.add('open'); btn.setAttribute('aria-expanded','true'); drawer.setAttribute('aria-hidden','false'); closeBtn.focus(); }
+  function close() { drawer.classList.remove('open'); overlay.classList.remove('open'); btn.setAttribute('aria-expanded','false'); drawer.setAttribute('aria-hidden','true'); }
   btn.addEventListener('click', open);
   closeBtn.addEventListener('click', close);
   overlay.addEventListener('click', close);
+  document.addEventListener('keydown', function(e){ if (e.key === 'Escape' && drawer.classList.contains('open')) { close(); btn.focus(); } });
 }());
 
 // Track recently viewed in localStorage
