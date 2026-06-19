@@ -6,7 +6,7 @@ from jinja2 import Environment, FileSystemLoader, select_autoescape
 
 INPUT_FILE = "data/towns_filtered.json"
 OUTPUT_DIR = "site/uk"
-BASE_URL = "https://uk-ev-chargers.pages.dev"
+BASE_URL = "https://plugmap.co.uk"
 
 env = Environment(
     loader=FileSystemLoader("templates"),
