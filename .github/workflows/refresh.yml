@@ -1,0 +1,55 @@
+name: Weekly data refresh
+
+# Re-pulls OpenChargeMap data, rebuilds the static site, and commits the
+# regenerated site/ folder. Cloudflare Pages auto-deploys on the push.
+#
+# Requires a repository secret: OCM_API_KEY (your OpenChargeMap API key).
+# Settings -> Secrets and variables -> Actions -> New repository secret.
+
+on:
+  schedule:
+    - cron: "17 4 * * 1"   # Mondays at 04:17 UTC
+  workflow_dispatch: {}      # allow manual runs from the Actions tab
+
+permissions:
+  contents: write
+
+concurrency:
+  group: weekly-refresh
+  cancel-in-progress: false
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Fetch latest OpenChargeMap data
+        env:
+          OCM_API_KEY: ${{ secrets.OCM_API_KEY }}
+        run: python fetch_data.py
+
+      - name: Group chargers into towns
+        run: python prepare_data.py
+
+      - name: Build site
+        run: python build_pages.py
+
+      - name: Commit & push regenerated site
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add site/
+          if git diff --cached --quiet; then
+            echo "No changes to deploy."
+          else
+            git commit -m "chore: weekly data refresh [skip ci]"
+            git push
+          fi

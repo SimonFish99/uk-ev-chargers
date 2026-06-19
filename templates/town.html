@@ -15,6 +15,7 @@
 <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.css"/>
 <link rel="stylesheet" href="https://unpkg.com/leaflet.markercluster@1.5.3/dist/MarkerCluster.Default.css"/>
 <script type="application/ld+json">{{ jsonld | safe }}</script>
+<script type="application/ld+json">{{ faq_jsonld | safe }}</script>
 </head>
 
 <body>
@@ -52,7 +53,7 @@
 <main class="container">
 
 <nav class="breadcrumb" aria-label="Breadcrumb">
-<a href="/">Home</a> › {{ town }}
+<a href="/">Home</a> ›{% if region %} <a href="/uk/region/{{ region_slug }}/">{{ region }}</a> ›{% endif %} {{ town }}
 </nav>
 
 <h1>EV Chargers in {{ town }}</h1>
@@ -63,6 +64,8 @@
   {% if stats.fast > 0 %}<span class="stat-pill stat-fast">{{ stats.fast }} fast (7–50kW)</span>{% endif %}
   {% if stats.slow > 0 %}<span class="stat-pill stat-slow">{{ stats.slow }} slow</span>{% endif %}
 </div>
+
+<p class="town-intro">{{ intro }}</p>
 
 <div id="map"></div>
 
@@ -122,6 +125,18 @@
 </li>
 {% endfor %}
 </ul>
+
+<p class="data-updated">Charger data last updated {{ build_date }}, sourced from OpenChargeMap.</p>
+
+<section class="faq" aria-labelledby="faq-heading">
+  <h2 id="faq-heading" class="faq-heading">EV charging in {{ town }} — FAQs</h2>
+  {% for q, a in faqs %}
+  <div class="faq-item">
+    <h3 class="faq-q">{{ q }}</h3>
+    <p class="faq-a">{{ a }}</p>
+  </div>
+  {% endfor %}
+</section>
 
 <p><a href="/" class="back-link">← All UK towns</a></p>
 

@@ -1,6 +1,7 @@
 import json
 import os
 import re
+import shutil
 from datetime import date
 from jinja2 import Environment, FileSystemLoader, select_autoescape
 
@@ -90,10 +91,116 @@ def augment_charger(c):
 
 SPEED_RANK = {"rapid": 0, "fast": 1, "slow": 2}
 
+_UNKNOWN_OPS = {"", "(unknown operator)", "unknown", "no operator", "private individual"}
+
 
 def charger_speed(c):
     max_kw = max(((conn.get("PowerKW") or 0) for conn in (c.get("Connections") or [])), default=0)
     return "rapid" if max_kw >= 50 else ("fast" if max_kw >= 7 else "slow")
+
+
+def _plural(n):
+    return "" if n == 1 else "s"
+
+
+def _join_list(items):
+    items = list(items)
+    if len(items) <= 1:
+        return items[0] if items else ""
+    return ", ".join(items[:-1]) + " and " + items[-1]
+
+
+def town_facts(chargers):
+    """Aggregate facts used for the intro copy and FAQ."""
+    from collections import Counter
+    ops = Counter()
+    max_kw = 0
+    for c in chargers:
+        title = (c.get("OperatorInfo") or {}).get("Title") or ""
+        if title.strip().lower() not in _UNKNOWN_OPS:
+            ops[title.strip()] += 1
+        for conn in (c.get("Connections") or []):
+            kw = conn.get("PowerKW") or 0
+            if kw > max_kw:
+                max_kw = kw
+    connectors = sorted({
+        conn["ConnectionType"]["Title"]
+        for c in chargers for conn in (c.get("Connections") or [])
+        if conn.get("ConnectionType", {}).get("Title")
+    })
+    return {
+        "top_operators": [o for o, _ in ops.most_common(3)],
+        "operator_count": len(ops),
+        "max_kw": int(max_kw) if max_kw == int(max_kw) else max_kw,
+        "connectors": connectors,
+    }
+
+
+def build_intro(town, stats, facts):
+    """Short, factual intro paragraph (no filler)."""
+    total = stats["total"]
+    parts = [f"{town} has {total} public EV charging point{_plural(total)}"]
+    mix = []
+    if stats["rapid"]:
+        mix.append(f"{stats['rapid']} rapid (50kW+)")
+    if stats["fast"]:
+        mix.append(f"{stats['fast']} fast (7–50kW)")
+    if mix:
+        parts.append(", including " + _join_list(mix) + f" charger{_plural(stats['rapid'] + stats['fast'])}")
+    intro = "".join(parts) + "."
+    if facts["top_operators"]:
+        intro += " Networks operating here include " + _join_list(facts["top_operators"]) + "."
+    intro += (" Browse every location on the map and list below — each shows its connector types, "
+              "charging speed and operator, with one-tap directions to navigate straight there.")
+    return intro
+
+
+def build_faqs(town, stats, facts):
+    total, rapid, fast = stats["total"], stats["rapid"], stats["fast"]
+    faqs = []
+    faqs.append((
+        f"How many EV charging points are there in {town}?",
+        f"There are {total} public EV charging point{_plural(total)} in {town}: "
+        f"{rapid} rapid (50kW+), {fast} fast (7–50kW) and {stats['slow']} standard (under 7kW).",
+    ))
+    if rapid:
+        faqs.append((
+            f"Where can I find rapid EV chargers in {town}?",
+            f"{town} has {rapid} rapid charging point{_plural(rapid)} rated at 50kW or above "
+            f"(the fastest is {facts['max_kw']}kW). They're labelled “Rapid”, listed first on this page "
+            f"and pinned on the map above so you can head straight to the quickest option.",
+        ))
+    else:
+        faqs.append((
+            f"Are there rapid chargers in {town}?",
+            f"There are no rapid (50kW+) chargers listed in {town} right now — the fastest available is "
+            f"{facts['max_kw']}kW. For rapid charging, try one of the nearby towns listed further down this page.",
+        ))
+    if facts["top_operators"]:
+        faqs.append((
+            f"Which charging networks operate in {town}?",
+            f"Charge points in {town} are run by networks including {_join_list(facts['top_operators'])}. "
+            f"You'll need the relevant operator's app or a contactless card to start a session at most sites.",
+        ))
+    faqs.append((
+        f"Are the EV chargers in {town} free to use?",
+        "Most public charge points require payment — usually via the operator's app, a contactless card or "
+        "an RFID tag. Pricing varies by network and charging speed, so check the operator's app or the signage "
+        "at the location for current tariffs.",
+    ))
+    return faqs
+
+
+def build_faq_jsonld(faqs):
+    return json.dumps({
+        "@context": "https://schema.org",
+        "@type": "FAQPage",
+        "mainEntity": [
+            {"@type": "Question", "name": q,
+             "acceptedAnswer": {"@type": "Answer", "text": a}}
+            for q, a in faqs
+        ],
+    }, ensure_ascii=False)
 
 
 def build_map_data(chargers):
@@ -157,6 +264,91 @@ def build_jsonld(town, chargers, base_url, slug):
     }, ensure_ascii=False)
 
 
+# ── Region assignment (towns -> UK regions by coordinates) ──────────
+_NI_BBOX = (-8.2, 54.0, -5.3, 55.4)  # GB regions file excludes Northern Ireland
+
+
+def load_regions():
+    with open("data/uk_regions.json", encoding="utf-8") as f:
+        data = json.load(f)
+    regions = []
+    for r in data["regions"]:
+        pts = [p for ring in r["rings"] for p in ring]
+        xs = [p[0] for p in pts]
+        ys = [p[1] for p in pts]
+        regions.append({
+            "name": r["name"], "rings": r["rings"],
+            "bbox": (min(xs), min(ys), max(xs), max(ys)),
+        })
+    return regions
+
+
+def _in_ring(lat, lng, ring):
+    inside = False
+    n = len(ring)
+    j = n - 1
+    for i in range(n):
+        xi, yi = ring[i]
+        xj, yj = ring[j]
+        if ((yi > lat) != (yj > lat)) and (lng < (xj - xi) * (lat - yi) / ((yj - yi) or 1e-12) + xi):
+            inside = not inside
+        j = i
+    return inside
+
+
+def region_for(lat, lng, regions):
+    for reg in regions:
+        x0, y0, x1, y1 = reg["bbox"]
+        if not (x0 <= lng <= x1 and y0 <= lat <= y1):
+            continue
+        if any(_in_ring(lat, lng, ring) for ring in reg["rings"]):
+            return reg["name"]
+    if _NI_BBOX[0] <= lng <= _NI_BBOX[2] and _NI_BBOX[1] <= lat <= _NI_BBOX[3]:
+        return "Northern Ireland"
+    # Fallback: nearest region by vertex distance (islands / coastal edge cases)
+    best, best_d = None, 1e18
+    for reg in regions:
+        for ring in reg["rings"]:
+            for x, y in ring:
+                d = (x - lng) ** 2 + (y - lat) ** 2
+                if d < best_d:
+                    best_d, best = d, reg["name"]
+    return best
+
+
+def assign_regions(towns, centroids, regions):
+    out = {}
+    for town in towns:
+        c = centroids.get(town)
+        out[town] = region_for(c[0], c[1], regions) if c else None
+    return out
+
+
+def generate_region_pages(town_region, towns):
+    template = env.get_template("region.html")
+    by_region = {}
+    for town, region in town_region.items():
+        if region:
+            by_region.setdefault(region, []).append(town)
+    for region, names in by_region.items():
+        rslug = slugify(region)
+        town_list = sorted(
+            ({"name": t, "slug": slugify(t), "count": len(towns[t])} for t in names),
+            key=lambda x: x["name"].lower(),
+        )
+        total_chargers = sum(t["count"] for t in town_list)
+        os.makedirs(os.path.join("site/uk/region", rslug), exist_ok=True)
+        html = template.render(
+            region=region, slug=rslug, base_url=BASE_URL,
+            towns=town_list, total_towns=len(town_list), total_chargers=total_chargers,
+            build_date=date.today().strftime("%B %Y"),
+        )
+        with open(os.path.join("site/uk/region", rslug, "index.html"), "w", encoding="utf-8") as f:
+            f.write(html)
+    print("Generated", len(by_region), "region pages")
+    return by_region
+
+
 def load_towns():
     """Load towns, merging case/whitespace-duplicate names and de-duping chargers by ID."""
     with open(INPUT_FILE, "r", encoding="utf-8") as f:
@@ -185,8 +377,12 @@ def load_towns():
     return towns
 
 
-def generate_pages(towns, centroids):
+def generate_pages(towns, centroids, town_region):
     template = env.get_template("town.html")
+    # Wipe and regenerate so towns that drop out of the data leave no orphan pages
+    if os.path.isdir(OUTPUT_DIR):
+        shutil.rmtree(OUTPUT_DIR)
+    os.makedirs(OUTPUT_DIR, exist_ok=True)
     for town, chargers in towns.items():
         slug = slugify(town)
         os.makedirs(os.path.join(OUTPUT_DIR, slug), exist_ok=True)
@@ -200,18 +396,28 @@ def generate_pages(towns, centroids):
             name for c in augmented for name in c["_conn_names"]
         ))
         center_lat, center_lng = map_center(chargers)
+        stats = town_stats(chargers)
+        facts = town_facts(chargers)
+        faqs = build_faqs(town, stats, facts)
 
+        region = town_region.get(town)
         html = template.render(
             town=town,
             chargers=augmented,
             slug=slug,
+            region=region,
+            region_slug=slugify(region) if region else "",
             base_url=BASE_URL,
             center_lat=center_lat,
             center_lng=center_lng,
             map_data=build_map_data(chargers),
             jsonld=build_jsonld(town, chargers, BASE_URL, slug),
-            stats=town_stats(chargers),
-            nearby=get_nearby_towns(town, centroids),
+            stats=stats,
+            intro=build_intro(town, stats, facts),
+            faqs=faqs,
+            faq_jsonld=build_faq_jsonld(faqs),
+            build_date=date.today().strftime("%B %Y"),
+            nearby=get_nearby_towns(town, centroids, n=8),
             connector_types=connector_types,
             town_json=json.dumps(town, ensure_ascii=False),
             slug_json=json.dumps(slug, ensure_ascii=False),
@@ -221,7 +427,7 @@ def generate_pages(towns, centroids):
     print("Generated", len(towns), "town pages")
 
 
-def generate_homepage(towns, centroids):
+def generate_homepage(towns, centroids, by_region):
     template = env.get_template("home.html")
     # Alphabetical order
     town_list = [
@@ -229,6 +435,13 @@ def generate_homepage(towns, centroids):
         for town, chargers in sorted(towns.items(), key=lambda x: x[0].lower())
     ]
     total_chargers = sum(t["count"] for t in town_list)
+    # Browse-by-region links (most towns first)
+    region_list = sorted(
+        ({"name": r, "slug": slugify(r), "town_count": len(names),
+          "charger_count": sum(len(towns[t]) for t in names)}
+         for r, names in by_region.items()),
+        key=lambda r: -r["town_count"],
+    )
     # Centroid data for client-side nearby/map features
     towns_json = json.dumps([
         {
@@ -242,6 +455,7 @@ def generate_homepage(towns, centroids):
     ], ensure_ascii=False)
     html = template.render(
         towns=town_list,
+        regions=region_list,
         base_url=BASE_URL,
         total_towns=len(town_list),
         total_chargers=total_chargers,
@@ -298,7 +512,7 @@ def generate_ads_txt():
     print("Generated ads.txt")
 
 
-def generate_sitemap(towns):
+def generate_sitemap(towns, by_region):
     today = date.today().isoformat()
     urls = [
         (f"{BASE_URL}/", "1.0", "weekly"),
@@ -306,6 +520,8 @@ def generate_sitemap(towns):
         (f"{BASE_URL}/contact/", "0.4", "yearly"),
         (f"{BASE_URL}/privacy/", "0.3", "yearly"),
     ]
+    for region in by_region.keys():
+        urls.append((f"{BASE_URL}/uk/region/{slugify(region)}/", "0.7", "weekly"))
     for town in towns.keys():
         urls.append((f"{BASE_URL}/uk/{slugify(town)}/", "0.8", "monthly"))
     lines = ['<?xml version="1.0" encoding="UTF-8"?>',
@@ -328,10 +544,13 @@ def generate_sitemap(towns):
 def main():
     towns = load_towns()
     centroids = compute_centroids(towns)
+    regions = load_regions()
+    town_region = assign_regions(towns, centroids, regions)
     total_chargers = sum(len(c) for c in towns.values())
-    generate_pages(towns, centroids)
-    generate_homepage(towns, centroids)
-    generate_sitemap(towns)
+    generate_pages(towns, centroids, town_region)
+    by_region = generate_region_pages(town_region, towns)
+    generate_homepage(towns, centroids, by_region)
+    generate_sitemap(towns, by_region)
     generate_robots()
     generate_ads_txt()
     generate_about(len(towns), total_chargers)
