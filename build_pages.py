@@ -7,6 +7,7 @@ from jinja2 import Environment, FileSystemLoader, select_autoescape
 INPUT_FILE = "data/towns_filtered.json"
 OUTPUT_DIR = "site/uk"
 BASE_URL = "https://plugmap.co.uk"
+ADSENSE_PUB = "pub-3057384336950554"
 
 env = Environment(
     loader=FileSystemLoader("templates"),
@@ -291,6 +292,12 @@ def generate_robots():
     print("Generated robots.txt")
 
 
+def generate_ads_txt():
+    with open("site/ads.txt", "w", encoding="utf-8") as f:
+        f.write(f"google.com, {ADSENSE_PUB}, DIRECT, f08c47fec0942fa0\n")
+    print("Generated ads.txt")
+
+
 def generate_sitemap(towns):
     today = date.today().isoformat()
     urls = [
@@ -326,6 +333,7 @@ def main():
     generate_homepage(towns, centroids)
     generate_sitemap(towns)
     generate_robots()
+    generate_ads_txt()
     generate_about(len(towns), total_chargers)
     generate_contact()
     generate_privacy()
