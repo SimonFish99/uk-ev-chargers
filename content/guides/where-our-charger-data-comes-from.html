@@ -1,0 +1,49 @@
+title: Where Our Charger Data Comes From — and Where It Falls Short
+description: How PlugMap is built, what OpenChargeMap does and does not know, the specific ways our listings can be wrong, and how to check before you rely on one.
+category: About our data
+updated: 2026-09-20
+reading_time: 6
+---
+<p>Most charger directories do not tell you where their data comes from or how far to trust it. We think that is the wrong way round: knowing the limits of a dataset is what lets you use it confidently. So here is exactly how PlugMap is built and where it will let you down.</p>
+
+<h2 id="source">The source</h2>
+
+<p>Our charge point data comes from <a href="https://openchargemap.org" rel="nofollow noopener">OpenChargeMap</a>, the largest open database of EV charging locations in the world. It is a non-profit, community-maintained project, published under a CC BY 4.0 licence, and it aggregates submissions from charge point operators, national datasets and individual drivers.</p>
+
+<p>We chose it deliberately over a commercial feed. Open data means anyone can verify it, corrections benefit every service that uses it rather than one company's private copy, and there is no commercial incentive to quietly favour one network's sites over another's. Nothing on this site is a paid placement, and no operator has any influence over what appears or how it is ordered.</p>
+
+<h2 id="what-we-do">What we do to it</h2>
+
+<p>We refresh the dataset on a regular automated schedule, then process it before it reaches a page.</p>
+
+<p>Charge points are <strong>grouped by town</strong>, with name variants that differ only by case or spacing merged so a single place does not appear as three. Duplicate records sharing an ID are removed.</p>
+
+<p>Each charge point is <strong>classified by speed</strong> from the highest-rated connector it has: rapid at 50kW and above, fast from 7 to 50kW, slow below 7kW. Listings are sorted rapid first, then by power descending, on the reasoning that a driver who opened the page is usually in a hurry.</p>
+
+<p>Towns are <strong>assigned to regions</strong> geographically, by testing each town's centroid against UK region boundaries, rather than by string-matching addresses.</p>
+
+<p>Each page shows the date of the data it was built from, at the foot of the listing.</p>
+
+<h2 id="limits">Where it falls short</h2>
+
+<p>Four specific failure modes, in roughly descending order of how likely you are to meet one.</p>
+
+<p><strong>We do not show live availability.</strong> This is the big one. PlugMap tells you a charge point exists, where it is, what connectors it has and who runs it. It cannot tell you whether it is free right now, in use, or out of service. That information lives in the operators' own systems. For availability, check the network's app before a marginal-range detour.</p>
+
+<p><strong>We do not show live pricing.</strong> Tariffs change frequently and vary by network, site, time of day and membership tier. Publishing a stale price would be worse than publishing none. The price that applies is the one displayed on the unit or in the operator's app before you start — which, under the UK charge point regulations, must be shown to you in pence per kWh before a session begins.</p>
+
+<p><strong>Records can lag reality.</strong> A site that was upgraded from 50kW to 150kW last month may still show the old rating. A decommissioned unit may linger. A brand new hub may not appear for a while. This is the nature of a community-maintained database, and it is the price of the data being open.</p>
+
+<p><strong>Geographic placement can be approximate.</strong> Coordinates are usually good, but a charge point in a large car park or a multi-storey may be pinned to the building rather than the bay. Our map will get you to the site; the last fifty metres are occasionally on you.</p>
+
+<h2 id="checking">How to sanity-check a listing</h2>
+
+<p>For everyday charging in a town you know, our data is reliable enough to act on directly. For a journey where being wrong is expensive, a thirty-second check is worth it.</p>
+
+<p>Use PlugMap to find candidate sites and see the connector mix and the operators. Then open the operator's app for the one you have chosen, to confirm it is live and see the current price. And apply the general rule from our <a href="/guides/ev-road-trip-planning-uk/">journey planning guide</a>: pick a backup site and arrive with 20% in the battery, so a stale record is an inconvenience rather than a problem.</p>
+
+<h2 id="corrections">Telling us something is wrong</h2>
+
+<p>If a listing here is wrong — a charger that no longer exists, a connector that is not there, a location in the wrong place — please <a href="/contact/">tell us</a>. We will correct it and, where it is a data issue rather than something we introduced, feed it back to OpenChargeMap so every service using that data improves, not just this one.</p>
+
+<p>That is the argument for open data in one sentence, and it is why we built on it.</p>

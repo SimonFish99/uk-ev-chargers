@@ -277,7 +277,12 @@ img { max-width: 100%; }
   .page-shell > .ad-rail--left  { grid-column: 1; }
   .page-shell > .container      { grid-column: 2; }
   .page-shell > .ad-rail--right { grid-column: 3; }
-  .ad-rail { display: block; padding-top: var(--s-5); }
+  /* Placeholder rails stay hidden until real ad units are wired in: an empty
+     box labelled "Advertisement" is a bad look for a human visitor and a
+     liability during AdSense review. The grid above pins .container to
+     column 2, so hiding these changes nothing about the layout.
+     To re-enable once ads are serving: restore `display: block` here. */
+  .ad-rail { display: none; padding-top: var(--s-5); }
 }
 
 /* ── Layout container ────────────────────────────── */
@@ -876,3 +881,207 @@ footer p { margin: 0 0 var(--s-1); }
   .directions-options .dir-opt { justify-content: center; }
   .page-content { padding: var(--s-5) var(--s-4); }
 }
+
+/* ═══════════════════════════════════════════════════
+   GUIDES — editorial article pages + guide cards
+   ═══════════════════════════════════════════════════ */
+
+/* ── Guide cards (homepage, town pages, guides index) ── */
+.guide-card-list {
+  list-style: none;
+  margin: var(--s-4) 0 var(--s-5);
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: var(--s-3);
+}
+.guide-card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: var(--s-4);
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+.guide-card:hover { border-color: var(--action-soft-border); box-shadow: 0 2px 8px rgb(15 23 42 / 0.06); }
+.guide-card-kicker {
+  font-family: var(--font-display);
+  font-size: var(--text-xs);
+  font-weight: 700;
+  color: var(--slate-400);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin: 0 0 var(--s-2);
+}
+.guide-card-title {
+  font-family: var(--font-display);
+  font-size: var(--text-md);
+  font-weight: 700;
+  line-height: 1.35;
+  margin: 0 0 var(--s-2);
+}
+.guide-card-title a { color: var(--ink); text-decoration: none; }
+.guide-card-title a:hover { color: var(--action); text-decoration: underline; }
+.guide-card-desc {
+  font-size: var(--text-sm);
+  color: var(--slate-600);
+  line-height: 1.6;
+  margin: 0;
+}
+.guide-card-meta {
+  font-size: var(--text-xs);
+  color: var(--slate-400);
+  margin: var(--s-3) 0 0;
+}
+.guide-card-list--index { grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); }
+
+.home-guides { margin-top: var(--s-6); }
+.home-guides-intro {
+  font-size: var(--text-base);
+  color: var(--slate-600);
+  line-height: 1.7;
+  max-width: 72ch;
+  margin: 0 0 var(--s-4);
+}
+.town-guides { margin-top: var(--s-6); }
+
+/* ── Guide article ──────────────────────────────── */
+.guide { max-width: 68ch; }
+.guide-kicker {
+  font-family: var(--font-display);
+  font-size: var(--text-xs);
+  font-weight: 700;
+  color: var(--action);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin: var(--s-4) 0 var(--s-2);
+}
+.guide h1 { font-size: var(--text-3xl); line-height: 1.2; margin: 0 0 var(--s-3); }
+.guide-standfirst {
+  font-size: var(--text-lg);
+  line-height: 1.6;
+  color: var(--slate-600);
+  margin: 0 0 var(--s-4);
+}
+.guide-byline {
+  font-size: var(--text-xs);
+  color: var(--slate-400);
+  padding-bottom: var(--s-4);
+  border-bottom: 1px solid var(--border);
+  margin: 0 0 var(--s-5);
+}
+
+.guide-toc {
+  background: var(--surface-muted);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: var(--s-4) var(--s-5);
+  margin: 0 0 var(--s-6);
+}
+.guide-toc-title {
+  font-family: var(--font-display);
+  font-size: var(--text-xs);
+  font-weight: 700;
+  color: var(--slate-400);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin: 0 0 var(--s-2);
+}
+.guide-toc ol { margin: 0; padding-left: var(--s-4); }
+.guide-toc li { font-size: var(--text-sm); line-height: 1.9; color: var(--slate-500); }
+.guide-toc a { color: var(--slate-700); text-decoration: none; }
+.guide-toc a:hover { color: var(--action); text-decoration: underline; }
+
+.guide-body { font-size: var(--text-md); line-height: 1.75; color: var(--slate-700); }
+.guide-body p { margin: 0 0 var(--s-4); }
+.guide-body h2 {
+  font-family: var(--font-display);
+  font-size: var(--text-xl);
+  font-weight: 700;
+  line-height: 1.3;
+  color: var(--ink);
+  margin: var(--s-7) 0 var(--s-3);
+  scroll-margin-top: var(--s-5);
+}
+.guide-body h3 {
+  font-family: var(--font-display);
+  font-size: var(--text-md);
+  font-weight: 700;
+  color: var(--ink);
+  margin: var(--s-5) 0 var(--s-2);
+}
+.guide-body strong { color: var(--ink); font-weight: 600; }
+.guide-body a { color: var(--action); }
+.guide-body a:hover { color: var(--action-hover); }
+.guide-body ul, .guide-body ol { margin: 0 0 var(--s-4); padding-left: var(--s-5); }
+.guide-body li { margin-bottom: var(--s-2); }
+
+.guide-disclaimer {
+  font-size: var(--text-sm);
+  color: var(--slate-500);
+  line-height: 1.6;
+  background: var(--surface-muted);
+  border-left: 3px solid var(--border);
+  border-radius: 0 8px 8px 0;
+  padding: var(--s-3) var(--s-4);
+  margin: var(--s-7) 0 0;
+}
+
+.guide-related { margin-top: var(--s-7); }
+
+@media (max-width: 600px) {
+  .guide h1 { font-size: var(--text-2xl); }
+  .guide-standfirst { font-size: var(--text-md); }
+  .guide-card-list { grid-template-columns: 1fr; }
+}
+.guide-card--compact { padding: var(--s-3) var(--s-4); }
+.guide-card--compact .guide-card-title { margin-bottom: 0; font-size: var(--text-sm); }
+
+/* ── Per-charger access facts ───────────────────── */
+.charger-facts { margin: var(--s-2) 0 0; }
+.charger-facts .charger-meta { margin: 0 0 var(--s-1); }
+.fact-label {
+  display: inline-block;
+  min-width: 68px;
+  font-size: var(--text-xs);
+  font-weight: 600;
+  color: var(--slate-400);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+.access-flag {
+  display: inline-block;
+  font-size: var(--text-xs);
+  font-weight: 600;
+  padding: 1px var(--s-2);
+  border-radius: 999px;
+  margin-left: var(--s-1);
+}
+.access-flag--members { background: var(--rapid-soft); color: var(--rapid-ink); border: 1px solid var(--rapid-border); }
+.access-flag--pay { background: var(--action-soft); color: var(--action-hover); border: 1px solid var(--action-soft-border); }
+.charger-notes {
+  font-size: var(--text-sm);
+  color: var(--slate-600);
+  line-height: 1.6;
+  margin: var(--s-2) 0 0;
+}
+.charger-verified {
+  font-size: var(--text-xs);
+  color: var(--slate-400);
+  margin: var(--s-2) 0 0;
+}
+
+/* ── Operator breakdown ─────────────────────────── */
+.operator-breakdown { margin-top: var(--s-6); }
+.operator-list { list-style: none; margin: var(--s-3) 0 0; padding: 0; }
+.operator-list li {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: var(--s-3);
+  padding: var(--s-3) 0;
+  border-bottom: 1px solid var(--border);
+  font-size: var(--text-sm);
+}
+.operator-list li:last-child { border-bottom: 0; }
+.operator-name { color: var(--ink); font-weight: 500; }
+.operator-count { color: var(--slate-500); white-space: nowrap; font-size: var(--text-xs); }

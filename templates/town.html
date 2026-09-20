@@ -6,6 +6,7 @@
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-3057384336950554" crossorigin="anonymous"></script>
 <title>{{ town }} EV Chargers – {{ chargers|length }} Public Charge Points | PlugMap</title>
 <meta name="description" content="Find {{ chargers|length }} public EV charging station{{ 's' if chargers|length != 1 else '' }} in {{ town }}, UK. View locations on a map, see connection types and charging speeds, and get directions.">
+{% if noindex %}<meta name="robots" content="noindex,follow">{% endif %}
 <link rel="canonical" href="{{ base_url }}/uk/{{ slug }}/">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -39,6 +40,7 @@
   <a href="/" class="nav-item">All Locations</a>
   <a href="/" class="nav-item">Near me</a>
   <a href="/" class="nav-item">Map</a>
+  <a href="/guides/" class="nav-item">Guides</a>
   <hr class="nav-divider">
   <a href="/about/" class="nav-item">About us</a>
   <a href="/contact/" class="nav-item">Contact us</a>
@@ -109,8 +111,25 @@
     {% endfor %}
   </div>
   {% endif %}
-  {% if charger.OperatorInfo and charger.OperatorInfo.Title %}
-  <p class="charger-meta">Operator: {{ charger.OperatorInfo.Title }}</p>
+  <div class="charger-facts">
+    {% if charger.OperatorInfo and charger.OperatorInfo.Title %}
+    <p class="charger-meta"><span class="fact-label">Operator</span> {{ charger.OperatorInfo.Title }}</p>
+    {% endif %}
+    {% if charger._access %}
+    <p class="charger-meta"><span class="fact-label">Access</span> {{ charger._access }}{% if charger._membership %} <span class="access-flag access-flag--members">app or membership needed</span>{% elif charger._pay_at_location %} <span class="access-flag access-flag--pay">pay at the charger</span>{% endif %}</p>
+    {% endif %}
+    {% if charger._points %}
+    <p class="charger-meta"><span class="fact-label">Bays</span> {{ charger._points }}</p>
+    {% endif %}
+    {% if charger._cost %}
+    <p class="charger-meta"><span class="fact-label">Cost</span> {{ charger._cost }}</p>
+    {% endif %}
+  </div>
+  {% if charger._access_notes %}
+  <p class="charger-notes"><span class="fact-label">Getting in</span> {{ charger._access_notes }}</p>
+  {% endif %}
+  {% if charger._verified %}
+  <p class="charger-verified">Record last verified {{ charger._verified }}</p>
   {% endif %}
   {% if addr.Latitude and addr.Longitude %}
   <details class="directions-wrap">
@@ -128,6 +147,17 @@
 
 <p class="data-updated">Charger data last updated {{ build_date }}, sourced from OpenChargeMap.</p>
 
+{% if facts.operator_breakdown | length > 1 %}
+<section class="operator-breakdown" aria-labelledby="operators-heading">
+  <h2 id="operators-heading" class="section-heading">Who runs the chargers in {{ town }}</h2>
+  <ul class="operator-list">
+  {% for op in facts.operator_breakdown %}
+    <li><span class="operator-name">{{ op.name }}</span><span class="operator-count">{{ op.count }} charge point{{ 's' if op.count != 1 else '' }}</span></li>
+  {% endfor %}
+  </ul>
+</section>
+{% endif %}
+
 <section class="faq" aria-labelledby="faq-heading">
   <h2 id="faq-heading" class="faq-heading">EV charging in {{ town }} — FAQs</h2>
   {% for q, a in faqs %}
@@ -139,6 +169,20 @@
 </section>
 
 <p><a href="/" class="back-link">← All UK towns</a></p>
+
+{% if guides %}
+<section class="town-guides" aria-labelledby="town-guides-heading">
+  <h2 id="town-guides-heading" class="section-heading">New to charging? Start here</h2>
+  <ul class="guide-card-list">
+  {% for g in guides %}
+    <li class="guide-card guide-card--compact">
+      <p class="guide-card-kicker">{{ g.category }}</p>
+      <h3 class="guide-card-title"><a href="/guides/{{ g.slug }}/">{{ g.title }}</a></h3>
+    </li>
+  {% endfor %}
+  </ul>
+</section>
+{% endif %}
 
 {% if nearby %}
 <div class="nearby-towns">
@@ -159,7 +203,7 @@
 
 <footer>
 <div class="container">
-<p class="footer-links"><a href="/about/">About</a> &nbsp;·&nbsp; <a href="/contact/">Contact</a> &nbsp;·&nbsp; <a href="/privacy/">Privacy Policy</a></p>
+<p class="footer-links"><a href="/about/">About</a> &nbsp;·&nbsp; <a href="/guides/">Guides</a> &nbsp;·&nbsp; <a href="/contact/">Contact</a> &nbsp;·&nbsp; <a href="/privacy/">Privacy Policy</a></p>
 <p class="footer-meta">Data sourced from <a href="https://openchargemap.org" rel="nofollow noopener">OpenChargeMap</a> under <a href="https://creativecommons.org/licenses/by/4.0/" rel="nofollow noopener">CC BY 4.0</a>.</p>
 <p class="footer-copy">&copy; 2026 PlugMap — UK EV Charger Locator</p>
 </div>

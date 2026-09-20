@@ -9,6 +9,9 @@ INPUT_FILE = "data/towns_filtered.json"
 OUTPUT_DIR = "site/uk"
 BASE_URL = "https://plugmap.co.uk"
 ADSENSE_PUB = "pub-3057384336950554"
+# Towns at or below this charger count are kept for users but excluded from
+# the index: too little unique content to stand on their own in search.
+NOINDEX_MAX_CHARGERS = 5
 
 env = Environment(
     loader=FileSystemLoader("templates"),
@@ -76,8 +79,24 @@ def town_stats(chargers):
     return {"total": len(chargers), "rapid": rapid, "fast": fast, "slow": slow}
 
 
+def _verified_display(value):
+    """'2023-12-07T08:09:00Z' -> 'December 2023'. Blank if unparseable."""
+    if not value:
+        return ""
+    try:
+        return date.fromisoformat(str(value)[:10]).strftime("%B %Y")
+    except ValueError:
+        return ""
+
+
 def augment_charger(c):
-    """Add precomputed _speed and _conn_names to each charger dict."""
+    """Add precomputed display fields: speed, connectors, access and provenance.
+
+    Access model, cost notes and the last-verified date come straight from the
+    OpenChargeMap record. They are the details a driver needs before setting
+    off — whether they need a membership, whether there is a barrier — and
+    they are the part of a listing that is genuinely specific to that site.
+    """
     connections = c.get("Connections") or []
     max_kw = max(((conn.get("PowerKW") or 0) for conn in connections), default=0)
     conn_names = list(dict.fromkeys(
@@ -86,7 +105,24 @@ def augment_charger(c):
         if conn.get("ConnectionType", {}).get("Title")
     ))
     speed = "rapid" if max_kw >= 50 else ("fast" if max_kw >= 7 else "slow")
-    return {**c, "_speed": speed, "_conn_names": conn_names, "_max_kw": max_kw}
+    usage = c.get("UsageType") or {}
+    addr = c.get("AddressInfo") or {}
+    notes = (addr.get("AccessComments") or "").strip()
+    if len(notes) > 260:
+        notes = notes[:257].rsplit(" ", 1)[0] + "…"
+    return {
+        **c,
+        "_speed": speed,
+        "_conn_names": conn_names,
+        "_max_kw": max_kw,
+        "_access": (usage.get("Title") or "").replace("(Unknown)", "").strip(),
+        "_membership": bool(usage.get("IsMembershipRequired")),
+        "_pay_at_location": bool(usage.get("IsPayAtLocation")),
+        "_cost": (c.get("UsageCost") or "").strip(),
+        "_access_notes": notes,
+        "_points": c.get("NumberOfPoints") or 0,
+        "_verified": _verified_display(c.get("DateLastVerified")),
+    }
 
 
 SPEED_RANK = {"rapid": 0, "fast": 1, "slow": 2}
@@ -110,34 +146,79 @@ def _join_list(items):
     return ", ".join(items[:-1]) + " and " + items[-1]
 
 
+def _clean_name(value):
+    """Tidy the whitespace OpenChargeMap records sometimes carry.
+
+    Source titles arrive like 'The GeniePoint Network ( EQUANS EV Solutions )',
+    which renders badly mid-sentence and leaves a gap before a full stop.
+    """
+    if not isinstance(value, str):
+        return value
+    v = re.sub(r"\s+", " ", value).strip()
+    v = re.sub(r"\(\s+", "(", v)
+    v = re.sub(r"\s+\)", ")", v)
+    return v
+
+
+def normalise_charger(c):
+    """Clean the display strings on one charger record, in place."""
+    addr = c.get("AddressInfo")
+    if isinstance(addr, dict):
+        for key in ("Title", "AddressLine1", "AddressLine2", "Town", "Postcode"):
+            if addr.get(key):
+                addr[key] = _clean_name(addr[key])
+    op = c.get("OperatorInfo")
+    if isinstance(op, dict) and op.get("Title"):
+        op["Title"] = _clean_name(op["Title"])
+    for conn in (c.get("Connections") or []):
+        ct = conn.get("ConnectionType")
+        if isinstance(ct, dict) and ct.get("Title"):
+            ct["Title"] = _clean_name(ct["Title"])
+    return c
+
+
 def town_facts(chargers):
     """Aggregate facts used for the intro copy and FAQ."""
     from collections import Counter
     ops = Counter()
+    conn_counts = Counter()
     max_kw = 0
+    fastest_site = ""
+    membership = 0
+    pay_at_location = 0
     for c in chargers:
         title = (c.get("OperatorInfo") or {}).get("Title") or ""
         if title.strip().lower() not in _UNKNOWN_OPS:
             ops[title.strip()] += 1
+        usage = c.get("UsageType") or {}
+        if usage.get("IsMembershipRequired"):
+            membership += 1
+        if usage.get("IsPayAtLocation"):
+            pay_at_location += 1
         for conn in (c.get("Connections") or []):
+            name = (conn.get("ConnectionType") or {}).get("Title")
+            if name:
+                conn_counts[name] += 1
             kw = conn.get("PowerKW") or 0
             if kw > max_kw:
                 max_kw = kw
-    connectors = sorted({
-        conn["ConnectionType"]["Title"]
-        for c in chargers for conn in (c.get("Connections") or [])
-        if conn.get("ConnectionType", {}).get("Title")
-    })
+                fastest_site = ((c.get("AddressInfo") or {}).get("Title") or "").strip()
+    connectors = sorted(conn_counts)
     return {
         "top_operators": [o for o, _ in ops.most_common(3)],
         "operator_count": len(ops),
         "max_kw": int(max_kw) if max_kw == int(max_kw) else max_kw,
         "connectors": connectors,
+        "top_connector": conn_counts.most_common(1)[0][0] if conn_counts else "",
+        "fastest_site": fastest_site,
+        "membership": membership,
+        "pay_at_location": pay_at_location,
+        "operator_breakdown": [{"name": o, "count": n} for o, n in ops.most_common(6)],
     }
 
 
 def build_intro(town, stats, facts):
-    """Short, factual intro paragraph (no filler)."""
+    """Factual intro built from this town's own data — no fixed filler tail."""
     total = stats["total"]
     parts = [f"{town} has {total} public EV charging point{_plural(total)}"]
     mix = []
@@ -148,10 +229,18 @@ def build_intro(town, stats, facts):
     if mix:
         parts.append(", including " + _join_list(mix) + f" charger{_plural(stats['rapid'] + stats['fast'])}")
     intro = "".join(parts) + "."
+
+    # Second sentence: the fastest site here, named, so the page says something
+    # no other town page says.
+    if facts["fastest_site"] and facts["max_kw"]:
+        intro += (f" The highest-powered charge point listed here is {facts['fastest_site']} "
+                  f"at {facts['max_kw']}kW.")
     if facts["top_operators"]:
-        intro += " Networks operating here include " + _join_list(facts["top_operators"]) + "."
-    intro += (" Browse every location on the map and list below — each shows its connector types, "
-              "charging speed and operator, with one-tap directions to navigate straight there.")
+        others = facts["operator_count"] - len(facts["top_operators"])
+        intro += (" Charge points are operated by " + _join_list(facts["top_operators"])
+                  + (f", plus {others} other network{_plural(others)}" if others > 0 else "") + ".")
+    if facts["top_connector"]:
+        intro += f" The most widely available connector in {town} is {facts['top_connector']}."
     return intro
 
 
@@ -161,32 +250,58 @@ def build_faqs(town, stats, facts):
     faqs.append((
         f"How many EV charging points are there in {town}?",
         f"There are {total} public EV charging point{_plural(total)} in {town}: "
-        f"{rapid} rapid (50kW+), {fast} fast (7–50kW) and {stats['slow']} standard (under 7kW).",
+        f"{rapid} rapid (50kW+), {fast} fast (7–50kW) and {stats['slow']} standard (under 7kW). "
+        f"Between them they offer {len(facts['connectors'])} different connector type"
+        f"{_plural(len(facts['connectors']))}.",
     ))
     if rapid:
         faqs.append((
             f"Where can I find rapid EV chargers in {town}?",
-            f"{town} has {rapid} rapid charging point{_plural(rapid)} rated at 50kW or above "
-            f"(the fastest is {facts['max_kw']}kW). They're labelled “Rapid”, listed first on this page "
-            f"and pinned on the map above so you can head straight to the quickest option.",
+            f"{town} has {rapid} rapid charging point{_plural(rapid)} rated at 50kW or above. "
+            + (f"The fastest is {facts['fastest_site']} at {facts['max_kw']}kW. "
+               if facts["fastest_site"] else f"The fastest is rated {facts['max_kw']}kW. ")
+            + "Rapid sites are labelled “Rapid”, listed first on this page and pinned on the map above.",
         ))
     else:
         faqs.append((
             f"Are there rapid chargers in {town}?",
-            f"There are no rapid (50kW+) chargers listed in {town} right now — the fastest available is "
-            f"{facts['max_kw']}kW. For rapid charging, try one of the nearby towns listed further down this page.",
+            f"No — there are no rapid (50kW+) chargers listed in {town} right now. The fastest available "
+            f"is {facts['max_kw']}kW"
+            + (f", at {facts['fastest_site']}" if facts["fastest_site"] else "")
+            + f", which would add roughly {int(facts['max_kw'] * 3)} miles of range in an hour. "
+              "For rapid charging, try one of the nearby towns listed further down this page.",
         ))
     if facts["top_operators"]:
         faqs.append((
             f"Which charging networks operate in {town}?",
-            f"Charge points in {town} are run by networks including {_join_list(facts['top_operators'])}. "
-            f"You'll need the relevant operator's app or a contactless card to start a session at most sites.",
+            f"Charge points in {town} are run by {facts['operator_count']} network"
+            f"{_plural(facts['operator_count'])}, the largest being "
+            f"{_join_list(facts['top_operators'])}. The operator is shown against each "
+            f"charge point in the list above.",
         ))
+    # Payment answer built from this town's own access data rather than a
+    # generic paragraph repeated on every page.
+    if facts["membership"] or facts["pay_at_location"]:
+        bits = []
+        if facts["pay_at_location"]:
+            bits.append(f"{facts['pay_at_location']} accept payment at the charge point itself "
+                        f"(contactless card or the operator's app)")
+        if facts["membership"]:
+            bits.append(f"{facts['membership']} require an account, app or membership card before "
+                        f"you can start a session")
+        answer = (f"Of the {total} charge point{_plural(total)} listed in {town}, "
+                  + _join_list(bits) + ". ")
+        if facts["membership"]:
+            answer += ("It is worth setting those accounts up before you need them rather than in the "
+                       "car park. ")
+        answer += ("Under the UK charge point regulations, rapid units of 50kW and above must display "
+                   "their price in pence per kWh before you start.")
+        faqs.append((f"Do I need an app to charge in {town}?", answer))
     faqs.append((
         f"Are the EV chargers in {town} free to use?",
-        "Most public charge points require payment — usually via the operator's app, a contactless card or "
-        "an RFID tag. Pricing varies by network and charging speed, so check the operator's app or the signage "
-        "at the location for current tariffs.",
+        f"Most of the {total} charge point{_plural(total)} in {town} require payment, and the access "
+        f"column above shows how each one is paid for. Pricing varies by network and charging speed, "
+        f"so check the operator's app or the signage at the location for the current tariff.",
     ))
     return faqs
 
@@ -201,6 +316,123 @@ def build_faq_jsonld(faqs):
             for q, a in faqs
         ],
     }, ensure_ascii=False)
+
+
+# ── Guides (hand-written editorial content) ─────────────────────────
+GUIDES_DIR = "content/guides"
+
+# Explicit running order: basics first, then costs, then journeys.
+GUIDE_ORDER = [
+    "ev-connector-types-uk",
+    "ev-charging-speeds-explained",
+    "public-ev-charging-cost-uk",
+    "home-vs-public-ev-charging",
+    "uk-ev-charging-networks-compared",
+    "ev-road-trip-planning-uk",
+    "ev-winter-range-cold-weather",
+    "ev-charging-etiquette-and-faults",
+    "where-our-charger-data-comes-from",
+]
+
+
+def _parse_guide(path):
+    """Guide files are 'key: value' lines, a '---' separator, then HTML."""
+    with open(path, encoding="utf-8") as f:
+        raw = f.read()
+    header, _, body = raw.partition("\n---\n")
+    meta = {}
+    for line in header.splitlines():
+        if not line.strip():
+            continue
+        key, _, value = line.partition(":")
+        meta[key.strip()] = value.strip()
+    meta["slug"] = os.path.splitext(os.path.basename(path))[0]
+    meta["body"] = body.strip()
+    # Build the on-page contents list from the article's own h2 anchors
+    meta["toc"] = [
+        {"id": m.group(1), "text": re.sub(r"<[^>]+>", "", m.group(2))}
+        for m in re.finditer(r'<h2 id="([^"]+)">(.*?)</h2>', body, flags=re.S)
+    ]
+    meta["reading_time"] = int(meta.get("reading_time", 5))
+    d = date.fromisoformat(meta["updated"])
+    meta["updated_display"] = d.strftime("%B %Y")
+    meta["updated_iso"] = meta["updated"]
+    return meta
+
+
+def load_guides():
+    guides = [_parse_guide(os.path.join(GUIDES_DIR, f"{slug}.html")) for slug in GUIDE_ORDER]
+    return guides
+
+
+def pick_town_guides(guides, stats):
+    """Pick the three guides most relevant to what this town's charging mix is like.
+
+    A town of 60 rapid chargers on a motorway corridor and a town of 8 slow
+    residential posts are different problems, so they get different reading.
+    """
+    by_slug = {g["slug"]: g for g in guides}
+    rapid, fast, slow, total = stats["rapid"], stats["fast"], stats["slow"], stats["total"]
+    if rapid == 0:
+        picks = ["ev-charging-speeds-explained", "ev-road-trip-planning-uk", "home-vs-public-ev-charging"]
+    elif rapid >= 10 or (total and rapid / total >= 0.5):
+        picks = ["ev-road-trip-planning-uk", "public-ev-charging-cost-uk", "uk-ev-charging-networks-compared"]
+    elif slow + fast >= rapid * 4:
+        picks = ["home-vs-public-ev-charging", "public-ev-charging-cost-uk", "ev-connector-types-uk"]
+    else:
+        picks = ["ev-connector-types-uk", "public-ev-charging-cost-uk", "ev-charging-etiquette-and-faults"]
+    return [by_slug[s] for s in picks if s in by_slug]
+
+
+def build_guide_jsonld(guide, base_url):
+    url = f"{base_url}/guides/{guide['slug']}/"
+    return json.dumps({
+        "@context": "https://schema.org",
+        "@type": "Article",
+        "headline": guide["title"],
+        "description": guide["description"],
+        "url": url,
+        "mainEntityOfPage": {"@type": "WebPage", "@id": url},
+        "datePublished": guide["updated_iso"],
+        "dateModified": guide["updated_iso"],
+        "author": {"@type": "Organization", "name": "PlugMap", "url": base_url},
+        "publisher": {"@type": "Organization", "name": "PlugMap", "url": base_url},
+        "articleSection": guide["category"],
+        "isAccessibleForFree": True,
+    }, ensure_ascii=False)
+
+
+def generate_guides(guides):
+    guide_tpl = env.get_template("guide.html")
+    index_tpl = env.get_template("guides_index.html")
+    os.makedirs("site/guides", exist_ok=True)
+    for i, guide in enumerate(guides):
+        # "Read next" = the following three in running order, wrapping round
+        related = [guides[(i + n) % len(guides)] for n in (1, 2, 3)]
+        html = guide_tpl.render(
+            guide=guide,
+            related=related,
+            base_url=BASE_URL,
+            jsonld=build_guide_jsonld(guide, BASE_URL),
+        )
+        os.makedirs(os.path.join("site/guides", guide["slug"]), exist_ok=True)
+        with open(os.path.join("site/guides", guide["slug"], "index.html"), "w", encoding="utf-8") as f:
+            f.write(html)
+    index_jsonld = json.dumps({
+        "@context": "https://schema.org",
+        "@type": "CollectionPage",
+        "name": "EV Charging Guides",
+        "description": "Plain-English guides to charging an electric car in the UK.",
+        "url": f"{BASE_URL}/guides/",
+        "hasPart": [
+            {"@type": "Article", "headline": g["title"], "description": g["description"],
+             "url": f"{BASE_URL}/guides/{g['slug']}/"}
+            for g in guides
+        ],
+    }, ensure_ascii=False)
+    with open("site/guides/index.html", "w", encoding="utf-8") as f:
+        f.write(index_tpl.render(guides=guides, base_url=BASE_URL, jsonld=index_jsonld))
+    print("Generated", len(guides), "guides + index")
 
 
 def build_map_data(chargers):
@@ -372,12 +604,12 @@ def load_towns():
                 if cid is not None and cid in seen:
                     continue
                 seen.add(cid)
-                merged.append(c)
+                merged.append(normalise_charger(c))
         towns[display] = merged
     return towns
 
 
-def generate_pages(towns, centroids, town_region):
+def generate_pages(towns, centroids, town_region, guides):
     template = env.get_template("town.html")
     # Wipe and regenerate so towns that drop out of the data leave no orphan pages
     if os.path.isdir(OUTPUT_DIR):
@@ -402,6 +634,8 @@ def generate_pages(towns, centroids, town_region):
 
         region = town_region.get(town)
         html = template.render(
+            noindex=stats["total"] <= NOINDEX_MAX_CHARGERS,
+            guides=pick_town_guides(guides, stats),
             town=town,
             chargers=augmented,
             slug=slug,
@@ -413,6 +647,7 @@ def generate_pages(towns, centroids, town_region):
             map_data=build_map_data(chargers),
             jsonld=build_jsonld(town, chargers, BASE_URL, slug),
             stats=stats,
+            facts=facts,
             intro=build_intro(town, stats, facts),
             faqs=faqs,
             faq_jsonld=build_faq_jsonld(faqs),
@@ -427,7 +662,7 @@ def generate_pages(towns, centroids, town_region):
     print("Generated", len(towns), "town pages")
 
 
-def generate_homepage(towns, centroids, by_region):
+def generate_homepage(towns, centroids, by_region, guides):
     template = env.get_template("home.html")
     # Alphabetical order
     town_list = [
@@ -456,6 +691,8 @@ def generate_homepage(towns, centroids, by_region):
     html = template.render(
         towns=town_list,
         regions=region_list,
+        featured_guides=guides[:4],
+        featured_guides_total=len(guides),
         base_url=BASE_URL,
         total_towns=len(town_list),
         total_chargers=total_chargers,
@@ -512,18 +749,23 @@ def generate_ads_txt():
     print("Generated ads.txt")
 
 
-def generate_sitemap(towns, by_region):
+def generate_sitemap(towns, by_region, guides):
     today = date.today().isoformat()
     urls = [
         (f"{BASE_URL}/", "1.0", "weekly"),
         (f"{BASE_URL}/about/", "0.6", "monthly"),
         (f"{BASE_URL}/contact/", "0.4", "yearly"),
         (f"{BASE_URL}/privacy/", "0.3", "yearly"),
+        (f"{BASE_URL}/guides/", "0.9", "monthly"),
     ]
+    for guide in guides:
+        urls.append((f"{BASE_URL}/guides/{guide['slug']}/", "0.8", "monthly"))
     for region in by_region.keys():
         urls.append((f"{BASE_URL}/uk/region/{slugify(region)}/", "0.7", "weekly"))
-    for town in towns.keys():
-        urls.append((f"{BASE_URL}/uk/{slugify(town)}/", "0.8", "monthly"))
+    for town, chargers in towns.items():
+        if len(chargers) <= NOINDEX_MAX_CHARGERS:
+            continue  # noindexed — keep it out of the sitemap too
+        urls.append((f"{BASE_URL}/uk/{slugify(town)}/", "0.7", "monthly"))
     lines = ['<?xml version="1.0" encoding="UTF-8"?>',
              '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">']
     for url, priority, changefreq in urls:
@@ -547,10 +789,12 @@ def main():
     regions = load_regions()
     town_region = assign_regions(towns, centroids, regions)
     total_chargers = sum(len(c) for c in towns.values())
-    generate_pages(towns, centroids, town_region)
+    guides = load_guides()
+    generate_pages(towns, centroids, town_region, guides)
     by_region = generate_region_pages(town_region, towns)
-    generate_homepage(towns, centroids, by_region)
-    generate_sitemap(towns, by_region)
+    generate_homepage(towns, centroids, by_region, guides)
+    generate_guides(guides)
+    generate_sitemap(towns, by_region, guides)
     generate_robots()
     generate_ads_txt()
     generate_about(len(towns), total_chargers)
