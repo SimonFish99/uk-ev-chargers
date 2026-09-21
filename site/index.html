@@ -2234,9 +2234,10 @@
   function initMap() {
     mapReady = true;
     var map = L.map('overview-map').setView([54.5, -3.0], 6);
-    L.tileLayer('https://{s}.basemaps.cartocdn.com/rastertiles/voyager/{z}/{x}/{y}{r}.png', {
-      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
-      subdomains: 'abcd', maxZoom: 20,
+    // OpenStreetMap's own tiles: free, no key (CARTO now watermarks keyless tiles).
+    L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors',
+      maxZoom: 19,
     }).addTo(map);
     TOWNS.forEach(function(t) {
       if (!t.lat || !t.lng) return;
