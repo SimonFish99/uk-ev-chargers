@@ -3,6 +3,11 @@ name: Weekly data refresh
 # Re-pulls OpenChargeMap data, rebuilds the static site, and commits the
 # regenerated site/ folder. Cloudflare Pages auto-deploys on the push.
 #
+# Do NOT add [skip ci] to the commit message: Cloudflare Pages honours it and
+# silently skips the deploy (this is why refreshes went unpublished Jun-Sep 2026).
+# No loop risk: pushes made with GITHUB_TOKEN never trigger workflows, and this
+# one only runs on schedule / manual dispatch.
+#
 # Requires a repository secret: OCM_API_KEY (your OpenChargeMap API key).
 # Settings -> Secrets and variables -> Actions -> New repository secret.
 
@@ -50,6 +55,6 @@ jobs:
           if git diff --cached --quiet; then
             echo "No changes to deploy."
           else
-            git commit -m "chore: weekly data refresh [skip ci]"
+            git commit -m "chore: weekly data refresh"
             git push
           fi
